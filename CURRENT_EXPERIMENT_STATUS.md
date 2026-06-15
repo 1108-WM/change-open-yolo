@@ -1351,11 +1351,13 @@ bash -n tools/run_scannet200_even48_sam_mask_support_eval.sh
 | same-class downweight | `0.272612` | `0.345771` | `0.389492` | `8` | `273 -> 273` |
 | same-class remove_large | `0.272612` | `0.345771` | `0.389492` | `8` | `273 -> 265` |
 | cross-class remove_large | `0.272614` | `0.345771` | `0.389493` | `13` | `273 -> 260` |
+| relaxed cross-class remove_large (`0.60/1.2/0.50`) | `0.269008` | `0.342164` | `0.385883` | `17` | `273 -> 256` |
 
 结论：
 
 - 简单候选包含/重叠后处理可以正确触发，但触发次数很少，净收益只有 `+0.000002` 到 `+0.000004`，不足以进入 `even96`。
 - 同类限制下只触发 `8` 次；跨类别删除触发 `13` 次，仍没有明确提分。
+- 放宽到跨类别 `coverage=0.60`、面积比 `1.2`、分数比 `0.50` 后，触发 `17` 次但指标明显下降，说明全局硬删除会误删有用候选。
 - 这说明“包含关系”方向本身有诊断价值，但不能只靠简单规则直接删除或降权。
 - 下一步若继续关系处理，应提取更细的关系特征：
   - 大候选包含小候选时，大候选独有区域的连通性、平面性、视角支持比例。
@@ -1363,3 +1365,30 @@ bash -n tools/run_scannet200_even48_sam_mask_support_eval.sh
   - 大候选与多个小候选的 one-to-many 关系。
   - 同类和跨类分别建模，不直接全局删除。
 - 当前实现先保留为可开关诊断和安全后处理，不作为当前最佳配置。
+
+2026-06-15 后续关系特征诊断：
+
+- `tools/analyze_backprojection_candidates.py` 新增非 GT 关系诊断列：
+  - `relation_base_contained_count`
+  - `relation_base_max_coverage`
+  - `relation_base_max_area_ratio`
+  - `relation_candidate_contained_count`
+  - `relation_candidate_max_coverage`
+  - `relation_candidate_max_area_ratio`
+  - `relation_any_contained_count`
+  - `relation_any_max_coverage`
+  - `relation_exclusive_point_ratio`
+  - `relation_exclusive_point_count`
+  - `relation_contained_point_count`
+- `tools/train_candidate_geometry_discriminator.py` 默认特征列表已加入这些关系特征。
+- 在当前 `even48` 应用候选上生成无深度诊断：
+  - 输出：`output/diagnostics/relation_features_even48_current`
+  - 行数：`273`
+  - 关系触发：`13` 个候选有 `relation_any_contained_count > 0`
+  - 这 `13` 个全部属于 `background_or_bad_geometry`
+- 用该 CSV 训练随机森林 smoke 通过：
+  - 行数：`272`
+  - 特征数：`69`
+  - 验证 ROC-AUC：`0.6875`
+  - 验证 AP：`0.1901`
+- 关系特征本身不是 top feature，但能标记一小批明确坏候选。它适合进入轻量判别器或风险排序，不适合单独作为删除规则。

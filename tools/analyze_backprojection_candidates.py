@@ -363,6 +363,77 @@ def _mask_iou_one_to_many(mask, masks):
     return np.divide(intersections, np.maximum(unions, 1), dtype=np.float32)
 
 
+def _empty_relation_features():
+    return {
+        "relation_base_contained_count": 0,
+        "relation_base_max_coverage": 0.0,
+        "relation_base_max_area_ratio": 0.0,
+        "relation_candidate_contained_count": 0,
+        "relation_candidate_max_coverage": 0.0,
+        "relation_candidate_max_area_ratio": 0.0,
+        "relation_any_contained_count": 0,
+        "relation_any_max_coverage": 0.0,
+        "relation_exclusive_point_ratio": 1.0,
+        "relation_exclusive_point_count": 0,
+        "relation_contained_point_count": 0,
+    }
+
+
+def _compute_relation_features(candidate_mask, candidate_class_id, baseline_masks, candidate_items, args):
+    output = _empty_relation_features()
+    candidate_area = int(candidate_mask.sum())
+    output["relation_exclusive_point_count"] = candidate_area
+    if candidate_area <= 0:
+        output["relation_exclusive_point_ratio"] = 0.0
+        return output
+
+    threshold = float(args.relation_containment_threshold)
+    min_area_ratio = float(args.relation_min_area_ratio)
+    same_class_only = bool(args.relation_same_class_only)
+    contained_union = np.zeros_like(candidate_mask, dtype=bool)
+
+    def update(prefix, other_mask, other_class_id=None):
+        other_area = int(other_mask.sum())
+        if other_area <= 0 or candidate_area < other_area * min_area_ratio:
+            return
+        if same_class_only and other_class_id is not None and int(candidate_class_id) != int(other_class_id):
+            return
+        intersection = int(np.logical_and(candidate_mask, other_mask).sum())
+        if intersection <= 0:
+            return
+        coverage = float(intersection / max(1, other_area))
+        if coverage < threshold:
+            return
+        area_ratio = float(candidate_area / max(1, other_area))
+        output[f"relation_{prefix}_contained_count"] += 1
+        output[f"relation_{prefix}_max_coverage"] = max(output[f"relation_{prefix}_max_coverage"], coverage)
+        output[f"relation_{prefix}_max_area_ratio"] = max(output[f"relation_{prefix}_max_area_ratio"], area_ratio)
+        contained_union[:] = np.logical_or(contained_union, other_mask)
+
+    if baseline_masks is not None and baseline_masks.size > 0:
+        for index in range(baseline_masks.shape[1]):
+            update("base", baseline_masks[:, index])
+
+    for item in candidate_items:
+        if item["mask"] is candidate_mask:
+            continue
+        update("candidate", item["mask"], item.get("class_id"))
+
+    output["relation_any_contained_count"] = (
+        int(output["relation_base_contained_count"]) + int(output["relation_candidate_contained_count"])
+    )
+    output["relation_any_max_coverage"] = max(
+        float(output["relation_base_max_coverage"]),
+        float(output["relation_candidate_max_coverage"]),
+    )
+    contained_points = int(np.logical_and(candidate_mask, contained_union).sum())
+    exclusive_points = max(0, candidate_area - contained_points)
+    output["relation_contained_point_count"] = contained_points
+    output["relation_exclusive_point_count"] = exclusive_points
+    output["relation_exclusive_point_ratio"] = float(exclusive_points / max(1, candidate_area))
+    return output
+
+
 def _connected_component_geometry(local_points, radius, max_points):
     output = {
         "geometry_component_count": 0,
@@ -658,6 +729,8 @@ def analyze(args):
         gt_masks = [item["mask"] for item in gt_instances]
         gt_matrix = np.stack(gt_masks, axis=1) if gt_masks else np.zeros((num_points, 0), dtype=bool)
         baseline_masks = _load_baseline_masks(args.baseline_masks, scene_name, num_points)
+        scene_rows = []
+        scene_candidate_items = []
 
         for candidate in candidates_by_scene.get(scene_name, []):
             report_key = (
@@ -777,7 +850,30 @@ def analyze(args):
                 row["best_baseline_gt_iou"],
                 row["best_existing_iou"],
             )
-            rows.append(row)
+            scene_rows.append(row)
+            scene_candidate_items.append(
+                {
+                    "row": row,
+                    "mask": candidate_mask,
+                    "class_id": int(candidate.get("class_id", -1)),
+                }
+            )
+
+        if args.relation_features:
+            for item in scene_candidate_items:
+                item["row"].update(
+                    _compute_relation_features(
+                        item["mask"],
+                        item["class_id"],
+                        baseline_masks,
+                        scene_candidate_items,
+                        args,
+                    )
+                )
+        else:
+            for item in scene_candidate_items:
+                item["row"].update(_empty_relation_features())
+        rows.extend(scene_rows)
 
     _standardized_scores(rows, lambda row: (row["scene_name"], row["source_kind"]), "scene_source_quality_z")
     _standardized_scores(rows, lambda row: (row["class_name"], row["source_kind"]), "class_source_quality_z")
@@ -821,6 +917,10 @@ def parse_args():
     parser.add_argument("--depth_layer_bin_size", default=0.10, type=float, help="Bin size in meters for depth layer counts.")
     parser.add_argument("--depth_max_views", default=5, type=int, help="Maximum support views used per candidate for depth features.")
     parser.add_argument("--depth_max_points", default=5000, type=int, help="Maximum candidate points sampled for depth features.")
+    parser.add_argument("--relation_features", default=True, action=argparse.BooleanOptionalAction, help="Add candidate containment/overlap relation diagnostic features.")
+    parser.add_argument("--relation_containment_threshold", default=0.85, type=float, help="Minimum smaller-mask coverage for relation containment features.")
+    parser.add_argument("--relation_min_area_ratio", default=1.5, type=float, help="Minimum candidate/smaller-mask area ratio for relation containment features.")
+    parser.add_argument("--relation_same_class_only", default=False, action=argparse.BooleanOptionalAction, help="Only count candidate-candidate relations with the same predicted class.")
     return parser.parse_args()
 
 
