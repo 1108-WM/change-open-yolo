@@ -1326,3 +1326,40 @@ bash -n tools/run_scannet200_even48_sam_mask_support_eval.sh
   - 默认档 `even48`：平均精度 `0.272406`，低于同口径参考 `0.272650`。
   - 保守档 `even48`：平均精度 `0.272888`，但 AP50 `0.356003`、AP25 `0.406073` 低于参考 `0.356852`、`0.406168`。
   - 两档都没有明确正向，不进入 `even96`。
+
+2026-06-15 新增候选包含/重叠后处理：
+
+- 新增命令行参数：
+  - `--backprojection_containment_action {none,downweight,carve,remove_large}`
+  - `--backprojection_containment_threshold`
+  - `--backprojection_containment_min_area_ratio`
+  - `--backprojection_containment_score_ratio`
+  - `--backprojection_containment_quality_margin`
+  - `--backprojection_containment_score_factor`
+  - `--backprojection_containment_min_points`
+- 新增脚本：
+  - `tools/run_scannet200_even48_containment_sweep.sh`
+- 语法和小型合成行为测试通过：
+  - `carve` 会裁掉大候选中被小 mask 覆盖的点。
+  - `downweight` 会降低包含小 mask 的大候选分数。
+- 同一 `even48`、同一当前最佳候选配置下验证：
+
+| 配置 | 平均精度 | 百分之五十重叠率平均精度 | 百分之二十五重叠率平均精度 | 触发事件 | 候选变化 |
+|---|---:|---:|---:|---:|---:|
+| current | `0.272610` | `0.345769` | `0.389491` | `0` | `273 -> 273` |
+| same-class carve | `0.272609` | `0.345769` | `0.389491` | `8` | `273 -> 273`，裁掉 `2003` 点 |
+| same-class downweight | `0.272612` | `0.345771` | `0.389492` | `8` | `273 -> 273` |
+| same-class remove_large | `0.272612` | `0.345771` | `0.389492` | `8` | `273 -> 265` |
+| cross-class remove_large | `0.272614` | `0.345771` | `0.389493` | `13` | `273 -> 260` |
+
+结论：
+
+- 简单候选包含/重叠后处理可以正确触发，但触发次数很少，净收益只有 `+0.000002` 到 `+0.000004`，不足以进入 `even96`。
+- 同类限制下只触发 `8` 次；跨类别删除触发 `13` 次，仍没有明确提分。
+- 这说明“包含关系”方向本身有诊断价值，但不能只靠简单规则直接删除或降权。
+- 下一步若继续关系处理，应提取更细的关系特征：
+  - 大候选包含小候选时，大候选独有区域的连通性、平面性、视角支持比例。
+  - 小候选是否由原始 Mask3D 支持或多视角稳定支持。
+  - 大候选与多个小候选的 one-to-many 关系。
+  - 同类和跨类分别建模，不直接全局删除。
+- 当前实现先保留为可开关诊断和安全后处理，不作为当前最佳配置。

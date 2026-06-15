@@ -935,16 +935,36 @@ def _postprocess_appended_proposals(
     merge_iou=0.0,
     inclusion_threshold=0.0,
     same_class_only=True,
+    appended_metadata=None,
+    containment_action="none",
+    containment_threshold=0.85,
+    containment_min_area_ratio=1.5,
+    containment_score_ratio=0.75,
+    containment_quality_margin=0.0,
+    containment_score_factor=0.5,
+    containment_min_points=50,
 ):
     appended_count = int(masks_np.shape[1] - original_num_masks)
+    containment_action = str(containment_action or "none").strip().lower()
+    containment_enabled = containment_action not in ("", "none")
     summary = {
-        "enabled": bool((merge_iou and merge_iou > 0) or (inclusion_threshold and inclusion_threshold > 0)),
+        "enabled": bool(
+            (merge_iou and merge_iou > 0)
+            or (inclusion_threshold and inclusion_threshold > 0)
+            or containment_enabled
+        ),
         "input_appended": appended_count,
         "merged": 0,
         "removed_included": 0,
+        "containment_action": containment_action,
+        "containment_events": [],
+        "downweighted_containing": 0,
+        "carved_containing": 0,
+        "removed_containing": 0,
+        "carved_points": 0,
         "output_appended": appended_count,
     }
-    if not summary["enabled"] or appended_count <= 1:
+    if not summary["enabled"] or appended_count <= 0:
         return masks_np, classes_np, scores_np, summary
 
     base_masks = masks_np[:, :original_num_masks]
@@ -953,6 +973,9 @@ def _postprocess_appended_proposals(
     appended_masks = [masks_np[:, original_num_masks + idx].copy() for idx in range(appended_count)]
     appended_classes = [int(classes_np[original_num_masks + idx]) for idx in range(appended_count)]
     appended_scores = [float(scores_np[original_num_masks + idx]) for idx in range(appended_count)]
+    appended_metadata = list(appended_metadata or [])
+    if len(appended_metadata) < appended_count:
+        appended_metadata.extend({} for _ in range(appended_count - len(appended_metadata)))
     keep = [True] * appended_count
 
     if merge_iou is not None and float(merge_iou) > 0:
@@ -1012,6 +1035,145 @@ def _postprocess_appended_proposals(
                     keep[small] = False
                     summary["removed_included"] += 1
                     break
+
+    if containment_enabled:
+        valid_actions = {"downweight", "carve", "remove_large"}
+        if containment_action not in valid_actions:
+            summary["invalid_containment_action"] = containment_action
+        else:
+            threshold = float(containment_threshold)
+            min_area_ratio = float(containment_min_area_ratio)
+            score_ratio = float(containment_score_ratio)
+            quality_margin = float(containment_quality_margin)
+            score_factor = float(containment_score_factor)
+            min_points = int(max(1, containment_min_points))
+            downweighted = set()
+
+            def small_item(global_index):
+                if global_index < original_num_masks:
+                    return {
+                        "kind": "base",
+                        "mask": base_masks[:, global_index],
+                        "class_id": int(base_classes[global_index]),
+                        "score": float(base_scores[global_index]),
+                        "area": int(base_masks[:, global_index].sum()),
+                        "quality": None,
+                        "index": int(global_index),
+                    }
+                appended_index = int(global_index - original_num_masks)
+                metadata = appended_metadata[appended_index] if appended_index < len(appended_metadata) else {}
+                return {
+                    "kind": "appended",
+                    "mask": appended_masks[appended_index],
+                    "class_id": int(appended_classes[appended_index]),
+                    "score": float(appended_scores[appended_index]),
+                    "area": int(appended_masks[appended_index].sum()),
+                    "quality": metadata.get("quality_score"),
+                    "candidate_id": metadata.get("candidate_id"),
+                    "component_id": metadata.get("component_id"),
+                    "index": appended_index,
+                }
+
+            def protects_small(large_index, small):
+                large_score = float(appended_scores[large_index])
+                small_score = float(small["score"])
+                if small_score < large_score * score_ratio:
+                    return False
+                large_quality = appended_metadata[large_index].get("quality_score")
+                small_quality = small.get("quality")
+                if large_quality is not None and small_quality is not None:
+                    try:
+                        if float(small_quality) + quality_margin < float(large_quality):
+                            return False
+                    except (TypeError, ValueError):
+                        pass
+                return True
+
+            for large in sorted(range(appended_count), key=lambda idx: int(appended_masks[idx].sum()), reverse=True):
+                if not keep[large]:
+                    continue
+                large_area = int(appended_masks[large].sum())
+                blockers = []
+                global_indices = list(range(original_num_masks)) + [
+                    original_num_masks + idx
+                    for idx, is_kept in enumerate(keep)
+                    if is_kept and idx != large
+                ]
+                for global_index in global_indices:
+                    small = small_item(global_index)
+                    small_area = int(small["area"])
+                    if small_area <= 0 or large_area < small_area * min_area_ratio:
+                        continue
+                    if same_class_only and int(appended_classes[large]) != int(small["class_id"]):
+                        continue
+                    intersection = int(np.logical_and(appended_masks[large], small["mask"]).sum())
+                    if intersection <= 0:
+                        continue
+                    small_coverage = intersection / max(1, small_area)
+                    if small_coverage < threshold:
+                        continue
+                    if not protects_small(large, small):
+                        continue
+                    blockers.append(
+                        {
+                            "small_kind": small["kind"],
+                            "small_index": int(small["index"]),
+                            "small_candidate_id": small.get("candidate_id"),
+                            "small_component_id": small.get("component_id"),
+                            "small_area": small_area,
+                            "small_score": float(small["score"]),
+                            "intersection": intersection,
+                            "small_coverage": float(small_coverage),
+                            "large_area": large_area,
+                            "large_score": float(appended_scores[large]),
+                            "large_candidate_id": appended_metadata[large].get("candidate_id"),
+                            "large_component_id": appended_metadata[large].get("component_id"),
+                        }
+                    )
+
+                if not blockers:
+                    continue
+
+                event = {
+                    "action": containment_action,
+                    "large_index": int(large),
+                    "large_candidate_id": appended_metadata[large].get("candidate_id"),
+                    "large_component_id": appended_metadata[large].get("component_id"),
+                    "large_area": int(large_area),
+                    "large_score_before": float(appended_scores[large]),
+                    "blockers": blockers,
+                }
+                if containment_action == "remove_large":
+                    keep[large] = False
+                    summary["removed_containing"] += 1
+                    event["removed"] = True
+                elif containment_action == "downweight":
+                    if large not in downweighted:
+                        appended_scores[large] *= max(0.0, min(1.0, score_factor))
+                        downweighted.add(large)
+                        summary["downweighted_containing"] += 1
+                    event["large_score_after"] = float(appended_scores[large])
+                elif containment_action == "carve":
+                    carve_mask = np.zeros_like(appended_masks[large])
+                    for blocker in blockers:
+                        if blocker["small_kind"] == "base":
+                            carve_mask |= base_masks[:, blocker["small_index"]]
+                        else:
+                            carve_mask |= appended_masks[blocker["small_index"]]
+                    before = int(appended_masks[large].sum())
+                    appended_masks[large] = np.logical_and(appended_masks[large], ~carve_mask)
+                    after = int(appended_masks[large].sum())
+                    removed_points = max(0, before - after)
+                    summary["carved_points"] += int(removed_points)
+                    if after < min_points:
+                        keep[large] = False
+                        summary["removed_containing"] += 1
+                        event["removed"] = True
+                    else:
+                        summary["carved_containing"] += 1
+                    event["large_area_after"] = int(after)
+                    event["removed_points"] = int(removed_points)
+                summary["containment_events"].append(event)
 
     kept_indices = [idx for idx, is_kept in enumerate(keep) if is_kept]
     if kept_indices:
@@ -1715,6 +1877,13 @@ def append_backprojection_proposals(
     merge_iou=0.0,
     inclusion_threshold=0.0,
     postprocess_same_class_only=True,
+    containment_action="none",
+    containment_threshold=0.85,
+    containment_min_area_ratio=1.5,
+    containment_score_ratio=0.75,
+    containment_quality_margin=0.0,
+    containment_score_factor=0.5,
+    containment_min_points=50,
 ):
     """Append conservative 2D-to-3D proposal masks to one scene prediction."""
 
@@ -2352,6 +2521,14 @@ def append_backprojection_proposals(
         merge_iou=merge_iou,
         inclusion_threshold=inclusion_threshold,
         same_class_only=postprocess_same_class_only,
+        appended_metadata=report["applied"],
+        containment_action=containment_action,
+        containment_threshold=containment_threshold,
+        containment_min_area_ratio=containment_min_area_ratio,
+        containment_score_ratio=containment_score_ratio,
+        containment_quality_margin=containment_quality_margin,
+        containment_score_factor=containment_score_factor,
+        containment_min_points=containment_min_points,
     )
     report["postprocess"] = postprocess_summary
     return masks_np, classes_np, scores_np, report

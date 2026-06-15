@@ -138,6 +138,13 @@ def test_pipeline_full(
     backprojection_merge_iou=0.0,
     backprojection_inclusion_threshold=0.0,
     backprojection_postprocess_same_class_only=True,
+    backprojection_containment_action="none",
+    backprojection_containment_threshold=0.85,
+    backprojection_containment_min_area_ratio=1.5,
+    backprojection_containment_score_ratio=0.75,
+    backprojection_containment_quality_margin=0.0,
+    backprojection_containment_score_factor=0.5,
+    backprojection_containment_min_points=50,
     backprojection_report_path=None,
     object_query_rescore=False,
     object_query_candidates=None,
@@ -506,6 +513,13 @@ def test_pipeline_full(
                 merge_iou=backprojection_merge_iou,
                 inclusion_threshold=backprojection_inclusion_threshold,
                 postprocess_same_class_only=backprojection_postprocess_same_class_only,
+                containment_action=backprojection_containment_action,
+                containment_threshold=backprojection_containment_threshold,
+                containment_min_area_ratio=backprojection_containment_min_area_ratio,
+                containment_score_ratio=backprojection_containment_score_ratio,
+                containment_quality_margin=backprojection_containment_quality_margin,
+                containment_score_factor=backprojection_containment_score_factor,
+                containment_min_points=backprojection_containment_min_points,
             )
             bpr_report = scene_prediction[3]
             bpr_added_counts[scene_name] = int(scene_prediction[0].shape[1] - original_num_scene_predictions)
@@ -804,6 +818,13 @@ def test_pipeline_full(
                         "merge_iou": backprojection_merge_iou,
                         "inclusion_threshold": backprojection_inclusion_threshold,
                         "postprocess_same_class_only": backprojection_postprocess_same_class_only,
+                        "containment_action": backprojection_containment_action,
+                        "containment_threshold": backprojection_containment_threshold,
+                        "containment_min_area_ratio": backprojection_containment_min_area_ratio,
+                        "containment_score_ratio": backprojection_containment_score_ratio,
+                        "containment_quality_margin": backprojection_containment_quality_margin,
+                        "containment_score_factor": backprojection_containment_score_factor,
+                        "containment_min_points": backprojection_containment_min_points,
                     },
                 },
                 f,
@@ -930,6 +951,13 @@ if __name__ == '__main__':
     parser.add_argument('--backprojection_merge_iou', default=0.0, type=float, help='Iteratively merge newly appended same-class BPR proposals whose 3D IoU is at least this value; 0 disables')
     parser.add_argument('--backprojection_inclusion_threshold', default=0.0, type=float, help='Remove newly appended same-class BPR proposals included in a larger appended proposal above this ratio; 0 disables')
     parser.add_argument('--backprojection_postprocess_same_class_only', default=True, action=argparse.BooleanOptionalAction, help='Restrict BPR merge/inclusion postprocessing to proposals with the same predicted class')
+    parser.add_argument('--backprojection_containment_action', default='none', choices=['none', 'downweight', 'carve', 'remove_large'], help='Handle appended proposals that contain smaller protected masks: none, downweight, carve, or remove_large')
+    parser.add_argument('--backprojection_containment_threshold', default=0.85, type=float, help='Minimum fraction of a smaller mask covered before containment handling triggers')
+    parser.add_argument('--backprojection_containment_min_area_ratio', default=1.5, type=float, help='Minimum containing/smaller mask area ratio before containment handling triggers')
+    parser.add_argument('--backprojection_containment_score_ratio', default=0.75, type=float, help='Smaller mask score must be at least this fraction of the containing proposal score')
+    parser.add_argument('--backprojection_containment_quality_margin', default=0.0, type=float, help='When both are appended proposals, smaller quality plus this margin must be at least containing quality')
+    parser.add_argument('--backprojection_containment_score_factor', default=0.5, type=float, help='Score multiplier used by --backprojection_containment_action downweight')
+    parser.add_argument('--backprojection_containment_min_points', default=50, type=int, help='Minimum remaining points for containing proposal after carve; smaller outputs are removed')
     parser.add_argument('--backprojection_report_path', default=None, type=str, help='Optional JSON report for added/skipped backprojection proposals')
     parser.add_argument('--object_query_rescore', default=False, action=argparse.BooleanOptionalAction, help='Use SegDINO3D-inspired object-query evidence to rescore existing 3D masks')
     parser.add_argument('--object_query_candidates', default=None, type=str, help='Path to backprojection candidate JSON/directory used as 2D object-query evidence; defaults to --backprojection_candidates')
@@ -1083,6 +1111,13 @@ if __name__ == '__main__':
         opt.backprojection_merge_iou,
         opt.backprojection_inclusion_threshold,
         opt.backprojection_postprocess_same_class_only,
+        opt.backprojection_containment_action,
+        opt.backprojection_containment_threshold,
+        opt.backprojection_containment_min_area_ratio,
+        opt.backprojection_containment_score_ratio,
+        opt.backprojection_containment_quality_margin,
+        opt.backprojection_containment_score_factor,
+        opt.backprojection_containment_min_points,
         opt.backprojection_report_path,
         opt.object_query_rescore,
         opt.object_query_candidates,
