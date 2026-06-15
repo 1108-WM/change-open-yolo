@@ -1392,3 +1392,81 @@ bash -n tools/run_scannet200_even48_sam_mask_support_eval.sh
   - 验证 ROC-AUC：`0.6875`
   - 验证 AP：`0.1901`
 - 关系特征本身不是 top feature，但能标记一小批明确坏候选。它适合进入轻量判别器或风险排序，不适合单独作为删除规则。
+
+2026-06-15 Clutt3R-Seg 启发的候选层级诊断初版：
+
+- 动机：
+  - Clutt3R-Seg 的核心启发不是硬删除包含关系 mask，而是用层级 instance tree 和 super-voxel occupancy 相似度判断 parent/child mask 哪个更可信。
+  - 前一轮 containment hard delete/downweight 已证明简单规则收益极小，放宽阈值还会误删。
+  - 因此本轮先做离线诊断特征，不直接改 `run_evaluation.py` 的预测结果。
+- `tools/analyze_backprojection_candidates.py` 新增默认开启的 `--hierarchy_features`：
+  - 使用 processed `.npy` 第 `9` 列 superpoint。
+  - 将每个候选和 baseline mask 转成 superpoint occupancy 向量。
+  - 用 superpoint-size 加权的 weighted Jaccard 和 coverage 建立 parent/child 关系。
+  - 新增参数：
+    - `--hierarchy_containment_threshold`，默认 `0.80`
+    - `--hierarchy_min_area_ratio`，默认 `1.2`
+    - `--hierarchy_same_class_only`
+- 新增非 GT 特征列：
+  - `hierarchy_superpoint_count`
+  - `hierarchy_mean_superpoint_occupancy`
+  - `hierarchy_min_superpoint_occupancy`
+  - `hierarchy_max_superpoint_occupancy`
+  - `hierarchy_low_occupancy_mass_ratio`
+  - `hierarchy_base_parent_count`
+  - `hierarchy_candidate_parent_count`
+  - `hierarchy_parent_count`
+  - `hierarchy_parent_max_candidate_coverage`
+  - `hierarchy_parent_max_weighted_jaccard`
+  - `hierarchy_parent_min_extra_mass_ratio`
+  - `hierarchy_base_child_count`
+  - `hierarchy_candidate_child_count`
+  - `hierarchy_child_count`
+  - `hierarchy_child_max_coverage`
+  - `hierarchy_child_max_weighted_jaccard`
+  - `hierarchy_child_max_area_ratio`
+  - `hierarchy_child_union_coverage`
+  - `hierarchy_exclusive_superpoint_ratio`
+  - `hierarchy_exclusive_superpoint_count`
+  - `hierarchy_any_related_count`
+- `tools/train_candidate_geometry_discriminator.py` 默认 numeric feature list 已加入上述 `hierarchy_*` 特征。
+- 冒烟验证：
+  - 命令使用 `--max_scenes 1 --no-depth_features`。
+  - 输出：`output/diagnostics/hierarchy_features_smoke`
+  - 生成 `6` 条候选记录。
+  - CSV 表头包含所有 `hierarchy_*` 列。
+  - 冒烟场景中出现 candidate parent/child 对，weighted Jaccard 两侧一致，说明层级图计算链路可用。
+- 下一步：
+  - 在当前 `even48` 应用候选上重新生成完整诊断 CSV。
+  - 重新训练轻量几何判别器，观察 `hierarchy_*` 是否进入 top feature 或提高 ROC-AUC/AP。
+  - 若有稳定区分度，再考虑把它接入 `utils/backprojection_fusion.py` 做 conditional substitution，而不是 hard delete。
+
+补充批量验证：
+
+- 对两个候选源生成无深度全量 diagnostics：
+  - `output/sam_fused_proposals_scannet200_even48_maskpath`
+  - `output/backprojection_candidates_scannet200_mv_m20`
+  - 输出：`output/diagnostics/hierarchy_features_even48_current`
+  - 场景数：`312`
+  - 候选行数：`5826`
+  - 注意：这是候选源全量诊断，不是之前 `273` 个已应用候选的同口径结果。
+- 层级触发统计：
+  - `hierarchy_any_related_count > 0`：`3421 / 5826`
+  - parent 关系候选：`1954`
+  - child 关系候选：`2082`
+  - related 候选中 `background_or_bad_geometry` 为 `3179`，另有 `true_completion_50` 为 `17`，`partial_completion_25` 为 `66`。
+  - related 候选的平均 `hierarchy_exclusive_superpoint_ratio` 为 `0.693`。
+- 用该全量 CSV 训练随机森林 smoke：
+  - 参与训练行数：`5768`
+  - 特征数：`88`
+  - 验证 ROC-AUC：`0.813961`
+  - 验证 AP：`0.080165`
+  - top feature 第一名：`hierarchy_low_occupancy_mass_ratio`，importance `0.185697`
+  - top 25 中还出现：
+    - `hierarchy_max_superpoint_occupancy`
+    - `hierarchy_mean_superpoint_occupancy`
+    - `hierarchy_min_superpoint_occupancy`
+- 初步判断：
+  - Clutt3R-Seg 风格的 superpoint occupancy 特征比简单点级 relation 更有诊断信号，尤其能刻画低占用、碎片化、贴边/跨超点污染候选。
+  - 但 parent/child 关系仍会覆盖少量真阳性，不能直接用作硬删规则。
+  - 下一步应在“已应用候选同口径”上重新生成 diagnostics，再决定是否做 conditional substitution。

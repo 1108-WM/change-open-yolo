@@ -35,13 +35,16 @@ YOLO-World 二维检测
 - 轻量几何判别器有排序和诊断价值，但不适合全局硬过滤。
 - 简单候选包含/重叠后处理已经实现并跑过 `even48`，但只带来约 `+0.000002` 到 `+0.000004` 的极小变化；放宽规则后 AP 降到约 `0.269008`，不进入 `even96`。
 - 候选关系诊断特征已经接入 `tools/analyze_backprojection_candidates.py` 和 `tools/train_candidate_geometry_discriminator.py`，适合后续作为轻量判别器/风险排序特征。
+- 受 Clutt3R-Seg 启发，`tools/analyze_backprojection_candidates.py` 已新增 superpoint occupancy 层级特征：用 weighted Jaccard 和 superpoint coverage 建立候选 parent/child 关系。当前只是离线诊断，不是 AP 后处理。
+- 全量候选 smoke 中 `hierarchy_low_occupancy_mass_ratio` 成为随机森林 top feature，说明该方向有初步诊断信号；但 parent/child 关系仍覆盖少量真阳性，不能直接硬删。
 - 第二优先级才是重新做更强的候选局部超点，但必须接入颜色、法向和二维掩码支持，不能只靠三维坐标。
 
 下一步建议：
 
-1. 若继续关系处理，不要只用“包含即删/降权”，而是提取大候选独有区域的连通性、平面性、视角支持、one-to-many 覆盖关系。
-2. 用已有诊断特征给高风险大脏候选做排序或局部处理，避免全局硬删。
-3. 另一个可行方向是候选局部超点二版：接入颜色、法向和二维掩码支持后再跑 `even48`。
+1. 在当前 `even48` 应用候选上重新生成完整 diagnostics，确认 `hierarchy_*` 特征是否比点级 `relation_*` 更有区分度。
+2. 重新训练轻量几何判别器，查看 `hierarchy_*` 是否进入 top feature，并比较 ROC-AUC/AP。
+3. 若 hierarchy 特征有效，再接入 `utils/backprojection_fusion.py` 做 conditional substitution；不要回到“包含即删/降权”的全局硬规则。
+4. 另一个可行方向是候选局部超点二版：接入颜色、法向和二维掩码支持后再跑 `even48`。
 
 ## 已上传到 GitHub 的内容
 

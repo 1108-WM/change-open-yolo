@@ -363,6 +363,170 @@ def _mask_iou_one_to_many(mask, masks):
     return np.divide(intersections, np.maximum(unions, 1), dtype=np.float32)
 
 
+def _build_superpoint_context(point_segments):
+    _, segment_inverse = np.unique(point_segments.astype(np.int64, copy=False), return_inverse=True)
+    segment_sizes = np.bincount(segment_inverse).astype(np.float32)
+    return {
+        "inverse": segment_inverse.astype(np.int64, copy=False),
+        "sizes": np.maximum(segment_sizes, 1.0),
+    }
+
+
+def _mask_superpoint_occupancy(mask, context):
+    if context is None:
+        return None
+    output = np.zeros_like(context["sizes"], dtype=np.float32)
+    if int(mask.sum()) <= 0:
+        return output
+    counts = np.bincount(context["inverse"][mask], minlength=len(context["sizes"])).astype(np.float32)
+    return counts / context["sizes"]
+
+
+def _superpoint_mass(occupancy, context):
+    if occupancy is None or context is None:
+        return 0.0
+    return float(np.sum(occupancy * context["sizes"]))
+
+
+def _superpoint_overlap_mass(left, right, context):
+    return float(np.sum(np.minimum(left, right) * context["sizes"]))
+
+
+def _superpoint_union_mass(left, right, context):
+    return float(np.sum(np.maximum(left, right) * context["sizes"]))
+
+
+def _weighted_jaccard(left, right, context):
+    union = _superpoint_union_mass(left, right, context)
+    if union <= 0.0:
+        return 0.0
+    return float(_superpoint_overlap_mass(left, right, context) / union)
+
+
+def _empty_hierarchy_features():
+    return {
+        "hierarchy_superpoint_count": 0,
+        "hierarchy_mean_superpoint_occupancy": 0.0,
+        "hierarchy_min_superpoint_occupancy": 0.0,
+        "hierarchy_max_superpoint_occupancy": 0.0,
+        "hierarchy_low_occupancy_mass_ratio": 0.0,
+        "hierarchy_base_parent_count": 0,
+        "hierarchy_candidate_parent_count": 0,
+        "hierarchy_parent_count": 0,
+        "hierarchy_parent_max_candidate_coverage": 0.0,
+        "hierarchy_parent_max_weighted_jaccard": 0.0,
+        "hierarchy_parent_min_extra_mass_ratio": 0.0,
+        "hierarchy_base_child_count": 0,
+        "hierarchy_candidate_child_count": 0,
+        "hierarchy_child_count": 0,
+        "hierarchy_child_max_coverage": 0.0,
+        "hierarchy_child_max_weighted_jaccard": 0.0,
+        "hierarchy_child_max_area_ratio": 0.0,
+        "hierarchy_child_union_coverage": 0.0,
+        "hierarchy_exclusive_superpoint_ratio": 1.0,
+        "hierarchy_exclusive_superpoint_count": 0,
+        "hierarchy_any_related_count": 0,
+    }
+
+
+def _compute_hierarchy_features(candidate_item, baseline_items, candidate_items, context, args):
+    output = _empty_hierarchy_features()
+    if context is None:
+        return output
+
+    candidate_occupancy = candidate_item.get("superpoint_occupancy")
+    if candidate_occupancy is None:
+        return output
+    candidate_mass = _superpoint_mass(candidate_occupancy, context)
+    output["hierarchy_exclusive_superpoint_count"] = int(round(candidate_mass))
+    if candidate_mass <= 0.0:
+        output["hierarchy_exclusive_superpoint_ratio"] = 0.0
+        return output
+
+    touched = candidate_occupancy > 0.0
+    touched_values = candidate_occupancy[touched]
+    output["hierarchy_superpoint_count"] = int(touched.sum())
+    if len(touched_values):
+        output["hierarchy_mean_superpoint_occupancy"] = float(np.mean(touched_values))
+        output["hierarchy_min_superpoint_occupancy"] = float(np.min(touched_values))
+        output["hierarchy_max_superpoint_occupancy"] = float(np.max(touched_values))
+        low_occupancy = (candidate_occupancy > 0.0) & (candidate_occupancy < 0.25)
+        low_mass = np.sum(candidate_occupancy[low_occupancy] * context["sizes"][low_occupancy])
+        output["hierarchy_low_occupancy_mass_ratio"] = float(low_mass / max(candidate_mass, 1.0))
+
+    threshold = float(args.hierarchy_containment_threshold)
+    min_area_ratio = float(args.hierarchy_min_area_ratio)
+    same_class_only = bool(args.hierarchy_same_class_only)
+    child_union_occupancy = np.zeros_like(candidate_occupancy, dtype=np.float32)
+    min_parent_extra = None
+
+    def update_relation(prefix, other_item):
+        nonlocal min_parent_extra
+        other_occupancy = other_item.get("superpoint_occupancy")
+        if other_occupancy is None or other_occupancy is candidate_occupancy:
+            return
+        if same_class_only and other_item.get("class_id") is not None:
+            if int(candidate_item.get("class_id", -1)) != int(other_item.get("class_id", -2)):
+                return
+        other_mass = _superpoint_mass(other_occupancy, context)
+        if other_mass <= 0.0:
+            return
+        overlap = _superpoint_overlap_mass(candidate_occupancy, other_occupancy, context)
+        if overlap <= 0.0:
+            return
+        weighted_jaccard = _weighted_jaccard(candidate_occupancy, other_occupancy, context)
+
+        if other_mass >= candidate_mass * min_area_ratio:
+            candidate_coverage = float(overlap / max(candidate_mass, 1.0))
+            if candidate_coverage >= threshold:
+                output[f"hierarchy_{prefix}_parent_count"] += 1
+                output["hierarchy_parent_max_candidate_coverage"] = max(
+                    output["hierarchy_parent_max_candidate_coverage"], candidate_coverage
+                )
+                output["hierarchy_parent_max_weighted_jaccard"] = max(
+                    output["hierarchy_parent_max_weighted_jaccard"], weighted_jaccard
+                )
+                extra_ratio = float(max(0.0, other_mass - overlap) / max(candidate_mass, 1.0))
+                min_parent_extra = extra_ratio if min_parent_extra is None else min(min_parent_extra, extra_ratio)
+
+        if candidate_mass >= other_mass * min_area_ratio:
+            child_coverage = float(overlap / max(other_mass, 1.0))
+            if child_coverage >= threshold:
+                output[f"hierarchy_{prefix}_child_count"] += 1
+                output["hierarchy_child_max_coverage"] = max(output["hierarchy_child_max_coverage"], child_coverage)
+                output["hierarchy_child_max_weighted_jaccard"] = max(
+                    output["hierarchy_child_max_weighted_jaccard"], weighted_jaccard
+                )
+                output["hierarchy_child_max_area_ratio"] = max(
+                    output["hierarchy_child_max_area_ratio"], float(candidate_mass / max(other_mass, 1.0))
+                )
+                child_union_occupancy[:] = np.maximum(child_union_occupancy, other_occupancy)
+
+    for other_item in baseline_items:
+        update_relation("base", other_item)
+    for other_item in candidate_items:
+        if other_item is candidate_item:
+            continue
+        update_relation("candidate", other_item)
+
+    output["hierarchy_parent_count"] = int(output["hierarchy_base_parent_count"]) + int(
+        output["hierarchy_candidate_parent_count"]
+    )
+    output["hierarchy_child_count"] = int(output["hierarchy_base_child_count"]) + int(
+        output["hierarchy_candidate_child_count"]
+    )
+    output["hierarchy_any_related_count"] = int(output["hierarchy_parent_count"]) + int(output["hierarchy_child_count"])
+    output["hierarchy_parent_min_extra_mass_ratio"] = float(min_parent_extra if min_parent_extra is not None else 0.0)
+
+    child_overlap = _superpoint_overlap_mass(candidate_occupancy, child_union_occupancy, context)
+    output["hierarchy_child_union_coverage"] = float(child_overlap / max(candidate_mass, 1.0))
+    exclusive_occupancy = np.maximum(candidate_occupancy - np.minimum(candidate_occupancy, child_union_occupancy), 0.0)
+    exclusive_mass = float(np.sum(exclusive_occupancy * context["sizes"]))
+    output["hierarchy_exclusive_superpoint_count"] = int(round(exclusive_mass))
+    output["hierarchy_exclusive_superpoint_ratio"] = float(exclusive_mass / max(candidate_mass, 1.0))
+    return output
+
+
 def _empty_relation_features():
     return {
         "relation_base_contained_count": 0,
@@ -724,11 +888,25 @@ def analyze(args):
         num_points = int(processed_scene.shape[0])
         points_xyz = processed_scene[:, :3].astype(np.float32)
         depth_context = _load_scene_depth_context(args.dataset_root, scene_name) if args.depth_features else None
-        point_segments = processed_scene[:, 9].astype(np.int64) if args.superpoint_refine else None
+        point_segments = (
+            processed_scene[:, 9].astype(np.int64) if args.superpoint_refine or args.hierarchy_features else None
+        )
+        superpoint_context = _build_superpoint_context(point_segments) if point_segments is not None else None
         gt_instances = _build_gt_instances(processed_scene, args.min_gt_points)
         gt_masks = [item["mask"] for item in gt_instances]
         gt_matrix = np.stack(gt_masks, axis=1) if gt_masks else np.zeros((num_points, 0), dtype=bool)
         baseline_masks = _load_baseline_masks(args.baseline_masks, scene_name, num_points)
+        baseline_items = []
+        if baseline_masks is not None and args.hierarchy_features:
+            for baseline_index in range(baseline_masks.shape[1]):
+                baseline_mask = baseline_masks[:, baseline_index]
+                baseline_items.append(
+                    {
+                        "mask": baseline_mask,
+                        "class_id": None,
+                        "superpoint_occupancy": _mask_superpoint_occupancy(baseline_mask, superpoint_context),
+                    }
+                )
         scene_rows = []
         scene_candidate_items = []
 
@@ -856,6 +1034,9 @@ def analyze(args):
                     "row": row,
                     "mask": candidate_mask,
                     "class_id": int(candidate.get("class_id", -1)),
+                    "superpoint_occupancy": _mask_superpoint_occupancy(candidate_mask, superpoint_context)
+                    if args.hierarchy_features
+                    else None,
                 }
             )
 
@@ -873,6 +1054,20 @@ def analyze(args):
         else:
             for item in scene_candidate_items:
                 item["row"].update(_empty_relation_features())
+        if args.hierarchy_features:
+            for item in scene_candidate_items:
+                item["row"].update(
+                    _compute_hierarchy_features(
+                        item,
+                        baseline_items,
+                        scene_candidate_items,
+                        superpoint_context,
+                        args,
+                    )
+                )
+        else:
+            for item in scene_candidate_items:
+                item["row"].update(_empty_hierarchy_features())
         rows.extend(scene_rows)
 
     _standardized_scores(rows, lambda row: (row["scene_name"], row["source_kind"]), "scene_source_quality_z")
@@ -921,6 +1116,10 @@ def parse_args():
     parser.add_argument("--relation_containment_threshold", default=0.85, type=float, help="Minimum smaller-mask coverage for relation containment features.")
     parser.add_argument("--relation_min_area_ratio", default=1.5, type=float, help="Minimum candidate/smaller-mask area ratio for relation containment features.")
     parser.add_argument("--relation_same_class_only", default=False, action=argparse.BooleanOptionalAction, help="Only count candidate-candidate relations with the same predicted class.")
+    parser.add_argument("--hierarchy_features", default=True, action=argparse.BooleanOptionalAction, help="Add Clutt3R-Seg-inspired superpoint occupancy hierarchy features.")
+    parser.add_argument("--hierarchy_containment_threshold", default=0.80, type=float, help="Minimum superpoint-occupancy coverage for hierarchy parent/child edges.")
+    parser.add_argument("--hierarchy_min_area_ratio", default=1.2, type=float, help="Minimum superpoint mass ratio between parent and child hierarchy nodes.")
+    parser.add_argument("--hierarchy_same_class_only", default=False, action=argparse.BooleanOptionalAction, help="Only count candidate-candidate hierarchy edges with the same predicted class.")
     return parser.parse_args()
 
 
