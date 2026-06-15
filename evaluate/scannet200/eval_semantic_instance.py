@@ -1001,7 +1001,8 @@ def evaluate(preds: dict, gt_path: str, output_file: str, dataset: str = "scanne
     # print
     #print_results(avgs)
     print_results_ap_ar_rc_pcdc(avgs, ar_avgs, rc_avgs, pcdc_avgs, WI, A_OSE)
-    # write_result_file(avgs, output_file)
+    if output_file:
+        write_result_file(avgs, output_file)
     return avgs, ar_avgs, rc_avgs, pcdc_avgs
 
 def main():

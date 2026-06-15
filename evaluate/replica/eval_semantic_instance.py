@@ -468,7 +468,8 @@ def evaluate(preds: dict, gt_path: str, output_file: str, dataset: str = "replic
 
     # print
     print_results(avgs)
-    # write_result_file(avgs, output_file)
+    if output_file:
+        write_result_file(avgs, output_file)
     return avgs
 
 
@@ -525,6 +526,5 @@ def eval_on_single_scene():
 if __name__ == '__main__':
     eval_on_single_scene()
     #eval_on_all_scenes()
-
 
 

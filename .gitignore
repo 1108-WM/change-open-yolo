@@ -1,0 +1,53 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Build artifacts and compiled extensions
+build/
+dist/
+*.so
+*.o
+*.egg
+.ninja_*
+
+# Datasets and experiment outputs
+data/
+OpenYOLO3D/
+output/
+outputs/
+runs/
+wandb/
+work_dirs/
+**/work_dirs/
+_backups/
+
+# Pretrained weights and downloaded model assets
+pretrained/checkpoints/
+pretrained/alpha_clip/
+pretrained/clip-vit-base-patch32/
+pretrained/yoloe/
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.onnx
+*.safetensors
+
+# External downloaded repositories and local agent state
+_external/
+.agents/
+.codex/
+skills-lock.json
+
+# Local notes/assets not required for running the project
+related papers/
+e9014c6c-9d5b-4206-a46b-285e4b72d826.png
+cushion

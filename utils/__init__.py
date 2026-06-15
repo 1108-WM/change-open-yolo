@@ -1,17 +1,27 @@
-from utils.utils_3d import Network_3D
 from utils.utils_2d import Network_2D, load_yaml
 import time
 import torch
 import os
 import os.path as osp
-import imageio
+import imageio.v2 as imageio
 import glob
-import open3d as o3d
 import numpy as np
 import math
-from models.Mask3D.mask3d import load_mesh_or_pc
 import colorsys
 from tqdm import tqdm
+
+
+def load_mesh_or_pc(pointcloud_file, datatype):
+    import open3d as o3d
+
+    if pointcloud_file.split('.')[-1] == 'ply':
+        if datatype == "mesh":
+            return o3d.io.read_triangle_mesh(pointcloud_file)
+        if datatype == "point cloud":
+            return o3d.io.read_point_cloud(pointcloud_file)
+
+    print("DATA TYPE IS NOT SUPPORTED!")
+    exit()
 
 def get_iou(masks):
     masks = masks.float()
@@ -96,11 +106,37 @@ def compute_iou(box, boxes):
 class OpenYolo3D():
     def __init__(self, openyolo3d_config = ""):
         config = load_yaml(openyolo3d_config)
-        self.network_3d = Network_3D(config)
-        self.network_2d = Network_2D(config)
+        self.network_3d = None
+        self.network_2d = None
         self.openyolo3d_config = config
     
-    def predict(self, path_2_scene_data, depth_scale, text = None, datatype="point cloud", processed_scene = None, path_to_3d_masks = None, is_gt=False):
+    def _get_2d_cache_path(self, path_to_2d_preds, scene_name):
+        if path_to_2d_preds is None:
+            return None
+        if path_to_2d_preds.endswith(".pt"):
+            return path_to_2d_preds
+        return osp.join(path_to_2d_preds, f"{scene_name}.pt")
+
+    def _normalize_2d_predictions(self, preds_2d):
+        normalized = {}
+        expected_frame_ids = [osp.basename(path).split(".")[0] for path in self.world2cam.color_paths]
+        missing_frames = [frame_id for frame_id in expected_frame_ids if frame_id not in preds_2d]
+        if missing_frames:
+            raise ValueError(
+                "2D prediction cache is missing frames: "
+                f"{missing_frames[:5]}{'...' if len(missing_frames) > 5 else ''}"
+            )
+
+        for frame_id in expected_frame_ids:
+            frame_pred = preds_2d[frame_id]
+            normalized[frame_id] = {
+                "bbox": frame_pred["bbox"].detach().cpu() if torch.is_tensor(frame_pred["bbox"]) else torch.as_tensor(frame_pred["bbox"]),
+                "labels": frame_pred["labels"].detach().cpu() if torch.is_tensor(frame_pred["labels"]) else torch.as_tensor(frame_pred["labels"]),
+                "scores": frame_pred["scores"].detach().cpu() if torch.is_tensor(frame_pred["scores"]) else torch.as_tensor(frame_pred["scores"]),
+            }
+        return normalized
+
+    def predict(self, path_2_scene_data, depth_scale, text = None, datatype="point cloud", processed_scene = None, path_to_3d_masks = None, is_gt=False, path_to_2d_preds=None, save_2d_preds=False, reuse_2d_preds=True):
         self.num_classes = len(text)+1 if text is not None else len(self.openyolo3d_config["network2d"]["text_prompts"])+1
         self.datatype = datatype
         self.world2cam = WORLD_2_CAM(path_2_scene_data, depth_scale, self.openyolo3d_config)
@@ -112,6 +148,10 @@ class OpenYolo3D():
         start = time.time()
         
         if path_to_3d_masks is None:
+            if self.network_3d is None:
+                from utils.utils_3d import Network_3D
+
+                self.network_3d = Network_3D(self.openyolo3d_config)
             self.preds_3d = self.network_3d.get_class_agnostic_masks(self.world2cam.mesh, datatype) if processed_scene is None else self.network_3d.get_class_agnostic_masks(processed_scene, datatype)
             keep_score = self.preds_3d[1] >= self.openyolo3d_config["network3d"]["th"]
             keep_nms = apply_nms(self.preds_3d[0][:, keep_score].cuda(), self.preds_3d[1][keep_score].cuda(), self.openyolo3d_config["network3d"]["nms"])
@@ -124,8 +164,22 @@ class OpenYolo3D():
 
         print("[🚀 ACTION] 2D Bounding Boxes computation ...")
         start = time.time()
-        self.preds_2d = self.network_2d.get_bounding_boxes(self.world2cam.color_paths, text)
-        # self.preds_2d = torch.load(osp.join(f"/share/data/drive_3/OpenYolo3D/bboxes_2d", f"{scene_name}.pt"))
+        cache_path = self._get_2d_cache_path(path_to_2d_preds, scene_name)
+        if reuse_2d_preds and cache_path is not None and osp.exists(cache_path):
+            print(f"[INFO] Loading cached 2D predictions from {cache_path}")
+            self.preds_2d = torch.load(cache_path, map_location="cpu")
+            self.preds_2d = self._normalize_2d_predictions(self.preds_2d)
+        else:
+            if self.network_2d is None:
+                self.network_2d = Network_2D(self.openyolo3d_config)
+            self.preds_2d = self.network_2d.get_bounding_boxes(self.world2cam.color_paths, text)
+            self.preds_2d = self._normalize_2d_predictions(self.preds_2d)
+            if save_2d_preds and cache_path is not None:
+                cache_dir = osp.dirname(cache_path)
+                if cache_dir:
+                    os.makedirs(cache_dir, exist_ok=True)
+                torch.save(self.preds_2d, cache_path)
+                print(f"[INFO] Saved 2D predictions to {cache_path}")
         print(f"[🕒 INFO] Elapsed time {(time.time()-start)}")
         print(f"[✅ INFO] Bounding boxes computed.")  
         
@@ -141,7 +195,7 @@ class OpenYolo3D():
         projections_mesh_to_frame , keep_visible_points = self.mesh_projections
         predictions_2d_bboxes = self.preds_2d
         prediction_3d_masks, _ = self.preds_3d
-        
+
         predicted_masks, predicated_classes, predicated_scores = self.label_3d_masks_from_label_maps(prediction_3d_masks.bool(), 
                                                                                                         predictions_2d_bboxes, 
                                                                                                         projections_mesh_to_frame,
@@ -153,8 +207,7 @@ class OpenYolo3D():
         self.predicated_classes = predicated_classes
         
         return {scene_name : (predicted_masks, predicated_classes, predicated_scores)}
-    
-    
+
     def label_3d_masks_from_label_maps(self, 
                                         prediction_3d_masks, 
                                         predictions_2d_bboxes, 
@@ -359,9 +412,25 @@ class WORLD_2_CAM():
         
     @staticmethod
     def load_ply(path_2_mesh):
-        pcd = o3d.io.read_point_cloud(path_2_mesh)
-        points = np.asarray(pcd.points)
-        colors = np.asarray(pcd.colors)
+        from plyfile import PlyData
+
+        ply = PlyData.read(path_2_mesh)
+        vertices = ply["vertex"].data
+        points = np.stack([vertices["x"], vertices["y"], vertices["z"]], axis=-1)
+
+        color_fields = None
+        for fields in (("red", "green", "blue"), ("diffuse_red", "diffuse_green", "diffuse_blue")):
+            if all(field in vertices.dtype.names for field in fields):
+                color_fields = fields
+                break
+
+        if color_fields is None:
+            colors = np.zeros_like(points)
+        else:
+            colors = np.stack([vertices[field] for field in color_fields], axis=-1).astype(np.float32)
+            if colors.max(initial=0) > 1.0:
+                colors = colors / 255.0
+
         # print(points.shape)
         coords = np.concatenate([points, np.ones((points.shape[0], 1))], axis = -1)
         return coords, colors
