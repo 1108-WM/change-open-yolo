@@ -1470,3 +1470,41 @@ bash -n tools/run_scannet200_even48_sam_mask_support_eval.sh
   - Clutt3R-Seg 风格的 superpoint occupancy 特征比简单点级 relation 更有诊断信号，尤其能刻画低占用、碎片化、贴边/跨超点污染候选。
   - 但 parent/child 关系仍会覆盖少量真阳性，不能直接用作硬删规则。
   - 下一步应在“已应用候选同口径”上重新生成 diagnostics，再决定是否做 conditional substitution。
+
+2026-06-15 hierarchy risk score 接入最终评估：
+
+- 已完成代码：
+  - `utils/backprojection_fusion.py`
+    - 新增 `_superpoint_hierarchy_score_factor`。
+    - 对新增候选计算 superpoint occupancy。
+    - 若候选大量点落在低占用 superpoint 中，则按 `low_occupancy_mass_ratio` 乘性降权。
+    - 只改变新增候选分数，不删除候选、不改变 mask 形状。
+  - `run_evaluation.py`
+    - 新增参数：
+      - `--backprojection_hierarchy_score_weight`
+      - `--backprojection_hierarchy_low_occupancy_threshold`
+      - `--backprojection_hierarchy_min_score_factor`
+    - 当 hierarchy score weight 大于 `0` 时，即使没有开启 superpoint refine，也会加载 processed `.npy` 第 `9` 列 superpoint。
+  - 新增脚本：
+    - `tools/run_scannet200_even48_hierarchy_score_sweep.sh`
+- 合成冒烟：
+  - 完整占用 superpoint 的候选：`hierarchy_score_factor = 1.0`
+  - 低占用碎片候选：`hierarchy_score_factor = 0.5`
+  - 说明降权链路正常。
+- 真实 `even48` 同当前最佳 mask support 参数验证：
+
+| 配置 | 平均精度 | 百分之五十重叠率平均精度 | 百分之二十五重叠率平均精度 | 降权候选 | 平均因子 |
+|---|---:|---:|---:|---:|---:|
+| 当前参考 | `0.272610` | `0.345769` | `0.389491` | - | - |
+| `weight=0.50, threshold=0.25, min_factor=0.70` | `0.272613` | `0.345771` | `0.389491` | `76 / 273` | `0.923470` |
+| `weight=0.75, threshold=0.25, min_factor=0.60` | `0.272613` | `0.345771` | `0.389491` | `76 / 273` | `0.897383` |
+| `weight=0.50, threshold=0.35, min_factor=0.70` | `0.272613` | `0.345771` | `0.389491` | `78 / 273` | `0.918905` |
+
+结论：
+
+- hierarchy risk score 能影响较多新增候选分数，但最终 AP 只有 `+0.000003` 左右的极小变化，不能算有效提升。
+- 单纯 score downweight 和之前 containment downweight 一样，力度不足以改变最终匹配结果。
+- Clutt3R-Seg 启发的 occupancy 特征仍有诊断价值，但落地方式需要从“分数降权”升级到更结构化的 conditional substitution：
+  - parent 是大脏 mask 且 children 覆盖其可靠区域时，压低或替换 parent；
+  - child 是碎片、parent 低额外污染且多视角稳定时，用 parent 替代 child；
+  - 所有规则都应先在已应用候选同口径 diagnostics 上验证，避免误伤真阳性。

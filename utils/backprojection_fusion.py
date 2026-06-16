@@ -1350,6 +1350,73 @@ def _refine_mask_with_superpoints(
     return refined_mask, info
 
 
+def _superpoint_hierarchy_score_factor(
+    proposal_mask,
+    point_segments,
+    low_occupancy_threshold=0.25,
+    score_weight=0.0,
+    min_score_factor=0.5,
+):
+    info = {
+        "enabled": point_segments is not None and float(score_weight or 0.0) > 0.0,
+        "factor": 1.0,
+        "superpoint_count": 0,
+        "mean_occupancy": 0.0,
+        "min_occupancy": 0.0,
+        "max_occupancy": 0.0,
+        "low_occupancy_mass_ratio": 0.0,
+        "low_occupancy_threshold": float(low_occupancy_threshold),
+        "score_weight": float(score_weight or 0.0),
+        "min_score_factor": float(min_score_factor),
+        "fallback": None,
+    }
+    if not info["enabled"]:
+        return 1.0, info
+    if point_segments is None:
+        info["fallback"] = "missing_segments"
+        return 1.0, info
+    if int(proposal_mask.sum()) <= 0:
+        info["fallback"] = "empty_mask"
+        return 1.0, info
+
+    segments = np.asarray(point_segments)
+    if segments.shape[0] != proposal_mask.shape[0]:
+        info["fallback"] = "segment_length_mismatch"
+        return 1.0, info
+
+    _, inverse = np.unique(segments.astype(np.int64, copy=False), return_inverse=True)
+    segment_sizes = np.maximum(np.bincount(inverse).astype(np.float32), 1.0)
+    proposal_counts = np.bincount(inverse[proposal_mask], minlength=len(segment_sizes)).astype(np.float32)
+    occupancy = proposal_counts / segment_sizes
+    touched = occupancy > 0.0
+    if not touched.any():
+        info["fallback"] = "no_touched_segments"
+        return 1.0, info
+
+    touched_occupancy = occupancy[touched]
+    mass = float(np.sum(proposal_counts))
+    low_threshold = min(1.0, max(0.0, float(low_occupancy_threshold)))
+    low_mask = (occupancy > 0.0) & (occupancy < low_threshold)
+    low_mass = float(np.sum(proposal_counts[low_mask]))
+    low_ratio = float(low_mass / max(mass, 1.0))
+    weight = min(1.0, max(0.0, float(score_weight)))
+    min_factor = min(1.0, max(0.0, float(min_score_factor)))
+    factor = 1.0 - weight * low_ratio
+    factor = float(min(1.0, max(min_factor, factor)))
+
+    info.update(
+        {
+            "factor": factor,
+            "superpoint_count": int(touched.sum()),
+            "mean_occupancy": float(np.mean(touched_occupancy)),
+            "min_occupancy": float(np.min(touched_occupancy)),
+            "max_occupancy": float(np.max(touched_occupancy)),
+            "low_occupancy_mass_ratio": low_ratio,
+        }
+    )
+    return factor, info
+
+
 class _LocalUnionFind:
     def __init__(self, size):
         self.parent = np.arange(size, dtype=np.int32)
@@ -1874,6 +1941,9 @@ def append_backprojection_proposals(
     local_superpoint_max_expansion_ratio=1.0,
     local_superpoint_min_seed_retention=0.80,
     local_superpoint_max_points=30000,
+    hierarchy_score_weight=0.0,
+    hierarchy_low_occupancy_threshold=0.25,
+    hierarchy_min_score_factor=0.5,
     merge_iou=0.0,
     inclusion_threshold=0.0,
     postprocess_same_class_only=True,
@@ -2435,6 +2505,13 @@ def append_backprojection_proposals(
                 )
                 weight = min(1.0, max(0.0, float(projection_consistency_score_weight)))
                 projection_score_factor = (1.0 - weight) + weight * projection_score
+            hierarchy_score_factor, hierarchy_score_info = _superpoint_hierarchy_score_factor(
+                proposal_mask,
+                point_segments,
+                low_occupancy_threshold=hierarchy_low_occupancy_threshold,
+                score_weight=hierarchy_score_weight,
+                min_score_factor=hierarchy_min_score_factor,
+            )
             source_score_scale = float(_lookup_source_rule(candidate, source_score_scales, 1.0))
             score_calibration = _candidate_score_calibration(
                 candidate,
@@ -2454,7 +2531,8 @@ def append_backprojection_proposals(
                     * component_scale
                     * score_calibration
                     * cc_score_factor
-                    * projection_score_factor,
+                    * projection_score_factor
+                    * hierarchy_score_factor,
                 ),
             )
             if max_proposal_score is not None:
@@ -2483,6 +2561,7 @@ def append_backprojection_proposals(
                     "score_calibration": score_calibration,
                     "cc_score_factor": cc_score_factor,
                     "projection_score_factor": projection_score_factor,
+                    "hierarchy_score_factor": hierarchy_score_factor,
                     "support_view_count": int(candidate.get("support_view_count", 0)),
                     "support_mean_iou": float(candidate.get("support_mean_iou", 0.0)),
                     "support_best_iou": float(candidate.get("support_best_iou", 0.0)),
@@ -2499,6 +2578,7 @@ def append_backprojection_proposals(
                     "superpoint_refine": superpoint_info,
                     "local_superpoint_refine": local_superpoint_info,
                     "superpoint_view_siou": view_siou_info,
+                    "hierarchy_score": hierarchy_score_info,
                     "cc_cleanup": cc_info,
                     "projected_box_consistency": projection_info,
                     "source_json": candidate.get("_source_json"),

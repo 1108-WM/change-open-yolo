@@ -135,6 +135,9 @@ def test_pipeline_full(
     backprojection_local_superpoint_max_expansion_ratio=1.0,
     backprojection_local_superpoint_min_seed_retention=0.80,
     backprojection_local_superpoint_max_points=30000,
+    backprojection_hierarchy_score_weight=0.0,
+    backprojection_hierarchy_low_occupancy_threshold=0.25,
+    backprojection_hierarchy_min_score_factor=0.5,
     backprojection_merge_iou=0.0,
     backprojection_inclusion_threshold=0.0,
     backprojection_postprocess_same_class_only=True,
@@ -374,10 +377,13 @@ def test_pipeline_full(
             label_consensus_context = None
             projection_consistency_context = None
             superpoint_box_context = None
-            if backprojection_superpoint_refine:
+            if backprojection_superpoint_refine or float(backprojection_hierarchy_score_weight or 0.0) > 0.0:
                 if processed_file is None:
-                    raise ValueError("--backprojection_superpoint_refine requires a ScanNet200 processed scene file.")
+                    raise ValueError(
+                        "--backprojection_superpoint_refine or --backprojection_hierarchy_score_weight requires a ScanNet200 processed scene file."
+                    )
                 point_segments = np.load(processed_file, mmap_mode="r")[:, 9].astype(np.int64)
+            if backprojection_superpoint_refine:
                 projections, point_visibility = openyolo3d.mesh_projections
                 if float(backprojection_superpoint_min_box_positive_ratio or 0.0) > 0.0:
                     superpoint_box_context = {
@@ -510,6 +516,9 @@ def test_pipeline_full(
                 local_superpoint_max_expansion_ratio=backprojection_local_superpoint_max_expansion_ratio,
                 local_superpoint_min_seed_retention=backprojection_local_superpoint_min_seed_retention,
                 local_superpoint_max_points=backprojection_local_superpoint_max_points,
+                hierarchy_score_weight=backprojection_hierarchy_score_weight,
+                hierarchy_low_occupancy_threshold=backprojection_hierarchy_low_occupancy_threshold,
+                hierarchy_min_score_factor=backprojection_hierarchy_min_score_factor,
                 merge_iou=backprojection_merge_iou,
                 inclusion_threshold=backprojection_inclusion_threshold,
                 postprocess_same_class_only=backprojection_postprocess_same_class_only,
@@ -815,6 +824,9 @@ def test_pipeline_full(
                         "local_superpoint_max_expansion_ratio": backprojection_local_superpoint_max_expansion_ratio,
                         "local_superpoint_min_seed_retention": backprojection_local_superpoint_min_seed_retention,
                         "local_superpoint_max_points": backprojection_local_superpoint_max_points,
+                        "hierarchy_score_weight": backprojection_hierarchy_score_weight,
+                        "hierarchy_low_occupancy_threshold": backprojection_hierarchy_low_occupancy_threshold,
+                        "hierarchy_min_score_factor": backprojection_hierarchy_min_score_factor,
                         "merge_iou": backprojection_merge_iou,
                         "inclusion_threshold": backprojection_inclusion_threshold,
                         "postprocess_same_class_only": backprojection_postprocess_same_class_only,
@@ -948,6 +960,9 @@ if __name__ == '__main__':
     parser.add_argument('--backprojection_local_superpoint_max_expansion_ratio', default=1.0, type=float, help='Fallback if local superpoint refinement expands above this ratio of the input proposal')
     parser.add_argument('--backprojection_local_superpoint_min_seed_retention', default=0.80, type=float, help='Fallback if local superpoint refinement keeps less than this fraction of seed reference points')
     parser.add_argument('--backprojection_local_superpoint_max_points', default=30000, type=int, help='Skip local superpoint refinement above this proposal point count')
+    parser.add_argument('--backprojection_hierarchy_score_weight', default=0.0, type=float, help='Downweight appended BPR scores by low-occupancy superpoint hierarchy risk; 0 disables')
+    parser.add_argument('--backprojection_hierarchy_low_occupancy_threshold', default=0.25, type=float, help='Superpoint occupancy below this value contributes to hierarchy risk')
+    parser.add_argument('--backprojection_hierarchy_min_score_factor', default=0.5, type=float, help='Minimum score multiplier used by hierarchy risk downweighting')
     parser.add_argument('--backprojection_merge_iou', default=0.0, type=float, help='Iteratively merge newly appended same-class BPR proposals whose 3D IoU is at least this value; 0 disables')
     parser.add_argument('--backprojection_inclusion_threshold', default=0.0, type=float, help='Remove newly appended same-class BPR proposals included in a larger appended proposal above this ratio; 0 disables')
     parser.add_argument('--backprojection_postprocess_same_class_only', default=True, action=argparse.BooleanOptionalAction, help='Restrict BPR merge/inclusion postprocessing to proposals with the same predicted class')
@@ -1108,6 +1123,9 @@ if __name__ == '__main__':
         opt.backprojection_local_superpoint_max_expansion_ratio,
         opt.backprojection_local_superpoint_min_seed_retention,
         opt.backprojection_local_superpoint_max_points,
+        opt.backprojection_hierarchy_score_weight,
+        opt.backprojection_hierarchy_low_occupancy_threshold,
+        opt.backprojection_hierarchy_min_score_factor,
         opt.backprojection_merge_iou,
         opt.backprojection_inclusion_threshold,
         opt.backprojection_postprocess_same_class_only,
