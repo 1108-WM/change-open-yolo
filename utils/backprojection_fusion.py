@@ -936,6 +936,7 @@ def _postprocess_appended_proposals(
     inclusion_threshold=0.0,
     same_class_only=True,
     appended_metadata=None,
+    point_segments=None,
     containment_action="none",
     containment_threshold=0.85,
     containment_min_area_ratio=1.5,
@@ -943,15 +944,23 @@ def _postprocess_appended_proposals(
     containment_quality_margin=0.0,
     containment_score_factor=0.5,
     containment_min_points=50,
+    hierarchy_substitution_action="none",
+    hierarchy_substitution_min_child_coverage=0.80,
+    hierarchy_substitution_max_parent_exclusive_ratio=0.20,
+    hierarchy_substitution_min_area_ratio=1.2,
+    hierarchy_substitution_min_children=1,
 ):
     appended_count = int(masks_np.shape[1] - original_num_masks)
     containment_action = str(containment_action or "none").strip().lower()
     containment_enabled = containment_action not in ("", "none")
+    hierarchy_substitution_action = str(hierarchy_substitution_action or "none").strip().lower()
+    hierarchy_substitution_enabled = hierarchy_substitution_action not in ("", "none")
     summary = {
         "enabled": bool(
             (merge_iou and merge_iou > 0)
             or (inclusion_threshold and inclusion_threshold > 0)
             or containment_enabled
+            or hierarchy_substitution_enabled
         ),
         "input_appended": appended_count,
         "merged": 0,
@@ -962,6 +971,9 @@ def _postprocess_appended_proposals(
         "carved_containing": 0,
         "removed_containing": 0,
         "carved_points": 0,
+        "hierarchy_substitution_action": hierarchy_substitution_action,
+        "hierarchy_substitution_events": [],
+        "hierarchy_removed_parents": 0,
         "output_appended": appended_count,
     }
     if not summary["enabled"] or appended_count <= 0:
@@ -1174,6 +1186,113 @@ def _postprocess_appended_proposals(
                     event["large_area_after"] = int(after)
                     event["removed_points"] = int(removed_points)
                 summary["containment_events"].append(event)
+
+    if hierarchy_substitution_enabled:
+        valid_actions = {"remove_parent"}
+        if hierarchy_substitution_action not in valid_actions:
+            summary["invalid_hierarchy_substitution_action"] = hierarchy_substitution_action
+        else:
+            min_child_coverage = float(hierarchy_substitution_min_child_coverage)
+            max_parent_exclusive_ratio = float(hierarchy_substitution_max_parent_exclusive_ratio)
+            min_area_ratio = float(hierarchy_substitution_min_area_ratio)
+            min_children = int(max(1, hierarchy_substitution_min_children))
+            active = [idx for idx, is_kept in enumerate(keep) if is_kept]
+            areas = {idx: int(appended_masks[idx].sum()) for idx in active}
+            segment_inverse = None
+            segment_sizes = None
+            occupancies = {}
+            masses = {}
+            if point_segments is not None:
+                segments = np.asarray(point_segments)
+                if segments.shape[0] == masks_np.shape[0]:
+                    _, segment_inverse = np.unique(segments.astype(np.int64, copy=False), return_inverse=True)
+                    segment_sizes = np.maximum(np.bincount(segment_inverse).astype(np.float32), 1.0)
+                    for idx in active:
+                        counts = np.bincount(
+                            segment_inverse[appended_masks[idx]],
+                            minlength=len(segment_sizes),
+                        ).astype(np.float32)
+                        occupancy = counts / segment_sizes
+                        occupancies[idx] = occupancy
+                        masses[idx] = float(np.sum(occupancy * segment_sizes))
+
+            use_superpoint_occupancy = segment_inverse is not None and bool(occupancies)
+            for parent in sorted(active, key=lambda idx: areas[idx], reverse=True):
+                if not keep[parent] or areas[parent] <= 0:
+                    continue
+                child_items = []
+                child_union = (
+                    np.zeros_like(occupancies[parent], dtype=np.float32)
+                    if use_superpoint_occupancy
+                    else np.zeros_like(appended_masks[parent])
+                )
+                parent_mass = masses.get(parent, float(areas[parent]))
+                for child in active:
+                    if child == parent or not keep[child] or areas.get(child, 0) <= 0:
+                        continue
+                    if same_class_only and appended_classes[parent] != appended_classes[child]:
+                        continue
+                    child_mass = masses.get(child, float(areas[child]))
+                    if parent_mass < child_mass * min_area_ratio:
+                        continue
+                    if use_superpoint_occupancy:
+                        overlap = float(np.sum(np.minimum(occupancies[parent], occupancies[child]) * segment_sizes))
+                        if overlap <= 0.0:
+                            continue
+                        child_coverage = overlap / max(child_mass, 1.0)
+                        child_union = np.maximum(child_union, occupancies[child])
+                        intersection = int(round(overlap))
+                    else:
+                        intersection = int(np.logical_and(appended_masks[parent], appended_masks[child]).sum())
+                        if intersection <= 0:
+                            continue
+                        child_coverage = intersection / max(1, areas[child])
+                        child_union |= appended_masks[child]
+                    if child_coverage < min_child_coverage:
+                        continue
+                    child_items.append(
+                        {
+                            "child_index": int(child),
+                            "child_candidate_id": appended_metadata[child].get("candidate_id"),
+                            "child_component_id": appended_metadata[child].get("component_id"),
+                            "child_area": int(areas[child]),
+                            "child_mass": float(child_mass),
+                            "child_score": float(appended_scores[child]),
+                            "intersection": int(intersection),
+                            "child_coverage": float(child_coverage),
+                        }
+                    )
+
+                if len(child_items) < min_children:
+                    continue
+                if use_superpoint_occupancy:
+                    covered_parent = float(np.sum(np.minimum(occupancies[parent], child_union) * segment_sizes))
+                    parent_area = max(1.0, parent_mass)
+                else:
+                    covered_parent = float(np.logical_and(appended_masks[parent], child_union).sum())
+                    parent_area = max(1.0, float(areas[parent]))
+                exclusive_ratio = float(max(0.0, parent_area - covered_parent) / parent_area)
+                child_union_coverage = float(covered_parent / parent_area)
+                if exclusive_ratio > max_parent_exclusive_ratio:
+                    continue
+                keep[parent] = False
+                summary["hierarchy_removed_parents"] += 1
+                summary["hierarchy_substitution_events"].append(
+                    {
+                        "action": hierarchy_substitution_action,
+                        "parent_index": int(parent),
+                        "parent_candidate_id": appended_metadata[parent].get("candidate_id"),
+                        "parent_component_id": appended_metadata[parent].get("component_id"),
+                        "parent_area": int(areas[parent]),
+                        "parent_mass": float(parent_mass),
+                        "parent_score": float(appended_scores[parent]),
+                        "child_count": int(len(child_items)),
+                        "child_union_coverage": child_union_coverage,
+                        "parent_exclusive_ratio": exclusive_ratio,
+                        "use_superpoint_occupancy": bool(use_superpoint_occupancy),
+                        "children": child_items,
+                    }
+                )
 
     kept_indices = [idx for idx, is_kept in enumerate(keep) if is_kept]
     if kept_indices:
@@ -1954,6 +2073,11 @@ def append_backprojection_proposals(
     containment_quality_margin=0.0,
     containment_score_factor=0.5,
     containment_min_points=50,
+    hierarchy_substitution_action="none",
+    hierarchy_substitution_min_child_coverage=0.80,
+    hierarchy_substitution_max_parent_exclusive_ratio=0.20,
+    hierarchy_substitution_min_area_ratio=1.2,
+    hierarchy_substitution_min_children=1,
 ):
     """Append conservative 2D-to-3D proposal masks to one scene prediction."""
 
@@ -2602,6 +2726,7 @@ def append_backprojection_proposals(
         inclusion_threshold=inclusion_threshold,
         same_class_only=postprocess_same_class_only,
         appended_metadata=report["applied"],
+        point_segments=point_segments,
         containment_action=containment_action,
         containment_threshold=containment_threshold,
         containment_min_area_ratio=containment_min_area_ratio,
@@ -2609,6 +2734,11 @@ def append_backprojection_proposals(
         containment_quality_margin=containment_quality_margin,
         containment_score_factor=containment_score_factor,
         containment_min_points=containment_min_points,
+        hierarchy_substitution_action=hierarchy_substitution_action,
+        hierarchy_substitution_min_child_coverage=hierarchy_substitution_min_child_coverage,
+        hierarchy_substitution_max_parent_exclusive_ratio=hierarchy_substitution_max_parent_exclusive_ratio,
+        hierarchy_substitution_min_area_ratio=hierarchy_substitution_min_area_ratio,
+        hierarchy_substitution_min_children=hierarchy_substitution_min_children,
     )
     report["postprocess"] = postprocess_summary
     return masks_np, classes_np, scores_np, report

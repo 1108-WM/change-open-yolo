@@ -148,6 +148,11 @@ def test_pipeline_full(
     backprojection_containment_quality_margin=0.0,
     backprojection_containment_score_factor=0.5,
     backprojection_containment_min_points=50,
+    backprojection_hierarchy_substitution_action="none",
+    backprojection_hierarchy_substitution_min_child_coverage=0.80,
+    backprojection_hierarchy_substitution_max_parent_exclusive_ratio=0.20,
+    backprojection_hierarchy_substitution_min_area_ratio=1.2,
+    backprojection_hierarchy_substitution_min_children=1,
     backprojection_report_path=None,
     object_query_rescore=False,
     object_query_candidates=None,
@@ -529,6 +534,11 @@ def test_pipeline_full(
                 containment_quality_margin=backprojection_containment_quality_margin,
                 containment_score_factor=backprojection_containment_score_factor,
                 containment_min_points=backprojection_containment_min_points,
+                hierarchy_substitution_action=backprojection_hierarchy_substitution_action,
+                hierarchy_substitution_min_child_coverage=backprojection_hierarchy_substitution_min_child_coverage,
+                hierarchy_substitution_max_parent_exclusive_ratio=backprojection_hierarchy_substitution_max_parent_exclusive_ratio,
+                hierarchy_substitution_min_area_ratio=backprojection_hierarchy_substitution_min_area_ratio,
+                hierarchy_substitution_min_children=backprojection_hierarchy_substitution_min_children,
             )
             bpr_report = scene_prediction[3]
             bpr_added_counts[scene_name] = int(scene_prediction[0].shape[1] - original_num_scene_predictions)
@@ -837,6 +847,11 @@ def test_pipeline_full(
                         "containment_quality_margin": backprojection_containment_quality_margin,
                         "containment_score_factor": backprojection_containment_score_factor,
                         "containment_min_points": backprojection_containment_min_points,
+                        "hierarchy_substitution_action": backprojection_hierarchy_substitution_action,
+                        "hierarchy_substitution_min_child_coverage": backprojection_hierarchy_substitution_min_child_coverage,
+                        "hierarchy_substitution_max_parent_exclusive_ratio": backprojection_hierarchy_substitution_max_parent_exclusive_ratio,
+                        "hierarchy_substitution_min_area_ratio": backprojection_hierarchy_substitution_min_area_ratio,
+                        "hierarchy_substitution_min_children": backprojection_hierarchy_substitution_min_children,
                     },
                 },
                 f,
@@ -973,6 +988,11 @@ if __name__ == '__main__':
     parser.add_argument('--backprojection_containment_quality_margin', default=0.0, type=float, help='When both are appended proposals, smaller quality plus this margin must be at least containing quality')
     parser.add_argument('--backprojection_containment_score_factor', default=0.5, type=float, help='Score multiplier used by --backprojection_containment_action downweight')
     parser.add_argument('--backprojection_containment_min_points', default=50, type=int, help='Minimum remaining points for containing proposal after carve; smaller outputs are removed')
+    parser.add_argument('--backprojection_hierarchy_substitution_action', default='none', choices=['none', 'remove_parent'], help='Clutt3R-Seg-inspired appended-candidate hierarchy action; remove_parent drops a parent covered by child proposals')
+    parser.add_argument('--backprojection_hierarchy_substitution_min_child_coverage', default=0.80, type=float, help='Minimum child-mask coverage by a parent before hierarchy substitution can use the child')
+    parser.add_argument('--backprojection_hierarchy_substitution_max_parent_exclusive_ratio', default=0.20, type=float, help='Maximum parent-exclusive area ratio after child union before removing the parent')
+    parser.add_argument('--backprojection_hierarchy_substitution_min_area_ratio', default=1.2, type=float, help='Minimum parent/child area ratio for hierarchy substitution edges')
+    parser.add_argument('--backprojection_hierarchy_substitution_min_children', default=1, type=int, help='Minimum number of child proposals required before removing a parent')
     parser.add_argument('--backprojection_report_path', default=None, type=str, help='Optional JSON report for added/skipped backprojection proposals')
     parser.add_argument('--object_query_rescore', default=False, action=argparse.BooleanOptionalAction, help='Use SegDINO3D-inspired object-query evidence to rescore existing 3D masks')
     parser.add_argument('--object_query_candidates', default=None, type=str, help='Path to backprojection candidate JSON/directory used as 2D object-query evidence; defaults to --backprojection_candidates')
@@ -1136,6 +1156,11 @@ if __name__ == '__main__':
         opt.backprojection_containment_quality_margin,
         opt.backprojection_containment_score_factor,
         opt.backprojection_containment_min_points,
+        opt.backprojection_hierarchy_substitution_action,
+        opt.backprojection_hierarchy_substitution_min_child_coverage,
+        opt.backprojection_hierarchy_substitution_max_parent_exclusive_ratio,
+        opt.backprojection_hierarchy_substitution_min_area_ratio,
+        opt.backprojection_hierarchy_substitution_min_children,
         opt.backprojection_report_path,
         opt.object_query_rescore,
         opt.object_query_candidates,

@@ -1508,3 +1508,52 @@ bash -n tools/run_scannet200_even48_sam_mask_support_eval.sh
   - parent 是大脏 mask 且 children 覆盖其可靠区域时，压低或替换 parent；
   - child 是碎片、parent 低额外污染且多视角稳定时，用 parent 替代 child；
   - 所有规则都应先在已应用候选同口径 diagnostics 上验证，避免误伤真阳性。
+
+2026-06-16 hierarchy conditional substitution 初版：
+
+- 已完成代码：
+  - `utils/backprojection_fusion.py`
+    - 在 `_postprocess_appended_proposals` 中新增 hierarchy substitution 后处理。
+    - 初版只实现 `remove_parent`，即 children 覆盖 parent 的可靠区域且 parent 独占区域较小时移除 parent。
+    - 第一版 point-level 覆盖条件在真实 `even48` 三档均 `0` 触发。
+    - 随后改为 superpoint occupancy 覆盖，和 Clutt3R-Seg 的 super-voxel occupancy 思路一致。
+  - `run_evaluation.py`
+    - 新增参数：
+      - `--backprojection_hierarchy_substitution_action {none,remove_parent}`
+      - `--backprojection_hierarchy_substitution_min_child_coverage`
+      - `--backprojection_hierarchy_substitution_max_parent_exclusive_ratio`
+      - `--backprojection_hierarchy_substitution_min_area_ratio`
+      - `--backprojection_hierarchy_substitution_min_children`
+  - 新增脚本：
+    - `tools/run_scannet200_even48_hierarchy_substitution_sweep.sh`
+- 合成冒烟：
+  - parent 由两个 child 覆盖 `95%` 时，`remove_parent` 正确触发。
+  - 新增候选从 `3 -> 2`。
+- applied-only 同口径 diagnostics：
+  - 输出：`output/diagnostics/hierarchy_features_even48_applied_current`
+  - 行数：`273`
+  - `hierarchy_any_related_count > 0`：`73`
+  - `hierarchy_parent_count > 0`：`39`，全部是 `background_or_bad_geometry`
+  - `hierarchy_child_count > 0`：`42`，其中 `40` 个是 `background_or_bad_geometry`，另有 `1` 个 `true_completion_50`
+  - 说明 hierarchy 关系在已应用候选里确实主要标记坏候选，但可安全替换的结构很少。
+- 真实 `even48` 验证：
+
+| 配置 | 平均精度 | 百分之五十重叠率平均精度 | 百分之二十五重叠率平均精度 | 触发 | 候选变化 |
+|---|---:|---:|---:|---:|---:|
+| 当前参考 | `0.272610` | `0.345769` | `0.389491` | - | `273 -> 273` |
+| point-level strict `cov080/ex020/min2` | `0.272610` | `0.345769` | `0.389491` | `0` | `273 -> 273` |
+| point-level conservative `cov085/ex015/min1` | `0.272610` | `0.345769` | `0.389491` | `0` | `273 -> 273` |
+| point-level relaxed `cov075/ex030/min1` | `0.272610` | `0.345769` | `0.389491` | `0` | `273 -> 273` |
+| superpoint occupancy relaxed `cov075/ex030/min1` | `0.272610` | `0.345769` | `0.389491` | `2` | `273 -> 271` |
+
+superpoint occupancy relaxed 触发事件：
+
+- `scene0518_00`：parent candidate `0`，面积 `953`，child union coverage `0.7125`，parent exclusive ratio `0.2875`，child candidate `2`。
+- `scene0599_02`：parent candidate `1`，面积 `192`，child union coverage `0.7969`，parent exclusive ratio `0.2031`，child candidate `0`。
+
+结论：
+
+- conditional substitution 代码路径可用，superpoint occupancy 条件也能在真实 `even48` 触发。
+- 但当前可触发的 parent removal 太少，且移除的 parent 不影响最终匹配，AP 完全不变。
+- 这说明“remove parent when children cover it”在当前已应用候选集合里不是主要瓶颈。
+- 如果继续 Clutt3R-Seg 方向，更可能需要做另一半：碎片 child -> 稳定 parent 的替换/扩张，但这会增加误引入大脏 mask 的风险，必须先做更细的 diagnostics。

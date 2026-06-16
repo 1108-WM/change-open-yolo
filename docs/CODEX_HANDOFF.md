@@ -38,13 +38,14 @@ YOLO-World 二维检测
 - 受 Clutt3R-Seg 启发，`tools/analyze_backprojection_candidates.py` 已新增 superpoint occupancy 层级特征：用 weighted Jaccard 和 superpoint coverage 建立候选 parent/child 关系。
 - 全量候选 smoke 中 `hierarchy_low_occupancy_mass_ratio` 成为随机森林 top feature，说明该方向有初步诊断信号；但 parent/child 关系仍覆盖少量真阳性，不能直接硬删。
 - hierarchy risk score 降权已经接入 `run_evaluation.py` 并跑过 `even48` 三档，AP 只有 `0.272613`，相对当前参考 `0.272610` 只是极小变化，不算有效提升。
+- hierarchy conditional substitution 的 `remove_parent` 已接入并跑过 `even48`：point-level 三档均 `0` 触发；superpoint occupancy relaxed 档触发 `2` 次，候选 `273 -> 271`，AP 仍为 `0.272610`，没有提升。
 - 第二优先级才是重新做更强的候选局部超点，但必须接入颜色、法向和二维掩码支持，不能只靠三维坐标。
 
 下一步建议：
 
-1. 若继续 Clutt3R-Seg 方向，不要再做单纯分数降权；下一步应实现 conditional substitution 或 parent/child 结构化替换。
-2. 在“已应用候选同口径”上重新生成 hierarchy diagnostics，先验证哪些 parent/child 关系不会误伤真阳性。
-3. conditional substitution 需要区分两类：parent 大脏 mask 被 children 可靠覆盖时压低/替换 parent；child 碎片且 parent 低额外污染时用 parent 替代 child。
+1. 若继续 Clutt3R-Seg 方向，不要再做单纯分数降权或 parent removal；这两类已经验证基本不动 AP。
+2. 真正未尝试的是 child 碎片 -> 稳定 parent 的替换/扩张，但风险较高，必须先做更细 diagnostics。
+3. 另一个更现实方向是把 hierarchy 特征并入学习式候选排序/选择，而不是手写后处理规则。
 4. 另一个可行方向是候选局部超点二版：接入颜色、法向和二维掩码支持后再跑 `even48`。
 
 ## 已上传到 GitHub 的内容
