@@ -110,6 +110,191 @@ YOLO-World 二维检测
 - 超点优先候选生成：从 `utils/backprojection_fusion.py` 的候选加载和超点支持计算逻辑开始，把二维证据先累计到超点，再生成候选。
 - 多视角聚合：先在候选导出阶段建立视角间关联，再反投影成三维候选。
 
+## 0.1 GitHub 同步和换设备操作指南
+
+当前仓库地址：
+
+```text
+git@github.com:1108-WM/change-open-yolo.git
+```
+
+当前本地远程仓库配置：
+
+```text
+origin   git@github.com:1108-WM/change-open-yolo.git
+upstream https://github.com/aminebdj/OpenYOLO3D.git
+```
+
+这台电脑是怎么连接到 GitHub 的：
+
+- 使用的是用户自己的 GitHub 账号 `1108-WM`，不是 Codex 的账号。
+- 连接方式是 SSH，不依赖 `gh auth login`。
+- `gh auth login` 当时走浏览器登录时出现过 `Post "https://github.com/login/device/code": EOF`，这是 GitHub CLI 访问登录接口失败，不代表 SSH 不能用。
+- 后来执行 `ssh -T git@github.com`，返回：
+
+```text
+Hi 1108-WM! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+这说明当前电脑的 SSH 公钥已经添加到 GitHub 账号 `1108-WM`，所以可以直接用 SSH 地址推送。
+
+当前同步规则：
+
+- 上传代码和文档。
+- 不上传数据集、模型权重、实验输出、大型缓存和编译产物。
+- 当前仍有一些 `models/Mask3D` 和 `pointnet2` 编译产物处于本地修改状态，但不要提交它们。
+- 每次提交前先看 `git status --short`，只 `git add` 需要同步的源码或文档文件。
+
+在另一台新设备上快速连接 GitHub：
+
+1. 安装 Git。
+
+```bash
+git --version
+```
+
+如果没有安装，可以在 Ubuntu 上执行：
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+2. 配置 Git 用户信息。
+
+```bash
+git config --global user.name "1108-WM"
+git config --global user.email "你的 GitHub 邮箱"
+```
+
+3. 检查是否已有 SSH key。
+
+```bash
+ls ~/.ssh
+```
+
+如果里面已经有 `id_ed25519.pub`，可以直接看第 5 步。没有的话生成一个新的。
+
+4. 生成 SSH key。
+
+```bash
+ssh-keygen -t ed25519 -C "你的 GitHub 邮箱"
+```
+
+一路回车即可。生成后会得到：
+
+```text
+~/.ssh/id_ed25519
+~/.ssh/id_ed25519.pub
+```
+
+5. 把公钥添加到 GitHub。
+
+查看公钥：
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+复制整行内容，打开 GitHub：
+
+```text
+GitHub -> Settings -> SSH and GPG keys -> New SSH key
+```
+
+把公钥粘贴进去保存。
+
+6. 测试 SSH 是否连通。
+
+```bash
+ssh -T git@github.com
+```
+
+第一次会问：
+
+```text
+Are you sure you want to continue connecting?
+```
+
+输入：
+
+```text
+yes
+```
+
+如果看到类似下面内容，说明配置成功：
+
+```text
+Hi 1108-WM! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+7. 克隆当前项目。
+
+```bash
+git clone git@github.com:1108-WM/change-open-yolo.git
+cd change-open-yolo
+```
+
+8. 以后在另一台设备上同步修改。
+
+拉取最新代码：
+
+```bash
+git pull origin main
+```
+
+查看改动：
+
+```bash
+git status --short
+```
+
+提交指定文件：
+
+```bash
+git add 文件路径
+git commit -m "提交说明"
+git push origin main
+```
+
+9. 如果另一台设备已经有项目目录，但 remote 不对。
+
+查看 remote：
+
+```bash
+git remote -v
+```
+
+设置为当前仓库：
+
+```bash
+git remote set-url origin git@github.com:1108-WM/change-open-yolo.git
+```
+
+如果没有 `origin`，新增：
+
+```bash
+git remote add origin git@github.com:1108-WM/change-open-yolo.git
+```
+
+10. 关于 `gh` 命令。
+
+`gh` 是 GitHub CLI，不是必须的。当前项目已经可以通过 SSH 正常推送，所以新设备优先配置 SSH 即可。
+
+如果确实要安装 `gh`，Ubuntu 上可以用：
+
+```bash
+sudo apt install gh
+```
+
+或者：
+
+```bash
+sudo snap install gh --classic
+```
+
+之前 `snap install gh` 提示需要 `--classic`，是因为这个 snap 包需要经典模式权限，不是项目本身的问题。
+
 ## 1. 当前目标
 
 当前只推进第一个创新点：**基于 YOLO-World 的三维候选补全和几何质量提升**。
