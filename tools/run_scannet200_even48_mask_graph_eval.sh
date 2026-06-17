@@ -18,8 +18,8 @@ GRAPH_MIN_CLUSTER_OBSERVATIONS="${GRAPH_MIN_CLUSTER_OBSERVATIONS:-2}"
 GRAPH_KEEP_SINGLETONS="${GRAPH_KEEP_SINGLETONS:-0}"
 GRAPH_MAX_VIEWS_PER_CLUSTER="${GRAPH_MAX_VIEWS_PER_CLUSTER:-4}"
 GRAPH_MIN_NEW_SEED_RATIO="${GRAPH_MIN_NEW_SEED_RATIO:-0.05}"
-SOURCE_LIMITS_GRAPH_BPR="${SOURCE_LIMITS_GRAPH_BPR:-mask_graph=12,bpr=3}"
-SOURCE_LIMITS_GRAPH_ONLY="${SOURCE_LIMITS_GRAPH_ONLY:-mask_graph=15}"
+SOURCE_LIMITS_GRAPH_BPR="${SOURCE_LIMITS_GRAPH_BPR:-mask_graph_multi_view=10,mask_graph_single_view=2,bpr=3}"
+SOURCE_LIMITS_GRAPH_ONLY="${SOURCE_LIMITS_GRAPH_ONLY:-mask_graph_multi_view=12,mask_graph_single_view=3}"
 
 mkdir -p "$OUT_DIR/reports"
 cd "$ROOT_DIR"
@@ -67,10 +67,14 @@ scenes = data.get("scenes", [])
 num_candidates = sum(int(item.get("num_candidates", 0)) for item in scenes)
 raw = sum(int(item.get("raw_observations", 0)) for item in scenes)
 edges = sum(int(item.get("graph_edges", 0)) for item in scenes)
+support_edges = sum(int(item.get("graph_support_edges", 0)) for item in scenes)
+weak_edges = sum(int(item.get("graph_weak_edges", 0)) for item in scenes)
+conflict_edges = sum(int(item.get("graph_conflict_edges", 0)) for item in scenes)
 components = sum(int(item.get("graph_components", 0)) for item in scenes)
 print(
     f"[EXPORT_RESULT] candidates={num_candidates} raw_observations={raw} "
-    f"graph_edges={edges} graph_components={components}"
+    f"graph_edges={edges} support_edges={support_edges} weak_edges={weak_edges} "
+    f"conflict_edges={conflict_edges} graph_components={components}"
 )
 PY
 }
@@ -171,22 +175,22 @@ case "$MODE" in
   graph_only)
     run_eval mask_graph_only \
       "$MASK_GRAPH_OUT" \
-      "mask_graph=1.2" \
-      "mask_graph=2.0" \
+      "mask_graph_multi_view=1.25,mask_graph_single_view=1.0" \
+      "mask_graph_multi_view=2.0,mask_graph_single_view=1.2" \
       "$SOURCE_LIMITS_GRAPH_ONLY"
     ;;
   graph_bpr)
     run_eval mask_graph_bpr \
       "$MASK_GRAPH_OUT,$BPR_IN" \
-      "mask_graph=1.2,bpr=1.0" \
-      "mask_graph=2.0,bpr=1.0" \
+      "mask_graph_multi_view=1.25,mask_graph_single_view=1.0,bpr=1.0" \
+      "mask_graph_multi_view=2.0,mask_graph_single_view=1.2,bpr=1.0" \
       "$SOURCE_LIMITS_GRAPH_BPR"
     ;;
   default|all)
     run_eval mask_graph_bpr \
       "$MASK_GRAPH_OUT,$BPR_IN" \
-      "mask_graph=1.2,bpr=1.0" \
-      "mask_graph=2.0,bpr=1.0" \
+      "mask_graph_multi_view=1.25,mask_graph_single_view=1.0,bpr=1.0" \
+      "mask_graph_multi_view=2.0,mask_graph_single_view=1.2,bpr=1.0" \
       "$SOURCE_LIMITS_GRAPH_BPR"
     ;;
   *)

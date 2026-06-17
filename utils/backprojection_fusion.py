@@ -75,7 +75,14 @@ def _candidate_source_name(candidate):
 
 
 def _candidate_source_kind(candidate):
+    candidate_kind = candidate.get("source_kind") or candidate.get("candidate_source_kind")
+    if candidate_kind:
+        return str(candidate_kind).strip().lower()
     source_name = _candidate_source_name(candidate).lower()
+    if "mask_graph_multi_view" in source_name or "mask-graph-multi-view" in source_name:
+        return "mask_graph_multi_view"
+    if "mask_graph_single_view" in source_name or "mask-graph-single-view" in source_name:
+        return "mask_graph_single_view"
     if "mask_graph" in source_name or "mask-graph" in source_name:
         return "mask_graph"
     if "sam_fused" in source_name or "sam-fused" in source_name:
