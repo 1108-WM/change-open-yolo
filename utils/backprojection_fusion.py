@@ -76,6 +76,8 @@ def _candidate_source_name(candidate):
 
 def _candidate_source_kind(candidate):
     source_name = _candidate_source_name(candidate).lower()
+    if "mask_graph" in source_name or "mask-graph" in source_name:
+        return "mask_graph"
     if "sam_fused" in source_name or "sam-fused" in source_name:
         return "sam_fused"
     if "backprojection" in source_name or source_name.startswith("bpr"):
