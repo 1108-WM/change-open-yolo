@@ -138,6 +138,19 @@ def test_pipeline_full(
     backprojection_hierarchy_score_weight=0.0,
     backprojection_hierarchy_low_occupancy_threshold=0.25,
     backprojection_hierarchy_min_score_factor=0.5,
+    backprojection_mask_graph_min_cluster_observations=0,
+    backprojection_mask_graph_min_selected_views=0,
+    backprojection_mask_graph_min_same_object_edges=0,
+    backprojection_mask_graph_min_edge_mean_score=0.0,
+    backprojection_mask_graph_min_consensus_score=0.0,
+    backprojection_mask_graph_min_depth_consistency=0.0,
+    backprojection_mask_graph_max_conflict_edges=None,
+    backprojection_mask_graph_max_conflict_ratio=None,
+    backprojection_mask_graph_evidence_rescore=False,
+    backprojection_mask_graph_evidence_min_overlap=0.25,
+    backprojection_mask_graph_evidence_min_iou=0.03,
+    backprojection_mask_graph_evidence_priority_weight=0.0,
+    backprojection_mask_graph_evidence_same_class_only=True,
     backprojection_merge_iou=0.0,
     backprojection_inclusion_threshold=0.0,
     backprojection_postprocess_same_class_only=True,
@@ -524,6 +537,19 @@ def test_pipeline_full(
                 hierarchy_score_weight=backprojection_hierarchy_score_weight,
                 hierarchy_low_occupancy_threshold=backprojection_hierarchy_low_occupancy_threshold,
                 hierarchy_min_score_factor=backprojection_hierarchy_min_score_factor,
+                mask_graph_min_cluster_observations=backprojection_mask_graph_min_cluster_observations,
+                mask_graph_min_selected_views=backprojection_mask_graph_min_selected_views,
+                mask_graph_min_same_object_edges=backprojection_mask_graph_min_same_object_edges,
+                mask_graph_min_edge_mean_score=backprojection_mask_graph_min_edge_mean_score,
+                mask_graph_min_consensus_score=backprojection_mask_graph_min_consensus_score,
+                mask_graph_min_depth_consistency=backprojection_mask_graph_min_depth_consistency,
+                mask_graph_max_conflict_edges=backprojection_mask_graph_max_conflict_edges,
+                mask_graph_max_conflict_ratio=backprojection_mask_graph_max_conflict_ratio,
+                mask_graph_evidence_rescore=backprojection_mask_graph_evidence_rescore,
+                mask_graph_evidence_min_overlap=backprojection_mask_graph_evidence_min_overlap,
+                mask_graph_evidence_min_iou=backprojection_mask_graph_evidence_min_iou,
+                mask_graph_evidence_priority_weight=backprojection_mask_graph_evidence_priority_weight,
+                mask_graph_evidence_same_class_only=backprojection_mask_graph_evidence_same_class_only,
                 merge_iou=backprojection_merge_iou,
                 inclusion_threshold=backprojection_inclusion_threshold,
                 postprocess_same_class_only=backprojection_postprocess_same_class_only,
@@ -837,6 +863,19 @@ def test_pipeline_full(
                         "hierarchy_score_weight": backprojection_hierarchy_score_weight,
                         "hierarchy_low_occupancy_threshold": backprojection_hierarchy_low_occupancy_threshold,
                         "hierarchy_min_score_factor": backprojection_hierarchy_min_score_factor,
+                        "mask_graph_min_cluster_observations": backprojection_mask_graph_min_cluster_observations,
+                        "mask_graph_min_selected_views": backprojection_mask_graph_min_selected_views,
+                        "mask_graph_min_same_object_edges": backprojection_mask_graph_min_same_object_edges,
+                        "mask_graph_min_edge_mean_score": backprojection_mask_graph_min_edge_mean_score,
+                        "mask_graph_min_consensus_score": backprojection_mask_graph_min_consensus_score,
+                        "mask_graph_min_depth_consistency": backprojection_mask_graph_min_depth_consistency,
+                        "mask_graph_max_conflict_edges": backprojection_mask_graph_max_conflict_edges,
+                        "mask_graph_max_conflict_ratio": backprojection_mask_graph_max_conflict_ratio,
+                        "mask_graph_evidence_rescore": backprojection_mask_graph_evidence_rescore,
+                        "mask_graph_evidence_min_overlap": backprojection_mask_graph_evidence_min_overlap,
+                        "mask_graph_evidence_min_iou": backprojection_mask_graph_evidence_min_iou,
+                        "mask_graph_evidence_priority_weight": backprojection_mask_graph_evidence_priority_weight,
+                        "mask_graph_evidence_same_class_only": backprojection_mask_graph_evidence_same_class_only,
                         "merge_iou": backprojection_merge_iou,
                         "inclusion_threshold": backprojection_inclusion_threshold,
                         "postprocess_same_class_only": backprojection_postprocess_same_class_only,
@@ -978,6 +1017,19 @@ if __name__ == '__main__':
     parser.add_argument('--backprojection_hierarchy_score_weight', default=0.0, type=float, help='Downweight appended BPR scores by low-occupancy superpoint hierarchy risk; 0 disables')
     parser.add_argument('--backprojection_hierarchy_low_occupancy_threshold', default=0.25, type=float, help='Superpoint occupancy below this value contributes to hierarchy risk')
     parser.add_argument('--backprojection_hierarchy_min_score_factor', default=0.5, type=float, help='Minimum score multiplier used by hierarchy risk downweighting')
+    parser.add_argument('--backprojection_mask_graph_min_cluster_observations', default=0, type=int, help='Minimum observations required for mask-graph candidates; 0 disables')
+    parser.add_argument('--backprojection_mask_graph_min_selected_views', default=0, type=int, help='Minimum selected views required for mask-graph candidates; 0 disables')
+    parser.add_argument('--backprojection_mask_graph_min_same_object_edges', default=0, type=int, help='Minimum strong same-object edges required for mask-graph candidates; 0 disables')
+    parser.add_argument('--backprojection_mask_graph_min_edge_mean_score', default=0.0, type=float, help='Minimum mean graph edge score for mask-graph candidates; 0 disables')
+    parser.add_argument('--backprojection_mask_graph_min_consensus_score', default=0.0, type=float, help='Minimum graph consensus score for mask-graph candidates; 0 disables')
+    parser.add_argument('--backprojection_mask_graph_min_depth_consistency', default=0.0, type=float, help='Minimum depth consistency score for mask-graph candidates; 0 disables')
+    parser.add_argument('--backprojection_mask_graph_max_conflict_edges', default=None, type=int, help='Maximum conflict edges allowed for mask-graph candidates; omitted disables')
+    parser.add_argument('--backprojection_mask_graph_max_conflict_ratio', default=None, type=float, help='Maximum conflict/same-object edge ratio for mask-graph candidates; omitted disables')
+    parser.add_argument('--backprojection_mask_graph_evidence_rescore', default=False, action=argparse.BooleanOptionalAction, help='Use mask-graph candidates as evidence to reprioritize non-graph BPR candidates')
+    parser.add_argument('--backprojection_mask_graph_evidence_min_overlap', default=0.25, type=float, help='Minimum seed containment overlap for graph evidence to support a non-graph candidate')
+    parser.add_argument('--backprojection_mask_graph_evidence_min_iou', default=0.03, type=float, help='Minimum seed IoU for graph evidence to support a non-graph candidate')
+    parser.add_argument('--backprojection_mask_graph_evidence_priority_weight', default=0.0, type=float, help='Priority multiplier weight from graph evidence; 0 records evidence without changing priority')
+    parser.add_argument('--backprojection_mask_graph_evidence_same_class_only', default=True, action=argparse.BooleanOptionalAction, help='Only use same-class graph candidates as support evidence')
     parser.add_argument('--backprojection_merge_iou', default=0.0, type=float, help='Iteratively merge newly appended same-class BPR proposals whose 3D IoU is at least this value; 0 disables')
     parser.add_argument('--backprojection_inclusion_threshold', default=0.0, type=float, help='Remove newly appended same-class BPR proposals included in a larger appended proposal above this ratio; 0 disables')
     parser.add_argument('--backprojection_postprocess_same_class_only', default=True, action=argparse.BooleanOptionalAction, help='Restrict BPR merge/inclusion postprocessing to proposals with the same predicted class')
@@ -1146,6 +1198,19 @@ if __name__ == '__main__':
         opt.backprojection_hierarchy_score_weight,
         opt.backprojection_hierarchy_low_occupancy_threshold,
         opt.backprojection_hierarchy_min_score_factor,
+        opt.backprojection_mask_graph_min_cluster_observations,
+        opt.backprojection_mask_graph_min_selected_views,
+        opt.backprojection_mask_graph_min_same_object_edges,
+        opt.backprojection_mask_graph_min_edge_mean_score,
+        opt.backprojection_mask_graph_min_consensus_score,
+        opt.backprojection_mask_graph_min_depth_consistency,
+        opt.backprojection_mask_graph_max_conflict_edges,
+        opt.backprojection_mask_graph_max_conflict_ratio,
+        opt.backprojection_mask_graph_evidence_rescore,
+        opt.backprojection_mask_graph_evidence_min_overlap,
+        opt.backprojection_mask_graph_evidence_min_iou,
+        opt.backprojection_mask_graph_evidence_priority_weight,
+        opt.backprojection_mask_graph_evidence_same_class_only,
         opt.backprojection_merge_iou,
         opt.backprojection_inclusion_threshold,
         opt.backprojection_postprocess_same_class_only,

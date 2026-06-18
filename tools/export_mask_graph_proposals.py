@@ -360,6 +360,8 @@ def _component_edge_stats(component, adjacency, relation_edges=None):
     consensus_scores = []
     relation_kind_counts = defaultdict(int)
     relation_kind_scores = defaultdict(list)
+    containment_parent_count = 0
+    containment_child_count = 0
     seen = set()
     for node in component:
         for neighbor, edge in adjacency[node]:
@@ -384,7 +386,9 @@ def _component_edge_stats(component, adjacency, relation_edges=None):
     weak_count = 0
     if relation_edges is not None:
         for edge in relation_edges:
-            if edge["left"] not in component_set or edge["right"] not in component_set:
+            left_in = edge["left"] in component_set
+            right_in = edge["right"] in component_set
+            if not left_in and not right_in:
                 continue
             relation_kind = edge.get("relation_type", "same_object")
             if relation_kind == "conflict":
@@ -396,6 +400,10 @@ def _component_edge_stats(component, adjacency, relation_edges=None):
             elif relation_kind == "containment":
                 relation_kind_counts["containment"] += 1
                 relation_kind_scores["containment"].append(float(edge.get("containment_score", edge.get("containment_strength", 0.0))))
+            if edge.get("parent") in component_set:
+                containment_parent_count += 1
+            if edge.get("child") in component_set:
+                containment_child_count += 1
     return {
         "edge_count": int(len(edge_scores)),
         "edge_mean_score": _safe_mean(edge_scores),
@@ -411,6 +419,8 @@ def _component_edge_stats(component, adjacency, relation_edges=None):
         "containment_edge_mean_score": _safe_mean(relation_kind_scores.get("containment", [])),
         "weak_edge_mean_score": _safe_mean(relation_kind_scores.get("weak", [])),
         "conflict_edge_mean_score": _safe_mean(relation_kind_scores.get("conflict", [])),
+        "containment_parent_edge_count": int(containment_parent_count),
+        "containment_child_edge_count": int(containment_child_count),
     }
 
 
@@ -468,6 +478,94 @@ def _select_cluster_views(
     return selected, selected_seed.astype(np.int64)
 
 
+def _vote_selected_seed_points(
+    observations,
+    selected_indices,
+    fallback_seed,
+    min_vote_score=0.35,
+    min_support_count=1,
+    min_keep_ratio=0.35,
+    min_keep_points=0,
+):
+    vote_scores = defaultdict(float)
+    support_counts = defaultdict(int)
+    max_vote = 0.0
+    for idx in selected_indices:
+        obs = observations[idx]
+        seed = np.asarray(obs["_seed_indices"], dtype=np.int64)
+        if len(seed) == 0:
+            continue
+        view_weight = max(0.05, _graph_quality_score(obs))
+        depth_weight = 0.5 + 0.5 * float(obs.get("seed_depth_support_ratio", 0.0))
+        weight = float(view_weight * depth_weight)
+        max_vote = max(max_vote, weight)
+        for point_idx in seed:
+            point_idx = int(point_idx)
+            vote_scores[point_idx] += weight
+            support_counts[point_idx] += 1
+
+    if not vote_scores:
+        return fallback_seed.astype(np.int64), {
+            "enabled": False,
+            "fallback": "no_votes",
+            "min_vote_score": float(min_vote_score),
+            "min_support_count": int(min_support_count),
+            "kept_points": int(len(fallback_seed)),
+            "input_points": int(len(fallback_seed)),
+        }
+
+    threshold = float(max(0.0, min_vote_score))
+    min_support = int(max(1, min_support_count))
+    if len(selected_indices) > 1:
+        min_support = max(min_support, 2)
+    kept = [
+        point_idx
+        for point_idx, score in vote_scores.items()
+        if support_counts[point_idx] >= min_support and float(score) >= threshold
+    ]
+    if not kept:
+        if len(selected_indices) > 1:
+            kept = [
+                int(point_idx)
+                for point_idx, score in vote_scores.items()
+                if support_counts[point_idx] >= 1 and float(score) >= threshold
+            ]
+            fallback = "single_support_fallback"
+        else:
+            kept = [int(point_idx) for point_idx in fallback_seed]
+            fallback = "empty_after_vote"
+    else:
+        fallback = None
+    kept = np.asarray(sorted(set(kept)), dtype=np.int64)
+    input_count = int(len(np.unique(fallback_seed)))
+    kept_ratio = float(len(kept) / max(1, input_count))
+    if (
+        len(selected_indices) > 1
+        and input_count > 0
+        and (
+            kept_ratio < float(min_keep_ratio)
+            or len(kept) < int(max(0, min_keep_points))
+        )
+    ):
+        kept = np.asarray(sorted(set(int(point_idx) for point_idx in fallback_seed)), dtype=np.int64)
+        kept_ratio = float(len(kept) / max(1, input_count))
+        fallback = "small_core_fallback"
+    return kept, {
+        "enabled": True,
+        "fallback": fallback,
+        "min_vote_score": float(threshold),
+        "min_support_count": int(min_support),
+        "min_keep_ratio": float(min_keep_ratio),
+        "min_keep_points": int(max(0, min_keep_points)),
+        "input_points": input_count,
+        "kept_points": int(len(kept)),
+        "kept_ratio": kept_ratio,
+        "max_vote_score": float(max_vote),
+        "mean_vote_score": float(np.mean(list(vote_scores.values()))) if vote_scores else 0.0,
+        "multi_view_point_count": int(sum(1 for value in support_counts.values() if int(value) >= 2)),
+    }
+
+
 def _merge_cluster_label_consensus(cluster_record, observations, selected_indices):
     first = True
     for idx in selected_indices:
@@ -506,6 +604,7 @@ def _cluster_to_candidate(
     adjacency,
     relation_edges,
     existing_masks,
+    seed_vote_info=None,
 ):
     selected_observations = [observations[idx] for idx in selected_indices]
     best_observation = max(
@@ -531,6 +630,7 @@ def _cluster_to_candidate(
         support_views.append(view)
 
     conflict_penalty = max(0.50, 1.0 - 0.20 * min(2, int(stats["conflict_edge_count"])))
+    containment_penalty = max(0.70, 1.0 - 0.10 * min(3, int(stats["containment_parent_edge_count"])))
     candidate = {
         "scene_name": best_observation["scene_name"],
         "source_kind": "mask_graph_multi_view" if int(len(component)) >= 2 and int(stats["edge_count"]) > 0 else "mask_graph_single_view",
@@ -551,6 +651,7 @@ def _cluster_to_candidate(
             * max(obs.get("proposal_priority", 0.0) for obs in selected_observations)
             * (0.5 + 0.5 * min(1.0, len(selected_indices) / 4.0))
             * conflict_penalty
+            * containment_penalty
         ),
         "support_view_count": int(len(selected_indices)),
         "support_mean_iou": float(stats["seed_mean_iou"]),
@@ -585,7 +686,11 @@ def _cluster_to_candidate(
         "containment_edge_mean_score": float(stats["containment_edge_mean_score"]),
         "weak_edge_mean_score": float(stats["weak_edge_mean_score"]),
         "conflict_edge_mean_score": float(stats["conflict_edge_mean_score"]),
+        "containment_parent_edge_count": int(stats["containment_parent_edge_count"]),
+        "containment_child_edge_count": int(stats["containment_child_edge_count"]),
         "conflict_penalty": float(conflict_penalty),
+        "containment_penalty": float(containment_penalty),
+        "seed_vote_info": seed_vote_info or {"enabled": False},
         "sam_mask_selection_policy": best_observation.get("sam_mask_selection_policy"),
         "sam_mask_selection_score": best_observation.get("sam_mask_selection_score"),
         "sam_mask_geometry": best_observation.get("sam_mask_geometry"),
@@ -973,6 +1078,10 @@ def export_scene_mask_graph_proposals(
     graph_keep_singletons=False,
     graph_max_views_per_cluster=4,
     graph_min_new_seed_ratio=0.05,
+    graph_point_vote_min_score=0.35,
+    graph_point_vote_min_support=1,
+    graph_point_vote_min_keep_ratio=0.35,
+    graph_point_vote_min_keep_points=0,
     export_max_existing_iou=None,
     export_max_seed_in_existing_mask_ratio=None,
 ):
@@ -1045,6 +1154,15 @@ def export_scene_mask_graph_proposals(
             max_views=graph_max_views_per_cluster,
             min_new_seed_ratio=graph_min_new_seed_ratio,
         )
+        selected_seed, seed_vote_info = _vote_selected_seed_points(
+            observations,
+            selected_indices,
+            selected_seed,
+            min_vote_score=graph_point_vote_min_score,
+            min_support_count=graph_point_vote_min_support,
+            min_keep_ratio=graph_point_vote_min_keep_ratio,
+            min_keep_points=graph_point_vote_min_keep_points,
+        )
         if len(selected_seed) < int(min_seed_points):
             cluster_skipped.append({"graph_cluster_id": int(cluster_id), "reason": "few_cluster_seed_points", "num_seed_points": int(len(selected_seed))})
             continue
@@ -1057,6 +1175,7 @@ def export_scene_mask_graph_proposals(
             adjacency,
             relation_edges,
             existing_masks,
+            seed_vote_info=seed_vote_info,
         )
         if export_max_existing_iou is not None and float(candidate.get("best_existing_iou", 0.0)) > float(export_max_existing_iou):
             prefilter_skipped.append(
@@ -1168,6 +1287,10 @@ def export_scene_mask_graph_proposals(
                     "graph_keep_singletons": graph_keep_singletons,
                     "graph_max_views_per_cluster": graph_max_views_per_cluster,
                     "graph_min_new_seed_ratio": graph_min_new_seed_ratio,
+                    "graph_point_vote_min_score": graph_point_vote_min_score,
+                    "graph_point_vote_min_support": graph_point_vote_min_support,
+                    "graph_point_vote_min_keep_ratio": graph_point_vote_min_keep_ratio,
+                    "graph_point_vote_min_keep_points": graph_point_vote_min_keep_points,
                     "export_max_existing_iou": export_max_existing_iou,
                     "export_max_seed_in_existing_mask_ratio": export_max_seed_in_existing_mask_ratio,
                 },
@@ -1342,6 +1465,10 @@ def main():
     parser.add_argument("--graph_keep_singletons", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--graph_max_views_per_cluster", default=4, type=int)
     parser.add_argument("--graph_min_new_seed_ratio", default=0.05, type=float)
+    parser.add_argument("--graph_point_vote_min_score", default=0.35, type=float)
+    parser.add_argument("--graph_point_vote_min_support", default=1, type=int)
+    parser.add_argument("--graph_point_vote_min_keep_ratio", default=0.35, type=float)
+    parser.add_argument("--graph_point_vote_min_keep_points", default=0, type=int)
     parser.add_argument("--export_max_existing_iou", default=None, type=float)
     parser.add_argument("--export_max_seed_in_existing_mask_ratio", default=None, type=float)
     args = parser.parse_args()

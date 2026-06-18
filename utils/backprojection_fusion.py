@@ -116,6 +116,10 @@ def _candidate_matches_source_filter(candidate, source_filter):
     return any(key and key in source_name for key in source_filter)
 
 
+def _is_mask_graph_source(source_kind):
+    return str(source_kind or "").strip().lower().startswith("mask_graph")
+
+
 def _lookup_class_rule(class_name, rules, default):
     if not rules:
         return default
@@ -657,6 +661,100 @@ def _load_seed_indices(candidate, num_points):
     if len(seed_indices) == 0:
         return None
     return np.unique(seed_indices)
+
+
+def _annotate_mask_graph_evidence(
+    candidates,
+    num_points,
+    min_overlap=0.25,
+    min_iou=0.03,
+    priority_weight=0.0,
+    same_class_only=True,
+):
+    graph_items = []
+    seed_cache = {}
+
+    def seeds_for(index, candidate):
+        if index not in seed_cache:
+            seed_cache[index] = _load_seed_indices(candidate, num_points)
+        return seed_cache[index]
+
+    for index, candidate in enumerate(candidates):
+        if not _is_mask_graph_source(_candidate_source_kind(candidate)):
+            continue
+        seed = seeds_for(index, candidate)
+        if seed is None or len(seed) == 0:
+            continue
+        graph_quality = float(
+            0.35 * min(1.0, float(candidate.get("graph_consensus_score", 0.0) or 0.0))
+            + 0.25 * min(1.0, float(candidate.get("graph_edge_mean_score", 0.0) or 0.0))
+            + 0.20 * min(1.0, float(candidate.get("support_mean_iou", 0.0) or 0.0))
+            + 0.20 * min(1.0, float(candidate.get("selected_view_count", candidate.get("support_view_count", 0)) or 0) / 4.0)
+        )
+        conflict_edges = int(candidate.get("conflict_edge_count", 0) or 0)
+        same_edges = int(candidate.get("same_object_edge_count", candidate.get("graph_edge_count", 0)) or 0)
+        conflict_ratio = float(conflict_edges / max(1, same_edges))
+        conflict_factor = max(0.0, 1.0 - min(1.0, conflict_ratio / 3.0))
+        graph_items.append(
+            {
+                "index": index,
+                "candidate": candidate,
+                "seed": seed,
+                "quality": graph_quality * conflict_factor,
+            }
+        )
+
+    if not graph_items:
+        for candidate in candidates:
+            candidate["_mask_graph_evidence_score"] = 0.0
+            candidate["_mask_graph_evidence_count"] = 0
+        return candidates
+
+    for index, candidate in enumerate(candidates):
+        if _is_mask_graph_source(_candidate_source_kind(candidate)):
+            candidate["_mask_graph_evidence_score"] = 0.0
+            candidate["_mask_graph_evidence_count"] = 0
+            continue
+        seed = seeds_for(index, candidate)
+        if seed is None or len(seed) == 0:
+            candidate["_mask_graph_evidence_score"] = 0.0
+            candidate["_mask_graph_evidence_count"] = 0
+            continue
+
+        best_score = 0.0
+        support_count = 0
+        best_overlap = 0.0
+        best_iou = 0.0
+        class_id = int(candidate.get("class_id", -1))
+        for item in graph_items:
+            graph_candidate = item["candidate"]
+            if same_class_only and int(graph_candidate.get("class_id", -2)) != class_id:
+                continue
+            graph_seed = item["seed"]
+            intersection = int(np.intersect1d(seed, graph_seed, assume_unique=False).size)
+            if intersection <= 0:
+                continue
+            union = int(len(seed) + len(graph_seed) - intersection)
+            iou = float(intersection / max(1, union))
+            overlap = float(intersection / max(1, min(len(seed), len(graph_seed))))
+            if overlap < float(min_overlap) and iou < float(min_iou):
+                continue
+            support_count += 1
+            evidence = float(max(overlap, min(1.0, iou / max(1e-6, float(min_iou)))) * item["quality"])
+            if evidence > best_score:
+                best_score = evidence
+                best_overlap = overlap
+                best_iou = iou
+
+        candidate["_mask_graph_evidence_score"] = float(best_score)
+        candidate["_mask_graph_evidence_count"] = int(support_count)
+        candidate["_mask_graph_evidence_best_overlap"] = float(best_overlap)
+        candidate["_mask_graph_evidence_best_iou"] = float(best_iou)
+        if best_score > 0.0 and float(priority_weight or 0.0) > 0.0:
+            base_priority = float(candidate.get("proposal_priority", candidate.get("score", 0.0)) or 0.0)
+            candidate["proposal_priority"] = float(base_priority * (1.0 + float(priority_weight) * best_score))
+
+    return candidates
 
 
 def _mask_iou(mask, masks):
@@ -2072,6 +2170,19 @@ def append_backprojection_proposals(
     hierarchy_score_weight=0.0,
     hierarchy_low_occupancy_threshold=0.25,
     hierarchy_min_score_factor=0.5,
+    mask_graph_min_cluster_observations=0,
+    mask_graph_min_selected_views=0,
+    mask_graph_min_same_object_edges=0,
+    mask_graph_min_edge_mean_score=0.0,
+    mask_graph_min_consensus_score=0.0,
+    mask_graph_min_depth_consistency=0.0,
+    mask_graph_max_conflict_edges=None,
+    mask_graph_max_conflict_ratio=None,
+    mask_graph_evidence_rescore=False,
+    mask_graph_evidence_min_overlap=0.25,
+    mask_graph_evidence_min_iou=0.03,
+    mask_graph_evidence_priority_weight=0.0,
+    mask_graph_evidence_same_class_only=True,
     merge_iou=0.0,
     inclusion_threshold=0.0,
     postprocess_same_class_only=True,
@@ -2112,6 +2223,15 @@ def append_backprojection_proposals(
     class_max_candidates = _parse_source_rules(class_max_candidates, int)
     cc_source_filter = _parse_source_filter(cc_source_kinds)
     scene_candidates = _annotate_candidate_quality_stats([dict(item) for item in scene_candidates])
+    if mask_graph_evidence_rescore:
+        scene_candidates = _annotate_mask_graph_evidence(
+            scene_candidates,
+            num_points,
+            min_overlap=mask_graph_evidence_min_overlap,
+            min_iou=mask_graph_evidence_min_iou,
+            priority_weight=mask_graph_evidence_priority_weight,
+            same_class_only=mask_graph_evidence_same_class_only,
+        )
 
     scene_candidates = sorted(
         scene_candidates,
@@ -2249,6 +2369,128 @@ def append_backprojection_proposals(
                 }
             )
             continue
+
+        if _is_mask_graph_source(source_kind):
+            cluster_observations = int(
+                candidate.get(
+                    "cluster_observation_count",
+                    candidate.get("merged_observations", candidate.get("support_view_count", 0)),
+                )
+                or 0
+            )
+            selected_views = int(
+                candidate.get(
+                    "selected_view_count",
+                    candidate.get("selected_seed_view_count", candidate.get("support_view_count", 0)),
+                )
+                or 0
+            )
+            same_object_edges = int(candidate.get("same_object_edge_count", candidate.get("graph_edge_count", 0)) or 0)
+            graph_edge_mean_score = float(candidate.get("graph_edge_mean_score", 0.0) or 0.0)
+            graph_consensus_score = float(candidate.get("graph_consensus_score", 0.0) or 0.0)
+            depth_consistency_score = float(candidate.get("depth_consistency_score", 0.0) or 0.0)
+            conflict_edges = int(candidate.get("conflict_edge_count", 0) or 0)
+            conflict_ratio = float(conflict_edges / max(1, same_object_edges))
+
+            if cluster_observations < int(mask_graph_min_cluster_observations or 0):
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "low_mask_graph_observations",
+                        "cluster_observation_count": cluster_observations,
+                        "min_cluster_observations": int(mask_graph_min_cluster_observations or 0),
+                        "source_name": source_name,
+                        "source_kind": source_kind,
+                    }
+                )
+                continue
+            if selected_views < int(mask_graph_min_selected_views or 0):
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "low_mask_graph_selected_views",
+                        "selected_view_count": selected_views,
+                        "min_selected_views": int(mask_graph_min_selected_views or 0),
+                        "source_name": source_name,
+                        "source_kind": source_kind,
+                    }
+                )
+                continue
+            if same_object_edges < int(mask_graph_min_same_object_edges or 0):
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "low_mask_graph_same_object_edges",
+                        "same_object_edge_count": same_object_edges,
+                        "min_same_object_edges": int(mask_graph_min_same_object_edges or 0),
+                        "source_name": source_name,
+                        "source_kind": source_kind,
+                    }
+                )
+                continue
+            if graph_edge_mean_score < float(mask_graph_min_edge_mean_score or 0.0):
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "low_mask_graph_edge_score",
+                        "graph_edge_mean_score": graph_edge_mean_score,
+                        "min_edge_mean_score": float(mask_graph_min_edge_mean_score or 0.0),
+                        "source_name": source_name,
+                        "source_kind": source_kind,
+                    }
+                )
+                continue
+            if graph_consensus_score < float(mask_graph_min_consensus_score or 0.0):
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "low_mask_graph_consensus",
+                        "graph_consensus_score": graph_consensus_score,
+                        "min_consensus_score": float(mask_graph_min_consensus_score or 0.0),
+                        "source_name": source_name,
+                        "source_kind": source_kind,
+                    }
+                )
+                continue
+            if depth_consistency_score < float(mask_graph_min_depth_consistency or 0.0):
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "low_mask_graph_depth_consistency",
+                        "depth_consistency_score": depth_consistency_score,
+                        "min_depth_consistency": float(mask_graph_min_depth_consistency or 0.0),
+                        "source_name": source_name,
+                        "source_kind": source_kind,
+                    }
+                )
+                continue
+            if mask_graph_max_conflict_edges is not None and conflict_edges > int(mask_graph_max_conflict_edges):
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "high_mask_graph_conflict_edges",
+                        "conflict_edge_count": conflict_edges,
+                        "max_conflict_edges": int(mask_graph_max_conflict_edges),
+                        "source_name": source_name,
+                        "source_kind": source_kind,
+                    }
+                )
+                continue
+            if mask_graph_max_conflict_ratio is not None and conflict_ratio > float(mask_graph_max_conflict_ratio):
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "high_mask_graph_conflict_ratio",
+                        "conflict_ratio": conflict_ratio,
+                        "conflict_edge_count": conflict_edges,
+                        "same_object_edge_count": same_object_edges,
+                        "max_conflict_ratio": float(mask_graph_max_conflict_ratio),
+                        "source_name": source_name,
+                        "source_kind": source_kind,
+                    }
+                )
+                continue
+
         if max_box_area_ratio is not None and float(candidate.get("box_area_ratio", 0.0)) > max_box_area_ratio:
             report["skipped"].append(
                 {
@@ -2687,6 +2929,10 @@ def append_backprojection_proposals(
                     "fusion_score": float(candidate.get("fusion_score", score)),
                     "quality_score": quality_score,
                     "quality_scene_source_z": float(candidate.get("_quality_scene_source_z", 0.0)),
+                    "mask_graph_evidence_score": float(candidate.get("_mask_graph_evidence_score", 0.0)),
+                    "mask_graph_evidence_count": int(candidate.get("_mask_graph_evidence_count", 0)),
+                    "mask_graph_evidence_best_overlap": float(candidate.get("_mask_graph_evidence_best_overlap", 0.0)),
+                    "mask_graph_evidence_best_iou": float(candidate.get("_mask_graph_evidence_best_iou", 0.0)),
                     "novelty_score": _candidate_novelty_score(candidate),
                     "label_consensus_score": float(candidate.get("label_consensus_score", 1.0)),
                     "label_conflict_score": float(candidate.get("label_conflict_score", 0.0)),
@@ -2698,6 +2944,27 @@ def append_backprojection_proposals(
                     "support_view_count": int(candidate.get("support_view_count", 0)),
                     "support_mean_iou": float(candidate.get("support_mean_iou", 0.0)),
                     "support_best_iou": float(candidate.get("support_best_iou", 0.0)),
+                    "cluster_observation_count": int(
+                        candidate.get(
+                            "cluster_observation_count",
+                            candidate.get("merged_observations", candidate.get("support_view_count", 0)),
+                        )
+                        or 0
+                    ),
+                    "selected_view_count": int(
+                        candidate.get(
+                            "selected_view_count",
+                            candidate.get("selected_seed_view_count", candidate.get("support_view_count", 0)),
+                        )
+                        or 0
+                    ),
+                    "graph_edge_count": int(candidate.get("graph_edge_count", 0) or 0),
+                    "same_object_edge_count": int(candidate.get("same_object_edge_count", 0) or 0),
+                    "weak_edge_count": int(candidate.get("weak_edge_count", 0) or 0),
+                    "conflict_edge_count": int(candidate.get("conflict_edge_count", 0) or 0),
+                    "graph_edge_mean_score": float(candidate.get("graph_edge_mean_score", 0.0) or 0.0),
+                    "graph_consensus_score": float(candidate.get("graph_consensus_score", 0.0) or 0.0),
+                    "depth_consistency_score": float(candidate.get("depth_consistency_score", 0.0) or 0.0),
                     "seed_in_existing_mask_ratio": float(candidate.get("seed_in_existing_mask_ratio", 0.0)),
                     "best_existing_iou": float(candidate.get("best_existing_iou", 0.0)),
                     "box_area_ratio": float(candidate.get("box_area_ratio", 0.0)),
