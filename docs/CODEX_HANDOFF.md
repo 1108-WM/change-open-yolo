@@ -1,6 +1,6 @@
 # Codex Handoff
 
-最后更新：2026-06-15
+最后更新：2026-06-22
 
 这个文件是给新的 Codex 会话或另一台设备的快速入口。完整实验细节见仓库根目录的 `CURRENT_EXPERIMENT_STATUS.md`。
 
@@ -28,25 +28,33 @@ YOLO-World 二维检测
 
 当前最佳方向仍是候选补全加二维掩码级超点负约束。Alpha-CLIP、YOLOE、多掩码选择、自适应内部种子、简单视角质量门控和初版候选局部超点都已经验证过，但没有形成稳定净收益。
 
+最新一轮已经接入多关系二维掩码证据图、基线缺口检测、图候选内部竞争和图候选分数控制。它们可以生成候选并进入最终评估，但还没有稳定提升当前主线。
+
 ## 当前结论
 
+- 当前最稳结果仍是候选补全主线，不是 Alpha-CLIP、YOLOE、局部超点或简单层级规则。
+- 当前最好四十八场景参考：`0.272610 / 0.345769 / 0.389491`。
+- 当前最好九十六场景参考：`0.273030 / 0.340244 / 0.383687`。
+- 多关系二维掩码证据图已经接入，边类型包括同物体支持、父子包含、冲突和弱关系。
+- 严格证据图版本已经支持候选失败：点级投票不再默认退回完整并集，弱边不能桥接，冲突和组内一致性可以作为拒绝条件。
+- 新增“基线未解释缺口”检测和 `graph_gap_seed_policy`：新增补漏候选默认只输出未被已有三维候选覆盖的缺口核心点。
+- 新增图候选内部竞争：争夺同一批三维点的图候选会先在导出阶段竞争，低质量重复项写入 `prefilter_skipped`。
+- 最新 GPU even48 结果显示，严格缺口核心加候选竞争后导出图候选 `53` 个，最终进入评估的多视角图候选 `16` 个，但结果仍为 `0.271186 / 0.345749 / 0.389509`。
+- 继续给图候选加竞争优先级、把图候选竞争因子乘到最终分数、把图候选分数上限放宽到 `1.05`，结果仍然都是 `0.271186 / 0.345749 / 0.389509`。
+- 打开图证据对主线候选的轻量重排，使用 `MASK_GRAPH_EVIDENCE_RESCORE=1` 和 `MASK_GRAPH_EVIDENCE_PRIORITY_WEIGHT=0.30`，结果仍为 `0.271186 / 0.345749 / 0.389509`。
+- 因此当前不是“图候选生成失败”或“图候选分数不够高”，而是“图证据还没有强到能明确替换或剔除主线候选”。
 - YOLOE 已放弃为当前主线模块。
 - Alpha-CLIP 暂只保留为语义诊断信号，不作为当前最近一步的提分模块。
-- 轻量几何判别器有排序和诊断价值，但不适合全局硬过滤。
-- 简单候选包含/重叠后处理已经实现并跑过 `even48`，但只带来约 `+0.000002` 到 `+0.000004` 的极小变化；放宽规则后 AP 降到约 `0.269008`，不进入 `even96`。
-- 候选关系诊断特征已经接入 `tools/analyze_backprojection_candidates.py` 和 `tools/train_candidate_geometry_discriminator.py`，适合后续作为轻量判别器/风险排序特征。
-- 受 Clutt3R-Seg 启发，`tools/analyze_backprojection_candidates.py` 已新增 superpoint occupancy 层级特征：用 weighted Jaccard 和 superpoint coverage 建立候选 parent/child 关系。
-- 全量候选 smoke 中 `hierarchy_low_occupancy_mass_ratio` 成为随机森林 top feature，说明该方向有初步诊断信号；但 parent/child 关系仍覆盖少量真阳性，不能直接硬删。
-- hierarchy risk score 降权已经接入 `run_evaluation.py` 并跑过 `even48` 三档，AP 只有 `0.272613`，相对当前参考 `0.272610` 只是极小变化，不算有效提升。
-- hierarchy conditional substitution 的 `remove_parent` 已接入并跑过 `even48`：point-level 三档均 `0` 触发；superpoint occupancy relaxed 档触发 `2` 次，候选 `273 -> 271`，AP 仍为 `0.272610`，没有提升。
-- 第二优先级才是重新做更强的候选局部超点，但必须接入颜色、法向和二维掩码支持，不能只靠三维坐标。
+- 轻量几何判别器和层级特征有排序和诊断价值，但不适合继续做全局硬过滤。
 
 下一步建议：
 
-1. 若继续 Clutt3R-Seg 方向，不要再做单纯分数降权或 parent removal；这两类已经验证基本不动 AP。
-2. 真正未尝试的是 child 碎片 -> 稳定 parent 的替换/扩张，但风险较高，必须先做更细 diagnostics。
-3. 另一个更现实方向是把 hierarchy 特征并入学习式候选排序/选择，而不是手写后处理规则。
-4. 另一个可行方向是候选局部超点二版：接入颜色、法向和二维掩码支持后再跑 `even48`。
+1. 不要继续只抬高证据图候选分数，也不要继续只做软重排；这些已经验证不改变 AP。
+2. 下一步应做硬决策：当图候选和主线候选高度重叠时，明确执行“保留主线、替换为图候选、或两者都拒绝”，而不是并列输出。
+3. 给主线候选显式保存图证据支持数、冲突数、支持视角数、缺口价值和候选竞争结果。
+4. 对低图证据、高冲突、低缺口价值的主线新增候选做降权或剔除。
+5. 对进入最终评估的 `16` 个多视角图候选做真阳性和假阳性诊断，先判断是类别错、边界脏、重复已有实例，还是召回了评价不认可的区域。
+6. 若继续超点方向，应接入颜色、法向和二维实例边界支持；不要只靠三维坐标和固定半径。
 
 ## 已上传到 GitHub 的内容
 
@@ -113,8 +121,25 @@ openyolo3d
 /home/jia/anaconda3/envs/openyolo3d/bin/python -m py_compile \
   run_evaluation.py \
   utils/backprojection_fusion.py \
-  tools/export_sam_fused_proposals.py \
-  tools/analyze_backprojection_candidates.py
+  utils/__init__.py \
+  utils/utils_2d.py \
+  tools/export_mask_graph_proposals.py \
+  tools/filter_backprojection_candidates_clip.py \
+  tools/run_gemini_backprojection_verifier.py \
+  tools/evaluate_multiview_object_clip_correction.py \
+  tools/evaluate_semantic_fusion_head.py \
+  tools/search_alphaclip_thresholds.py
+```
+
+当前证据图 even48 GPU 评估入口：
+
+```bash
+OPENYOLO3D_ALLOW_LEGACY_2D_CACHE=1 \
+OUT_DIR=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/subset_sweeps/even48_mask_graph_gap_compete_gpu \
+PATH_TO_2D_PREDS=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/bboxes_2d \
+MASK_GRAPH_OUT=/home/jia/wm_open-yolo/OpenYOLO3D/output/mask_graph_proposals_scannet200_even48_gap_compete_gpu \
+MODE=graph_refill \
+bash tools/run_scannet200_even48_mask_graph_eval.sh
 ```
 
 ## 重要文件
@@ -129,6 +154,8 @@ openyolo3d
 
 - `tools/export_backprojection_candidates.py`
 - `tools/export_sam_fused_proposals.py`
+- `tools/export_mask_graph_proposals.py`
+- `tools/run_scannet200_even48_mask_graph_eval.sh`
 - `tools/analyze_backprojection_candidates.py`
 - `tools/train_candidate_geometry_discriminator.py`
 

@@ -23,6 +23,7 @@ from evaluate import SCENE_NAMES_REPLICA, SCENE_NAMES_SCANNET200
 from run_evaluation import load_yaml
 from export_sam_fused_proposals import (
     _clamp_box,
+    _connected_component_summary,
     _erode_binary_mask,
     _existing_mask_metrics,
     _filter_seed_indices_by_adaptive_internal_seed,
@@ -424,6 +425,275 @@ def _component_edge_stats(component, adjacency, relation_edges=None):
     }
 
 
+def _existing_seed_coverage_mask(existing_masks, seed_indices):
+    seed_indices = np.asarray(seed_indices, dtype=np.int64)
+    if len(seed_indices) == 0 or existing_masks is None or existing_masks.size == 0:
+        return np.zeros((len(seed_indices),), dtype=bool)
+    existing_masks = np.asarray(existing_masks, dtype=bool)
+    max_seed_index = int(seed_indices.max()) if len(seed_indices) > 0 else -1
+    if existing_masks.shape[0] <= max_seed_index and existing_masks.shape[1] > max_seed_index:
+        existing_masks = existing_masks.T
+    if existing_masks.shape[0] <= max_seed_index:
+        return np.zeros((len(seed_indices),), dtype=bool)
+    return existing_masks[seed_indices].any(axis=1)
+
+
+def _graph_gap_metrics(
+    seed_indices,
+    existing_masks,
+    points_xyz,
+    min_uncovered_points=80,
+    min_uncovered_ratio=0.30,
+    min_largest_component_ratio=0.50,
+    cc_radius=0.03,
+    cc_max_points=50000,
+):
+    seed_indices = np.asarray(seed_indices, dtype=np.int64)
+    coverage_mask = _existing_seed_coverage_mask(existing_masks, seed_indices)
+    uncovered_indices = seed_indices[~coverage_mask].astype(np.int64)
+    seed_count = int(len(seed_indices))
+    uncovered_count = int(len(uncovered_indices))
+    uncovered_ratio = float(uncovered_count / max(1, seed_count))
+    if points_xyz is not None and uncovered_count > 0:
+        local_points = points_xyz[uncovered_indices].astype(np.float32, copy=False)
+        cc_info = _connected_component_summary(local_points, cc_radius, cc_max_points)
+    else:
+        cc_info = {
+            "component_count": 0,
+            "largest_component_ratio": 0.0,
+            "small_component_ratio": 0.0,
+            "component_skipped": points_xyz is None and uncovered_count > 0,
+            "component_radius": float(cc_radius),
+        }
+    largest_ratio = float(cc_info.get("largest_component_ratio", 0.0) or 0.0)
+    largest_points = int(round(uncovered_count * largest_ratio))
+    is_new_gap = (
+        uncovered_count >= int(min_uncovered_points)
+        and uncovered_ratio >= float(min_uncovered_ratio)
+        and (
+            bool(cc_info.get("component_skipped", False))
+            or largest_ratio >= float(min_largest_component_ratio)
+        )
+    )
+    return {
+        "candidate_action": "new_candidate" if is_new_gap else "existing_support",
+        "gap_uncovered_seed_points": uncovered_count,
+        "gap_uncovered_seed_ratio": uncovered_ratio,
+        "gap_largest_component_points": largest_points,
+        "gap_largest_component_ratio": largest_ratio,
+        "gap_component_count": int(cc_info.get("component_count", 0) or 0),
+        "gap_small_component_ratio": float(cc_info.get("small_component_ratio", 0.0) or 0.0),
+        "gap_component_skipped": bool(cc_info.get("component_skipped", False)),
+        "gap_component_radius": float(cc_info.get("component_radius", cc_radius) or cc_radius),
+        "gap_min_uncovered_points": int(min_uncovered_points),
+        "gap_min_uncovered_ratio": float(min_uncovered_ratio),
+        "gap_min_largest_component_ratio": float(min_largest_component_ratio),
+        "_gap_uncovered_seed_indices": uncovered_indices,
+    }
+
+
+def _graph_candidate_seed_indices(selected_seed, gap_info, candidate_action, seed_policy="adaptive"):
+    selected_seed = np.asarray(selected_seed, dtype=np.int64)
+    gap_info = gap_info or {}
+    uncovered_seed = np.asarray(gap_info.get("_gap_uncovered_seed_indices", np.asarray([], dtype=np.int64)), dtype=np.int64)
+    seed_policy = str(seed_policy or "adaptive")
+
+    if seed_policy == "full_core":
+        return selected_seed.copy(), "full_core"
+    if seed_policy == "uncovered_core":
+        if str(candidate_action) == "new_candidate" and len(uncovered_seed) > 0:
+            return np.unique(uncovered_seed).astype(np.int64), "uncovered_core"
+        return selected_seed.copy(), "selected_seed_fallback"
+
+    if str(candidate_action) == "new_candidate" and len(uncovered_seed) > 0:
+        return np.unique(uncovered_seed).astype(np.int64), "uncovered_core"
+    return selected_seed.copy(), "full_core"
+
+
+def _graph_candidate_competition_quality(candidate):
+    conflict_total = int(candidate.get("conflict_edge_count", 0))
+    relation_total = (
+        int(candidate.get("same_object_edge_count", 0))
+        + int(candidate.get("containment_edge_count", 0))
+        + int(candidate.get("weak_edge_count", 0))
+        + conflict_total
+    )
+    conflict_ratio = float(conflict_total / max(1, relation_total))
+    return (
+        1 if str(candidate.get("candidate_action")) == "new_candidate" else 0,
+        -float(candidate.get("seed_in_existing_mask_ratio", 1.0)),
+        float(candidate.get("graph_consensus_score", 0.0)),
+        float(candidate.get("depth_consistency_score", 0.0)),
+        -conflict_ratio,
+        int(candidate.get("support_view_count", 0)),
+        float(candidate.get("proposal_priority", 0.0)),
+    )
+
+
+def _graph_competition_priority_factor(candidate):
+    source_kind = str(candidate.get("source_kind") or "").strip().lower()
+    if not source_kind.startswith("mask_graph"):
+        return 1.0
+
+    graph_consensus = float(candidate.get("graph_consensus_score", 0.0) or 0.0)
+    depth_consistency = float(candidate.get("depth_consistency_score", 0.0) or 0.0)
+    support_view_count = float(candidate.get("support_view_count", 0.0) or 0.0)
+    support_view_norm = min(1.0, support_view_count / 4.0)
+    gap_ratio = float((candidate.get("gap_info") or {}).get("gap_uncovered_seed_ratio", 0.0) or 0.0)
+    seed_existing_ratio = float(candidate.get("seed_in_existing_mask_ratio", 0.0) or 0.0)
+    conflict_total = int(candidate.get("conflict_edge_count", 0))
+    relation_total = (
+        int(candidate.get("same_object_edge_count", 0))
+        + int(candidate.get("containment_edge_count", 0))
+        + int(candidate.get("weak_edge_count", 0))
+        + conflict_total
+    )
+    conflict_ratio = float(conflict_total / max(1, relation_total))
+    quality = (
+        0.30 * graph_consensus
+        + 0.25 * depth_consistency
+        + 0.15 * support_view_norm
+        + 0.15 * gap_ratio
+        + 0.15 * (1.0 - conflict_ratio)
+    )
+    if str(candidate.get("candidate_action")) != "new_candidate":
+        quality *= 0.65
+    if source_kind == "mask_graph_single_view":
+        quality *= 0.85
+    factor = 0.90 + 0.70 * quality + 0.10 * (1.0 - seed_existing_ratio)
+    return float(min(1.60, max(0.75, factor)))
+
+
+def _apply_graph_candidate_competition(
+    candidates,
+    *,
+    same_class_iou=0.60,
+    cross_class_iou=0.35,
+    containment=0.80,
+):
+    ranked = sorted(candidates, key=_graph_candidate_competition_quality, reverse=True)
+    kept = []
+    skipped = []
+    for candidate in ranked:
+        candidate_seed = np.asarray(candidate.get("_seed_indices", np.asarray([], dtype=np.int64)), dtype=np.int64)
+        reject_record = None
+        for kept_candidate in kept:
+            kept_seed = np.asarray(kept_candidate.get("_seed_indices", np.asarray([], dtype=np.int64)), dtype=np.int64)
+            intersection, union, seed_iou, seed_containment = _seed_overlap(candidate_seed, kept_seed)
+            same_class = int(candidate.get("class_id", -1)) == int(kept_candidate.get("class_id", -2))
+            iou_threshold = float(same_class_iou if same_class else cross_class_iou)
+            if seed_iou < iou_threshold and seed_containment < float(containment):
+                continue
+            reject_record = {
+                "reason": "graph_candidate_competition",
+                "graph_cluster_id": int(candidate.get("graph_cluster_id", -1)),
+                "class_name": candidate.get("class_name"),
+                "candidate_action": candidate.get("candidate_action"),
+                "blocked_by_graph_cluster_id": int(kept_candidate.get("graph_cluster_id", -1)),
+                "blocked_by_class_name": kept_candidate.get("class_name"),
+                "same_class": bool(same_class),
+                "seed_intersection": int(intersection),
+                "seed_union": int(union),
+                "seed_iou": float(seed_iou),
+                "seed_containment": float(seed_containment),
+                "same_class_iou_threshold": float(same_class_iou),
+                "cross_class_iou_threshold": float(cross_class_iou),
+                "containment_threshold": float(containment),
+                "candidate_quality": [float(value) for value in _graph_candidate_competition_quality(candidate)],
+                "kept_quality": [float(value) for value in _graph_candidate_competition_quality(kept_candidate)],
+            }
+            break
+        if reject_record is None:
+            candidate["graph_competition_quality"] = [float(value) for value in _graph_candidate_competition_quality(candidate)]
+            kept.append(candidate)
+        else:
+            skipped.append(reject_record)
+    return kept, skipped
+
+
+def _graph_candidate_rejection_reasons(
+    selected_indices,
+    stats,
+    *,
+    min_selected_views=0,
+    min_same_object_edges=0,
+    min_edge_mean_score=0.0,
+    min_consensus_score=0.0,
+    min_depth_consistency=0.0,
+    max_conflict_edges=None,
+    max_conflict_ratio=None,
+):
+    reasons = []
+    selected_count = int(len(selected_indices))
+    if int(min_selected_views or 0) > 0 and selected_count < int(min_selected_views):
+        reasons.append(
+            {
+                "reason": "few_selected_views",
+                "selected_view_count": selected_count,
+                "min_selected_views": int(min_selected_views),
+            }
+        )
+    if int(min_same_object_edges or 0) > 0 and int(stats["same_object_edge_count"]) < int(min_same_object_edges):
+        reasons.append(
+            {
+                "reason": "few_same_object_edges",
+                "same_object_edge_count": int(stats["same_object_edge_count"]),
+                "min_same_object_edges": int(min_same_object_edges),
+            }
+        )
+    if float(min_edge_mean_score or 0.0) > 0.0 and float(stats["edge_mean_score"]) < float(min_edge_mean_score):
+        reasons.append(
+            {
+                "reason": "low_edge_mean_score",
+                "edge_mean_score": float(stats["edge_mean_score"]),
+                "min_edge_mean_score": float(min_edge_mean_score),
+            }
+        )
+    if float(min_consensus_score or 0.0) > 0.0 and float(stats["graph_consensus_score"]) < float(min_consensus_score):
+        reasons.append(
+            {
+                "reason": "low_consensus_score",
+                "graph_consensus_score": float(stats["graph_consensus_score"]),
+                "min_consensus_score": float(min_consensus_score),
+            }
+        )
+    if float(min_depth_consistency or 0.0) > 0.0 and float(stats["depth_consistency_score"]) < float(min_depth_consistency):
+        reasons.append(
+            {
+                "reason": "low_depth_consistency",
+                "depth_consistency_score": float(stats["depth_consistency_score"]),
+                "min_depth_consistency": float(min_depth_consistency),
+            }
+        )
+    if max_conflict_edges is not None and int(stats["conflict_edge_count"]) > int(max_conflict_edges):
+        reasons.append(
+            {
+                "reason": "too_many_conflict_edges",
+                "conflict_edge_count": int(stats["conflict_edge_count"]),
+                "max_conflict_edges": int(max_conflict_edges),
+            }
+        )
+    if max_conflict_ratio is not None:
+        relation_total = (
+            int(stats["same_object_edge_count"])
+            + int(stats["containment_edge_count"])
+            + int(stats["weak_edge_count"])
+            + int(stats["conflict_edge_count"])
+        )
+        conflict_ratio = float(stats["conflict_edge_count"] / max(1, relation_total))
+        if conflict_ratio > float(max_conflict_ratio):
+            reasons.append(
+                {
+                    "reason": "too_many_conflict_edges_ratio",
+                    "conflict_edge_count": int(stats["conflict_edge_count"]),
+                    "relation_edge_total": int(relation_total),
+                    "conflict_ratio": conflict_ratio,
+                    "max_conflict_ratio": float(max_conflict_ratio),
+                }
+            )
+    return reasons
+
+
 def _select_cluster_views(
     observations,
     component,
@@ -486,6 +756,7 @@ def _vote_selected_seed_points(
     min_support_count=1,
     min_keep_ratio=0.35,
     min_keep_points=0,
+    allow_fallback=False,
 ):
     vote_scores = defaultdict(float)
     support_counts = defaultdict(int)
@@ -505,12 +776,12 @@ def _vote_selected_seed_points(
             support_counts[point_idx] += 1
 
     if not vote_scores:
-        return fallback_seed.astype(np.int64), {
+        return np.asarray([], dtype=np.int64), {
             "enabled": False,
             "fallback": "no_votes",
             "min_vote_score": float(min_vote_score),
             "min_support_count": int(min_support_count),
-            "kept_points": int(len(fallback_seed)),
+            "kept_points": 0,
             "input_points": int(len(fallback_seed)),
         }
 
@@ -518,13 +789,14 @@ def _vote_selected_seed_points(
     min_support = int(max(1, min_support_count))
     if len(selected_indices) > 1:
         min_support = max(min_support, 2)
+    input_count = int(len(np.unique(fallback_seed)))
     kept = [
         point_idx
         for point_idx, score in vote_scores.items()
         if support_counts[point_idx] >= min_support and float(score) >= threshold
     ]
     if not kept:
-        if len(selected_indices) > 1:
+        if allow_fallback and len(selected_indices) > 1:
             kept = [
                 int(point_idx)
                 for point_idx, score in vote_scores.items()
@@ -532,12 +804,23 @@ def _vote_selected_seed_points(
             ]
             fallback = "single_support_fallback"
         else:
-            kept = [int(point_idx) for point_idx in fallback_seed]
-            fallback = "empty_after_vote"
+            return np.asarray([], dtype=np.int64), {
+                "enabled": True,
+                "fallback": "rejected_after_vote",
+                "min_vote_score": float(threshold),
+                "min_support_count": int(min_support),
+                "min_keep_ratio": float(min_keep_ratio),
+                "min_keep_points": int(max(0, min_keep_points)),
+                "input_points": input_count,
+                "kept_points": 0,
+                "kept_ratio": 0.0,
+                "max_vote_score": float(max_vote),
+                "mean_vote_score": float(np.mean(list(vote_scores.values()))) if vote_scores else 0.0,
+                "multi_view_point_count": int(sum(1 for value in support_counts.values() if int(value) >= 2)),
+            }
     else:
         fallback = None
     kept = np.asarray(sorted(set(kept)), dtype=np.int64)
-    input_count = int(len(np.unique(fallback_seed)))
     kept_ratio = float(len(kept) / max(1, input_count))
     if (
         len(selected_indices) > 1
@@ -547,9 +830,25 @@ def _vote_selected_seed_points(
             or len(kept) < int(max(0, min_keep_points))
         )
     ):
-        kept = np.asarray(sorted(set(int(point_idx) for point_idx in fallback_seed)), dtype=np.int64)
-        kept_ratio = float(len(kept) / max(1, input_count))
-        fallback = "small_core_fallback"
+        if allow_fallback:
+            kept = np.asarray(sorted(set(int(point_idx) for point_idx in fallback_seed)), dtype=np.int64)
+            kept_ratio = float(len(kept) / max(1, input_count))
+            fallback = "small_core_fallback"
+        else:
+            return np.asarray([], dtype=np.int64), {
+                "enabled": True,
+                "fallback": "rejected_small_core",
+                "min_vote_score": float(threshold),
+                "min_support_count": int(min_support),
+                "min_keep_ratio": float(min_keep_ratio),
+                "min_keep_points": int(max(0, min_keep_points)),
+                "input_points": input_count,
+                "kept_points": 0,
+                "kept_ratio": 0.0,
+                "max_vote_score": float(max_vote),
+                "mean_vote_score": float(np.mean(list(vote_scores.values()))) if vote_scores else 0.0,
+                "multi_view_point_count": int(sum(1 for value in support_counts.values() if int(value) >= 2)),
+            }
     return kept, {
         "enabled": True,
         "fallback": fallback,
@@ -605,6 +904,8 @@ def _cluster_to_candidate(
     relation_edges,
     existing_masks,
     seed_vote_info=None,
+    gap_info=None,
+    graph_gap_seed_policy="adaptive",
 ):
     selected_observations = [observations[idx] for idx in selected_indices]
     best_observation = max(
@@ -621,7 +922,14 @@ def _cluster_to_candidate(
     class_id = max(class_votes.items(), key=lambda item: item[1])[0]
     class_name = best_observation["class_name"] if int(best_observation["class_id"]) == int(class_id) else best_observation["class_name"]
     stats = _component_edge_stats(component, adjacency, relation_edges=relation_edges)
-    existing_metrics = _existing_mask_metrics(existing_masks, selected_seed)
+    candidate_action = (gap_info or {}).get("candidate_action", "new_candidate")
+    final_seed_indices, applied_seed_policy = _graph_candidate_seed_indices(
+        selected_seed,
+        gap_info,
+        candidate_action,
+        seed_policy=graph_gap_seed_policy,
+    )
+    existing_metrics = _existing_mask_metrics(existing_masks, final_seed_indices)
     support_views = []
     for rank, obs in enumerate(selected_observations):
         view = dict(obs["support_views"][0])
@@ -634,6 +942,9 @@ def _cluster_to_candidate(
     candidate = {
         "scene_name": best_observation["scene_name"],
         "source_kind": "mask_graph_multi_view" if int(len(component)) >= 2 and int(stats["edge_count"]) > 0 else "mask_graph_single_view",
+        "candidate_action": candidate_action,
+        "graph_gap_seed_policy": str(graph_gap_seed_policy),
+        "graph_gap_seed_policy_applied": str(applied_seed_policy),
         "frame_id": best_observation["frame_id"],
         "frame_index": int(best_observation["frame_index"]),
         "detection_id": int(best_observation["detection_id"]),
@@ -667,6 +978,8 @@ def _cluster_to_candidate(
         "support_views": support_views,
         "merged_observations": int(len(component)),
         "selected_seed_view_count": int(len(selected_indices)),
+        "selected_seed_point_count": int(len(selected_seed)),
+        "output_seed_point_count": int(len(final_seed_indices)),
         "available_seed_view_count": int(len(component)),
         "graph_cluster_id": int(cluster_id),
         "graph_cluster_observation_ids": [int(observations[idx]["graph_observation_id"]) for idx in component],
@@ -691,13 +1004,34 @@ def _cluster_to_candidate(
         "conflict_penalty": float(conflict_penalty),
         "containment_penalty": float(containment_penalty),
         "seed_vote_info": seed_vote_info or {"enabled": False},
+        "gap_info": {
+            key: value
+            for key, value in (gap_info or {}).items()
+            if not key.startswith("_")
+        },
+        "graph_competition_priority_factor": float(_graph_competition_priority_factor(
+            {
+                "source_kind": "mask_graph_multi_view" if int(len(component)) >= 2 and int(stats["edge_count"]) > 0 else "mask_graph_single_view",
+                "candidate_action": candidate_action,
+                "graph_consensus_score": float(stats["graph_consensus_score"]),
+                "depth_consistency_score": float(stats["depth_consistency_score"]),
+                "support_view_count": int(len(selected_indices)),
+                "gap_info": gap_info or {},
+                "seed_in_existing_mask_ratio": float(existing_metrics.get("seed_in_existing_mask_ratio", 0.0)),
+                "conflict_edge_count": int(stats["conflict_edge_count"]),
+                "same_object_edge_count": int(stats["same_object_edge_count"]),
+                "containment_edge_count": int(stats["containment_edge_count"]),
+                "weak_edge_count": int(stats["weak_edge_count"]),
+            }
+        )),
         "sam_mask_selection_policy": best_observation.get("sam_mask_selection_policy"),
         "sam_mask_selection_score": best_observation.get("sam_mask_selection_score"),
         "sam_mask_geometry": best_observation.get("sam_mask_geometry"),
         "evidence": best_observation.get("evidence", {}),
-        "_seed_indices": selected_seed,
+        "_seed_indices": final_seed_indices,
         **existing_metrics,
     }
+    candidate["proposal_priority"] = float(candidate["proposal_priority"] * candidate["graph_competition_priority_factor"])
     _merge_cluster_label_consensus(candidate, observations, selected_indices)
     return candidate
 
@@ -1042,7 +1376,7 @@ def export_scene_mask_graph_proposals(
     max_detections_per_frame=8,
     max_candidates=30,
     blocked_classes=None,
-    ranking_policy="graph_priority",
+    ranking_policy="priority",
     sam_multimask_topk=1,
     sam_mask_selection_policy="sam_score",
     sam_mask_geometry_model=None,
@@ -1078,10 +1412,29 @@ def export_scene_mask_graph_proposals(
     graph_keep_singletons=False,
     graph_max_views_per_cluster=4,
     graph_min_new_seed_ratio=0.05,
+    graph_point_vote_allow_fallback=False,
     graph_point_vote_min_score=0.35,
     graph_point_vote_min_support=1,
     graph_point_vote_min_keep_ratio=0.35,
     graph_point_vote_min_keep_points=0,
+    graph_min_selected_views=0,
+    graph_min_same_object_edges=0,
+    graph_min_edge_mean_score=0.0,
+    graph_min_consensus_score=0.0,
+    graph_min_depth_consistency=0.0,
+    graph_max_conflict_edges=None,
+    graph_max_conflict_ratio=None,
+    graph_output_existing_support=False,
+    graph_gap_min_uncovered_points=20,
+    graph_gap_min_uncovered_ratio=0.25,
+    graph_gap_min_largest_component_ratio=0.50,
+    graph_gap_cc_radius=0.03,
+    graph_gap_cc_max_points=50000,
+    graph_gap_seed_policy="adaptive",
+    graph_candidate_competition=True,
+    graph_competition_same_class_iou=0.60,
+    graph_competition_cross_class_iou=0.35,
+    graph_competition_containment=0.80,
     export_max_existing_iou=None,
     export_max_seed_in_existing_mask_ratio=None,
 ):
@@ -1162,6 +1515,7 @@ def export_scene_mask_graph_proposals(
             min_support_count=graph_point_vote_min_support,
             min_keep_ratio=graph_point_vote_min_keep_ratio,
             min_keep_points=graph_point_vote_min_keep_points,
+            allow_fallback=graph_point_vote_allow_fallback,
         )
         if len(selected_seed) < int(min_seed_points):
             cluster_skipped.append({"graph_cluster_id": int(cluster_id), "reason": "few_cluster_seed_points", "num_seed_points": int(len(selected_seed))})
@@ -1176,7 +1530,54 @@ def export_scene_mask_graph_proposals(
             relation_edges,
             existing_masks,
             seed_vote_info=seed_vote_info,
+            gap_info=_graph_gap_metrics(
+                selected_seed,
+                existing_masks,
+                points_xyz,
+                min_uncovered_points=graph_gap_min_uncovered_points,
+                min_uncovered_ratio=graph_gap_min_uncovered_ratio,
+                min_largest_component_ratio=graph_gap_min_largest_component_ratio,
+                cc_radius=graph_gap_cc_radius,
+                cc_max_points=graph_gap_cc_max_points,
+            ),
+            graph_gap_seed_policy=graph_gap_seed_policy,
         )
+        if candidate.get("candidate_action") != "new_candidate" and not graph_output_existing_support:
+            prefilter_skipped.append(
+                {
+                    "reason": "graph_existing_support_only",
+                    "graph_cluster_id": int(cluster_id),
+                    "class_name": candidate.get("class_name"),
+                    "candidate_action": candidate.get("candidate_action"),
+                    "gap_info": candidate.get("gap_info", {}),
+                }
+            )
+            continue
+        graph_rejection_reasons = _graph_candidate_rejection_reasons(
+            selected_indices,
+            candidate,
+            min_selected_views=graph_min_selected_views,
+            min_same_object_edges=graph_min_same_object_edges,
+            min_edge_mean_score=graph_min_edge_mean_score,
+            min_consensus_score=graph_min_consensus_score,
+            min_depth_consistency=graph_min_depth_consistency,
+            max_conflict_edges=graph_max_conflict_edges,
+            max_conflict_ratio=graph_max_conflict_ratio,
+        )
+        if graph_rejection_reasons:
+            prefilter_skipped.append(
+                {
+                    "reason": "graph_consistency_rejected",
+                    "graph_cluster_id": int(cluster_id),
+                    "class_name": candidate.get("class_name"),
+                    "rejection_reasons": graph_rejection_reasons,
+                    "graph_consensus_score": float(candidate.get("graph_consensus_score", 0.0)),
+                    "depth_consistency_score": float(candidate.get("depth_consistency_score", 0.0)),
+                    "same_object_edge_count": int(candidate.get("same_object_edge_count", 0)),
+                    "conflict_edge_count": int(candidate.get("conflict_edge_count", 0)),
+                }
+            )
+            continue
         if export_max_existing_iou is not None and float(candidate.get("best_existing_iou", 0.0)) > float(export_max_existing_iou):
             prefilter_skipped.append(
                 {
@@ -1201,6 +1602,15 @@ def export_scene_mask_graph_proposals(
             )
             continue
         candidates.append(candidate)
+
+    if graph_candidate_competition and len(candidates) > 1:
+        candidates, competition_skipped = _apply_graph_candidate_competition(
+            candidates,
+            same_class_iou=graph_competition_same_class_iou,
+            cross_class_iou=graph_competition_cross_class_iou,
+            containment=graph_competition_containment,
+        )
+        prefilter_skipped.extend(competition_skipped)
 
     if ranking_policy == "graph_priority":
         candidates = sorted(
@@ -1287,10 +1697,29 @@ def export_scene_mask_graph_proposals(
                     "graph_keep_singletons": graph_keep_singletons,
                     "graph_max_views_per_cluster": graph_max_views_per_cluster,
                     "graph_min_new_seed_ratio": graph_min_new_seed_ratio,
+                    "graph_point_vote_allow_fallback": graph_point_vote_allow_fallback,
                     "graph_point_vote_min_score": graph_point_vote_min_score,
                     "graph_point_vote_min_support": graph_point_vote_min_support,
                     "graph_point_vote_min_keep_ratio": graph_point_vote_min_keep_ratio,
                     "graph_point_vote_min_keep_points": graph_point_vote_min_keep_points,
+                    "graph_min_selected_views": graph_min_selected_views,
+                    "graph_min_same_object_edges": graph_min_same_object_edges,
+                    "graph_min_edge_mean_score": graph_min_edge_mean_score,
+                    "graph_min_consensus_score": graph_min_consensus_score,
+                    "graph_min_depth_consistency": graph_min_depth_consistency,
+                    "graph_max_conflict_edges": graph_max_conflict_edges,
+                    "graph_max_conflict_ratio": graph_max_conflict_ratio,
+                    "graph_output_existing_support": graph_output_existing_support,
+                    "graph_gap_min_uncovered_points": graph_gap_min_uncovered_points,
+                    "graph_gap_min_uncovered_ratio": graph_gap_min_uncovered_ratio,
+                    "graph_gap_min_largest_component_ratio": graph_gap_min_largest_component_ratio,
+                    "graph_gap_cc_radius": graph_gap_cc_radius,
+                    "graph_gap_cc_max_points": graph_gap_cc_max_points,
+                    "graph_gap_seed_policy": graph_gap_seed_policy,
+                    "graph_candidate_competition": graph_candidate_competition,
+                    "graph_competition_same_class_iou": graph_competition_same_class_iou,
+                    "graph_competition_cross_class_iou": graph_competition_cross_class_iou,
+                    "graph_competition_containment": graph_competition_containment,
                     "export_max_existing_iou": export_max_existing_iou,
                     "export_max_seed_in_existing_mask_ratio": export_max_seed_in_existing_mask_ratio,
                 },
@@ -1427,7 +1856,7 @@ def main():
     parser.add_argument("--max_detections_per_frame", default=8, type=int)
     parser.add_argument("--max_candidates_per_scene", default=30, type=int)
     parser.add_argument("--blocked_classes", default="rug")
-    parser.add_argument("--ranking_policy", default="graph_priority", choices=["graph_priority", "novelty", "priority"])
+    parser.add_argument("--ranking_policy", default="priority", choices=["graph_priority", "novelty", "priority"])
 
     parser.add_argument("--sam_multimask_topk", default=1, type=int)
     parser.add_argument("--sam_mask_selection_policy", default="sam_score", choices=["sam_score", "geometry", "learned_geometry"])
@@ -1465,10 +1894,29 @@ def main():
     parser.add_argument("--graph_keep_singletons", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--graph_max_views_per_cluster", default=4, type=int)
     parser.add_argument("--graph_min_new_seed_ratio", default=0.05, type=float)
+    parser.add_argument("--graph_point_vote_allow_fallback", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--graph_point_vote_min_score", default=0.35, type=float)
     parser.add_argument("--graph_point_vote_min_support", default=1, type=int)
     parser.add_argument("--graph_point_vote_min_keep_ratio", default=0.35, type=float)
     parser.add_argument("--graph_point_vote_min_keep_points", default=0, type=int)
+    parser.add_argument("--graph_min_selected_views", default=0, type=int)
+    parser.add_argument("--graph_min_same_object_edges", default=0, type=int)
+    parser.add_argument("--graph_min_edge_mean_score", default=0.0, type=float)
+    parser.add_argument("--graph_min_consensus_score", default=0.0, type=float)
+    parser.add_argument("--graph_min_depth_consistency", default=0.0, type=float)
+    parser.add_argument("--graph_max_conflict_edges", default=None, type=int)
+    parser.add_argument("--graph_max_conflict_ratio", default=None, type=float)
+    parser.add_argument("--graph_output_existing_support", default=False, action=argparse.BooleanOptionalAction)
+    parser.add_argument("--graph_gap_min_uncovered_points", default=20, type=int)
+    parser.add_argument("--graph_gap_min_uncovered_ratio", default=0.25, type=float)
+    parser.add_argument("--graph_gap_min_largest_component_ratio", default=0.50, type=float)
+    parser.add_argument("--graph_gap_cc_radius", default=0.03, type=float)
+    parser.add_argument("--graph_gap_cc_max_points", default=50000, type=int)
+    parser.add_argument("--graph_gap_seed_policy", default="adaptive", choices=["adaptive", "full_core", "uncovered_core"])
+    parser.add_argument("--graph_candidate_competition", default=True, action=argparse.BooleanOptionalAction)
+    parser.add_argument("--graph_competition_same_class_iou", default=0.60, type=float)
+    parser.add_argument("--graph_competition_cross_class_iou", default=0.35, type=float)
+    parser.add_argument("--graph_competition_containment", default=0.80, type=float)
     parser.add_argument("--export_max_existing_iou", default=None, type=float)
     parser.add_argument("--export_max_seed_in_existing_mask_ratio", default=None, type=float)
     args = parser.parse_args()

@@ -559,7 +559,7 @@ def evaluate_with_clip_correction(args):
         for pred_id, keep_value in keep_overrides.items():
             if 0 <= int(pred_id) < len(keep):
                 keep[int(pred_id)] = bool(keep_value)
-        if keep.sum() == 0:
+        if keep.sum() == 0 and args.keep_one_if_empty and len(pred_scores) > 0:
             keep[int(pred_scores.argmax())] = True
         if args.base_eval_score_mode == "baseline":
             eval_scores = np.ones_like(pred_scores, dtype=np.float32)
@@ -612,6 +612,7 @@ def build_parser():
     parser.add_argument("--save_2d_preds", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--reuse_2d_preds", default=True, action=argparse.BooleanOptionalAction)
     parser.add_argument("--score_threshold", default=0.20, type=float)
+    parser.add_argument("--keep_one_if_empty", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--base_eval_score_mode", default="baseline", choices=["baseline", "openyolo"])
     parser.add_argument("--multiview_clip_features", required=True)
     parser.add_argument("--eval_output_file", default="./output/multiview_clip_correction_eval/eval.csv")

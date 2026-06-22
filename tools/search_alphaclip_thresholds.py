@@ -135,7 +135,15 @@ def _make_eval_args(args, confidence, margin, gain):
     )
 
 
-def _build_corrected_preds(base_predictions, clip_features, labels, eval_args, score_threshold, base_eval_score_mode):
+def _build_corrected_preds(
+    base_predictions,
+    clip_features,
+    labels,
+    eval_args,
+    score_threshold,
+    base_eval_score_mode,
+    keep_one_if_empty=False,
+):
     preds = {}
     reports = {}
     for scene_name, base in base_predictions.items():
@@ -152,7 +160,7 @@ def _build_corrected_preds(base_predictions, clip_features, labels, eval_args, s
         )
         reports[scene_name] = report
         keep = pred_scores >= score_threshold
-        if keep.sum() == 0:
+        if keep.sum() == 0 and keep_one_if_empty and len(pred_scores) > 0:
             keep[int(pred_scores.argmax())] = True
         if base_eval_score_mode == "baseline":
             eval_scores = np.ones_like(pred_scores, dtype=np.float32)
@@ -213,6 +221,7 @@ def search_thresholds(args):
             eval_args,
             args.score_threshold,
             args.base_eval_score_mode,
+            args.keep_one_if_empty,
         )
         train_ap = _evaluate_subset(preds, train_scenes, gt_dir, args.dataset_name)
         val_ap = _evaluate_subset(preds, val_scenes, gt_dir, args.dataset_name)
@@ -272,6 +281,7 @@ def build_parser():
     parser.add_argument("--save_2d_preds", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--reuse_2d_preds", default=True, action=argparse.BooleanOptionalAction)
     parser.add_argument("--score_threshold", default=0.20, type=float)
+    parser.add_argument("--keep_one_if_empty", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--base_eval_score_mode", default="baseline", choices=["baseline", "openyolo"])
     parser.add_argument("--multiview_clip_features", required=True)
     parser.add_argument("--report_path", default="./output/multiview_clip_correction_eval/search_alphaclip_thresholds.json")

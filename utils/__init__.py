@@ -5,6 +5,8 @@ import os
 import os.path as osp
 import imageio.v2 as imageio
 import glob
+import json
+import hashlib
 import numpy as np
 import math
 import colorsys
@@ -46,18 +48,30 @@ def get_iou(masks):
     return iou
 
 def apply_nms(masks, scores, nms_th):
-    masks = masks.permute(1,0)
-    scored_sorted, sorted_scores_indices = torch.sort(scores, descending=True)
-    inv_sorted_scores_indices = {sorted_id.item(): id for id, sorted_id in enumerate(sorted_scores_indices)}
-    maskes_sorted = masks[sorted_scores_indices]
-    iou = get_iou(maskes_sorted)
-    available_indices = torch.arange(len(scored_sorted))
-    for indx in range(len(available_indices)):
-        remove_indices = torch.where(iou[indx,indx+1:] > nms_th)[0]
-        available_indices[indx+1:][remove_indices] = 0
-    remaining = available_indices.unique()
-    keep_indices = torch.tensor([inv_sorted_scores_indices[id.item()] for id in remaining])
-    return keep_indices
+    if masks.numel() == 0 or scores.numel() == 0:
+        return torch.empty(0, dtype=torch.long)
+
+    scores = scores.to(masks.device)
+    masks = masks.permute(1, 0).float()
+    sorted_indices = torch.argsort(scores, descending=True)
+    masks_sorted = masks[sorted_indices]
+    iou = get_iou(masks_sorted)
+
+    keep_sorted_indices = []
+    suppressed = torch.zeros(len(sorted_indices), dtype=torch.bool, device=scores.device)
+    for indx in range(len(sorted_indices)):
+        if suppressed[indx]:
+            continue
+        keep_sorted_indices.append(indx)
+        if indx + 1 < len(sorted_indices):
+            remove_indices = torch.where(iou[indx, indx + 1:] > nms_th)[0]
+            if len(remove_indices) > 0:
+                suppressed[indx + 1 + remove_indices] = True
+
+    if not keep_sorted_indices:
+        return torch.empty(0, dtype=torch.long)
+    keep_sorted_indices = torch.tensor(keep_sorted_indices, dtype=torch.long, device=scores.device)
+    return sorted_indices[keep_sorted_indices].cpu()
 
 def generate_vibrant_colors(num_colors):
     colors = []
@@ -117,6 +131,101 @@ class OpenYolo3D():
             return path_to_2d_preds
         return osp.join(path_to_2d_preds, f"{scene_name}.pt")
 
+    def _canonical_text_prompts(self, text):
+        prompts = text if text is not None else self.openyolo3d_config["network2d"]["text_prompts"]
+        return [str(item) for item in prompts]
+
+    def _build_2d_cache_metadata(self, scene_name, path_2_scene_data, text):
+        network2d_cfg = self.openyolo3d_config.get("network2d", {})
+        openyolo3d_cfg = self.openyolo3d_config.get("openyolo3d", {})
+        metadata = {
+            "schema_version": 2,
+            "scene_name": str(scene_name),
+            "scene_path": osp.abspath(path_2_scene_data),
+            "datatype": str(self.datatype),
+            "text_prompts": self._canonical_text_prompts(text),
+            "image_resolution": [int(self.world2cam.image_resolution[0]), int(self.world2cam.image_resolution[1])],
+            "depth_resolution": [int(self.world2cam.depth_resolution[0]), int(self.world2cam.depth_resolution[1])],
+            "network2d": {
+                "config_path": network2d_cfg.get("config_path"),
+                "pretrained_path": network2d_cfg.get("pretrained_path"),
+                "topk": network2d_cfg.get("topk"),
+                "th": network2d_cfg.get("th"),
+                "nms": network2d_cfg.get("nms"),
+                "use_amp": network2d_cfg.get("use_amp"),
+            },
+            "openyolo3d": {
+                "frequency": openyolo3d_cfg.get("frequency"),
+            },
+        }
+        signature_payload = {
+            key: value
+            for key, value in metadata.items()
+            if key != "config_hash"
+        }
+        metadata["config_hash"] = hashlib.sha1(
+            json.dumps(signature_payload, sort_keys=True, default=str).encode("utf-8")
+        ).hexdigest()
+        return metadata
+
+    def _validate_2d_cache_metadata(self, metadata, scene_name, path_2_scene_data, text, cache_path):
+        if not isinstance(metadata, dict):
+            raise ValueError(f"Invalid 2D prediction cache metadata in {cache_path}")
+        expected = self._build_2d_cache_metadata(scene_name, path_2_scene_data, text)
+        if metadata.get("schema_version") != expected["schema_version"]:
+            raise ValueError(
+                f"Unsupported 2D prediction cache schema in {cache_path}: "
+                f"{metadata.get('schema_version')}"
+            )
+        if metadata.get("scene_name") != expected["scene_name"]:
+            raise ValueError(
+                f"2D prediction cache scene mismatch in {cache_path}: "
+                f"{metadata.get('scene_name')} != {expected['scene_name']}"
+            )
+        if osp.abspath(str(metadata.get("scene_path", ""))) != expected["scene_path"]:
+            raise ValueError(
+                f"2D prediction cache scene path mismatch in {cache_path}: "
+                f"{metadata.get('scene_path')} != {expected['scene_path']}"
+            )
+        if metadata.get("config_hash") != expected["config_hash"]:
+            raise ValueError(
+                f"2D prediction cache signature mismatch in {cache_path}; "
+                "regenerate the cache for the current text prompts and 2D configuration."
+            )
+
+    def _load_cached_2d_predictions(self, cache_path, scene_name, path_2_scene_data, text):
+        payload = torch.load(cache_path, map_location="cpu")
+        if not isinstance(payload, dict) or "metadata" not in payload or "predictions" not in payload:
+            allow_legacy = str(os.environ.get("OPENYOLO3D_ALLOW_LEGACY_2D_CACHE", "")).lower() in {"1", "true", "yes"}
+            if not allow_legacy:
+                raise ValueError(
+                    f"Legacy 2D prediction cache format is no longer accepted: {cache_path}. "
+                    "Regenerate the cache so the metadata signature can be validated."
+                )
+            if not isinstance(payload, dict):
+                raise ValueError(f"Unsupported legacy 2D prediction cache in {cache_path}")
+            expected_frame_ids = [osp.basename(path).split(".")[0] for path in self.world2cam.color_paths]
+            missing_frames = [frame_id for frame_id in expected_frame_ids if frame_id not in payload]
+            if missing_frames:
+                raise ValueError(
+                    "Legacy 2D prediction cache is missing frames: "
+                    f"{missing_frames[:5]}{'...' if len(missing_frames) > 5 else ''}"
+                )
+            print(f"[WARN] Using legacy 2D prediction cache without metadata signature: {cache_path}")
+            return payload
+        self._validate_2d_cache_metadata(payload["metadata"], scene_name, path_2_scene_data, text, cache_path)
+        return payload["predictions"]
+
+    def _save_cached_2d_predictions(self, cache_path, scene_name, path_2_scene_data, text, predictions):
+        cache_dir = osp.dirname(cache_path)
+        if cache_dir:
+            os.makedirs(cache_dir, exist_ok=True)
+        payload = {
+            "metadata": self._build_2d_cache_metadata(scene_name, path_2_scene_data, text),
+            "predictions": predictions,
+        }
+        torch.save(payload, cache_path)
+
     def _normalize_2d_predictions(self, preds_2d):
         normalized = {}
         expected_frame_ids = [osp.basename(path).split(".")[0] for path in self.world2cam.color_paths]
@@ -130,9 +239,9 @@ class OpenYolo3D():
         for frame_id in expected_frame_ids:
             frame_pred = preds_2d[frame_id]
             normalized[frame_id] = {
-                "bbox": frame_pred["bbox"].detach().cpu() if torch.is_tensor(frame_pred["bbox"]) else torch.as_tensor(frame_pred["bbox"]),
-                "labels": frame_pred["labels"].detach().cpu() if torch.is_tensor(frame_pred["labels"]) else torch.as_tensor(frame_pred["labels"]),
-                "scores": frame_pred["scores"].detach().cpu() if torch.is_tensor(frame_pred["scores"]) else torch.as_tensor(frame_pred["scores"]),
+                "bbox": frame_pred["bbox"].detach().clone().cpu() if torch.is_tensor(frame_pred["bbox"]) else torch.as_tensor(frame_pred["bbox"]).clone(),
+                "labels": frame_pred["labels"].detach().clone().cpu() if torch.is_tensor(frame_pred["labels"]) else torch.as_tensor(frame_pred["labels"]).clone(),
+                "scores": frame_pred["scores"].detach().clone().cpu() if torch.is_tensor(frame_pred["scores"]) else torch.as_tensor(frame_pred["scores"]).clone(),
             }
         return normalized
 
@@ -143,7 +252,7 @@ class OpenYolo3D():
         self.mesh_projections = self.world2cam.get_mesh_projections()
         self.scaling_params = [self.world2cam.depth_resolution[0]/self.world2cam.image_resolution[0], self.world2cam.depth_resolution[1]/self.world2cam.image_resolution[1]]
         
-        scene_name = path_2_scene_data.split("/")[-1]
+        scene_name = osp.basename(osp.normpath(path_2_scene_data))
         print("[🚀 ACTION] 3D mask proposals computation ...")
         start = time.time()
         
@@ -154,7 +263,12 @@ class OpenYolo3D():
                 self.network_3d = Network_3D(self.openyolo3d_config)
             self.preds_3d = self.network_3d.get_class_agnostic_masks(self.world2cam.mesh, datatype) if processed_scene is None else self.network_3d.get_class_agnostic_masks(processed_scene, datatype)
             keep_score = self.preds_3d[1] >= self.openyolo3d_config["network3d"]["th"]
-            keep_nms = apply_nms(self.preds_3d[0][:, keep_score].cuda(), self.preds_3d[1][keep_score].cuda(), self.openyolo3d_config["network3d"]["nms"])
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            keep_nms = apply_nms(
+                self.preds_3d[0][:, keep_score].to(device),
+                self.preds_3d[1][keep_score].to(device),
+                self.openyolo3d_config["network3d"]["nms"],
+            )
             self.preds_3d = (self.preds_3d[0].cpu().permute(1,0)[keep_score][keep_nms].permute(1,0), self.preds_3d[1].cpu()[keep_score][keep_nms])
         else:
             self.preds_3d = torch.load(osp.join(path_to_3d_masks, f"{scene_name}.pt"))
@@ -167,7 +281,7 @@ class OpenYolo3D():
         cache_path = self._get_2d_cache_path(path_to_2d_preds, scene_name)
         if reuse_2d_preds and cache_path is not None and osp.exists(cache_path):
             print(f"[INFO] Loading cached 2D predictions from {cache_path}")
-            self.preds_2d = torch.load(cache_path, map_location="cpu")
+            self.preds_2d = self._load_cached_2d_predictions(cache_path, scene_name, path_2_scene_data, text)
             self.preds_2d = self._normalize_2d_predictions(self.preds_2d)
         else:
             if self.network_2d is None:
@@ -175,10 +289,7 @@ class OpenYolo3D():
             self.preds_2d = self.network_2d.get_bounding_boxes(self.world2cam.color_paths, text)
             self.preds_2d = self._normalize_2d_predictions(self.preds_2d)
             if save_2d_preds and cache_path is not None:
-                cache_dir = osp.dirname(cache_path)
-                if cache_dir:
-                    os.makedirs(cache_dir, exist_ok=True)
-                torch.save(self.preds_2d, cache_path)
+                self._save_cached_2d_predictions(cache_path, scene_name, path_2_scene_data, text, self.preds_2d)
                 print(f"[INFO] Saved 2D predictions to {cache_path}")
         print(f"[🕒 INFO] Elapsed time {(time.time()-start)}")
         print(f"[✅ INFO] Bounding boxes computed.")  
@@ -217,7 +328,12 @@ class OpenYolo3D():
         
         label_maps = self.construct_label_maps(predictions_2d_bboxes) #construct the label maps , start from the biggest bbox to small one
 
-        visibility_matrix = get_visibility_mat(prediction_3d_masks.cuda().permute(1,0), keep_visible_points.cuda(), topk = 25 if is_gt else self.openyolo3d_config["openyolo3d"]["topk"])
+        device = keep_visible_points.device
+        visibility_matrix = get_visibility_mat(
+            prediction_3d_masks.to(device).permute(1,0),
+            keep_visible_points.to(device),
+            topk = 25 if is_gt else self.openyolo3d_config["openyolo3d"]["topk"],
+        )
         valid_frames = visibility_matrix.sum(dim=0) >= 1
         
         prediction_3d_masks = prediction_3d_masks.permute(1,0).cpu()
@@ -309,7 +425,7 @@ class OpenYolo3D():
             mask_idx = torch.div(idx, self.num_classes, rounding_mode="floor")
 
             pred_classes = labels[idx]
-            pred_scores = distributions[idx].cuda()
+            pred_scores = distributions[idx].to(distributions.device)
             prediction_3d_masks = prediction_3d_masks[mask_idx]
         
         return prediction_3d_masks.permute(1,0), pred_classes, pred_scores
@@ -317,8 +433,8 @@ class OpenYolo3D():
     def construct_label_maps(self, predictions_2d_bboxes, save_label_map=False):
         label_maps = (torch.ones((len(predictions_2d_bboxes), self.world2cam.height, self.world2cam.width))*-1).type(torch.int16)
         for frame_id, pred in enumerate(predictions_2d_bboxes.values()):
-            bboxes = pred["bbox"].long()
-            labels = pred["labels"].type(torch.int16)
+            bboxes = pred["bbox"].detach().clone().long()
+            labels = pred["labels"].detach().clone().type(torch.int16)
         
             bboxes[:,0] = bboxes[:,0]*self.scaling_params[1]
             bboxes[:,2] = bboxes[:,2]*self.scaling_params[1]
@@ -461,11 +577,12 @@ class WORLD_2_CAM():
         N_Large = 2000000*250
         
         points, colors = self.load_ply(self.mesh)
-        points, colors = torch.from_numpy(points).cuda(), torch.from_numpy(colors).cuda()
+        points = torch.from_numpy(points).to(self.device)
+        colors = torch.from_numpy(colors).to(self.device)
         
         intrinsic = self.adjust_intrinsic(np.loadtxt(self.intrinsics[0]), self.image_resolution, self.depth_resolution)
-        intrinsics = torch.from_numpy(np.stack([intrinsic for frame_id in range(len(self.poses))])).cuda()
-        extrinsics = torch.linalg.inv(torch.from_numpy(np.stack([np.loadtxt(pose) for pose in self.poses])).cuda())
+        intrinsics = torch.from_numpy(np.stack([intrinsic for frame_id in range(len(self.poses))])).to(self.device)
+        extrinsics = torch.linalg.inv(torch.from_numpy(np.stack([np.loadtxt(pose) for pose in self.poses])).to(self.device))
         
         if extrinsics.shape[0]*points.shape[0] < N_Large:
             word2cam_mat = torch.einsum('bij, jk -> bik',torch.einsum('bij,bjk -> bik', intrinsics,extrinsics), points.T).permute(0,2,1)
@@ -484,9 +601,10 @@ class WORLD_2_CAM():
         del extrinsics
         del points
         del colors
-        torch.cuda.empty_cache()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         
-        point_depth = word2cam_mat[:, :, 2].cuda()
+        point_depth = word2cam_mat[:, :, 2].to(self.device)
         if word2cam_mat.shape[1]*word2cam_mat.shape[0] < N_Large:
             size = (word2cam_mat.shape[0], word2cam_mat.shape[1])
             mask = (word2cam_mat[:, :, 2] != 0).reshape(size[0]*size[1])
@@ -504,9 +622,9 @@ class WORLD_2_CAM():
             for b_i in range(Num_batches):
                 dim_start = b_i*B_size
                 dim_last = (b_i+1)*B_size if b_i != Num_batches-1 else word2cam_mat.shape[1]
-                batch_z = word2cam_mat[:, dim_start:dim_last, 2].cuda()
-                batch_y = word2cam_mat[:, dim_start:dim_last, 1].cuda()
-                batch_x = word2cam_mat[:, dim_start:dim_last, 0].cuda()
+                batch_z = word2cam_mat[:, dim_start:dim_last, 2].to(self.device)
+                batch_y = word2cam_mat[:, dim_start:dim_last, 1].to(self.device)
+                batch_x = word2cam_mat[:, dim_start:dim_last, 0].to(self.device)
                 
                 size = (word2cam_mat.shape[0], dim_last-dim_start)
                 mask = (batch_z != 0).reshape(size[0]*size[1])

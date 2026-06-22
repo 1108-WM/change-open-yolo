@@ -299,7 +299,7 @@ def evaluate_with_head(args):
         keep = pred_scores >= args.keep_score_threshold
         if args.keep_with_head_score:
             keep = eval_scores >= args.keep_score_threshold
-        if keep.sum() == 0:
+        if keep.sum() == 0 and args.keep_one_if_empty and len(eval_scores) > 0:
             keep[int(eval_scores.argmax())] = True
 
         preds[scene_name] = {
@@ -350,6 +350,7 @@ def build_parser():
     parser.add_argument("--base_eval_score_mode", default="baseline", choices=["baseline", "openyolo"])
     parser.add_argument("--rescore_sources", default=None, help="Comma-separated source kinds to rescore; default: all")
     parser.add_argument("--keep_score_threshold", default=0.20, type=float)
+    parser.add_argument("--keep_one_if_empty", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--keep_with_head_score", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--eval_output_file", default="./output/semantic_fusion_head_eval/replica_eval.csv")
     parser.add_argument("--report_path", default="./output/semantic_fusion_head_eval/report.json")

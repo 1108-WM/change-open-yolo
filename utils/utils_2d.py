@@ -14,6 +14,9 @@ from mmengine.config import Config, DictAction
 from mmengine.runner import Runner
 import supervision as sv
 
+if not hasattr(Image, "LINEAR"):
+    Image.LINEAR = Image.BILINEAR
+
 def load_yaml(path):
     with open(path) as stream:
         try:
@@ -108,5 +111,4 @@ class Network_2D():
         return frame_prediction
         
             
-
 

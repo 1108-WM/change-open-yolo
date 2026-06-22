@@ -43,6 +43,8 @@ def test_pipeline_full(
     path_to_3d_masks,
     is_gt,
     use_pred_scores=False,
+    eval_score_mode=None,
+    keep_one_if_empty=False,
     score_threshold=0.0,
     path_to_2d_preds=None,
     save_2d_preds=False,
@@ -151,6 +153,8 @@ def test_pipeline_full(
     backprojection_mask_graph_evidence_min_iou=0.03,
     backprojection_mask_graph_evidence_priority_weight=0.0,
     backprojection_mask_graph_evidence_same_class_only=True,
+    backprojection_mask_graph_score_factor_weight=0.0,
+    backprojection_mask_graph_max_proposal_score=1.0,
     backprojection_merge_iou=0.0,
     backprojection_inclusion_threshold=0.0,
     backprojection_postprocess_same_class_only=True,
@@ -312,6 +316,9 @@ def test_pipeline_full(
         
     evaluator = InstSegEvaluator(dataset_type)
     openyolo3d = OpenYolo3D(f"./pretrained/config_{dataset_type}.yaml")
+    score_mode = eval_score_mode or ("native" if use_pred_scores else "uniform")
+    if score_mode not in {"uniform", "native", "calibrated"}:
+        raise ValueError(f"Unsupported eval_score_mode: {score_mode}")
     predictions = {}
     preds = {}
     correction_reports = {}
@@ -354,19 +361,21 @@ def test_pipeline_full(
             pred_scores = scene_prediction[2]
 
         keep = pred_scores >= score_threshold
-        if keep.sum() == 0:
+        if keep.sum() == 0 and keep_one_if_empty and len(pred_scores) > 0:
             keep[pred_scores.argmax()] = True
-        if use_pred_scores:
+        if score_mode == "native":
             eval_scores = pred_scores
+        elif score_mode == "calibrated":
+            eval_scores = pred_scores.astype(np.float32, copy=True)
+            if len(eval_scores) > 0:
+                score_min = float(eval_scores.min())
+                score_max = float(eval_scores.max())
+                if score_max > score_min:
+                    eval_scores = (eval_scores - score_min) / (score_max - score_min)
+                else:
+                    eval_scores = np.ones_like(eval_scores, dtype=np.float32)
         else:
             eval_scores = torch.ones_like(torch.from_numpy(pred_scores)).numpy()
-            if backprojection_candidates is not None:
-                num_added = bpr_added_counts.get(
-                    scene_name,
-                    len(bpr_reports.get(scene_name, {}).get("applied", [])),
-                )
-                if num_added > 0:
-                    eval_scores[-num_added:] = pred_scores[-num_added:]
         return {
             'pred_masks': pred_masks[:, keep].astype(bool, copy=False),
             'pred_scores': eval_scores[keep],
@@ -550,6 +559,8 @@ def test_pipeline_full(
                 mask_graph_evidence_min_iou=backprojection_mask_graph_evidence_min_iou,
                 mask_graph_evidence_priority_weight=backprojection_mask_graph_evidence_priority_weight,
                 mask_graph_evidence_same_class_only=backprojection_mask_graph_evidence_same_class_only,
+                mask_graph_score_factor_weight=backprojection_mask_graph_score_factor_weight,
+                mask_graph_max_proposal_score=backprojection_mask_graph_max_proposal_score,
                 merge_iou=backprojection_merge_iou,
                 inclusion_threshold=backprojection_inclusion_threshold,
                 postprocess_same_class_only=backprojection_postprocess_same_class_only,
@@ -876,6 +887,8 @@ def test_pipeline_full(
                         "mask_graph_evidence_min_iou": backprojection_mask_graph_evidence_min_iou,
                         "mask_graph_evidence_priority_weight": backprojection_mask_graph_evidence_priority_weight,
                         "mask_graph_evidence_same_class_only": backprojection_mask_graph_evidence_same_class_only,
+                        "mask_graph_score_factor_weight": backprojection_mask_graph_score_factor_weight,
+                        "mask_graph_max_proposal_score": backprojection_mask_graph_max_proposal_score,
                         "merge_iou": backprojection_merge_iou,
                         "inclusion_threshold": backprojection_inclusion_threshold,
                         "postprocess_same_class_only": backprojection_postprocess_same_class_only,
@@ -921,6 +934,8 @@ if __name__ == '__main__':
     parser.add_argument('--path_to_3d_masks', default=None, type=str, help='Path to pre computed 3d masks')
     parser.add_argument('--is_gt', default=False, action=argparse.BooleanOptionalAction, help='If pre computed 3d masks are ground truth masks')
     parser.add_argument('--use_pred_scores', default=False, action=argparse.BooleanOptionalAction, help='Use OpenYOLO3D prediction confidence scores during evaluation')
+    parser.add_argument('--eval_score_mode', default=None, choices=['uniform', 'native', 'calibrated'], help='Explicit evaluation score mode; overrides --use_pred_scores when set')
+    parser.add_argument('--keep_one_if_empty', default=False, action=argparse.BooleanOptionalAction, help='Keep the top-scoring prediction when thresholding removes everything')
     parser.add_argument('--score_threshold', default=0.0, type=float, help='Filter predictions below this OpenYOLO3D confidence score before evaluation')
     parser.add_argument('--path_to_2d_preds', default=None, type=str, help='Optional directory or .pt file for cached YOLO-World 2D detections')
     parser.add_argument('--save_2d_preds', default=False, action=argparse.BooleanOptionalAction, help='Save YOLO-World 2D detections to --path_to_2d_preds after inference')
@@ -1030,6 +1045,8 @@ if __name__ == '__main__':
     parser.add_argument('--backprojection_mask_graph_evidence_min_iou', default=0.03, type=float, help='Minimum seed IoU for graph evidence to support a non-graph candidate')
     parser.add_argument('--backprojection_mask_graph_evidence_priority_weight', default=0.0, type=float, help='Priority multiplier weight from graph evidence; 0 records evidence without changing priority')
     parser.add_argument('--backprojection_mask_graph_evidence_same_class_only', default=True, action=argparse.BooleanOptionalAction, help='Only use same-class graph candidates as support evidence')
+    parser.add_argument('--backprojection_mask_graph_score_factor_weight', default=0.0, type=float, help='Score multiplier weight for mask-graph candidates; 0 records graph factor without changing appended score')
+    parser.add_argument('--backprojection_mask_graph_max_proposal_score', default=1.0, type=float, help='Upper score cap for mask-graph candidates; keep at 1.0 to preserve baseline behavior')
     parser.add_argument('--backprojection_merge_iou', default=0.0, type=float, help='Iteratively merge newly appended same-class BPR proposals whose 3D IoU is at least this value; 0 disables')
     parser.add_argument('--backprojection_inclusion_threshold', default=0.0, type=float, help='Remove newly appended same-class BPR proposals included in a larger appended proposal above this ratio; 0 disables')
     parser.add_argument('--backprojection_postprocess_same_class_only', default=True, action=argparse.BooleanOptionalAction, help='Restrict BPR merge/inclusion postprocessing to proposals with the same predicted class')
@@ -1097,187 +1114,7 @@ if __name__ == '__main__':
     parser.add_argument('--max_scenes', default=None, type=int, help='Evaluate only the first N scenes after optional --scene_list filtering')
     parser.add_argument('--eval_prediction_cache_dir', default=None, type=str, help='Optional directory for memory-mapped evaluator inputs')
     parser.add_argument('--eval_cleanup_prediction_cache', default=False, action=argparse.BooleanOptionalAction, help='Remove --eval_prediction_cache_dir after a successful evaluation')
-    opt = parser.parse_args() 
-    test_pipeline_full(
-        opt.dataset_name,
-        opt.path_to_3d_masks,
-        opt.is_gt,
-        opt.use_pred_scores,
-        opt.score_threshold,
-        opt.path_to_2d_preds,
-        opt.save_2d_preds,
-        opt.reuse_2d_preds,
-        opt.backprojection_candidates,
-        opt.backprojection_min_score,
-        opt.backprojection_min_seed_points,
-        opt.backprojection_max_existing_iou,
-        opt.backprojection_max_seed_in_existing_mask_ratio,
-        opt.backprojection_max_proposal_iou,
-        opt.backprojection_max_candidates_per_scene,
-        opt.backprojection_score_scale,
-        opt.backprojection_use_candidate_fusion_score,
-        opt.backprojection_allowed_classes,
-        opt.backprojection_blocked_classes,
-        opt.backprojection_min_support_views,
-        opt.backprojection_min_support_mean_iou,
-        opt.backprojection_min_support_best_iou,
-        opt.backprojection_min_fusion_score,
-        opt.backprojection_max_box_area_ratio,
-        opt.backprojection_min_quality_score,
-        opt.backprojection_min_scene_source_quality_z,
-        opt.backprojection_quality_sort,
-        opt.backprojection_verifications,
-        opt.backprojection_verifier_min_confidence,
-        opt.backprojection_verifier_suppress_decisions,
-        opt.backprojection_verifier_strict,
-        opt.backprojection_grow_radius,
-        opt.backprojection_max_growth_ratio,
-        opt.backprojection_seed_cc_cleanup,
-        opt.backprojection_seed_cc_radius,
-        opt.backprojection_seed_cc_min_component_points,
-        opt.backprojection_seed_cc_keep_topk,
-        opt.backprojection_seed_cc_max_points,
-        opt.backprojection_seed_cc_min_keep_ratio,
-        opt.backprojection_cc_cleanup,
-        opt.backprojection_cc_radius,
-        opt.backprojection_cc_min_component_points,
-        opt.backprojection_cc_keep_topk,
-        opt.backprojection_cc_max_points,
-        opt.backprojection_cc_split_components,
-        opt.backprojection_cc_source_kinds,
-        opt.backprojection_cc_min_keep_ratio,
-        opt.backprojection_cc_keep_ratio_score_weight,
-        opt.backprojection_source_priorities,
-        opt.backprojection_source_max_candidates,
-        opt.backprojection_source_score_scales,
-        opt.backprojection_source_min_scores,
-        opt.backprojection_max_candidates_per_class,
-        opt.backprojection_class_max_candidates,
-        opt.backprojection_quality_calibration_weight,
-        opt.backprojection_novelty_calibration_weight,
-        opt.backprojection_label_consensus_calibration_weight,
-        opt.backprojection_score_calibration_min,
-        opt.backprojection_score_calibration_max,
-        opt.backprojection_max_proposal_score,
-        opt.backprojection_min_label_consensus_score,
-        opt.backprojection_max_label_conflict_score,
-        opt.backprojection_label_consensus_iou_threshold,
-        opt.backprojection_label_consensus_min_visible_points,
-        opt.backprojection_label_consensus_frame_mode,
-        opt.backprojection_projection_consistency_min_box_iou,
-        opt.backprojection_projection_consistency_min_point_ratio,
-        opt.backprojection_projection_consistency_min_views,
-        opt.backprojection_projection_consistency_min_visible_points,
-        opt.backprojection_projection_consistency_frame_mode,
-        opt.backprojection_projection_consistency_box_padding_ratio,
-        opt.backprojection_projection_consistency_score_weight,
-        opt.backprojection_superpoint_refine,
-        opt.backprojection_superpoint_min_coverage,
-        opt.backprojection_superpoint_max_expansion_ratio,
-        opt.backprojection_superpoint_max_segment_ratio,
-        opt.backprojection_superpoint_large_segment_min_coverage,
-        opt.backprojection_superpoint_min_seed_retention,
-        opt.backprojection_superpoint_min_support_views,
-        opt.backprojection_superpoint_min_support_ratio,
-        opt.backprojection_superpoint_min_view_siou,
-        opt.backprojection_superpoint_view_siou_min_views,
-        opt.backprojection_superpoint_view_siou_min_visible_points,
-        opt.backprojection_superpoint_min_box_positive_ratio,
-        opt.backprojection_superpoint_max_box_negative_ratio,
-        opt.backprojection_superpoint_box_min_visible_points,
-        opt.backprojection_superpoint_box_min_views,
-        opt.backprojection_superpoint_box_padding_ratio,
-        opt.backprojection_local_superpoint_refine,
-        opt.backprojection_local_superpoint_knn,
-        opt.backprojection_local_superpoint_merge_k,
-        opt.backprojection_local_superpoint_min_size,
-        opt.backprojection_local_superpoint_min_coverage,
-        opt.backprojection_local_superpoint_max_expansion_ratio,
-        opt.backprojection_local_superpoint_min_seed_retention,
-        opt.backprojection_local_superpoint_max_points,
-        opt.backprojection_hierarchy_score_weight,
-        opt.backprojection_hierarchy_low_occupancy_threshold,
-        opt.backprojection_hierarchy_min_score_factor,
-        opt.backprojection_mask_graph_min_cluster_observations,
-        opt.backprojection_mask_graph_min_selected_views,
-        opt.backprojection_mask_graph_min_same_object_edges,
-        opt.backprojection_mask_graph_min_edge_mean_score,
-        opt.backprojection_mask_graph_min_consensus_score,
-        opt.backprojection_mask_graph_min_depth_consistency,
-        opt.backprojection_mask_graph_max_conflict_edges,
-        opt.backprojection_mask_graph_max_conflict_ratio,
-        opt.backprojection_mask_graph_evidence_rescore,
-        opt.backprojection_mask_graph_evidence_min_overlap,
-        opt.backprojection_mask_graph_evidence_min_iou,
-        opt.backprojection_mask_graph_evidence_priority_weight,
-        opt.backprojection_mask_graph_evidence_same_class_only,
-        opt.backprojection_merge_iou,
-        opt.backprojection_inclusion_threshold,
-        opt.backprojection_postprocess_same_class_only,
-        opt.backprojection_containment_action,
-        opt.backprojection_containment_threshold,
-        opt.backprojection_containment_min_area_ratio,
-        opt.backprojection_containment_score_ratio,
-        opt.backprojection_containment_quality_margin,
-        opt.backprojection_containment_score_factor,
-        opt.backprojection_containment_min_points,
-        opt.backprojection_hierarchy_substitution_action,
-        opt.backprojection_hierarchy_substitution_min_child_coverage,
-        opt.backprojection_hierarchy_substitution_max_parent_exclusive_ratio,
-        opt.backprojection_hierarchy_substitution_min_area_ratio,
-        opt.backprojection_hierarchy_substitution_min_children,
-        opt.backprojection_report_path,
-        opt.object_query_rescore,
-        opt.object_query_candidates,
-        opt.object_query_min_candidate_score,
-        opt.object_query_min_seed_points,
-        opt.object_query_min_seed_overlap,
-        opt.object_query_min_support_views,
-        opt.object_query_support_scale,
-        opt.object_query_overlap_power,
-        opt.object_query_min_evidence,
-        opt.object_query_min_margin,
-        opt.object_query_max_base_score,
-        opt.object_query_score_alpha,
-        opt.object_query_use_candidate_fusion_score,
-        opt.object_query_allowed_classes,
-        opt.object_query_blocked_classes,
-        opt.object_query_report_path,
-        opt.clip_object_rescore,
-        opt.clip_object_features,
-        opt.clip_object_min_seed_points,
-        opt.clip_object_min_seed_overlap,
-        opt.clip_object_min_support_views,
-        opt.clip_object_support_scale,
-        opt.clip_object_topk_classes,
-        opt.clip_object_min_clip_prob,
-        opt.clip_object_min_evidence,
-        opt.clip_object_min_margin,
-        opt.clip_object_max_base_score,
-        opt.clip_object_score_alpha,
-        opt.clip_object_allowed_classes,
-        opt.clip_object_blocked_classes,
-        opt.clip_object_report_path,
-        opt.context_corrections,
-        opt.correction_min_confidence,
-        opt.correction_score_policy,
-        opt.correction_score_blend_alpha,
-        opt.correction_apply_decisions,
-        opt.correction_apply_min_confidence,
-        opt.correction_apply_min_score,
-        opt.correction_apply_max_score,
-        opt.correction_bad_mask_policy,
-        opt.correction_bad_mask_score,
-        opt.correction_score_boost,
-        opt.correction_allowed_classes,
-        opt.correction_blocked_classes,
-        opt.correction_strict,
-        opt.correction_report_path,
-        opt.eval_output_file,
-        opt.scene_list,
-        opt.max_scenes,
-        opt.eval_prediction_cache_dir,
-        opt.eval_cleanup_prediction_cache,
-        opt.processed_scene_root,
-        )
-       
+    opt = parser.parse_args()
+    kwargs = vars(opt).copy()
+    kwargs["dataset_type"] = kwargs.pop("dataset_name")
+    test_pipeline_full(**kwargs)

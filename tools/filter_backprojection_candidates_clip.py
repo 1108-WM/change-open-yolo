@@ -9,6 +9,7 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
 from utils.clip_object_rescore import load_clip_object_features
+from utils.backprojection_fusion import _candidate_instance_key
 
 
 def _parse_class_filter(value):
@@ -29,10 +30,7 @@ def _iter_candidate_jsons(path):
 
 
 def _feature_key(record):
-    return (
-        str(record.get("scene_name")),
-        int(record.get("candidate_id", -1)),
-    )
+    return _candidate_instance_key(record)
 
 
 def filter_candidates(
@@ -48,7 +46,9 @@ def filter_candidates(
     feature_lookup = {}
     for records in features_by_scene.values():
         for record in records:
-            feature_lookup[_feature_key(record)] = record
+            key = _feature_key(record)
+            if key is not None:
+                feature_lookup[key] = record
 
     os.makedirs(output_dir, exist_ok=True)
     total_input = 0
@@ -77,7 +77,9 @@ def filter_candidates(
                 total_filtered += 1
                 continue
 
-            feature = feature_lookup.get((scene_name, candidate_id))
+            feature = feature_lookup.get(_candidate_instance_key(candidate, scene_name=scene_name))
+            if feature is None:
+                feature = feature_lookup.get((scene_name, candidate_id))
             if feature is None:
                 if keep_missing:
                     kept.append(candidate)

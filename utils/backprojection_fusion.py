@@ -74,6 +74,46 @@ def _candidate_source_name(candidate):
     return "unknown"
 
 
+def _candidate_source_identity(candidate):
+    source_json = (
+        candidate.get("_source_json")
+        or candidate.get("source_json")
+        or candidate.get("candidate_source_json")
+        or candidate.get("source_path")
+    )
+    if source_json:
+        return ("source_json", osp.abspath(str(source_json)))
+
+    source_kind = candidate.get("source_kind") or candidate.get("candidate_source_kind")
+    if source_kind:
+        return ("source_kind", str(source_kind).strip().lower())
+
+    source_name = candidate.get("_source_name") or candidate.get("source_name")
+    if source_name:
+        return ("source_name", str(source_name))
+
+    return None
+
+
+def _candidate_instance_key(candidate, scene_name=None):
+    candidate_id = candidate.get("candidate_id")
+    if candidate_id is None:
+        return None
+    try:
+        candidate_id = int(candidate_id)
+    except (TypeError, ValueError):
+        return None
+
+    scene_name = candidate.get("scene_name", scene_name)
+    if scene_name is None:
+        return candidate_id
+
+    identity = _candidate_source_identity(candidate)
+    if identity is None:
+        return (str(scene_name), candidate_id)
+    return (str(scene_name), identity[0], identity[1], candidate_id)
+
+
 def _candidate_source_kind(candidate):
     candidate_kind = candidate.get("source_kind") or candidate.get("candidate_source_kind")
     if candidate_kind:
@@ -577,6 +617,12 @@ def _as_verification_records(payload):
                 record = dict(verifier)
                 record.setdefault("scene_name", candidate.get("scene_name", scene_name))
                 record.setdefault("candidate_id", candidate.get("candidate_id"))
+                record.setdefault(
+                    "source_json",
+                    candidate.get("_source_json") or candidate.get("source_json") or candidate.get("candidate_source_json"),
+                )
+                record.setdefault("source_name", candidate.get("source_name"))
+                record.setdefault("source_kind", candidate.get("source_kind") or candidate.get("candidate_source_kind"))
                 records.append(record)
         return records
 
@@ -596,27 +642,27 @@ def load_backprojection_verifications(path, min_confidence=0.0, strict=False):
     for json_path in _iter_json_paths(path):
         summary["files"].append(json_path)
         payload = _read_json_or_jsonl(json_path)
-        for record in _as_verification_records(payload):
-            if not isinstance(record, dict):
+        for raw_record in _as_verification_records(payload):
+            if not isinstance(raw_record, dict):
                 summary["skipped"] += 1
                 continue
             summary["loaded"] += 1
-            scene_name = record.get("scene_name")
-            candidate_id = record.get("candidate_id")
+            scene_name = raw_record.get("scene_name")
+            candidate_id = raw_record.get("candidate_id")
             if scene_name is None or candidate_id is None:
                 summary["skipped"] += 1
                 if strict:
-                    raise ValueError(f"Missing scene_name/candidate_id in verifier record: {record}")
+                    raise ValueError(f"Missing scene_name/candidate_id in verifier record: {raw_record}")
                 continue
             try:
                 candidate_id = int(candidate_id)
             except (TypeError, ValueError):
                 summary["skipped"] += 1
                 if strict:
-                    raise ValueError(f"Invalid candidate_id in verifier record: {record}")
+                    raise ValueError(f"Invalid candidate_id in verifier record: {raw_record}")
                 continue
 
-            confidence = record.get("confidence")
+            confidence = raw_record.get("confidence")
             if confidence is not None:
                 try:
                     confidence = float(confidence)
@@ -626,12 +672,22 @@ def load_backprojection_verifications(path, min_confidence=0.0, strict=False):
                 summary["skipped"] += 1
                 continue
 
-            grouped[str(scene_name)][candidate_id] = {
-                "decision": str(record.get("decision", "")).strip().lower(),
+            normalized_record = {
+                "decision": str(raw_record.get("decision", "")).strip().lower(),
                 "confidence": confidence,
-                "reason": str(record.get("reason", "")),
+                "reason": str(raw_record.get("reason", "")),
                 "source_path": json_path,
+                "source_json": raw_record.get("source_json") or raw_record.get("candidate_source_json"),
+                "source_name": raw_record.get("source_name"),
+                "source_kind": raw_record.get("source_kind") or raw_record.get("candidate_source_kind"),
             }
+            key_record = dict(raw_record)
+            key_record["scene_name"] = scene_name
+            key_record["candidate_id"] = candidate_id
+            source_key = _candidate_instance_key(key_record, scene_name=scene_name)
+            if source_key is None:
+                source_key = candidate_id
+            grouped[str(scene_name)][source_key] = normalized_record
             summary["used"] += 1
 
     return {scene: dict(items) for scene, items in grouped.items()}, summary
@@ -2183,6 +2239,8 @@ def append_backprojection_proposals(
     mask_graph_evidence_min_iou=0.03,
     mask_graph_evidence_priority_weight=0.0,
     mask_graph_evidence_same_class_only=True,
+    mask_graph_score_factor_weight=0.0,
+    mask_graph_max_proposal_score=1.0,
     merge_iou=0.0,
     inclusion_threshold=0.0,
     postprocess_same_class_only=True,
@@ -2285,7 +2343,14 @@ def append_backprojection_proposals(
         verification = None
         if candidate_id is not None:
             try:
-                verification = scene_verifications.get(int(candidate_id))
+                candidate_id_int = int(candidate_id)
+                verification_key = _candidate_instance_key(candidate, scene_name=scene_name)
+                if verification_key is not None:
+                    verification = scene_verifications.get(verification_key)
+                if verification is None:
+                    verification = scene_verifications.get((str(scene_name), candidate_id_int))
+                if verification is None:
+                    verification = scene_verifications.get(candidate_id_int)
             except (TypeError, ValueError):
                 verification = None
         if verification is not None and verification.get("decision") in verifier_suppress_decisions:
@@ -2888,6 +2953,11 @@ def append_backprojection_proposals(
                 min_score_factor=hierarchy_min_score_factor,
             )
             source_score_scale = float(_lookup_source_rule(candidate, source_score_scales, 1.0))
+            mask_graph_score_factor = 1.0
+            if _is_mask_graph_source(source_kind) and float(mask_graph_score_factor_weight or 0.0) > 0.0:
+                raw_graph_factor = float(candidate.get("graph_competition_priority_factor", 1.0) or 1.0)
+                mask_graph_score_factor = 1.0 + float(mask_graph_score_factor_weight) * (raw_graph_factor - 1.0)
+                mask_graph_score_factor = float(min(1.60, max(0.75, mask_graph_score_factor)))
             score_calibration = _candidate_score_calibration(
                 candidate,
                 quality_weight=quality_calibration_weight,
@@ -2896,10 +2966,13 @@ def append_backprojection_proposals(
                 min_factor=score_calibration_min,
                 max_factor=score_calibration_max,
             )
+            proposal_score_cap = 1.0
+            if _is_mask_graph_source(source_kind):
+                proposal_score_cap = max(1.0, float(mask_graph_max_proposal_score or 1.0))
             proposal_score = max(
                 0.0,
                 min(
-                    1.0,
+                    proposal_score_cap,
                     base_score
                     * float(score_scale)
                     * source_score_scale
@@ -2907,7 +2980,8 @@ def append_backprojection_proposals(
                     * score_calibration
                     * cc_score_factor
                     * projection_score_factor
-                    * hierarchy_score_factor,
+                    * hierarchy_score_factor
+                    * mask_graph_score_factor,
                 ),
             )
             if max_proposal_score is not None:
@@ -2941,6 +3015,8 @@ def append_backprojection_proposals(
                     "cc_score_factor": cc_score_factor,
                     "projection_score_factor": projection_score_factor,
                     "hierarchy_score_factor": hierarchy_score_factor,
+                    "mask_graph_score_factor": mask_graph_score_factor,
+                    "proposal_score_cap": proposal_score_cap,
                     "support_view_count": int(candidate.get("support_view_count", 0)),
                     "support_mean_iou": float(candidate.get("support_mean_iou", 0.0)),
                     "support_best_iou": float(candidate.get("support_best_iou", 0.0)),

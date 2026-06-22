@@ -23,6 +23,74 @@ from run_gemini_context_correction import (
 )
 
 
+def _candidate_source_name(candidate):
+    source_name = candidate.get("_source_name") or candidate.get("source_name")
+    if source_name:
+        return str(source_name)
+    source_json = candidate.get("_source_json") or candidate.get("source_json") or candidate.get("candidate_source_json")
+    if source_json:
+        return osp.basename(osp.dirname(osp.dirname(source_json))) or osp.basename(osp.dirname(source_json))
+    return "unknown"
+
+
+def _candidate_source_kind(candidate):
+    candidate_kind = candidate.get("source_kind") or candidate.get("candidate_source_kind")
+    if candidate_kind:
+        return str(candidate_kind).strip().lower()
+    source_name = _candidate_source_name(candidate).lower()
+    if "mask_graph_multi_view" in source_name or "mask-graph-multi-view" in source_name:
+        return "mask_graph_multi_view"
+    if "mask_graph_single_view" in source_name or "mask-graph-single-view" in source_name:
+        return "mask_graph_single_view"
+    if "mask_graph" in source_name or "mask-graph" in source_name:
+        return "mask_graph"
+    if "sam_fused" in source_name or "sam-fused" in source_name:
+        return "sam_fused"
+    if "backprojection" in source_name or source_name.startswith("bpr"):
+        return "bpr"
+    return source_name
+
+
+def _candidate_source_identity(candidate):
+    source_json = (
+        candidate.get("_source_json")
+        or candidate.get("source_json")
+        or candidate.get("candidate_source_json")
+        or candidate.get("source_path")
+    )
+    if source_json:
+        return ("source_json", osp.abspath(str(source_json)))
+
+    source_kind = candidate.get("source_kind") or candidate.get("candidate_source_kind")
+    if source_kind:
+        return ("source_kind", str(source_kind).strip().lower())
+
+    source_name = candidate.get("_source_name") or candidate.get("source_name")
+    if source_name:
+        return ("source_name", str(source_name))
+
+    return None
+
+
+def _candidate_instance_key(candidate, scene_name=None):
+    candidate_id = candidate.get("candidate_id")
+    if candidate_id is None:
+        return None
+    try:
+        candidate_id = int(candidate_id)
+    except (TypeError, ValueError):
+        return None
+
+    scene_name = candidate.get("scene_name", scene_name)
+    if scene_name is None:
+        return candidate_id
+
+    identity = _candidate_source_identity(candidate)
+    if identity is None:
+        return (str(scene_name), candidate_id)
+    return (str(scene_name), identity[0], identity[1], candidate_id)
+
+
 def iter_candidate_jsons(path):
     path = resolve_path(path)
     if osp.isfile(path):
@@ -54,7 +122,9 @@ def load_existing_keys(path):
             if not line.strip():
                 continue
             record = json.loads(line)
-            keys.add((record.get("scene_name"), int(record.get("candidate_id"))))
+            key = _candidate_instance_key(record)
+            if key is not None:
+                keys.add(key)
     return keys
 
 
@@ -163,6 +233,9 @@ def normalize_output(model_record, candidate, model):
     return {
         "scene_name": candidate.get("scene_name"),
         "candidate_id": int(candidate.get("candidate_id")),
+        "source_json": candidate.get("_source_json"),
+        "source_name": _candidate_source_name(candidate),
+        "source_kind": _candidate_source_kind(candidate),
         "class_name": candidate.get("class_name"),
         "score": candidate.get("score"),
         "fusion_score": candidate.get("fusion_score"),
@@ -207,11 +280,13 @@ def run(args):
     written = 0
     with open(output_path, "a") as out:
         for index, candidate in enumerate(candidates, start=1):
-            key = (candidate.get("scene_name"), int(candidate.get("candidate_id")))
+            key = _candidate_instance_key(candidate)
             if key in existing:
                 continue
+            scene_name = candidate.get("scene_name")
+            candidate_id = int(candidate.get("candidate_id"))
             print(
-                f"[{index}/{len(candidates)}] {key[0]} candidate {key[1]} "
+                f"[{index}/{len(candidates)}] {scene_name} candidate {candidate_id} "
                 f"class={candidate.get('class_name')} score={float(candidate.get('score', 0.0)):.3f}"
             )
             if args.dry_run:

@@ -8,6 +8,7 @@ OUT_DIR="${OUT_DIR:-$ROOT_DIR/output/scannet200/subset_sweeps/even48_mask_graph}
 SAM_FUSED_IN="${SAM_FUSED_IN:-./output/sam_fused_proposals_scannet200_s5_m30_prefilter}"
 BPR_IN="${BPR_IN:-./output/backprojection_candidates_scannet200_mv_m20}"
 MASK_GRAPH_OUT="${MASK_GRAPH_OUT:-$ROOT_DIR/output/mask_graph_proposals_scannet200_even48_current_s5_m30}"
+PATH_TO_2D_PREDS="${PATH_TO_2D_PREDS:-./output/scannet200/bboxes_2d}"
 MODE="${MODE:-graph_bpr}"
 EXPORT_MAX_CANDIDATES="${EXPORT_MAX_CANDIDATES:-30}"
 GRAPH_MIN_SEED_IOU="${GRAPH_MIN_SEED_IOU:-0.03}"
@@ -23,9 +24,10 @@ GRAPH_POINT_VOTE_MIN_SCORE="${GRAPH_POINT_VOTE_MIN_SCORE:-0.35}"
 GRAPH_POINT_VOTE_MIN_SUPPORT="${GRAPH_POINT_VOTE_MIN_SUPPORT:-1}"
 GRAPH_POINT_VOTE_MIN_KEEP_RATIO="${GRAPH_POINT_VOTE_MIN_KEEP_RATIO:-0.35}"
 GRAPH_POINT_VOTE_MIN_KEEP_POINTS="${GRAPH_POINT_VOTE_MIN_KEEP_POINTS:-0}"
+GRAPH_POINT_VOTE_ALLOW_FALLBACK="${GRAPH_POINT_VOTE_ALLOW_FALLBACK:-0}"
 EXPORT_REUSE_EXISTING="${EXPORT_REUSE_EXISTING:-1}"
-SOURCE_LIMITS_GRAPH_BPR="${SOURCE_LIMITS_GRAPH_BPR:-mask_graph_multi_view=10,mask_graph_single_view=1,bpr=3}"
-SOURCE_LIMITS_GRAPH_ONLY="${SOURCE_LIMITS_GRAPH_ONLY:-mask_graph_multi_view=12,mask_graph_single_view=1}"
+SOURCE_LIMITS_GRAPH_BPR="${SOURCE_LIMITS_GRAPH_BPR:-mask_graph_multi_view=5,mask_graph_single_view=0,bpr=5}"
+SOURCE_LIMITS_GRAPH_ONLY="${SOURCE_LIMITS_GRAPH_ONLY:-mask_graph_multi_view=12,mask_graph_single_view=0}"
 SOURCE_LIMITS_GRAPH_REFILL="${SOURCE_LIMITS_GRAPH_REFILL:-sam_fused=12,bpr=3,mask_graph_multi_view=2,mask_graph_single_view=0}"
 MASK_GRAPH_MIN_CLUSTER_OBSERVATIONS="${MASK_GRAPH_MIN_CLUSTER_OBSERVATIONS:-0}"
 MASK_GRAPH_MIN_SELECTED_VIEWS="${MASK_GRAPH_MIN_SELECTED_VIEWS:-0}"
@@ -35,11 +37,24 @@ MASK_GRAPH_MIN_CONSENSUS_SCORE="${MASK_GRAPH_MIN_CONSENSUS_SCORE:-0.0}"
 MASK_GRAPH_MIN_DEPTH_CONSISTENCY="${MASK_GRAPH_MIN_DEPTH_CONSISTENCY:-0.0}"
 MASK_GRAPH_MAX_CONFLICT_EDGES="${MASK_GRAPH_MAX_CONFLICT_EDGES:-}"
 MASK_GRAPH_MAX_CONFLICT_RATIO="${MASK_GRAPH_MAX_CONFLICT_RATIO:-}"
+MASK_GRAPH_OUTPUT_EXISTING_SUPPORT="${MASK_GRAPH_OUTPUT_EXISTING_SUPPORT:-0}"
+MASK_GRAPH_GAP_MIN_UNCOVERED_POINTS="${MASK_GRAPH_GAP_MIN_UNCOVERED_POINTS:-20}"
+MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO="${MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO:-0.25}"
+MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO="${MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO:-0.50}"
+MASK_GRAPH_GAP_CC_RADIUS="${MASK_GRAPH_GAP_CC_RADIUS:-0.03}"
+MASK_GRAPH_GAP_CC_MAX_POINTS="${MASK_GRAPH_GAP_CC_MAX_POINTS:-50000}"
+MASK_GRAPH_GAP_SEED_POLICY="${MASK_GRAPH_GAP_SEED_POLICY:-adaptive}"
+MASK_GRAPH_CANDIDATE_COMPETITION="${MASK_GRAPH_CANDIDATE_COMPETITION:-1}"
+MASK_GRAPH_COMPETITION_SAME_CLASS_IOU="${MASK_GRAPH_COMPETITION_SAME_CLASS_IOU:-0.60}"
+MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU="${MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU:-0.35}"
+MASK_GRAPH_COMPETITION_CONTAINMENT="${MASK_GRAPH_COMPETITION_CONTAINMENT:-0.80}"
 MASK_GRAPH_EVIDENCE_RESCORE="${MASK_GRAPH_EVIDENCE_RESCORE:-0}"
 MASK_GRAPH_EVIDENCE_MIN_OVERLAP="${MASK_GRAPH_EVIDENCE_MIN_OVERLAP:-0.25}"
 MASK_GRAPH_EVIDENCE_MIN_IOU="${MASK_GRAPH_EVIDENCE_MIN_IOU:-0.03}"
 MASK_GRAPH_EVIDENCE_PRIORITY_WEIGHT="${MASK_GRAPH_EVIDENCE_PRIORITY_WEIGHT:-0.0}"
 MASK_GRAPH_EVIDENCE_SAME_CLASS_ONLY="${MASK_GRAPH_EVIDENCE_SAME_CLASS_ONLY:-1}"
+MASK_GRAPH_SCORE_FACTOR_WEIGHT="${MASK_GRAPH_SCORE_FACTOR_WEIGHT:-1.0}"
+MASK_GRAPH_MAX_PROPOSAL_SCORE="${MASK_GRAPH_MAX_PROPOSAL_SCORE:-1.05}"
 
 mkdir -p "$OUT_DIR/reports"
 cd "$ROOT_DIR"
@@ -112,7 +127,26 @@ can_reuse_export() {
     "$GRAPH_POINT_VOTE_MIN_KEEP_RATIO" \
     "$GRAPH_POINT_VOTE_MIN_KEEP_POINTS" \
     "$GRAPH_EDGE_SCORE_THRESHOLD" \
-    "$GRAPH_MIN_CLUSTER_OBSERVATIONS" <<'PY'
+    "$GRAPH_MIN_CLUSTER_OBSERVATIONS" \
+    "$GRAPH_POINT_VOTE_ALLOW_FALLBACK" \
+    "$MASK_GRAPH_MIN_SELECTED_VIEWS" \
+    "$MASK_GRAPH_MIN_SAME_OBJECT_EDGES" \
+    "$MASK_GRAPH_MIN_EDGE_MEAN_SCORE" \
+    "$MASK_GRAPH_MIN_CONSENSUS_SCORE" \
+    "$MASK_GRAPH_MIN_DEPTH_CONSISTENCY" \
+    "$MASK_GRAPH_MAX_CONFLICT_EDGES" \
+    "$MASK_GRAPH_MAX_CONFLICT_RATIO" \
+    "$MASK_GRAPH_OUTPUT_EXISTING_SUPPORT" \
+    "$MASK_GRAPH_GAP_MIN_UNCOVERED_POINTS" \
+    "$MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO" \
+    "$MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO" \
+    "$MASK_GRAPH_GAP_CC_RADIUS" \
+    "$MASK_GRAPH_GAP_CC_MAX_POINTS" \
+    "$MASK_GRAPH_GAP_SEED_POLICY" \
+    "$MASK_GRAPH_CANDIDATE_COMPETITION" \
+    "$MASK_GRAPH_COMPETITION_SAME_CLASS_IOU" \
+    "$MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU" \
+    "$MASK_GRAPH_COMPETITION_CONTAINMENT" <<'PY'
 import json
 import math
 import os
@@ -125,6 +159,25 @@ expected_keep_ratio = float(sys.argv[4])
 expected_keep_points = int(sys.argv[5])
 expected_edge_score = float(sys.argv[6])
 expected_min_observations = int(sys.argv[7])
+expected_vote_allow_fallback = str(sys.argv[8]).lower() in {"1", "true", "yes"}
+expected_min_selected_views = int(sys.argv[9])
+expected_min_same_object_edges = int(sys.argv[10])
+expected_min_edge_mean_score = float(sys.argv[11])
+expected_min_consensus_score = float(sys.argv[12])
+expected_min_depth_consistency = float(sys.argv[13])
+expected_max_conflict_edges = sys.argv[14]
+expected_max_conflict_ratio = sys.argv[15]
+expected_output_existing_support = str(sys.argv[16]).lower() in {"1", "true", "yes"}
+expected_gap_min_uncovered_points = int(sys.argv[17])
+expected_gap_min_uncovered_ratio = float(sys.argv[18])
+expected_gap_min_largest_component_ratio = float(sys.argv[19])
+expected_gap_cc_radius = float(sys.argv[20])
+expected_gap_cc_max_points = int(sys.argv[21])
+expected_gap_seed_policy = sys.argv[22]
+expected_candidate_competition = str(sys.argv[23]).lower() in {"1", "true", "yes"}
+expected_competition_same_class_iou = float(sys.argv[24])
+expected_competition_cross_class_iou = float(sys.argv[25])
+expected_competition_containment = float(sys.argv[26])
 
 with open(summary_path) as f:
     data = json.load(f)
@@ -137,6 +190,24 @@ checks = {
     "graph_point_vote_min_keep_points": expected_keep_points,
     "graph_edge_score_threshold": expected_edge_score,
     "graph_min_cluster_observations": expected_min_observations,
+    "graph_point_vote_allow_fallback": expected_vote_allow_fallback,
+    "graph_min_selected_views": expected_min_selected_views,
+    "graph_min_same_object_edges": expected_min_same_object_edges,
+    "graph_min_edge_mean_score": expected_min_edge_mean_score,
+    "graph_min_consensus_score": expected_min_consensus_score,
+    "graph_min_depth_consistency": expected_min_depth_consistency,
+    "ranking_policy": "priority",
+    "graph_output_existing_support": expected_output_existing_support,
+    "graph_gap_min_uncovered_points": expected_gap_min_uncovered_points,
+    "graph_gap_min_uncovered_ratio": expected_gap_min_uncovered_ratio,
+    "graph_gap_min_largest_component_ratio": expected_gap_min_largest_component_ratio,
+    "graph_gap_cc_radius": expected_gap_cc_radius,
+    "graph_gap_cc_max_points": expected_gap_cc_max_points,
+    "graph_gap_seed_policy": expected_gap_seed_policy,
+    "graph_candidate_competition": expected_candidate_competition,
+    "graph_competition_same_class_iou": expected_competition_same_class_iou,
+    "graph_competition_cross_class_iou": expected_competition_cross_class_iou,
+    "graph_competition_containment": expected_competition_containment,
 }
 for key, expected in checks.items():
     if key not in params:
@@ -144,6 +215,37 @@ for key, expected in checks.items():
         sys.exit(1)
     value = params.get(key)
     if isinstance(expected, float):
+        if not math.isclose(float(value), expected, rel_tol=1e-6, abs_tol=1e-6):
+            print(f"[EXPORT] Existing summary has {key}={value}, expected {expected}; re-exporting.")
+            sys.exit(1)
+    elif isinstance(expected, bool):
+        if bool(value) != expected:
+            print(f"[EXPORT] Existing summary has {key}={value}, expected {expected}; re-exporting.")
+            sys.exit(1)
+    elif isinstance(expected, str):
+        if str(value) != expected:
+            print(f"[EXPORT] Existing summary has {key}={value}, expected {expected}; re-exporting.")
+            sys.exit(1)
+    elif int(value) != expected:
+        print(f"[EXPORT] Existing summary has {key}={value}, expected {expected}; re-exporting.")
+        sys.exit(1)
+
+optional_checks = {
+    "graph_max_conflict_edges": (expected_max_conflict_edges, int),
+    "graph_max_conflict_ratio": (expected_max_conflict_ratio, float),
+}
+for key, (raw_expected, parser) in optional_checks.items():
+    if key not in params:
+        print(f"[EXPORT] Existing summary is missing {key}; re-exporting.")
+        sys.exit(1)
+    value = params.get(key)
+    if raw_expected == "":
+        if value is not None:
+            print(f"[EXPORT] Existing summary has {key}={value}, expected None; re-exporting.")
+            sys.exit(1)
+        continue
+    expected = parser(raw_expected)
+    if parser is float:
         if not math.isclose(float(value), expected, rel_tol=1e-6, abs_tol=1e-6):
             print(f"[EXPORT] Existing summary has {key}={value}, expected {expected}; re-exporting.")
             sys.exit(1)
@@ -164,7 +266,7 @@ for scene in data.get("scenes", []):
         payload = json.load(f)
     for candidate in payload.get("candidates", []):
         checked_candidate = True
-        missing = [key for key in ("source_kind", "seed_vote_info") if key not in candidate]
+        missing = [key for key in ("source_kind", "seed_vote_info", "graph_gap_seed_policy_applied") if key not in candidate]
         if missing:
             print(f"[EXPORT] Existing candidate is missing {','.join(missing)}; re-exporting.")
             sys.exit(1)
@@ -188,10 +290,46 @@ export_mask_graph() {
   if [[ "$GRAPH_KEEP_SINGLETONS" == "1" || "$GRAPH_KEEP_SINGLETONS" == "true" ]]; then
     singleton_flag="--graph_keep_singletons"
   fi
+  local vote_fallback_flag="--no-graph_point_vote_allow_fallback"
+  if [[ "$GRAPH_POINT_VOTE_ALLOW_FALLBACK" == "1" || "$GRAPH_POINT_VOTE_ALLOW_FALLBACK" == "true" ]]; then
+    vote_fallback_flag="--graph_point_vote_allow_fallback"
+  fi
+  local competition_flag="--graph_candidate_competition"
+  if [[ "$MASK_GRAPH_CANDIDATE_COMPETITION" == "0" || "$MASK_GRAPH_CANDIDATE_COMPETITION" == "false" ]]; then
+    competition_flag="--no-graph_candidate_competition"
+  fi
+  local export_graph_gate_args=(
+    --graph_min_selected_views "$MASK_GRAPH_MIN_SELECTED_VIEWS"
+    --graph_min_same_object_edges "$MASK_GRAPH_MIN_SAME_OBJECT_EDGES"
+    --graph_min_edge_mean_score "$MASK_GRAPH_MIN_EDGE_MEAN_SCORE"
+    --graph_min_consensus_score "$MASK_GRAPH_MIN_CONSENSUS_SCORE"
+    --graph_min_depth_consistency "$MASK_GRAPH_MIN_DEPTH_CONSISTENCY"
+  )
+  if [[ -n "$MASK_GRAPH_MAX_CONFLICT_EDGES" ]]; then
+    export_graph_gate_args+=(--graph_max_conflict_edges "$MASK_GRAPH_MAX_CONFLICT_EDGES")
+  fi
+  if [[ -n "$MASK_GRAPH_MAX_CONFLICT_RATIO" ]]; then
+    export_graph_gate_args+=(--graph_max_conflict_ratio "$MASK_GRAPH_MAX_CONFLICT_RATIO")
+  fi
+  if [[ "$MASK_GRAPH_OUTPUT_EXISTING_SUPPORT" == "1" || "$MASK_GRAPH_OUTPUT_EXISTING_SUPPORT" == "true" ]]; then
+    export_graph_gate_args+=(--graph_output_existing_support)
+  fi
+  export_graph_gate_args+=(
+    --graph_gap_min_uncovered_points "$MASK_GRAPH_GAP_MIN_UNCOVERED_POINTS"
+    --graph_gap_min_uncovered_ratio "$MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO"
+    --graph_gap_min_largest_component_ratio "$MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO"
+    --graph_gap_cc_radius "$MASK_GRAPH_GAP_CC_RADIUS"
+    --graph_gap_cc_max_points "$MASK_GRAPH_GAP_CC_MAX_POINTS"
+    --graph_gap_seed_policy "$MASK_GRAPH_GAP_SEED_POLICY"
+    "$competition_flag"
+    --graph_competition_same_class_iou "$MASK_GRAPH_COMPETITION_SAME_CLASS_IOU"
+    --graph_competition_cross_class_iou "$MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU"
+    --graph_competition_containment "$MASK_GRAPH_COMPETITION_CONTAINMENT"
+  )
   "$PYTHON" tools/export_mask_graph_proposals.py \
     --dataset_name scannet200 \
     --path_to_3d_masks ./output/scannet200/scannet200_masks \
-    --path_to_2d_preds ./output/scannet200/bboxes_2d \
+    --path_to_2d_preds "$PATH_TO_2D_PREDS" \
     --scene_list "$SCENE_LIST" \
     --output_dir "$MASK_GRAPH_OUT" \
     --detection_score_th 0.45 \
@@ -201,7 +339,7 @@ export_mask_graph() {
     --max_detections_per_frame 8 \
     --max_candidates_per_scene "$EXPORT_MAX_CANDIDATES" \
     --blocked_classes rug \
-    --ranking_policy graph_priority \
+    --ranking_policy priority \
     --sam_multimask_topk 1 \
     --graph_same_class_only \
     --graph_min_seed_iou "$GRAPH_MIN_SEED_IOU" \
@@ -217,6 +355,8 @@ export_mask_graph() {
     --graph_point_vote_min_support "$GRAPH_POINT_VOTE_MIN_SUPPORT" \
     --graph_point_vote_min_keep_ratio "$GRAPH_POINT_VOTE_MIN_KEEP_RATIO" \
     --graph_point_vote_min_keep_points "$GRAPH_POINT_VOTE_MIN_KEEP_POINTS" \
+    "$vote_fallback_flag" \
+    "${export_graph_gate_args[@]}" \
     --export_max_existing_iou 0.30 \
     --export_max_seed_in_existing_mask_ratio 0.70 \
     >"$OUT_DIR/export_mask_graph.log" 2>&1
@@ -258,11 +398,15 @@ run_eval() {
       mask_graph_gate_args+=(--no-backprojection_mask_graph_evidence_same_class_only)
     fi
   fi
+  mask_graph_gate_args+=(
+    --backprojection_mask_graph_score_factor_weight "$MASK_GRAPH_SCORE_FACTOR_WEIGHT"
+    --backprojection_mask_graph_max_proposal_score "$MASK_GRAPH_MAX_PROPOSAL_SCORE"
+  )
   echo "[RUN] $name"
   "$PYTHON" run_evaluation.py \
     --dataset_name scannet200 \
     --path_to_3d_masks ./output/scannet200/scannet200_masks \
-    --path_to_2d_preds ./output/scannet200/bboxes_2d \
+    --path_to_2d_preds "$PATH_TO_2D_PREDS" \
     --scene_list "$SCENE_LIST" \
     --backprojection_candidates "$candidates" \
     --backprojection_min_score 0.50 \
@@ -302,29 +446,29 @@ case "$MODE" in
   graph_refill)
     run_eval mask_graph_refill \
       "$SAM_FUSED_IN,$BPR_IN,$MASK_GRAPH_OUT" \
-      "sam_fused=1.2,bpr=1.0,mask_graph_multi_view=1.0,mask_graph_single_view=0.8" \
-      "sam_fused=2.0,bpr=1.0,mask_graph_multi_view=1.05,mask_graph_single_view=0.1" \
+      "sam_fused=1.2,bpr=1.0,mask_graph_multi_view=1.0,mask_graph_single_view=0.7" \
+      "sam_fused=2.0,bpr=1.0,mask_graph_multi_view=1.0,mask_graph_single_view=0.1" \
       "$SOURCE_LIMITS_GRAPH_REFILL"
     ;;
   graph_only)
     run_eval mask_graph_only \
       "$MASK_GRAPH_OUT" \
-      "mask_graph_multi_view=1.15,mask_graph_single_view=0.85" \
-      "mask_graph_multi_view=1.30,mask_graph_single_view=0.90" \
+      "mask_graph_multi_view=1.0,mask_graph_single_view=0.7" \
+      "mask_graph_multi_view=1.0,mask_graph_single_view=0.7" \
       "$SOURCE_LIMITS_GRAPH_ONLY"
     ;;
   graph_bpr)
     run_eval mask_graph_bpr \
       "$MASK_GRAPH_OUT,$BPR_IN" \
-      "mask_graph_multi_view=1.15,mask_graph_single_view=0.85,bpr=1.0" \
-      "mask_graph_multi_view=1.30,mask_graph_single_view=0.90,bpr=1.0" \
+      "mask_graph_multi_view=1.0,mask_graph_single_view=0.7,bpr=1.0" \
+      "mask_graph_multi_view=1.0,mask_graph_single_view=0.7,bpr=1.0" \
       "$SOURCE_LIMITS_GRAPH_BPR"
     ;;
   default|all)
     run_eval mask_graph_refill \
       "$SAM_FUSED_IN,$BPR_IN,$MASK_GRAPH_OUT" \
-      "sam_fused=1.2,bpr=1.0,mask_graph_multi_view=1.0,mask_graph_single_view=0.8" \
-      "sam_fused=2.0,bpr=1.0,mask_graph_multi_view=1.05,mask_graph_single_view=0.1" \
+      "sam_fused=1.2,bpr=1.0,mask_graph_multi_view=1.0,mask_graph_single_view=0.7" \
+      "sam_fused=2.0,bpr=1.0,mask_graph_multi_view=1.0,mask_graph_single_view=0.1" \
       "$SOURCE_LIMITS_GRAPH_REFILL"
     ;;
   *)

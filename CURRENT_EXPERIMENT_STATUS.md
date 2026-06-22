@@ -1,12 +1,129 @@
 # OpenYOLO3D 在 ScanNet200 上的候选补全实验状态
 
-最后更新：2026-06-17
+最后更新：2026-06-22
 
 项目路径：
 
 `/home/jia/wm_open-yolo/OpenYOLO3D`
 
 ## 0. 下一次对话先看这里
+
+### 本轮对话追加记录
+
+本轮围绕“严格证据图、基线缺口检测、候选竞争”继续修改并做了 GPU 验证。核心结论是：
+
+```text
+证据图候选已经能生成，也能进入最终评估；
+但当前它们还没有实质替换掉主线中的脏候选；
+继续单纯抬高图候选分数或优先级没有收益。
+```
+
+本轮已经完成的代码方向：
+
+- 证据图点级投票默认不再失败后恢复完整并集；如果多视角核心点不足，候选可以直接失败。
+- 新增“基线未解释缺口”检测：候选先判断有多少三维种子点没有被已有三维候选覆盖，只有未覆盖点数量、比例和连通性达标时，才作为新增补漏候选。
+- 新增 `graph_gap_seed_policy`：
+  - `adaptive`：默认策略。新增补漏候选只输出未被已有三维候选覆盖的缺口核心点；已有候选支持项保留完整核心点用于诊断。
+  - `full_core`：输出完整核心点。
+  - `uncovered_core`：新增候选强制只输出缺口核心点。
+- 新增证据图候选内部竞争：多个图候选争夺同一批三维点时，按新增性、已有覆盖比例、图共识、深度一致性、冲突比例、支持视角数和优先级排序，低质量重复候选会写入 `prefilter_skipped`。
+- 新增图候选竞争优先级因子 `graph_competition_priority_factor`，它由图共识、深度一致、支持视角数、缺口比例、冲突比例和已有覆盖比例共同决定。
+- 新增融合阶段图候选最终分数控制：
+  - `backprojection_mask_graph_score_factor_weight`
+  - `backprojection_mask_graph_max_proposal_score`
+  这两个参数用于测试“图候选自身抬分”是否能改变最终排序。
+- `tools/run_scannet200_even48_mask_graph_eval.sh` 已接入以上导出和评估参数，并允许通过环境变量控制。
+- 为了能继续复现实验，补了两个环境兼容点：
+  - `utils/utils_2d.py` 中兼容新版 Pillow 没有 `Image.LINEAR` 的问题。
+  - `utils/__init__.py` 增加 `OPENYOLO3D_ALLOW_LEGACY_2D_CACHE=1` 显式开关。默认仍严格要求二维缓存有元数据签名；只有开这个开关时，才允许读取旧格式二维框缓存。
+- 另外把部分硬编码 `.cuda()` 改成按设备选择，避免没有显卡时直接崩溃。但真实评估仍应使用 GPU，CPU 跑 even48 太慢。
+
+本轮 GPU 验证过程：
+
+- 沙盒默认环境里 `torch.cuda.is_available()` 为 `False`，设备数 `0`。
+- 通过提权运行后，外层环境能看到 GPU：`torch.cuda.is_available()` 为 `True`，设备数 `1`。
+- 后续 even48 实验均用提权方式在 GPU 上跑。
+
+本轮关键 GPU 结果：
+
+```text
+GPU 可见性检查：
+/home/jia/anaconda3/envs/openyolo3d/bin/python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.device_count())"
+沙盒默认结果：False / 0
+提权运行结果：True / 1
+
+严格缺口核心 + 候选内部竞争：
+导出图候选 53 个
+最终进入评估的多视角图候选 16 个
+运行命令：
+OPENYOLO3D_ALLOW_LEGACY_2D_CACHE=1 \
+OUT_DIR=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/subset_sweeps/even48_mask_graph_gap_compete_gpu \
+PATH_TO_2D_PREDS=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/bboxes_2d \
+MASK_GRAPH_OUT=/home/jia/wm_open-yolo/OpenYOLO3D/output/mask_graph_proposals_scannet200_even48_gap_compete_gpu \
+MODE=graph_refill \
+bash tools/run_scannet200_even48_mask_graph_eval.sh
+结果：0.271186 / 0.345749 / 0.389509
+
+给图候选加竞争优先级：
+运行命令：
+OPENYOLO3D_ALLOW_LEGACY_2D_CACHE=1 \
+OUT_DIR=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/subset_sweeps/even48_mask_graph_gap_compete_priority_gpu \
+PATH_TO_2D_PREDS=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/bboxes_2d \
+MASK_GRAPH_OUT=/home/jia/wm_open-yolo/OpenYOLO3D/output/mask_graph_proposals_scannet200_even48_gap_compete_priority_gpu \
+MODE=graph_refill \
+bash tools/run_scannet200_even48_mask_graph_eval.sh
+结果：0.271186 / 0.345749 / 0.389509
+
+把图候选竞争因子乘到最终分数：
+图候选分数因子确实写入报告，范围约 1.46 到 1.60
+但多数候选分数被截断到 1.0
+运行命令：
+OPENYOLO3D_ALLOW_LEGACY_2D_CACHE=1 \
+OUT_DIR=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/subset_sweeps/even48_mask_graph_gap_scorefactor_gpu \
+PATH_TO_2D_PREDS=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/bboxes_2d \
+MASK_GRAPH_OUT=/home/jia/wm_open-yolo/OpenYOLO3D/output/mask_graph_proposals_scannet200_even48_gap_compete_priority_gpu \
+MODE=graph_refill \
+bash tools/run_scannet200_even48_mask_graph_eval.sh
+结果：0.271186 / 0.345749 / 0.389509
+
+把图候选分数上限放宽到 1.05：
+运行命令：
+OPENYOLO3D_ALLOW_LEGACY_2D_CACHE=1 \
+OUT_DIR=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/subset_sweeps/even48_mask_graph_gap_scorecap_gpu \
+PATH_TO_2D_PREDS=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/bboxes_2d \
+MASK_GRAPH_OUT=/home/jia/wm_open-yolo/OpenYOLO3D/output/mask_graph_proposals_scannet200_even48_gap_compete_priority_gpu \
+MODE=graph_refill \
+bash tools/run_scannet200_even48_mask_graph_eval.sh
+结果：0.271186 / 0.345749 / 0.389509
+
+打开图证据对主线候选的重排：
+MASK_GRAPH_EVIDENCE_RESCORE=1
+MASK_GRAPH_EVIDENCE_PRIORITY_WEIGHT=0.30
+运行命令：
+OPENYOLO3D_ALLOW_LEGACY_2D_CACHE=1 \
+MASK_GRAPH_EVIDENCE_RESCORE=1 \
+MASK_GRAPH_EVIDENCE_PRIORITY_WEIGHT=0.30 \
+MASK_GRAPH_SCORE_FACTOR_WEIGHT=0.0 \
+MASK_GRAPH_MAX_PROPOSAL_SCORE=1.0 \
+OUT_DIR=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/subset_sweeps/even48_mask_graph_evidence_rerank_gpu \
+PATH_TO_2D_PREDS=/home/jia/wm_open-yolo/OpenYOLO3D/output/scannet200/bboxes_2d \
+MASK_GRAPH_OUT=/home/jia/wm_open-yolo/OpenYOLO3D/output/mask_graph_proposals_scannet200_even48_gap_compete_priority_gpu \
+MODE=graph_refill \
+bash tools/run_scannet200_even48_mask_graph_eval.sh
+结果：0.271186 / 0.345749 / 0.389509
+```
+
+本轮结论：
+
+- 图候选不是完全没进最终预测；它们已经有 `16` 个多视角候选进入评估。
+- 图候选自身抬分、放宽图候选分数上限、图证据轻量重排主线候选，都没有改变 even48 指标。
+- 这说明当前瓶颈不是“图候选优先级不够高”，而是“图证据还没有强到能明确替换或剔除主线候选”。
+- 下一步不应继续调图候选分数，也不应继续只做软重排。
+- 下一步应做更硬的动作：
+  - 用图证据显式标记主线候选是否被多视角二维掩码支持。
+  - 对低图证据、高冲突、低缺口价值的主线新增候选做降权或剔除。
+  - 当图候选和主线候选高度重叠时，不是并列输出，而是执行“保留主线、替换为图候选、或两者都拒绝”的明确决策。
+  - 对图候选重点分析真阳性和假阳性，而不是继续全局调权重。
 
 当前最重要结论：
 
@@ -19,6 +136,25 @@
   - 四十八场景，主线候选加证据图补充，最多额外放两个证据图多视角候选：`0.271201 / 0.345771 / 0.389494`。
   - 九十六场景，完整九十六图候选补充：`0.272253 / 0.340308 / 0.383686`。
   - 四十八场景，加入更严格的证据图准入门槛后，实际只进入一个证据图候选，结果仍是 `0.271201 / 0.345771 / 0.389494`。
+- 新一轮代码已经把证据图候选的默认策略改严格了：
+  - 证据点投票不再自动回退到完整并集。
+  - 图候选默认排序改成普通优先级，不再把图来源天然排前。
+  - 增加了组内一致性门槛和冲突拒绝门槛，可通过命令行显式打开更严格的过滤。
+  - even48 图实验脚本也同步成了同一套严格参数。
+- 最新代码继续补上了“基线未解释缺口”判断：
+  - 证据图候选会先检查有多少三维种子点没有被已有三维候选覆盖。
+  - 如果未覆盖点太少、未覆盖比例太低，或未覆盖区域不能形成稳定连通块，则默认只作为“已有候选支持证据”，不再作为新增候选输出。
+  - 新增补漏候选默认使用自适应种子策略：真正新增候选只保存未被已有三维候选覆盖的缺口核心点；如果显式输出已有候选支持项，则仍保留完整核心点用于诊断。
+  - 这一步是为了避免以前的问题：虽然用缺口判断通过了候选，但最终保存的三维点仍然包含大量已有区域，导致重复候选和污染候选进入后续融合。
+- 最新代码还加入了证据图候选内部竞争：
+  - 多个证据图候选如果争夺同一批三维种子点，会先按新增性、已有覆盖比例、图共识、深度一致性、冲突比例、支持视角数和候选优先级排序。
+  - 质量较低的重复候选或冲突候选会在导出阶段被过滤，并写入 `prefilter_skipped`。
+  - 这一步吸收的是“父子选择、候选竞争”的思想，但仍保持轻量证据图结构，不把整体结构改成完整实例树。
+- 最新 GPU 结果又补了一条关键结论：
+  - 证据图候选导出共保留了 `53` 个候选，其中最终进入评估并真正起作用的多视角图候选有 `16` 个。
+  - 给证据图候选加上额外竞争优先级、再把图候选的分数上限从 `1.0` 放宽到 `1.05` 后，最终结果仍然是 `0.271186 / 0.345749 / 0.389509`，和上一版完全一样。
+  - 这说明当前问题不再是“图候选生成失败”，而是“图候选还没有实质改变主线候选的排序与替换”。
+  - 下一步应把重点放到“图证据重排主线候选”或“图证据直接给主线候选加分/降分”，而不是继续抬高图候选自身分数。
 - 本轮新做的“证据图只支持主线候选排序、不直接新增证据图候选”实验也没有提升：
   - 四十八场景：`0.271199 / 0.345768 / 0.389489`。
   - 实际进入最终预测的候选来源为：二维掩码融合候选 `144` 个，二维框反投影候选 `130` 个，证据图候选 `0` 个。
@@ -70,6 +206,9 @@ YOLO-World 二维检测
    - 对主线候选保存证据图支持数、冲突数、支持视角数。
    - 只对低证据、高冲突的新增候选降权或跳过。
    - 对证据图候选继续保持单独来源，不再默认提高来源优先级。
+   - 新增候选导出阶段已经开始做缺口检测；后续应继续把“缺口核心”和“完整核心”分开管理，并测试缺口核心输出是否能减少重复和背景污染。
+   - 证据图候选内部竞争已经接入；后续还要做的是让证据图候选和主线候选之间也发生竞争，而不是只在证据图内部竞争。
+   - 证据图候选自身抬分已经验证无效；下一步应切到“证据图支持主线候选”的重排模式，先让图证据影响主线候选的最终排序，再看能不能推高 AP。
 
 2. **跨视角二维掩码证据图，加聚类后再反投影**
 
