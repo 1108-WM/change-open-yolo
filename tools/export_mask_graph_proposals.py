@@ -510,6 +510,15 @@ def _graph_candidate_seed_indices(selected_seed, gap_info, candidate_action, see
     return selected_seed.copy(), "full_core"
 
 
+def _graph_candidate_core_indices(selected_seed, gap_info):
+    selected_seed = np.unique(np.asarray(selected_seed, dtype=np.int64)).astype(np.int64)
+    gap_info = gap_info or {}
+    uncovered_seed = np.unique(
+        np.asarray(gap_info.get("_gap_uncovered_seed_indices", np.asarray([], dtype=np.int64)), dtype=np.int64)
+    ).astype(np.int64)
+    return selected_seed, uncovered_seed
+
+
 def _graph_candidate_competition_quality(candidate):
     conflict_total = int(candidate.get("conflict_edge_count", 0))
     relation_total = (
@@ -923,6 +932,7 @@ def _cluster_to_candidate(
     class_name = best_observation["class_name"] if int(best_observation["class_id"]) == int(class_id) else best_observation["class_name"]
     stats = _component_edge_stats(component, adjacency, relation_edges=relation_edges)
     candidate_action = (gap_info or {}).get("candidate_action", "new_candidate")
+    full_core_seed_indices, gap_core_seed_indices = _graph_candidate_core_indices(selected_seed, gap_info)
     final_seed_indices, applied_seed_policy = _graph_candidate_seed_indices(
         selected_seed,
         gap_info,
@@ -980,6 +990,8 @@ def _cluster_to_candidate(
         "selected_seed_view_count": int(len(selected_indices)),
         "selected_seed_point_count": int(len(selected_seed)),
         "output_seed_point_count": int(len(final_seed_indices)),
+        "full_core_seed_point_count": int(len(full_core_seed_indices)),
+        "gap_core_seed_point_count": int(len(gap_core_seed_indices)),
         "available_seed_view_count": int(len(component)),
         "graph_cluster_id": int(cluster_id),
         "graph_cluster_observation_ids": [int(observations[idx]["graph_observation_id"]) for idx in component],
@@ -1029,6 +1041,8 @@ def _cluster_to_candidate(
         "sam_mask_geometry": best_observation.get("sam_mask_geometry"),
         "evidence": best_observation.get("evidence", {}),
         "_seed_indices": final_seed_indices,
+        "_full_core_seed_indices": full_core_seed_indices,
+        "_gap_core_seed_indices": gap_core_seed_indices,
         **existing_metrics,
     }
     candidate["proposal_priority"] = float(candidate["proposal_priority"] * candidate["graph_competition_priority_factor"])
@@ -1641,11 +1655,19 @@ def export_scene_mask_graph_proposals(
     output_candidates = []
     for candidate_id, candidate in enumerate(candidates):
         seed_indices = candidate.pop("_seed_indices")
+        full_core_seed_indices = candidate.pop("_full_core_seed_indices", seed_indices)
+        gap_core_seed_indices = candidate.pop("_gap_core_seed_indices", np.asarray([], dtype=np.int64))
         seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_points.npz")
         np.savez_compressed(seed_path, point_indices=seed_indices)
+        full_core_seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_full_core_points.npz")
+        gap_core_seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_gap_core_points.npz")
+        np.savez_compressed(full_core_seed_path, point_indices=np.asarray(full_core_seed_indices, dtype=np.int64))
+        np.savez_compressed(gap_core_seed_path, point_indices=np.asarray(gap_core_seed_indices, dtype=np.int64))
         candidate["candidate_id"] = int(candidate_id)
         candidate["num_seed_points"] = int(len(seed_indices))
         candidate["seed_points_path"] = seed_path
+        candidate["full_core_seed_points_path"] = full_core_seed_path
+        candidate["gap_core_seed_points_path"] = gap_core_seed_path
         output_candidates.append(candidate)
 
     json_path = osp.join(scene_dir, "backprojection_candidates.json")
@@ -1742,6 +1764,7 @@ def export_scene_mask_graph_proposals(
 
 def export_dataset_mask_graph_proposals(
     dataset_name,
+    dataset_root,
     path_to_3d_masks,
     output_dir,
     sam_checkpoint,
@@ -1755,7 +1778,10 @@ def export_dataset_mask_graph_proposals(
     **kwargs,
 ):
     config = load_yaml(osp.join(f"./pretrained/config_{dataset_name}.yaml"))
-    path_2_dataset = osp.join("./data", dataset_name)
+    dataset_env_key = f"OPENYOLO3D_DATA_ROOT_{dataset_name.upper()}"
+    path_2_dataset = dataset_root or os.environ.get(dataset_env_key) or os.environ.get("OPENYOLO3D_DATA_ROOT")
+    if path_2_dataset is None:
+        path_2_dataset = osp.join("./data", dataset_name)
     depth_scale = config["openyolo3d"]["depth_scale"]
 
     if dataset_name == "replica":
@@ -1837,6 +1863,7 @@ def export_dataset_mask_graph_proposals(
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_name", default="replica", choices=["replica", "scannet200"])
+    parser.add_argument("--dataset_root", default=None, type=str)
     parser.add_argument("--path_to_3d_masks", default="./output/replica/replica_masks")
     parser.add_argument("--output_dir", default="./output/mask_graph_proposals_replica")
     parser.add_argument("--sam_checkpoint", default="./pretrained/checkpoints/sam_vit_b_01ec64.pth")
@@ -1923,6 +1950,7 @@ def main():
 
     kwargs = vars(args).copy()
     dataset_name = kwargs.pop("dataset_name")
+    dataset_root = kwargs.pop("dataset_root")
     path_to_3d_masks = kwargs.pop("path_to_3d_masks")
     output_dir = kwargs.pop("output_dir")
     sam_checkpoint = kwargs.pop("sam_checkpoint")
@@ -1937,6 +1965,7 @@ def main():
 
     export_dataset_mask_graph_proposals(
         dataset_name=dataset_name,
+        dataset_root=dataset_root,
         path_to_3d_masks=path_to_3d_masks,
         output_dir=output_dir,
         sam_checkpoint=sam_checkpoint,

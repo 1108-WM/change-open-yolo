@@ -4,12 +4,14 @@ set -euo pipefail
 ROOT_DIR="${ROOT_DIR:-/home/jia/wm_open-yolo/OpenYOLO3D}"
 PYTHON="${PYTHON:-/home/jia/anaconda3/envs/openyolo3d/bin/python}"
 SCENE_LIST="${SCENE_LIST:-$ROOT_DIR/output/scannet200/scene_splits/even48.txt}"
+DATASET_ROOT="${DATASET_ROOT:-./data/scannet200}"
 OUT_DIR="${OUT_DIR:-$ROOT_DIR/output/scannet200/subset_sweeps/even48_mask_graph}"
 SAM_FUSED_IN="${SAM_FUSED_IN:-./output/sam_fused_proposals_scannet200_s5_m30_prefilter}"
 BPR_IN="${BPR_IN:-./output/backprojection_candidates_scannet200_mv_m20}"
 MASK_GRAPH_OUT="${MASK_GRAPH_OUT:-$ROOT_DIR/output/mask_graph_proposals_scannet200_even48_current_s5_m30}"
 PATH_TO_2D_PREDS="${PATH_TO_2D_PREDS:-./output/scannet200/bboxes_2d}"
 MODE="${MODE:-graph_bpr}"
+EVAL_SCORE_MODE="${EVAL_SCORE_MODE:-uniform}"
 EXPORT_MAX_CANDIDATES="${EXPORT_MAX_CANDIDATES:-30}"
 GRAPH_MIN_SEED_IOU="${GRAPH_MIN_SEED_IOU:-0.03}"
 GRAPH_MIN_SEED_CONTAINMENT="${GRAPH_MIN_SEED_CONTAINMENT:-0.18}"
@@ -43,11 +45,13 @@ MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO="${MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO:-0.25}"
 MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO="${MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO:-0.50}"
 MASK_GRAPH_GAP_CC_RADIUS="${MASK_GRAPH_GAP_CC_RADIUS:-0.03}"
 MASK_GRAPH_GAP_CC_MAX_POINTS="${MASK_GRAPH_GAP_CC_MAX_POINTS:-50000}"
-MASK_GRAPH_GAP_SEED_POLICY="${MASK_GRAPH_GAP_SEED_POLICY:-adaptive}"
+MASK_GRAPH_GAP_SEED_POLICY="${MASK_GRAPH_GAP_SEED_POLICY:-full_core}"
 MASK_GRAPH_CANDIDATE_COMPETITION="${MASK_GRAPH_CANDIDATE_COMPETITION:-1}"
 MASK_GRAPH_COMPETITION_SAME_CLASS_IOU="${MASK_GRAPH_COMPETITION_SAME_CLASS_IOU:-0.60}"
 MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU="${MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU:-0.35}"
 MASK_GRAPH_COMPETITION_CONTAINMENT="${MASK_GRAPH_COMPETITION_CONTAINMENT:-0.80}"
+MASK_GRAPH_EXPORT_MAX_EXISTING_IOU="${MASK_GRAPH_EXPORT_MAX_EXISTING_IOU:-0.30}"
+MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO="${MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO:-0.30}"
 MASK_GRAPH_EVIDENCE_RESCORE="${MASK_GRAPH_EVIDENCE_RESCORE:-0}"
 MASK_GRAPH_EVIDENCE_MIN_OVERLAP="${MASK_GRAPH_EVIDENCE_MIN_OVERLAP:-0.25}"
 MASK_GRAPH_EVIDENCE_MIN_IOU="${MASK_GRAPH_EVIDENCE_MIN_IOU:-0.03}"
@@ -63,6 +67,7 @@ export OMP_NUM_THREADS="${OMP_NUM_THREADS:-8}"
 export MPLCONFIGDIR="${MPLCONFIGDIR:-/tmp/mpl}"
 export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
 export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
+export OPENYOLO3D_ALLOW_LEGACY_2D_CACHE="${OPENYOLO3D_ALLOW_LEGACY_2D_CACHE:-1}"
 
 summarize_csv() {
   local name="$1"
@@ -146,7 +151,9 @@ can_reuse_export() {
     "$MASK_GRAPH_CANDIDATE_COMPETITION" \
     "$MASK_GRAPH_COMPETITION_SAME_CLASS_IOU" \
     "$MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU" \
-    "$MASK_GRAPH_COMPETITION_CONTAINMENT" <<'PY'
+    "$MASK_GRAPH_COMPETITION_CONTAINMENT" \
+    "$MASK_GRAPH_EXPORT_MAX_EXISTING_IOU" \
+    "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO" <<'PY'
 import json
 import math
 import os
@@ -178,6 +185,8 @@ expected_candidate_competition = str(sys.argv[23]).lower() in {"1", "true", "yes
 expected_competition_same_class_iou = float(sys.argv[24])
 expected_competition_cross_class_iou = float(sys.argv[25])
 expected_competition_containment = float(sys.argv[26])
+expected_export_max_existing_iou = float(sys.argv[27])
+expected_export_max_seed_in_existing_mask_ratio = float(sys.argv[28])
 
 with open(summary_path) as f:
     data = json.load(f)
@@ -208,6 +217,8 @@ checks = {
     "graph_competition_same_class_iou": expected_competition_same_class_iou,
     "graph_competition_cross_class_iou": expected_competition_cross_class_iou,
     "graph_competition_containment": expected_competition_containment,
+    "export_max_existing_iou": expected_export_max_existing_iou,
+    "export_max_seed_in_existing_mask_ratio": expected_export_max_seed_in_existing_mask_ratio,
 }
 for key, expected in checks.items():
     if key not in params:
@@ -328,6 +339,7 @@ export_mask_graph() {
   )
   "$PYTHON" tools/export_mask_graph_proposals.py \
     --dataset_name scannet200 \
+    --dataset_root "$DATASET_ROOT" \
     --path_to_3d_masks ./output/scannet200/scannet200_masks \
     --path_to_2d_preds "$PATH_TO_2D_PREDS" \
     --scene_list "$SCENE_LIST" \
@@ -357,8 +369,8 @@ export_mask_graph() {
     --graph_point_vote_min_keep_points "$GRAPH_POINT_VOTE_MIN_KEEP_POINTS" \
     "$vote_fallback_flag" \
     "${export_graph_gate_args[@]}" \
-    --export_max_existing_iou 0.30 \
-    --export_max_seed_in_existing_mask_ratio 0.70 \
+    --export_max_existing_iou "$MASK_GRAPH_EXPORT_MAX_EXISTING_IOU" \
+    --export_max_seed_in_existing_mask_ratio "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO" \
     >"$OUT_DIR/export_mask_graph.log" 2>&1
   summarize_export "$MASK_GRAPH_OUT/mask_graph_proposals_summary.json"
 }
@@ -408,6 +420,7 @@ run_eval() {
     --path_to_3d_masks ./output/scannet200/scannet200_masks \
     --path_to_2d_preds "$PATH_TO_2D_PREDS" \
     --scene_list "$SCENE_LIST" \
+    --eval_score_mode "$EVAL_SCORE_MODE" \
     --backprojection_candidates "$candidates" \
     --backprojection_min_score 0.50 \
     --backprojection_min_seed_points 80 \
@@ -440,9 +453,32 @@ run_eval() {
   summarize_csv "$name" "$csv_path"
 }
 
-export_mask_graph
+mode_uses_graph() {
+  case "$MODE" in
+    graph_refill|graph_only|graph_bpr|default|all)
+      return 0
+      ;;
+    no_graph_refill|baseline_refill)
+      return 1
+      ;;
+    *)
+      return 0
+      ;;
+  esac
+}
+
+if mode_uses_graph; then
+  export_mask_graph
+fi
 
 case "$MODE" in
+  no_graph_refill|baseline_refill)
+    run_eval no_graph_refill \
+      "$SAM_FUSED_IN,$BPR_IN" \
+      "sam_fused=1.2,bpr=1.0" \
+      "sam_fused=2.0,bpr=1.0" \
+      "sam_fused=12,bpr=3"
+    ;;
   graph_refill)
     run_eval mask_graph_refill \
       "$SAM_FUSED_IN,$BPR_IN,$MASK_GRAPH_OUT" \
@@ -472,7 +508,7 @@ case "$MODE" in
       "$SOURCE_LIMITS_GRAPH_REFILL"
     ;;
   *)
-    echo "Unknown MODE=$MODE; expected graph_refill, graph_only, graph_bpr, default, or all" >&2
+    echo "Unknown MODE=$MODE; expected no_graph_refill, graph_refill, graph_only, graph_bpr, default, or all" >&2
     exit 2
     ;;
 esac

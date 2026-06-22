@@ -223,10 +223,14 @@ def test_pipeline_full(
     eval_prediction_cache_dir=None,
     eval_cleanup_prediction_cache=False,
     processed_scene_root=None,
+    dataset_root=None,
 ):
     config = load_yaml(osp.join(f'./pretrained/config_{dataset_type}.yaml'))
-    path_2_dataset = osp.join('./data', dataset_type)
-    gt_dir = osp.join('./data', dataset_type, 'ground_truth')
+    dataset_env_key = f"OPENYOLO3D_DATA_ROOT_{dataset_type.upper()}"
+    path_2_dataset = dataset_root or os.environ.get(dataset_env_key) or os.environ.get("OPENYOLO3D_DATA_ROOT")
+    if path_2_dataset is None:
+        path_2_dataset = osp.join('./data', dataset_type)
+    gt_dir = osp.join(path_2_dataset, 'ground_truth')
     depth_scale = config["openyolo3d"]["depth_scale"]
     labels = config["network2d"]["text_prompts"]
     corrections, correction_summary = load_context_corrections(
@@ -931,6 +935,7 @@ def load_yaml(path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_name', default='scannet200', type=str, help='Name of the dataset [replica, scannet200]')
+    parser.add_argument('--dataset_root', default=None, type=str, help='Optional dataset root containing scene RGB-D folders and ground_truth')
     parser.add_argument('--path_to_3d_masks', default=None, type=str, help='Path to pre computed 3d masks')
     parser.add_argument('--is_gt', default=False, action=argparse.BooleanOptionalAction, help='If pre computed 3d masks are ground truth masks')
     parser.add_argument('--use_pred_scores', default=False, action=argparse.BooleanOptionalAction, help='Use OpenYOLO3D prediction confidence scores during evaluation')
