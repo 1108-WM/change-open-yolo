@@ -49,6 +49,14 @@ from export_sam_fused_proposals import (
     _to_numpy,
 )
 from utils import OpenYolo3D
+from utils.superpoint_diagnostics import (
+    _FrameProjector,
+    build_scene_superpoint_cache,
+    classify_observation_superpoint_support,
+    save_observation_superpoint_evidence,
+    save_scene_superpoint_cache,
+    summarize_candidate_superpoints,
+)
 
 
 def _seed_overlap(left, right):
@@ -2712,6 +2720,7 @@ def export_scene_mask_graph_proposals(
     predictor,
     scene_name,
     output_dir,
+    processed_scene_path=None,
     detection_score_th=0.45,
     min_seed_points=80,
     max_box_area_ratio=0.30,
@@ -2815,6 +2824,13 @@ def export_scene_mask_graph_proposals(
     export_max_existing_iou=None,
     export_max_seed_in_existing_mask_ratio=None,
     export_code_version="",
+    superpoint_diagnostics=False,
+    superpoint_adjacency_knn=12,
+    superpoint_support_min_coverage=0.60,
+    superpoint_partial_min_coverage=0.30,
+    superpoint_min_visible_points=20,
+    superpoint_min_depth_consistency=0.70,
+    superpoint_reject_min_depth_conflict=0.60,
 ):
     scene_dir = osp.join(output_dir, scene_name)
     seed_dir = osp.join(scene_dir, "seed_points")
@@ -2872,6 +2888,65 @@ def export_scene_mask_graph_proposals(
         projections_np,
         scaling_params=getattr(openyolo3d, "scaling_params", None),
     )
+    scene_cache = None
+    superpoint_scene_summary = {
+        "enabled": False,
+        "reason": "disabled",
+    }
+    observation_superpoint_records = []
+    observation_superpoint_paths = {
+        "observation_superpoint_summary_path": None,
+        "observation_superpoint_items": [],
+    }
+    observation_superpoint_by_id = {}
+    if superpoint_diagnostics:
+        if processed_scene_path is None or not osp.exists(processed_scene_path):
+            superpoint_scene_summary = {
+                "enabled": False,
+                "reason": "missing_processed_scene",
+                "processed_scene_path": processed_scene_path,
+            }
+        else:
+            scene_cache = build_scene_superpoint_cache(
+                processed_scene_path,
+                points_xyz=points_xyz,
+                adjacency_knn=superpoint_adjacency_knn,
+            )
+            scene_cache_paths = save_scene_superpoint_cache(scene_cache, scene_dir)
+            frame_projector = _FrameProjector(
+                scene_cache["scene_points"],
+                openyolo3d.world2cam,
+                projections_np,
+                scaling_params=getattr(openyolo3d, "scaling_params", None),
+            )
+            for obs in observations:
+                evidence = classify_observation_superpoint_support(
+                    scene_cache,
+                    obs,
+                    frame_projector,
+                    strong_support_min_coverage=superpoint_support_min_coverage,
+                    partial_support_min_coverage=superpoint_partial_min_coverage,
+                    min_valid_visible_points=superpoint_min_visible_points,
+                    strong_support_min_depth_consistency=superpoint_min_depth_consistency,
+                    strong_reject_min_depth_conflict=superpoint_reject_min_depth_conflict,
+                )
+                observation_superpoint_records.append(evidence)
+                observation_superpoint_by_id[int(evidence["graph_observation_id"])] = evidence
+            observation_superpoint_paths = save_observation_superpoint_evidence(
+                observation_superpoint_records,
+                scene_dir,
+            )
+            superpoint_scene_summary = {
+                "enabled": True,
+                **scene_cache["summary"],
+                **scene_cache_paths,
+                **{
+                    "observation_superpoint_summary_path": observation_superpoint_paths["observation_superpoint_summary_path"],
+                    "observation_superpoint_count": int(len(observation_superpoint_records)),
+                },
+            }
+    else:
+        scene_cache = None
 
     relation_edges, adjacency, conflict_edges, weak_edges = _build_mask_graph(
         observations,
@@ -3067,6 +3142,12 @@ def export_scene_mask_graph_proposals(
                 }
             )
             continue
+        if scene_cache is not None and observation_superpoint_by_id:
+            candidate["superpoint_diagnostics"] = summarize_candidate_superpoints(
+                scene_cache,
+                candidate,
+                observation_superpoint_by_id,
+            )
         candidates.append(candidate)
 
     if graph_candidate_competition and len(candidates) > 1:
@@ -3159,6 +3240,8 @@ def export_scene_mask_graph_proposals(
                 "existing_support_diagnostics": existing_support_diagnostics,
                 "cluster_skipped": cluster_skipped,
                 "prefilter_skipped": prefilter_skipped,
+                "superpoint_diagnostics": superpoint_scene_summary,
+                "observation_superpoint_items": observation_superpoint_paths["observation_superpoint_items"],
             },
             f,
             indent=2,
@@ -3185,6 +3268,7 @@ def export_scene_mask_graph_proposals(
                 "graph_unassigned_observations": int(hypothesis_partition_stats["unassigned_observation_count"]),
                 "hypothesis_partition_stats": hypothesis_partition_stats,
                 "existing_support_diagnostic_count": len(existing_support_diagnostics),
+                "superpoint_diagnostics": superpoint_scene_summary,
                 "mask_graph_trace_path": trace_path,
                 "hypothesis_skipped": hypothesis_skipped,
                 "existing_support_diagnostics": existing_support_diagnostics,
@@ -3283,6 +3367,13 @@ def export_scene_mask_graph_proposals(
                     "export_max_existing_iou": export_max_existing_iou,
                     "export_max_seed_in_existing_mask_ratio": export_max_seed_in_existing_mask_ratio,
                     "export_code_version": export_code_version,
+                    "superpoint_diagnostics": superpoint_diagnostics,
+                    "superpoint_adjacency_knn": superpoint_adjacency_knn,
+                    "superpoint_support_min_coverage": superpoint_support_min_coverage,
+                    "superpoint_partial_min_coverage": superpoint_partial_min_coverage,
+                    "superpoint_min_visible_points": superpoint_min_visible_points,
+                    "superpoint_min_depth_consistency": superpoint_min_depth_consistency,
+                    "superpoint_reject_min_depth_conflict": superpoint_reject_min_depth_conflict,
                 },
                 "graph_edge_preview": relation_edges[:200],
                 "candidates": output_candidates,
@@ -3304,6 +3395,8 @@ def export_scene_mask_graph_proposals(
         "graph_unassigned_observations": int(hypothesis_partition_stats["unassigned_observation_count"]),
         "existing_support_diagnostic_count": len(existing_support_diagnostics),
         "num_candidates": len(output_candidates),
+        "superpoint_diagnostics_enabled": bool(superpoint_scene_summary.get("enabled", False)),
+        "superpoint_count": int(superpoint_scene_summary.get("superpoint_count", 0) or 0),
     }
 
 
@@ -3369,6 +3462,7 @@ def export_dataset_mask_graph_proposals(
             predictor,
             current_scene,
             output_dir,
+            processed_scene_path=processed_file,
             **kwargs,
         )
         summaries.append({"scene_name": current_scene, "json_path": json_path, **summary})
@@ -3525,6 +3619,13 @@ def main():
     parser.add_argument("--export_max_existing_iou", default=None, type=float)
     parser.add_argument("--export_max_seed_in_existing_mask_ratio", default=None, type=float)
     parser.add_argument("--export_code_version", default="", type=str)
+    parser.add_argument("--superpoint_diagnostics", default=False, action=argparse.BooleanOptionalAction)
+    parser.add_argument("--superpoint_adjacency_knn", default=12, type=int)
+    parser.add_argument("--superpoint_support_min_coverage", default=0.60, type=float)
+    parser.add_argument("--superpoint_partial_min_coverage", default=0.30, type=float)
+    parser.add_argument("--superpoint_min_visible_points", default=20, type=int)
+    parser.add_argument("--superpoint_min_depth_consistency", default=0.70, type=float)
+    parser.add_argument("--superpoint_reject_min_depth_conflict", default=0.60, type=float)
     args = parser.parse_args()
 
     kwargs = vars(args).copy()

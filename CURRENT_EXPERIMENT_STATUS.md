@@ -10,6 +10,150 @@
 
 ### 本轮对话追加记录
 
+2026-06-23 超点前移诊断第一版：已开始把现有 `point_segments` 前移到证据图导出阶段，但目前只做“诊断输出”，还没有改最终评估结果。本轮已完成 3 个场景的小规模 `export_only` 导出诊断，没有运行 even48 全量、even96 或最终 AP。
+
+本次代码改动：
+
+- 新增 `utils/superpoint_diagnostics.py`
+  - 读取 ScanNet200/Mask3D 现有超点编号，建立场景级超点缓存。
+  - 输出每个超点的点数、中心、包围范围、平均颜色、平均法向、平面程度。
+  - 基于点邻接近邻统计超点邻接边，保存边界接触数量、平均距离、法向差、颜色差。
+  - 对每个二维观测输出超点级证据：
+    - 强支持
+    - 部分支持
+    - 强反对
+    - 仅触达
+  - 对每个证据图候选汇总：
+    - 核心超点
+    - 边界超点
+    - 冲突超点
+    - 未定超点
+- `tools/export_mask_graph_proposals.py`
+  - 新增 `processed_scene_path` 接口，直接复用现有 `point_segments`。
+  - 导出阶段新增可选 `--superpoint_diagnostics`。
+  - 每个场景现在会额外输出：
+    - `superpoint_cache/superpoint_cache.npz`
+    - `superpoint_cache/superpoint_cache_summary.json`
+    - `superpoint_observation_evidence/observation*_superpoints.json`
+    - `superpoint_observation_evidence/observation_superpoint_summary.json`
+  - 每个候选 JSON 现在会额外写入 `superpoint_diagnostics`。
+- `tools/run_scannet200_even48_mask_graph_eval.sh`
+  - 默认打开超点诊断导出。
+  - `MASK_GRAPH_EXPORT_CODE_VERSION` 更新为 `mask_graph_constrained_audit_fix_v3_superpoint_diag`。
+  - 新增超点诊断环境变量：
+    - `MASK_GRAPH_SUPERPOINT_DIAGNOSTICS`
+    - `MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN`
+    - `MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE`
+    - `MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE`
+    - `MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS`
+    - `MASK_GRAPH_SUPERPOINT_MIN_DEPTH_CONSISTENCY`
+    - `MASK_GRAPH_SUPERPOINT_REJECT_MIN_DEPTH_CONFLICT`
+
+本次 3 场景诊断运行：
+
+- 运行模式：`MODE=export_only`
+- 场景：
+  - `scene0011_00`
+  - `scene0025_02`
+  - `scene0046_02`
+- 临时输出目录：
+  - `/tmp/mask_graph_proposals_scannet200_even48_superpoint_diag_3`
+
+导出总结果：
+
+- 总观测数：`313`
+- 导出候选数：`23`
+- 图关系总数：`1406`
+- 支持边：`446`
+- 弱边：`526`
+- 冲突边：`434`
+- 图连通区域数：`125`
+
+场景级超点缓存摘要：
+
+- `scene0011_00`
+  - 超点数：`1611`
+  - 邻接边数：`4423`
+  - 超点点数中位数：`72`
+  - 点顺序与场景点云一致：`True`
+- `scene0025_02`
+  - 超点数：`1116`
+  - 邻接边数：`3218`
+  - 超点点数中位数：`76`
+  - 点顺序与场景点云一致：`True`
+- `scene0046_02`
+  - 超点数：`1270`
+  - 邻接边数：`3730`
+  - 超点点数中位数：`71`
+  - 点顺序与场景点云一致：`True`
+
+观测级超点证据摘要：
+
+- `scene0011_00`
+  - 平均每个观测：
+    - 强支持超点：`3.15`
+    - 部分支持超点：`9.75`
+    - 强反对超点：`9.97`
+    - 触达超点：`19.67`
+  - 含强反对超点的观测：`54 / 60`
+- `scene0025_02`
+  - 平均每个观测：
+    - 强支持超点：`3.17`
+    - 部分支持超点：`4.77`
+    - 强反对超点：`9.57`
+    - 触达超点：`14.63`
+  - 含强反对超点的观测：`90 / 115`
+- `scene0046_02`
+  - 平均每个观测：
+    - 强支持超点：`4.57`
+    - 部分支持超点：`5.29`
+    - 强反对超点：`7.51`
+    - 触达超点：`16.42`
+  - 含强反对超点的观测：`122 / 138`
+
+候选级超点摘要：
+
+- `scene0011_00`
+  - 候选数：`4`
+  - 平均每个候选：
+    - 核心超点：`4.00`
+    - 边界超点：`6.00`
+    - 冲突超点：`5.00`
+    - 未定超点：`12.00`
+- `scene0025_02`
+  - 候选数：`9`
+  - 平均每个候选：
+    - 核心超点：`2.44`
+    - 边界超点：`3.00`
+    - 冲突超点：`1.11`
+    - 未定超点：`2.78`
+- `scene0046_02`
+  - 候选数：`10`
+  - 平均每个候选：
+    - 核心超点：`2.90`
+    - 边界超点：`3.50`
+    - 冲突超点：`3.40`
+    - 未定超点：`1.60`
+
+本轮判断：
+
+- 现有 `point_segments` 可以直接复用，且点顺序正确，不需要先引入新模型。
+- 观测级“强反对超点”数量很高，说明二维掩码对三维边界外区域已经提供了很强负证据。
+- 候选级仍频繁出现：
+  - 边界超点多于核心超点；
+  - 冲突超点数量不小；
+  - 核心超点内部邻接边为零的候选仍然存在。
+- 这说明当前点级候选虽然可作为对照基线，但下一阶段确实应该把超点从“事后修整”前移到“实例范围构建”。
+
+下一步建议：
+
+1. 不直接跑最终 AP。
+2. 下一阶段先把超点诊断推进为真正的候选构建约束：
+   - 核心超点连通约束；
+   - 部分支持超点不能桥接两个核心区域；
+   - 冲突超点保持未分配。
+3. 先在少量场景上做第一版“超点核心候选”导出，再决定是否接入 Mask3D 补全判断。
+
 2026-06-23 配置口径修复记录：针对最新审计意见，已修正 even48 脚本默认配置与评估报告口径。仍没有运行 even48、even96 或最终 AP。
 
 本次修复要点：

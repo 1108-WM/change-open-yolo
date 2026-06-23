@@ -30,6 +30,16 @@ YOLO-World 二维检测
 
 最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先验证新版关系诊断和候选上界，再决定是否进入最终 AP。
 
+2026-06-23 超点前移诊断补充：已开始把现有 `point_segments` 前移到证据图导出阶段，但当前仍是“只诊断、不改最终结果”。新增 `utils/superpoint_diagnostics.py`，导出阶段现在可以为每个场景保存超点缓存、邻接统计、单观测超点证据和候选级核心/边界/冲突/未定超点摘要。3 个场景的小规模 `export_only` 诊断已完成，结果表明：
+
+- 现有 `point_segments` 可直接复用，且点顺序与场景点云一致。
+- 单观测平均只有约 `3~5` 个强支持超点，但常有 `7~10` 个强反对超点，负证据很强。
+- 候选级仍频繁出现“边界超点多于核心超点”或“冲突超点不小”的情况，说明点级候选的边界污染问题真实存在。
+- 当前最合理的下一步不是继续堆点级阈值，而是把超点真正接入实例范围构建：
+  - 核心超点必须连通；
+  - 部分支持超点不能桥接两个核心区域；
+  - 冲突超点保持未分配。
+
 2026-06-23 代码审计修复补充：针对提交 `e8c6578` 后的审计问题，已修复证据图假设构建中的提前淘汰和独立支持定义问题。当前种子筛选失败不再永久删除观测；独立强支持不再受共同 Mask3D 参照排斥；歧义节点会在当前连通区域内保持暂缓；同帧深度冲突优先于父子包含；可靠 Mask3D 解释默认要求分数 `0.30` 和种子覆盖 `0.50`，类别或分数信息缺失时不回退到普通覆盖。本轮只做源码和状态文档修复，没有运行 even48、even96 或最终 AP。
 
 2026-06-23 运行与划分修复补充：暂缓节点现在记录依赖的假设，若当前假设失败会释放仅由该失败假设造成的暂缓节点，避免永久阻塞。`tools/run_scannet200_even48_mask_graph_eval.sh` 默认改为 `EXPORT_REUSE_EXISTING=0`，默认新输出目录为 `output/mask_graph_proposals_scannet200_even48_constrained_audit_fix_v2`；显式开启复用时，会校验新增关系阈值、假设参数、可靠 Mask3D 分数/覆盖门槛和 `export_code_version`。
@@ -83,6 +93,7 @@ YOLO-World 二维检测
 4. 只比较三档参数：保守档、推荐档、诊断放宽档，不做大规模搜索。
 5. 如果推荐档在 even48 上改善候选质量和补全上界，再考虑最终 AP。
 6. 第一阶段仍不做自动修剪；安全补全只作为离线上界诊断。
+7. 下一轮优先把当前超点诊断升级为真正的超点级候选构建，而不是直接跑最终 AP。
 
 ## 已上传到 GitHub 的内容
 
@@ -187,6 +198,7 @@ bash tools/run_scannet200_even48_mask_graph_score_modes.sh
 - `tools/export_sam_fused_proposals.py`
 - `tools/export_mask_graph_proposals.py`
 - `tools/run_scannet200_even48_mask_graph_eval.sh`
+- `utils/superpoint_diagnostics.py`
 - `tools/analyze_backprojection_candidates.py`
 - `tools/train_candidate_geometry_discriminator.py`
 

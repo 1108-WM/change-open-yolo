@@ -28,7 +28,7 @@ GRAPH_POINT_VOTE_MIN_KEEP_RATIO="${GRAPH_POINT_VOTE_MIN_KEEP_RATIO:-0.35}"
 GRAPH_POINT_VOTE_MIN_KEEP_POINTS="${GRAPH_POINT_VOTE_MIN_KEEP_POINTS:-0}"
 GRAPH_POINT_VOTE_ALLOW_FALLBACK="${GRAPH_POINT_VOTE_ALLOW_FALLBACK:-0}"
 EXPORT_REUSE_EXISTING="${EXPORT_REUSE_EXISTING:-0}"
-MASK_GRAPH_EXPORT_CODE_VERSION="${MASK_GRAPH_EXPORT_CODE_VERSION:-mask_graph_constrained_audit_fix_v2}"
+MASK_GRAPH_EXPORT_CODE_VERSION="${MASK_GRAPH_EXPORT_CODE_VERSION:-mask_graph_constrained_audit_fix_v3_superpoint_diag}"
 SOURCE_LIMITS_GRAPH_BPR="${SOURCE_LIMITS_GRAPH_BPR:-mask_graph_multi_view=5,mask_graph_single_view=0,bpr=5}"
 SOURCE_LIMITS_GRAPH_ONLY="${SOURCE_LIMITS_GRAPH_ONLY:-mask_graph_multi_view=12,mask_graph_single_view=0}"
 SOURCE_LIMITS_GRAPH_REFILL="${SOURCE_LIMITS_GRAPH_REFILL:-sam_fused=12,bpr=3,mask_graph_multi_view=2,mask_graph_single_view=0}"
@@ -88,6 +88,13 @@ MASK_GRAPH_EVIDENCE_PRIORITY_WEIGHT="${MASK_GRAPH_EVIDENCE_PRIORITY_WEIGHT:-0.0}
 MASK_GRAPH_EVIDENCE_SAME_CLASS_ONLY="${MASK_GRAPH_EVIDENCE_SAME_CLASS_ONLY:-1}"
 MASK_GRAPH_SCORE_FACTOR_WEIGHT="${MASK_GRAPH_SCORE_FACTOR_WEIGHT:-1.0}"
 MASK_GRAPH_MAX_PROPOSAL_SCORE="${MASK_GRAPH_MAX_PROPOSAL_SCORE:-1.05}"
+MASK_GRAPH_SUPERPOINT_DIAGNOSTICS="${MASK_GRAPH_SUPERPOINT_DIAGNOSTICS:-1}"
+MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN="${MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN:-12}"
+MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE="${MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE:-0.60}"
+MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE="${MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE:-0.30}"
+MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS="${MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS:-20}"
+MASK_GRAPH_SUPERPOINT_MIN_DEPTH_CONSISTENCY="${MASK_GRAPH_SUPERPOINT_MIN_DEPTH_CONSISTENCY:-0.70}"
+MASK_GRAPH_SUPERPOINT_REJECT_MIN_DEPTH_CONFLICT="${MASK_GRAPH_SUPERPOINT_REJECT_MIN_DEPTH_CONFLICT:-0.60}"
 
 mkdir -p "$OUT_DIR/reports"
 cd "$ROOT_DIR"
@@ -500,6 +507,18 @@ export_mask_graph() {
   if [[ -n "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO" ]]; then
     export_existing_filter_args+=(--export_max_seed_in_existing_mask_ratio "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO")
   fi
+  local superpoint_diag_args=()
+  if [[ "$MASK_GRAPH_SUPERPOINT_DIAGNOSTICS" == "1" || "$MASK_GRAPH_SUPERPOINT_DIAGNOSTICS" == "true" ]]; then
+    superpoint_diag_args+=(
+      --superpoint_diagnostics
+      --superpoint_adjacency_knn "$MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN"
+      --superpoint_support_min_coverage "$MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE"
+      --superpoint_partial_min_coverage "$MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE"
+      --superpoint_min_visible_points "$MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS"
+      --superpoint_min_depth_consistency "$MASK_GRAPH_SUPERPOINT_MIN_DEPTH_CONSISTENCY"
+      --superpoint_reject_min_depth_conflict "$MASK_GRAPH_SUPERPOINT_REJECT_MIN_DEPTH_CONFLICT"
+    )
+  fi
   "$PYTHON" tools/export_mask_graph_proposals.py \
     --dataset_name scannet200 \
     --dataset_root "$DATASET_ROOT" \
@@ -533,6 +552,7 @@ export_mask_graph() {
     "$vote_fallback_flag" \
     "${export_graph_gate_args[@]}" \
     "${export_existing_filter_args[@]}" \
+    "${superpoint_diag_args[@]}" \
     >"$OUT_DIR/export_mask_graph.log" 2>&1
   summarize_export "$MASK_GRAPH_OUT/mask_graph_proposals_summary.json"
 }
