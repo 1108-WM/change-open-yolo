@@ -512,7 +512,6 @@ def _relation_from_pair(
     hard_conflict = bool(left_inside_conflict or right_inside_conflict or bidirectional_depth_conflict)
     independent_support = (
         pair_judgeable
-        and not reference_match
         and not hard_conflict
         and float(left_depth_stats.get("depth_consistent_ratio", 0.0)) >= float(independent_depth_consistency)
         and float(right_depth_stats.get("depth_consistent_ratio", 0.0)) >= float(independent_depth_consistency)
@@ -573,6 +572,7 @@ def _relation_from_pair(
         "visible_containment": float(visible_containment),
         "support_score": support_score,
         "reference_match": bool(reference_match),
+        "has_common_mask3d_reference": bool(reference_match),
         "reference_support": float(reference_support),
         "depth_support": float(pair_depth_support),
         "mask_support": float(pair_mask_support),
@@ -694,9 +694,28 @@ def _build_mask_graph(
                     "visibility_info": relation.get("visibility_info", {}),
                     "depth_pair_info": relation.get("depth_pair_info", {}),
                     "support_kind": relation.get("support_kind", "none"),
+                    "has_common_mask3d_reference": bool(relation.get("has_common_mask3d_reference", False)),
                     "pair_judgeable": bool(relation.get("pair_judgeable", False)),
                 }
-                if relation["containment_support"]:
+                if relation["hard_conflict"]:
+                    conflict_score = float(max(
+                        relation["depth_pair_info"]["left_to_right"].get("inside_depth_conflict_ratio", 0.0),
+                        relation["depth_pair_info"]["right_to_left"].get("inside_depth_conflict_ratio", 0.0),
+                    ))
+                    same_frame_conflict_counts[left_idx] += 1
+                    same_frame_conflict_counts[right_idx] += 1
+                    same_frame_relation_edges.append(
+                        {
+                            **edge_base,
+                            "relation_type": "same_frame_depth_conflict",
+                            "same_object_score": 0.0,
+                            "containment_score": 0.0,
+                            "conflict_score": conflict_score,
+                            "edge_score": conflict_score,
+                            "conflict_reason": relation.get("hard_conflict_reason", "depth_conflict"),
+                        }
+                    )
+                elif relation["containment_support"]:
                     parent = left_idx if relation["containment_parent"] == "left" else right_idx
                     child = right_idx if relation["containment_parent"] == "left" else left_idx
                     same_frame_containment_children[parent].add(child)
@@ -795,13 +814,14 @@ def _build_mask_graph(
                     "semantic_mismatch": bool(relation["class_mismatch"]),
                     "conflict_reason": relation.get("hard_conflict_reason", "depth_conflict"),
                     "support_kind": "none",
+                    "has_common_mask3d_reference": bool(relation.get("has_common_mask3d_reference", False)),
                     "pair_judgeable": bool(relation.get("pair_judgeable", False)),
                 }
                 conflict_edges.append(conflict_edge)
                 relation_edges.append(conflict_edge)
                 continue
 
-            if relation["class_mismatch"]:
+            if relation["class_mismatch"] and not relation["same_object_support"]:
                 if relation["reference_match"] or relation["support_score"] >= weak_threshold:
                     uncertain_edge = {
                         "left": int(left_idx),
@@ -824,6 +844,7 @@ def _build_mask_graph(
                         "same_class": False,
                         "semantic_mismatch": True,
                         "support_kind": "none",
+                        "has_common_mask3d_reference": bool(relation.get("has_common_mask3d_reference", False)),
                         "pair_judgeable": bool(relation.get("pair_judgeable", False)),
                     }
                     weak_edges.append(uncertain_edge)
@@ -858,7 +879,7 @@ def _build_mask_graph(
                     "seed_union": int(relation["visible_union"]),
                     "seed_iou": float(relation["visible_iou"]),
                     "seed_containment": float(relation["visible_containment"]),
-                    "class_compatible": True,
+                    "class_compatible": bool(not relation["class_mismatch"]),
                     "coarse_reference_overlap": float(relation["reference_support"]),
                     "coarse_reference_id": None,
                     "depth_consistency": float(relation["depth_support"]),
@@ -866,9 +887,11 @@ def _build_mask_graph(
                     "view_consensus_score": float(relation["view_consensus"]),
                     "visibility_info": visibility_info,
                     "depth_pair_info": relation.get("depth_pair_info", {}),
-                    "same_class": True,
+                    "same_class": bool(relation["same_class"]),
+                    "semantic_mismatch": bool(relation["class_mismatch"]),
                     "conflict_reason": "mutual_visibility_without_mask_agreement",
                     "support_kind": "none",
+                    "has_common_mask3d_reference": bool(relation.get("has_common_mask3d_reference", False)),
                     "pair_judgeable": bool(relation.get("pair_judgeable", False)),
                 }
                 conflict_edges.append(conflict_edge)
@@ -901,6 +924,7 @@ def _build_mask_graph(
                         "depth_pair_info": relation.get("depth_pair_info", {}),
                         "same_class": True,
                         "support_kind": "none",
+                        "has_common_mask3d_reference": bool(relation.get("has_common_mask3d_reference", False)),
                         "pair_judgeable": bool(relation.get("pair_judgeable", False)),
                     }
                     weak_edges.append(weak_edge)
@@ -921,7 +945,7 @@ def _build_mask_graph(
                 "seed_union": int(relation["visible_union"]),
                 "seed_iou": float(relation["visible_iou"]),
                 "seed_containment": float(relation["visible_containment"]),
-                "class_compatible": True,
+                "class_compatible": bool(not relation["class_mismatch"]),
                 "coarse_reference_overlap": float(relation["reference_support"]),
                 "coarse_reference_id": relation["left_reference_id"] if relation["reference_match"] else None,
                 "depth_consistency": float(relation["depth_support"]),
@@ -929,7 +953,10 @@ def _build_mask_graph(
                 "view_consensus_score": float(relation["view_consensus"]),
                 "visibility_info": relation.get("visibility_info", {}),
                 "depth_pair_info": relation.get("depth_pair_info", {}),
-                "same_class": True,
+                "same_class": bool(relation["same_class"]),
+                "semantic_mismatch": bool(relation["class_mismatch"]),
+                "class_pending": bool(relation["class_mismatch"] and relation_type == "same_object"),
+                "has_common_mask3d_reference": bool(relation.get("has_common_mask3d_reference", False)),
                 "support_kind": relation.get("support_kind", "none"),
                 "independent_support": bool(relation.get("independent_support", False)),
                 "reference_assisted_support": bool(relation.get("reference_assisted_support", False)),
@@ -1021,6 +1048,15 @@ def _build_constrained_instance_hypotheses(
     assigned = {}
     hypotheses = []
     skipped = []
+    blocked_nodes = set()
+    deferred_nodes_by_component = defaultdict(set)
+    non_seed_reasons = defaultdict(list)
+
+    def add_non_seed_reason(node, reason_info):
+        reasons = non_seed_reasons[int(node)]
+        reason = reason_info.get("reason")
+        if not any(item.get("reason") == reason for item in reasons):
+            reasons.append(reason_info)
 
     def node_sort_key(idx):
         return (
@@ -1155,10 +1191,17 @@ def _build_constrained_instance_hypotheses(
                         "reason": "singleton_without_cross_view_support",
                     }
                 )
+                blocked_nodes.add(node)
             continue
 
         while True:
-            remaining = [node for node in source_component if int(node) not in assigned]
+            remaining = [
+                int(node)
+                for node in source_component
+                if int(node) not in assigned
+                and int(node) not in blocked_nodes
+                and int(node) not in deferred_nodes_by_component[int(source_component_id)]
+            ]
             if not remaining:
                 break
             ranked_remaining = sorted([int(node) for node in remaining], key=node_sort_key)
@@ -1176,28 +1219,24 @@ def _build_constrained_instance_hypotheses(
                             "same_frame_conflict_count": int(observations[node].get("same_frame_conflict_count", 0)),
                         }
                     )
-                    assigned[node] = -1
+                    blocked_nodes.add(node)
                     continue
                 if node not in top_quality_nodes:
-                    skipped.append(
+                    add_non_seed_reason(
+                        node,
                         {
-                            "observation": node,
-                            "source_component_id": int(source_component_id),
                             "reason": "seed_quality_below_component_top_ratio",
                             "seed_quality_top_ratio": float(seed_quality_top_ratio),
-                        }
+                        },
                     )
-                    assigned[node] = -1
                     continue
                 if not has_independent_support(node, source_set):
-                    skipped.append(
+                    add_non_seed_reason(
+                        node,
                         {
-                            "observation": node,
-                            "source_component_id": int(source_component_id),
                             "reason": "seed_without_independent_support",
-                        }
+                        },
                     )
-                    assigned[node] = -1
                     continue
                 seed_candidates.append(node)
             if not seed_candidates:
@@ -1224,7 +1263,11 @@ def _build_constrained_instance_hypotheses(
                 for member in members:
                     for neighbor, _ in adjacency[member]:
                         neighbor = int(neighbor)
-                        if neighbor in source_set and neighbor not in assigned:
+                        if (
+                            neighbor in source_set
+                            and neighbor not in assigned
+                            and neighbor not in deferred_nodes_by_component[int(source_component_id)]
+                        ):
                             candidate_neighbors.add(neighbor)
                 for neighbor in sorted(candidate_neighbors, key=node_sort_key):
                     compatible_hypotheses = []
@@ -1238,6 +1281,7 @@ def _build_constrained_instance_hypotheses(
                         if existing_ok:
                             compatible_hypotheses.append(int(existing_hypothesis["graph_hypothesis_id"]))
                     if len(set(compatible_hypotheses)) > 1:
+                        deferred_nodes_by_component[int(source_component_id)].add(int(neighbor))
                         trace.append(
                             {
                                 "observation": int(neighbor),
@@ -1258,7 +1302,7 @@ def _build_constrained_instance_hypotheses(
             is_valid, validity = valid_hypothesis(members)
             if (len(members) <= 1 and int(min_support_edges) > 0) or not is_valid:
                 for member in members:
-                    assigned[int(member)] = -1
+                    assigned.pop(int(member), None)
                 skipped.append(
                     {
                         "observation": int(seed),
@@ -1268,6 +1312,7 @@ def _build_constrained_instance_hypotheses(
                         **validity,
                     }
                 )
+                blocked_nodes.add(int(seed))
                 continue
 
             hypotheses.append(
@@ -1284,11 +1329,16 @@ def _build_constrained_instance_hypotheses(
 
     for idx in range(len(observations)):
         if idx not in assigned:
+            if idx in blocked_nodes:
+                continue
             skipped.append(
                 {
                     "observation": int(idx),
                     "source_component_id": int(source_component_by_node.get(int(idx), -1)),
-                    "reason": "unassigned_after_hypothesis_building",
+                    "reason": "deferred_after_hypothesis_building" if idx in deferred_nodes_by_component.get(
+                        int(source_component_by_node.get(int(idx), -1)), set()
+                    ) else "unassigned_after_hypothesis_building",
+                    "non_seed_reasons": non_seed_reasons.get(int(idx), []),
                 }
             )
     return hypotheses, skipped
@@ -1301,11 +1351,15 @@ def _hypothesis_partition_stats(connected_components, hypotheses, hypothesis_ski
         if source_id is None:
             continue
         by_source[int(source_id)].append(hypothesis)
-    skipped_by_source = defaultdict(int)
+    skipped_by_source = defaultdict(set)
+    skipped_observations = set()
     for item in hypothesis_skipped:
         source_id = item.get("source_component_id")
-        if source_id is not None:
-            skipped_by_source[int(source_id)] += 1
+        if item.get("observation") is not None:
+            observation_id = int(item["observation"])
+            skipped_observations.add(observation_id)
+            if source_id is not None:
+                skipped_by_source[int(source_id)].add(observation_id)
 
     split_components = 0
     unchanged_components = 0
@@ -1324,7 +1378,7 @@ def _hypothesis_partition_stats(connected_components, hypotheses, hypothesis_ski
                 "source_component_id": int(component_id),
                 "source_component_size": int(len(component)),
                 "hypothesis_count": int(hypothesis_count),
-                "skipped_observation_count": int(skipped_by_source.get(int(component_id), 0)),
+                "skipped_observation_count": int(len(skipped_by_source.get(int(component_id), set()))),
             }
         )
     return {
@@ -1333,7 +1387,7 @@ def _hypothesis_partition_stats(connected_components, hypotheses, hypothesis_ski
         "split_source_component_count": int(split_components),
         "unchanged_source_component_count": int(unchanged_components),
         "dropped_source_component_count": int(dropped_components),
-        "unassigned_observation_count": int(len(hypothesis_skipped)),
+        "unassigned_observation_count": int(len(skipped_observations)),
         "components": component_rows,
     }
 
@@ -1469,10 +1523,15 @@ def _existing_seed_coverage_mask(
                 keep_masks[:] = False
             else:
                 keep_masks &= existing_classes == int(candidate_class_id)
-    if existing_scores is not None and float(min_existing_score) > 0.0:
-        existing_scores = np.asarray(existing_scores, dtype=np.float32)
-        if existing_scores.shape[0] == keep_masks.shape[0]:
-            keep_masks &= existing_scores >= float(min_existing_score)
+    if float(min_existing_score) > 0.0:
+        if existing_scores is None:
+            keep_masks[:] = False
+        else:
+            existing_scores = np.asarray(existing_scores, dtype=np.float32)
+            if existing_scores.shape[0] == keep_masks.shape[0]:
+                keep_masks &= existing_scores >= float(min_existing_score)
+            else:
+                keep_masks[:] = False
     if float(min_mask_seed_coverage) > 0.0 and seed_rows.shape[1] > 0:
         per_mask_seed_coverage = seed_rows.sum(axis=0) / max(1, len(seed_indices))
         keep_masks &= per_mask_seed_coverage >= float(min_mask_seed_coverage)
@@ -2658,8 +2717,8 @@ def export_scene_mask_graph_proposals(
     graph_gap_cc_max_points=50000,
     graph_gap_seed_policy="adaptive",
     graph_gap_reliable_existing_coverage=True,
-    graph_gap_min_existing_score=0.0,
-    graph_gap_min_mask_seed_coverage=0.05,
+    graph_gap_min_existing_score=0.30,
+    graph_gap_min_mask_seed_coverage=0.50,
     graph_candidate_competition=True,
     graph_competition_same_class_iou=0.60,
     graph_competition_cross_class_iou=0.35,
@@ -2739,7 +2798,7 @@ def export_scene_mask_graph_proposals(
         existing_classes = None
     if existing_scores is not None and existing_scores.shape[0] != existing_masks.shape[1]:
         existing_scores = None
-    effective_reliable_existing_coverage = bool(graph_gap_reliable_existing_coverage and existing_classes is not None)
+    effective_reliable_existing_coverage = bool(graph_gap_reliable_existing_coverage)
     projections_np = _to_numpy(openyolo3d.mesh_projections[0]).astype(np.int64)
     visible_np = _to_numpy(openyolo3d.mesh_projections[1]).astype(bool)
     depth_relation_cache = _DepthRelationCache(
@@ -3366,8 +3425,8 @@ def main():
     parser.add_argument("--graph_gap_cc_max_points", default=50000, type=int)
     parser.add_argument("--graph_gap_seed_policy", default="adaptive", choices=["adaptive", "full_core", "uncovered_core"])
     parser.add_argument("--graph_gap_reliable_existing_coverage", default=True, action=argparse.BooleanOptionalAction)
-    parser.add_argument("--graph_gap_min_existing_score", default=0.0, type=float)
-    parser.add_argument("--graph_gap_min_mask_seed_coverage", default=0.05, type=float)
+    parser.add_argument("--graph_gap_min_existing_score", default=0.30, type=float)
+    parser.add_argument("--graph_gap_min_mask_seed_coverage", default=0.50, type=float)
     parser.add_argument("--graph_candidate_competition", default=True, action=argparse.BooleanOptionalAction)
     parser.add_argument("--graph_competition_same_class_iou", default=0.60, type=float)
     parser.add_argument("--graph_competition_cross_class_iou", default=0.35, type=float)
