@@ -90,11 +90,17 @@ MASK_GRAPH_SCORE_FACTOR_WEIGHT="${MASK_GRAPH_SCORE_FACTOR_WEIGHT:-1.0}"
 MASK_GRAPH_MAX_PROPOSAL_SCORE="${MASK_GRAPH_MAX_PROPOSAL_SCORE:-1.05}"
 MASK_GRAPH_SUPERPOINT_DIAGNOSTICS="${MASK_GRAPH_SUPERPOINT_DIAGNOSTICS:-1}"
 MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN="${MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN:-12}"
+MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE="${MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE:-0.08}"
 MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE="${MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE:-0.60}"
 MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE="${MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE:-0.30}"
 MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS="${MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS:-20}"
 MASK_GRAPH_SUPERPOINT_MIN_DEPTH_CONSISTENCY="${MASK_GRAPH_SUPERPOINT_MIN_DEPTH_CONSISTENCY:-0.70}"
 MASK_GRAPH_SUPERPOINT_REJECT_MIN_DEPTH_CONFLICT="${MASK_GRAPH_SUPERPOINT_REJECT_MIN_DEPTH_CONFLICT:-0.60}"
+MASK_GRAPH_SUPERPOINT_REJECT_MIN_INSIDE_POINTS="${MASK_GRAPH_SUPERPOINT_REJECT_MIN_INSIDE_POINTS:-20}"
+MASK_GRAPH_SUPERPOINT_REJECT_MIN_CONFLICT_POINTS="${MASK_GRAPH_SUPERPOINT_REJECT_MIN_CONFLICT_POINTS:-20}"
+MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_VISIBLE_POINTS="${MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_VISIBLE_POINTS:-20}"
+MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MAX_INSIDE_RATIO="${MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MAX_INSIDE_RATIO:-0.10}"
+MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO="${MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO:-0.90}"
 
 mkdir -p "$OUT_DIR/reports"
 cd "$ROOT_DIR"
@@ -216,7 +222,20 @@ can_reuse_export() {
     "$MASK_GRAPH_HARD_CONFLICT_INSIDE_POINTS" \
     "$MASK_GRAPH_HARD_CONFLICT_BIDIRECTIONAL_RATIO" \
     "$MASK_GRAPH_HARD_CONFLICT_SINGLE_RATIO" \
-    "$MASK_GRAPH_EXPORT_CODE_VERSION" <<'PY'
+    "$MASK_GRAPH_EXPORT_CODE_VERSION" \
+    "$MASK_GRAPH_SUPERPOINT_DIAGNOSTICS" \
+    "$MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN" \
+    "$MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE" \
+    "$MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE" \
+    "$MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE" \
+    "$MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS" \
+    "$MASK_GRAPH_SUPERPOINT_MIN_DEPTH_CONSISTENCY" \
+    "$MASK_GRAPH_SUPERPOINT_REJECT_MIN_DEPTH_CONFLICT" \
+    "$MASK_GRAPH_SUPERPOINT_REJECT_MIN_INSIDE_POINTS" \
+    "$MASK_GRAPH_SUPERPOINT_REJECT_MIN_CONFLICT_POINTS" \
+    "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_VISIBLE_POINTS" \
+    "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MAX_INSIDE_RATIO" \
+    "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO" <<'PY'
 import json
 import math
 import os
@@ -277,6 +296,19 @@ expected_hard_conflict_inside_points = int(sys.argv[52])
 expected_hard_conflict_bidirectional_ratio = float(sys.argv[53])
 expected_hard_conflict_single_ratio = float(sys.argv[54])
 expected_export_code_version = sys.argv[55]
+expected_superpoint_diagnostics = str(sys.argv[56]).lower() in {"1", "true", "yes"}
+expected_superpoint_adjacency_knn = int(sys.argv[57])
+expected_superpoint_adjacency_max_distance = float(sys.argv[58])
+expected_superpoint_support_min_coverage = float(sys.argv[59])
+expected_superpoint_partial_min_coverage = float(sys.argv[60])
+expected_superpoint_min_visible_points = int(sys.argv[61])
+expected_superpoint_min_depth_consistency = float(sys.argv[62])
+expected_superpoint_reject_min_depth_conflict = float(sys.argv[63])
+expected_superpoint_reject_min_inside_points = int(sys.argv[64])
+expected_superpoint_reject_min_conflict_points = int(sys.argv[65])
+expected_superpoint_outside_reject_min_visible_points = int(sys.argv[66])
+expected_superpoint_outside_reject_max_inside_ratio = float(sys.argv[67])
+expected_superpoint_outside_reject_min_outside_ratio = float(sys.argv[68])
 
 with open(summary_path) as f:
     data = json.load(f)
@@ -334,6 +366,19 @@ checks = {
     "graph_hard_conflict_bidirectional_ratio": expected_hard_conflict_bidirectional_ratio,
     "graph_hard_conflict_single_ratio": expected_hard_conflict_single_ratio,
     "export_code_version": expected_export_code_version,
+    "superpoint_diagnostics": expected_superpoint_diagnostics,
+    "superpoint_adjacency_knn": expected_superpoint_adjacency_knn,
+    "superpoint_adjacency_max_distance": expected_superpoint_adjacency_max_distance,
+    "superpoint_support_min_coverage": expected_superpoint_support_min_coverage,
+    "superpoint_partial_min_coverage": expected_superpoint_partial_min_coverage,
+    "superpoint_min_visible_points": expected_superpoint_min_visible_points,
+    "superpoint_min_depth_consistency": expected_superpoint_min_depth_consistency,
+    "superpoint_reject_min_depth_conflict": expected_superpoint_reject_min_depth_conflict,
+    "superpoint_reject_min_inside_points": expected_superpoint_reject_min_inside_points,
+    "superpoint_reject_min_conflict_points": expected_superpoint_reject_min_conflict_points,
+    "superpoint_outside_reject_min_visible_points": expected_superpoint_outside_reject_min_visible_points,
+    "superpoint_outside_reject_max_inside_ratio": expected_superpoint_outside_reject_max_inside_ratio,
+    "superpoint_outside_reject_min_outside_ratio": expected_superpoint_outside_reject_min_outside_ratio,
 }
 for key, expected in checks.items():
     if key not in params:
@@ -408,6 +453,8 @@ for scene in data.get("scenes", []):
             )
             if key not in candidate
         ]
+        if expected_superpoint_diagnostics and "superpoint_diagnostics" not in candidate:
+            missing.append("superpoint_diagnostics")
         if missing:
             print(f"[EXPORT] Existing candidate is missing {','.join(missing)}; re-exporting.")
             sys.exit(1)
@@ -512,11 +559,17 @@ export_mask_graph() {
     superpoint_diag_args+=(
       --superpoint_diagnostics
       --superpoint_adjacency_knn "$MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN"
+      --superpoint_adjacency_max_distance "$MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE"
       --superpoint_support_min_coverage "$MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE"
       --superpoint_partial_min_coverage "$MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE"
       --superpoint_min_visible_points "$MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS"
       --superpoint_min_depth_consistency "$MASK_GRAPH_SUPERPOINT_MIN_DEPTH_CONSISTENCY"
       --superpoint_reject_min_depth_conflict "$MASK_GRAPH_SUPERPOINT_REJECT_MIN_DEPTH_CONFLICT"
+      --superpoint_reject_min_inside_points "$MASK_GRAPH_SUPERPOINT_REJECT_MIN_INSIDE_POINTS"
+      --superpoint_reject_min_conflict_points "$MASK_GRAPH_SUPERPOINT_REJECT_MIN_CONFLICT_POINTS"
+      --superpoint_outside_reject_min_visible_points "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_VISIBLE_POINTS"
+      --superpoint_outside_reject_max_inside_ratio "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MAX_INSIDE_RATIO"
+      --superpoint_outside_reject_min_outside_ratio "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO"
     )
   fi
   "$PYTHON" tools/export_mask_graph_proposals.py \

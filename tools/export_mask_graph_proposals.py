@@ -51,10 +51,9 @@ from export_sam_fused_proposals import (
 from utils import OpenYolo3D
 from utils.superpoint_diagnostics import (
     _FrameProjector,
-    build_scene_superpoint_cache,
     classify_observation_superpoint_support,
+    load_or_build_scene_superpoint_cache,
     save_observation_superpoint_evidence,
-    save_scene_superpoint_cache,
     summarize_candidate_superpoints,
 )
 
@@ -2826,11 +2825,17 @@ def export_scene_mask_graph_proposals(
     export_code_version="",
     superpoint_diagnostics=False,
     superpoint_adjacency_knn=12,
+    superpoint_adjacency_max_distance=0.08,
     superpoint_support_min_coverage=0.60,
     superpoint_partial_min_coverage=0.30,
     superpoint_min_visible_points=20,
     superpoint_min_depth_consistency=0.70,
     superpoint_reject_min_depth_conflict=0.60,
+    superpoint_reject_min_inside_points=20,
+    superpoint_reject_min_conflict_points=20,
+    superpoint_outside_reject_min_visible_points=20,
+    superpoint_outside_reject_max_inside_ratio=0.10,
+    superpoint_outside_reject_min_outside_ratio=0.90,
 ):
     scene_dir = osp.join(output_dir, scene_name)
     seed_dir = osp.join(scene_dir, "seed_points")
@@ -2907,44 +2912,61 @@ def export_scene_mask_graph_proposals(
                 "processed_scene_path": processed_scene_path,
             }
         else:
-            scene_cache = build_scene_superpoint_cache(
+            scene_cache = load_or_build_scene_superpoint_cache(
+                scene_dir,
                 processed_scene_path,
                 points_xyz=points_xyz,
                 adjacency_knn=superpoint_adjacency_knn,
+                adjacency_max_distance=superpoint_adjacency_max_distance,
             )
-            scene_cache_paths = save_scene_superpoint_cache(scene_cache, scene_dir)
-            frame_projector = _FrameProjector(
-                scene_cache["scene_points"],
-                openyolo3d.world2cam,
-                projections_np,
-                scaling_params=getattr(openyolo3d, "scaling_params", None),
-            )
-            for obs in observations:
-                evidence = classify_observation_superpoint_support(
-                    scene_cache,
-                    obs,
-                    frame_projector,
-                    strong_support_min_coverage=superpoint_support_min_coverage,
-                    partial_support_min_coverage=superpoint_partial_min_coverage,
-                    min_valid_visible_points=superpoint_min_visible_points,
-                    strong_support_min_depth_consistency=superpoint_min_depth_consistency,
-                    strong_reject_min_depth_conflict=superpoint_reject_min_depth_conflict,
+            if not bool(scene_cache["summary"].get("point_order_matches_scene_points", False)):
+                superpoint_scene_summary = {
+                    "enabled": False,
+                    "reason": "point_order_mismatch",
+                    **scene_cache["summary"],
+                    "cache_npz_path": scene_cache.get("cache_npz_path"),
+                    "cache_summary_path": scene_cache.get("cache_summary_path"),
+                }
+                scene_cache = None
+            else:
+                frame_projector = _FrameProjector(
+                    scene_cache["scene_points"],
+                    openyolo3d.world2cam,
+                    projections_np,
+                    scaling_params=getattr(openyolo3d, "scaling_params", None),
                 )
-                observation_superpoint_records.append(evidence)
-                observation_superpoint_by_id[int(evidence["graph_observation_id"])] = evidence
-            observation_superpoint_paths = save_observation_superpoint_evidence(
-                observation_superpoint_records,
-                scene_dir,
-            )
-            superpoint_scene_summary = {
-                "enabled": True,
-                **scene_cache["summary"],
-                **scene_cache_paths,
-                **{
-                    "observation_superpoint_summary_path": observation_superpoint_paths["observation_superpoint_summary_path"],
-                    "observation_superpoint_count": int(len(observation_superpoint_records)),
-                },
-            }
+                for obs in observations:
+                    evidence = classify_observation_superpoint_support(
+                        scene_cache,
+                        obs,
+                        frame_projector,
+                        strong_support_min_coverage=superpoint_support_min_coverage,
+                        partial_support_min_coverage=superpoint_partial_min_coverage,
+                        min_valid_visible_points=superpoint_min_visible_points,
+                        strong_support_min_depth_consistency=superpoint_min_depth_consistency,
+                        strong_reject_min_depth_conflict=superpoint_reject_min_depth_conflict,
+                        strong_reject_min_inside_points=superpoint_reject_min_inside_points,
+                        strong_reject_min_conflict_points=superpoint_reject_min_conflict_points,
+                        outside_reject_min_visible_points=superpoint_outside_reject_min_visible_points,
+                        outside_reject_max_inside_ratio=superpoint_outside_reject_max_inside_ratio,
+                        outside_reject_min_outside_ratio=superpoint_outside_reject_min_outside_ratio,
+                    )
+                    observation_superpoint_records.append(evidence)
+                    observation_superpoint_by_id[int(evidence["graph_observation_id"])] = evidence
+                observation_superpoint_paths = save_observation_superpoint_evidence(
+                    observation_superpoint_records,
+                    scene_dir,
+                )
+                superpoint_scene_summary = {
+                    "enabled": True,
+                    **scene_cache["summary"],
+                    "cache_npz_path": scene_cache.get("cache_npz_path"),
+                    "cache_summary_path": scene_cache.get("cache_summary_path"),
+                    **{
+                        "observation_superpoint_summary_path": observation_superpoint_paths["observation_superpoint_summary_path"],
+                        "observation_superpoint_count": int(len(observation_superpoint_records)),
+                    },
+                }
     else:
         scene_cache = None
 
@@ -3369,11 +3391,17 @@ def export_scene_mask_graph_proposals(
                     "export_code_version": export_code_version,
                     "superpoint_diagnostics": superpoint_diagnostics,
                     "superpoint_adjacency_knn": superpoint_adjacency_knn,
+                    "superpoint_adjacency_max_distance": superpoint_adjacency_max_distance,
                     "superpoint_support_min_coverage": superpoint_support_min_coverage,
                     "superpoint_partial_min_coverage": superpoint_partial_min_coverage,
                     "superpoint_min_visible_points": superpoint_min_visible_points,
                     "superpoint_min_depth_consistency": superpoint_min_depth_consistency,
                     "superpoint_reject_min_depth_conflict": superpoint_reject_min_depth_conflict,
+                    "superpoint_reject_min_inside_points": superpoint_reject_min_inside_points,
+                    "superpoint_reject_min_conflict_points": superpoint_reject_min_conflict_points,
+                    "superpoint_outside_reject_min_visible_points": superpoint_outside_reject_min_visible_points,
+                    "superpoint_outside_reject_max_inside_ratio": superpoint_outside_reject_max_inside_ratio,
+                    "superpoint_outside_reject_min_outside_ratio": superpoint_outside_reject_min_outside_ratio,
                 },
                 "graph_edge_preview": relation_edges[:200],
                 "candidates": output_candidates,
@@ -3621,11 +3649,17 @@ def main():
     parser.add_argument("--export_code_version", default="", type=str)
     parser.add_argument("--superpoint_diagnostics", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--superpoint_adjacency_knn", default=12, type=int)
+    parser.add_argument("--superpoint_adjacency_max_distance", default=0.08, type=float)
     parser.add_argument("--superpoint_support_min_coverage", default=0.60, type=float)
     parser.add_argument("--superpoint_partial_min_coverage", default=0.30, type=float)
     parser.add_argument("--superpoint_min_visible_points", default=20, type=int)
     parser.add_argument("--superpoint_min_depth_consistency", default=0.70, type=float)
     parser.add_argument("--superpoint_reject_min_depth_conflict", default=0.60, type=float)
+    parser.add_argument("--superpoint_reject_min_inside_points", default=20, type=int)
+    parser.add_argument("--superpoint_reject_min_conflict_points", default=20, type=int)
+    parser.add_argument("--superpoint_outside_reject_min_visible_points", default=20, type=int)
+    parser.add_argument("--superpoint_outside_reject_max_inside_ratio", default=0.10, type=float)
+    parser.add_argument("--superpoint_outside_reject_min_outside_ratio", default=0.90, type=float)
     args = parser.parse_args()
 
     kwargs = vars(args).copy()
