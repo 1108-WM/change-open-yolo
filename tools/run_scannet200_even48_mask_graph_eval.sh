@@ -8,7 +8,7 @@ DATASET_ROOT="${DATASET_ROOT:-./data/scannet200}"
 OUT_DIR="${OUT_DIR:-$ROOT_DIR/output/scannet200/subset_sweeps/even48_mask_graph}"
 SAM_FUSED_IN="${SAM_FUSED_IN:-./output/sam_fused_proposals_scannet200_s5_m30_prefilter}"
 BPR_IN="${BPR_IN:-./output/backprojection_candidates_scannet200_mv_m20}"
-MASK_GRAPH_OUT="${MASK_GRAPH_OUT:-$ROOT_DIR/output/mask_graph_proposals_scannet200_even48_current_s5_m30}"
+MASK_GRAPH_OUT="${MASK_GRAPH_OUT:-$ROOT_DIR/output/mask_graph_proposals_scannet200_even48_constrained_audit_fix_v2}"
 PATH_TO_2D_PREDS="${PATH_TO_2D_PREDS:-./output/scannet200/bboxes_2d}"
 MODE="${MODE:-graph_bpr}"
 EVAL_SCORE_MODE="${EVAL_SCORE_MODE:-uniform}"
@@ -27,7 +27,8 @@ GRAPH_POINT_VOTE_MIN_SUPPORT="${GRAPH_POINT_VOTE_MIN_SUPPORT:-1}"
 GRAPH_POINT_VOTE_MIN_KEEP_RATIO="${GRAPH_POINT_VOTE_MIN_KEEP_RATIO:-0.35}"
 GRAPH_POINT_VOTE_MIN_KEEP_POINTS="${GRAPH_POINT_VOTE_MIN_KEEP_POINTS:-0}"
 GRAPH_POINT_VOTE_ALLOW_FALLBACK="${GRAPH_POINT_VOTE_ALLOW_FALLBACK:-0}"
-EXPORT_REUSE_EXISTING="${EXPORT_REUSE_EXISTING:-1}"
+EXPORT_REUSE_EXISTING="${EXPORT_REUSE_EXISTING:-0}"
+MASK_GRAPH_EXPORT_CODE_VERSION="${MASK_GRAPH_EXPORT_CODE_VERSION:-mask_graph_constrained_audit_fix_v2}"
 SOURCE_LIMITS_GRAPH_BPR="${SOURCE_LIMITS_GRAPH_BPR:-mask_graph_multi_view=5,mask_graph_single_view=0,bpr=5}"
 SOURCE_LIMITS_GRAPH_ONLY="${SOURCE_LIMITS_GRAPH_ONLY:-mask_graph_multi_view=12,mask_graph_single_view=0}"
 SOURCE_LIMITS_GRAPH_REFILL="${SOURCE_LIMITS_GRAPH_REFILL:-sam_fused=12,bpr=3,mask_graph_multi_view=2,mask_graph_single_view=0}"
@@ -46,13 +47,36 @@ MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO="${MASK_GRAPH_GAP_MIN_LARGEST_COMPONE
 MASK_GRAPH_GAP_CC_RADIUS="${MASK_GRAPH_GAP_CC_RADIUS:-0.03}"
 MASK_GRAPH_GAP_CC_MAX_POINTS="${MASK_GRAPH_GAP_CC_MAX_POINTS:-50000}"
 MASK_GRAPH_GAP_SEED_POLICY="${MASK_GRAPH_GAP_SEED_POLICY:-full_core}"
+MASK_GRAPH_GAP_RELIABLE_EXISTING_COVERAGE="${MASK_GRAPH_GAP_RELIABLE_EXISTING_COVERAGE:-1}"
+MASK_GRAPH_GAP_MIN_EXISTING_SCORE="${MASK_GRAPH_GAP_MIN_EXISTING_SCORE:-0.30}"
+MASK_GRAPH_GAP_MIN_MASK_SEED_COVERAGE="${MASK_GRAPH_GAP_MIN_MASK_SEED_COVERAGE:-0.50}"
 MASK_GRAPH_CANDIDATE_COMPETITION="${MASK_GRAPH_CANDIDATE_COMPETITION:-1}"
 MASK_GRAPH_COMPETITION_SAME_CLASS_IOU="${MASK_GRAPH_COMPETITION_SAME_CLASS_IOU:-0.60}"
 MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU="${MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU:-0.35}"
 MASK_GRAPH_COMPETITION_CONTAINMENT="${MASK_GRAPH_COMPETITION_CONTAINMENT:-0.80}"
 MASK_GRAPH_HYPOTHESIS_MODE="${MASK_GRAPH_HYPOTHESIS_MODE:-constrained}"
 MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_EDGES="${MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_EDGES:-1}"
+MASK_GRAPH_HYPOTHESIS_MIN_JOIN_SUPPORT_EDGES="${MASK_GRAPH_HYPOTHESIS_MIN_JOIN_SUPPORT_EDGES:-2}"
+MASK_GRAPH_HYPOTHESIS_HIGH_SCORE_INDEPENDENT_SUPPORT="${MASK_GRAPH_HYPOTHESIS_HIGH_SCORE_INDEPENDENT_SUPPORT:-0.75}"
+MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_MEMBER_RATIO="${MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_MEMBER_RATIO:-0.30}"
+MASK_GRAPH_HYPOTHESIS_SEED_QUALITY_TOP_RATIO="${MASK_GRAPH_HYPOTHESIS_SEED_QUALITY_TOP_RATIO:-0.30}"
 MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE="${MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE:-0}"
+MASK_GRAPH_RELATION_MIN_VALID_POINTS="${MASK_GRAPH_RELATION_MIN_VALID_POINTS:-30}"
+MASK_GRAPH_RELATION_MIN_VALID_RATIO="${MASK_GRAPH_RELATION_MIN_VALID_RATIO:-0.15}"
+MASK_GRAPH_RELATION_MIN_VALID_FLOOR="${MASK_GRAPH_RELATION_MIN_VALID_FLOOR:-20}"
+MASK_GRAPH_INDEPENDENT_DEPTH_CONSISTENCY="${MASK_GRAPH_INDEPENDENT_DEPTH_CONSISTENCY:-0.75}"
+MASK_GRAPH_INDEPENDENT_INSIDE_DEPTH_CONSISTENCY="${MASK_GRAPH_INDEPENDENT_INSIDE_DEPTH_CONSISTENCY:-0.60}"
+MASK_GRAPH_INDEPENDENT_VISIBLE_IOU="${MASK_GRAPH_INDEPENDENT_VISIBLE_IOU:-0.08}"
+MASK_GRAPH_INDEPENDENT_VISIBLE_CONTAINMENT="${MASK_GRAPH_INDEPENDENT_VISIBLE_CONTAINMENT:-0.45}"
+MASK_GRAPH_INDEPENDENT_SUPPORT_SCORE="${MASK_GRAPH_INDEPENDENT_SUPPORT_SCORE:-0.65}"
+MASK_GRAPH_REFERENCE_MIN_SEED_COVERAGE="${MASK_GRAPH_REFERENCE_MIN_SEED_COVERAGE:-0.50}"
+MASK_GRAPH_REFERENCE_DEPTH_CONSISTENCY="${MASK_GRAPH_REFERENCE_DEPTH_CONSISTENCY:-0.70}"
+MASK_GRAPH_REFERENCE_INSIDE_DEPTH_CONSISTENCY="${MASK_GRAPH_REFERENCE_INSIDE_DEPTH_CONSISTENCY:-0.50}"
+MASK_GRAPH_REFERENCE_VISIBLE_IOU="${MASK_GRAPH_REFERENCE_VISIBLE_IOU:-0.03}"
+MASK_GRAPH_REFERENCE_VISIBLE_CONTAINMENT="${MASK_GRAPH_REFERENCE_VISIBLE_CONTAINMENT:-0.30}"
+MASK_GRAPH_HARD_CONFLICT_INSIDE_POINTS="${MASK_GRAPH_HARD_CONFLICT_INSIDE_POINTS:-30}"
+MASK_GRAPH_HARD_CONFLICT_BIDIRECTIONAL_RATIO="${MASK_GRAPH_HARD_CONFLICT_BIDIRECTIONAL_RATIO:-0.40}"
+MASK_GRAPH_HARD_CONFLICT_SINGLE_RATIO="${MASK_GRAPH_HARD_CONFLICT_SINGLE_RATIO:-0.60}"
 MASK_GRAPH_EXPORT_MAX_EXISTING_IOU="${MASK_GRAPH_EXPORT_MAX_EXISTING_IOU:-0.30}"
 MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO="${MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO:-0.30}"
 MASK_GRAPH_EVIDENCE_RESCORE="${MASK_GRAPH_EVIDENCE_RESCORE:-0}"
@@ -157,9 +181,33 @@ can_reuse_export() {
     "$MASK_GRAPH_COMPETITION_CONTAINMENT" \
     "$MASK_GRAPH_HYPOTHESIS_MODE" \
     "$MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_EDGES" \
+    "$MASK_GRAPH_HYPOTHESIS_MIN_JOIN_SUPPORT_EDGES" \
+    "$MASK_GRAPH_HYPOTHESIS_HIGH_SCORE_INDEPENDENT_SUPPORT" \
+    "$MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_MEMBER_RATIO" \
+    "$MASK_GRAPH_HYPOTHESIS_SEED_QUALITY_TOP_RATIO" \
     "$MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE" \
     "$MASK_GRAPH_EXPORT_MAX_EXISTING_IOU" \
-    "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO" <<'PY'
+    "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO" \
+    "$MASK_GRAPH_GAP_RELIABLE_EXISTING_COVERAGE" \
+    "$MASK_GRAPH_GAP_MIN_EXISTING_SCORE" \
+    "$MASK_GRAPH_GAP_MIN_MASK_SEED_COVERAGE" \
+    "$MASK_GRAPH_RELATION_MIN_VALID_POINTS" \
+    "$MASK_GRAPH_RELATION_MIN_VALID_RATIO" \
+    "$MASK_GRAPH_RELATION_MIN_VALID_FLOOR" \
+    "$MASK_GRAPH_INDEPENDENT_DEPTH_CONSISTENCY" \
+    "$MASK_GRAPH_INDEPENDENT_INSIDE_DEPTH_CONSISTENCY" \
+    "$MASK_GRAPH_INDEPENDENT_VISIBLE_IOU" \
+    "$MASK_GRAPH_INDEPENDENT_VISIBLE_CONTAINMENT" \
+    "$MASK_GRAPH_INDEPENDENT_SUPPORT_SCORE" \
+    "$MASK_GRAPH_REFERENCE_MIN_SEED_COVERAGE" \
+    "$MASK_GRAPH_REFERENCE_DEPTH_CONSISTENCY" \
+    "$MASK_GRAPH_REFERENCE_INSIDE_DEPTH_CONSISTENCY" \
+    "$MASK_GRAPH_REFERENCE_VISIBLE_IOU" \
+    "$MASK_GRAPH_REFERENCE_VISIBLE_CONTAINMENT" \
+    "$MASK_GRAPH_HARD_CONFLICT_INSIDE_POINTS" \
+    "$MASK_GRAPH_HARD_CONFLICT_BIDIRECTIONAL_RATIO" \
+    "$MASK_GRAPH_HARD_CONFLICT_SINGLE_RATIO" \
+    "$MASK_GRAPH_EXPORT_CODE_VERSION" <<'PY'
 import json
 import math
 import os
@@ -193,9 +241,33 @@ expected_competition_cross_class_iou = float(sys.argv[25])
 expected_competition_containment = float(sys.argv[26])
 expected_hypothesis_mode = sys.argv[27]
 expected_hypothesis_min_support_edges = int(sys.argv[28])
-expected_hypothesis_allow_undersegmentation_bridge = str(sys.argv[29]).lower() in {"1", "true", "yes"}
-expected_export_max_existing_iou = float(sys.argv[30])
-expected_export_max_seed_in_existing_mask_ratio = float(sys.argv[31])
+expected_hypothesis_min_join_support_edges = int(sys.argv[29])
+expected_hypothesis_high_score_independent_support = float(sys.argv[30])
+expected_hypothesis_min_support_member_ratio = float(sys.argv[31])
+expected_hypothesis_seed_quality_top_ratio = float(sys.argv[32])
+expected_hypothesis_allow_undersegmentation_bridge = str(sys.argv[33]).lower() in {"1", "true", "yes"}
+expected_export_max_existing_iou = float(sys.argv[34])
+expected_export_max_seed_in_existing_mask_ratio = float(sys.argv[35])
+expected_gap_reliable_existing_coverage = str(sys.argv[36]).lower() in {"1", "true", "yes"}
+expected_gap_min_existing_score = float(sys.argv[37])
+expected_gap_min_mask_seed_coverage = float(sys.argv[38])
+expected_relation_min_valid_points = int(sys.argv[39])
+expected_relation_min_valid_ratio = float(sys.argv[40])
+expected_relation_min_valid_floor = int(sys.argv[41])
+expected_independent_depth_consistency = float(sys.argv[42])
+expected_independent_inside_depth_consistency = float(sys.argv[43])
+expected_independent_visible_iou = float(sys.argv[44])
+expected_independent_visible_containment = float(sys.argv[45])
+expected_independent_support_score = float(sys.argv[46])
+expected_reference_min_seed_coverage = float(sys.argv[47])
+expected_reference_depth_consistency = float(sys.argv[48])
+expected_reference_inside_depth_consistency = float(sys.argv[49])
+expected_reference_visible_iou = float(sys.argv[50])
+expected_reference_visible_containment = float(sys.argv[51])
+expected_hard_conflict_inside_points = int(sys.argv[52])
+expected_hard_conflict_bidirectional_ratio = float(sys.argv[53])
+expected_hard_conflict_single_ratio = float(sys.argv[54])
+expected_export_code_version = sys.argv[55]
 
 with open(summary_path) as f:
     data = json.load(f)
@@ -222,15 +294,39 @@ checks = {
     "graph_gap_cc_radius": expected_gap_cc_radius,
     "graph_gap_cc_max_points": expected_gap_cc_max_points,
     "graph_gap_seed_policy": expected_gap_seed_policy,
+    "graph_gap_reliable_existing_coverage": expected_gap_reliable_existing_coverage,
+    "graph_gap_min_existing_score": expected_gap_min_existing_score,
+    "graph_gap_min_mask_seed_coverage": expected_gap_min_mask_seed_coverage,
     "graph_candidate_competition": expected_candidate_competition,
     "graph_competition_same_class_iou": expected_competition_same_class_iou,
     "graph_competition_cross_class_iou": expected_competition_cross_class_iou,
     "graph_competition_containment": expected_competition_containment,
     "graph_hypothesis_mode": expected_hypothesis_mode,
     "graph_hypothesis_min_support_edges": expected_hypothesis_min_support_edges,
+    "graph_hypothesis_min_join_support_edges": expected_hypothesis_min_join_support_edges,
+    "graph_hypothesis_high_score_independent_support": expected_hypothesis_high_score_independent_support,
+    "graph_hypothesis_min_support_member_ratio": expected_hypothesis_min_support_member_ratio,
+    "graph_hypothesis_seed_quality_top_ratio": expected_hypothesis_seed_quality_top_ratio,
     "graph_hypothesis_allow_undersegmentation_bridge": expected_hypothesis_allow_undersegmentation_bridge,
+    "graph_relation_min_valid_points": expected_relation_min_valid_points,
+    "graph_relation_min_valid_ratio": expected_relation_min_valid_ratio,
+    "graph_relation_min_valid_floor": expected_relation_min_valid_floor,
+    "graph_independent_depth_consistency": expected_independent_depth_consistency,
+    "graph_independent_inside_depth_consistency": expected_independent_inside_depth_consistency,
+    "graph_independent_visible_iou": expected_independent_visible_iou,
+    "graph_independent_visible_containment": expected_independent_visible_containment,
+    "graph_independent_support_score": expected_independent_support_score,
+    "graph_reference_min_seed_coverage": expected_reference_min_seed_coverage,
+    "graph_reference_depth_consistency": expected_reference_depth_consistency,
+    "graph_reference_inside_depth_consistency": expected_reference_inside_depth_consistency,
+    "graph_reference_visible_iou": expected_reference_visible_iou,
+    "graph_reference_visible_containment": expected_reference_visible_containment,
+    "graph_hard_conflict_inside_points": expected_hard_conflict_inside_points,
+    "graph_hard_conflict_bidirectional_ratio": expected_hard_conflict_bidirectional_ratio,
+    "graph_hard_conflict_single_ratio": expected_hard_conflict_single_ratio,
     "export_max_existing_iou": expected_export_max_existing_iou,
     "export_max_seed_in_existing_mask_ratio": expected_export_max_seed_in_existing_mask_ratio,
+    "export_code_version": expected_export_code_version,
 }
 for key, expected in checks.items():
     if key not in params:
@@ -350,6 +446,10 @@ export_mask_graph() {
   if [[ "$MASK_GRAPH_OUTPUT_EXISTING_SUPPORT" == "1" || "$MASK_GRAPH_OUTPUT_EXISTING_SUPPORT" == "true" ]]; then
     export_graph_gate_args+=(--graph_output_existing_support)
   fi
+  local reliable_existing_flag="--graph_gap_reliable_existing_coverage"
+  if [[ "$MASK_GRAPH_GAP_RELIABLE_EXISTING_COVERAGE" == "0" || "$MASK_GRAPH_GAP_RELIABLE_EXISTING_COVERAGE" == "false" ]]; then
+    reliable_existing_flag="--no-graph_gap_reliable_existing_coverage"
+  fi
   export_graph_gate_args+=(
     --graph_gap_min_uncovered_points "$MASK_GRAPH_GAP_MIN_UNCOVERED_POINTS"
     --graph_gap_min_uncovered_ratio "$MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO"
@@ -357,12 +457,36 @@ export_mask_graph() {
     --graph_gap_cc_radius "$MASK_GRAPH_GAP_CC_RADIUS"
     --graph_gap_cc_max_points "$MASK_GRAPH_GAP_CC_MAX_POINTS"
     --graph_gap_seed_policy "$MASK_GRAPH_GAP_SEED_POLICY"
+    "$reliable_existing_flag"
+    --graph_gap_min_existing_score "$MASK_GRAPH_GAP_MIN_EXISTING_SCORE"
+    --graph_gap_min_mask_seed_coverage "$MASK_GRAPH_GAP_MIN_MASK_SEED_COVERAGE"
     "$competition_flag"
     --graph_competition_same_class_iou "$MASK_GRAPH_COMPETITION_SAME_CLASS_IOU"
     --graph_competition_cross_class_iou "$MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU"
     --graph_competition_containment "$MASK_GRAPH_COMPETITION_CONTAINMENT"
     --graph_hypothesis_mode "$MASK_GRAPH_HYPOTHESIS_MODE"
     --graph_hypothesis_min_support_edges "$MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_EDGES"
+    --graph_hypothesis_min_join_support_edges "$MASK_GRAPH_HYPOTHESIS_MIN_JOIN_SUPPORT_EDGES"
+    --graph_hypothesis_high_score_independent_support "$MASK_GRAPH_HYPOTHESIS_HIGH_SCORE_INDEPENDENT_SUPPORT"
+    --graph_hypothesis_min_support_member_ratio "$MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_MEMBER_RATIO"
+    --graph_hypothesis_seed_quality_top_ratio "$MASK_GRAPH_HYPOTHESIS_SEED_QUALITY_TOP_RATIO"
+    --graph_relation_min_valid_points "$MASK_GRAPH_RELATION_MIN_VALID_POINTS"
+    --graph_relation_min_valid_ratio "$MASK_GRAPH_RELATION_MIN_VALID_RATIO"
+    --graph_relation_min_valid_floor "$MASK_GRAPH_RELATION_MIN_VALID_FLOOR"
+    --graph_independent_depth_consistency "$MASK_GRAPH_INDEPENDENT_DEPTH_CONSISTENCY"
+    --graph_independent_inside_depth_consistency "$MASK_GRAPH_INDEPENDENT_INSIDE_DEPTH_CONSISTENCY"
+    --graph_independent_visible_iou "$MASK_GRAPH_INDEPENDENT_VISIBLE_IOU"
+    --graph_independent_visible_containment "$MASK_GRAPH_INDEPENDENT_VISIBLE_CONTAINMENT"
+    --graph_independent_support_score "$MASK_GRAPH_INDEPENDENT_SUPPORT_SCORE"
+    --graph_reference_min_seed_coverage "$MASK_GRAPH_REFERENCE_MIN_SEED_COVERAGE"
+    --graph_reference_depth_consistency "$MASK_GRAPH_REFERENCE_DEPTH_CONSISTENCY"
+    --graph_reference_inside_depth_consistency "$MASK_GRAPH_REFERENCE_INSIDE_DEPTH_CONSISTENCY"
+    --graph_reference_visible_iou "$MASK_GRAPH_REFERENCE_VISIBLE_IOU"
+    --graph_reference_visible_containment "$MASK_GRAPH_REFERENCE_VISIBLE_CONTAINMENT"
+    --graph_hard_conflict_inside_points "$MASK_GRAPH_HARD_CONFLICT_INSIDE_POINTS"
+    --graph_hard_conflict_bidirectional_ratio "$MASK_GRAPH_HARD_CONFLICT_BIDIRECTIONAL_RATIO"
+    --graph_hard_conflict_single_ratio "$MASK_GRAPH_HARD_CONFLICT_SINGLE_RATIO"
+    --export_code_version "$MASK_GRAPH_EXPORT_CODE_VERSION"
   )
   if [[ "$MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE" == "1" || "$MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE" == "true" ]]; then
     export_graph_gate_args+=(--graph_hypothesis_allow_undersegmentation_bridge)

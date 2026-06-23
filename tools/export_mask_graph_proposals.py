@@ -1050,7 +1050,9 @@ def _build_constrained_instance_hypotheses(
     skipped = []
     blocked_nodes = set()
     deferred_nodes_by_component = defaultdict(set)
+    deferred_dependencies_by_component = defaultdict(dict)
     non_seed_reasons = defaultdict(list)
+    hypothesis_attempt_id = 0
 
     def add_non_seed_reason(node, reason_info):
         reasons = non_seed_reasons[int(node)]
@@ -1244,6 +1246,8 @@ def _build_constrained_instance_hypotheses(
 
             seed = sorted(seed_candidates, key=node_sort_key)[0]
             hypothesis_id = len(hypotheses)
+            hypothesis_attempt_id += 1
+            current_attempt_token = ("attempt", int(hypothesis_attempt_id))
             members = [int(seed)]
             assigned[int(seed)] = hypothesis_id
             trace = [
@@ -1271,17 +1275,22 @@ def _build_constrained_instance_hypotheses(
                             candidate_neighbors.add(neighbor)
                 for neighbor in sorted(candidate_neighbors, key=node_sort_key):
                     compatible_hypotheses = []
+                    compatible_tokens = []
                     ok, decision = can_add(neighbor, members)
                     if ok:
                         compatible_hypotheses.append(hypothesis_id)
+                        compatible_tokens.append(current_attempt_token)
                     for existing_hypothesis in hypotheses:
                         if int(existing_hypothesis.get("source_component_id", -1)) != int(source_component_id):
                             continue
                         existing_ok, _ = can_add(neighbor, existing_hypothesis["members"])
                         if existing_ok:
-                            compatible_hypotheses.append(int(existing_hypothesis["graph_hypothesis_id"]))
-                    if len(set(compatible_hypotheses)) > 1:
+                            existing_id = int(existing_hypothesis["graph_hypothesis_id"])
+                            compatible_hypotheses.append(existing_id)
+                            compatible_tokens.append(("hypothesis", existing_id))
+                    if len(set(compatible_tokens)) > 1:
                         deferred_nodes_by_component[int(source_component_id)].add(int(neighbor))
+                        deferred_dependencies_by_component[int(source_component_id)][int(neighbor)] = set(compatible_tokens)
                         trace.append(
                             {
                                 "observation": int(neighbor),
@@ -1303,17 +1312,72 @@ def _build_constrained_instance_hypotheses(
             if (len(members) <= 1 and int(min_support_edges) > 0) or not is_valid:
                 for member in members:
                     assigned.pop(int(member), None)
+                released_deferred = []
+                reassigned_deferred = []
+                component_deps = deferred_dependencies_by_component[int(source_component_id)]
+                for node, dependencies in list(component_deps.items()):
+                    if current_attempt_token not in dependencies:
+                        continue
+                    remaining_dependencies = set(dependencies)
+                    remaining_dependencies.discard(current_attempt_token)
+                    if len(remaining_dependencies) == 1:
+                        only_dependency = next(iter(remaining_dependencies))
+                        if only_dependency[0] == "hypothesis":
+                            target_hypothesis = next(
+                                (
+                                    item
+                                    for item in hypotheses
+                                    if int(item.get("graph_hypothesis_id", -1)) == int(only_dependency[1])
+                                ),
+                                None,
+                            )
+                            if target_hypothesis is not None:
+                                target_ok, target_decision = can_add(int(node), target_hypothesis["members"])
+                                if target_ok:
+                                    target_hypothesis["members"] = sorted(set(int(member) for member in target_hypothesis["members"]) | {int(node)})
+                                    assigned[int(node)] = int(target_hypothesis["graph_hypothesis_id"])
+                                    target_hypothesis.setdefault("trace", []).append(
+                                        {
+                                            "observation": int(node),
+                                            "action": "join_after_deferred_release",
+                                            "reason": "failed_hypothesis_removed_ambiguity",
+                                            **target_decision,
+                                        }
+                                    )
+                                    _, updated_validity = valid_hypothesis(target_hypothesis["members"])
+                                    target_hypothesis["validity"] = updated_validity
+                                    deferred_nodes_by_component[int(source_component_id)].discard(int(node))
+                                    component_deps.pop(int(node), None)
+                                    reassigned_deferred.append(int(node))
+                                    continue
+                    if len(remaining_dependencies) <= 1:
+                        deferred_nodes_by_component[int(source_component_id)].discard(int(node))
+                        component_deps.pop(int(node), None)
+                        released_deferred.append(int(node))
+                    else:
+                        component_deps[int(node)] = remaining_dependencies
                 skipped.append(
                     {
                         "observation": int(seed),
                         "source_component_id": int(source_component_id),
                         "reason": "invalid_hypothesis",
                         "members": sorted(int(node) for node in members),
+                        "released_deferred_observations": sorted(released_deferred),
+                        "reassigned_deferred_observations": sorted(reassigned_deferred),
                         **validity,
                     }
                 )
                 blocked_nodes.add(int(seed))
                 continue
+
+            component_deps = deferred_dependencies_by_component[int(source_component_id)]
+            for node, dependencies in list(component_deps.items()):
+                if current_attempt_token not in dependencies:
+                    continue
+                updated_dependencies = set(dependencies)
+                updated_dependencies.discard(current_attempt_token)
+                updated_dependencies.add(("hypothesis", int(hypothesis_id)))
+                component_deps[int(node)] = updated_dependencies
 
             hypotheses.append(
                 {
@@ -2750,6 +2814,7 @@ def export_scene_mask_graph_proposals(
     graph_hard_conflict_single_ratio=0.60,
     export_max_existing_iou=None,
     export_max_seed_in_existing_mask_ratio=None,
+    export_code_version="",
 ):
     scene_dir = osp.join(output_dir, scene_name)
     seed_dir = osp.join(scene_dir, "seed_points")
@@ -3217,6 +3282,7 @@ def export_scene_mask_graph_proposals(
                     "graph_hard_conflict_single_ratio": graph_hard_conflict_single_ratio,
                     "export_max_existing_iou": export_max_existing_iou,
                     "export_max_seed_in_existing_mask_ratio": export_max_seed_in_existing_mask_ratio,
+                    "export_code_version": export_code_version,
                 },
                 "graph_edge_preview": relation_edges[:200],
                 "candidates": output_candidates,
@@ -3458,6 +3524,7 @@ def main():
     parser.add_argument("--graph_hard_conflict_single_ratio", default=0.60, type=float)
     parser.add_argument("--export_max_existing_iou", default=None, type=float)
     parser.add_argument("--export_max_seed_in_existing_mask_ratio", default=None, type=float)
+    parser.add_argument("--export_code_version", default="", type=str)
     args = parser.parse_args()
 
     kwargs = vars(args).copy()
