@@ -2509,3 +2509,203 @@ YOLO-World 二维检测
     - 对单视角孤立候选单独设候选来源类型或分数/数量上限。
     - 用图边数量、图共识分数、选中视角数、种子落入已有三维掩码比例做分层数量上限。
     - 优先保留多视角掩码簇，谨慎补充单视角孤立候选。
+
+2026-06-23 第一阶段关系可靠性与实例假设诊断更新：
+
+- 本轮目标：
+  - 不继续盲目增加二维检测来源。
+  - 不引入 DINO、Grounded SAM、SAM2 或学习式选择器。
+  - 先修正证据图中最容易误导候选生成的部分：
+    - 真实逐点可见性和二维掩码一致性。
+    - 同实例支持、硬冲突、父子包含、不确定关系分开记录。
+    - 用约束式三维实例假设替代普通图连通分量直接出候选。
+    - 保留已有实例修正诊断，而不是直接补全或替换 Mask3D。
+
+- 代码改动：
+  - `tools/export_mask_graph_proposals.py`
+    - 新增跨视角逐点可见性和二维掩码包含验证。
+    - 关系计算不再主要依赖三维中心距离，而是记录：
+      - 深度可见一致性。
+      - 掩码一致性。
+      - 共同可见点统计。
+    - 同帧内记录：
+      - 父子包含关系。
+      - 同帧互斥关系。
+      - 同帧冲突关系。
+      - 欠分割大掩码桥接风险。
+    - 跨视角类别不一致不再直接判为硬冲突，改为“不确定关系”。
+    - 新增约束式实例假设：
+      - 默认 `--graph_hypothesis_mode constrained`。
+      - 观测必须有同实例强支持才能加入假设。
+      - 不确定关系不作为合并依据。
+      - 欠分割桥接观测默认不参与普通合并。
+    - 输出 `mask_graph_trace.json`，保存观测、关系、假设、跳过原因和已有实例修正证据。
+    - 输出观测点集、完整核心点集和缺口核心点集。
+    - 对“已有实例支持”不再只丢弃，额外保存诊断：
+      - 原始已有候选。
+      - 二维证据修剪核心。
+      - 原始加核心补全。
+  - `tools/analyze_applied_mask_graph_candidates.py`
+    - 支持分析全部导出候选，不只分析进入评估的候选。
+    - 支持分析已有实例修正诊断。
+    - 支持同时分析输出点集、完整核心、缺口核心。
+    - 支持输出候选精确率、真实实例覆盖率、最高真实交并比、连通块数量、类别是否正确。
+    - 新增 `--include_revision_variants`，用于比较原始 Mask3D、修剪核心、补全版本。
+  - `tools/analyze_mask_graph_trace_relations.py`
+    - 新增关系质量诊断脚本。
+    - 使用真实实例标注判断同实例支持边、冲突边、包含边是否可靠。
+    - 对“不确定关系”和“弱关系”不计算正确率，只统计真实关系分布。
+  - `tools/run_scannet200_even48_mask_graph_eval.sh`
+    - 新增实例假设相关参数。
+    - 复用导出检查增加新字段校验。
+
+- 完整运行命令：
+
+```bash
+OPENYOLO3D_ALLOW_LEGACY_2D_CACHE=1 \
+/home/jia/anaconda3/envs/openyolo3d/bin/python tools/export_mask_graph_proposals.py \
+  --dataset_name scannet200 \
+  --dataset_root ./data/scannet200 \
+  --path_to_3d_masks ./output/scannet200/scannet200_masks \
+  --path_to_2d_preds ./output/scannet200/bboxes_2d \
+  --scene_list ./output/scannet200/scene_splits/even48.txt \
+  --output_dir ./output/mask_graph_proposals_scannet200_even48_phase1_relation_fix_gpu \
+  --detection_score_th 0.45 \
+  --min_seed_points 80 \
+  --max_box_area_ratio 0.30 \
+  --frame_stride 5 \
+  --max_detections_per_frame 8 \
+  --max_candidates_per_scene 30 \
+  --blocked_classes rug \
+  --ranking_policy priority \
+  --sam_multimask_topk 1 \
+  --graph_same_class_only \
+  --graph_min_seed_iou 0.03 \
+  --graph_min_seed_containment 0.18 \
+  --graph_min_reference_coverage 0.20 \
+  --graph_edge_score_threshold 0.35 \
+  --graph_min_cluster_observations 2 \
+  --no-graph_keep_singletons \
+  --graph_max_views_per_cluster 4 \
+  --graph_point_vote_min_score 0.35 \
+  --graph_point_vote_min_support 1 \
+  --graph_point_vote_min_keep_ratio 0.35 \
+  --graph_gap_seed_policy full_core \
+  --graph_hypothesis_mode constrained \
+  --graph_hypothesis_min_support_edges 1 \
+  --export_max_existing_iou 0.30 \
+  --export_max_seed_in_existing_mask_ratio 0.30
+```
+
+```bash
+/home/jia/anaconda3/envs/openyolo3d/bin/python tools/analyze_mask_graph_trace_relations.py \
+  --traces output/mask_graph_proposals_scannet200_even48_phase1_relation_fix_gpu \
+  --output_dir output/scannet200/subset_sweeps/even48_mask_graph_phase1_relation_fix_diagnostics/relation_quality
+```
+
+```bash
+/home/jia/anaconda3/envs/openyolo3d/bin/python tools/analyze_applied_mask_graph_candidates.py \
+  --candidates output/mask_graph_proposals_scannet200_even48_phase1_relation_fix_gpu \
+  --include_existing_support_diagnostics \
+  --include_revision_variants \
+  --output_dir output/scannet200/subset_sweeps/even48_mask_graph_phase1_relation_fix_diagnostics/revision_upper_bound \
+  --cc_max_points 50000
+```
+
+- even48 导出统计：
+  - 场景数：`48`
+  - 二维掩码观测：`3144`
+  - 同实例支持边：`2242`
+  - 弱关系：`1236`
+  - 不确定关系：`2576`
+  - 硬冲突边：`2`
+  - 普通图连通分量：`2040`
+  - 约束式实例假设：`2040`
+  - 最终新增候选：`2`
+  - 已有实例修正诊断：逐场景合计 `352`
+
+- 关系质量诊断：
+  - 同实例支持边数量：`2242`
+  - 同实例支持边正确率：`0.925513`
+  - 旧逻辑中大量跨类别关系会被判成冲突；新逻辑将其中 `2576` 条改为不确定关系。
+  - 不确定关系真实分布：
+    - 真同一实例：`2126`
+    - 不同类别实例：`230`
+    - 同类别不同实例：`24`
+    - 未知：`196`
+  - 结论：跨类别关系不能直接当硬冲突，因为大量是同一物体在不同视角的类别抖动。
+
+- 候选质量诊断：
+  - 最终新增候选只有 `2` 个，三种点集共 `6` 行诊断，全部为“背景污染或几何错误”。
+  - 因此本轮不运行最终 AP 作为主结论；当前新增候选质量不足，跑 AP 只会验证“不应加入这些新增候选”。
+  - 完整核心诊断均值：
+    - 最高真实交并比均值：`0.292665`
+    - 候选精确率均值：`0.909998`
+    - 真实实例覆盖率均值：`0.306042`
+  - 缺口核心诊断均值：
+    - 最高真实交并比均值：`0.006815`
+    - 候选精确率均值：`0.854903`
+    - 真实实例覆盖率均值：`0.006862`
+  - 结论：只输出“未被已有候选覆盖的缺口核心”基本是错误方向；它通常只是很小的残片或几何噪声。
+
+- Mask3D 修正上界诊断：
+  - 已有实例修正诊断记录数：`352`
+  - 原始已有候选：
+    - 最高真实交并比均值：`0.772841`
+    - 候选精确率均值：`0.914805`
+    - 真实实例覆盖率均值：`0.839401`
+  - 二维证据修剪核心：
+    - 最高真实交并比均值：`0.293800`
+    - 候选精确率均值：`0.912126`
+    - 真实实例覆盖率均值：`0.306379`
+    - 只有 `8 / 352` 条比原始 Mask3D 更好。
+  - 原始加核心补全：
+    - 最高真实交并比均值：`0.761702`
+    - 候选精确率均值：`0.888561`
+    - 真实实例覆盖率均值：`0.846601`
+    - `70 / 352` 条比原始 Mask3D 更好，但 `195 / 352` 条更差。
+  - 结论：
+    - 不能把二维证据修剪核心直接替换 Mask3D。
+    - 不能无条件把二维核心补到 Mask3D 上。
+    - 当前证据图更适合作为“诊断和候选修正证据”，还不是安全的自动替换模块。
+
+- 当前结论：
+  - 证据图方向没有被否定。
+  - 真正被否定的是：
+    - 普通连通分量直接出候选。
+    - 只输出缺口核心。
+    - 无条件修剪 Mask3D。
+    - 无条件补全 Mask3D。
+  - 第一阶段最有价值的成果是发现：
+    - 同实例支持边已经有较高质量。
+    - 硬冲突定义必须非常保守。
+    - 跨类别关系应先作为不确定关系保留。
+    - 证据图目前更适合提供“已有实例修正上界诊断”，而不是直接新增实例。
+
+- 下一步建议：
+  1. 不要先跑 even96，也不要直接跑最终 AP。
+  2. 先新增可推理使用的边界质量特征：
+     - 超点是否跨越多个二维实例边界。
+     - 补全后包围盒体积变化。
+     - 补全后连通块数量变化。
+     - 颜色、法向和空间连续性。
+     - 新增区域是否集中在一个连通超点区域。
+  3. 只允许极少数高置信补全：
+     - 二维核心精确率的替代特征必须高。
+     - 新增点比例不能过大。
+     - 补全后不能增加多物体错误合并风险。
+     - 原始已有候选本身明显残缺时才允许补全。
+  4. 将“已有实例修正诊断”升级成自动候选动作判断：
+     - 保留原始。
+     - 安全补全。
+     - 拒绝补全。
+     - 暂时不启用自动替换。
+  5. 只有安全补全诊断在 even48 上显示“好于原始的数量明显多于变差数量”，再跑最终 AP。
+
+- 已完成检查：
+
+```bash
+python -m py_compile tools/export_mask_graph_proposals.py tools/analyze_applied_mask_graph_candidates.py tools/analyze_mask_graph_trace_relations.py
+bash -n tools/run_scannet200_even48_mask_graph_eval.sh
+git diff --check
+```

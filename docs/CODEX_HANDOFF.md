@@ -223,3 +223,81 @@ git push
 ```
 
 注意：本机当前可能存在未提交的编译产物改动，主要在 `models/Mask3D/.../build` 和 `pointnet2` 编译目录下。这些不应作为项目状态上传。
+
+## 2026-06-23 当前结论
+
+本轮第一阶段已经把证据图从“普通连通分量直接生成候选”推进到“关系诊断和约束式实例假设”：
+
+- `tools/export_mask_graph_proposals.py`
+  - 已加入逐点可见性和二维掩码一致性验证。
+  - 已保存同实例支持、父子包含、硬冲突、不确定关系。
+  - 跨类别跨视角关系不再直接作为硬冲突，而是作为不确定关系。
+  - 默认使用约束式实例假设：`--graph_hypothesis_mode constrained`。
+  - 输出 `mask_graph_trace.json` 和已有实例修正诊断。
+- `tools/analyze_mask_graph_trace_relations.py`
+  - 新增关系质量诊断脚本。
+- `tools/analyze_applied_mask_graph_candidates.py`
+  - 可分析全部导出候选、完整核心、缺口核心、已有实例修正诊断。
+  - 可比较“原始已有候选 / 二维证据修剪核心 / 原始加核心补全”。
+
+even48 第一阶段诊断结果：
+
+- 二维掩码观测：`3144`
+- 同实例支持边：`2242`
+- 同实例支持边正确率：`0.925513`
+- 不确定关系：`2576`
+- 硬冲突边：`2`
+- 最终新增候选：`2`
+- 已有实例修正诊断：`352`
+
+关键判断：
+
+- 证据图方向没有被否定。
+- 被否定的是：
+  - 普通图连通分量直接输出候选。
+  - 只输出缺口核心。
+  - 无条件用二维核心修剪 Mask3D。
+  - 无条件把二维核心补到 Mask3D。
+- 缺口核心最高真实交并比均值只有 `0.006815`，基本不能单独作为新增实例。
+- 二维证据修剪核心只有 `8 / 352` 条比原始 Mask3D 更好，不能替换。
+- 原始加核心补全有 `70 / 352` 条变好，但 `195 / 352` 条变差，不能无条件补全。
+
+因此当前证据图最可靠的用途是：先做已有实例修正上界诊断，再学习或手写一个非常保守的安全补全规则。
+
+## 2026-06-23 下一步
+
+不要先跑 even96，也不要直接把当前新增候选接入最终 AP。当前新增候选只有 `2` 个，且诊断全部为坏候选。
+
+下一步应先做“安全补全规则”：
+
+1. 新增可推理使用的边界质量特征：
+   - 超点是否跨越多个二维实例边界。
+   - 补全后包围盒体积变化。
+   - 补全后连通块数量变化。
+   - 颜色、法向和空间连续性。
+   - 新增区域是否集中在一个连通超点区域。
+2. 对已有实例修正诊断执行动作判断：
+   - 保留原始。
+   - 安全补全。
+   - 拒绝补全。
+   - 暂不自动替换。
+3. 只允许极少数高置信补全：
+   - 新增点比例不能过大。
+   - 补全后不能显著增加多物体错误合并风险。
+   - 原始 Mask3D 候选本身必须存在明显残缺迹象。
+4. 只有 even48 上“补全变好数量明显多于变差数量”，再跑最终 AP 和 even96。
+
+最新诊断输出目录：
+
+```text
+output/mask_graph_proposals_scannet200_even48_phase1_relation_fix_gpu
+output/scannet200/subset_sweeps/even48_mask_graph_phase1_relation_fix_diagnostics/
+```
+
+最新检查命令：
+
+```bash
+python -m py_compile tools/export_mask_graph_proposals.py tools/analyze_applied_mask_graph_candidates.py tools/analyze_mask_graph_trace_relations.py
+bash -n tools/run_scannet200_even48_mask_graph_eval.sh
+git diff --check
+```

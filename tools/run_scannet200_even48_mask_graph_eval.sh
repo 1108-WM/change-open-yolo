@@ -50,6 +50,9 @@ MASK_GRAPH_CANDIDATE_COMPETITION="${MASK_GRAPH_CANDIDATE_COMPETITION:-1}"
 MASK_GRAPH_COMPETITION_SAME_CLASS_IOU="${MASK_GRAPH_COMPETITION_SAME_CLASS_IOU:-0.60}"
 MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU="${MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU:-0.35}"
 MASK_GRAPH_COMPETITION_CONTAINMENT="${MASK_GRAPH_COMPETITION_CONTAINMENT:-0.80}"
+MASK_GRAPH_HYPOTHESIS_MODE="${MASK_GRAPH_HYPOTHESIS_MODE:-constrained}"
+MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_EDGES="${MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_EDGES:-1}"
+MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE="${MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE:-0}"
 MASK_GRAPH_EXPORT_MAX_EXISTING_IOU="${MASK_GRAPH_EXPORT_MAX_EXISTING_IOU:-0.30}"
 MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO="${MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO:-0.30}"
 MASK_GRAPH_EVIDENCE_RESCORE="${MASK_GRAPH_EVIDENCE_RESCORE:-0}"
@@ -152,6 +155,9 @@ can_reuse_export() {
     "$MASK_GRAPH_COMPETITION_SAME_CLASS_IOU" \
     "$MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU" \
     "$MASK_GRAPH_COMPETITION_CONTAINMENT" \
+    "$MASK_GRAPH_HYPOTHESIS_MODE" \
+    "$MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_EDGES" \
+    "$MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE" \
     "$MASK_GRAPH_EXPORT_MAX_EXISTING_IOU" \
     "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO" <<'PY'
 import json
@@ -185,8 +191,11 @@ expected_candidate_competition = str(sys.argv[23]).lower() in {"1", "true", "yes
 expected_competition_same_class_iou = float(sys.argv[24])
 expected_competition_cross_class_iou = float(sys.argv[25])
 expected_competition_containment = float(sys.argv[26])
-expected_export_max_existing_iou = float(sys.argv[27])
-expected_export_max_seed_in_existing_mask_ratio = float(sys.argv[28])
+expected_hypothesis_mode = sys.argv[27]
+expected_hypothesis_min_support_edges = int(sys.argv[28])
+expected_hypothesis_allow_undersegmentation_bridge = str(sys.argv[29]).lower() in {"1", "true", "yes"}
+expected_export_max_existing_iou = float(sys.argv[30])
+expected_export_max_seed_in_existing_mask_ratio = float(sys.argv[31])
 
 with open(summary_path) as f:
     data = json.load(f)
@@ -217,6 +226,9 @@ checks = {
     "graph_competition_same_class_iou": expected_competition_same_class_iou,
     "graph_competition_cross_class_iou": expected_competition_cross_class_iou,
     "graph_competition_containment": expected_competition_containment,
+    "graph_hypothesis_mode": expected_hypothesis_mode,
+    "graph_hypothesis_min_support_edges": expected_hypothesis_min_support_edges,
+    "graph_hypothesis_allow_undersegmentation_bridge": expected_hypothesis_allow_undersegmentation_bridge,
     "export_max_existing_iou": expected_export_max_existing_iou,
     "export_max_seed_in_existing_mask_ratio": expected_export_max_seed_in_existing_mask_ratio,
 }
@@ -277,7 +289,20 @@ for scene in data.get("scenes", []):
         payload = json.load(f)
     for candidate in payload.get("candidates", []):
         checked_candidate = True
-        missing = [key for key in ("source_kind", "seed_vote_info", "graph_gap_seed_policy_applied") if key not in candidate]
+        missing = [
+            key
+            for key in (
+                "source_kind",
+                "seed_vote_info",
+                "graph_gap_seed_policy_applied",
+                "full_core_seed_points_path",
+                "gap_core_seed_points_path",
+                "hypothesis_formation_policy",
+                "hypothesis_trace",
+                "undersegmentation_bridge_observation_count",
+            )
+            if key not in candidate
+        ]
         if missing:
             print(f"[EXPORT] Existing candidate is missing {','.join(missing)}; re-exporting.")
             sys.exit(1)
@@ -336,7 +361,12 @@ export_mask_graph() {
     --graph_competition_same_class_iou "$MASK_GRAPH_COMPETITION_SAME_CLASS_IOU"
     --graph_competition_cross_class_iou "$MASK_GRAPH_COMPETITION_CROSS_CLASS_IOU"
     --graph_competition_containment "$MASK_GRAPH_COMPETITION_CONTAINMENT"
+    --graph_hypothesis_mode "$MASK_GRAPH_HYPOTHESIS_MODE"
+    --graph_hypothesis_min_support_edges "$MASK_GRAPH_HYPOTHESIS_MIN_SUPPORT_EDGES"
   )
+  if [[ "$MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE" == "1" || "$MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE" == "true" ]]; then
+    export_graph_gate_args+=(--graph_hypothesis_allow_undersegmentation_bridge)
+  fi
   "$PYTHON" tools/export_mask_graph_proposals.py \
     --dataset_name scannet200 \
     --dataset_root "$DATASET_ROOT" \

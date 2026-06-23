@@ -104,6 +104,123 @@ def _visible_seed_stats(seed_indices, visible_mask):
     return visible_seed_indices.astype(np.int64), visible_count, visible_ratio
 
 
+def _points_inside_observation_mask(point_indices, target_observation, projections_np, visible_np):
+    point_indices = np.asarray(point_indices, dtype=np.int64)
+    if len(point_indices) == 0 or projections_np is None or visible_np is None:
+        return np.asarray([], dtype=np.int64), {
+            "input_points": int(len(point_indices)),
+            "visible_points": 0,
+            "inside_points": 0,
+            "visible_ratio": 0.0,
+            "inside_visible_ratio": 0.0,
+        }
+    target_frame = int(target_observation["frame_index"])
+    if target_frame < 0 or target_frame >= visible_np.shape[0]:
+        return np.asarray([], dtype=np.int64), {
+            "input_points": int(len(point_indices)),
+            "visible_points": 0,
+            "inside_points": 0,
+            "visible_ratio": 0.0,
+            "inside_visible_ratio": 0.0,
+        }
+    valid_point_mask = (point_indices >= 0) & (point_indices < visible_np.shape[1])
+    point_indices = point_indices[valid_point_mask]
+    if len(point_indices) == 0:
+        return np.asarray([], dtype=np.int64), {
+            "input_points": 0,
+            "visible_points": 0,
+            "inside_points": 0,
+            "visible_ratio": 0.0,
+            "inside_visible_ratio": 0.0,
+        }
+    depth_visible = visible_np[target_frame, point_indices].astype(bool)
+    visible_indices = point_indices[depth_visible]
+    if len(visible_indices) == 0:
+        return np.asarray([], dtype=np.int64), {
+            "input_points": int(len(point_indices)),
+            "visible_points": 0,
+            "inside_points": 0,
+            "visible_ratio": 0.0,
+            "inside_visible_ratio": 0.0,
+        }
+    sam_mask = target_observation.get("_sam_mask")
+    if sam_mask is None:
+        return visible_indices.astype(np.int64), {
+            "input_points": int(len(point_indices)),
+            "visible_points": int(len(visible_indices)),
+            "inside_points": int(len(visible_indices)),
+            "visible_ratio": float(len(visible_indices) / max(1, len(point_indices))),
+            "inside_visible_ratio": 1.0,
+        }
+    sam_mask = np.asarray(sam_mask, dtype=bool)
+    coords = projections_np[target_frame, visible_indices].astype(np.int64)
+    xs = coords[:, 0]
+    ys = coords[:, 1]
+    valid_pixels = (xs >= 0) & (xs < sam_mask.shape[1]) & (ys >= 0) & (ys < sam_mask.shape[0])
+    if not valid_pixels.any():
+        return np.asarray([], dtype=np.int64), {
+            "input_points": int(len(point_indices)),
+            "visible_points": int(len(visible_indices)),
+            "inside_points": 0,
+            "visible_ratio": float(len(visible_indices) / max(1, len(point_indices))),
+            "inside_visible_ratio": 0.0,
+        }
+    visible_indices = visible_indices[valid_pixels]
+    xs = xs[valid_pixels]
+    ys = ys[valid_pixels]
+    inside = sam_mask[ys, xs]
+    inside_indices = visible_indices[inside]
+    return inside_indices.astype(np.int64), {
+        "input_points": int(len(point_indices)),
+        "visible_points": int(len(visible_indices)),
+        "inside_points": int(len(inside_indices)),
+        "visible_ratio": float(len(visible_indices) / max(1, len(point_indices))),
+        "inside_visible_ratio": float(len(inside_indices) / max(1, len(visible_indices))),
+    }
+
+
+def _pair_common_visible_seed_sets(left, right, projections_np=None, visible_np=None):
+    left_seed = np.asarray(left["_seed_indices"], dtype=np.int64)
+    right_seed = np.asarray(right["_seed_indices"], dtype=np.int64)
+    if projections_np is None or visible_np is None:
+        return (
+            np.asarray(left.get("_visible_seed_indices", left_seed), dtype=np.int64),
+            np.asarray(right.get("_visible_seed_indices", right_seed), dtype=np.int64),
+            {
+                "enabled": False,
+                "fallback": "missing_projection_visibility",
+                "left_to_right_visible_ratio": float(left.get("seed_depth_support_ratio", 0.0) or 0.0),
+                "right_to_left_visible_ratio": float(right.get("seed_depth_support_ratio", 0.0) or 0.0),
+                "left_to_right_inside_visible_ratio": 0.0,
+                "right_to_left_inside_visible_ratio": 0.0,
+                "bidirectional_depth_consistency": min(
+                    float(left.get("seed_depth_support_ratio", 0.0) or 0.0),
+                    float(right.get("seed_depth_support_ratio", 0.0) or 0.0),
+                ),
+                "bidirectional_mask_consistency": 0.0,
+            },
+        )
+    left_in_right, left_stats = _points_inside_observation_mask(left_seed, right, projections_np, visible_np)
+    right_in_left, right_stats = _points_inside_observation_mask(right_seed, left, projections_np, visible_np)
+    depth_consistency = min(float(left_stats["visible_ratio"]), float(right_stats["visible_ratio"]))
+    mask_consistency = min(float(left_stats["inside_visible_ratio"]), float(right_stats["inside_visible_ratio"]))
+    return left_in_right, right_in_left, {
+        "enabled": True,
+        "left_to_right_input_points": int(left_stats["input_points"]),
+        "left_to_right_visible_points": int(left_stats["visible_points"]),
+        "left_to_right_inside_points": int(left_stats["inside_points"]),
+        "left_to_right_visible_ratio": float(left_stats["visible_ratio"]),
+        "left_to_right_inside_visible_ratio": float(left_stats["inside_visible_ratio"]),
+        "right_to_left_input_points": int(right_stats["input_points"]),
+        "right_to_left_visible_points": int(right_stats["visible_points"]),
+        "right_to_left_inside_points": int(right_stats["inside_points"]),
+        "right_to_left_visible_ratio": float(right_stats["visible_ratio"]),
+        "right_to_left_inside_visible_ratio": float(right_stats["inside_visible_ratio"]),
+        "bidirectional_depth_consistency": float(depth_consistency),
+        "bidirectional_mask_consistency": float(mask_consistency),
+    }
+
+
 def _relation_from_pair(
     left,
     right,
@@ -113,9 +230,15 @@ def _relation_from_pair(
     min_reference_coverage,
     spatial_sigma,
     view_consensus_scale,
+    projections_np=None,
+    visible_np=None,
 ):
-    left_visible = left.get("_visible_seed_indices", left["_seed_indices"])
-    right_visible = right.get("_visible_seed_indices", right["_seed_indices"])
+    left_visible, right_visible, visibility_info = _pair_common_visible_seed_sets(
+        left,
+        right,
+        projections_np=projections_np,
+        visible_np=visible_np,
+    )
     visible_intersection, visible_union, visible_iou, visible_containment = _seed_overlap(left_visible, right_visible)
 
     left_ref = _cluster_reference_key(left, min_reference_coverage)
@@ -138,9 +261,8 @@ def _relation_from_pair(
             ),
         )
 
-    left_depth_support = float(left.get("seed_depth_support_ratio", 0.0))
-    right_depth_support = float(right.get("seed_depth_support_ratio", 0.0))
-    pair_depth_support = min(left_depth_support, right_depth_support)
+    pair_depth_support = float(visibility_info.get("bidirectional_depth_consistency", 0.0))
+    pair_mask_support = float(visibility_info.get("bidirectional_mask_consistency", 0.0))
 
     spatial_consistency = 0.0
     left_centroid = left.get("seed_centroid")
@@ -151,11 +273,12 @@ def _relation_from_pair(
 
     view_consensus = max(reference_support, min(1.0, (int(reference_match) + visible_containment) / 2.0))
     support_score = float(
-        0.30 * min(1.0, visible_iou / max(1e-6, float(min_seed_iou)))
+        0.25 * min(1.0, visible_iou / max(1e-6, float(min_seed_iou)))
         + 0.20 * min(1.0, visible_containment / max(1e-6, float(min_seed_containment)))
         + 0.20 * reference_support
-        + 0.20 * spatial_consistency
-        + 0.10 * pair_depth_support
+        + 0.10 * spatial_consistency
+        + 0.20 * pair_depth_support
+        + 0.05 * pair_mask_support
     )
     same_object_support = (
         visible_iou >= float(min_seed_iou)
@@ -190,6 +313,8 @@ def _relation_from_pair(
         "reference_match": bool(reference_match),
         "reference_support": float(reference_support),
         "depth_support": float(pair_depth_support),
+        "mask_support": float(pair_mask_support),
+        "visibility_info": visibility_info,
         "spatial_consistency": float(spatial_consistency),
         "view_consensus": float(view_consensus),
         "same_class": int(left["class_id"]) == int(right["class_id"]),
@@ -202,6 +327,8 @@ def _relation_from_pair(
 def _build_mask_graph(
     observations,
     points_xyz=None,
+    projections_np=None,
+    visible_np=None,
     same_class_only=True,
     min_seed_iou=0.03,
     min_seed_containment=0.18,
@@ -221,6 +348,87 @@ def _build_mask_graph(
     centroids = [_seed_centroid(points_xyz, obs["_seed_indices"]) for obs in observations]
     for obs, centroid in zip(observations, centroids):
         obs["seed_centroid"] = centroid
+
+    same_frame_groups = defaultdict(list)
+    for obs_index, obs in enumerate(observations):
+        same_frame_groups[int(obs["frame_index"])].append(obs_index)
+    same_frame_containment_children = defaultdict(set)
+    same_frame_conflict_counts = defaultdict(int)
+    same_frame_overlap_counts = defaultdict(int)
+    same_frame_relation_edges = []
+    for frame_indices in same_frame_groups.values():
+        for pos, left_idx in enumerate(frame_indices):
+            left = observations[left_idx]
+            for right_idx in frame_indices[pos + 1:]:
+                right = observations[right_idx]
+                relation = _relation_from_pair(
+                    left,
+                    right,
+                    reference_counts=reference_counts,
+                    min_seed_iou=min_seed_iou,
+                    min_seed_containment=min_seed_containment,
+                    min_reference_coverage=min_reference_coverage,
+                    spatial_sigma=spatial_sigma,
+                    view_consensus_scale=view_consensus_scale,
+                    projections_np=projections_np,
+                    visible_np=visible_np,
+                )
+                edge_base = {
+                    "left": int(left_idx),
+                    "right": int(right_idx),
+                    "same_frame": True,
+                    "same_class": bool(relation["same_class"]),
+                    "seed_intersection": int(relation["visible_intersection"]),
+                    "seed_union": int(relation["visible_union"]),
+                    "seed_iou": float(relation["visible_iou"]),
+                    "seed_containment": float(relation["visible_containment"]),
+                    "coarse_reference_overlap": float(relation["reference_support"]),
+                    "coarse_reference_id": relation["left_reference_id"] if relation["reference_match"] else None,
+                    "depth_consistency": float(relation["depth_support"]),
+                    "mask_consistency": float(relation["mask_support"]),
+                    "view_consensus_score": float(relation["view_consensus"]),
+                    "visibility_info": relation.get("visibility_info", {}),
+                }
+                if relation["containment_support"]:
+                    parent = left_idx if relation["containment_parent"] == "left" else right_idx
+                    child = right_idx if relation["containment_parent"] == "left" else left_idx
+                    same_frame_containment_children[parent].add(child)
+                    same_frame_relation_edges.append(
+                        {
+                            **edge_base,
+                            "relation_type": "same_frame_containment",
+                            "parent": int(parent),
+                            "child": int(child),
+                            "containment_score": float(relation["containment_strength"]),
+                            "conflict_score": 0.0,
+                            "edge_score": float(relation["containment_strength"]),
+                        }
+                    )
+                elif relation["visible_intersection"] > 0:
+                    same_frame_overlap_counts[left_idx] += 1
+                    same_frame_overlap_counts[right_idx] += 1
+                    relation_type = "same_frame_conflict" if relation["class_mismatch"] else "same_frame_mutex"
+                    conflict_score = float(max(relation["support_score"], relation["visible_containment"]))
+                    same_frame_conflict_counts[left_idx] += 1
+                    same_frame_conflict_counts[right_idx] += 1
+                    same_frame_relation_edges.append(
+                        {
+                            **edge_base,
+                            "relation_type": relation_type,
+                            "same_object_score": 0.0,
+                            "containment_score": 0.0,
+                            "conflict_score": conflict_score,
+                            "edge_score": conflict_score,
+                        }
+                    )
+    for obs_index, obs in enumerate(observations):
+        child_count = len(same_frame_containment_children.get(obs_index, set()))
+        obs["same_frame_child_count"] = int(child_count)
+        obs["same_frame_conflict_count"] = int(same_frame_conflict_counts.get(obs_index, 0))
+        obs["same_frame_overlap_count"] = int(same_frame_overlap_counts.get(obs_index, 0))
+        obs["undersegmentation_bridge_risk"] = bool(child_count >= 2 or (
+            child_count >= 1 and int(same_frame_conflict_counts.get(obs_index, 0)) >= 1
+        ))
 
     relation_edges = []
     support_edges = []
@@ -242,30 +450,36 @@ def _build_mask_graph(
                 min_reference_coverage=min_reference_coverage,
                 spatial_sigma=spatial_sigma,
                 view_consensus_scale=view_consensus_scale,
+                projections_np=projections_np,
+                visible_np=visible_np,
             )
             if int(left["frame_index"]) == int(right["frame_index"]):
                 continue
 
             if relation["class_mismatch"]:
-                if relation["reference_match"] or relation["support_score"] >= conflict_threshold:
-                    conflict_edge = {
+                if relation["reference_match"] or relation["support_score"] >= weak_threshold:
+                    uncertain_edge = {
                         "left": int(left_idx),
                         "right": int(right_idx),
-                        "relation_type": "conflict",
+                        "relation_type": "uncertain",
                         "same_object_score": 0.0,
                         "containment_score": 0.0,
-                        "conflict_score": float(max(relation["support_score"], relation["spatial_consistency"], relation["reference_support"])),
+                        "conflict_score": 0.0,
+                        "uncertainty_score": float(max(relation["support_score"], relation["spatial_consistency"], relation["reference_support"])),
                         "edge_score": float(max(relation["support_score"], relation["spatial_consistency"], relation["reference_support"])),
                         "seed_iou": float(relation["visible_iou"]),
                         "seed_containment": float(relation["visible_containment"]),
                         "coarse_reference_overlap": float(relation["reference_support"]),
                         "coarse_reference_id": relation["left_reference_id"] if relation["reference_match"] else None,
                         "depth_consistency": float(relation["depth_support"]),
+                        "mask_consistency": float(relation["mask_support"]),
                         "view_consensus_score": float(relation["view_consensus"]),
+                        "visibility_info": relation.get("visibility_info", {}),
                         "same_class": False,
+                        "semantic_mismatch": True,
                     }
-                    conflict_edges.append(conflict_edge)
-                    relation_edges.append(conflict_edge)
+                    weak_edges.append(uncertain_edge)
+                    relation_edges.append(uncertain_edge)
                 continue
 
             strong_same_object = relation["same_object_support"] and relation["support_score"] >= float(edge_score_threshold)
@@ -288,7 +502,9 @@ def _build_mask_graph(
                         "coarse_reference_overlap": float(relation["reference_support"]),
                         "coarse_reference_id": relation["left_reference_id"] if relation["reference_match"] else None,
                         "depth_consistency": float(relation["depth_support"]),
+                        "mask_consistency": float(relation["mask_support"]),
                         "view_consensus_score": float(relation["view_consensus"]),
+                        "visibility_info": relation.get("visibility_info", {}),
                         "same_class": True,
                     }
                     weak_edges.append(weak_edge)
@@ -313,7 +529,9 @@ def _build_mask_graph(
                 "coarse_reference_overlap": float(relation["reference_support"]),
                 "coarse_reference_id": relation["left_reference_id"] if relation["reference_match"] else None,
                 "depth_consistency": float(relation["depth_support"]),
+                "mask_consistency": float(relation["mask_support"]),
                 "view_consensus_score": float(relation["view_consensus"]),
+                "visibility_info": relation.get("visibility_info", {}),
                 "same_class": True,
             }
             if relation["containment_support"]:
@@ -329,6 +547,9 @@ def _build_mask_graph(
                 support_edges.append(relation_edge)
                 adjacency[left_idx].append((right_idx, relation_edge))
                 adjacency[right_idx].append((left_idx, relation_edge))
+    relation_edges = same_frame_relation_edges + relation_edges
+    conflict_edges = [edge for edge in relation_edges if str(edge.get("relation_type")) in {"conflict", "same_frame_conflict"}]
+    weak_edges = [edge for edge in relation_edges if str(edge.get("relation_type")) in {"weak", "uncertain"}]
     return relation_edges, adjacency, conflict_edges, weak_edges
 
 
@@ -350,6 +571,138 @@ def _connected_components(num_nodes, adjacency):
                     stack.append(neighbor)
         components.append(sorted(component))
     return components
+
+
+def _build_constrained_instance_hypotheses(
+    observations,
+    adjacency,
+    relation_edges,
+    *,
+    min_support_edges=1,
+    allow_undersegmentation_bridge=False,
+):
+    conflict_pairs = set()
+    weak_pairs = set()
+    containment_pairs = set()
+    for edge in relation_edges:
+        left = int(edge.get("left", -1))
+        right = int(edge.get("right", -1))
+        if left < 0 or right < 0:
+            continue
+        key = tuple(sorted((left, right)))
+        relation_type = str(edge.get("relation_type", ""))
+        if relation_type in {"conflict", "same_frame_conflict", "same_frame_mutex"}:
+            conflict_pairs.add(key)
+        elif relation_type == "weak":
+            weak_pairs.add(key)
+        elif "containment" in relation_type:
+            containment_pairs.add(key)
+
+    edge_lookup = {}
+    for left, node_edges in enumerate(adjacency):
+        for right, edge in node_edges:
+            edge_lookup[tuple(sorted((int(left), int(right))))] = edge
+
+    ranked = sorted(
+        range(len(observations)),
+        key=lambda idx: (
+            -_graph_quality_score(observations[idx]),
+            -len(observations[idx].get("_seed_indices", [])),
+            int(observations[idx].get("graph_observation_id", idx)),
+        ),
+    )
+    assigned = {}
+    hypotheses = []
+    skipped = []
+
+    def can_add(node, members):
+        support_edges = []
+        conflict_hits = []
+        weak_hits = []
+        containment_hits = []
+        for member in members:
+            key = tuple(sorted((int(node), int(member))))
+            if key in conflict_pairs:
+                conflict_hits.append(int(member))
+            if key in weak_pairs:
+                weak_hits.append(int(member))
+            if key in containment_pairs:
+                containment_hits.append(int(member))
+            if key in edge_lookup and str(edge_lookup[key].get("relation_type")) == "same_object":
+                support_edges.append(edge_lookup[key])
+        if conflict_hits:
+            return False, {
+                "reason": "conflict_with_hypothesis",
+                "conflict_members": conflict_hits,
+                "support_edge_count": int(len(support_edges)),
+            }
+        if not allow_undersegmentation_bridge and bool(observations[node].get("undersegmentation_bridge_risk", False)):
+            return False, {
+                "reason": "undersegmentation_bridge_risk",
+                "support_edge_count": int(len(support_edges)),
+                "same_frame_child_count": int(observations[node].get("same_frame_child_count", 0)),
+                "same_frame_conflict_count": int(observations[node].get("same_frame_conflict_count", 0)),
+            }
+        if len(support_edges) < int(max(1, min_support_edges)):
+            return False, {
+                "reason": "insufficient_support_edges",
+                "support_edge_count": int(len(support_edges)),
+                "weak_hits": weak_hits,
+                "containment_hits": containment_hits,
+            }
+        return True, {
+            "reason": "accepted",
+            "support_edge_count": int(len(support_edges)),
+            "max_support_score": float(max(float(edge.get("edge_score", 0.0)) for edge in support_edges)),
+        }
+
+    for seed in ranked:
+        if seed in assigned:
+            continue
+        hypothesis_id = len(hypotheses)
+        members = [int(seed)]
+        assigned[int(seed)] = hypothesis_id
+        trace = [
+            {
+                "observation": int(seed),
+                "action": "seed",
+                "reason": "highest_remaining_quality",
+                "undersegmentation_bridge_risk": bool(observations[seed].get("undersegmentation_bridge_risk", False)),
+            }
+        ]
+        changed = True
+        while changed:
+            changed = False
+            candidate_neighbors = set()
+            for member in members:
+                for neighbor, _ in adjacency[member]:
+                    if int(neighbor) not in assigned:
+                        candidate_neighbors.add(int(neighbor))
+            for neighbor in sorted(
+                candidate_neighbors,
+                key=lambda idx: (-_graph_quality_score(observations[idx]), -len(observations[idx].get("_seed_indices", []))),
+            ):
+                ok, decision = can_add(neighbor, members)
+                if not ok:
+                    trace.append({"observation": int(neighbor), "action": "reject", **decision})
+                    continue
+                members.append(int(neighbor))
+                assigned[int(neighbor)] = hypothesis_id
+                trace.append({"observation": int(neighbor), "action": "join", **decision})
+                changed = True
+        hypotheses.append(
+            {
+                "graph_hypothesis_id": int(hypothesis_id),
+                "members": sorted(members),
+                "trace": trace,
+                "formation_policy": "constrained_instance_hypothesis",
+            }
+        )
+
+    for idx in range(len(observations)):
+        if idx not in assigned:
+            skipped.append({"observation": int(idx), "reason": "unassigned_after_hypothesis_building"})
+    return hypotheses, skipped
 
 
 def _component_edge_stats(component, adjacency, relation_edges=None):
@@ -383,27 +736,44 @@ def _component_edge_stats(component, adjacency, relation_edges=None):
             if float(edge.get("containment_score", 0.0) or 0.0) > 0.0:
                 relation_kind_counts["containment"] += 1
                 relation_kind_scores["containment"].append(float(edge.get("containment_score", edge.get("containment_strength", 0.0))))
-    conflict_count = 0
-    weak_count = 0
+    internal_conflict_count = 0
+    external_conflict_count = 0
+    internal_weak_count = 0
+    external_weak_count = 0
+    internal_uncertain_count = 0
+    external_uncertain_count = 0
     if relation_edges is not None:
         for edge in relation_edges:
             left_in = edge["left"] in component_set
             right_in = edge["right"] in component_set
             if not left_in and not right_in:
                 continue
+            internal_edge = bool(left_in and right_in)
             relation_kind = edge.get("relation_type", "same_object")
-            if relation_kind == "conflict":
-                conflict_count += 1
-                relation_kind_scores[relation_kind].append(float(edge.get("conflict_score", edge.get("edge_score", 0.0))))
+            if relation_kind in {"conflict", "same_frame_conflict", "same_frame_mutex"}:
+                if internal_edge:
+                    internal_conflict_count += 1
+                    relation_kind_scores["conflict"].append(float(edge.get("conflict_score", edge.get("edge_score", 0.0))))
+                else:
+                    external_conflict_count += 1
             elif relation_kind == "weak":
-                weak_count += 1
-                relation_kind_scores[relation_kind].append(float(edge.get("relation_score", edge.get("edge_score", 0.0))))
-            elif relation_kind == "containment":
+                if internal_edge:
+                    internal_weak_count += 1
+                    relation_kind_scores[relation_kind].append(float(edge.get("relation_score", edge.get("edge_score", 0.0))))
+                else:
+                    external_weak_count += 1
+            elif relation_kind == "uncertain":
+                if internal_edge:
+                    internal_uncertain_count += 1
+                    relation_kind_scores[relation_kind].append(float(edge.get("uncertainty_score", edge.get("edge_score", 0.0))))
+                else:
+                    external_uncertain_count += 1
+            elif internal_edge and relation_kind == "containment":
                 relation_kind_counts["containment"] += 1
                 relation_kind_scores["containment"].append(float(edge.get("containment_score", edge.get("containment_strength", 0.0))))
-            if edge.get("parent") in component_set:
+            if internal_edge and edge.get("parent") in component_set:
                 containment_parent_count += 1
-            if edge.get("child") in component_set:
+            if internal_edge and edge.get("child") in component_set:
                 containment_child_count += 1
     return {
         "edge_count": int(len(edge_scores)),
@@ -414,12 +784,17 @@ def _component_edge_stats(component, adjacency, relation_edges=None):
         "graph_consensus_score": _safe_mean(consensus_scores),
         "same_object_edge_count": int(relation_kind_counts.get("same_object", 0)),
         "containment_edge_count": int(relation_kind_counts.get("containment", 0)),
-        "weak_edge_count": int(max(weak_count, relation_kind_counts.get("weak", 0))),
-        "conflict_edge_count": int(max(conflict_count, relation_kind_counts.get("conflict", 0))),
+        "weak_edge_count": int(max(internal_weak_count, relation_kind_counts.get("weak", 0))),
+        "conflict_edge_count": int(max(internal_conflict_count, relation_kind_counts.get("conflict", 0))),
+        "uncertain_edge_count": int(internal_uncertain_count),
+        "external_weak_edge_count": int(external_weak_count),
+        "external_conflict_edge_count": int(external_conflict_count),
+        "external_uncertain_edge_count": int(external_uncertain_count),
         "same_object_edge_mean_score": _safe_mean(relation_kind_scores.get("same_object", [])),
         "containment_edge_mean_score": _safe_mean(relation_kind_scores.get("containment", [])),
         "weak_edge_mean_score": _safe_mean(relation_kind_scores.get("weak", [])),
         "conflict_edge_mean_score": _safe_mean(relation_kind_scores.get("conflict", [])),
+        "uncertain_edge_mean_score": _safe_mean(relation_kind_scores.get("uncertain", [])),
         "containment_parent_edge_count": int(containment_parent_count),
         "containment_child_edge_count": int(containment_child_count),
     }
@@ -508,6 +883,45 @@ def _graph_candidate_seed_indices(selected_seed, gap_info, candidate_action, see
     if str(candidate_action) == "new_candidate" and len(uncovered_seed) > 0:
         return np.unique(uncovered_seed).astype(np.int64), "uncovered_core"
     return selected_seed.copy(), "full_core"
+
+
+def _public_candidate_record(candidate):
+    return {
+        key: value
+        for key, value in candidate.items()
+        if not str(key).startswith("_")
+    }
+
+
+def _write_existing_support_diagnostic(candidate, diagnostic_id, diagnostic_dir):
+    os.makedirs(diagnostic_dir, exist_ok=True)
+    output_seed = np.asarray(candidate.get("_seed_indices", np.asarray([], dtype=np.int64)), dtype=np.int64)
+    full_core_seed = np.asarray(candidate.get("_full_core_seed_indices", output_seed), dtype=np.int64)
+    gap_core_seed = np.asarray(candidate.get("_gap_core_seed_indices", np.asarray([], dtype=np.int64)), dtype=np.int64)
+    prefix = f"existing_support{int(diagnostic_id):04d}"
+    output_seed_path = osp.join(diagnostic_dir, f"{prefix}_output_points.npz")
+    full_core_seed_path = osp.join(diagnostic_dir, f"{prefix}_full_core_points.npz")
+    gap_core_seed_path = osp.join(diagnostic_dir, f"{prefix}_gap_core_points.npz")
+    np.savez_compressed(output_seed_path, point_indices=output_seed)
+    np.savez_compressed(full_core_seed_path, point_indices=full_core_seed)
+    np.savez_compressed(gap_core_seed_path, point_indices=gap_core_seed)
+
+    record = _public_candidate_record(candidate)
+    record.update(
+        {
+            "diagnostic_id": int(diagnostic_id),
+            "diagnostic_kind": "existing_instance_revision",
+            "candidate_action": "existing_support",
+            "revision_options": ["keep_original_mask3d", "trim_by_multiview_core", "complete_with_multiview_core"],
+            "output_seed_points_path": output_seed_path,
+            "full_core_seed_points_path": full_core_seed_path,
+            "gap_core_seed_points_path": gap_core_seed_path,
+            "output_seed_point_count": int(len(output_seed)),
+            "full_core_seed_point_count": int(len(full_core_seed)),
+            "gap_core_seed_point_count": int(len(gap_core_seed)),
+        }
+    )
+    return record
 
 
 def _graph_candidate_core_indices(selected_seed, gap_info):
@@ -915,6 +1329,8 @@ def _cluster_to_candidate(
     seed_vote_info=None,
     gap_info=None,
     graph_gap_seed_policy="adaptive",
+    hypothesis_trace=None,
+    hypothesis_formation_policy=None,
 ):
     selected_observations = [observations[idx] for idx in selected_indices]
     best_observation = max(
@@ -931,6 +1347,11 @@ def _cluster_to_candidate(
     class_id = max(class_votes.items(), key=lambda item: item[1])[0]
     class_name = best_observation["class_name"] if int(best_observation["class_id"]) == int(class_id) else best_observation["class_name"]
     stats = _component_edge_stats(component, adjacency, relation_edges=relation_edges)
+    undersegmentation_bridge_observations = [
+        int(observations[idx]["graph_observation_id"])
+        for idx in component
+        if bool(observations[idx].get("undersegmentation_bridge_risk", False))
+    ]
     candidate_action = (gap_info or {}).get("candidate_action", "new_candidate")
     full_core_seed_indices, gap_core_seed_indices = _graph_candidate_core_indices(selected_seed, gap_info)
     final_seed_indices, applied_seed_policy = _graph_candidate_seed_indices(
@@ -996,6 +1417,8 @@ def _cluster_to_candidate(
         "graph_cluster_id": int(cluster_id),
         "graph_cluster_observation_ids": [int(observations[idx]["graph_observation_id"]) for idx in component],
         "graph_selected_observation_ids": [int(observations[idx]["graph_observation_id"]) for idx in selected_indices],
+        "hypothesis_formation_policy": hypothesis_formation_policy or "connected_component",
+        "hypothesis_trace": hypothesis_trace or [],
         "cluster_observation_count": int(len(component)),
         "selected_view_count": int(len(selected_indices)),
         "graph_edge_count": int(stats["edge_count"]),
@@ -1007,12 +1430,21 @@ def _cluster_to_candidate(
         "containment_edge_count": int(stats["containment_edge_count"]),
         "weak_edge_count": int(stats["weak_edge_count"]),
         "conflict_edge_count": int(stats["conflict_edge_count"]),
+        "uncertain_edge_count": int(stats.get("uncertain_edge_count", 0)),
+        "external_weak_edge_count": int(stats.get("external_weak_edge_count", 0)),
+        "external_conflict_edge_count": int(stats.get("external_conflict_edge_count", 0)),
+        "external_uncertain_edge_count": int(stats.get("external_uncertain_edge_count", 0)),
         "same_object_edge_mean_score": float(stats["same_object_edge_mean_score"]),
         "containment_edge_mean_score": float(stats["containment_edge_mean_score"]),
         "weak_edge_mean_score": float(stats["weak_edge_mean_score"]),
         "conflict_edge_mean_score": float(stats["conflict_edge_mean_score"]),
+        "uncertain_edge_mean_score": float(stats.get("uncertain_edge_mean_score", 0.0)),
         "containment_parent_edge_count": int(stats["containment_parent_edge_count"]),
         "containment_child_edge_count": int(stats["containment_child_edge_count"]),
+        "undersegmentation_bridge_observation_count": int(len(undersegmentation_bridge_observations)),
+        "undersegmentation_bridge_observation_ids": undersegmentation_bridge_observations,
+        "same_frame_child_count_sum": int(sum(int(observations[idx].get("same_frame_child_count", 0)) for idx in component)),
+        "same_frame_conflict_count_sum": int(sum(int(observations[idx].get("same_frame_conflict_count", 0)) for idx in component)),
         "conflict_penalty": float(conflict_penalty),
         "containment_penalty": float(containment_penalty),
         "seed_vote_info": seed_vote_info or {"enabled": False},
@@ -1369,6 +1801,7 @@ def collect_scene_mask_observations(
                     },
                     "_seed_indices": seed_indices,
                     "_visible_seed_indices": visible_seed_indices,
+                    "_sam_mask": item["core_mask"],
                     **_existing_mask_metrics(existing_masks, seed_indices),
                 }
                 observations.append(observation)
@@ -1449,6 +1882,9 @@ def export_scene_mask_graph_proposals(
     graph_competition_same_class_iou=0.60,
     graph_competition_cross_class_iou=0.35,
     graph_competition_containment=0.80,
+    graph_hypothesis_mode="constrained",
+    graph_hypothesis_min_support_edges=1,
+    graph_hypothesis_allow_undersegmentation_bridge=False,
     export_max_existing_iou=None,
     export_max_seed_in_existing_mask_ratio=None,
 ):
@@ -1504,12 +1940,36 @@ def export_scene_mask_graph_proposals(
         spatial_sigma=graph_spatial_sigma,
         view_consensus_scale=graph_view_consensus_scale,
         edge_score_threshold=graph_edge_score_threshold,
+        projections_np=_to_numpy(openyolo3d.mesh_projections[0]).astype(np.int64),
+        visible_np=_to_numpy(openyolo3d.mesh_projections[1]).astype(bool),
     )
-    components = _connected_components(len(observations), adjacency)
+    connected_components = _connected_components(len(observations), adjacency)
+    hypothesis_skipped = []
+    if str(graph_hypothesis_mode) == "connected_component":
+        hypotheses = [
+            {
+                "graph_hypothesis_id": int(idx),
+                "members": component,
+                "trace": [],
+                "formation_policy": "connected_component",
+            }
+            for idx, component in enumerate(connected_components)
+        ]
+    else:
+        hypotheses, hypothesis_skipped = _build_constrained_instance_hypotheses(
+            observations,
+            adjacency,
+            relation_edges,
+            min_support_edges=graph_hypothesis_min_support_edges,
+            allow_undersegmentation_bridge=graph_hypothesis_allow_undersegmentation_bridge,
+    )
     candidates = []
+    existing_support_diagnostics = []
+    existing_support_diagnostic_dir = osp.join(scene_dir, "existing_support_diagnostics")
     prefilter_skipped = []
     cluster_skipped = []
-    for cluster_id, component in enumerate(components):
+    for cluster_id, hypothesis in enumerate(hypotheses):
+        component = list(hypothesis["members"])
         if len(component) < int(graph_min_cluster_observations):
             if not graph_keep_singletons:
                 cluster_skipped.append({"graph_cluster_id": int(cluster_id), "reason": "few_observations", "observation_count": int(len(component))})
@@ -1555,14 +2015,23 @@ def export_scene_mask_graph_proposals(
                 cc_max_points=graph_gap_cc_max_points,
             ),
             graph_gap_seed_policy=graph_gap_seed_policy,
+            hypothesis_trace=hypothesis.get("trace", []),
+            hypothesis_formation_policy=hypothesis.get("formation_policy"),
         )
         if candidate.get("candidate_action") != "new_candidate" and not graph_output_existing_support:
+            diagnostic_record = _write_existing_support_diagnostic(
+                candidate,
+                len(existing_support_diagnostics),
+                existing_support_diagnostic_dir,
+            )
+            existing_support_diagnostics.append(diagnostic_record)
             prefilter_skipped.append(
                 {
                     "reason": "graph_existing_support_only",
                     "graph_cluster_id": int(cluster_id),
                     "class_name": candidate.get("class_name"),
                     "candidate_action": candidate.get("candidate_action"),
+                    "existing_support_diagnostic_id": int(diagnostic_record["diagnostic_id"]),
                     "gap_info": candidate.get("gap_info", {}),
                 }
             )
@@ -1670,6 +2139,48 @@ def export_scene_mask_graph_proposals(
         candidate["gap_core_seed_points_path"] = gap_core_seed_path
         output_candidates.append(candidate)
 
+    observation_seed_dir = osp.join(scene_dir, "observation_seed_points")
+    os.makedirs(observation_seed_dir, exist_ok=True)
+    trace_path = osp.join(scene_dir, "mask_graph_trace.json")
+    observation_summaries = []
+    for obs in observations:
+        obs_id = int(obs.get("graph_observation_id", len(observation_summaries)))
+        obs_seed_path = osp.join(observation_seed_dir, f"observation{obs_id:05d}_points.npz")
+        obs_visible_seed_path = osp.join(observation_seed_dir, f"observation{obs_id:05d}_visible_points.npz")
+        np.savez_compressed(obs_seed_path, point_indices=np.asarray(obs.get("_seed_indices", []), dtype=np.int64))
+        np.savez_compressed(
+            obs_visible_seed_path,
+            point_indices=np.asarray(obs.get("_visible_seed_indices", []), dtype=np.int64),
+        )
+        observation_summaries.append(
+            {
+                **{
+                    key: value
+                    for key, value in obs.items()
+                    if not key.startswith("_") and key not in {"support_views"}
+                },
+                "observation_seed_points_path": obs_seed_path,
+                "observation_visible_seed_points_path": obs_visible_seed_path,
+            }
+        )
+    with open(trace_path, "w") as f:
+        json.dump(
+            {
+                "scene_name": scene_name,
+                "raw_observations": len(observations),
+                "observations": observation_summaries,
+                "relation_edges": relation_edges,
+                "hypotheses": hypotheses,
+                "hypothesis_skipped": hypothesis_skipped,
+                "existing_support_diagnostics": existing_support_diagnostics,
+                "cluster_skipped": cluster_skipped,
+                "prefilter_skipped": prefilter_skipped,
+            },
+            f,
+            indent=2,
+            default=str,
+        )
+
     json_path = osp.join(scene_dir, "backprojection_candidates.json")
     with open(json_path, "w") as f:
         json.dump(
@@ -1682,7 +2193,13 @@ def export_scene_mask_graph_proposals(
                 "graph_support_edges": len(adjacency) and sum(len(node_edges) for node_edges in adjacency) // 2,
                 "graph_weak_edges": len(weak_edges),
                 "graph_conflict_edges": len(conflict_edges),
-                "graph_components": len(components),
+                "graph_uncertain_edges": sum(1 for edge in relation_edges if str(edge.get("relation_type")) == "uncertain"),
+                "graph_components": len(connected_components),
+                "graph_hypotheses": len(hypotheses),
+                "existing_support_diagnostic_count": len(existing_support_diagnostics),
+                "mask_graph_trace_path": trace_path,
+                "hypothesis_skipped": hypothesis_skipped,
+                "existing_support_diagnostics": existing_support_diagnostics,
                 "skipped": skipped,
                 "cluster_skipped": cluster_skipped,
                 "prefilter_skipped": prefilter_skipped,
@@ -1742,6 +2259,9 @@ def export_scene_mask_graph_proposals(
                     "graph_competition_same_class_iou": graph_competition_same_class_iou,
                     "graph_competition_cross_class_iou": graph_competition_cross_class_iou,
                     "graph_competition_containment": graph_competition_containment,
+                    "graph_hypothesis_mode": graph_hypothesis_mode,
+                    "graph_hypothesis_min_support_edges": graph_hypothesis_min_support_edges,
+                    "graph_hypothesis_allow_undersegmentation_bridge": graph_hypothesis_allow_undersegmentation_bridge,
                     "export_max_existing_iou": export_max_existing_iou,
                     "export_max_seed_in_existing_mask_ratio": export_max_seed_in_existing_mask_ratio,
                 },
@@ -1757,7 +2277,10 @@ def export_scene_mask_graph_proposals(
         "graph_support_edges": len(adjacency) and sum(len(node_edges) for node_edges in adjacency) // 2,
         "graph_weak_edges": len(weak_edges),
         "graph_conflict_edges": len(conflict_edges),
-        "graph_components": len(components),
+        "graph_uncertain_edges": sum(1 for edge in relation_edges if str(edge.get("relation_type")) == "uncertain"),
+        "graph_components": len(connected_components),
+        "graph_hypotheses": len(hypotheses),
+        "existing_support_diagnostic_count": len(existing_support_diagnostics),
         "num_candidates": len(output_candidates),
     }
 
@@ -1944,6 +2467,9 @@ def main():
     parser.add_argument("--graph_competition_same_class_iou", default=0.60, type=float)
     parser.add_argument("--graph_competition_cross_class_iou", default=0.35, type=float)
     parser.add_argument("--graph_competition_containment", default=0.80, type=float)
+    parser.add_argument("--graph_hypothesis_mode", default="constrained", choices=["constrained", "connected_component"])
+    parser.add_argument("--graph_hypothesis_min_support_edges", default=1, type=int)
+    parser.add_argument("--graph_hypothesis_allow_undersegmentation_bridge", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--export_max_existing_iou", default=None, type=float)
     parser.add_argument("--export_max_seed_in_existing_mask_ratio", default=None, type=float)
     args = parser.parse_args()
