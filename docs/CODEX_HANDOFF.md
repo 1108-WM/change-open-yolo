@@ -34,6 +34,8 @@ YOLO-World 二维检测
 
 2026-06-23 运行与划分修复补充：暂缓节点现在记录依赖的假设，若当前假设失败会释放仅由该失败假设造成的暂缓节点，避免永久阻塞。`tools/run_scannet200_even48_mask_graph_eval.sh` 默认改为 `EXPORT_REUSE_EXISTING=0`，默认新输出目录为 `output/mask_graph_proposals_scannet200_even48_constrained_audit_fix_v2`；显式开启复用时，会校验新增关系阈值、假设参数、可靠 Mask3D 分数/覆盖门槛和 `export_code_version`。
 
+2026-06-23 配置口径修复补充：`tools/run_scannet200_even48_mask_graph_eval.sh` 默认 `MODE=export_only`，只导出证据图候选，不进入 `run_evaluation.py`；脚本默认未解释比例改回 `0.60`；导出阶段两个“任意已有 Mask3D 掩码”后置过滤默认关闭。`run_evaluation.py` 和 `utils/backprojection_fusion.py` 新增普通覆盖过滤计数汇总：如果以后显式进入评估，可以直接在 `candidate_summary.ordinary_existing_coverage_filtered_count` 中看到有多少候选被旧普通覆盖口径挡掉。
+
 ## 当前结论
 
 - 当前最稳结果仍是候选补全主线，不是 Alpha-CLIP、YOLOE、局部超点或简单层级规则。
@@ -72,7 +74,7 @@ YOLO-World 二维检测
 下一步建议：
 
 1. 暂时不要跑最终 AP，也不要扩 even96。
-2. 先做少量场景新版导出，观察关系和假设统计是否正常；默认脚本已关闭旧导出复用，输出到新的 `mask_graph_proposals_scannet200_even48_constrained_audit_fix_v2`。
+2. 先做少量场景新版导出，观察关系和假设统计是否正常；默认脚本已关闭旧导出复用，输出到新的 `mask_graph_proposals_scannet200_even48_constrained_audit_fix_v2`，且默认 `MODE=export_only` 不进入评估。
 3. even48 诊断只比较：
    - 关系准确率。
    - 原强支持连通区域拆分数。

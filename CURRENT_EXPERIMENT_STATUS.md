@@ -10,6 +10,28 @@
 
 ### 本轮对话追加记录
 
+2026-06-23 配置口径修复记录：针对最新审计意见，已修正 even48 脚本默认配置与评估报告口径。仍没有运行 even48、even96 或最终 AP。
+
+本次修复要点：
+
+- `tools/run_scannet200_even48_mask_graph_eval.sh`
+  - 默认 `MODE=export_only`，只导出证据图候选，不进入 `run_evaluation.py`。
+  - `MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO` 默认从 `0.25` 改回 `0.60`，与导出代码推荐值一致。
+  - 导出阶段的 `MASK_GRAPH_EXPORT_MAX_EXISTING_IOU` 和 `MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO` 默认关闭，不再用“任意已有 Mask3D 掩码”做后置普通覆盖过滤。
+  - 上述两个导出后置过滤现在支持真正留空；显式复用时也会按 `None` 口径校验旧摘要。
+  - 评估阶段普通已有掩码过滤改成环境变量驱动，并在启用时打印警告。
+- `utils/backprojection_fusion.py`
+  - 每个场景的回投候选报告新增：
+    - `skipped_reason_counts`
+    - `ordinary_existing_coverage_filtered_count`
+  - 其中普通覆盖过滤计数包含：
+    - `matched_existing_3d_mask`
+    - `mostly_covered_by_existing_masks`
+    - `grown_mask_matches_existing`
+- `run_evaluation.py`
+  - 汇总所有场景的跳过原因统计。
+  - 在总报告 `candidate_summary` 中新增 `ordinary_existing_coverage_filtered_count`，以后即便显式进入评估，也能看见被普通覆盖口径挡掉了多少候选。
+
 2026-06-23 运行与划分修复记录：针对上一提交后的两个增量问题，已继续修复证据图划分和 even48 导出脚本。没有运行 even48、even96 或最终 AP。
 
 本次修复要点：

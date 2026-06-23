@@ -21,6 +21,7 @@ import os.path as osp
 import json
 import gc
 import shutil
+from collections import Counter
 import numpy as np
 
 class InstSegEvaluator():
@@ -782,10 +783,27 @@ def test_pipeline_full(
         report_dir = osp.dirname(backprojection_report_path)
         if report_dir:
             os.makedirs(report_dir, exist_ok=True)
+        skipped_reason_counts = Counter()
+        ordinary_existing_coverage_filtered_count = 0
+        for scene_report in bpr_reports.values():
+            summary = scene_report.get("summary", {}) if isinstance(scene_report, dict) else {}
+            for reason, count in (summary.get("skipped_reason_counts", {}) or {}).items():
+                skipped_reason_counts[str(reason)] += int(count)
+            ordinary_existing_coverage_filtered_count += int(
+                summary.get("ordinary_existing_coverage_filtered_count", 0) or 0
+            )
         with open(backprojection_report_path, "w") as f:
             json.dump(
                 {
-                    "candidate_summary": bpr_summary,
+                    "candidate_summary": {
+                        **bpr_summary,
+                        "skipped_reason_counts": {
+                            str(reason): int(count) for reason, count in sorted(skipped_reason_counts.items())
+                        },
+                        "ordinary_existing_coverage_filtered_count": int(
+                            ordinary_existing_coverage_filtered_count
+                        ),
+                    },
                     "scene_reports": bpr_reports,
                     "params": {
                         "min_score": backprojection_min_score,

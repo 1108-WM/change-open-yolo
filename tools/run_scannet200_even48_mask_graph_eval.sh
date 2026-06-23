@@ -10,7 +10,7 @@ SAM_FUSED_IN="${SAM_FUSED_IN:-./output/sam_fused_proposals_scannet200_s5_m30_pre
 BPR_IN="${BPR_IN:-./output/backprojection_candidates_scannet200_mv_m20}"
 MASK_GRAPH_OUT="${MASK_GRAPH_OUT:-$ROOT_DIR/output/mask_graph_proposals_scannet200_even48_constrained_audit_fix_v2}"
 PATH_TO_2D_PREDS="${PATH_TO_2D_PREDS:-./output/scannet200/bboxes_2d}"
-MODE="${MODE:-graph_bpr}"
+MODE="${MODE:-export_only}"
 EVAL_SCORE_MODE="${EVAL_SCORE_MODE:-uniform}"
 EXPORT_MAX_CANDIDATES="${EXPORT_MAX_CANDIDATES:-30}"
 GRAPH_MIN_SEED_IOU="${GRAPH_MIN_SEED_IOU:-0.03}"
@@ -42,7 +42,7 @@ MASK_GRAPH_MAX_CONFLICT_EDGES="${MASK_GRAPH_MAX_CONFLICT_EDGES:-}"
 MASK_GRAPH_MAX_CONFLICT_RATIO="${MASK_GRAPH_MAX_CONFLICT_RATIO:-}"
 MASK_GRAPH_OUTPUT_EXISTING_SUPPORT="${MASK_GRAPH_OUTPUT_EXISTING_SUPPORT:-0}"
 MASK_GRAPH_GAP_MIN_UNCOVERED_POINTS="${MASK_GRAPH_GAP_MIN_UNCOVERED_POINTS:-20}"
-MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO="${MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO:-0.25}"
+MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO="${MASK_GRAPH_GAP_MIN_UNCOVERED_RATIO:-0.60}"
 MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO="${MASK_GRAPH_GAP_MIN_LARGEST_COMPONENT_RATIO:-0.50}"
 MASK_GRAPH_GAP_CC_RADIUS="${MASK_GRAPH_GAP_CC_RADIUS:-0.03}"
 MASK_GRAPH_GAP_CC_MAX_POINTS="${MASK_GRAPH_GAP_CC_MAX_POINTS:-50000}"
@@ -77,8 +77,10 @@ MASK_GRAPH_REFERENCE_VISIBLE_CONTAINMENT="${MASK_GRAPH_REFERENCE_VISIBLE_CONTAIN
 MASK_GRAPH_HARD_CONFLICT_INSIDE_POINTS="${MASK_GRAPH_HARD_CONFLICT_INSIDE_POINTS:-30}"
 MASK_GRAPH_HARD_CONFLICT_BIDIRECTIONAL_RATIO="${MASK_GRAPH_HARD_CONFLICT_BIDIRECTIONAL_RATIO:-0.40}"
 MASK_GRAPH_HARD_CONFLICT_SINGLE_RATIO="${MASK_GRAPH_HARD_CONFLICT_SINGLE_RATIO:-0.60}"
-MASK_GRAPH_EXPORT_MAX_EXISTING_IOU="${MASK_GRAPH_EXPORT_MAX_EXISTING_IOU:-0.30}"
-MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO="${MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO:-0.30}"
+MASK_GRAPH_EXPORT_MAX_EXISTING_IOU="${MASK_GRAPH_EXPORT_MAX_EXISTING_IOU:-}"
+MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO="${MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO:-}"
+BACKPROJECTION_MAX_EXISTING_IOU="${BACKPROJECTION_MAX_EXISTING_IOU:-0.30}"
+BACKPROJECTION_MAX_SEED_IN_EXISTING_MASK_RATIO="${BACKPROJECTION_MAX_SEED_IN_EXISTING_MASK_RATIO:-0.70}"
 MASK_GRAPH_EVIDENCE_RESCORE="${MASK_GRAPH_EVIDENCE_RESCORE:-0}"
 MASK_GRAPH_EVIDENCE_MIN_OVERLAP="${MASK_GRAPH_EVIDENCE_MIN_OVERLAP:-0.25}"
 MASK_GRAPH_EVIDENCE_MIN_IOU="${MASK_GRAPH_EVIDENCE_MIN_IOU:-0.03}"
@@ -246,8 +248,8 @@ expected_hypothesis_high_score_independent_support = float(sys.argv[30])
 expected_hypothesis_min_support_member_ratio = float(sys.argv[31])
 expected_hypothesis_seed_quality_top_ratio = float(sys.argv[32])
 expected_hypothesis_allow_undersegmentation_bridge = str(sys.argv[33]).lower() in {"1", "true", "yes"}
-expected_export_max_existing_iou = float(sys.argv[34])
-expected_export_max_seed_in_existing_mask_ratio = float(sys.argv[35])
+expected_export_max_existing_iou = sys.argv[34]
+expected_export_max_seed_in_existing_mask_ratio = sys.argv[35]
 expected_gap_reliable_existing_coverage = str(sys.argv[36]).lower() in {"1", "true", "yes"}
 expected_gap_min_existing_score = float(sys.argv[37])
 expected_gap_min_mask_seed_coverage = float(sys.argv[38])
@@ -324,8 +326,6 @@ checks = {
     "graph_hard_conflict_inside_points": expected_hard_conflict_inside_points,
     "graph_hard_conflict_bidirectional_ratio": expected_hard_conflict_bidirectional_ratio,
     "graph_hard_conflict_single_ratio": expected_hard_conflict_single_ratio,
-    "export_max_existing_iou": expected_export_max_existing_iou,
-    "export_max_seed_in_existing_mask_ratio": expected_export_max_seed_in_existing_mask_ratio,
     "export_code_version": expected_export_code_version,
 }
 for key, expected in checks.items():
@@ -352,6 +352,8 @@ for key, expected in checks.items():
 optional_checks = {
     "graph_max_conflict_edges": (expected_max_conflict_edges, int),
     "graph_max_conflict_ratio": (expected_max_conflict_ratio, float),
+    "export_max_existing_iou": (expected_export_max_existing_iou, float),
+    "export_max_seed_in_existing_mask_ratio": (expected_export_max_seed_in_existing_mask_ratio, float),
 }
 for key, (raw_expected, parser) in optional_checks.items():
     if key not in params:
@@ -491,6 +493,13 @@ export_mask_graph() {
   if [[ "$MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE" == "1" || "$MASK_GRAPH_HYPOTHESIS_ALLOW_UNDERSEGMENTATION_BRIDGE" == "true" ]]; then
     export_graph_gate_args+=(--graph_hypothesis_allow_undersegmentation_bridge)
   fi
+  local export_existing_filter_args=()
+  if [[ -n "$MASK_GRAPH_EXPORT_MAX_EXISTING_IOU" ]]; then
+    export_existing_filter_args+=(--export_max_existing_iou "$MASK_GRAPH_EXPORT_MAX_EXISTING_IOU")
+  fi
+  if [[ -n "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO" ]]; then
+    export_existing_filter_args+=(--export_max_seed_in_existing_mask_ratio "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO")
+  fi
   "$PYTHON" tools/export_mask_graph_proposals.py \
     --dataset_name scannet200 \
     --dataset_root "$DATASET_ROOT" \
@@ -523,8 +532,7 @@ export_mask_graph() {
     --graph_point_vote_min_keep_points "$GRAPH_POINT_VOTE_MIN_KEEP_POINTS" \
     "$vote_fallback_flag" \
     "${export_graph_gate_args[@]}" \
-    --export_max_existing_iou "$MASK_GRAPH_EXPORT_MAX_EXISTING_IOU" \
-    --export_max_seed_in_existing_mask_ratio "$MASK_GRAPH_EXPORT_MAX_SEED_IN_EXISTING_MASK_RATIO" \
+    "${export_existing_filter_args[@]}" \
     >"$OUT_DIR/export_mask_graph.log" 2>&1
   summarize_export "$MASK_GRAPH_OUT/mask_graph_proposals_summary.json"
 }
@@ -539,6 +547,16 @@ run_eval() {
   local log_path="$OUT_DIR/${name}.log"
   local report_path="$OUT_DIR/reports/${name}.json"
   local cache_dir="$OUT_DIR/cache_${name}"
+  local existing_filter_args=()
+  if [[ -n "$BACKPROJECTION_MAX_EXISTING_IOU" || -n "$BACKPROJECTION_MAX_SEED_IN_EXISTING_MASK_RATIO" ]]; then
+    echo "[WARN] run_evaluation 仍会使用普通已有掩码覆盖过滤；请结合报告中的 ordinary_existing_coverage_filtered_count 解读结果。"
+  fi
+  if [[ -n "$BACKPROJECTION_MAX_EXISTING_IOU" ]]; then
+    existing_filter_args+=(--backprojection_max_existing_iou "$BACKPROJECTION_MAX_EXISTING_IOU")
+  fi
+  if [[ -n "$BACKPROJECTION_MAX_SEED_IN_EXISTING_MASK_RATIO" ]]; then
+    existing_filter_args+=(--backprojection_max_seed_in_existing_mask_ratio "$BACKPROJECTION_MAX_SEED_IN_EXISTING_MASK_RATIO")
+  fi
   local mask_graph_gate_args=(
     --backprojection_mask_graph_min_cluster_observations "$MASK_GRAPH_MIN_CLUSTER_OBSERVATIONS"
     --backprojection_mask_graph_min_selected_views "$MASK_GRAPH_MIN_SELECTED_VIEWS"
@@ -578,8 +596,7 @@ run_eval() {
     --backprojection_candidates "$candidates" \
     --backprojection_min_score 0.50 \
     --backprojection_min_seed_points 80 \
-    --backprojection_max_existing_iou 0.30 \
-    --backprojection_max_seed_in_existing_mask_ratio 0.70 \
+    "${existing_filter_args[@]}" \
     --backprojection_max_candidates_per_scene 15 \
     --backprojection_score_scale 2.00 \
     --no-backprojection_use_candidate_fusion_score \
@@ -609,7 +626,7 @@ run_eval() {
 
 mode_uses_graph() {
   case "$MODE" in
-    graph_refill|graph_only|graph_bpr|default|all)
+    export_only|graph_refill|graph_only|graph_bpr|default|all)
       return 0
       ;;
     no_graph_refill|baseline_refill)
@@ -626,6 +643,9 @@ if mode_uses_graph; then
 fi
 
 case "$MODE" in
+  export_only)
+    echo "[INFO] MODE=export_only，只导出证据图候选，不进入 run_evaluation。"
+    ;;
   no_graph_refill|baseline_refill)
     run_eval no_graph_refill \
       "$SAM_FUSED_IN,$BPR_IN" \
@@ -662,7 +682,7 @@ case "$MODE" in
       "$SOURCE_LIMITS_GRAPH_REFILL"
     ;;
   *)
-    echo "Unknown MODE=$MODE; expected no_graph_refill, graph_refill, graph_only, graph_bpr, default, or all" >&2
+    echo "Unknown MODE=$MODE; expected export_only, no_graph_refill, graph_refill, graph_only, graph_bpr, default, or all" >&2
     exit 2
     ;;
 esac

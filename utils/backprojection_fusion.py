@@ -1,7 +1,7 @@
 import json
 import os
 import os.path as osp
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 import imageio.v2 as imageio
 import numpy as np
@@ -3093,4 +3093,22 @@ def append_backprojection_proposals(
         hierarchy_substitution_min_children=hierarchy_substitution_min_children,
     )
     report["postprocess"] = postprocess_summary
+    skipped_reason_counts = Counter(
+        str(item.get("reason", "unknown"))
+        for item in report["skipped"]
+    )
+    ordinary_existing_filter_reasons = {
+        "matched_existing_3d_mask",
+        "mostly_covered_by_existing_masks",
+        "grown_mask_matches_existing",
+    }
+    report["summary"] = {
+        "loaded": int(report.get("loaded", 0)),
+        "applied_count": int(len(report["applied"])),
+        "skipped_count": int(len(report["skipped"])),
+        "skipped_reason_counts": {str(key): int(value) for key, value in sorted(skipped_reason_counts.items())},
+        "ordinary_existing_coverage_filtered_count": int(
+            sum(skipped_reason_counts.get(reason, 0) for reason in ordinary_existing_filter_reasons)
+        ),
+    }
     return masks_np, classes_np, scores_np, report
