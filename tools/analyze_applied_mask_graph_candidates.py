@@ -7,7 +7,7 @@ import json
 import os
 import os.path as osp
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 
 import numpy as np
 import torch
@@ -26,6 +26,15 @@ def _load_mask_tensor(path):
     masks = payload[0] if isinstance(payload, (tuple, list)) else payload
     masks = masks.detach().cpu().numpy() if torch.is_tensor(masks) else np.asarray(masks)
     return masks.astype(bool, copy=False)
+
+
+def _safe_int(value, default=-1):
+    try:
+        if value is None or str(value) == "None":
+            return int(default)
+        return int(value)
+    except (TypeError, ValueError):
+        return int(default)
 
 
 def _iter_candidate_json_paths(path):
@@ -313,6 +322,88 @@ def _analyze_one_mask(mask_name, mask, row_base, gt_masks, gt_instance_ids, gt_s
     return row
 
 
+def _dedup_existing_revision_summary(rows, min_delta=1e-6):
+    variant_names = ["原始已有候选", "二维证据修剪核心", "原始加核心补全"]
+    grouped = defaultdict(lambda: defaultdict(list))
+    diagnostic_keys = set()
+    for row in rows:
+        if not bool(row.get("is_existing_support_diagnostic", False)):
+            continue
+        if row.get("点集类型") not in variant_names:
+            continue
+        existing_id = _safe_int(row.get("best_existing_mask_id", -1), -1)
+        if existing_id < 0:
+            continue
+        key = (row.get("scene_name", ""), existing_id)
+        grouped[key][row["点集类型"]].append(row)
+        diagnostic_keys.add((row.get("scene_name", ""), _safe_int(row.get("diagnostic_id", -1), -1)))
+
+    def pick(items, strategy):
+        if not items:
+            return None
+        if strategy == "conservative":
+            return min(items, key=lambda item: float(item.get("best_gt_iou", 0.0)))
+        return max(items, key=lambda item: float(item.get("best_gt_iou", 0.0)))
+
+    def build_strategy(strategy):
+        variant_values = {name: [] for name in variant_names}
+        comparisons = {}
+        for variant in ["二维证据修剪核心", "原始加核心补全"]:
+            comparisons[variant] = {"better": 0, "worse": 0, "tie": 0, "deltas": []}
+
+        usable_groups = 0
+        duplicate_group_count = 0
+        for variants in grouped.values():
+            original = pick(variants.get("原始已有候选", []), strategy)
+            if original is None:
+                continue
+            usable_groups += 1
+            if sum(len(items) for items in variants.values()) > len([name for name in variant_names if variants.get(name)]):
+                duplicate_group_count += 1
+            original_iou = float(original.get("best_gt_iou", 0.0))
+            variant_values["原始已有候选"].append(original_iou)
+            for variant in ["二维证据修剪核心", "原始加核心补全"]:
+                picked = pick(variants.get(variant, []), strategy)
+                if picked is None:
+                    continue
+                variant_iou = float(picked.get("best_gt_iou", 0.0))
+                variant_values[variant].append(variant_iou)
+                delta = variant_iou - original_iou
+                comparisons[variant]["deltas"].append(delta)
+                if delta > float(min_delta):
+                    comparisons[variant]["better"] += 1
+                elif delta < -float(min_delta):
+                    comparisons[variant]["worse"] += 1
+                else:
+                    comparisons[variant]["tie"] += 1
+
+        return {
+            "usable_unique_mask3d_count": int(usable_groups),
+            "duplicate_unique_mask3d_count": int(duplicate_group_count),
+            "mean_best_gt_iou_by_variant": {
+                name: float(np.mean(values)) if values else 0.0
+                for name, values in variant_values.items()
+            },
+            "comparison_to_original": {
+                name: {
+                    "better": int(stats["better"]),
+                    "worse": int(stats["worse"]),
+                    "tie": int(stats["tie"]),
+                    "mean_delta": float(np.mean(stats["deltas"])) if stats["deltas"] else 0.0,
+                }
+                for name, stats in comparisons.items()
+            },
+        }
+
+    return {
+        "raw_existing_support_diagnostic_count": int(len(diagnostic_keys)),
+        "unique_mask3d_reference_count": int(len(grouped)),
+        "min_delta": float(min_delta),
+        "best_per_mask3d": build_strategy("best"),
+        "conservative_per_mask3d": build_strategy("conservative"),
+    }
+
+
 def analyze(args):
     applied = _load_candidate_index(args.backprojection_report, args.source_prefix)
     exported = _load_exported_candidates(
@@ -364,6 +455,7 @@ def analyze(args):
             "depth_consistency_score": float(candidate.get("depth_consistency_score", item.get("depth_consistency_score", 0.0)) or 0.0),
             "seed_in_existing_mask_ratio": float(candidate.get("seed_in_existing_mask_ratio", item.get("seed_in_existing_mask_ratio", 0.0)) or 0.0),
             "best_existing_iou": float(candidate.get("best_existing_iou", item.get("best_existing_iou", 0.0)) or 0.0),
+            "best_existing_mask_id": _safe_int(candidate.get("best_existing_mask_id", item.get("best_existing_mask_id", -1)), -1),
             "hypothesis_formation_policy": candidate.get("hypothesis_formation_policy", ""),
             "full_core_seed_point_count": int(candidate.get("full_core_seed_point_count", 0) or 0),
             "gap_core_seed_point_count": int(candidate.get("gap_core_seed_point_count", 0) or 0),
@@ -406,6 +498,7 @@ def analyze(args):
         "mean_best_gt_coverage": float(np.mean([row["best_gt_coverage"] for row in rows])) if rows else 0.0,
         "mean_best_gt_best_baseline_iou": float(np.mean([row["best_gt_best_baseline_iou"] for row in rows])) if rows else 0.0,
         "mean_candidate_best_baseline_overlap": float(np.mean([row["candidate_best_baseline_overlap"] for row in rows])) if rows else 0.0,
+        "existing_revision_dedup_summary": _dedup_existing_revision_summary(rows, args.revision_dedup_delta),
     }
     json_path = osp.join(args.output_dir, "applied_mask_graph_candidates_summary.json")
     with open(json_path, "w") as f:
@@ -428,6 +521,7 @@ def parse_args():
     parser.add_argument("--source_prefix", default="mask_graph")
     parser.add_argument("--cc_radius", default=0.03, type=float)
     parser.add_argument("--cc_max_points", default=50000, type=int)
+    parser.add_argument("--revision_dedup_delta", default=1e-6, type=float)
     parser.add_argument("--output_dir", required=True)
     return parser.parse_args()
 

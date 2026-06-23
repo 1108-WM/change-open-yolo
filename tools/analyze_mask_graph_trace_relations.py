@@ -60,7 +60,8 @@ def _best_gt_for_indices(indices, gt_masks, gt_ids):
             "gt_class_name": "",
             "best_iou": 0.0,
             "precision": 0.0,
-            "coverage": 0.0,
+        "coverage": 0.0,
+        "match_points": 0,
         }
     mask = np.zeros((gt_masks.shape[0],), dtype=bool)
     valid = (indices >= 0) & (indices < gt_masks.shape[0])
@@ -78,6 +79,7 @@ def _best_gt_for_indices(indices, gt_masks, gt_ids):
             "best_iou": 0.0,
             "precision": 0.0,
             "coverage": 0.0,
+            "match_points": 0,
         }
     gt_instance_ids, counts = np.unique(gt_ids[gt_masks[:, best]], return_counts=True)
     valid_ids = gt_instance_ids > 0
@@ -95,10 +97,46 @@ def _best_gt_for_indices(indices, gt_masks, gt_ids):
         "best_iou": float(ious[best]),
         "precision": float(intersections[best] / max(1, int(mask.sum()))),
         "coverage": float(intersections[best] / max(1, int(gt_masks[:, best].sum()))),
+        "match_points": int(intersections[best]),
     }
 
 
+def _match_is_reliable(match, min_precision, min_coverage, min_iou, min_match_points):
+    if int(match.get("match_points", 0)) < int(min_match_points):
+        return False
+    return bool(
+        (float(min_precision) > 0.0 and float(match.get("precision", 0.0)) >= float(min_precision))
+        or (float(min_coverage) > 0.0 and float(match.get("coverage", 0.0)) >= float(min_coverage))
+        or (float(min_iou) > 0.0 and float(match.get("best_iou", 0.0)) >= float(min_iou))
+    )
+
+
+def _max_inside_depth_conflict(edge):
+    depth_pair = edge.get("depth_pair_info") if isinstance(edge.get("depth_pair_info"), dict) else {}
+    left_stats = depth_pair.get("left_to_right") if isinstance(depth_pair.get("left_to_right"), dict) else {}
+    right_stats = depth_pair.get("right_to_left") if isinstance(depth_pair.get("right_to_left"), dict) else {}
+    return float(max(
+        float(left_stats.get("inside_depth_conflict_ratio", 0.0) or 0.0),
+        float(right_stats.get("inside_depth_conflict_ratio", 0.0) or 0.0),
+    ))
+
+
+def _depth_conflict_bin(value):
+    value = float(value)
+    if value < 0.20:
+        return "[0.00,0.20)"
+    if value < 0.40:
+        return "[0.20,0.40)"
+    if value < 0.60:
+        return "[0.40,0.60)"
+    if value < 0.80:
+        return "[0.60,0.80)"
+    return "[0.80,1.00]"
+
+
 def _edge_truth_label(left_match, right_match):
+    if not bool(left_match.get("gt_match_reliable", False)) or not bool(right_match.get("gt_match_reliable", False)):
+        return "unknown"
     if left_match["gt_instance_id"] <= 0 or right_match["gt_instance_id"] <= 0:
         return "unknown"
     if left_match["gt_instance_id"] == right_match["gt_instance_id"]:
@@ -129,6 +167,13 @@ def analyze(args):
                 "class_id": int(obs.get("class_id", -1)),
                 "undersegmentation_bridge_risk": bool(obs.get("undersegmentation_bridge_risk", False)),
             }
+            observation_matches[obs_id]["gt_match_reliable"] = _match_is_reliable(
+                observation_matches[obs_id],
+                args.min_gt_precision,
+                args.min_gt_coverage,
+                args.min_gt_iou,
+                args.min_gt_match_points,
+            )
         for edge in trace.get("relation_edges", []):
             left_id = int(edge.get("left", -1))
             right_id = int(edge.get("right", -1))
@@ -138,7 +183,9 @@ def analyze(args):
                 continue
             truth = _edge_truth_label(left_match, right_match)
             relation_type = str(edge.get("relation_type", ""))
-            if relation_type == "same_object":
+            if truth == "unknown":
+                correct = None
+            elif relation_type == "same_object":
                 correct = truth == "same_instance"
             elif "conflict" in relation_type or relation_type == "same_frame_mutex":
                 correct = truth in {"different_same_class_instance", "different_class_instance"}
@@ -158,8 +205,30 @@ def analyze(args):
                     "right_gt_instance_id": right_match["gt_instance_id"],
                     "left_gt_class": left_match["gt_class_name"],
                     "right_gt_class": right_match["gt_class_name"],
+                    "left_gt_best_iou": float(left_match["best_iou"]),
+                    "right_gt_best_iou": float(right_match["best_iou"]),
+                    "left_gt_precision": float(left_match["precision"]),
+                    "right_gt_precision": float(right_match["precision"]),
+                    "left_gt_coverage": float(left_match["coverage"]),
+                    "right_gt_coverage": float(right_match["coverage"]),
+                    "left_gt_match_points": int(left_match["match_points"]),
+                    "right_gt_match_points": int(right_match["match_points"]),
+                    "left_gt_match_reliable": bool(left_match["gt_match_reliable"]),
+                    "right_gt_match_reliable": bool(right_match["gt_match_reliable"]),
                     "left_pred_class": left_match["class_name"],
                     "right_pred_class": right_match["class_name"],
+                    "has_common_mask3d_reference": edge.get("coarse_reference_id") is not None,
+                    "mask3d_reference_group": (
+                        "with_common_mask3d_reference"
+                        if edge.get("coarse_reference_id") is not None
+                        else "without_common_mask3d_reference"
+                    ),
+                    "coarse_reference_id": "" if edge.get("coarse_reference_id") is None else int(edge.get("coarse_reference_id")),
+                    "support_kind": edge.get("support_kind", "none"),
+                    "independent_support": bool(edge.get("independent_support", False)),
+                    "reference_assisted_support": bool(edge.get("reference_assisted_support", False)),
+                    "max_inside_depth_conflict_ratio": _max_inside_depth_conflict(edge),
+                    "depth_conflict_bin": _depth_conflict_bin(_max_inside_depth_conflict(edge)),
                     "edge_score": float(edge.get("edge_score", 0.0) or 0.0),
                     "same_object_score": float(edge.get("same_object_score", 0.0) or 0.0),
                     "conflict_score": float(edge.get("conflict_score", 0.0) or 0.0),
@@ -185,9 +254,19 @@ def analyze(args):
         by_relation[row["relation_type"]].append(row)
     summary = {
         "relation_count": len(rows),
+        "gt_match_thresholds": {
+            "min_gt_precision": float(args.min_gt_precision),
+            "min_gt_coverage": float(args.min_gt_coverage),
+            "min_gt_iou": float(args.min_gt_iou),
+            "min_gt_match_points": int(args.min_gt_match_points),
+        },
         "relation_type_counts": dict(Counter(row["relation_type"] for row in rows)),
         "truth_label_counts": dict(Counter(row["truth_label"] for row in rows)),
         "by_relation": {},
+        "by_relation_and_mask3d_reference": {},
+        "by_relation_and_support_kind": {},
+        "by_relation_and_depth_conflict_bin": {},
+        "same_object_score_bins": {},
     }
     for relation_type, items in by_relation.items():
         judged = [item for item in items if item["relation_correct"] != ""]
@@ -196,6 +275,72 @@ def analyze(args):
             "judged_count": len(judged),
             "correct_rate": (
                 float(sum(str(item["relation_correct"]) == "True" for item in judged) / len(judged))
+                if judged
+                else None
+            ),
+            "truth_label_counts": dict(Counter(item["truth_label"] for item in items)),
+        }
+    by_relation_ref = defaultdict(list)
+    for row in rows:
+        by_relation_ref[(row["relation_type"], row["mask3d_reference_group"])].append(row)
+    for (relation_type, ref_group), items in by_relation_ref.items():
+        judged = [item for item in items if item["relation_correct"] != ""]
+        summary["by_relation_and_mask3d_reference"][f"{relation_type}|{ref_group}"] = {
+            "count": len(items),
+            "judged_count": len(judged),
+            "correct_rate": (
+                float(sum(str(item["relation_correct"]) == "True" for item in judged) / len(judged))
+                if judged
+                else None
+            ),
+            "truth_label_counts": dict(Counter(item["truth_label"] for item in items)),
+        }
+
+    by_relation_support = defaultdict(list)
+    for row in rows:
+        by_relation_support[(row["relation_type"], row["support_kind"])].append(row)
+    for (relation_type, support_kind), items in by_relation_support.items():
+        judged = [item for item in items if item["relation_correct"] != ""]
+        summary["by_relation_and_support_kind"][f"{relation_type}|{support_kind}"] = {
+            "count": len(items),
+            "judged_count": len(judged),
+            "correct_rate": (
+                float(sum(str(item["relation_correct"]) == "True" for item in judged) / len(judged))
+                if judged
+                else None
+            ),
+            "truth_label_counts": dict(Counter(item["truth_label"] for item in items)),
+        }
+
+    by_relation_depth = defaultdict(list)
+    for row in rows:
+        by_relation_depth[(row["relation_type"], row["depth_conflict_bin"])].append(row)
+    for (relation_type, depth_bin), items in by_relation_depth.items():
+        judged = [item for item in items if item["relation_correct"] != ""]
+        summary["by_relation_and_depth_conflict_bin"][f"{relation_type}|{depth_bin}"] = {
+            "count": len(items),
+            "judged_count": len(judged),
+            "correct_rate": (
+                float(sum(str(item["relation_correct"]) == "True" for item in judged) / len(judged))
+                if judged
+                else None
+            ),
+            "truth_label_counts": dict(Counter(item["truth_label"] for item in items)),
+        }
+
+    bins = [(0.0, 0.25), (0.25, 0.35), (0.35, 0.45), (0.45, 0.60), (0.60, 0.80), (0.80, 1.01)]
+    same_object_rows = [row for row in rows if row["relation_type"] == "same_object"]
+    for low, high in bins:
+        key = f"[{low:.2f},{high:.2f})"
+        items = [row for row in same_object_rows if low <= float(row["same_object_score"]) < high]
+        judged = [item for item in items if item["relation_correct"] != ""]
+        errors = [item for item in judged if str(item["relation_correct"]) != "True"]
+        summary["same_object_score_bins"][key] = {
+            "count": len(items),
+            "judged_count": len(judged),
+            "error_count": len(errors),
+            "correct_rate": (
+                float((len(judged) - len(errors)) / len(judged))
                 if judged
                 else None
             ),
@@ -214,6 +359,10 @@ def parse_args():
     parser.add_argument("--gt_masks", default="./output/scannet200/scannet200_ground_truth_masks")
     parser.add_argument("--gt_instance_dir", default="./data/scannet200/ground_truth")
     parser.add_argument("--output_dir", required=True)
+    parser.add_argument("--min_gt_precision", default=0.60, type=float)
+    parser.add_argument("--min_gt_coverage", default=0.20, type=float)
+    parser.add_argument("--min_gt_iou", default=0.0, type=float)
+    parser.add_argument("--min_gt_match_points", default=30, type=int)
     return parser.parse_args()
 
 
