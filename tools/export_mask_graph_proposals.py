@@ -2825,7 +2825,9 @@ def export_scene_mask_graph_proposals(
     export_code_version="",
     superpoint_diagnostics=False,
     superpoint_adjacency_knn=12,
-    superpoint_adjacency_max_distance=0.08,
+    superpoint_adjacency_max_distance=0.05,
+    superpoint_adjacency_min_contact_points=3,
+    superpoint_adjacency_min_contact_ratio=0.02,
     superpoint_support_min_coverage=0.60,
     superpoint_partial_min_coverage=0.30,
     superpoint_min_visible_points=20,
@@ -2918,6 +2920,8 @@ def export_scene_mask_graph_proposals(
                 points_xyz=points_xyz,
                 adjacency_knn=superpoint_adjacency_knn,
                 adjacency_max_distance=superpoint_adjacency_max_distance,
+                adjacency_min_contact_points=superpoint_adjacency_min_contact_points,
+                adjacency_min_contact_ratio=superpoint_adjacency_min_contact_ratio,
             )
             if not bool(scene_cache["summary"].get("point_order_matches_scene_points", False)):
                 superpoint_scene_summary = {
@@ -3392,6 +3396,8 @@ def export_scene_mask_graph_proposals(
                     "superpoint_diagnostics": superpoint_diagnostics,
                     "superpoint_adjacency_knn": superpoint_adjacency_knn,
                     "superpoint_adjacency_max_distance": superpoint_adjacency_max_distance,
+                    "superpoint_adjacency_min_contact_points": superpoint_adjacency_min_contact_points,
+                    "superpoint_adjacency_min_contact_ratio": superpoint_adjacency_min_contact_ratio,
                     "superpoint_support_min_coverage": superpoint_support_min_coverage,
                     "superpoint_partial_min_coverage": superpoint_partial_min_coverage,
                     "superpoint_min_visible_points": superpoint_min_visible_points,
@@ -3649,7 +3655,9 @@ def main():
     parser.add_argument("--export_code_version", default="", type=str)
     parser.add_argument("--superpoint_diagnostics", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--superpoint_adjacency_knn", default=12, type=int)
-    parser.add_argument("--superpoint_adjacency_max_distance", default=0.08, type=float)
+    parser.add_argument("--superpoint_adjacency_max_distance", default=0.05, type=float)
+    parser.add_argument("--superpoint_adjacency_min_contact_points", default=3, type=int)
+    parser.add_argument("--superpoint_adjacency_min_contact_ratio", default=0.02, type=float)
     parser.add_argument("--superpoint_support_min_coverage", default=0.60, type=float)
     parser.add_argument("--superpoint_partial_min_coverage", default=0.30, type=float)
     parser.add_argument("--superpoint_min_visible_points", default=20, type=int)

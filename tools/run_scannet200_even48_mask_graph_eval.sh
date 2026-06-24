@@ -28,7 +28,7 @@ GRAPH_POINT_VOTE_MIN_KEEP_RATIO="${GRAPH_POINT_VOTE_MIN_KEEP_RATIO:-0.35}"
 GRAPH_POINT_VOTE_MIN_KEEP_POINTS="${GRAPH_POINT_VOTE_MIN_KEEP_POINTS:-0}"
 GRAPH_POINT_VOTE_ALLOW_FALLBACK="${GRAPH_POINT_VOTE_ALLOW_FALLBACK:-0}"
 EXPORT_REUSE_EXISTING="${EXPORT_REUSE_EXISTING:-0}"
-MASK_GRAPH_EXPORT_CODE_VERSION="${MASK_GRAPH_EXPORT_CODE_VERSION:-mask_graph_constrained_audit_fix_v3_superpoint_diag}"
+MASK_GRAPH_EXPORT_CODE_VERSION="${MASK_GRAPH_EXPORT_CODE_VERSION:-mask_graph_constrained_audit_fix_v4_superpoint_diag_frames}"
 SOURCE_LIMITS_GRAPH_BPR="${SOURCE_LIMITS_GRAPH_BPR:-mask_graph_multi_view=5,mask_graph_single_view=0,bpr=5}"
 SOURCE_LIMITS_GRAPH_ONLY="${SOURCE_LIMITS_GRAPH_ONLY:-mask_graph_multi_view=12,mask_graph_single_view=0}"
 SOURCE_LIMITS_GRAPH_REFILL="${SOURCE_LIMITS_GRAPH_REFILL:-sam_fused=12,bpr=3,mask_graph_multi_view=2,mask_graph_single_view=0}"
@@ -90,7 +90,9 @@ MASK_GRAPH_SCORE_FACTOR_WEIGHT="${MASK_GRAPH_SCORE_FACTOR_WEIGHT:-1.0}"
 MASK_GRAPH_MAX_PROPOSAL_SCORE="${MASK_GRAPH_MAX_PROPOSAL_SCORE:-1.05}"
 MASK_GRAPH_SUPERPOINT_DIAGNOSTICS="${MASK_GRAPH_SUPERPOINT_DIAGNOSTICS:-1}"
 MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN="${MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN:-12}"
-MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE="${MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE:-0.08}"
+MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE="${MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE:-0.05}"
+MASK_GRAPH_SUPERPOINT_MIN_CONTACT_POINTS="${MASK_GRAPH_SUPERPOINT_MIN_CONTACT_POINTS:-3}"
+MASK_GRAPH_SUPERPOINT_MIN_CONTACT_RATIO="${MASK_GRAPH_SUPERPOINT_MIN_CONTACT_RATIO:-0.02}"
 MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE="${MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE:-0.60}"
 MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE="${MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE:-0.30}"
 MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS="${MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS:-20}"
@@ -226,6 +228,8 @@ can_reuse_export() {
     "$MASK_GRAPH_SUPERPOINT_DIAGNOSTICS" \
     "$MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN" \
     "$MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE" \
+    "$MASK_GRAPH_SUPERPOINT_MIN_CONTACT_POINTS" \
+    "$MASK_GRAPH_SUPERPOINT_MIN_CONTACT_RATIO" \
     "$MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE" \
     "$MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE" \
     "$MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS" \
@@ -299,16 +303,18 @@ expected_export_code_version = sys.argv[55]
 expected_superpoint_diagnostics = str(sys.argv[56]).lower() in {"1", "true", "yes"}
 expected_superpoint_adjacency_knn = int(sys.argv[57])
 expected_superpoint_adjacency_max_distance = float(sys.argv[58])
-expected_superpoint_support_min_coverage = float(sys.argv[59])
-expected_superpoint_partial_min_coverage = float(sys.argv[60])
-expected_superpoint_min_visible_points = int(sys.argv[61])
-expected_superpoint_min_depth_consistency = float(sys.argv[62])
-expected_superpoint_reject_min_depth_conflict = float(sys.argv[63])
-expected_superpoint_reject_min_inside_points = int(sys.argv[64])
-expected_superpoint_reject_min_conflict_points = int(sys.argv[65])
-expected_superpoint_outside_reject_min_visible_points = int(sys.argv[66])
-expected_superpoint_outside_reject_max_inside_ratio = float(sys.argv[67])
-expected_superpoint_outside_reject_min_outside_ratio = float(sys.argv[68])
+expected_superpoint_min_contact_points = int(sys.argv[59])
+expected_superpoint_min_contact_ratio = float(sys.argv[60])
+expected_superpoint_support_min_coverage = float(sys.argv[61])
+expected_superpoint_partial_min_coverage = float(sys.argv[62])
+expected_superpoint_min_visible_points = int(sys.argv[63])
+expected_superpoint_min_depth_consistency = float(sys.argv[64])
+expected_superpoint_reject_min_depth_conflict = float(sys.argv[65])
+expected_superpoint_reject_min_inside_points = int(sys.argv[66])
+expected_superpoint_reject_min_conflict_points = int(sys.argv[67])
+expected_superpoint_outside_reject_min_visible_points = int(sys.argv[68])
+expected_superpoint_outside_reject_max_inside_ratio = float(sys.argv[69])
+expected_superpoint_outside_reject_min_outside_ratio = float(sys.argv[70])
 
 with open(summary_path) as f:
     data = json.load(f)
@@ -369,6 +375,8 @@ checks = {
     "superpoint_diagnostics": expected_superpoint_diagnostics,
     "superpoint_adjacency_knn": expected_superpoint_adjacency_knn,
     "superpoint_adjacency_max_distance": expected_superpoint_adjacency_max_distance,
+    "superpoint_adjacency_min_contact_points": expected_superpoint_min_contact_points,
+    "superpoint_adjacency_min_contact_ratio": expected_superpoint_min_contact_ratio,
     "superpoint_support_min_coverage": expected_superpoint_support_min_coverage,
     "superpoint_partial_min_coverage": expected_superpoint_partial_min_coverage,
     "superpoint_min_visible_points": expected_superpoint_min_visible_points,
@@ -560,6 +568,8 @@ export_mask_graph() {
       --superpoint_diagnostics
       --superpoint_adjacency_knn "$MASK_GRAPH_SUPERPOINT_ADJACENCY_KNN"
       --superpoint_adjacency_max_distance "$MASK_GRAPH_SUPERPOINT_ADJACENCY_MAX_DISTANCE"
+      --superpoint_adjacency_min_contact_points "$MASK_GRAPH_SUPERPOINT_MIN_CONTACT_POINTS"
+      --superpoint_adjacency_min_contact_ratio "$MASK_GRAPH_SUPERPOINT_MIN_CONTACT_RATIO"
       --superpoint_support_min_coverage "$MASK_GRAPH_SUPERPOINT_SUPPORT_MIN_COVERAGE"
       --superpoint_partial_min_coverage "$MASK_GRAPH_SUPERPOINT_PARTIAL_MIN_COVERAGE"
       --superpoint_min_visible_points "$MASK_GRAPH_SUPERPOINT_MIN_VISIBLE_POINTS"

@@ -87,14 +87,17 @@ class _FrameProjector:
             "projected_points": 0,
             "valid_depth_points": 0,
             "visible_points": 0,
+            "reliable_visible_points": 0,
             "inside_mask_points": 0,
             "inside_depth_consistent_points": 0,
             "inside_depth_conflict_points": 0,
             "outside_visible_points": 0,
+            "outside_reliable_visible_points": 0,
             "depth_consistency_ratio": 0.0,
             "depth_conflict_ratio": 0.0,
             "inside_visible_ratio": 0.0,
             "outside_visible_ratio": 0.0,
+            "outside_reliable_visible_ratio": 0.0,
             "visible_ratio": 0.0,
             "visible_coverage_ratio": 0.0,
             "full_coverage_ratio": 0.0,
@@ -156,6 +159,7 @@ class _FrameProjector:
         tolerance = np.minimum(0.10, np.maximum(0.04, 0.03 * measured_depth))
         depth_consistent = depth_error <= tolerance
         depth_conflict = ~depth_consistent
+        reliable_visible_points = int(depth_consistent.sum())
 
         xs_mask, ys_mask = _projected_mask_coords(coords, self.scaling_params)
         valid_mask = (xs_mask >= 0) & (xs_mask < sam_mask.shape[1]) & (ys_mask >= 0) & (ys_mask < sam_mask.shape[0])
@@ -167,18 +171,24 @@ class _FrameProjector:
         inside_consistent = int(np.logical_and(inside_mask, depth_consistent).sum())
         inside_conflict = int(np.logical_and(inside_mask, depth_conflict).sum())
         outside_visible_points = int(max(0, len(valid_indices) - inside_points))
+        outside_reliable_visible_points = int(np.logical_and(~inside_mask, depth_consistent).sum())
         output.update(
             {
+                "reliable_visible_points": reliable_visible_points,
                 "inside_mask_points": inside_points,
                 "inside_depth_consistent_points": inside_consistent,
                 "inside_depth_conflict_points": inside_conflict,
                 "outside_visible_points": outside_visible_points,
+                "outside_reliable_visible_points": outside_reliable_visible_points,
                 "depth_consistency_ratio": float(inside_consistent / max(1, inside_points)),
                 "depth_conflict_ratio": float(inside_conflict / max(1, inside_points)),
                 "inside_visible_ratio": float(inside_points / max(1, len(valid_indices))),
                 "outside_visible_ratio": float(outside_visible_points / max(1, len(valid_indices))),
+                "outside_reliable_visible_ratio": float(
+                    outside_reliable_visible_points / max(1, reliable_visible_points)
+                ),
                 "visible_ratio": float(len(valid_indices) / max(1, len(point_indices))),
-                "visible_coverage_ratio": float(inside_consistent / max(1, len(valid_indices))),
+                "visible_coverage_ratio": float(inside_consistent / max(1, reliable_visible_points)),
                 "median_depth_error": float(np.median(depth_error)) if len(depth_error) else 0.0,
                 "p90_depth_error": float(np.percentile(depth_error, 90)) if len(depth_error) else 0.0,
             }
@@ -190,7 +200,9 @@ def build_scene_superpoint_cache(
     processed_scene_path,
     points_xyz=None,
     adjacency_knn=12,
-    adjacency_max_distance=0.08,
+    adjacency_max_distance=0.05,
+    adjacency_min_contact_points=3,
+    adjacency_min_contact_ratio=0.02,
 ):
     scene = np.load(processed_scene_path, mmap_mode="r")
     if scene.ndim != 2 or scene.shape[1] < 10:
@@ -264,9 +276,9 @@ def build_scene_superpoint_cache(
         )
 
     neighbor_k = int(max(1, min(int(adjacency_knn), max(1, len(points) - 1))))
-    adjacency_max_distance = (
-        None if adjacency_max_distance is None else float(max(0.0, adjacency_max_distance))
-    )
+    adjacency_max_distance = None if adjacency_max_distance is None else float(max(0.0, adjacency_max_distance))
+    adjacency_min_contact_points = int(max(1, adjacency_min_contact_points))
+    adjacency_min_contact_ratio = float(max(0.0, adjacency_min_contact_ratio))
     pair_stats = defaultdict(lambda: {"contact_count": 0, "distance_sum": 0.0, "normal_sum": 0.0, "color_sum": 0.0})
     if neighbor_k > 0 and len(points) > 1:
         tree = cKDTree(points)
@@ -322,10 +334,15 @@ def build_scene_superpoint_cache(
         count = int(stats["contact_count"])
         if count <= 0:
             continue
+        smaller_segment_size = int(min(segment_sizes[seg_left], segment_sizes[seg_right]))
+        contact_ratio = float(count / max(1, smaller_segment_size))
+        if count < adjacency_min_contact_points or contact_ratio < adjacency_min_contact_ratio:
+            continue
         record = {
             "left_segment_id": int(seg_left),
             "right_segment_id": int(seg_right),
             "boundary_contact_count": count,
+            "boundary_contact_ratio": contact_ratio,
             "mean_boundary_distance": float(stats["distance_sum"] / count),
             "mean_normal_difference": float(stats["normal_sum"] / count),
             "mean_color_difference": float(stats["color_sum"] / count),
@@ -346,6 +363,8 @@ def build_scene_superpoint_cache(
         "contiguous_ids": bool(num_segments == 0 or (labels.min(initial=0) == 0 and labels.max(initial=0) == num_segments - 1)),
         "adjacency_knn": int(neighbor_k),
         "adjacency_max_distance": adjacency_max_distance,
+        "adjacency_min_contact_points": adjacency_min_contact_points,
+        "adjacency_min_contact_ratio": adjacency_min_contact_ratio,
         "median_superpoint_size": float(np.median(segment_sizes)) if len(segment_sizes) else 0.0,
         "p90_superpoint_size": float(np.percentile(segment_sizes, 90)) if len(segment_sizes) else 0.0,
         "max_superpoint_size": int(segment_sizes.max(initial=0)),
@@ -388,6 +407,10 @@ def save_scene_superpoint_cache(scene_cache, scene_dir):
         [item["boundary_contact_count"] for item in scene_cache["adjacency_records"]],
         dtype=np.int32,
     )
+    adjacency_contact_ratio = np.asarray(
+        [item["boundary_contact_ratio"] for item in scene_cache["adjacency_records"]],
+        dtype=np.float32,
+    )
     adjacency_distance = np.asarray(
         [item["mean_boundary_distance"] for item in scene_cache["adjacency_records"]],
         dtype=np.float32,
@@ -418,6 +441,7 @@ def save_scene_superpoint_cache(scene_cache, scene_dir):
         adjacency_left=adjacency_left,
         adjacency_right=adjacency_right,
         adjacency_boundary_contact_count=adjacency_contact,
+        adjacency_boundary_contact_ratio=adjacency_contact_ratio,
         adjacency_mean_boundary_distance=adjacency_distance,
         adjacency_mean_normal_difference=adjacency_normal,
         adjacency_mean_color_difference=adjacency_color,
@@ -457,6 +481,8 @@ def load_scene_superpoint_cache(scene_dir, points_xyz=None):
     point_order_matches = bool(payload.get("point_order_matches_scene_points", False))
     if points_xyz is not None and len(points_xyz) == len(scene_points):
         point_order_matches = bool(np.allclose(np.asarray(points_xyz, dtype=np.float32), scene_points, atol=1e-4))
+    elif points_xyz is not None and len(points_xyz) != len(scene_points):
+        point_order_matches = False
 
     segment_neighbors = defaultdict(list)
     adjacency_records = payload.get("adjacency", [])
@@ -494,7 +520,9 @@ def load_or_build_scene_superpoint_cache(
     processed_scene_path,
     points_xyz=None,
     adjacency_knn=12,
-    adjacency_max_distance=0.08,
+    adjacency_max_distance=0.05,
+    adjacency_min_contact_points=3,
+    adjacency_min_contact_ratio=0.02,
 ):
     cached = load_scene_superpoint_cache(scene_dir, points_xyz=points_xyz)
     if cached is not None:
@@ -507,6 +535,8 @@ def load_or_build_scene_superpoint_cache(
                 (summary.get("adjacency_max_distance") is None and adjacency_max_distance is None)
                 or float(summary.get("adjacency_max_distance", -1.0)) == float(adjacency_max_distance)
             )
+            and int(summary.get("adjacency_min_contact_points", -1)) == int(adjacency_min_contact_points)
+            and float(summary.get("adjacency_min_contact_ratio", -1.0)) == float(adjacency_min_contact_ratio)
         ):
             summary["cache_reused"] = True
             return cached
@@ -516,6 +546,8 @@ def load_or_build_scene_superpoint_cache(
         points_xyz=points_xyz,
         adjacency_knn=adjacency_knn,
         adjacency_max_distance=adjacency_max_distance,
+        adjacency_min_contact_points=adjacency_min_contact_points,
+        adjacency_min_contact_ratio=adjacency_min_contact_ratio,
     )
     built["summary"]["cache_reused"] = False
     scene_cache_paths = save_scene_superpoint_cache(built, scene_dir)
@@ -590,9 +622,9 @@ def classify_observation_superpoint_support(
             label = "depth_conflict_reject"
         elif (
             segment_id not in touched
-            and int(metrics["visible_points"]) >= int(outside_reject_min_visible_points)
-            and float(metrics["inside_visible_ratio"]) <= float(outside_reject_max_inside_ratio)
-            and float(metrics["outside_visible_ratio"]) >= float(outside_reject_min_outside_ratio)
+            and int(metrics["reliable_visible_points"]) >= int(outside_reject_min_visible_points)
+            and float(metrics["visible_coverage_ratio"]) <= float(outside_reject_max_inside_ratio)
+            and float(metrics["outside_reliable_visible_ratio"]) >= float(outside_reject_min_outside_ratio)
         ):
             label = "outside_mask_reject"
         elif (
@@ -684,11 +716,11 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
     def aggregate_observations(observation_ids):
         aggregate = defaultdict(
             lambda: {
-                "strong_support_views": 0,
-                "partial_support_views": 0,
-                "depth_conflict_reject_views": 0,
-                "outside_mask_reject_views": 0,
-                "touched_views": 0,
+                "strong_support_frames": set(),
+                "partial_support_frames": set(),
+                "depth_conflict_reject_frames": set(),
+                "outside_mask_reject_frames": set(),
+                "touched_frames": set(),
                 "best_full_coverage_ratio": 0.0,
                 "best_visible_coverage_ratio": 0.0,
                 "best_depth_consistency_ratio": 0.0,
@@ -699,20 +731,22 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
             evidence = observation_evidence_by_id.get(int(observation_id))
             if evidence is None:
                 continue
+            frame_index = int(evidence.get("frame_index", -1))
+            has_valid_frame = frame_index >= 0
             for record in evidence.get("superpoint_evidence", []):
                 segment_id = int(record["segment_id"])
                 stats = aggregate[segment_id]
                 label = str(record.get("support_label", ""))
-                if label == "strong_support":
-                    stats["strong_support_views"] += 1
-                elif label == "partial_support":
-                    stats["partial_support_views"] += 1
-                elif label == "depth_conflict_reject":
-                    stats["depth_conflict_reject_views"] += 1
-                elif label == "outside_mask_reject":
-                    stats["outside_mask_reject_views"] += 1
-                if bool(record.get("touched_by_seed", False)):
-                    stats["touched_views"] += 1
+                if label == "strong_support" and has_valid_frame:
+                    stats["strong_support_frames"].add(frame_index)
+                elif label == "partial_support" and has_valid_frame:
+                    stats["partial_support_frames"].add(frame_index)
+                elif label == "depth_conflict_reject" and has_valid_frame:
+                    stats["depth_conflict_reject_frames"].add(frame_index)
+                elif label == "outside_mask_reject" and has_valid_frame:
+                    stats["outside_mask_reject_frames"].add(frame_index)
+                if bool(record.get("touched_by_seed", False)) and has_valid_frame:
+                    stats["touched_frames"].add(frame_index)
                 stats["best_full_coverage_ratio"] = max(
                     stats["best_full_coverage_ratio"],
                     float(record.get("full_coverage_ratio", record.get("coverage_ratio", 0.0))),
@@ -733,13 +767,19 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
     if not aggregate_all:
         return {"enabled": False, "reason": "missing_observation_superpoint_evidence"}
 
-    def reject_count(stats):
-        return int(stats["depth_conflict_reject_views"]) + int(stats["outside_mask_reject_views"])
+    def frame_count(frame_set):
+        return int(len(frame_set))
+
+    def has_hard_reject(stats):
+        return bool(
+            frame_count(stats["depth_conflict_reject_frames"]) >= 1
+            or frame_count(stats["outside_mask_reject_frames"]) >= 2
+        )
 
     core_segments = {
         int(segment_id)
         for segment_id, stats in aggregate_all.items()
-        if int(stats["strong_support_views"]) >= 2 and reject_count(stats) == 0
+        if frame_count(stats["strong_support_frames"]) >= 2 and not has_hard_reject(stats)
     }
     boundary_segments = set()
     conflict_segments = set()
@@ -748,12 +788,12 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
         segment_id = int(segment_id)
         if segment_id in core_segments:
             continue
-        has_support = int(stats["strong_support_views"]) > 0 or int(stats["partial_support_views"]) > 0
-        if reject_count(stats) > 0 and has_support:
+        has_support = frame_count(stats["strong_support_frames"]) > 0 or frame_count(stats["partial_support_frames"]) > 0
+        if has_hard_reject(stats) and has_support:
             conflict_segments.add(segment_id)
             continue
         adjacent_to_core = any(int(neighbor) in core_segments for neighbor in neighbors.get(segment_id, []))
-        if has_support and adjacent_to_core and reject_count(stats) == 0:
+        if has_support and adjacent_to_core and not has_hard_reject(stats):
             boundary_segments.add(segment_id)
         elif has_support:
             unresolved_segments.add(segment_id)
@@ -796,16 +836,22 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
         return {
             "supported_superpoint_count": int(len(aggregate)),
             "strong_support_superpoint_count": int(
-                sum(1 for stats in aggregate.values() if int(stats["strong_support_views"]) > 0)
+                sum(1 for stats in aggregate.values() if frame_count(stats["strong_support_frames"]) > 0)
             ),
             "partial_support_superpoint_count": int(
-                sum(1 for stats in aggregate.values() if int(stats["partial_support_views"]) > 0)
+                sum(1 for stats in aggregate.values() if frame_count(stats["partial_support_frames"]) > 0)
             ),
             "depth_conflict_reject_superpoint_count": int(
-                sum(1 for stats in aggregate.values() if int(stats["depth_conflict_reject_views"]) > 0)
+                sum(1 for stats in aggregate.values() if frame_count(stats["depth_conflict_reject_frames"]) > 0)
             ),
             "outside_mask_reject_superpoint_count": int(
-                sum(1 for stats in aggregate.values() if int(stats["outside_mask_reject_views"]) > 0)
+                sum(1 for stats in aggregate.values() if frame_count(stats["outside_mask_reject_frames"]) > 0)
+            ),
+            "strong_support_frame_count_max": int(
+                max([frame_count(stats["strong_support_frames"]) for stats in aggregate.values()] or [0])
+            ),
+            "partial_support_frame_count_max": int(
+                max([frame_count(stats["partial_support_frames"]) for stats in aggregate.values()] or [0])
             ),
         }
 
@@ -825,6 +871,9 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
         "core_internal_adjacency_edges": int(connected_core_edges),
         "core_connected_component_count": int(len(core_components)),
         "core_largest_component_ratio": float(core_largest_component_ratio),
+        "core_largest_component_superpoint_ratio": float(
+            max([len(component) for component in core_components] or [0]) / max(1, len(core_segments))
+        ),
         "all_observation_summary": aggregate_summary(aggregate_all),
         "selected_observation_summary": aggregate_summary(aggregate_selected),
         "core_superpoint_ids": [int(item) for item in sorted(core_segments)],
