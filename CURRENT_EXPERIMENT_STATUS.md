@@ -1,6 +1,6 @@
 # OpenYOLO3D 在 ScanNet200 上的候选补全实验状态
 
-最后更新：2026-06-23
+最后更新：2026-06-24
 
 项目路径：
 
@@ -9,6 +9,87 @@
 ## 0. 下一次对话先看这里
 
 ### 本轮对话追加记录
+
+2026-06-24 真超点候选诊断第一版与桥接边界排除：本地代码已包含提交 `eb8ca29` 的第一版真超点候选诊断，并继续按最新审计意见补上“桥接边界超点排除”。这两步都只影响诊断导出，不改变最终评估结果，也没有运行最终 AP。
+
+第一版真超点候选诊断新增内容：
+
+- `utils/superpoint_diagnostics.py`
+  - 在候选级超点摘要中新增 `proposal`：
+    - 只保留最大核心连通区域；
+    - 边界超点只作为该核心的一层邻居补全；
+    - 冲突超点保持未分配。
+  - 新增点级候选与超点候选对照统计：
+    - 点数；
+    - 重叠覆盖比例；
+    - 连通性；
+    - 点级候选落在冲突超点上的比例；
+    - 超点候选与已有 Mask3D 的覆盖指标。
+- `tools/export_mask_graph_proposals.py`
+  - 每个候选额外导出：
+    - `candidateXXXX_superpoint_candidate_points.npz`
+  - 候选 JSON 新增：
+    - `superpoint_candidate_seed_point_count`
+    - `superpoint_candidate_seed_points_path`
+- `tools/run_scannet200_even48_mask_graph_eval.sh`
+  - `MASK_GRAPH_EXPORT_CODE_VERSION` 更新为：
+    - `mask_graph_constrained_audit_fix_v5_superpoint_candidate_diag`
+
+第一版 3 场景对照结果：
+
+- 输出目录：
+  - `/tmp/mask_graph_proposals_scannet200_superpoint_candidate_diag_3scenes`
+- 23 个候选中：
+  - 点级候选只有 `4 / 23` 是单连通；
+  - 超点候选有 `18 / 23` 是单连通。
+- 全部候选平均：
+  - 点级候选点数：`681.5`
+  - 超点候选点数：`2272.2`
+  - 点级候选连通分量数：`5.17`
+  - 超点候选连通分量数：`1.39`
+  - 点级候选被超点候选覆盖比例：`0.843`
+  - 超点候选被点级候选覆盖比例：`0.423`
+  - 点级候选落在冲突超点上的比例均值：`0.086`
+
+第一版结论：
+
+- 核心连通约束方向成立，超点候选明显减少了点级碎片。
+- 但“一层边界补全”仍偏激进，超点候选平均点数约为点级候选的 `3.65` 倍。
+- 当前真正的收益主要来自“核心连通”，不是“边界补全”。
+- 下一步应继续收紧边界保留条件，暂不应直接跑 even48 全量或最终 AP。
+
+2026-06-24 桥接边界排除补充：已显式排除“同时邻接多个核心连通区域”的边界超点，并新增：
+
+- `proposal.bridge_boundary_superpoint_count`
+- `proposal.bridge_boundary_point_count`
+- `proposal.bridge_boundary_superpoint_ids`
+
+本次复跑：
+
+- 输出目录：
+  - `/tmp/mask_graph_proposals_scannet200_superpoint_bridge_boundary_diag_3scenes`
+- 场景：
+  - `scene0011_00`
+  - `scene0025_02`
+  - `scene0046_02`
+
+复跑结果：
+
+- 这 3 个场景的 23 个候选中，没有任何候选触发桥接边界排除：
+  - `bridge_boundary_superpoint_count = 0`
+- 因此与上一版真超点候选诊断相比：
+  - 超点候选平均点数不变：`2272.2`
+  - 超点候选平均连通分量数不变：`1.39`
+  - 单连通候选数不变：`18 / 23`
+
+当前判断：
+
+- 桥接边界排除逻辑已经补齐，后续更大样本上不会再把“同时贴着多个核心连通区域”的边界超点误并入候选。
+- 但在当前 3 个场景上，它不是主要矛盾。
+- 当前更值得继续推进的是：
+  - 收紧边界超点保留条件；
+  - 限制边界超点对已有 Mask3D 的过度回填；
+  - 继续只做少量场景导出诊断。
 
 2026-06-23 超点诊断定义修复并复跑 3 场景：已按最新审计意见修正“不同帧统计、可靠可见、可见覆盖率分母、邻接收紧、缓存复用与点序不匹配处理”，并重新运行相同 3 个场景的 `export_only` 诊断。当前仍然只做诊断，不影响最终候选与 AP。
 

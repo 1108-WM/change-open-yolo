@@ -851,6 +851,10 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
                 connected_core_edges += 1
 
     core_components = _connected_segment_components(core_segments, neighbors)
+    core_component_id_by_segment = {}
+    for component_id, component in enumerate(core_components):
+        for segment_id in component:
+            core_component_id_by_segment[int(segment_id)] = int(component_id)
     core_component_point_totals = [_segment_point_total(component, segment_sizes) for component in core_components]
     total_core_points = _segment_point_total(core_segments, segment_sizes)
     core_largest_component_ratio = (
@@ -862,32 +866,46 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
         "reason": "missing_reliable_core_superpoints",
         "core_superpoint_count": 0,
         "boundary_superpoint_count": 0,
+        "bridge_boundary_superpoint_count": 0,
         "dropped_core_superpoint_count": int(len(core_segments)),
         "dropped_boundary_superpoint_count": int(len(boundary_segments)),
         "point_count": 0,
         "core_point_count": 0,
         "boundary_point_count": 0,
+        "bridge_boundary_point_count": 0,
         "connected_component_count": 0,
         "largest_component_ratio": 0.0,
         "core_superpoint_ids": [],
         "boundary_superpoint_ids": [],
+        "bridge_boundary_superpoint_ids": [],
         "superpoint_ids": [],
     }
     if core_components:
-        largest_core_component = max(
-            core_components,
-            key=lambda component: (
-                _segment_point_total(component, segment_sizes),
-                len(component),
-                -min(component),
+        largest_core_component_id = max(
+            range(len(core_components)),
+            key=lambda component_id: (
+                _segment_point_total(core_components[component_id], segment_sizes),
+                len(core_components[component_id]),
+                -min(core_components[component_id]),
             ),
         )
+        largest_core_component = core_components[int(largest_core_component_id)]
         proposal_core_segments = set(int(item) for item in largest_core_component)
-        proposal_boundary_segments = {
-            int(segment_id)
-            for segment_id in boundary_segments
-            if any(int(neighbor) in proposal_core_segments for neighbor in neighbors.get(int(segment_id), []))
-        }
+        bridge_boundary_segments = set()
+        proposal_boundary_segments = set()
+        for segment_id in boundary_segments:
+            segment_id = int(segment_id)
+            adjacent_core_component_ids = {
+                int(core_component_id_by_segment[int(neighbor)])
+                for neighbor in neighbors.get(segment_id, [])
+                if int(neighbor) in core_component_id_by_segment
+            }
+            if largest_core_component_id not in adjacent_core_component_ids:
+                continue
+            if len(adjacent_core_component_ids) > 1:
+                bridge_boundary_segments.add(segment_id)
+                continue
+            proposal_boundary_segments.add(segment_id)
         proposal_segments = proposal_core_segments | proposal_boundary_segments
         proposal_components = _connected_segment_components(proposal_segments, neighbors)
         proposal_point_total = _segment_point_total(proposal_segments, segment_sizes)
@@ -906,15 +924,18 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
             "reason": "ok",
             "core_superpoint_count": int(len(proposal_core_segments)),
             "boundary_superpoint_count": int(len(proposal_boundary_segments)),
+            "bridge_boundary_superpoint_count": int(len(bridge_boundary_segments)),
             "dropped_core_superpoint_count": int(len(core_segments - proposal_core_segments)),
             "dropped_boundary_superpoint_count": int(len(boundary_segments - proposal_boundary_segments)),
             "point_count": int(proposal_point_total),
             "core_point_count": int(_segment_point_total(proposal_core_segments, segment_sizes)),
             "boundary_point_count": int(_segment_point_total(proposal_boundary_segments, segment_sizes)),
+            "bridge_boundary_point_count": int(_segment_point_total(bridge_boundary_segments, segment_sizes)),
             "connected_component_count": int(len(proposal_components)),
             "largest_component_ratio": float(proposal_largest_ratio),
             "core_superpoint_ids": [int(item) for item in sorted(proposal_core_segments)],
             "boundary_superpoint_ids": [int(item) for item in sorted(proposal_boundary_segments)],
+            "bridge_boundary_superpoint_ids": [int(item) for item in sorted(bridge_boundary_segments)],
             "superpoint_ids": [int(item) for item in sorted(proposal_segments)],
         }
 
