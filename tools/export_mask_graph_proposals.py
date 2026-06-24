@@ -54,6 +54,7 @@ from utils.superpoint_diagnostics import (
     classify_observation_superpoint_support,
     load_or_build_scene_superpoint_cache,
     save_observation_superpoint_evidence,
+    superpoint_ids_to_point_indices,
     summarize_candidate_superpoints,
 )
 
@@ -81,6 +82,98 @@ def _safe_mean(values, default=0.0):
     if not values:
         return float(default)
     return float(np.mean(values))
+
+
+def _sorted_unique_point_indices(indices):
+    if indices is None:
+        return np.asarray([], dtype=np.int64)
+    return np.unique(np.asarray(indices, dtype=np.int64)).astype(np.int64)
+
+
+def _candidate_point_connectivity_summary(point_indices, points_xyz, radius=0.03, max_points=50000):
+    point_indices = _sorted_unique_point_indices(point_indices)
+    if len(point_indices) == 0:
+        return {
+            "component_count": 0,
+            "largest_component_ratio": 0.0,
+            "small_component_ratio": 0.0,
+            "component_skipped": False,
+            "component_radius": float(radius),
+        }
+    if points_xyz is None:
+        return {
+            "component_count": 0,
+            "largest_component_ratio": 0.0,
+            "small_component_ratio": 0.0,
+            "component_skipped": True,
+            "component_radius": float(radius),
+        }
+    return _connected_component_summary(points_xyz[point_indices], radius, max_points)
+
+
+def _summarize_superpoint_point_comparison(
+    candidate,
+    superpoint_candidate_indices,
+    conflict_superpoint_indices,
+    existing_masks,
+    points_xyz=None,
+):
+    point_candidate_indices = _sorted_unique_point_indices(candidate.get("_seed_indices", np.asarray([], dtype=np.int64)))
+    point_full_core_indices = _sorted_unique_point_indices(
+        candidate.get("_full_core_seed_indices", point_candidate_indices)
+    )
+    superpoint_candidate_indices = _sorted_unique_point_indices(superpoint_candidate_indices)
+    conflict_superpoint_indices = _sorted_unique_point_indices(conflict_superpoint_indices)
+
+    point_vs_superpoint_overlap = np.intersect1d(
+        point_candidate_indices,
+        superpoint_candidate_indices,
+        assume_unique=True,
+    )
+    full_core_vs_superpoint_overlap = np.intersect1d(
+        point_full_core_indices,
+        superpoint_candidate_indices,
+        assume_unique=True,
+    )
+    point_vs_conflict_overlap = np.intersect1d(
+        point_candidate_indices,
+        conflict_superpoint_indices,
+        assume_unique=True,
+    )
+    superpoint_existing_metrics = _existing_mask_metrics(existing_masks, superpoint_candidate_indices)
+    return {
+        "point_candidate_point_count": int(len(point_candidate_indices)),
+        "point_candidate_full_core_point_count": int(len(point_full_core_indices)),
+        "superpoint_candidate_point_count": int(len(superpoint_candidate_indices)),
+        "conflict_superpoint_point_count": int(len(conflict_superpoint_indices)),
+        "point_candidate_overlap_with_superpoint_count": int(len(point_vs_superpoint_overlap)),
+        "point_candidate_covered_by_superpoint_ratio": float(
+            len(point_vs_superpoint_overlap) / max(1, len(point_candidate_indices))
+        ),
+        "superpoint_candidate_covered_by_point_ratio": float(
+            len(point_vs_superpoint_overlap) / max(1, len(superpoint_candidate_indices))
+        ),
+        "full_core_overlap_with_superpoint_count": int(len(full_core_vs_superpoint_overlap)),
+        "full_core_covered_by_superpoint_ratio": float(
+            len(full_core_vs_superpoint_overlap) / max(1, len(point_full_core_indices))
+        ),
+        "superpoint_candidate_covered_by_full_core_ratio": float(
+            len(full_core_vs_superpoint_overlap) / max(1, len(superpoint_candidate_indices))
+        ),
+        "point_candidate_points_on_conflict_superpoints": int(len(point_vs_conflict_overlap)),
+        "point_candidate_conflict_overlap_ratio": float(
+            len(point_vs_conflict_overlap) / max(1, len(point_candidate_indices))
+        ),
+        "point_candidate_connectivity": _candidate_point_connectivity_summary(
+            point_candidate_indices,
+            points_xyz,
+        ),
+        "superpoint_candidate_connectivity": _candidate_point_connectivity_summary(
+            superpoint_candidate_indices,
+            points_xyz,
+        ),
+        "superpoint_candidate_existing_mask_metrics": superpoint_existing_metrics,
+    }
 
 
 def _graph_quality_score(observation):
@@ -3174,6 +3267,23 @@ def export_scene_mask_graph_proposals(
                 candidate,
                 observation_superpoint_by_id,
             )
+            proposal = candidate["superpoint_diagnostics"].get("proposal", {})
+            proposed_superpoint_indices = superpoint_ids_to_point_indices(
+                scene_cache,
+                proposal.get("superpoint_ids", []),
+            )
+            conflict_superpoint_indices = superpoint_ids_to_point_indices(
+                scene_cache,
+                candidate["superpoint_diagnostics"].get("conflict_superpoint_ids", []),
+            )
+            candidate["_superpoint_candidate_seed_indices"] = proposed_superpoint_indices
+            candidate["superpoint_diagnostics"]["point_level_comparison"] = _summarize_superpoint_point_comparison(
+                candidate,
+                proposed_superpoint_indices,
+                conflict_superpoint_indices,
+                existing_masks,
+                points_xyz=points_xyz,
+            )
         candidates.append(candidate)
 
     if graph_candidate_competition and len(candidates) > 1:
@@ -3216,17 +3326,38 @@ def export_scene_mask_graph_proposals(
         seed_indices = candidate.pop("_seed_indices")
         full_core_seed_indices = candidate.pop("_full_core_seed_indices", seed_indices)
         gap_core_seed_indices = candidate.pop("_gap_core_seed_indices", np.asarray([], dtype=np.int64))
+        superpoint_candidate_seed_indices = candidate.pop(
+            "_superpoint_candidate_seed_indices",
+            np.asarray([], dtype=np.int64),
+        )
+        superpoint_diag_enabled = bool(candidate.get("superpoint_diagnostics", {}).get("enabled", False))
         seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_points.npz")
         np.savez_compressed(seed_path, point_indices=seed_indices)
         full_core_seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_full_core_points.npz")
         gap_core_seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_gap_core_points.npz")
         np.savez_compressed(full_core_seed_path, point_indices=np.asarray(full_core_seed_indices, dtype=np.int64))
         np.savez_compressed(gap_core_seed_path, point_indices=np.asarray(gap_core_seed_indices, dtype=np.int64))
+        superpoint_candidate_seed_path = None
+        if superpoint_diag_enabled:
+            superpoint_candidate_seed_path = osp.join(
+                seed_dir,
+                f"candidate{candidate_id:04d}_superpoint_candidate_points.npz",
+            )
+            np.savez_compressed(
+                superpoint_candidate_seed_path,
+                point_indices=np.asarray(superpoint_candidate_seed_indices, dtype=np.int64),
+            )
         candidate["candidate_id"] = int(candidate_id)
         candidate["num_seed_points"] = int(len(seed_indices))
         candidate["seed_points_path"] = seed_path
         candidate["full_core_seed_points_path"] = full_core_seed_path
         candidate["gap_core_seed_points_path"] = gap_core_seed_path
+        candidate["superpoint_candidate_seed_point_count"] = (
+            int(len(superpoint_candidate_seed_indices))
+            if superpoint_diag_enabled
+            else 0
+        )
+        candidate["superpoint_candidate_seed_points_path"] = superpoint_candidate_seed_path
         output_candidates.append(candidate)
 
     observation_seed_dir = osp.join(scene_dir, "observation_seed_points")
