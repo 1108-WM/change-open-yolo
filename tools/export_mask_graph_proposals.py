@@ -19,6 +19,7 @@ import imageio.v2 as imageio
 import numpy as np
 import torch
 from tqdm import tqdm
+from scipy.spatial import cKDTree
 
 from evaluate import SCENE_NAMES_REPLICA, SCENE_NAMES_SCANNET200
 from run_evaluation import load_yaml
@@ -109,6 +110,80 @@ def _candidate_point_connectivity_summary(point_indices, points_xyz, radius=0.03
             "component_radius": float(radius),
         }
     return _connected_component_summary(points_xyz[point_indices], radius, max_points)
+
+
+def _largest_point_component_indices(point_indices, points_xyz, radius=0.03, max_points=50000):
+    point_indices = _sorted_unique_point_indices(point_indices)
+    output = {
+        "enabled": points_xyz is not None and len(point_indices) > 0,
+        "input_point_count": int(len(point_indices)),
+        "output_point_count": 0,
+        "component_count": 0,
+        "largest_component_ratio": 0.0,
+        "component_skipped": False,
+        "component_radius": float(radius),
+    }
+    if len(point_indices) == 0 or points_xyz is None:
+        return point_indices, output
+    if max_points is not None and len(point_indices) > int(max_points):
+        output["component_skipped"] = True
+        output["output_point_count"] = int(len(point_indices))
+        output["largest_component_ratio"] = 1.0
+        return point_indices, output
+
+    local_points = points_xyz[point_indices]
+    tree = cKDTree(local_points)
+    effective_radius = float(radius)
+    if len(local_points) >= 2:
+        nearest = tree.query(local_points, k=2)[0][:, 1]
+        nearest = nearest[np.isfinite(nearest) & (nearest > 0)]
+        if len(nearest) > 0:
+            effective_radius = max(effective_radius, float(np.median(nearest) * 2.5))
+    neighbors = tree.query_ball_point(local_points, r=effective_radius)
+    parent = np.arange(len(point_indices), dtype=np.int32)
+    rank = np.zeros((len(point_indices),), dtype=np.uint8)
+
+    def find(index):
+        while parent[index] != index:
+            parent[index] = parent[parent[index]]
+            index = parent[index]
+        return index
+
+    def union(left, right):
+        left_root = find(left)
+        right_root = find(right)
+        if left_root == right_root:
+            return
+        if rank[left_root] < rank[right_root]:
+            parent[left_root] = right_root
+        elif rank[left_root] > rank[right_root]:
+            parent[right_root] = left_root
+        else:
+            parent[right_root] = left_root
+            rank[left_root] += 1
+
+    for index, local_neighbors in enumerate(neighbors):
+        for neighbor in local_neighbors:
+            if int(neighbor) > index:
+                union(index, int(neighbor))
+
+    roots = np.asarray([find(index) for index in range(len(point_indices))], dtype=np.int32)
+    unique_roots, counts = np.unique(roots, return_counts=True)
+    if len(unique_roots) == 0:
+        return np.asarray([], dtype=np.int64), output
+    largest_pos = int(np.argmax(counts))
+    largest_root = int(unique_roots[largest_pos])
+    keep = roots == largest_root
+    largest_indices = point_indices[keep].astype(np.int64, copy=False)
+    output.update(
+        {
+            "output_point_count": int(len(largest_indices)),
+            "component_count": int(len(unique_roots)),
+            "largest_component_ratio": float(len(largest_indices) / max(1, len(point_indices))),
+            "component_radius": float(effective_radius),
+        }
+    )
+    return largest_indices, output
 
 
 def _summarize_superpoint_point_comparison(
@@ -3319,10 +3394,24 @@ def export_scene_mask_graph_proposals(
                 existing_masks,
                 points_xyz=points_xyz,
             )
+            largest_cc_indices, largest_cc_info = _largest_point_component_indices(
+                core_boundary_indices,
+                points_xyz,
+            )
+            largest_cc_comparison = _summarize_superpoint_point_comparison(
+                candidate,
+                largest_cc_indices,
+                conflict_superpoint_indices,
+                existing_masks,
+                points_xyz=points_xyz,
+            )
             candidate["_superpoint_core_only_seed_indices"] = core_only_indices
             candidate["_superpoint_candidate_seed_indices"] = core_boundary_indices
+            candidate["_superpoint_candidate_largest_cc_seed_indices"] = largest_cc_indices
             candidate["superpoint_diagnostics"]["core_only_point_level_comparison"] = core_only_comparison
             candidate["superpoint_diagnostics"]["point_level_comparison"] = core_boundary_comparison
+            candidate["superpoint_diagnostics"]["largest_cc_point_level_comparison"] = largest_cc_comparison
+            candidate["superpoint_diagnostics"]["largest_cc_cleanup"] = largest_cc_info
         candidates.append(candidate)
 
     if graph_candidate_competition and len(candidates) > 1:
@@ -3373,6 +3462,10 @@ def export_scene_mask_graph_proposals(
             "_superpoint_core_only_seed_indices",
             np.asarray([], dtype=np.int64),
         )
+        superpoint_largest_cc_seed_indices = candidate.pop(
+            "_superpoint_candidate_largest_cc_seed_indices",
+            np.asarray([], dtype=np.int64),
+        )
         superpoint_diag_enabled = bool(candidate.get("superpoint_diagnostics", {}).get("enabled", False))
         seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_points.npz")
         np.savez_compressed(seed_path, point_indices=seed_indices)
@@ -3382,6 +3475,7 @@ def export_scene_mask_graph_proposals(
         np.savez_compressed(gap_core_seed_path, point_indices=np.asarray(gap_core_seed_indices, dtype=np.int64))
         superpoint_core_only_seed_path = None
         superpoint_candidate_seed_path = None
+        superpoint_largest_cc_seed_path = None
         if superpoint_diag_enabled:
             superpoint_core_only_seed_path = osp.join(
                 seed_dir,
@@ -3391,6 +3485,10 @@ def export_scene_mask_graph_proposals(
                 seed_dir,
                 f"candidate{candidate_id:04d}_superpoint_candidate_points.npz",
             )
+            superpoint_largest_cc_seed_path = osp.join(
+                seed_dir,
+                f"candidate{candidate_id:04d}_superpoint_candidate_largest_cc_points.npz",
+            )
             np.savez_compressed(
                 superpoint_core_only_seed_path,
                 point_indices=np.asarray(superpoint_core_only_seed_indices, dtype=np.int64),
@@ -3398,6 +3496,10 @@ def export_scene_mask_graph_proposals(
             np.savez_compressed(
                 superpoint_candidate_seed_path,
                 point_indices=np.asarray(superpoint_candidate_seed_indices, dtype=np.int64),
+            )
+            np.savez_compressed(
+                superpoint_largest_cc_seed_path,
+                point_indices=np.asarray(superpoint_largest_cc_seed_indices, dtype=np.int64),
             )
         candidate["candidate_id"] = int(candidate_id)
         candidate["num_seed_points"] = int(len(seed_indices))
@@ -3416,6 +3518,12 @@ def export_scene_mask_graph_proposals(
             else 0
         )
         candidate["superpoint_candidate_seed_points_path"] = superpoint_candidate_seed_path
+        candidate["superpoint_candidate_largest_cc_seed_point_count"] = (
+            int(len(superpoint_largest_cc_seed_indices))
+            if superpoint_diag_enabled
+            else 0
+        )
+        candidate["superpoint_candidate_largest_cc_seed_points_path"] = superpoint_largest_cc_seed_path
         output_candidates.append(candidate)
 
     observation_seed_dir = osp.join(scene_dir, "observation_seed_points")

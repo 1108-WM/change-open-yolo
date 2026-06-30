@@ -30,6 +30,49 @@ YOLO-World 二维检测
 
 最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先验证新版关系诊断和候选上界，再决定是否进入最终 AP。
 
+2026-06-30 最大点级连通分量裁剪诊断补充：已在严格核心+边界超点候选之后新增“只保留最大点级连通分量”的诊断分支，并复跑 even48 前 10 个代表场景。当前仍只做 `export_only`，没有运行 even48、even96 或最终 AP。
+
+新增实现：
+
+- 每个候选额外输出：
+  - `candidateXXXX_superpoint_candidate_largest_cc_points.npz`
+- 候选 JSON 新增：
+  - `superpoint_candidate_largest_cc_seed_point_count`
+  - `superpoint_candidate_largest_cc_seed_points_path`
+  - `superpoint_diagnostics.largest_cc_point_level_comparison`
+  - `superpoint_diagnostics.largest_cc_cleanup`
+- `tools/analyze_superpoint_candidate_diagnostics.py` 已能汇总最大连通分量分支。
+- 当前导出版本：
+  - `mask_graph_constrained_audit_fix_v8_superpoint_largest_cc_diag`
+
+10 场景输出：
+
+- 候选目录：`/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_10scenes`
+- 汇总 JSON：`/tmp/superpoint_largest_cc_diag_10scenes_summary.json`
+- 候选数：`63`
+- 观测：`663`
+- 支持边 / 弱边 / 冲突边：`857 / 1037 / 709`
+
+四套点集对照：
+
+- 点级候选：平均 `712.0` 点，平均连通分量 `5.62`，单连通 `13 / 63`
+- 核心-only：平均 `903.7` 点，平均连通分量 `1.21`，单连通 `51 / 63`
+- 严格核心+边界：平均 `1072.6` 点，平均连通分量 `1.43`，单连通 `47 / 63`
+- 最大点级连通分量：平均 `1069.7` 点，平均连通分量 `0.95`，单连通 `60 / 63`
+
+重点个例：
+
+- `scene0011_00 / dishwasher`：严格核心+边界 `502` 点、`3` 分量；最大连通后 `500` 点、`1` 分量。
+- `scene0046_02 / toilet`：严格核心+边界 `1062` 点、`3` 分量；最大连通后 `1048` 点、`1` 分量。
+- `scene0046_02 / door`：严格核心+边界 `1946` 点、`5` 分量；最大连通后 `1871` 点、`1` 分量。
+
+当前判断：
+
+- 最大点级连通分量裁剪主要删除小碎片，平均点数几乎不变；
+- 单连通候选从 `47 / 63` 提升到 `60 / 63`，碎片问题明显缓解；
+- 该分支没有降低平均冲突重叠，仍不能替代 Mask3D 覆盖和冲突证据；
+- 暂不建议直接跑最终 AP。下一步应先人工查看重点个例，或扩到更大诊断集确认主体不被误删。
+
 2026-06-30 严格边界 10 场景扩展诊断补充：已新增 `tools/analyze_superpoint_candidate_diagnostics.py`，用于汇总点级、核心-only、严格核心+边界三套候选。已跑 even48 前 10 个代表场景：
 
 - `scene0011_00`
