@@ -82,6 +82,8 @@ def _candidate_row(scene_name, candidate):
         "largest_cc_point_conflict_overlap_ratio": _safe_float(largest_cc_comp.get("point_candidate_conflict_overlap_ratio", 0.0)),
         "largest_cc_keep_ratio": _safe_float(largest_cc_cleanup.get("largest_component_ratio", 0.0)),
         "largest_cc_cleanup_component_count": _safe_int(largest_cc_cleanup.get("component_count", 0)),
+        "largest_cc_cleanup_radius": _safe_float(largest_cc_cleanup.get("component_radius", 0.0)),
+        "largest_cc_report_component_radius": _safe_float(largest_cc_connectivity.get("component_radius", 0.0)),
         "boundary_superpoint_count": _safe_int(proposal.get("boundary_superpoint_count", 0)),
         "boundary_point_count": _safe_int(proposal.get("boundary_point_count", 0)),
         "bridge_boundary_superpoint_count": _safe_int(proposal.get("bridge_boundary_superpoint_count", 0)),
@@ -188,6 +190,16 @@ def analyze(args):
         for row in rows
         if row["core_boundary_component_count"] != 1
     ]
+    non_single_with_core = [
+        row
+        for row in non_single
+        if row["core_boundary_component_count"] > 0
+    ]
+    missing_core_boundary = [
+        row
+        for row in rows
+        if row["core_boundary_component_count"] == 0
+    ]
     focus = []
     focus_keys = set()
     invalid_focus = []
@@ -210,16 +222,8 @@ def analyze(args):
         "missing_scenes": missing,
         "summary": _summarize_rows(rows),
         "scene_summaries": scene_summaries,
-        "non_single_core_boundary_candidates": [
-            row
-            for row in non_single
-            if row["core_boundary_component_count"] > 0
-        ],
-        "missing_core_boundary_candidates": [
-            row
-            for row in rows
-            if row["core_boundary_component_count"] == 0
-        ],
+        "non_single_core_boundary_candidates": non_single_with_core,
+        "missing_core_boundary_candidates": missing_core_boundary,
         "focus_candidates": focus,
         "invalid_focus": invalid_focus,
     }
@@ -273,10 +277,12 @@ def analyze(args):
             print(json.dumps(row, ensure_ascii=False, sort_keys=True))
     if invalid_focus:
         print(f"[SUPERPOINT_DIAG] ignored_invalid_focus={','.join(invalid_focus)}")
-    if non_single:
+    if non_single_with_core:
         print("[SUPERPOINT_DIAG] non_single_core_boundary_candidates:")
-        for row in non_single:
+        for row in non_single_with_core:
             print(json.dumps(row, ensure_ascii=False, sort_keys=True))
+    if missing_core_boundary:
+        print(f"[SUPERPOINT_DIAG] missing_core_boundary_candidates={len(missing_core_boundary)}")
 
 
 def parse_args():
