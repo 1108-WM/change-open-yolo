@@ -30,6 +30,67 @@ YOLO-World 二维检测
 
 最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先验证新版关系诊断和候选上界，再决定是否进入最终 AP。
 
+2026-06-30 候选动作判断器诊断 v2：当前仍不要跑最终 AP。已基于 v8 的 10 场景导出做“候选该接受、只用核心、拒绝或人工复查”的诊断版规则。
+
+代码入口：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+
+诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v2/summary.json`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v2/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v2/review_lists.json`
+
+v2 规则要点：
+
+- 输出动作：
+  - `accept_completion`
+  - `keep_core_only`
+  - `reject_or_needs_mask3d_support`
+  - `manual_review`
+- 平面/薄片风险类：
+  - `whiteboard`
+  - `tv`
+  - `door`
+  - `curtain`
+  - `mattress`
+  - `projector screen`
+  - `bulletin board`
+  - `mirror`
+  - `mat`
+- `picture` 作为小平面物体单独标记。
+- Mask3D 支持不再只靠 seed coverage 放行，当前要求：
+  - IoU `>= 0.50`
+  - 或 IoU `>= 0.35` 且 seed coverage `>= 0.90`
+- 平面/薄片类中等扩张也先进入 `manual_review`，不直接接受。
+
+10 场景 v2 动作分布：
+
+- `accept_completion`: `21`
+- `manual_review`: `32`
+- `reject_or_needs_mask3d_support`: `9`
+- `keep_core_only`: `1`
+
+重点个例动作：
+
+- `scene0011_00 / dishwasher`：`accept_completion`
+- `scene0046_02 / toilet`：`accept_completion`
+- `scene0046_02 / door`：`reject_or_needs_mask3d_support`
+- `scene0011_00 / tv`：`reject_or_needs_mask3d_support`
+- `scene0164_01 / picture`：`manual_review`
+- `scene0131_00 / mini fridge`：`manual_review`
+- `scene0088_02 / projector screen`：`manual_review`
+
+`review_lists.json` 已列出四类需要人工审查的候选：
+
+- 全部 `reject_or_needs_mask3d_support`
+- 全部 `keep_core_only`
+- `manual_review` 中 `largest_cc_to_point_ratio >= 2.0`
+- `accept_completion` 中 `conflict_overlap >= 0.18` 或 `existing_mask_iou < 0.30`
+
+下一步应审查这四类列表，确认规则实现、动作分布和高风险覆盖是否合理。通过前不要跑最终 AP。
+
 2026-06-30 最大点级连通分量裁剪诊断补充：已在严格核心+边界超点候选之后新增“只保留最大点级连通分量”的诊断分支，并复跑 even48 前 10 个代表场景。当前仍只做 `export_only`，没有运行 even48、even96 或最终 AP。
 
 新增实现：

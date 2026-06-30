@@ -10,6 +10,82 @@
 
 ### 本轮对话追加记录
 
+2026-06-30 候选动作判断器诊断 v2：继续不跑最终 AP，只在 10 场景 v8 导出上做候选动作规则诊断。已 `git pull` 到最新代码后复跑 10 场景 `MODE=export_only`，候选数仍为 `63`，关系统计仍为支持边 `857`、弱边 `1037`、冲突边 `709`。
+
+本次代码和规则变化：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+  - 每个候选输出动作建议：
+    - `accept_completion`
+    - `keep_core_only`
+    - `reject_or_needs_mask3d_support`
+    - `manual_review`
+  - 新增风险特征：
+    - `largest_cc_to_point_ratio`
+    - `largest_cc_covered_by_point_ratio`
+    - `point_covered_by_largest_cc_ratio`
+    - Mask3D IoU / seed coverage / seed ratio
+    - conflict overlap
+    - 平面/薄片类别标记
+  - 平面/薄片风险类更新为：
+    - `whiteboard`
+    - `tv`
+    - `door`
+    - `curtain`
+    - `mattress`
+    - `projector screen`
+    - `bulletin board`
+    - `mirror`
+    - `mat`
+  - `picture` 仍作为小平面物体单独标记。
+  - Mask3D 支持不再只靠 seed coverage 放行，改为：
+    - IoU `>= 0.50`
+    - 或 IoU `>= 0.35` 且 seed coverage `>= 0.90`
+  - 平面/薄片类中等扩张也先进入 `manual_review`，不直接接受。
+
+v2 诊断结果已保存到：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v2/summary.json`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v2/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v2/review_lists.json`
+
+v2 动作分布：
+
+- `accept_completion`: `21`
+- `manual_review`: `32`
+- `reject_or_needs_mask3d_support`: `9`
+- `keep_core_only`: `1`
+
+重点个例：
+
+- `scene0011_00 / dishwasher`
+  - `accept_completion`
+- `scene0046_02 / toilet`
+  - `accept_completion`
+- `scene0046_02 / door`
+  - `reject_or_needs_mask3d_support`
+- `scene0011_00 / tv`
+  - `reject_or_needs_mask3d_support`
+- `scene0164_01 / picture`
+  - `manual_review`
+- `scene0131_00 / mini fridge`
+  - `manual_review`
+- `scene0088_02 / projector screen`
+  - 从 v1 的 `accept_completion` 调整为 `manual_review`
+
+`review_lists.json` 覆盖四类人工抽查对象：
+
+- 全部 `reject_or_needs_mask3d_support`: `9`
+- 全部 `keep_core_only`: `1`
+- `manual_review` 且 `largest_cc_to_point_ratio >= 2.0`: `8`
+- `accept_completion` 但 `conflict_overlap >= 0.18` 或 `existing_mask_iou < 0.30`: `4`
+
+当前判断：
+
+- v2 动作判断更保守，尤其是平面/薄片类和只靠 seed coverage 的 Mask3D 支持。
+- 当前仍不应跑最终 AP。
+- 下一步应先审查 `review_lists.json` 的四类高风险候选，确认规则实现、动作分布和抽查覆盖是否合理，再决定是否扩更多 `export_only` 场景。
+
 2026-06-30 最大点级连通分量裁剪诊断：按最新建议，在严格核心+边界超点候选之后，再输出“只保留最大点级连通分量”的诊断分支，并复跑 even48 前 10 个代表场景的 `MODE=export_only`。本轮仍未运行 even48、even96 或最终 AP。
 
 本次代码改动：

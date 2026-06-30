@@ -47,11 +47,15 @@ def _connectivity(summary):
 
 
 LARGE_PLANE_CLASSES = {
+    "bulletin board",
     "whiteboard",
     "tv",
     "door",
     "curtain",
+    "mat",
     "mattress",
+    "mirror",
+    "projector screen",
 }
 SMALL_PLANE_CLASSES = {
     "picture",
@@ -89,7 +93,7 @@ def _candidate_action(row):
     existing_coverage = row["existing_mask_seed_coverage"]
     core_boundary_to_core_only = row["core_boundary_to_core_only_ratio"]
     largest_keep = row["largest_cc_keep_ratio"]
-    has_mask3d_support = existing_iou >= 0.50 or existing_coverage >= 0.80
+    has_mask3d_support = existing_iou >= 0.50 or (existing_iou >= 0.35 and existing_coverage >= 0.90)
     reasons = []
 
     _append_reason(reasons, row["is_large_plane_class"], "large_plane_class")
@@ -116,6 +120,9 @@ def _candidate_action(row):
         if has_mask3d_support:
             return "reject_or_needs_mask3d_support", ";".join(reasons + ["large_plane_requires_mask3d_support"])
         return "reject_or_needs_mask3d_support", ";".join(reasons + ["large_plane_expansion_without_mask3d_support"])
+
+    if row["is_large_plane_class"] and ratio >= 1.5:
+        return "manual_review", ";".join(reasons + ["large_plane_moderate_expansion"])
 
     if (
         ratio < 1.5
