@@ -1,6 +1,6 @@
 # OpenYOLO3D 在 ScanNet200 上的候选补全实验状态
 
-最后更新：2026-06-24
+最后更新：2026-06-30
 
 项目路径：
 
@@ -9,6 +9,87 @@
 ## 0. 下一次对话先看这里
 
 ### 本轮对话追加记录
+
+2026-06-30 严格边界超点候选诊断：已按最新建议继续收紧边界超点保留条件，并复跑 `scene0011_00`、`scene0025_02`、`scene0046_02` 的 `export_only`。本轮仍只做导出诊断，不运行 even48、even96 或最终 AP。
+
+本次代码改动：
+
+- `utils/superpoint_diagnostics.py`
+  - 新增 `core_only_proposal`，单独输出“最大核心连通区域”点集。
+  - `proposal` 改为严格边界版本：
+    - 核心仍只保留最大可靠连通区域；
+    - 边界仍只能是一层邻居；
+    - 继续排除桥接边界超点；
+    - 边界必须满足强支持覆盖或多帧部分支持；
+    - 边界总点数不能超过核心点数的 `0.50`；
+    - 边界超点数最多 `6` 个。
+  - 新增边界诊断：
+    - `rejected_boundary_support_superpoint_count`
+    - `rejected_boundary_budget_superpoint_count`
+    - 对应超点编号列表。
+- `tools/export_mask_graph_proposals.py`
+  - 每个候选现在同时导出两套超点点集：
+    - `candidateXXXX_superpoint_core_only_points.npz`
+    - `candidateXXXX_superpoint_candidate_points.npz`
+  - 每个候选同时写入：
+    - `core_only_point_level_comparison`
+    - `point_level_comparison`
+  - 新增边界参数到导出参数记录。
+- `tools/run_scannet200_even48_mask_graph_eval.sh`
+  - `MASK_GRAPH_EXPORT_CODE_VERSION` 更新为：
+    - `mask_graph_constrained_audit_fix_v7_superpoint_strict_boundary_diag`
+  - 新增并纳入复用校验：
+    - `MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_POINT_RATIO=0.50`
+    - `MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_SUPERPOINTS=6`
+    - `MASK_GRAPH_SUPERPOINT_BOUNDARY_STRONG_MIN_COVERAGE=0.45`
+    - `MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_COVERAGE=0.30`
+    - `MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_FRAMES=2`
+
+本次 3 场景复跑：
+
+- 输出目录：
+  - `/tmp/mask_graph_proposals_scannet200_superpoint_strict_boundary_diag_3scenes`
+- 总观测数：`313`
+- 导出候选数：`23`
+- 支持边：`446`
+- 弱边：`526`
+- 冲突边：`434`
+
+三套点集整体对照：
+
+- 点级候选：
+  - 平均点数：`681.5`
+  - 平均连通分量数：`5.17`
+  - 单连通候选：`4 / 23`
+- 核心-only 超点候选：
+  - 平均点数：`996.1`
+  - 平均连通分量数：`1.17`
+  - 单连通候选：`20 / 23`
+- 严格核心+边界超点候选：
+  - 平均点数：`1237.8`
+  - 平均连通分量数：`1.35`
+  - 单连通候选：`20 / 23`
+
+与上一版宽边界对比：
+
+- 宽边界平均点数：`2272.2`
+- 严格边界平均点数：`1237.8`
+- 平均减少：`1034.3` 点
+- 单连通候选数从 `18 / 23` 提升到 `20 / 23`
+- 边界超点统计：
+  - 接收边界超点：`51`
+  - 因支持不足拒绝：`21`
+  - 因预算限制拒绝：`29`
+  - 桥接边界：`0`
+
+当前判断：
+
+- 严格边界规则有效降低了候选膨胀，同时保留了核心连通带来的碎片减少优势。
+- 当前仍有 3 个候选在点级半径连通统计下不是单连通：
+  - `scene0011_00 / dishwasher`
+  - `scene0046_02 / toilet`
+  - `scene0046_02 / door`
+- 当前更合理的下一步不是最终 AP，而是扩到约 10 个代表场景，观察严格边界规则是否稳定降低候选膨胀和碎片。
 
 2026-06-24 真超点候选诊断第一版与桥接边界排除：本地代码已包含提交 `eb8ca29` 的第一版真超点候选诊断，并继续按最新审计意见补上“桥接边界超点排除”。这两步都只影响诊断导出，不改变最终评估结果，也没有运行最终 AP。
 

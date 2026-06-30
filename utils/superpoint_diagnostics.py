@@ -742,7 +742,16 @@ def save_observation_superpoint_evidence(evidence_items, scene_dir):
     }
 
 
-def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence_by_id):
+def summarize_candidate_superpoints(
+    scene_cache,
+    candidate,
+    observation_evidence_by_id,
+    boundary_max_point_ratio=0.50,
+    boundary_max_superpoints=6,
+    boundary_strong_min_coverage=0.45,
+    boundary_partial_min_coverage=0.30,
+    boundary_partial_min_frames=2,
+):
     selected_observation_ids = [
         int(item)
         for item in candidate.get("graph_selected_observation_ids", [])
@@ -862,11 +871,13 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
     )
     proposal = {
         "enabled": False,
-        "policy": "largest_core_component_plus_one_hop_boundary",
+        "policy": "largest_core_component_plus_strict_one_hop_boundary",
         "reason": "missing_reliable_core_superpoints",
         "core_superpoint_count": 0,
         "boundary_superpoint_count": 0,
         "bridge_boundary_superpoint_count": 0,
+        "rejected_boundary_support_superpoint_count": 0,
+        "rejected_boundary_budget_superpoint_count": 0,
         "dropped_core_superpoint_count": int(len(core_segments)),
         "dropped_boundary_superpoint_count": int(len(boundary_segments)),
         "point_count": 0,
@@ -878,6 +889,27 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
         "core_superpoint_ids": [],
         "boundary_superpoint_ids": [],
         "bridge_boundary_superpoint_ids": [],
+        "rejected_boundary_support_superpoint_ids": [],
+        "rejected_boundary_budget_superpoint_ids": [],
+        "superpoint_ids": [],
+        "boundary_policy": {
+            "max_point_ratio": float(boundary_max_point_ratio),
+            "max_superpoints": int(boundary_max_superpoints),
+            "strong_min_coverage": float(boundary_strong_min_coverage),
+            "partial_min_coverage": float(boundary_partial_min_coverage),
+            "partial_min_frames": int(boundary_partial_min_frames),
+        },
+    }
+    core_only_proposal = {
+        "enabled": False,
+        "policy": "largest_core_component_only",
+        "reason": "missing_reliable_core_superpoints",
+        "point_count": 0,
+        "core_point_count": 0,
+        "core_superpoint_count": 0,
+        "connected_component_count": 0,
+        "largest_component_ratio": 0.0,
+        "core_superpoint_ids": [],
         "superpoint_ids": [],
     }
     if core_components:
@@ -891,8 +923,24 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
         )
         largest_core_component = core_components[int(largest_core_component_id)]
         proposal_core_segments = set(int(item) for item in largest_core_component)
+        core_only_point_total = _segment_point_total(proposal_core_segments, segment_sizes)
+        core_only_proposal = {
+            "enabled": True,
+            "policy": "largest_core_component_only",
+            "reason": "ok",
+            "point_count": int(core_only_point_total),
+            "core_point_count": int(core_only_point_total),
+            "core_superpoint_count": int(len(proposal_core_segments)),
+            "connected_component_count": 1,
+            "largest_component_ratio": 1.0,
+            "core_superpoint_ids": [int(item) for item in sorted(proposal_core_segments)],
+            "superpoint_ids": [int(item) for item in sorted(proposal_core_segments)],
+        }
         bridge_boundary_segments = set()
+        rejected_boundary_support_segments = set()
+        rejected_boundary_budget_segments = set()
         proposal_boundary_segments = set()
+        boundary_candidates = []
         for segment_id in boundary_segments:
             segment_id = int(segment_id)
             adjacent_core_component_ids = {
@@ -905,7 +953,46 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
             if len(adjacent_core_component_ids) > 1:
                 bridge_boundary_segments.add(segment_id)
                 continue
-            proposal_boundary_segments.add(segment_id)
+            stats = aggregate_all.get(segment_id, {})
+            best_coverage = max(
+                float(stats.get("best_visible_coverage_ratio", 0.0)),
+                float(stats.get("best_full_coverage_ratio", 0.0)),
+            )
+            strong_frame_count = frame_count(stats.get("strong_support_frames", set()))
+            partial_frame_count = frame_count(stats.get("partial_support_frames", set()))
+            strong_support_ok = (
+                strong_frame_count >= 1
+                and best_coverage >= float(boundary_strong_min_coverage)
+            )
+            partial_support_ok = (
+                partial_frame_count >= int(boundary_partial_min_frames)
+                and best_coverage >= float(boundary_partial_min_coverage)
+            )
+            if not (strong_support_ok or partial_support_ok):
+                rejected_boundary_support_segments.add(segment_id)
+                continue
+            boundary_candidates.append(
+                (
+                    -strong_frame_count,
+                    -partial_frame_count,
+                    -best_coverage,
+                    -float(stats.get("best_depth_consistency_ratio", 0.0)),
+                    int(segment_sizes[segment_id]),
+                    segment_id,
+                )
+            )
+        boundary_point_budget = int(max(0, round(core_only_point_total * float(boundary_max_point_ratio))))
+        boundary_point_total = 0
+        for *_, segment_id in sorted(boundary_candidates):
+            segment_points = int(segment_sizes[int(segment_id)])
+            if len(proposal_boundary_segments) >= int(boundary_max_superpoints):
+                rejected_boundary_budget_segments.add(int(segment_id))
+                continue
+            if boundary_point_total + segment_points > boundary_point_budget:
+                rejected_boundary_budget_segments.add(int(segment_id))
+                continue
+            proposal_boundary_segments.add(int(segment_id))
+            boundary_point_total += segment_points
         proposal_segments = proposal_core_segments | proposal_boundary_segments
         proposal_components = _connected_segment_components(proposal_segments, neighbors)
         proposal_point_total = _segment_point_total(proposal_segments, segment_sizes)
@@ -920,11 +1007,13 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
         )
         proposal = {
             "enabled": True,
-            "policy": "largest_core_component_plus_one_hop_boundary",
+            "policy": "largest_core_component_plus_strict_one_hop_boundary",
             "reason": "ok",
             "core_superpoint_count": int(len(proposal_core_segments)),
             "boundary_superpoint_count": int(len(proposal_boundary_segments)),
             "bridge_boundary_superpoint_count": int(len(bridge_boundary_segments)),
+            "rejected_boundary_support_superpoint_count": int(len(rejected_boundary_support_segments)),
+            "rejected_boundary_budget_superpoint_count": int(len(rejected_boundary_budget_segments)),
             "dropped_core_superpoint_count": int(len(core_segments - proposal_core_segments)),
             "dropped_boundary_superpoint_count": int(len(boundary_segments - proposal_boundary_segments)),
             "point_count": int(proposal_point_total),
@@ -936,7 +1025,23 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
             "core_superpoint_ids": [int(item) for item in sorted(proposal_core_segments)],
             "boundary_superpoint_ids": [int(item) for item in sorted(proposal_boundary_segments)],
             "bridge_boundary_superpoint_ids": [int(item) for item in sorted(bridge_boundary_segments)],
+            "rejected_boundary_support_superpoint_ids": [
+                int(item)
+                for item in sorted(rejected_boundary_support_segments)
+            ],
+            "rejected_boundary_budget_superpoint_ids": [
+                int(item)
+                for item in sorted(rejected_boundary_budget_segments)
+            ],
             "superpoint_ids": [int(item) for item in sorted(proposal_segments)],
+            "boundary_policy": {
+                "max_point_ratio": float(boundary_max_point_ratio),
+                "max_superpoints": int(boundary_max_superpoints),
+                "strong_min_coverage": float(boundary_strong_min_coverage),
+                "partial_min_coverage": float(boundary_partial_min_coverage),
+                "partial_min_frames": int(boundary_partial_min_frames),
+                "point_budget": int(boundary_point_budget),
+            },
         }
 
     def aggregate_summary(aggregate):
@@ -981,6 +1086,7 @@ def summarize_candidate_superpoints(scene_cache, candidate, observation_evidence
         "core_largest_component_superpoint_ratio": float(
             max([len(component) for component in core_components] or [0]) / max(1, len(core_segments))
         ),
+        "core_only_proposal": core_only_proposal,
         "proposal": proposal,
         "all_observation_summary": aggregate_summary(aggregate_all),
         "selected_observation_summary": aggregate_summary(aggregate_selected),

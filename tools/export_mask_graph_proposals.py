@@ -176,6 +176,28 @@ def _summarize_superpoint_point_comparison(
     }
 
 
+def _superpoint_candidate_comparison_bundle(
+    candidate,
+    scene_cache,
+    proposal,
+    conflict_superpoint_indices,
+    existing_masks,
+    points_xyz=None,
+):
+    point_indices = superpoint_ids_to_point_indices(
+        scene_cache,
+        proposal.get("superpoint_ids", []),
+    )
+    comparison = _summarize_superpoint_point_comparison(
+        candidate,
+        point_indices,
+        conflict_superpoint_indices,
+        existing_masks,
+        points_xyz=points_xyz,
+    )
+    return point_indices, comparison
+
+
 def _graph_quality_score(observation):
     return float(
         0.35 * observation.get("view_quality_score", 0.0)
@@ -2931,6 +2953,11 @@ def export_scene_mask_graph_proposals(
     superpoint_outside_reject_min_visible_points=20,
     superpoint_outside_reject_max_inside_ratio=0.10,
     superpoint_outside_reject_min_outside_ratio=0.90,
+    superpoint_boundary_max_point_ratio=0.50,
+    superpoint_boundary_max_superpoints=6,
+    superpoint_boundary_strong_min_coverage=0.45,
+    superpoint_boundary_partial_min_coverage=0.30,
+    superpoint_boundary_partial_min_frames=2,
 ):
     scene_dir = osp.join(output_dir, scene_name)
     seed_dir = osp.join(scene_dir, "seed_points")
@@ -3266,24 +3293,36 @@ def export_scene_mask_graph_proposals(
                 scene_cache,
                 candidate,
                 observation_superpoint_by_id,
-            )
-            proposal = candidate["superpoint_diagnostics"].get("proposal", {})
-            proposed_superpoint_indices = superpoint_ids_to_point_indices(
-                scene_cache,
-                proposal.get("superpoint_ids", []),
+                boundary_max_point_ratio=superpoint_boundary_max_point_ratio,
+                boundary_max_superpoints=superpoint_boundary_max_superpoints,
+                boundary_strong_min_coverage=superpoint_boundary_strong_min_coverage,
+                boundary_partial_min_coverage=superpoint_boundary_partial_min_coverage,
+                boundary_partial_min_frames=superpoint_boundary_partial_min_frames,
             )
             conflict_superpoint_indices = superpoint_ids_to_point_indices(
                 scene_cache,
                 candidate["superpoint_diagnostics"].get("conflict_superpoint_ids", []),
             )
-            candidate["_superpoint_candidate_seed_indices"] = proposed_superpoint_indices
-            candidate["superpoint_diagnostics"]["point_level_comparison"] = _summarize_superpoint_point_comparison(
+            core_only_indices, core_only_comparison = _superpoint_candidate_comparison_bundle(
                 candidate,
-                proposed_superpoint_indices,
+                scene_cache,
+                candidate["superpoint_diagnostics"].get("core_only_proposal", {}),
                 conflict_superpoint_indices,
                 existing_masks,
                 points_xyz=points_xyz,
             )
+            core_boundary_indices, core_boundary_comparison = _superpoint_candidate_comparison_bundle(
+                candidate,
+                scene_cache,
+                candidate["superpoint_diagnostics"].get("proposal", {}),
+                conflict_superpoint_indices,
+                existing_masks,
+                points_xyz=points_xyz,
+            )
+            candidate["_superpoint_core_only_seed_indices"] = core_only_indices
+            candidate["_superpoint_candidate_seed_indices"] = core_boundary_indices
+            candidate["superpoint_diagnostics"]["core_only_point_level_comparison"] = core_only_comparison
+            candidate["superpoint_diagnostics"]["point_level_comparison"] = core_boundary_comparison
         candidates.append(candidate)
 
     if graph_candidate_competition and len(candidates) > 1:
@@ -3330,6 +3369,10 @@ def export_scene_mask_graph_proposals(
             "_superpoint_candidate_seed_indices",
             np.asarray([], dtype=np.int64),
         )
+        superpoint_core_only_seed_indices = candidate.pop(
+            "_superpoint_core_only_seed_indices",
+            np.asarray([], dtype=np.int64),
+        )
         superpoint_diag_enabled = bool(candidate.get("superpoint_diagnostics", {}).get("enabled", False))
         seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_points.npz")
         np.savez_compressed(seed_path, point_indices=seed_indices)
@@ -3337,11 +3380,20 @@ def export_scene_mask_graph_proposals(
         gap_core_seed_path = osp.join(seed_dir, f"candidate{candidate_id:04d}_gap_core_points.npz")
         np.savez_compressed(full_core_seed_path, point_indices=np.asarray(full_core_seed_indices, dtype=np.int64))
         np.savez_compressed(gap_core_seed_path, point_indices=np.asarray(gap_core_seed_indices, dtype=np.int64))
+        superpoint_core_only_seed_path = None
         superpoint_candidate_seed_path = None
         if superpoint_diag_enabled:
+            superpoint_core_only_seed_path = osp.join(
+                seed_dir,
+                f"candidate{candidate_id:04d}_superpoint_core_only_points.npz",
+            )
             superpoint_candidate_seed_path = osp.join(
                 seed_dir,
                 f"candidate{candidate_id:04d}_superpoint_candidate_points.npz",
+            )
+            np.savez_compressed(
+                superpoint_core_only_seed_path,
+                point_indices=np.asarray(superpoint_core_only_seed_indices, dtype=np.int64),
             )
             np.savez_compressed(
                 superpoint_candidate_seed_path,
@@ -3352,6 +3404,12 @@ def export_scene_mask_graph_proposals(
         candidate["seed_points_path"] = seed_path
         candidate["full_core_seed_points_path"] = full_core_seed_path
         candidate["gap_core_seed_points_path"] = gap_core_seed_path
+        candidate["superpoint_core_only_seed_point_count"] = (
+            int(len(superpoint_core_only_seed_indices))
+            if superpoint_diag_enabled
+            else 0
+        )
+        candidate["superpoint_core_only_seed_points_path"] = superpoint_core_only_seed_path
         candidate["superpoint_candidate_seed_point_count"] = (
             int(len(superpoint_candidate_seed_indices))
             if superpoint_diag_enabled
@@ -3539,6 +3597,11 @@ def export_scene_mask_graph_proposals(
                     "superpoint_outside_reject_min_visible_points": superpoint_outside_reject_min_visible_points,
                     "superpoint_outside_reject_max_inside_ratio": superpoint_outside_reject_max_inside_ratio,
                     "superpoint_outside_reject_min_outside_ratio": superpoint_outside_reject_min_outside_ratio,
+                    "superpoint_boundary_max_point_ratio": superpoint_boundary_max_point_ratio,
+                    "superpoint_boundary_max_superpoints": superpoint_boundary_max_superpoints,
+                    "superpoint_boundary_strong_min_coverage": superpoint_boundary_strong_min_coverage,
+                    "superpoint_boundary_partial_min_coverage": superpoint_boundary_partial_min_coverage,
+                    "superpoint_boundary_partial_min_frames": superpoint_boundary_partial_min_frames,
                 },
                 "graph_edge_preview": relation_edges[:200],
                 "candidates": output_candidates,
@@ -3799,6 +3862,11 @@ def main():
     parser.add_argument("--superpoint_outside_reject_min_visible_points", default=20, type=int)
     parser.add_argument("--superpoint_outside_reject_max_inside_ratio", default=0.10, type=float)
     parser.add_argument("--superpoint_outside_reject_min_outside_ratio", default=0.90, type=float)
+    parser.add_argument("--superpoint_boundary_max_point_ratio", default=0.50, type=float)
+    parser.add_argument("--superpoint_boundary_max_superpoints", default=6, type=int)
+    parser.add_argument("--superpoint_boundary_strong_min_coverage", default=0.45, type=float)
+    parser.add_argument("--superpoint_boundary_partial_min_coverage", default=0.30, type=float)
+    parser.add_argument("--superpoint_boundary_partial_min_frames", default=2, type=int)
     args = parser.parse_args()
 
     kwargs = vars(args).copy()

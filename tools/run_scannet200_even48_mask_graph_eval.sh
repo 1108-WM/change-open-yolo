@@ -28,7 +28,7 @@ GRAPH_POINT_VOTE_MIN_KEEP_RATIO="${GRAPH_POINT_VOTE_MIN_KEEP_RATIO:-0.35}"
 GRAPH_POINT_VOTE_MIN_KEEP_POINTS="${GRAPH_POINT_VOTE_MIN_KEEP_POINTS:-0}"
 GRAPH_POINT_VOTE_ALLOW_FALLBACK="${GRAPH_POINT_VOTE_ALLOW_FALLBACK:-0}"
 EXPORT_REUSE_EXISTING="${EXPORT_REUSE_EXISTING:-0}"
-MASK_GRAPH_EXPORT_CODE_VERSION="${MASK_GRAPH_EXPORT_CODE_VERSION:-mask_graph_constrained_audit_fix_v6_superpoint_bridge_boundary_diag}"
+MASK_GRAPH_EXPORT_CODE_VERSION="${MASK_GRAPH_EXPORT_CODE_VERSION:-mask_graph_constrained_audit_fix_v7_superpoint_strict_boundary_diag}"
 SOURCE_LIMITS_GRAPH_BPR="${SOURCE_LIMITS_GRAPH_BPR:-mask_graph_multi_view=5,mask_graph_single_view=0,bpr=5}"
 SOURCE_LIMITS_GRAPH_ONLY="${SOURCE_LIMITS_GRAPH_ONLY:-mask_graph_multi_view=12,mask_graph_single_view=0}"
 SOURCE_LIMITS_GRAPH_REFILL="${SOURCE_LIMITS_GRAPH_REFILL:-sam_fused=12,bpr=3,mask_graph_multi_view=2,mask_graph_single_view=0}"
@@ -103,6 +103,11 @@ MASK_GRAPH_SUPERPOINT_REJECT_MIN_CONFLICT_POINTS="${MASK_GRAPH_SUPERPOINT_REJECT
 MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_VISIBLE_POINTS="${MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_VISIBLE_POINTS:-20}"
 MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MAX_INSIDE_RATIO="${MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MAX_INSIDE_RATIO:-0.10}"
 MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO="${MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO:-0.90}"
+MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_POINT_RATIO="${MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_POINT_RATIO:-0.50}"
+MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_SUPERPOINTS="${MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_SUPERPOINTS:-6}"
+MASK_GRAPH_SUPERPOINT_BOUNDARY_STRONG_MIN_COVERAGE="${MASK_GRAPH_SUPERPOINT_BOUNDARY_STRONG_MIN_COVERAGE:-0.45}"
+MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_COVERAGE="${MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_COVERAGE:-0.30}"
+MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_FRAMES="${MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_FRAMES:-2}"
 
 mkdir -p "$OUT_DIR/reports"
 cd "$ROOT_DIR"
@@ -239,7 +244,12 @@ can_reuse_export() {
     "$MASK_GRAPH_SUPERPOINT_REJECT_MIN_CONFLICT_POINTS" \
     "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_VISIBLE_POINTS" \
     "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MAX_INSIDE_RATIO" \
-    "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO" <<'PY'
+    "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO" \
+    "$MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_POINT_RATIO" \
+    "$MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_SUPERPOINTS" \
+    "$MASK_GRAPH_SUPERPOINT_BOUNDARY_STRONG_MIN_COVERAGE" \
+    "$MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_COVERAGE" \
+    "$MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_FRAMES" <<'PY'
 import json
 import math
 import os
@@ -315,6 +325,11 @@ expected_superpoint_reject_min_conflict_points = int(sys.argv[67])
 expected_superpoint_outside_reject_min_visible_points = int(sys.argv[68])
 expected_superpoint_outside_reject_max_inside_ratio = float(sys.argv[69])
 expected_superpoint_outside_reject_min_outside_ratio = float(sys.argv[70])
+expected_superpoint_boundary_max_point_ratio = float(sys.argv[71])
+expected_superpoint_boundary_max_superpoints = int(sys.argv[72])
+expected_superpoint_boundary_strong_min_coverage = float(sys.argv[73])
+expected_superpoint_boundary_partial_min_coverage = float(sys.argv[74])
+expected_superpoint_boundary_partial_min_frames = int(sys.argv[75])
 
 with open(summary_path) as f:
     data = json.load(f)
@@ -387,6 +402,11 @@ checks = {
     "superpoint_outside_reject_min_visible_points": expected_superpoint_outside_reject_min_visible_points,
     "superpoint_outside_reject_max_inside_ratio": expected_superpoint_outside_reject_max_inside_ratio,
     "superpoint_outside_reject_min_outside_ratio": expected_superpoint_outside_reject_min_outside_ratio,
+    "superpoint_boundary_max_point_ratio": expected_superpoint_boundary_max_point_ratio,
+    "superpoint_boundary_max_superpoints": expected_superpoint_boundary_max_superpoints,
+    "superpoint_boundary_strong_min_coverage": expected_superpoint_boundary_strong_min_coverage,
+    "superpoint_boundary_partial_min_coverage": expected_superpoint_boundary_partial_min_coverage,
+    "superpoint_boundary_partial_min_frames": expected_superpoint_boundary_partial_min_frames,
 }
 for key, expected in checks.items():
     if key not in params:
@@ -580,6 +600,11 @@ export_mask_graph() {
       --superpoint_outside_reject_min_visible_points "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_VISIBLE_POINTS"
       --superpoint_outside_reject_max_inside_ratio "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MAX_INSIDE_RATIO"
       --superpoint_outside_reject_min_outside_ratio "$MASK_GRAPH_SUPERPOINT_OUTSIDE_REJECT_MIN_OUTSIDE_RATIO"
+      --superpoint_boundary_max_point_ratio "$MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_POINT_RATIO"
+      --superpoint_boundary_max_superpoints "$MASK_GRAPH_SUPERPOINT_BOUNDARY_MAX_SUPERPOINTS"
+      --superpoint_boundary_strong_min_coverage "$MASK_GRAPH_SUPERPOINT_BOUNDARY_STRONG_MIN_COVERAGE"
+      --superpoint_boundary_partial_min_coverage "$MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_COVERAGE"
+      --superpoint_boundary_partial_min_frames "$MASK_GRAPH_SUPERPOINT_BOUNDARY_PARTIAL_MIN_FRAMES"
     )
   fi
   "$PYTHON" tools/export_mask_graph_proposals.py \
