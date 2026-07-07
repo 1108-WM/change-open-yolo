@@ -64,6 +64,10 @@ LARGE_PLANE_CLASSES = {
 SMALL_PLANE_CLASSES = {
     "picture",
 }
+SOFT_THIN_PLANE_CLASSES = {
+    "blanket",
+    "laptop",
+}
 COMPACT_REVIEW_CLASSES = {
     "picture",
     "mini fridge",
@@ -108,9 +112,11 @@ def _candidate_action(row):
         and conflict < 0.10
     )
     reasons = []
+    boundary_expands_without_cleanup = core_boundary_to_core_only >= 1.35 and largest_keep >= 0.98
 
     _append_reason(reasons, row["is_large_plane_class"], "large_plane_class")
     _append_reason(reasons, row["is_small_plane_class"], "small_plane_class")
+    _append_reason(reasons, row["is_soft_thin_plane_class"], "soft_thin_plane_class")
     _append_reason(reasons, ratio >= 2.0, f"largest_cc_to_point={ratio:.2f}")
     _append_reason(reasons, covered_by_point < 0.45, f"largest_cc_covered_by_point={covered_by_point:.2f}")
     _append_reason(reasons, point_coverage >= 0.80, f"point_covered_by_largest_cc={point_coverage:.2f}")
@@ -118,7 +124,7 @@ def _candidate_action(row):
     _append_reason(reasons, has_mask3d_support, f"mask3d_iou={existing_iou:.2f}/coverage={existing_coverage:.2f}")
     _append_reason(
         reasons,
-        core_boundary_to_core_only >= 1.35 and largest_keep >= 0.98,
+        boundary_expands_without_cleanup,
         f"boundary_expands_without_cleanup={core_boundary_to_core_only:.2f}",
     )
 
@@ -140,6 +146,15 @@ def _candidate_action(row):
 
     if row["is_large_plane_class"] and ratio >= 1.5:
         return "manual_review", ";".join(reasons + ["large_plane_moderate_expansion"])
+
+    if (
+        row["is_soft_thin_plane_class"]
+        and (
+            ratio >= 2.0
+            or (boundary_expands_without_cleanup and ratio >= 1.5)
+        )
+    ):
+        return "manual_review", ";".join(reasons + ["v6_soft_thin_plane_large_expansion_review"])
 
     if (
         class_name in COMPACT_REVIEW_CLASSES
@@ -289,6 +304,7 @@ def _candidate_row(scene_name, candidate):
         ),
         "is_large_plane_class": str(class_name or "") in LARGE_PLANE_CLASSES,
         "is_small_plane_class": str(class_name or "") in SMALL_PLANE_CLASSES,
+        "is_soft_thin_plane_class": str(class_name or "") in SOFT_THIN_PLANE_CLASSES,
         **existing_metrics,
     }
     action, reason = _candidate_action(row)
@@ -390,6 +406,7 @@ ACTION_CSV_FIELDS = [
     "largest_cc_keep_ratio",
     "is_large_plane_class",
     "is_small_plane_class",
+    "is_soft_thin_plane_class",
     "recommended_action",
     "action_reason",
 ]
@@ -418,6 +435,7 @@ def _action_rows(rows):
                 "largest_cc_keep_ratio": row["largest_cc_keep_ratio"],
                 "is_large_plane_class": row["is_large_plane_class"],
                 "is_small_plane_class": row["is_small_plane_class"],
+                "is_soft_thin_plane_class": row["is_soft_thin_plane_class"],
                 "recommended_action": row["recommended_action"],
                 "action_reason": row["action_reason"],
             }

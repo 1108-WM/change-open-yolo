@@ -10,6 +10,62 @@
 
 ### 本轮对话追加记录
 
+2026-07-07 v6 小修：继续不跑最终 AP，不改融合主流程，只修补 20 场景 v5 可视化审查暴露出的薄片/软平面风险。复用已有 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`，仅重新生成规则诊断、扩展对比摘要和 PNG 可视化。
+
+本次代码变化：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+  - 新增 `SOFT_THIN_PLANE_CLASSES = {"blanket", "laptop"}`。
+  - `actions.csv` 新增字段 `is_soft_thin_plane_class`。
+  - 对 `blanket`、`laptop`，若 `largest_cc_to_point_ratio >= 2.0`，或 `boundary_expands_without_cleanup` 且扩张比例较大，则先进入 `manual_review`，不走 v5 的 `v5_large_nonplane_strong_supported_completion`。
+- `tools/summarize_superpoint_action_expansion.py`
+  - 新增 shared candidates 的动作变化导出 `changed_action_candidates.csv`。
+  - 汇总 Markdown 改为可配置 base/expanded 标签，避免 v6 对比继续沿用 v5 扩场景表述。
+
+v6 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6/summary.json`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6/review_lists.json`
+
+v6 对比摘要：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_expansion_review/changed_action_candidates.csv`
+
+v6 可视化：
+
+- `docs/visual_checks/superpoint_action_review_20scenes_v6_final/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_20scenes_v6_final/`
+- 共 `33` 个审查候选，每个 `2` 张 PNG，共 `66` 张 PNG；不输出 PLY。
+
+20 场景 v6 动作分布：
+
+- `accept_completion`: `40`，v5 为 `42`
+- `manual_review`: `71`，v5 为 `69`
+- `reject_or_needs_mask3d_support`: `18`，与 v5 相同
+- `keep_core_only`: `1`，与 v5 相同
+
+v6 相比 v5 仅改变 2 个候选：
+
+- `scene0307_00 / candidate0002 / blanket`: `accept_completion -> manual_review`
+  - 原因：软薄平面类，`largest_cc_to_point_ratio=2.10`，边界扩张未被 largest-CC 清理，第一版 v6 保守复核。
+- `scene0353_00 / candidate0009 / laptop`: `accept_completion -> manual_review`
+  - 原因：软薄平面类，`largest_cc_to_point_ratio=3.14`，`largest_cc_covered_by_point_ratio=0.29`，即使 Mask3D IoU 高也先复核。
+
+保持不变的重点样本：
+
+- `bookshelf`、`folded chair` 当前仍可先保持 `accept_completion`。
+- `dresser`、`cushion` 继续 `manual_review`。
+- `closet door`、`projector screen`、`bulletin board`、`poster`、`calendar` 继续 `reject_or_needs_mask3d_support` 或 `manual_review`，没有放行。
+
+当前判断：
+
+- v6 没有新增 `accept_completion`；高风险 accept 清单 `accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30` 仍为 `0`。
+- `accept_completion_largest_cc_to_point_ge_2` 从 v5 的 `9` 降到 v6 的 `7`。
+- `manual_review_largest_cc_to_point_ge_2` 从 v5 的 `5` 增到 v6 的 `7`，对应这两个软薄平面风险候选。
+- v6 仍只是诊断版动作判断器，不改变最终候选和 AP。下一步应优先人工审查 `docs/visual_checks/superpoint_action_review_20scenes_v6_final/`，确认 v6 是否足够保守，再决定是否扩大更多 export-only 场景。
+
 2026-07-07 v5 规则诊断扩展到 20 场景：继续不跑最终 AP，不改融合主流程。使用 even48 前 20 个场景做 `MODE=export_only`，导出目录只放在 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`，不提交导出大目录。
 
 本次修正：

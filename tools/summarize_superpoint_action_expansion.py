@@ -51,7 +51,19 @@ def analyze(args):
     base_rows = _load_rows(args.base_actions_csv)
     expanded_rows = _load_rows(args.expanded_actions_csv)
     base_keys = {_key(row) for row in base_rows}
+    base_by_key = {_key(row): row for row in base_rows}
     new_rows = [row for row in expanded_rows if _key(row) not in base_keys]
+    changed_rows = []
+    for row in expanded_rows:
+        base_row = base_by_key.get(_key(row))
+        if base_row is None:
+            continue
+        if base_row["recommended_action"] == row["recommended_action"]:
+            continue
+        changed = dict(row)
+        changed["previous_recommended_action"] = base_row["recommended_action"]
+        changed["previous_action_reason"] = base_row["action_reason"]
+        changed_rows.append(changed)
 
     base_counts = Counter(row["recommended_action"] for row in base_rows)
     expanded_counts = Counter(row["recommended_action"] for row in expanded_rows)
@@ -91,6 +103,25 @@ def analyze(args):
         "conflict_overlap",
         "is_large_plane_class",
         "is_small_plane_class",
+        "is_soft_thin_plane_class",
+        "action_reason",
+    ]
+    changed_fields = [
+        "scene_name",
+        "candidate_id",
+        "class_name",
+        "previous_recommended_action",
+        "recommended_action",
+        "largest_cc_to_point_ratio",
+        "largest_cc_covered_by_point_ratio",
+        "point_covered_by_largest_cc_ratio",
+        "existing_mask_iou",
+        "existing_mask_seed_coverage",
+        "conflict_overlap",
+        "is_large_plane_class",
+        "is_small_plane_class",
+        "is_soft_thin_plane_class",
+        "previous_action_reason",
         "action_reason",
     ]
     os.makedirs(args.output_dir, exist_ok=True)
@@ -98,35 +129,37 @@ def analyze(args):
     _write_csv(osp.join(args.output_dir, "new_accept_completion_large_expansion.csv"), new_accept_large, fields)
     _write_csv(osp.join(args.output_dir, "new_reject_or_needs_mask3d_support.csv"), new_reject, fields)
     _write_csv(osp.join(args.output_dir, "new_manual_review_large_expansion.csv"), new_manual_large, fields)
+    _write_csv(osp.join(args.output_dir, "changed_action_candidates.csv"), changed_rows, changed_fields)
 
     base_review_counts = _load_review_counts(args.base_review_lists_json)
     expanded_review_counts = _load_review_counts(args.expanded_review_lists_json)
 
     md_path = osp.join(args.output_dir, "expansion_review_summary.md")
     with open(md_path, "w") as f:
-        f.write("# v5 20-scene expansion review\n\n")
-        f.write("This expansion keeps MODE=export_only and does not run final AP.\n\n")
+        f.write(f"# {args.title}\n\n")
+        f.write("This comparison uses export-only diagnostics and does not run final AP.\n\n")
         f.write("## Action counts\n\n")
         f.write("| split | candidates | accept_completion | manual_review | reject_or_needs_mask3d_support | keep_core_only |\n")
         f.write("| --- | ---: | ---: | ---: | ---: | ---: |\n")
         f.write(
-            f"| 10 scenes | {len(base_rows)} | {base_counts['accept_completion']} | "
+            f"| {args.base_label} | {len(base_rows)} | {base_counts['accept_completion']} | "
             f"{base_counts['manual_review']} | {base_counts['reject_or_needs_mask3d_support']} | "
             f"{base_counts['keep_core_only']} |\n"
         )
         f.write(
-            f"| 20 scenes | {len(expanded_rows)} | {expanded_counts['accept_completion']} | "
+            f"| {args.expanded_label} | {len(expanded_rows)} | {expanded_counts['accept_completion']} | "
             f"{expanded_counts['manual_review']} | {expanded_counts['reject_or_needs_mask3d_support']} | "
             f"{expanded_counts['keep_core_only']} |\n"
         )
         f.write(
-            f"| new 10 scenes | {len(new_rows)} | {new_counts['accept_completion']} | "
+            f"| {args.new_label} | {len(new_rows)} | {new_counts['accept_completion']} | "
             f"{new_counts['manual_review']} | {new_counts['reject_or_needs_mask3d_support']} | "
             f"{new_counts['keep_core_only']} |\n\n"
         )
+        f.write(f"- Action changes on shared candidates: {len(changed_rows)}\n\n")
 
         f.write("## Review list counts\n\n")
-        f.write("| review_list | 10 scenes | 20 scenes |\n")
+        f.write(f"| review_list | {args.base_label} | {args.expanded_label} |\n")
         f.write("| --- | ---: | ---: |\n")
         for key in sorted(set(base_review_counts) | set(expanded_review_counts)):
             f.write(f"| {key} | {base_review_counts.get(key, 0)} | {expanded_review_counts.get(key, 0)} |\n")
@@ -142,33 +175,51 @@ def analyze(args):
             f"{len(new_accept_risky)}.\n"
         )
         f.write(
-            "- `closet door` was added to the large-plane risk class after the expansion exposed it "
-            "as a planar large-expansion false accept risk.\n"
-        )
-        f.write(
             "- The high-risk accept review list "
-            "`accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30` remains 0 on 20 scenes.\n"
+            f"`accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30` is "
+            f"{expanded_review_counts.get('accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30', 0)} "
+            f"for {args.expanded_label}.\n"
         )
         f.write(
-            "- Reject candidates in the new 10 scenes are dominated by missing reliable core, "
-            "large-plane over-expansion, or generic large expansion without strong support.\n\n"
+            "- Rejections remain useful to inspect for missing reliable core, large-plane over-expansion, "
+            "or generic large expansion without strong support.\n\n"
         )
+        if changed_rows:
+            f.write("## Action changes on shared candidates\n\n")
+            for row in changed_rows:
+                f.write(
+                    "- "
+                    f"{_format_candidate(row)}: "
+                    f"{row['previous_recommended_action']} -> {row['recommended_action']}; "
+                    f"{row['action_reason']}\n"
+                )
+            f.write("\n")
 
         f.write("## New accept_completion large-expansion candidates for visual review\n\n")
-        for row in new_accept_large:
-            f.write(f"- {_format_candidate(row)}\n")
+        if new_accept_large:
+            for row in new_accept_large:
+                f.write(f"- {_format_candidate(row)}\n")
+        else:
+            f.write("None.\n")
         f.write("\n## New reject_or_needs_mask3d_support candidates\n\n")
-        for row in new_reject:
-            f.write(f"- {_format_candidate(row)}: {row['action_reason']}\n")
+        if new_reject:
+            for row in new_reject:
+                f.write(f"- {_format_candidate(row)}: {row['action_reason']}\n")
+        else:
+            f.write("None.\n")
         f.write("\n## New manual_review large-expansion candidates\n\n")
-        for row in new_manual_large:
-            f.write(f"- {_format_candidate(row)}: {row['action_reason']}\n")
+        if new_manual_large:
+            for row in new_manual_large:
+                f.write(f"- {_format_candidate(row)}: {row['action_reason']}\n")
+        else:
+            f.write("None.\n")
 
     print(
         "[SUPERPOINT_EXPANSION] "
         f"base={len(base_rows)} expanded={len(expanded_rows)} new={len(new_rows)} "
         f"new_accept={len(new_accept)} new_accept_large={len(new_accept_large)} "
-        f"new_accept_risky={len(new_accept_risky)} output_dir={args.output_dir}"
+        f"new_accept_risky={len(new_accept_risky)} changed={len(changed_rows)} "
+        f"output_dir={args.output_dir}"
     )
 
 
@@ -179,6 +230,10 @@ def parse_args():
     parser.add_argument("--expanded_actions_csv", required=True)
     parser.add_argument("--expanded_review_lists_json", required=True)
     parser.add_argument("--output_dir", required=True)
+    parser.add_argument("--title", default="Superpoint action diagnostic comparison")
+    parser.add_argument("--base_label", default="base")
+    parser.add_argument("--expanded_label", default="expanded")
+    parser.add_argument("--new_label", default="new in expanded")
     return parser.parse_args()
 
 
