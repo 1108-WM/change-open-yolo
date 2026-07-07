@@ -10,6 +10,89 @@
 
 ### 本轮对话追加记录
 
+2026-07-07 候选动作判断器诊断 v5：继续不跑最终 AP，不改融合主流程，只基于 v4 的 18 个人工可视化标签做规则对齐分析，并在已有 10 场景 v8 导出上生成 v5 诊断。
+
+本次代码变化：
+
+- `tools/analyze_superpoint_visual_label_alignment.py`
+  - 新增 v4 动作和人工标签的对齐分析脚本。
+  - 输入：
+    - `docs/diagnostics/superpoint_action_diag_10scenes_v4/actions.csv`
+    - `docs/visual_checks/superpoint_action_review_v4/visual_review_notes.csv`
+  - 输出：
+    - `label_cross_table.csv`
+    - `feature_summary_by_visual_label.csv`
+    - `v5_rule_notes.md`
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+  - v5 只在大扩张复核分支做保守提升：
+    - 大平面/薄片类仍不自动提升，即使 Mask3D IoU 高也继续复查或拒绝。
+    - `office chair`、`sink` 这类大扩张视觉不确定样本继续 `manual_review`。
+    - 非大平面大扩张只有同时满足强 Mask3D、低冲突、高点覆盖时才从 `manual_review` 提升到 `accept_completion`。
+    - `picture` 作为小平面物体，只有 Mask3D 极强且覆盖高时才允许提升。
+
+v5 标签对齐分析已保存到：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5_label_analysis/label_cross_table.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5_label_analysis/feature_summary_by_visual_label.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5_label_analysis/v5_rule_notes.md`
+
+v5 诊断结果已保存到：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5/summary.json`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5/review_lists.json`
+
+v5 可视化结果已保存到：
+
+- `docs/visual_checks/superpoint_action_review_v5/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_v5/`
+- 共 `13` 个审查候选，每个 `2` 张 PNG；不输出 PLY。
+
+v4 人工标签对齐结果：
+
+- `manual_review -> visual_accept`: `6`
+- `manual_review -> uncertain`: `2`
+- `reject_or_needs_mask3d_support -> visual_reject`: `7`
+- `reject_or_needs_mask3d_support -> uncertain`: `2`
+- `keep_core_only -> visual_keep_core_only`: `1`
+- `accept_completion -> visual_reject/uncertain`: `0`
+
+v5 动作分布：
+
+- `accept_completion`: `22`，v4 为 `17`
+- `manual_review`: `31`，v4 为 `36`
+- `reject_or_needs_mask3d_support`: `9`，与 v4 相同
+- `keep_core_only`: `1`，与 v4 相同
+
+v5 审查清单：
+
+- 全部 `reject_or_needs_mask3d_support`: `9`
+- 全部 `keep_core_only`: `1`
+- `manual_review` 且 `largest_cc_to_point_ratio >= 2.0`: `3`，v4 为 `8`
+- `accept_completion` 但 `conflict_overlap >= 0.18` 或 `existing_mask_iou < 0.30`: `0`
+
+从 v4 成功识别为 `accept_completion` 的 `visual_accept`：
+
+- `scene0011_00 / candidate0003 / trash bin`
+- `scene0077_00 / candidate0000 / printer`
+- `scene0084_01 / candidate0007 / container`
+- `scene0131_00 / candidate0000 / mini fridge`
+- `scene0164_01 / candidate0008 / picture`
+
+仍保守保留的灰区：
+
+- `scene0025_02 / candidate0007 / office chair`：结构不够清楚，继续 `manual_review`。
+- `scene0164_01 / candidate0007 / sink`：偏平面/台面类扩张，继续 `manual_review`。
+- `scene0193_00 / candidate0001 / mattress`：人工看起来可接受，但属于大平面类，继续 `manual_review`。
+- `scene0046_02 / candidate0006 / towel`、`scene0193_00 / candidate0000 / curtain`：仍为拒绝或需要 Mask3D/RGB 支持的不确定样本。
+
+当前判断：
+
+- v5 相比 v4 减少了 `5` 个 `manual_review`，且提升的 5 个都有 `visual_accept` 人工标签。
+- 10 场景内没有发现 `accept_completion` 误放到人工 `visual_reject` 或 `uncertain` 的样本。
+- v5 仍只是诊断版动作判断器，不改变最终候选和 AP。
+- 下一步建议扩大更多 `export_only` 场景复核 v5 分布；通过更大诊断集后，再考虑 even48 候选融合诊断。当前仍不要跑最终 AP。
+
 2026-07-07 候选动作判断器诊断 v4：根据 v2 审计和 4 个风险 `accept_completion` 样本的可视化结果，继续不跑最终 AP，只在已有 10 场景 v8 导出上更新动作诊断、审查清单和可视化整理。
 
 本次代码变化：

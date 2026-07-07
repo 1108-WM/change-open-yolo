@@ -28,7 +28,70 @@ YOLO-World 二维检测
 
 当前最佳方向仍是候选补全加二维掩码级超点负约束。Alpha-CLIP、YOLOE、多掩码选择、自适应内部种子、简单视角质量门控和初版候选局部超点都已经验证过，但没有形成稳定净收益。
 
-最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先验证新版关系诊断和候选上界，再决定是否进入最终 AP。
+最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先扩大 v5 动作诊断的 `export_only` 场景覆盖，再决定是否进入 even48 候选融合诊断；不要现在跑最终 AP。
+
+2026-07-07 候选动作判断器诊断 v5：当前仍不要跑最终 AP，也不要改融合主流程。v5 基于 v4 的 18 个人工可视化标签做规则对齐，目标是减少 `manual_review` 灰区，同时不把 `visual_reject` 或 `uncertain` 放进 `accept_completion`。
+
+代码入口：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+- `tools/analyze_superpoint_visual_label_alignment.py`
+- `tools/visualize_superpoint_action_review_candidates.py`
+
+v5 标签分析结果：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5_label_analysis/label_cross_table.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5_label_analysis/feature_summary_by_visual_label.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5_label_analysis/v5_rule_notes.md`
+
+v5 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5/summary.json`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5/review_lists.json`
+
+v5 可视化结果：
+
+- `docs/visual_checks/superpoint_action_review_v5/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_v5/`
+- 共 `13` 个审查候选，每个 `2` 张 PNG；不输出 PLY。
+
+v5 相比 v4 的规则变化：
+
+- 大平面/薄片类仍保守，不自动提升到 `accept_completion`。
+- `office chair` 和 `sink` 的大扩张样本继续人工复核。
+- 非大平面大扩张只有强 Mask3D、低冲突、高点覆盖时才从 `manual_review` 提升为 `accept_completion`。
+- `picture` 只有 Mask3D 极强且覆盖高时才允许作为小平面补全接受。
+
+10 场景 v5 动作分布：
+
+- `accept_completion`: `22`，v4 为 `17`
+- `manual_review`: `31`，v4 为 `36`
+- `reject_or_needs_mask3d_support`: `9`，与 v4 相同
+- `keep_core_only`: `1`，与 v4 相同
+
+v5 审查清单：
+
+- 全部 `reject_or_needs_mask3d_support`: `9`
+- 全部 `keep_core_only`: `1`
+- `manual_review` 中 `largest_cc_to_point_ratio >= 2.0`: `3`，v4 为 `8`
+- `accept_completion` 中 `conflict_overlap >= 0.18` 或 `existing_mask_iou < 0.30`: `0`
+
+被 v5 成功从 `manual_review` 提升的人工 `visual_accept`：
+
+- `scene0011_00 / candidate0003 / trash bin`
+- `scene0077_00 / candidate0000 / printer`
+- `scene0084_01 / candidate0007 / container`
+- `scene0131_00 / candidate0000 / mini fridge`
+- `scene0164_01 / candidate0008 / picture`
+
+仍保留的灰区：
+
+- `scene0025_02 / candidate0007 / office chair`：结构不够清楚。
+- `scene0164_01 / candidate0007 / sink`：偏平面/台面类扩张。
+- `scene0193_00 / candidate0001 / mattress`：人工看起来可接受，但属于大平面类，仍先人工复核。
+
+当前判断：v5 在 10 场景内没有出现 `accept_completion -> visual_reject/uncertain`，并把大扩张人工复核清单从 `8` 压到 `3`。下一步建议扩大更多 `export_only` 场景看分布，不要跑最终 AP。
 
 2026-07-07 候选动作判断器诊断 v4：当前仍不要跑最终 AP。已基于 v8 的 10 场景导出继续收紧“候选该接受、只用核心、拒绝或人工复查”的诊断版规则，并生成四类审查候选可视化。
 

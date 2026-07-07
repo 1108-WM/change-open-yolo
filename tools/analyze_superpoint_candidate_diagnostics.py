@@ -66,6 +66,10 @@ COMPACT_REVIEW_CLASSES = {
     "toilet",
     "dishwasher",
 }
+AMBIGUOUS_LARGE_EXPANSION_CLASSES = {
+    "office chair",
+    "sink",
+}
 
 
 def _mask_metrics(summary):
@@ -139,13 +143,39 @@ def _candidate_action(row):
         and conflict < 0.12
     ):
         if class_name in SMALL_PLANE_CLASSES:
+            if (
+                existing_iou >= 0.85
+                and existing_coverage >= 0.90
+                and point_coverage >= 0.90
+                and conflict < 0.05
+            ):
+                return "accept_completion", ";".join(
+                    reasons + ["v5_small_plane_strong_mask3d_completion"]
+                )
             return "manual_review", ";".join(reasons + ["small_plane_large_expansion"])
+        if (
+            has_mask3d_support
+            and existing_iou >= 0.65
+            and point_coverage >= 0.90
+            and conflict < 0.05
+        ):
+            return "accept_completion", ";".join(
+                reasons + ["v5_compact_object_strong_supported_completion"]
+            )
         if has_mask3d_support and point_coverage >= 0.75:
             return "manual_review", ";".join(reasons + ["compact_object_large_but_supported"])
         return "manual_review", ";".join(reasons + ["compact_object_large_expansion"])
 
     if ratio >= 2.0:
         if has_mask3d_support and conflict < 0.10 and point_coverage >= 0.80:
+            if (
+                class_name not in AMBIGUOUS_LARGE_EXPANSION_CLASSES
+                and existing_iou >= 0.55
+                and point_coverage >= 0.90
+            ):
+                return "accept_completion", ";".join(
+                    reasons + ["v5_large_nonplane_strong_supported_completion"]
+                )
             return "manual_review", ";".join(reasons + ["large_expansion_with_mask3d_support"])
         return "reject_or_needs_mask3d_support", ";".join(reasons + ["large_expansion"])
 
