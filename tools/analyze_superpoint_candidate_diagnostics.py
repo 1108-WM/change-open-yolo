@@ -94,6 +94,11 @@ def _candidate_action(row):
     core_boundary_to_core_only = row["core_boundary_to_core_only_ratio"]
     largest_keep = row["largest_cc_keep_ratio"]
     has_mask3d_support = existing_iou >= 0.50 or (existing_iou >= 0.35 and existing_coverage >= 0.90)
+    has_strong_geometric_coverage = (
+        point_coverage >= 0.85
+        and covered_by_point >= 0.60
+        and conflict < 0.10
+    )
     reasons = []
 
     _append_reason(reasons, row["is_large_plane_class"], "large_plane_class")
@@ -118,11 +123,40 @@ def _candidate_action(row):
         and covered_by_point < 0.45
     ):
         if has_mask3d_support:
-            return "reject_or_needs_mask3d_support", ";".join(reasons + ["large_plane_requires_mask3d_support"])
-        return "reject_or_needs_mask3d_support", ";".join(reasons + ["large_plane_expansion_without_mask3d_support"])
+            return "reject_or_needs_mask3d_support", ";".join(
+                reasons + ["large_plane_overexpanded_requires_visual_or_mask3d_review"]
+            )
+        return "reject_or_needs_mask3d_support", ";".join(
+            reasons + ["large_plane_overexpanded_without_mask3d_support"]
+        )
 
     if row["is_large_plane_class"] and ratio >= 1.5:
         return "manual_review", ";".join(reasons + ["large_plane_moderate_expansion"])
+
+    if (
+        class_name in COMPACT_REVIEW_CLASSES
+        and ratio >= 2.0
+        and conflict < 0.12
+    ):
+        if class_name in SMALL_PLANE_CLASSES:
+            return "manual_review", ";".join(reasons + ["small_plane_large_expansion"])
+        if has_mask3d_support and point_coverage >= 0.75:
+            return "manual_review", ";".join(reasons + ["compact_object_large_but_supported"])
+        return "manual_review", ";".join(reasons + ["compact_object_large_expansion"])
+
+    if ratio >= 2.0:
+        if has_mask3d_support and conflict < 0.10 and point_coverage >= 0.80:
+            return "manual_review", ";".join(reasons + ["large_expansion_with_mask3d_support"])
+        return "reject_or_needs_mask3d_support", ";".join(reasons + ["large_expansion"])
+
+    if conflict >= 0.18:
+        return "manual_review", ";".join(reasons + ["conflict_ge_0_18_requires_review"])
+
+    if point_coverage < 0.70:
+        return "manual_review", ";".join(reasons + ["low_point_coverage_not_auto_accept"])
+
+    if existing_iou < 0.30 and not has_strong_geometric_coverage:
+        return "manual_review", ";".join(reasons + ["low_mask3d_iou_without_strong_geometry"])
 
     if (
         ratio < 1.5
@@ -146,17 +180,6 @@ def _candidate_action(row):
         return "accept_completion", ";".join(reasons + ["compact_object_small_expansion"])
 
     if (
-        class_name in COMPACT_REVIEW_CLASSES
-        and ratio >= 2.0
-        and conflict < 0.12
-    ):
-        if class_name in SMALL_PLANE_CLASSES:
-            return "manual_review", ";".join(reasons + ["small_plane_large_expansion"])
-        if has_mask3d_support and point_coverage >= 0.75:
-            return "manual_review", ";".join(reasons + ["compact_object_large_but_supported"])
-        return "manual_review", ";".join(reasons + ["compact_object_large_expansion"])
-
-    if (
         core_boundary_to_core_only >= 1.35
         and largest_keep >= 0.98
         and ratio >= 1.5
@@ -164,11 +187,6 @@ def _candidate_action(row):
         if conflict < 0.10 and has_mask3d_support and point_coverage >= 0.80:
             return "manual_review", ";".join(reasons + ["boundary_expansion_supported_but_large"])
         return "keep_core_only", ";".join(reasons + ["boundary_expansion_not_removed_by_largest_cc"])
-
-    if ratio >= 2.0:
-        if has_mask3d_support and conflict < 0.10 and point_coverage >= 0.80:
-            return "manual_review", ";".join(reasons + ["large_expansion_with_mask3d_support"])
-        return "reject_or_needs_mask3d_support", ";".join(reasons + ["large_expansion"])
 
     if conflict >= 0.20:
         return "manual_review", ";".join(reasons + ["high_conflict"])
@@ -376,10 +394,42 @@ def _action_rows(rows):
 def _write_actions_csv(path, rows):
     os.makedirs(osp.dirname(osp.abspath(path)), exist_ok=True)
     with open(path, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=ACTION_CSV_FIELDS)
+        writer = csv.DictWriter(f, fieldnames=ACTION_CSV_FIELDS, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
+
+
+def _build_review_lists(action_rows):
+    return {
+        "all_reject_or_needs_mask3d_support": [
+            row for row in action_rows if row["recommended_action"] == "reject_or_needs_mask3d_support"
+        ],
+        "all_keep_core_only": [
+            row for row in action_rows if row["recommended_action"] == "keep_core_only"
+        ],
+        "manual_review_largest_cc_to_point_ge_2": [
+            row
+            for row in action_rows
+            if row["recommended_action"] == "manual_review"
+            and _safe_float(row["largest_cc_to_point_ratio"]) >= 2.0
+        ],
+        "accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30": [
+            row
+            for row in action_rows
+            if row["recommended_action"] == "accept_completion"
+            and (
+                _safe_float(row["conflict_overlap"]) >= 0.18
+                or _safe_float(row["existing_mask_iou"]) < 0.30
+            )
+        ],
+    }
+
+
+def _write_review_lists_json(path, review_lists):
+    os.makedirs(osp.dirname(osp.abspath(path)), exist_ok=True)
+    with open(path, "w") as f:
+        json.dump(review_lists, f, indent=2)
 
 
 def analyze(args):
@@ -429,13 +479,16 @@ def analyze(args):
         if (row["scene_name"], str(row["class_name"])) in focus_keys:
             focus.append(row)
 
+    action_rows = _action_rows(rows)
+    review_lists = _build_review_lists(action_rows)
     output = {
         "candidates_dir": args.candidates_dir,
         "scene_names": scene_names,
         "missing_scenes": missing,
         "summary": _summarize_rows(rows),
         "scene_summaries": scene_summaries,
-        "candidate_actions": _action_rows(rows),
+        "candidate_actions": action_rows,
+        "review_lists": review_lists,
         "non_single_core_boundary_candidates": non_single_with_core,
         "missing_core_boundary_candidates": missing_core_boundary,
         "focus_candidates": focus,
@@ -447,6 +500,8 @@ def analyze(args):
             json.dump(output, f, indent=2)
     if args.output_actions_csv:
         _write_actions_csv(args.output_actions_csv, output["candidate_actions"])
+    if args.output_review_lists_json:
+        _write_review_lists_json(args.output_review_lists_json, review_lists)
 
     summary = output["summary"]
     print(
@@ -491,6 +546,10 @@ def analyze(args):
         "[SUPERPOINT_DIAG] "
         f"recommended_actions={json.dumps(summary.get('recommended_action_counts', {}), sort_keys=True)}"
     )
+    print(
+        "[SUPERPOINT_DIAG] "
+        f"review_lists={json.dumps({key: len(value) for key, value in review_lists.items()}, sort_keys=True)}"
+    )
     if focus:
         print("[SUPERPOINT_DIAG] focus_candidates:")
         for row in focus:
@@ -512,6 +571,7 @@ def parse_args():
     parser.add_argument("--scene", action="append", default=[])
     parser.add_argument("--output_json", default=None)
     parser.add_argument("--output_actions_csv", default=None)
+    parser.add_argument("--output_review_lists_json", default=None)
     parser.add_argument(
         "--focus",
         action="append",

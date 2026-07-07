@@ -1,6 +1,6 @@
 # OpenYOLO3D 在 ScanNet200 上的候选补全实验状态
 
-最后更新：2026-06-30
+最后更新：2026-07-07
 
 项目路径：
 
@@ -9,6 +9,65 @@
 ## 0. 下一次对话先看这里
 
 ### 本轮对话追加记录
+
+2026-07-07 候选动作判断器诊断 v4：根据 v2 审计和 4 个风险 `accept_completion` 样本的可视化结果，继续不跑最终 AP，只在已有 10 场景 v8 导出上更新动作诊断、审查清单和可视化整理。
+
+本次代码变化：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+  - 新增 `--output_review_lists_json`，`summary.json`、`actions.csv`、`review_lists.json` 可由同一套规则一次生成。
+  - 大平面/薄片类过扩张的原因从 `large_plane_requires_mask3d_support` 改为更准确的：
+    - `large_plane_overexpanded_requires_visual_or_mask3d_review`
+  - 动作规则进一步保守：
+    - `conflict_overlap >= 0.18` 不再自动 `accept_completion`；
+    - `existing_mask_iou < 0.30` 且没有强几何覆盖时进入 `manual_review`；
+    - `point_covered_by_largest_cc_ratio < 0.70` 不直接接受；
+    - 大扩张候选的拒绝逻辑优先于低 IoU 复查逻辑，避免把应拒绝样本降成普通人工复查。
+- `tools/visualize_superpoint_action_review_candidates.py`
+  - 新增四类审查候选的批量可视化脚本。
+  - 每个候选输出两张图：
+    - 四套点集 XZ 对照：点级、核心-only、严格核心+边界、最大连通分量；
+    - 最大连通分量保留/裁掉对照。
+  - 只输出 PNG 和索引 JSON，不输出 PLY 点云。
+
+v4 诊断结果已保存到：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v4/summary.json`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v4/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v4/review_lists.json`
+
+v4 可视化结果已保存到：
+
+- `docs/visual_checks/superpoint_action_review_v4/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_v4/`
+
+v4 动作分布：
+
+- `accept_completion`: `17`
+- `manual_review`: `36`
+- `reject_or_needs_mask3d_support`: `9`
+- `keep_core_only`: `1`
+
+v4 审查清单：
+
+- 全部 `reject_or_needs_mask3d_support`: `9`
+- 全部 `keep_core_only`: `1`
+- `manual_review` 且 `largest_cc_to_point_ratio >= 2.0`: `8`
+- `accept_completion` 但 `conflict_overlap >= 0.18` 或 `existing_mask_iou < 0.30`: `0`
+
+相对 v2/v3 的关键变化：
+
+- `scene0011_00 / dishwasher`：从 `accept_completion` 改为 `manual_review`，原因是冲突重叠 `0.205`。
+- `scene0025_02 / ottoman`：从 `accept_completion` 改为 `manual_review`，原因是 Mask3D IoU 低且几何覆盖不够强。
+- `scene0025_02 / bottle`：从 `accept_completion` 改为 `manual_review`，原因是没有可靠 Mask3D 支持且几何覆盖不够强。
+- `scene0131_00 / cushion`：从 `accept_completion` 改为 `manual_review`，原因是 Mask3D IoU 低且几何覆盖不够强。
+- `scene0046_02 / door`、`scene0011_00 / tv` 等大平面过扩张样本仍保持 `reject_or_needs_mask3d_support`。
+
+当前判断：
+
+- v4 继续只作为诊断基线，不改变最终候选和 AP。
+- 10 场景中高风险 `accept_completion` 清单已清零，动作判断比 v2 更适合后续扩大 `export_only` 诊断。
+- 当前仍不建议跑最终 AP；下一步应先审查 `docs/visual_checks/superpoint_action_review_v4/` 中的 `reject`、`keep_core_only` 和大扩张 `manual_review` 样本，再决定是否扩到更多场景。
 
 2026-06-30 候选动作判断器诊断 v2：继续不跑最终 AP，只在 10 场景 v8 导出上做候选动作规则诊断。已 `git pull` 到最新代码后复跑 10 场景 `MODE=export_only`，候选数仍为 `63`，关系统计仍为支持边 `857`、弱边 `1037`、冲突边 `709`。
 

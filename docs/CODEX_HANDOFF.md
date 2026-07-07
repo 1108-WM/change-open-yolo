@@ -1,6 +1,6 @@
 # Codex Handoff
 
-最后更新：2026-06-30
+最后更新：2026-07-07
 
 这个文件是给新的 Codex 会话或另一台设备的快速入口。完整实验细节见仓库根目录的 `CURRENT_EXPERIMENT_STATUS.md`。
 
@@ -29,6 +29,56 @@ YOLO-World 二维检测
 当前最佳方向仍是候选补全加二维掩码级超点负约束。Alpha-CLIP、YOLOE、多掩码选择、自适应内部种子、简单视角质量门控和初版候选局部超点都已经验证过，但没有形成稳定净收益。
 
 最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先验证新版关系诊断和候选上界，再决定是否进入最终 AP。
+
+2026-07-07 候选动作判断器诊断 v4：当前仍不要跑最终 AP。已基于 v8 的 10 场景导出继续收紧“候选该接受、只用核心、拒绝或人工复查”的诊断版规则，并生成四类审查候选可视化。
+
+代码入口：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+- `tools/visualize_superpoint_action_review_candidates.py`
+
+诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v4/summary.json`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v4/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_10scenes_v4/review_lists.json`
+
+可视化结果：
+
+- `docs/visual_checks/superpoint_action_review_v4/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_v4/`
+
+v4 规则补充：
+
+- `summary.json`、`actions.csv`、`review_lists.json` 现在由同一脚本一次输出，避免审查清单口径漂移。
+- 大平面/薄片类过扩张原因改名为 `large_plane_overexpanded_requires_visual_or_mask3d_review`，表示“即使有 Mask3D 支持，也需要可视化或 Mask3D 边界复查”。
+- `conflict_overlap >= 0.18` 不再自动接受。
+- `existing_mask_iou < 0.30` 且没有强几何覆盖时进入 `manual_review`。
+- `point_covered_by_largest_cc_ratio < 0.70` 不直接接受。
+- 大扩张候选仍优先走大扩张拒绝/复查逻辑，低 IoU 规则不把大扩张样本降级成普通人工复查。
+
+10 场景 v4 动作分布：
+
+- `accept_completion`: `17`
+- `manual_review`: `36`
+- `reject_or_needs_mask3d_support`: `9`
+- `keep_core_only`: `1`
+
+v4 审查清单：
+
+- 全部 `reject_or_needs_mask3d_support`: `9`
+- 全部 `keep_core_only`: `1`
+- `manual_review` 中 `largest_cc_to_point_ratio >= 2.0`: `8`
+- `accept_completion` 中 `conflict_overlap >= 0.18` 或 `existing_mask_iou < 0.30`: `0`
+
+从 v2/v3 改为更保守的重点个例：
+
+- `scene0011_00 / dishwasher`：`accept_completion -> manual_review`
+- `scene0025_02 / ottoman`：`accept_completion -> manual_review`
+- `scene0025_02 / bottle`：`accept_completion -> manual_review`
+- `scene0131_00 / cushion`：`accept_completion -> manual_review`
+
+下一步应优先审查 `docs/visual_checks/superpoint_action_review_v4/` 中的 18 个可视化候选。通过前不要跑最终 AP，也不要把 `accept_completion` 直接接入最终融合。
 
 2026-06-30 候选动作判断器诊断 v2：当前仍不要跑最终 AP。已基于 v8 的 10 场景导出做“候选该接受、只用核心、拒绝或人工复查”的诊断版规则。
 
