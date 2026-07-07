@@ -28,7 +28,59 @@ YOLO-World 二维检测
 
 当前最佳方向仍是候选补全加二维掩码级超点负约束。Alpha-CLIP、YOLOE、多掩码选择、自适应内部种子、简单视角质量门控和初版候选局部超点都已经验证过，但没有形成稳定净收益。
 
-最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先审查 20 场景 v6.1 soft/thin accept 可视化，重点看 `scene0207_00 / candidate0003 / blanket` 是否应从 `accept_completion` 降到 `manual_review`；不要现在跑最终 AP。
+最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先审查 20 场景 v7 final 可视化，确认 soft/thin 风险已清空、accept 大扩张仍没有明显多物体合并；不要现在跑最终 AP。
+
+2026-07-07 v7 规则收尾版：当前仍不要跑最终 AP，也不要改融合主流程。v7 只把 v6.1 暴露出的 soft/thin 中等扩张低 IoU 风险从 `accept_completion` 改为 `manual_review`，复用已有 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`。
+
+代码入口：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+- `tools/summarize_superpoint_action_expansion.py`
+- `tools/visualize_superpoint_action_review_candidates.py`
+
+v7 规则变化：
+
+- soft/thin 类候选若原本会走到最终 `accept_completion`，且 `existing_mask_iou < 0.35`、`largest_cc_to_point_ratio >= 1.5`，则改为 `manual_review`。
+- 原因追加 `v7_soft_thin_moderate_expansion_low_iou_review`。
+- 新增审查清单 `manual_review_soft_thin_plane_iou_lt_0_35`。
+
+20 场景 v7 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7/summary.json`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7/review_lists.json`
+
+20 场景 v7 对比摘要：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7_expansion_review/changed_action_candidates.csv`
+
+20 场景 v7 final 可视化结果：
+
+- `docs/visual_checks/superpoint_action_review_20scenes_v7_final/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_20scenes_v7_final/`
+- 共 `34` 个审查候选，每个 `2` 张 PNG，共 `68` 张 PNG；不输出 PLY。
+
+20 场景 v7 动作分布：
+
+- `accept_completion`: `39`
+- `manual_review`: `72`
+- `reject_or_needs_mask3d_support`: `18`
+- `keep_core_only`: `1`
+
+v7 相比 v6.1 仅改变 1 个候选：
+
+- `scene0207_00 / candidate0003 / blanket`: `accept_completion -> manual_review`
+  - `largest_cc_to_point_ratio=1.76`
+  - `existing_mask_iou=0.315`
+  - `conflict_overlap=0.069`
+
+当前判断：
+
+- `accept_completion_soft_thin_plane` 和 `accept_completion_soft_thin_plane_iou_lt_0_35` 已清零。
+- 高风险 accept 清单 `accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30` 仍为 `0`。
+- `accept_completion_largest_cc_to_point_ge_2` 仍为 `7`，v7 没动 bookshelf、folded chair 等当前接受样本。
+- v7 是 20 场景规则诊断收尾版，下一步应审查 `docs/visual_checks/superpoint_action_review_20scenes_v7_final/`，不要跑最终 AP。
 
 2026-07-07 v6.1 诊断补充：当前仍不要跑最终 AP，也不要改融合主流程。v6.1 只新增 soft/thin accept 审查清单和对应 PNG，可复用已有 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`。
 

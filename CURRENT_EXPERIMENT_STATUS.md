@@ -10,6 +10,54 @@
 
 ### 本轮对话追加记录
 
+2026-07-07 v7 规则收尾版：继续不跑最终 AP，不改融合主流程，只把 v6.1 暴露出的 soft/thin 中等扩张低 IoU 风险从 `accept_completion` 改为 `manual_review`。复用已有 20 场景 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`。
+
+本次代码变化：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+  - 新增规则：若 soft/thin 类候选原本会走到最终 `accept_completion`，且 `existing_mask_iou < 0.35`、`largest_cc_to_point_ratio >= 1.5`，则改为 `manual_review`。
+  - 追加原因：`v7_soft_thin_moderate_expansion_low_iou_review`。
+  - 新增审查清单 `manual_review_soft_thin_plane_iou_lt_0_35`，确保被 v7 降级的 soft/thin 候选进入 final 可视化。
+
+v7 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7/summary.json`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7/review_lists.json`
+
+v7 对比摘要：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v7_expansion_review/changed_action_candidates.csv`
+
+v7 final 可视化：
+
+- `docs/visual_checks/superpoint_action_review_20scenes_v7_final/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_20scenes_v7_final/`
+- 共 `34` 个审查候选，每个 `2` 张 PNG，共 `68` 张 PNG；不输出 PLY。
+
+20 场景 v7 动作分布：
+
+- `accept_completion`: `39`，v6.1 为 `40`
+- `manual_review`: `72`，v6.1 为 `71`
+- `reject_or_needs_mask3d_support`: `18`，与 v6.1 相同
+- `keep_core_only`: `1`，与 v6.1 相同
+
+v7 相比 v6.1 仅改变 1 个候选：
+
+- `scene0207_00 / candidate0003 / blanket`: `accept_completion -> manual_review`
+  - `largest_cc_to_point_ratio=1.76`
+  - `existing_mask_iou=0.315`
+  - `conflict_overlap=0.069`
+  - 原因：`soft_thin_plane_class;point_covered_by_largest_cc=0.93;v7_soft_thin_moderate_expansion_low_iou_review`
+
+当前判断：
+
+- v7 清空了 `accept_completion_soft_thin_plane` 和 `accept_completion_soft_thin_plane_iou_lt_0_35`。
+- 高风险 accept 清单 `accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30` 仍为 `0`。
+- `accept_completion_largest_cc_to_point_ge_2` 仍为 `7`，保持 bookshelf、folded chair 等当前接受样本不动。
+- v7 是 20 场景规则诊断收尾版，仍不改变最终候选和 AP。下一步建议审查 `docs/visual_checks/superpoint_action_review_20scenes_v7_final/` 后再决定是否扩大更多 export-only 场景。
+
 2026-07-07 v6.1 诊断补充：继续不跑最终 AP，不改融合主流程，只检查 soft/thin 类中仍被 `accept_completion` 的候选。复用已有 20 场景 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`。
 
 本次代码变化：

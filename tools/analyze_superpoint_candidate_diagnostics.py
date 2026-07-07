@@ -244,6 +244,15 @@ def _candidate_action(row):
     if conflict >= 0.20:
         return "manual_review", ";".join(reasons + ["high_conflict"])
 
+    if (
+        row["is_soft_thin_plane_class"]
+        and existing_iou < 0.35
+        and ratio >= 1.5
+    ):
+        return "manual_review", ";".join(
+            reasons + ["v7_soft_thin_moderate_expansion_low_iou_review"]
+        )
+
     if point_coverage >= 0.75 and covered_by_point >= 0.45:
         return "accept_completion", ";".join(reasons + ["moderate_expansion_supported"])
 
@@ -469,6 +478,13 @@ def _build_review_lists(action_rows):
             for row in action_rows
             if row["recommended_action"] == "manual_review"
             and _safe_float(row["largest_cc_to_point_ratio"]) >= 2.0
+        ],
+        "manual_review_soft_thin_plane_iou_lt_0_35": [
+            row
+            for row in action_rows
+            if row["recommended_action"] == "manual_review"
+            and _is_true(row["is_soft_thin_plane_class"])
+            and _safe_float(row["existing_mask_iou"]) < 0.35
         ],
         "accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30": [
             row
