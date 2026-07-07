@@ -1,0 +1,38 @@
+{
+  "candidates_dir": "/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5",
+  "review_lists_json": "docs/diagnostics/superpoint_action_diag_20scenes_v6_1/review_lists.json",
+  "include_groups": [
+    "accept_completion_soft_thin_plane"
+  ],
+  "group_counts": {
+    "accept_completion_soft_thin_plane": 1
+  },
+  "visuals": [
+    {
+      "group": "accept_completion_soft_thin_plane",
+      "scene_name": "scene0207_00",
+      "candidate_id": 3,
+      "class_name": "blanket",
+      "recommended_action": "accept_completion",
+      "action_reason": "soft_thin_plane_class;point_covered_by_largest_cc=0.93;moderate_expansion_supported",
+      "metrics": {
+        "largest_cc_to_point_ratio": 1.7645376549094376,
+        "largest_cc_covered_by_point_ratio": 0.5262020529443544,
+        "point_covered_by_largest_cc_ratio": 0.9285033365109628,
+        "existing_mask_iou": 0.3149648838465694,
+        "existing_mask_seed_coverage": 0.6996218260399784,
+        "conflict_overlap": 0.06863679694947569
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0207_00/0207_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_20scenes_v6_1_soft_thin/accept_completion_soft_thin_plane/01_scene0207_00_candidate0003_blanket_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_20scenes_v6_1_soft_thin/accept_completion_soft_thin_plane/01_scene0207_00_candidate0003_blanket_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1049,
+        "core_only": 1458,
+        "core_boundary": 1851,
+        "largest_cc": 1851
+      },
+      "removed_by_largest_cc_count": 0
+    }
+  ]
+}

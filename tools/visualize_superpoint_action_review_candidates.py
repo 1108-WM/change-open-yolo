@@ -214,6 +214,13 @@ def _iter_review_items(review_lists):
 
 def visualize(args):
     review_lists = _load_json(args.review_lists_json)
+    if args.include_group:
+        include_groups = set(args.include_group)
+        review_lists = {
+            group_name: rows
+            for group_name, rows in review_lists.items()
+            if group_name in include_groups
+        }
     os.makedirs(args.output_dir, exist_ok=True)
     scene_cache = {}
     visual_index = []
@@ -291,6 +298,7 @@ def visualize(args):
             {
                 "candidates_dir": args.candidates_dir,
                 "review_lists_json": args.review_lists_json,
+                "include_groups": args.include_group or [],
                 "group_counts": dict(group_counts),
                 "visuals": visual_index,
             },
@@ -309,6 +317,12 @@ def parse_args():
     parser.add_argument("--candidates_dir", required=True)
     parser.add_argument("--review_lists_json", required=True)
     parser.add_argument("--output_dir", required=True)
+    parser.add_argument(
+        "--include_group",
+        action="append",
+        default=None,
+        help="Only render this review-list group. Can be passed multiple times.",
+    )
     return parser.parse_args()
 
 

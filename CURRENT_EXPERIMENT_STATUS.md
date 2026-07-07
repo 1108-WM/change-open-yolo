@@ -10,6 +10,57 @@
 
 ### 本轮对话追加记录
 
+2026-07-07 v6.1 诊断补充：继续不跑最终 AP，不改融合主流程，只检查 soft/thin 类中仍被 `accept_completion` 的候选。复用已有 20 场景 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`。
+
+本次代码变化：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+  - 新增审查清单 `accept_completion_soft_thin_plane`。
+  - 新增审查清单 `accept_completion_soft_thin_plane_iou_lt_0_35`。
+  - 仅新增 review list，不改变 v6 推荐动作。
+- `tools/visualize_superpoint_action_review_candidates.py`
+  - 新增 `--include_group` 参数，用于只渲染指定 review-list group。
+
+v6.1 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1/summary.json`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1/review_lists.json`
+
+v6.1 对比摘要：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1_expansion_review/soft_thin_accept_review.md`
+
+v6.1 soft/thin 可视化：
+
+- `docs/visual_checks/superpoint_action_review_20scenes_v6_1_soft_thin/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_20scenes_v6_1_soft_thin/`
+- 共 `1` 个审查候选，每个 `2` 张 PNG，共 `2` 张 PNG；不输出 PLY。
+
+20 场景 v6.1 动作分布不变：
+
+- `accept_completion`: `40`
+- `manual_review`: `71`
+- `reject_or_needs_mask3d_support`: `18`
+- `keep_core_only`: `1`
+
+新增 soft/thin accept 清单命中：
+
+- `scene0207_00 / candidate0003 / blanket`
+  - `recommended_action=accept_completion`
+  - `largest_cc_to_point_ratio=1.76`
+  - `largest_cc_covered_by_point_ratio=0.53`
+  - `point_covered_by_largest_cc_ratio=0.93`
+  - `existing_mask_iou=0.315`
+  - `conflict_overlap=0.069`
+
+当前判断：
+
+- v6.1 没有新增或改变任何 `accept_completion`，只把 soft/thin accept 风险显式列出来。
+- `scene0207_00 / candidate0003 / blanket` 同时落入 `accept_completion_soft_thin_plane` 和 `accept_completion_soft_thin_plane_iou_lt_0_35`。
+- 可视化看起来是软薄平面区域从 `1049` 点扩到 `1851` 点，largest-CC 删除 `0` 点，Mask3D IoU 低于 `0.35`，应作为后续 v6.2 是否降到 `manual_review` 的重点复查样本。
+
 2026-07-07 v6 小修：继续不跑最终 AP，不改融合主流程，只修补 20 场景 v5 可视化审查暴露出的薄片/软平面风险。复用已有 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`，仅重新生成规则诊断、扩展对比摘要和 PNG 可视化。
 
 本次代码变化：

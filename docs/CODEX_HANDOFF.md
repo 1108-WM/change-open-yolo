@@ -28,7 +28,56 @@ YOLO-World 二维检测
 
 当前最佳方向仍是候选补全加二维掩码级超点负约束。Alpha-CLIP、YOLOE、多掩码选择、自适应内部种子、简单视角质量门控和初版候选局部超点都已经验证过，但没有形成稳定净收益。
 
-最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先审查 20 场景 v6 final 可视化，确认 `blanket`、`laptop` 这类薄片/软平面大扩张已被保守挡回 `manual_review`，再决定是否继续扩大 `export_only`；不要现在跑最终 AP。
+最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先审查 20 场景 v6.1 soft/thin accept 可视化，重点看 `scene0207_00 / candidate0003 / blanket` 是否应从 `accept_completion` 降到 `manual_review`；不要现在跑最终 AP。
+
+2026-07-07 v6.1 诊断补充：当前仍不要跑最终 AP，也不要改融合主流程。v6.1 只新增 soft/thin accept 审查清单和对应 PNG，可复用已有 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`。
+
+代码入口：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+- `tools/summarize_superpoint_action_expansion.py`
+- `tools/visualize_superpoint_action_review_candidates.py`
+
+v6.1 变化：
+
+- 新增 review list `accept_completion_soft_thin_plane`。
+- 新增 review list `accept_completion_soft_thin_plane_iou_lt_0_35`。
+- `tools/visualize_superpoint_action_review_candidates.py` 新增 `--include_group`，方便只渲染 soft/thin group。
+- 不改变 v6 推荐动作。
+
+20 场景 v6.1 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1/summary.json`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1/review_lists.json`
+
+20 场景 v6.1 对比摘要：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v6_1_expansion_review/soft_thin_accept_review.md`
+
+20 场景 v6.1 soft/thin 可视化结果：
+
+- `docs/visual_checks/superpoint_action_review_20scenes_v6_1_soft_thin/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_20scenes_v6_1_soft_thin/`
+- 共 `1` 个审查候选，每个 `2` 张 PNG，共 `2` 张 PNG；不输出 PLY。
+
+20 场景 v6.1 动作分布不变：
+
+- `accept_completion`: `40`
+- `manual_review`: `71`
+- `reject_or_needs_mask3d_support`: `18`
+- `keep_core_only`: `1`
+
+soft/thin accept 清单命中：
+
+- `scene0207_00 / candidate0003 / blanket`
+  - `largest_cc_to_point_ratio=1.76`
+  - `existing_mask_iou=0.315`
+  - `conflict_overlap=0.069`
+  - largest-CC 删除 `0` 点。
+
+当前判断：v6.1 仅把该 soft/thin accept 风险显式暴露出来。可视化显示它是软薄平面区域从 `1049` 点扩到 `1851` 点，且 Mask3D IoU 低于 `0.35`，下一步应人工确认是否在 v6.2 中保守降为 `manual_review`。
 
 2026-07-07 v6 小修：当前仍不要跑最终 AP，也不要改融合主流程。v6 只修补 20 场景 v5 暴露出的薄片/软平面风险，复用已有 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`，没有重新跑最终评估。
 

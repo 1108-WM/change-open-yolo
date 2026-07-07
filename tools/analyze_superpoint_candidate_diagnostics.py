@@ -22,6 +22,10 @@ def _safe_int(value, default=0):
         return int(default)
 
 
+def _is_true(value):
+    return value is True or str(value) == "True"
+
+
 def _mean(values):
     values = [float(item) for item in values]
     if not values:
@@ -480,6 +484,19 @@ def _build_review_lists(action_rows):
             for row in action_rows
             if row["recommended_action"] == "accept_completion"
             and _safe_float(row["largest_cc_to_point_ratio"]) >= 2.0
+        ],
+        "accept_completion_soft_thin_plane": [
+            row
+            for row in action_rows
+            if row["recommended_action"] == "accept_completion"
+            and _is_true(row["is_soft_thin_plane_class"])
+        ],
+        "accept_completion_soft_thin_plane_iou_lt_0_35": [
+            row
+            for row in action_rows
+            if row["recommended_action"] == "accept_completion"
+            and _is_true(row["is_soft_thin_plane_class"])
+            and _safe_float(row["existing_mask_iou"]) < 0.35
         ],
     }
 
