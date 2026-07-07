@@ -10,6 +10,69 @@
 
 ### 本轮对话追加记录
 
+2026-07-07 v5 规则诊断扩展到 20 场景：继续不跑最终 AP，不改融合主流程。使用 even48 前 20 个场景做 `MODE=export_only`，导出目录只放在 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`，不提交导出大目录。
+
+本次修正：
+
+- `docs/diagnostics/superpoint_action_diag_10scenes_v5_label_analysis/v5_rule_notes.md`
+  - 修正 `scene0193_00 / candidate0001 / mattress` 的表述：它虽然人工标签偏 `visual_accept`，但 v5 仍保守保持 `manual_review`，因为它是大平面长条扩张，不应写成 v5 promoted/accepted。
+- `tools/analyze_superpoint_visual_label_alignment.py`
+  - 修正 notes 生成逻辑，把大平面 `visual_accept` 单独写入 conservative 列表，避免重新生成时再次误写。
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+  - 将 `closet door`、`blinds`、`poster`、`calendar` 加入大平面/薄片风险类。
+  - 新增审查清单 `accept_completion_largest_cc_to_point_ge_2`，专门复查被 v5 接受的大扩张候选。
+- `tools/summarize_superpoint_action_expansion.py`
+  - 新增 10 场景到 20 场景扩展结果的对齐汇总脚本。
+
+20 场景 export-only 结果：
+
+- 场景：even48 前 `20` 个。
+- 候选数：`130`
+- raw observations：`1529`
+- support / weak / conflict edges：`1876 / 2485 / 1518`
+- 没有进入 `run_evaluation.py`，没有最终 AP。
+
+20 场景 v5 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5/summary.json`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5/review_lists.json`
+
+20 场景扩展审查摘要：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/new_accept_completion_candidates.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/new_accept_completion_large_expansion.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/new_reject_or_needs_mask3d_support.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/new_manual_review_large_expansion.csv`
+
+20 场景可视化：
+
+- `docs/visual_checks/superpoint_action_review_20scenes_v5_final/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_20scenes_v5_final/`
+- 共 `33` 个审查候选，每个 `2` 张 PNG，共 `66` 张 PNG；不输出 PLY。
+
+20 场景 v5 动作分布：
+
+- `accept_completion`: `42`
+- `manual_review`: `69`
+- `reject_or_needs_mask3d_support`: `18`
+- `keep_core_only`: `1`
+
+相对 10 场景 v5：
+
+- 10 场景：`63` 候选，`accept/manual/reject/keep = 22/31/9/1`
+- 20 场景：`130` 候选，`accept/manual/reject/keep = 42/69/18/1`
+- 新增 10 场景：`67` 候选，`accept/manual/reject/keep = 20/38/9/0`
+
+关键检查：
+
+- `accept_completion` 数量随场景数扩大稳定增加：`22 -> 42`。
+- 高风险 accept 清单 `accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30` 仍为 `0`。
+- 扩展时发现 `scene0222_00 / closet door` 是大平面类名漏网，已加入大平面风险类；重跑后它从 `accept_completion` 改为 `reject_or_needs_mask3d_support`。
+- 新增 `accept_completion_largest_cc_to_point_ge_2` 审查清单：20 场景共有 `9` 个，其中新增 10 场景贡献 `4` 个，需可视化确认是否有多物体合并。
+- reject 主要来自大平面过扩张、缺少可靠核心或大扩张无强支持，符合当前保守目标。
+
 2026-07-07 候选动作判断器诊断 v5：继续不跑最终 AP，不改融合主流程，只基于 v4 的 18 个人工可视化标签做规则对齐分析，并在已有 10 场景 v8 导出上生成 v5 诊断。
 
 本次代码变化：
@@ -46,7 +109,7 @@ v5 可视化结果已保存到：
 
 - `docs/visual_checks/superpoint_action_review_v5/visual_review_index.json`
 - `docs/visual_checks/superpoint_action_review_v5/`
-- 共 `13` 个审查候选，每个 `2` 张 PNG；不输出 PLY。
+- 共 `18` 个审查候选，每个 `2` 张 PNG；不输出 PLY。
 
 v4 人工标签对齐结果：
 
@@ -70,6 +133,7 @@ v5 审查清单：
 - 全部 `keep_core_only`: `1`
 - `manual_review` 且 `largest_cc_to_point_ratio >= 2.0`: `3`，v4 为 `8`
 - `accept_completion` 但 `conflict_overlap >= 0.18` 或 `existing_mask_iou < 0.30`: `0`
+- `accept_completion` 且 `largest_cc_to_point_ratio >= 2.0`: `5`
 
 从 v4 成功识别为 `accept_completion` 的 `visual_accept`：
 

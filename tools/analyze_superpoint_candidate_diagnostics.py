@@ -51,11 +51,15 @@ LARGE_PLANE_CLASSES = {
     "whiteboard",
     "tv",
     "door",
+    "closet door",
     "curtain",
     "mat",
     "mattress",
     "mirror",
     "projector screen",
+    "blinds",
+    "poster",
+    "calendar",
 }
 SMALL_PLANE_CLASSES = {
     "picture",
@@ -452,6 +456,12 @@ def _build_review_lists(action_rows):
                 _safe_float(row["conflict_overlap"]) >= 0.18
                 or _safe_float(row["existing_mask_iou"]) < 0.30
             )
+        ],
+        "accept_completion_largest_cc_to_point_ge_2": [
+            row
+            for row in action_rows
+            if row["recommended_action"] == "accept_completion"
+            and _safe_float(row["largest_cc_to_point_ratio"]) >= 2.0
         ],
     }
 

@@ -108,6 +108,14 @@ def _write_rule_notes(path, rows, missing):
         row for row in rows
         if row["recommended_action"] == "manual_review" and row["visual_label"] == "visual_accept"
     ]
+    manual_accept_promoted = [
+        row for row in manual_accept
+        if row["is_large_plane_class"] != "True"
+    ]
+    manual_accept_kept_conservative = [
+        row for row in manual_accept
+        if row["is_large_plane_class"] == "True"
+    ]
     manual_uncertain = [
         row for row in rows
         if row["recommended_action"] == "manual_review" and row["visual_label"] == "uncertain"
@@ -143,8 +151,8 @@ def _write_rule_notes(path, rows, missing):
         f.write("- Promote only strongly supported large non-plane completions with low conflict.\n")
         f.write("- Promote small-plane picture completion only with very strong Mask3D support.\n")
         f.write("- Leave rejected and keep_core_only cases unchanged for this 10-scene diagnostic.\n\n")
-        f.write("## visual_accept candidates used by v5\n\n")
-        for row in manual_accept:
+        f.write("## visual_accept candidates promoted by v5\n\n")
+        for row in manual_accept_promoted:
             f.write(
                 "- "
                 f"{row['scene_name']} candidate{int(row['candidate_id']):04d} "
@@ -152,6 +160,17 @@ def _write_rule_notes(path, rows, missing):
                 f"IoU={_safe_float(row['existing_mask_iou']):.2f}, "
                 f"point_coverage={_safe_float(row['point_covered_by_largest_cc_ratio']):.2f}, "
                 f"conflict={_safe_float(row['conflict_overlap']):.2f}\n"
+            )
+        f.write("\n## visual_accept candidates kept conservative by v5\n\n")
+        for row in manual_accept_kept_conservative:
+            f.write(
+                "- "
+                f"{row['scene_name']} candidate{int(row['candidate_id']):04d} "
+                f"{row['class_name']}: ratio={_safe_float(row['largest_cc_to_point_ratio']):.2f}, "
+                f"IoU={_safe_float(row['existing_mask_iou']):.2f}, "
+                f"point_coverage={_safe_float(row['point_covered_by_largest_cc_ratio']):.2f}, "
+                f"conflict={_safe_float(row['conflict_overlap']):.2f}. "
+                "Kept as manual_review because it is a large planar or elongated expansion.\n"
             )
         f.write("\n## remaining uncertain candidates\n\n")
         for row in manual_uncertain:

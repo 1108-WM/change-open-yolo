@@ -28,7 +28,62 @@ YOLO-World 二维检测
 
 当前最佳方向仍是候选补全加二维掩码级超点负约束。Alpha-CLIP、YOLOE、多掩码选择、自适应内部种子、简单视角质量门控和初版候选局部超点都已经验证过，但没有形成稳定净收益。
 
-最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先扩大 v5 动作诊断的 `export_only` 场景覆盖，再决定是否进入 even48 候选融合诊断；不要现在跑最终 AP。
+最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先审查 20 场景 v5 扩展可视化，确认新增 accept 大扩张没有明显多物体合并，再决定是否继续扩大 `export_only`；不要现在跑最终 AP。
+
+2026-07-07 v5 规则诊断扩展到 20 场景：当前仍不要跑最终 AP，也不要改融合主流程。已用 even48 前 20 个场景跑 `MODE=export_only`，导出大目录只在 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`，不要提交。
+
+代码入口：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+- `tools/analyze_superpoint_visual_label_alignment.py`
+- `tools/summarize_superpoint_action_expansion.py`
+- `tools/visualize_superpoint_action_review_candidates.py`
+
+本轮规则/文档修正：
+
+- `scene0193_00 / candidate0001 / mattress` 虽然人工标签偏 `visual_accept`，但 v5 仍保守保持 `manual_review`，因为它是大平面长条扩张；`v5_rule_notes.md` 已修正，不再把它写成 promoted/accepted。
+- `closet door`、`blinds`、`poster`、`calendar` 已加入大平面/薄片风险类。
+- 新增审查清单 `accept_completion_largest_cc_to_point_ge_2`，用于专门看被接受的大扩张候选。
+
+20 场景 v5 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5/summary.json`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5/review_lists.json`
+
+20 场景扩展审查摘要：
+
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/new_accept_completion_candidates.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/new_accept_completion_large_expansion.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/new_reject_or_needs_mask3d_support.csv`
+- `docs/diagnostics/superpoint_action_diag_20scenes_v5_expansion_review/new_manual_review_large_expansion.csv`
+
+20 场景可视化结果：
+
+- `docs/visual_checks/superpoint_action_review_20scenes_v5_final/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_20scenes_v5_final/`
+- 共 `33` 个审查候选，每个 `2` 张 PNG，共 `66` 张 PNG；不输出 PLY。
+
+20 场景 v5 动作分布：
+
+- `accept_completion`: `42`
+- `manual_review`: `69`
+- `reject_or_needs_mask3d_support`: `18`
+- `keep_core_only`: `1`
+
+相对 10 场景 v5：
+
+- 10 场景：`63` 候选，`accept/manual/reject/keep = 22/31/9/1`
+- 20 场景：`130` 候选，`accept/manual/reject/keep = 42/69/18/1`
+- 新增 10 场景：`67` 候选，`accept/manual/reject/keep = 20/38/9/0`
+
+当前判断：
+
+- `accept_completion` 数量随场景数扩大稳定增加：`22 -> 42`。
+- 高风险 accept 清单 `accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30` 仍为 `0`。
+- 新增 10 场景有 `4` 个 accept 大扩张需要重点看：`bookshelf`、`blanket`、`folded chair`、`laptop`。
+- reject 主要来自大平面过扩张、缺少可靠核心或大扩张无强支持，符合当前保守目标。
 
 2026-07-07 候选动作判断器诊断 v5：当前仍不要跑最终 AP，也不要改融合主流程。v5 基于 v4 的 18 个人工可视化标签做规则对齐，目标是减少 `manual_review` 灰区，同时不把 `visual_reject` 或 `uncertain` 放进 `accept_completion`。
 
@@ -54,7 +109,7 @@ v5 可视化结果：
 
 - `docs/visual_checks/superpoint_action_review_v5/visual_review_index.json`
 - `docs/visual_checks/superpoint_action_review_v5/`
-- 共 `13` 个审查候选，每个 `2` 张 PNG；不输出 PLY。
+- 共 `18` 个审查候选，每个 `2` 张 PNG；不输出 PLY。
 
 v5 相比 v4 的规则变化：
 
@@ -76,6 +131,7 @@ v5 审查清单：
 - 全部 `keep_core_only`: `1`
 - `manual_review` 中 `largest_cc_to_point_ratio >= 2.0`: `3`，v4 为 `8`
 - `accept_completion` 中 `conflict_overlap >= 0.18` 或 `existing_mask_iou < 0.30`: `0`
+- `accept_completion` 中 `largest_cc_to_point_ratio >= 2.0`: `5`
 
 被 v5 成功从 `manual_review` 提升的人工 `visual_accept`：
 
