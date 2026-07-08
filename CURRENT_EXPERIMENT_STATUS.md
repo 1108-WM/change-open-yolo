@@ -1,6 +1,6 @@
 # OpenYOLO3D 在 ScanNet200 上的候选补全实验状态
 
-最后更新：2026-07-07
+最后更新：2026-07-08
 
 项目路径：
 
@@ -9,6 +9,84 @@
 ## 0. 下一次对话先看这里
 
 ### 本轮对话追加记录
+
+2026-07-08 v7 规则扩到 40 场景 export-only 稳定性诊断：继续不跑最终 AP，不改融合主流程，不继续在 20 场景上调 v8/v9。使用 even48 前 40 个场景做 `MODE=export_only`，导出大目录只放在 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_40scenes_v7`，不提交导出大目录。
+
+40 场景 export-only 结果：
+
+- 场景：even48 前 `40` 个。
+- 候选数：`217`
+- raw observations：`2766`
+- graph edges：`11079`
+- support / weak / conflict edges：`3943 / 4785 / 2351`
+- graph components：`1101`
+- 没有进入 `run_evaluation.py`，没有最终 AP。
+
+40 场景 v7 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7/summary.json`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7/review_lists.json`
+
+40 场景 v7 扩展审查摘要：
+
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/new_accept_completion_candidates.csv`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/new_accept_completion_large_expansion.csv`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/new_reject_or_needs_mask3d_support.csv`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/new_manual_review_large_expansion.csv`
+
+40 场景 v7 关键清单可视化：
+
+- `docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/`
+- 共 `54` 个审查候选，每个 `2` 张 PNG，共 `108` 张 PNG；不输出 PLY。
+
+40 场景 v7 动作分布：
+
+- `accept_completion`: `65`
+- `manual_review`: `109`
+- `reject_or_needs_mask3d_support`: `40`
+- `keep_core_only`: `3`
+
+相对 20 场景 v7：
+
+- 20 场景：`130` 候选，`accept/manual/reject/keep = 39/72/18/1`
+- 40 场景：`217` 候选，`accept/manual/reject/keep = 65/109/40/3`
+- 新增 20 场景：`87` 候选，`accept/manual/reject/keep = 26/37/22/2`
+- shared candidates 动作变化：`0`
+
+重点 review list 数量：
+
+- `accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30`: `0`
+- `accept_completion_largest_cc_to_point_ge_2`: `12`
+- `accept_completion_soft_thin_plane`: `1`
+- `accept_completion_soft_thin_plane_iou_lt_0_35`: `0`
+- `manual_review_soft_thin_plane_iou_lt_0_35`: `1`
+- `all_reject_or_needs_mask3d_support`: `40`
+
+高风险 accept 检查：
+
+- 指定高风险 accept 清单 `conflict >= 0.18` 或 `existing_mask_iou < 0.30` 仍为 `0`。
+- `accept_completion_soft_thin_plane_iou_lt_0_35` 仍为 `0`。
+- 仍有 1 个 soft/thin accept，但 Mask3D 支持强：
+  - `scene0608_01 / candidate0000 / blanket`
+  - `largest_cc_to_point_ratio=1.45`
+  - `existing_mask_iou=0.889`
+  - `conflict_overlap=0.029`
+- 若把 large-plane accept 也纳入人工复核风险，有 1 个新增样本：
+  - `scene0583_01 / candidate0001 / poster`
+  - `largest_cc_to_point_ratio=1.18`
+  - `existing_mask_iou=0.839`
+  - `conflict_overlap=0.025`
+  - 原因是小扩张且 Mask3D 支持强，不在冲突/低 IoU 高风险清单中。
+
+当前判断：
+
+- v7 从 20 场景扩到 40 场景后，高冲突/低 IoU accept 仍清零，soft/thin 低 IoU accept 也清零。
+- 新增 20 场景中有 `5` 个大扩张 accept，已进入 `accept_completion_largest_cc_to_point_ge_2` 可视化清单，建议优先人工审查是否存在多物体合并。
+- reject 增加主要来自缺少可靠核心、大平面过扩张或大扩张无强支持，符合 v7 保守目标。
+- 当前仍不要跑最终 AP；下一步应先审查 `docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/`。
 
 2026-07-07 v7 规则收尾版：继续不跑最终 AP，不改融合主流程，只把 v6.1 暴露出的 soft/thin 中等扩张低 IoU 风险从 `accept_completion` 改为 `manual_review`。复用已有 20 场景 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`。
 

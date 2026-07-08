@@ -1,6 +1,6 @@
 # Codex Handoff
 
-最后更新：2026-07-07
+最后更新：2026-07-08
 
 这个文件是给新的 Codex 会话或另一台设备的快速入口。完整实验细节见仓库根目录的 `CURRENT_EXPERIMENT_STATUS.md`。
 
@@ -28,7 +28,76 @@ YOLO-World 二维检测
 
 当前最佳方向仍是候选补全加二维掩码级超点负约束。Alpha-CLIP、YOLOE、多掩码选择、自适应内部种子、简单视角质量门控和初版候选局部超点都已经验证过，但没有形成稳定净收益。
 
-最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先审查 20 场景 v7 final 可视化，确认 soft/thin 风险已清空、accept 大扩张仍没有明显多物体合并；不要现在跑最终 AP。
+最新一轮已经完成证据图关系规则和约束式实例假设的第一版重构。结论是：只输出缺口核心会产生物体残片；完整核心能基本消除主要伤害；但证据图候选仍不能简单作为新增实例追加。当前优先级是先审查 40 场景 v7 关键清单可视化，确认新增大扩张 accept 没有明显多物体合并；不要现在跑最终 AP。
+
+2026-07-08 v7 规则扩到 40 场景 export-only 稳定性诊断：当前仍不要跑最终 AP，也不要改融合主流程。使用 even48 前 40 个场景做 `MODE=export_only`，导出大目录只在 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_40scenes_v7`，不要提交。
+
+代码入口：
+
+- `tools/analyze_superpoint_candidate_diagnostics.py`
+- `tools/summarize_superpoint_action_expansion.py`
+- `tools/visualize_superpoint_action_review_candidates.py`
+
+40 场景 export-only 结果：
+
+- 场景：even48 前 `40` 个。
+- 候选数：`217`
+- raw observations：`2766`
+- graph edges：`11079`
+- support / weak / conflict edges：`3943 / 4785 / 2351`
+- graph components：`1101`
+- 没有进入 `run_evaluation.py`，没有最终 AP。
+
+40 场景 v7 诊断结果：
+
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7/summary.json`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7/actions.csv`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7/review_lists.json`
+
+40 场景 v7 扩展审查摘要：
+
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/expansion_review_summary.md`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/new_accept_completion_candidates.csv`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/new_accept_completion_large_expansion.csv`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/new_reject_or_needs_mask3d_support.csv`
+- `docs/diagnostics/superpoint_action_diag_40scenes_v7_expansion_review/new_manual_review_large_expansion.csv`
+
+40 场景 v7 关键清单可视化结果：
+
+- `docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/visual_review_index.json`
+- `docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/`
+- 共 `54` 个审查候选，每个 `2` 张 PNG，共 `108` 张 PNG；不输出 PLY。
+
+40 场景 v7 动作分布：
+
+- `accept_completion`: `65`
+- `manual_review`: `109`
+- `reject_or_needs_mask3d_support`: `40`
+- `keep_core_only`: `3`
+
+相对 20 场景 v7：
+
+- 20 场景：`130` 候选，`accept/manual/reject/keep = 39/72/18/1`
+- 40 场景：`217` 候选，`accept/manual/reject/keep = 65/109/40/3`
+- 新增 20 场景：`87` 候选，`accept/manual/reject/keep = 26/37/22/2`
+- shared candidates 动作变化：`0`
+
+重点 review list 数量：
+
+- `accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30`: `0`
+- `accept_completion_largest_cc_to_point_ge_2`: `12`
+- `accept_completion_soft_thin_plane`: `1`
+- `accept_completion_soft_thin_plane_iou_lt_0_35`: `0`
+- `manual_review_soft_thin_plane_iou_lt_0_35`: `1`
+- `all_reject_or_needs_mask3d_support`: `40`
+
+当前判断：
+
+- 指定高风险 accept 清单 `conflict >= 0.18` 或 `existing_mask_iou < 0.30` 仍为 `0`。
+- soft/thin 低 IoU accept 仍为 `0`。
+- 仍有 1 个 soft/thin accept：`scene0608_01 / candidate0000 / blanket`，但 `existing_mask_iou=0.889`、`conflict_overlap=0.029`，属于强 Mask3D 支持的小扩张。
+- 若把 large-plane accept 也纳入人工复核风险，有 1 个新增样本：`scene0583_01 / candidate0001 / poster`，`largest_cc_to_point_ratio=1.18`、`existing_mask_iou=0.839`、`conflict_overlap=0.025`。
+- 新增 20 场景有 `5` 个大扩张 accept，已进入可视化清单，下一步优先审查 `docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/`。
 
 2026-07-07 v7 规则收尾版：当前仍不要跑最终 AP，也不要改融合主流程。v7 只把 v6.1 暴露出的 soft/thin 中等扩张低 IoU 风险从 `accept_completion` 改为 `manual_review`，复用已有 export-only 导出目录 `/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_20scenes_v5`。
 

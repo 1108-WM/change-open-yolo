@@ -1,0 +1,1424 @@
+{
+  "candidates_dir": "/tmp/mask_graph_proposals_scannet200_superpoint_largest_cc_diag_40scenes_v7",
+  "review_lists_json": "docs/diagnostics/superpoint_action_diag_40scenes_v7/review_lists.json",
+  "include_groups": [
+    "accept_completion_conflict_ge_0_18_or_existing_iou_lt_0_30",
+    "accept_completion_largest_cc_to_point_ge_2",
+    "accept_completion_soft_thin_plane",
+    "accept_completion_soft_thin_plane_iou_lt_0_35",
+    "manual_review_soft_thin_plane_iou_lt_0_35",
+    "all_reject_or_needs_mask3d_support"
+  ],
+  "group_counts": {
+    "all_reject_or_needs_mask3d_support": 40,
+    "manual_review_soft_thin_plane_iou_lt_0_35": 1,
+    "accept_completion_largest_cc_to_point_ge_2": 12,
+    "accept_completion_soft_thin_plane": 1
+  },
+  "visuals": [
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0011_00",
+      "candidate_id": 0,
+      "class_name": "tv",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.69;largest_cc_covered_by_point=0.36;point_covered_by_largest_cc=0.97;mask3d_iou=0.43/coverage=1.00;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.6921182266009853,
+        "largest_cc_covered_by_point_ratio": 0.3602470265324794,
+        "point_covered_by_largest_cc_ratio": 0.9698275862068966,
+        "existing_mask_iou": 0.4326142885414605,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0011_00/0011_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/01_scene0011_00_candidate0000_tv_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/01_scene0011_00_candidate0000_tv_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1624,
+        "core_only": 3540,
+        "core_boundary": 4372,
+        "largest_cc": 4372
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0025_02",
+      "candidate_id": 0,
+      "class_name": "whiteboard",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.37;largest_cc_covered_by_point=0.41;point_covered_by_largest_cc=0.98;mask3d_iou=0.83/coverage=0.85;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.372980910425844,
+        "largest_cc_covered_by_point_ratio": 0.4130569306930693,
+        "point_covered_by_largest_cc_ratio": 0.9801762114537445,
+        "existing_mask_iou": 0.8286144578313253,
+        "existing_mask_seed_coverage": 0.8511757425742574,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0025_02/0025_02.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/02_scene0025_02_candidate0000_whiteboard_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/02_scene0025_02_candidate0000_whiteboard_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1362,
+        "core_only": 2460,
+        "core_boundary": 3232,
+        "largest_cc": 3232
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0025_02",
+      "candidate_id": 1,
+      "class_name": "whiteboard",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.02;largest_cc_covered_by_point=0.30;mask3d_iou=0.74/coverage=0.80;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.024372759856631,
+        "largest_cc_covered_by_point_ratio": 0.3043555240793201,
+        "point_covered_by_largest_cc_ratio": 0.6161290322580645,
+        "existing_mask_iou": 0.7385449170635572,
+        "existing_mask_seed_coverage": 0.7962110481586402,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0025_02/0025_02.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/03_scene0025_02_candidate0001_whiteboard_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/03_scene0025_02_candidate0001_whiteboard_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 2790,
+        "core_only": 5347,
+        "core_boundary": 5648,
+        "largest_cc": 5648
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0046_02",
+      "candidate_id": 6,
+      "class_name": "towel",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=2.28;largest_cc_covered_by_point=0.33;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.279850746268657,
+        "largest_cc_covered_by_point_ratio": 0.33387888707037644,
+        "point_covered_by_largest_cc_ratio": 0.7611940298507462,
+        "existing_mask_iou": 0.22073699421965318,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.10820895522388059
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0046_02/0046_02.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/04_scene0046_02_candidate0006_towel_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/04_scene0046_02_candidate0006_towel_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 268,
+        "core_only": 466,
+        "core_boundary": 611,
+        "largest_cc": 611
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0046_02",
+      "candidate_id": 7,
+      "class_name": "door",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=3.46;largest_cc_covered_by_point=0.26;point_covered_by_largest_cc=0.92;mask3d_iou=0.65/coverage=1.00;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 3.464814814814815,
+        "largest_cc_covered_by_point_ratio": 0.26456440406199894,
+        "point_covered_by_largest_cc_ratio": 0.9166666666666666,
+        "existing_mask_iou": 0.6548827441372068,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.03333333333333333
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0046_02/0046_02.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/05_scene0046_02_candidate0007_door_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/05_scene0046_02_candidate0007_door_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 540,
+        "core_only": 1346,
+        "core_boundary": 1946,
+        "largest_cc": 1871
+      },
+      "removed_by_largest_cc_count": 75
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0077_00",
+      "candidate_id": 2,
+      "class_name": "bulletin board",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0077_00/0077_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/06_scene0077_00_candidate0002_bulletin_board_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/06_scene0077_00_candidate0002_bulletin_board_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 635,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0146_00",
+      "candidate_id": 1,
+      "class_name": "mat",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0146_00/0146_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/07_scene0146_00_candidate0001_mat_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/07_scene0146_00_candidate0001_mat_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 832,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0146_00",
+      "candidate_id": 6,
+      "class_name": "mat",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0146_00/0146_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/08_scene0146_00_candidate0006_mat_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/08_scene0146_00_candidate0006_mat_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 155,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0193_00",
+      "candidate_id": 0,
+      "class_name": "curtain",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.24;largest_cc_covered_by_point=0.43;point_covered_by_largest_cc=0.97;mask3d_iou=0.46/coverage=1.00;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.24249797242498,
+        "largest_cc_covered_by_point_ratio": 0.4325497287522604,
+        "point_covered_by_largest_cc_ratio": 0.9699918896999189,
+        "existing_mask_iou": 0.4600665557404326,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0040551500405515
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0193_00/0193_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/09_scene0193_00_candidate0000_curtain_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/09_scene0193_00_candidate0000_curtain_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 2466,
+        "core_only": 5128,
+        "core_boundary": 5530,
+        "largest_cc": 5530
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0222_00",
+      "candidate_id": 10,
+      "class_name": "blinds",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=3.11;largest_cc_covered_by_point=0.32;point_covered_by_largest_cc=1.00;large_plane_overexpanded_without_mask3d_support",
+      "metrics": {
+        "largest_cc_to_point_ratio": 3.1056751467710373,
+        "largest_cc_covered_by_point_ratio": 0.3219911783238815,
+        "point_covered_by_largest_cc_ratio": 1.0,
+        "existing_mask_iou": 0.18374435567905523,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0222_00/0222_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/10_scene0222_00_candidate0010_blinds_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/10_scene0222_00_candidate0010_blinds_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 511,
+        "core_only": 1265,
+        "core_boundary": 1587,
+        "largest_cc": 1587
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0222_00",
+      "candidate_id": 14,
+      "class_name": "closet door",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=3.41;largest_cc_covered_by_point=0.29;point_covered_by_largest_cc=0.99;mask3d_iou=0.79/coverage=1.00;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 3.414207650273224,
+        "largest_cc_covered_by_point_ratio": 0.2887323943661972,
+        "point_covered_by_largest_cc_ratio": 0.985792349726776,
+        "existing_mask_iou": 0.7857142857142857,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0222_00/0222_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/11_scene0222_00_candidate0014_closet_door_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/11_scene0222_00_candidate0014_closet_door_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 915,
+        "core_only": 2912,
+        "core_boundary": 3124,
+        "largest_cc": 3124
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0249_00",
+      "candidate_id": 0,
+      "class_name": "projector screen",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=4.68;largest_cc_covered_by_point=0.21;point_covered_by_largest_cc=1.00;mask3d_iou=0.42/coverage=1.00;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 4.684887459807074,
+        "largest_cc_covered_by_point_ratio": 0.213452299245024,
+        "point_covered_by_largest_cc_ratio": 1.0,
+        "existing_mask_iou": 0.41771788990825687,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0249_00/0249_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/12_scene0249_00_candidate0000_projector_screen_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/12_scene0249_00_candidate0000_projector_screen_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 311,
+        "core_only": 1457,
+        "core_boundary": 1457,
+        "largest_cc": 1457
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0353_00",
+      "candidate_id": 11,
+      "class_name": "poster",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0353_00/0353_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/13_scene0353_00_candidate0011_poster_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/13_scene0353_00_candidate0011_poster_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 197,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0356_01",
+      "candidate_id": 1,
+      "class_name": "door",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0356_01/0356_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/14_scene0356_01_candidate0001_door_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/14_scene0356_01_candidate0001_door_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 555,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0378_00",
+      "candidate_id": 5,
+      "class_name": "paper",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0378_00/0378_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/15_scene0378_00_candidate0005_paper_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/15_scene0378_00_candidate0005_paper_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 83,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0378_00",
+      "candidate_id": 8,
+      "class_name": "bulletin board",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=44.83;largest_cc_covered_by_point=0.02;point_covered_by_largest_cc=0.95;large_plane_overexpanded_without_mask3d_support",
+      "metrics": {
+        "largest_cc_to_point_ratio": 44.830917874396135,
+        "largest_cc_covered_by_point_ratio": 0.02122844827586207,
+        "point_covered_by_largest_cc_ratio": 0.9516908212560387,
+        "existing_mask_iou": 0.004954342335340975,
+        "existing_mask_seed_coverage": 0.0054956896551724135,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0378_00/0378_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/16_scene0378_00_candidate0008_bulletin_board_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/16_scene0378_00_candidate0008_bulletin_board_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 207,
+        "core_only": 9229,
+        "core_boundary": 9280,
+        "largest_cc": 9280
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0378_00",
+      "candidate_id": 9,
+      "class_name": "bulletin board",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.84;largest_cc_covered_by_point=0.34;point_covered_by_largest_cc=0.97;boundary_expands_without_cleanup=1.47;large_plane_overexpanded_without_mask3d_support",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.8421926910299002,
+        "largest_cc_covered_by_point_ratio": 0.342489772063121,
+        "point_covered_by_largest_cc_ratio": 0.973421926910299,
+        "existing_mask_iou": 0.024732373569582872,
+        "existing_mask_seed_coverage": 0.03915838690824079,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0378_00/0378_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/17_scene0378_00_candidate0009_bulletin_board_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/17_scene0378_00_candidate0009_bulletin_board_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 602,
+        "core_only": 1167,
+        "core_boundary": 1712,
+        "largest_cc": 1711
+      },
+      "removed_by_largest_cc_count": 1
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0378_00",
+      "candidate_id": 10,
+      "class_name": "calendar",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0378_00/0378_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/18_scene0378_00_candidate0010_calendar_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/18_scene0378_00_candidate0010_calendar_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 354,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0406_00",
+      "candidate_id": 6,
+      "class_name": "tray",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0406_00/0406_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/19_scene0406_00_candidate0006_tray_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/19_scene0406_00_candidate0006_tray_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 96,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0474_00",
+      "candidate_id": 3,
+      "class_name": "hair dryer",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0474_00/0474_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/20_scene0474_00_candidate0003_hair_dryer_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/20_scene0474_00_candidate0003_hair_dryer_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 85,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0474_00",
+      "candidate_id": 4,
+      "class_name": "laptop",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0474_00/0474_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/21_scene0474_00_candidate0004_laptop_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/21_scene0474_00_candidate0004_laptop_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 85,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0518_00",
+      "candidate_id": 0,
+      "class_name": "couch",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=2.16;largest_cc_covered_by_point=0.40;point_covered_by_largest_cc=0.87;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.1617050067659,
+        "largest_cc_covered_by_point_ratio": 0.40093896713615024,
+        "point_covered_by_largest_cc_ratio": 0.8667117726657646,
+        "existing_mask_iou": 0.2356020942408377,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.12719891745602166
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0518_00/0518_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/22_scene0518_00_candidate0000_couch_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/22_scene0518_00_candidate0000_couch_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1478,
+        "core_only": 2710,
+        "core_boundary": 3197,
+        "largest_cc": 3195
+      },
+      "removed_by_largest_cc_count": 2
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0518_00",
+      "candidate_id": 3,
+      "class_name": "book",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0518_00/0518_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/23_scene0518_00_candidate0003_book_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/23_scene0518_00_candidate0003_book_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 114,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0518_00",
+      "candidate_id": 5,
+      "class_name": "mat",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=19.98;largest_cc_covered_by_point=0.05;point_covered_by_largest_cc=0.93;large_plane_overexpanded_without_mask3d_support",
+      "metrics": {
+        "largest_cc_to_point_ratio": 19.983333333333334,
+        "largest_cc_covered_by_point_ratio": 0.046371976647206006,
+        "point_covered_by_largest_cc_ratio": 0.9266666666666666,
+        "existing_mask_iou": 0.006793118659020732,
+        "existing_mask_seed_coverage": 0.012844036697247707,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0518_00/0518_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/24_scene0518_00_candidate0005_mat_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/24_scene0518_00_candidate0005_mat_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 300,
+        "core_only": 5861,
+        "core_boundary": 5995,
+        "largest_cc": 5995
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0568_02",
+      "candidate_id": 4,
+      "class_name": "guitar",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=2.02;point_covered_by_largest_cc=0.98;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.0199335548172757,
+        "largest_cc_covered_by_point_ratio": 0.4868421052631579,
+        "point_covered_by_largest_cc_ratio": 0.9833887043189369,
+        "existing_mask_iou": 0.48355263157894735,
+        "existing_mask_seed_coverage": 0.48355263157894735,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0568_02/0568_02.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/25_scene0568_02_candidate0004_guitar_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/25_scene0568_02_candidate0004_guitar_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 301,
+        "core_only": 490,
+        "core_boundary": 608,
+        "largest_cc": 608
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0578_00",
+      "candidate_id": 4,
+      "class_name": "keyboard",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0578_00/0578_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/26_scene0578_00_candidate0004_keyboard_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/26_scene0578_00_candidate0004_keyboard_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 82,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0578_00",
+      "candidate_id": 5,
+      "class_name": "backpack",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=2.32;largest_cc_covered_by_point=0.37;point_covered_by_largest_cc=0.87;boundary_expands_without_cleanup=1.40;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.31981981981982,
+        "largest_cc_covered_by_point_ratio": 0.37475728155339805,
+        "point_covered_by_largest_cc_ratio": 0.8693693693693694,
+        "existing_mask_iou": 0.3673469387755102,
+        "existing_mask_seed_coverage": 0.8388349514563107,
+        "conflict_overlap": 0.05405405405405406
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0578_00/0578_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/27_scene0578_00_candidate0005_backpack_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/27_scene0578_00_candidate0005_backpack_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 222,
+        "core_only": 369,
+        "core_boundary": 515,
+        "largest_cc": 515
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0578_00",
+      "candidate_id": 6,
+      "class_name": "backpack",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=2.78;largest_cc_covered_by_point=0.33;point_covered_by_largest_cc=0.91;boundary_expands_without_cleanup=1.46;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.7755102040816326,
+        "largest_cc_covered_by_point_ratio": 0.32941176470588235,
+        "point_covered_by_largest_cc_ratio": 0.9142857142857143,
+        "existing_mask_iou": 0.2574468085106383,
+        "existing_mask_seed_coverage": 0.5338235294117647,
+        "conflict_overlap": 0.00816326530612245
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0578_00/0578_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/28_scene0578_00_candidate0006_backpack_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/28_scene0578_00_candidate0006_backpack_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 245,
+        "core_only": 466,
+        "core_boundary": 680,
+        "largest_cc": 680
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0599_02",
+      "candidate_id": 1,
+      "class_name": "paper towel dispenser",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=2.02;largest_cc_covered_by_point=0.39;mask3d_iou=0.69/coverage=1.00;boundary_expands_without_cleanup=1.43;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.0217391304347827,
+        "largest_cc_covered_by_point_ratio": 0.3906810035842294,
+        "point_covered_by_largest_cc_ratio": 0.7898550724637681,
+        "existing_mask_iou": 0.6905940594059405,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.10869565217391304
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0599_02/0599_02.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/29_scene0599_02_candidate0001_paper_towel_dispenser_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/29_scene0599_02_candidate0001_paper_towel_dispenser_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 276,
+        "core_only": 390,
+        "core_boundary": 558,
+        "largest_cc": 558
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0599_02",
+      "candidate_id": 3,
+      "class_name": "mat",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "missing_reliable_superpoint_core",
+      "metrics": {
+        "largest_cc_to_point_ratio": 0.0,
+        "largest_cc_covered_by_point_ratio": 0.0,
+        "point_covered_by_largest_cc_ratio": 0.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0599_02/0599_02.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/30_scene0599_02_candidate0003_mat_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/30_scene0599_02_candidate0003_mat_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 95,
+        "core_only": 0,
+        "core_boundary": 0,
+        "largest_cc": 0
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0608_01",
+      "candidate_id": 5,
+      "class_name": "armchair",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=2.22;largest_cc_covered_by_point=0.42;point_covered_by_largest_cc=0.93;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.2180995475113123,
+        "largest_cc_covered_by_point_ratio": 0.42064463484292125,
+        "point_covered_by_largest_cc_ratio": 0.9330316742081448,
+        "existing_mask_iou": 0.20450087746464335,
+        "existing_mask_seed_coverage": 0.8082415340677275,
+        "conflict_overlap": 0.037104072398190045
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0608_01/0608_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/31_scene0608_01_candidate0005_armchair_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/31_scene0608_01_candidate0005_armchair_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1105,
+        "core_only": 2341,
+        "core_boundary": 2451,
+        "largest_cc": 2451
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0608_01",
+      "candidate_id": 6,
+      "class_name": "poster",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=5.69;largest_cc_covered_by_point=0.18;point_covered_by_largest_cc=1.00;boundary_expands_without_cleanup=1.36;large_plane_overexpanded_without_mask3d_support",
+      "metrics": {
+        "largest_cc_to_point_ratio": 5.686792452830189,
+        "largest_cc_covered_by_point_ratio": 0.17584605175846052,
+        "point_covered_by_largest_cc_ratio": 1.0,
+        "existing_mask_iou": 0.17423979650826685,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0608_01/0608_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/32_scene0608_01_candidate0006_poster_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/32_scene0608_01_candidate0006_poster_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 265,
+        "core_only": 1110,
+        "core_boundary": 1507,
+        "largest_cc": 1507
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0608_01",
+      "candidate_id": 9,
+      "class_name": "door",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.23;largest_cc_covered_by_point=0.43;point_covered_by_largest_cc=0.96;boundary_expands_without_cleanup=1.44;large_plane_overexpanded_without_mask3d_support",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.2284325637910083,
+        "largest_cc_covered_by_point_ratio": 0.430752453653217,
+        "point_covered_by_largest_cc_ratio": 0.959902794653706,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.004860267314702308
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0608_01/0608_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/33_scene0608_01_candidate0009_door_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/33_scene0608_01_candidate0009_door_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 823,
+        "core_only": 1274,
+        "core_boundary": 1834,
+        "largest_cc": 1834
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0616_01",
+      "candidate_id": 3,
+      "class_name": "radiator",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=2.45;largest_cc_covered_by_point=0.37;point_covered_by_largest_cc=0.90;boundary_expands_without_cleanup=1.40;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.4485436893203882,
+        "largest_cc_covered_by_point_ratio": 0.3687549563838224,
+        "point_covered_by_largest_cc_ratio": 0.9029126213592233,
+        "existing_mask_iou": 0.17722788831299113,
+        "existing_mask_seed_coverage": 0.8406026962727994,
+        "conflict_overlap": 0.02912621359223301
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0616_01/0616_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/34_scene0616_01_candidate0003_radiator_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/34_scene0616_01_candidate0003_radiator_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1030,
+        "core_only": 1799,
+        "core_boundary": 2522,
+        "largest_cc": 2522
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0616_01",
+      "candidate_id": 6,
+      "class_name": "bulletin board",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.40;largest_cc_covered_by_point=0.41;point_covered_by_largest_cc=0.97;large_plane_overexpanded_without_mask3d_support",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.4017467248908297,
+        "largest_cc_covered_by_point_ratio": 0.40545454545454546,
+        "point_covered_by_largest_cc_ratio": 0.9737991266375546,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.021834061135371178
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0616_01/0616_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/35_scene0616_01_candidate0006_bulletin_board_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/35_scene0616_01_candidate0006_bulletin_board_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 458,
+        "core_only": 1100,
+        "core_boundary": 1100,
+        "largest_cc": 1100
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0633_00",
+      "candidate_id": 3,
+      "class_name": "wardrobe",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "largest_cc_to_point=3.50;largest_cc_covered_by_point=0.22;large_expansion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 3.49906191369606,
+        "largest_cc_covered_by_point_ratio": 0.2225201072386059,
+        "point_covered_by_largest_cc_ratio": 0.7786116322701688,
+        "existing_mask_iou": 0.29397856242118536,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0900562851782364
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0633_00/0633_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/36_scene0633_00_candidate0003_wardrobe_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/36_scene0633_00_candidate0003_wardrobe_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 533,
+        "core_only": 1794,
+        "core_boundary": 1865,
+        "largest_cc": 1865
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0633_00",
+      "candidate_id": 5,
+      "class_name": "mat",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=8.38;largest_cc_covered_by_point=0.12;point_covered_by_largest_cc=1.00;large_plane_overexpanded_without_mask3d_support",
+      "metrics": {
+        "largest_cc_to_point_ratio": 8.380208333333334,
+        "largest_cc_covered_by_point_ratio": 0.11932877563704164,
+        "point_covered_by_largest_cc_ratio": 1.0,
+        "existing_mask_iou": 0.0,
+        "existing_mask_seed_coverage": 0.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0633_00/0633_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/37_scene0633_00_candidate0005_mat_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/37_scene0633_00_candidate0005_mat_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 384,
+        "core_only": 3218,
+        "core_boundary": 3218,
+        "largest_cc": 3218
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0647_00",
+      "candidate_id": 0,
+      "class_name": "poster",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.34;largest_cc_covered_by_point=0.40;point_covered_by_largest_cc=0.93;mask3d_iou=0.53/coverage=1.00;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.3419847328244274,
+        "largest_cc_covered_by_point_ratio": 0.39765319426336376,
+        "point_covered_by_largest_cc_ratio": 0.9312977099236641,
+        "existing_mask_iou": 0.5287831782144088,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.05343511450381679
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0647_00/0647_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/38_scene0647_00_candidate0000_poster_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/38_scene0647_00_candidate0000_poster_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 655,
+        "core_only": 1240,
+        "core_boundary": 1536,
+        "largest_cc": 1534
+      },
+      "removed_by_largest_cc_count": 2
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0647_00",
+      "candidate_id": 1,
+      "class_name": "tv",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.37;largest_cc_covered_by_point=0.42;point_covered_by_largest_cc=1.00;mask3d_iou=0.94/coverage=1.00;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.372774267662263,
+        "largest_cc_covered_by_point_ratio": 0.42096344710723793,
+        "point_covered_by_largest_cc_ratio": 0.9988512349224583,
+        "existing_mask_iou": 0.9401456531634046,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0011487650775416428
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0647_00/0647_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/39_scene0647_00_candidate0001_tv_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/39_scene0647_00_candidate0001_tv_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1741,
+        "core_only": 3348,
+        "core_boundary": 4131,
+        "largest_cc": 4131
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "all_reject_or_needs_mask3d_support",
+      "scene_name": "scene0647_00",
+      "candidate_id": 2,
+      "class_name": "poster",
+      "recommended_action": "reject_or_needs_mask3d_support",
+      "action_reason": "large_plane_class;largest_cc_to_point=2.52;largest_cc_covered_by_point=0.39;point_covered_by_largest_cc=0.98;mask3d_iou=0.69/coverage=0.85;boundary_expands_without_cleanup=1.39;large_plane_overexpanded_requires_visual_or_mask3d_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.5161290322580645,
+        "largest_cc_covered_by_point_ratio": 0.38782051282051283,
+        "point_covered_by_largest_cc_ratio": 0.9758064516129032,
+        "existing_mask_iou": 0.6896103896103896,
+        "existing_mask_seed_coverage": 0.8509615384615384,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0647_00/0647_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/40_scene0647_00_candidate0002_poster_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/all_reject_or_needs_mask3d_support/40_scene0647_00_candidate0002_poster_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 496,
+        "core_only": 900,
+        "core_boundary": 1248,
+        "largest_cc": 1248
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "manual_review_soft_thin_plane_iou_lt_0_35",
+      "scene_name": "scene0207_00",
+      "candidate_id": 3,
+      "class_name": "blanket",
+      "recommended_action": "manual_review",
+      "action_reason": "soft_thin_plane_class;point_covered_by_largest_cc=0.93;v7_soft_thin_moderate_expansion_low_iou_review",
+      "metrics": {
+        "largest_cc_to_point_ratio": 1.7645376549094376,
+        "largest_cc_covered_by_point_ratio": 0.5262020529443544,
+        "point_covered_by_largest_cc_ratio": 0.9285033365109628,
+        "existing_mask_iou": 0.3149648838465694,
+        "existing_mask_seed_coverage": 0.6996218260399784,
+        "conflict_overlap": 0.06863679694947569
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0207_00/0207_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/manual_review_soft_thin_plane_iou_lt_0_35/01_scene0207_00_candidate0003_blanket_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/manual_review_soft_thin_plane_iou_lt_0_35/01_scene0207_00_candidate0003_blanket_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1049,
+        "core_only": 1458,
+        "core_boundary": 1851,
+        "largest_cc": 1851
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0011_00",
+      "candidate_id": 3,
+      "class_name": "trash bin",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.73;largest_cc_covered_by_point=0.37;point_covered_by_largest_cc=1.00;mask3d_iou=0.60/coverage=0.94;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.7287356321839082,
+        "largest_cc_covered_by_point_ratio": 0.36647009267059816,
+        "point_covered_by_largest_cc_ratio": 1.0,
+        "existing_mask_iou": 0.6014023732470335,
+        "existing_mask_seed_coverage": 0.9393428812131424,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0011_00/0011_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/01_scene0011_00_candidate0003_trash_bin_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/01_scene0011_00_candidate0003_trash_bin_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 435,
+        "core_only": 951,
+        "core_boundary": 1187,
+        "largest_cc": 1187
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0077_00",
+      "candidate_id": 0,
+      "class_name": "printer",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.59;largest_cc_covered_by_point=0.35;point_covered_by_largest_cc=0.91;mask3d_iou=0.87/coverage=0.93;boundary_expands_without_cleanup=1.47;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.5884353741496597,
+        "largest_cc_covered_by_point_ratio": 0.35151116951379763,
+        "point_covered_by_largest_cc_ratio": 0.9098639455782312,
+        "existing_mask_iou": 0.8729179518815546,
+        "existing_mask_seed_coverage": 0.9296977660972404,
+        "conflict_overlap": 0.003401360544217687
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0077_00/0077_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/02_scene0077_00_candidate0000_printer_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/02_scene0077_00_candidate0000_printer_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 588,
+        "core_only": 1034,
+        "core_boundary": 1522,
+        "largest_cc": 1522
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0084_01",
+      "candidate_id": 7,
+      "class_name": "container",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.25;largest_cc_covered_by_point=0.41;point_covered_by_largest_cc=0.91;mask3d_iou=0.74/coverage=1.00;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.248322147651007,
+        "largest_cc_covered_by_point_ratio": 0.4059701492537313,
+        "point_covered_by_largest_cc_ratio": 0.912751677852349,
+        "existing_mask_iou": 0.7427937915742794,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.07046979865771812
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0084_01/0084_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/03_scene0084_01_candidate0007_container_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/03_scene0084_01_candidate0007_container_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 298,
+        "core_only": 503,
+        "core_boundary": 671,
+        "largest_cc": 670
+      },
+      "removed_by_largest_cc_count": 1
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0131_00",
+      "candidate_id": 0,
+      "class_name": "mini fridge",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.34;largest_cc_covered_by_point=0.41;point_covered_by_largest_cc=0.96;mask3d_iou=0.77/coverage=0.78;v5_compact_object_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.3368283093053734,
+        "largest_cc_covered_by_point_ratio": 0.4127874369040942,
+        "point_covered_by_largest_cc_ratio": 0.9646133682830931,
+        "existing_mask_iou": 0.7682522123893806,
+        "existing_mask_seed_coverage": 0.7790241166573191,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0131_00/0131_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/04_scene0131_00_candidate0000_mini_fridge_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/04_scene0131_00_candidate0000_mini_fridge_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 763,
+        "core_only": 1389,
+        "core_boundary": 1783,
+        "largest_cc": 1783
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0164_01",
+      "candidate_id": 8,
+      "class_name": "picture",
+      "recommended_action": "accept_completion",
+      "action_reason": "small_plane_class;largest_cc_to_point=3.44;largest_cc_covered_by_point=0.27;point_covered_by_largest_cc=0.92;mask3d_iou=0.93/coverage=1.00;v5_small_plane_strong_mask3d_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 3.443548387096774,
+        "largest_cc_covered_by_point_ratio": 0.26697892271662765,
+        "point_covered_by_largest_cc_ratio": 0.9193548387096774,
+        "existing_mask_iou": 0.9302832244008714,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0164_01/0164_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/05_scene0164_01_candidate0008_picture_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/05_scene0164_01_candidate0008_picture_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 124,
+        "core_only": 361,
+        "core_boundary": 430,
+        "largest_cc": 427
+      },
+      "removed_by_largest_cc_count": 3
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0277_01",
+      "candidate_id": 1,
+      "class_name": "bookshelf",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.41;largest_cc_covered_by_point=0.40;point_covered_by_largest_cc=0.97;mask3d_iou=0.59/coverage=1.00;boundary_expands_without_cleanup=1.49;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.4141791044776117,
+        "largest_cc_covered_by_point_ratio": 0.40030911901081917,
+        "point_covered_by_largest_cc_ratio": 0.9664179104477612,
+        "existing_mask_iou": 0.5889849795175239,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.007462686567164179
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0277_01/0277_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/06_scene0277_01_candidate0001_bookshelf_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/06_scene0277_01_candidate0001_bookshelf_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1072,
+        "core_only": 1744,
+        "core_boundary": 2601,
+        "largest_cc": 2588
+      },
+      "removed_by_largest_cc_count": 13
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0353_00",
+      "candidate_id": 3,
+      "class_name": "folded chair",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.02;point_covered_by_largest_cc=0.97;mask3d_iou=0.65/coverage=1.00;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.0220082530949104,
+        "largest_cc_covered_by_point_ratio": 0.48095238095238096,
+        "point_covered_by_largest_cc_ratio": 0.9724896836313618,
+        "existing_mask_iou": 0.651595744680851,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.02200825309491059
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0353_00/0353_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/07_scene0353_00_candidate0003_folded_chair_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/07_scene0353_00_candidate0003_folded_chair_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 727,
+        "core_only": 1125,
+        "core_boundary": 1470,
+        "largest_cc": 1470
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0406_00",
+      "candidate_id": 5,
+      "class_name": "tissue box",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.04;largest_cc_covered_by_point=0.44;point_covered_by_largest_cc=0.90;mask3d_iou=0.67/coverage=0.67;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.0444444444444443,
+        "largest_cc_covered_by_point_ratio": 0.44021739130434784,
+        "point_covered_by_largest_cc_ratio": 0.9,
+        "existing_mask_iou": 0.6739130434782609,
+        "existing_mask_seed_coverage": 0.6739130434782609,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0406_00/0406_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/08_scene0406_00_candidate0005_tissue_box_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/08_scene0406_00_candidate0005_tissue_box_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 90,
+        "core_only": 184,
+        "core_boundary": 184,
+        "largest_cc": 184
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0430_00",
+      "candidate_id": 1,
+      "class_name": "backpack",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.12;largest_cc_covered_by_point=0.43;point_covered_by_largest_cc=0.92;mask3d_iou=0.63/coverage=0.78;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.1219931271477663,
+        "largest_cc_covered_by_point_ratio": 0.43238866396761133,
+        "point_covered_by_largest_cc_ratio": 0.9175257731958762,
+        "existing_mask_iou": 0.626053143227479,
+        "existing_mask_seed_coverage": 0.7821862348178138,
+        "conflict_overlap": 0.058419243986254296
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0430_00/0430_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/09_scene0430_00_candidate0001_backpack_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/09_scene0430_00_candidate0001_backpack_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 582,
+        "core_only": 1062,
+        "core_boundary": 1235,
+        "largest_cc": 1235
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0435_02",
+      "candidate_id": 5,
+      "class_name": "backpack",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=3.42;largest_cc_covered_by_point=0.29;point_covered_by_largest_cc=0.98;mask3d_iou=0.81/coverage=0.94;boundary_expands_without_cleanup=1.39;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 3.4170616113744074,
+        "largest_cc_covered_by_point_ratio": 0.2871012482662968,
+        "point_covered_by_largest_cc_ratio": 0.981042654028436,
+        "existing_mask_iou": 0.8076009501187649,
+        "existing_mask_seed_coverage": 0.9431345353675451,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0435_02/0435_02.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/10_scene0435_02_candidate0005_backpack_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/10_scene0435_02_candidate0005_backpack_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 211,
+        "core_only": 519,
+        "core_boundary": 721,
+        "largest_cc": 721
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0474_00",
+      "candidate_id": 1,
+      "class_name": "computer tower",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.52;largest_cc_covered_by_point=0.39;point_covered_by_largest_cc=0.97;mask3d_iou=0.70/coverage=1.00;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.517857142857143,
+        "largest_cc_covered_by_point_ratio": 0.38652482269503546,
+        "point_covered_by_largest_cc_ratio": 0.9732142857142857,
+        "existing_mask_iou": 0.7006211180124223,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.0
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0474_00/0474_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/11_scene0474_00_candidate0001_computer_tower_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/11_scene0474_00_candidate0001_computer_tower_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 224,
+        "core_only": 470,
+        "core_boundary": 564,
+        "largest_cc": 564
+      },
+      "removed_by_largest_cc_count": 0
+    },
+    {
+      "group": "accept_completion_largest_cc_to_point_ge_2",
+      "scene_name": "scene0518_00",
+      "candidate_id": 1,
+      "class_name": "storage organizer",
+      "recommended_action": "accept_completion",
+      "action_reason": "largest_cc_to_point=2.64;largest_cc_covered_by_point=0.37;point_covered_by_largest_cc=0.97;mask3d_iou=0.67/coverage=0.68;boundary_expands_without_cleanup=1.36;v5_large_nonplane_strong_supported_completion",
+      "metrics": {
+        "largest_cc_to_point_ratio": 2.6367583212735166,
+        "largest_cc_covered_by_point_ratio": 0.36882546652030734,
+        "point_covered_by_largest_cc_ratio": 0.9725036179450073,
+        "existing_mask_iou": 0.6656,
+        "existing_mask_seed_coverage": 0.6849615806805708,
+        "conflict_overlap": 0.023154848046309694
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0518_00/0518_00.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/12_scene0518_00_candidate0001_storage_organizer_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_largest_cc_to_point_ge_2/12_scene0518_00_candidate0001_storage_organizer_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 691,
+        "core_only": 1342,
+        "core_boundary": 1828,
+        "largest_cc": 1822
+      },
+      "removed_by_largest_cc_count": 6
+    },
+    {
+      "group": "accept_completion_soft_thin_plane",
+      "scene_name": "scene0608_01",
+      "candidate_id": 0,
+      "class_name": "blanket",
+      "recommended_action": "accept_completion",
+      "action_reason": "soft_thin_plane_class;point_covered_by_largest_cc=0.97;mask3d_iou=0.89/coverage=1.00;small_expansion_low_conflict",
+      "metrics": {
+        "largest_cc_to_point_ratio": 1.4508716323296356,
+        "largest_cc_covered_by_point_ratio": 0.6695794647733478,
+        "point_covered_by_largest_cc_ratio": 0.971473851030111,
+        "existing_mask_iou": 0.8888349514563106,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.028526148969889066
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0608_01/0608_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_soft_thin_plane/01_scene0608_01_candidate0000_blanket_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_soft_thin_plane/01_scene0608_01_candidate0000_blanket_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 1262,
+        "core_only": 1834,
+        "core_boundary": 1834,
+        "largest_cc": 1831
+      },
+      "removed_by_largest_cc_count": 3
+    }
+  ]
+}
