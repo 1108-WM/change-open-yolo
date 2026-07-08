@@ -7,13 +7,15 @@
     "accept_completion_soft_thin_plane",
     "accept_completion_soft_thin_plane_iou_lt_0_35",
     "manual_review_soft_thin_plane_iou_lt_0_35",
-    "all_reject_or_needs_mask3d_support"
+    "all_reject_or_needs_mask3d_support",
+    "accept_completion_large_plane_small_expansion"
   ],
   "group_counts": {
     "all_reject_or_needs_mask3d_support": 40,
     "manual_review_soft_thin_plane_iou_lt_0_35": 1,
     "accept_completion_largest_cc_to_point_ge_2": 12,
-    "accept_completion_soft_thin_plane": 1
+    "accept_completion_soft_thin_plane": 1,
+    "accept_completion_large_plane_small_expansion": 1
   },
   "visuals": [
     {
@@ -1419,6 +1421,32 @@
         "largest_cc": 1831
       },
       "removed_by_largest_cc_count": 3
+    },
+    {
+      "group": "accept_completion_large_plane_small_expansion",
+      "scene_name": "scene0583_01",
+      "candidate_id": 1,
+      "class_name": "poster",
+      "recommended_action": "accept_completion",
+      "action_reason": "large_plane_class;point_covered_by_largest_cc=0.96;mask3d_iou=0.84/coverage=1.00;small_expansion_low_conflict",
+      "metrics": {
+        "largest_cc_to_point_ratio": 1.1825657894736843,
+        "largest_cc_covered_by_point_ratio": 0.8108484005563282,
+        "point_covered_by_largest_cc_ratio": 0.9588815789473685,
+        "existing_mask_iou": 0.838973162193699,
+        "existing_mask_seed_coverage": 1.0,
+        "conflict_overlap": 0.024671052631578948
+      },
+      "processed_scene_path": "/home/jia/wm_open-yolo/OpenYOLO3D/data/scannet200/scene0583_01/0583_01.npy",
+      "four_sets_xz_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_large_plane_small_expansion/01_scene0583_01_candidate0001_poster_four_sets_xz.png",
+      "largest_cc_overlay_path": "docs/visual_checks/superpoint_action_review_40scenes_v7_key_lists/accept_completion_large_plane_small_expansion/01_scene0583_01_candidate0001_poster_largest_cc_overlay.png",
+      "point_counts": {
+        "point": 608,
+        "core_only": 642,
+        "core_boundary": 719,
+        "largest_cc": 719
+      },
+      "removed_by_largest_cc_count": 0
     }
   ]
 }
