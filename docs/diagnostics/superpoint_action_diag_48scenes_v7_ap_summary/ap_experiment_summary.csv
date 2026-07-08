@@ -1,0 +1,6 @@
+experiment,description,applied,loaded_v7_accept,matched_existing,class_mismatch_skipped,mostly_covered_skipped,would_shrink_skipped,mAP,AP50,AP25,delta_mAP,delta_AP50,delta_AP25,note
+current_original,current original fusion,,,,,,,0.2711949237281231,0.3457605754053888,0.3895219426891658,0.0,0.0,0.0,reference
+current_plus_v7_accept_largestcc_as_new_candidates,add v7 accept_completion largest_cc as ordinary candidates,0,80,68,,12,,0.2711949237281231,0.3457605754053888,0.3895219426891658,0.0,0.0,0.0,all v7 accept candidates were filtered by current flow; AP unchanged
+current_plus_v7_unconditional_replacement,replace matched existing geometry without class check,68,80,,,12,,0.2632291537005434,0.3356971902872798,0.3794336012993761,-0.0079657700275797,-0.010063385118109003,-0.010088341389789701,class mismatches cause AP drop
+current_plus_v7_class_consistent_replacement,replace only when candidate class equals existing class,3,80,68,65,12,,0.2708917602568432,0.3454559886877586,0.3892157122223848,-0.0003031634712798992,-0.0003045867176301731,-0.00030623046678096566,only three replacements remain; slight AP drop
+current_plus_v7_expansion_only_same_class_refinement,same-class replacement only when largest_cc expands existing mask,0,80,68,65,12,3,0.2711949237281231,0.3457605754053888,0.3895219426891658,0.0,0.0,0.0,no expansion-only candidates; AP unchanged
