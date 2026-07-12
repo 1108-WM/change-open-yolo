@@ -1,0 +1,101 @@
+{
+  "excluded_features": [
+    "SAM",
+    "YOLO",
+    "CLIP"
+  ],
+  "generation_status": "reused_existing_output_no_new_superpoint_generation",
+  "geometric_root": "output/geometric_superpoints_scannet200_even48_k025",
+  "geometric_summary": "output/geometric_superpoints_scannet200_even48_k025/geometric_superpoints_summary.json",
+  "input_features": [
+    "xyz",
+    "normal",
+    "color"
+  ],
+  "limitations": [
+    "Original ScanNet200 superpoint labels are not available as a full pointwise array because the current data/scannet200 symlink target is not mounted; comparison to built-in ScanNet200 superpoints uses the old statistics saved in geometric_superpoints_summary.json.",
+    "Boundary crossing checks for custom superpoints use preserved semantic/instance columns as a diagnostic proxy, not AP."
+  ],
+  "mature_local_reference": "models/Mask3D/third_party/ScanNet/Segmentator implements ScanNet mesh segmentation using Felzenszwalb-Huttenlocher on mesh normals; binary exists but source ScanNet PLY/data mount is unavailable in this session.",
+  "method_source": "tools/generate_geometric_superpoints.py existing Felzenszwalb-style geometry/color/normal export",
+  "prototype": "custom_superpoints_v0_3scenes",
+  "scene_summary": [
+    {
+      "comparison_label": "finer_and_less_overgrown",
+      "method": "existing_felzenszwalb_geometry_superpoints_from_tools_generate_geometric_superpoints",
+      "new_adjacency_edges": 8061,
+      "new_max": 1068,
+      "new_mean": 79.81170141223942,
+      "new_median": 55.0,
+      "new_mixed_instance_ratio": 0.18997982515131137,
+      "new_mixed_instance_segments": 565,
+      "new_mixed_semantic_ratio": 0.19502353732347008,
+      "new_mixed_semantic_segments": 580,
+      "new_over_1000": 1,
+      "new_over_5000": 0,
+      "new_p90": 159.0,
+      "new_p99": 383.80999999999995,
+      "new_segments": 2974,
+      "old_max": 31741,
+      "old_mean": 147.3370577281192,
+      "old_median": 72.0,
+      "old_p90": 218.0,
+      "old_segments": 1611,
+      "points": 237360,
+      "scene_name": "scene0011_00"
+    },
+    {
+      "comparison_label": "finer_and_less_overgrown",
+      "method": "existing_felzenszwalb_geometry_superpoints_from_tools_generate_geometric_superpoints",
+      "new_adjacency_edges": 3014,
+      "new_max": 702,
+      "new_mean": 81.4811237928007,
+      "new_median": 59.0,
+      "new_mixed_instance_ratio": 0.1527655838454785,
+      "new_mixed_instance_segments": 174,
+      "new_mixed_semantic_ratio": 0.20368744512730466,
+      "new_mixed_semantic_segments": 232,
+      "new_over_1000": 0,
+      "new_over_5000": 0,
+      "new_p90": 166.0,
+      "new_p99": 411.15999999999804,
+      "new_segments": 1139,
+      "old_max": 5037,
+      "old_mean": 135.8814055636896,
+      "old_median": 74.0,
+      "old_p90": 226.00000000000034,
+      "old_segments": 683,
+      "points": 92807,
+      "scene_name": "scene0077_00"
+    },
+    {
+      "comparison_label": "finer_and_less_overgrown",
+      "method": "existing_felzenszwalb_geometry_superpoints_from_tools_generate_geometric_superpoints",
+      "new_adjacency_edges": 6701,
+      "new_max": 891,
+      "new_mean": 76.96616995569875,
+      "new_median": 54.0,
+      "new_mixed_instance_ratio": 0.17237213048731373,
+      "new_mixed_instance_segments": 428,
+      "new_mixed_semantic_ratio": 0.2597664115988723,
+      "new_mixed_semantic_segments": 645,
+      "new_over_1000": 0,
+      "new_over_5000": 0,
+      "new_p90": 151.80000000000018,
+      "new_p99": 354.17999999999984,
+      "new_segments": 2483,
+      "old_max": 9355,
+      "old_mean": 126.64479787939032,
+      "old_median": 70.0,
+      "old_p90": 209.4000000000001,
+      "old_segments": 1509,
+      "points": 191107,
+      "scene_name": "scene0608_01"
+    }
+  ],
+  "scenes": [
+    "scene0011_00",
+    "scene0077_00",
+    "scene0608_01"
+  ]
+}
