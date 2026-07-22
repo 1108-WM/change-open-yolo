@@ -1,0 +1,26 @@
+{
+  "gt_usage": "仅限离线 GT 诊断；绝不进入推理、打分、融合、阈值选择或候选生成。",
+  "purity_threshold": 0.5,
+  "thresholds": {
+    "iou25": {
+      "boundary_mixed_count": 3,
+      "mask3d_missed_gt_count": 85,
+      "mean_gt_fraction_in_pure_superpoints": 0.7543476749594497,
+      "mean_max_superpoint_gt_purity": 0.9146456186245159,
+      "no_reliable_superpoint_count": 38,
+      "unreliable_reason_counts": {
+        "可见帧不足": 38
+      }
+    },
+    "iou50": {
+      "boundary_mixed_count": 6,
+      "mask3d_missed_gt_count": 176,
+      "mean_gt_fraction_in_pure_superpoints": 0.7372063663855108,
+      "mean_max_superpoint_gt_purity": 0.9101007211408699,
+      "no_reliable_superpoint_count": 65,
+      "unreliable_reason_counts": {
+        "可见帧不足": 65
+      }
+    }
+  }
+}

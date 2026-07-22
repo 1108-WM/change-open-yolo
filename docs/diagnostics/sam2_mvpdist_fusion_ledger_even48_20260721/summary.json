@@ -1,0 +1,51 @@
+{
+  "candidate_geometry_error_counts": {
+    "background_or_non_instance": 158,
+    "fragment_or_undercoverage": 180,
+    "good_geometry": 143,
+    "mixed_multiple_instances": 46,
+    "overmerged_or_boundary_leakage": 19,
+    "partial_overlap": 10,
+    "weak_or_wrong_geometry": 182
+  },
+  "fusion_decision_counts": {
+    "applied": 291,
+    "unavailable": 447
+  },
+  "groups": {
+    "all": {
+      "count": 738,
+      "mean_best_iou": 0.22215869066543995,
+      "semantic_exact_accuracy": 0.2994579945799458
+    },
+    "iou25": {
+      "count": 235,
+      "mean_best_iou": 0.5985221335482367,
+      "semantic_exact_accuracy": 0.4425531914893617
+    },
+    "iou50": {
+      "count": 151,
+      "mean_best_iou": 0.733495981194669,
+      "semantic_exact_accuracy": 0.45695364238410596
+    },
+    "passes_export_overlap": {
+      "count": 330,
+      "mean_best_iou": 0.06265110016008213,
+      "semantic_exact_accuracy": 0.18484848484848485
+    },
+    "passes_final_score": {
+      "count": 229,
+      "mean_best_iou": 0.46268893702162345,
+      "semantic_exact_accuracy": 0.39737991266375544
+    },
+    "passes_final_score_and_overlap": {
+      "count": 31,
+      "mean_best_iou": 0.12034684226324265,
+      "semantic_exact_accuracy": 0.22580645161290322
+    }
+  },
+  "gt_recall_at_iou25": 0.20395327942497754,
+  "gt_recall_at_iou50": 0.13566936208445643,
+  "gt_usage": "OFFLINE DIAGNOSTICS ONLY; never inference, scoring, merging, or threshold selection.",
+  "num_candidates": 738
+}

@@ -1,0 +1,98 @@
+{
+  "all_valid_gt": {
+    "f30_ibsp": {
+      "at_least_half_gt_points_in_pure_superpoints_rate": 0.8930817610062893,
+      "has_pure_superpoint_rate": 0.9838274932614556,
+      "mean_best_superpoint_purity": 0.9811943092259048,
+      "mean_gt_point_coverage_by_pure_superpoints": 0.8615275211444906
+    },
+    "f30_minus_original": {
+      "improved_instance_count": 0,
+      "mean_coverage_change": -0.1384724788555094,
+      "unchanged_instance_count": 106,
+      "worsened_instance_count": 1007
+    },
+    "f30_to_sam2": {
+      "has_pure_ibsp_rate": 0.9838274932614556,
+      "has_pure_reliable_ibsp_rate": 0.5076370170709793,
+      "has_pure_sampled_ibsp_rate": 0.24438454627133874,
+      "sam2_iou25_coverage_rate": 0.18688230008984727,
+      "sam2_iou50_coverage_rate": 0.11859838274932614
+    },
+    "gt_instance_count": 1113,
+    "original": {
+      "at_least_half_gt_points_in_pure_superpoints_rate": 1.0,
+      "has_pure_superpoint_rate": 1.0,
+      "mean_best_superpoint_purity": 1.0,
+      "mean_gt_point_coverage_by_pure_superpoints": 1.0
+    }
+  },
+  "definitions": {
+    "pure_point_coverage": "GT 实例中落在纯 superpoint 内的点比例。",
+    "pure_superpoint": "某 GT 实例在该 superpoint 内占至少一半点。",
+    "reliable": "当前无 GT 种子资格：规模与 f30 可见帧条件同时满足。"
+  },
+  "f30_change_direction_all_valid_gt": {
+    "unchanged": 106,
+    "worsened": 1007
+  },
+  "gt_usage": "仅限离线 GT 诊断；绝不进入推理、候选生成、融合、打分或阈值选择。",
+  "mask3d_missed_iou25": {
+    "f30_ibsp": {
+      "at_least_half_gt_points_in_pure_superpoints_rate": 0.8235294117647058,
+      "has_pure_superpoint_rate": 0.9529411764705882,
+      "mean_best_superpoint_purity": 0.9410316859433311,
+      "mean_gt_point_coverage_by_pure_superpoints": 0.7584543008921384
+    },
+    "f30_minus_original": {
+      "improved_instance_count": 0,
+      "mean_coverage_change": -0.24154569910786153,
+      "unchanged_instance_count": 11,
+      "worsened_instance_count": 74
+    },
+    "f30_to_sam2": {
+      "has_pure_ibsp_rate": 0.9529411764705882,
+      "has_pure_reliable_ibsp_rate": 0.4470588235294118,
+      "has_pure_sampled_ibsp_rate": 0.3058823529411765,
+      "sam2_iou25_coverage_rate": 0.17647058823529413,
+      "sam2_iou50_coverage_rate": 0.058823529411764705
+    },
+    "gt_instance_count": 85,
+    "original": {
+      "at_least_half_gt_points_in_pure_superpoints_rate": 1.0,
+      "has_pure_superpoint_rate": 1.0,
+      "mean_best_superpoint_purity": 1.0,
+      "mean_gt_point_coverage_by_pure_superpoints": 1.0
+    }
+  },
+  "mask3d_missed_iou50": {
+    "f30_ibsp": {
+      "at_least_half_gt_points_in_pure_superpoints_rate": 0.8409090909090909,
+      "has_pure_superpoint_rate": 0.9545454545454546,
+      "mean_best_superpoint_purity": 0.9506702720946774,
+      "mean_gt_point_coverage_by_pure_superpoints": 0.765727747975914
+    },
+    "f30_minus_original": {
+      "improved_instance_count": 0,
+      "mean_coverage_change": -0.23427225202408614,
+      "unchanged_instance_count": 14,
+      "worsened_instance_count": 162
+    },
+    "f30_to_sam2": {
+      "has_pure_ibsp_rate": 0.9545454545454546,
+      "has_pure_reliable_ibsp_rate": 0.4659090909090909,
+      "has_pure_sampled_ibsp_rate": 0.25,
+      "sam2_iou25_coverage_rate": 0.13636363636363635,
+      "sam2_iou50_coverage_rate": 0.05113636363636364
+    },
+    "gt_instance_count": 176,
+    "original": {
+      "at_least_half_gt_points_in_pure_superpoints_rate": 1.0,
+      "has_pure_superpoint_rate": 1.0,
+      "mean_best_superpoint_purity": 1.0,
+      "mean_gt_point_coverage_by_pure_superpoints": 1.0
+    }
+  },
+  "purity_threshold": 0.5,
+  "scene_count": 48
+}

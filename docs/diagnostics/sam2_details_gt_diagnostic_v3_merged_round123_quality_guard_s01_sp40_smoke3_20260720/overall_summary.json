@@ -1,0 +1,81 @@
+{
+  "gt_usage": "OFFLINE DIAGNOSTICS ONLY; never candidate generation, scoring, merging, or inference.",
+  "overall": {
+    "gt_recall_at_iou25": 0.25316455696202533,
+    "gt_recall_at_iou50": 0.16455696202531644,
+    "num_candidates": 48,
+    "num_gt_instances": 79
+  },
+  "scene_summaries": [
+    {
+      "candidate_error_counts": {
+        "background_or_non_instance": 9,
+        "mixed_multiple_instances": 2,
+        "partial_overlap": 2,
+        "weak_or_wrong_geometry": 3
+      },
+      "geometry_oracle": {
+        "candidate_precision_at_iou25": 0.25,
+        "candidate_precision_at_iou50": 0.0625,
+        "gt_recall_at_iou25": 0.17647058823529413,
+        "gt_recall_at_iou50": 0.058823529411764705,
+        "mean_best_candidate_iou": 0.09486671617733883
+      },
+      "gt_status_counts": {
+        "covered": 2,
+        "fragmented_or_duplicate": 1,
+        "missed": 14
+      },
+      "num_candidates": 16,
+      "num_gt_instances": 17,
+      "scene_name": "scene0019_01"
+    },
+    {
+      "candidate_error_counts": {
+        "background_or_non_instance": 2,
+        "fragment_or_undercoverage": 2,
+        "good_geometry": 5,
+        "mixed_multiple_instances": 3,
+        "overmerged_or_boundary_leakage": 2
+      },
+      "geometry_oracle": {
+        "candidate_precision_at_iou25": 0.5714285714285714,
+        "candidate_precision_at_iou50": 0.35714285714285715,
+        "gt_recall_at_iou25": 0.22857142857142856,
+        "gt_recall_at_iou50": 0.14285714285714285,
+        "mean_best_candidate_iou": 0.44480885979633294
+      },
+      "gt_status_counts": {
+        "covered": 8,
+        "missed": 27
+      },
+      "num_candidates": 14,
+      "num_gt_instances": 35,
+      "scene_name": "scene0084_01"
+    },
+    {
+      "candidate_error_counts": {
+        "background_or_non_instance": 2,
+        "fragment_or_undercoverage": 2,
+        "good_geometry": 7,
+        "mixed_multiple_instances": 2,
+        "overmerged_or_boundary_leakage": 1,
+        "weak_or_wrong_geometry": 4
+      },
+      "geometry_oracle": {
+        "candidate_precision_at_iou25": 0.5,
+        "candidate_precision_at_iou50": 0.3888888888888889,
+        "gt_recall_at_iou25": 0.3333333333333333,
+        "gt_recall_at_iou50": 0.25925925925925924,
+        "mean_best_candidate_iou": 0.36496955587368096
+      },
+      "gt_status_counts": {
+        "covered": 9,
+        "missed": 18
+      },
+      "num_candidates": 18,
+      "num_gt_instances": 27,
+      "scene_name": "scene0084_02"
+    }
+  ]
+}

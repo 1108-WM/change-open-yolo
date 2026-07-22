@@ -1,0 +1,33 @@
+{
+  "baseline_masks_root": "output/scannet200/scannet200_masks",
+  "candidate_root": "output/sam2_details_even48_frozen_20260720_run1/mvpdist_candidates",
+  "gt_usage": "仅限离线 GT 诊断；绝不进入推理、打分、融合、阈值选择或候选生成。",
+  "improvement_delta": 0.1,
+  "iou25": {
+    "coverage_groups": {
+      "baseline_covered_sam2_missed": 811,
+      "baseline_missed_sam2_covered": 19,
+      "both_covered": 217,
+      "both_missed": 66
+    },
+    "sam2_complement_semantic_exact_accuracy": 0.3157894736842105,
+    "sam2_genuine_complement_count": 19,
+    "sam2_genuine_complement_rate": 0.017070979335130278,
+    "sam2_improves_baseline_by_delta_count": 29,
+    "sam2_improves_baseline_by_delta_rate": 0.02605570530098832
+  },
+  "iou50": {
+    "coverage_groups": {
+      "baseline_covered_sam2_missed": 802,
+      "baseline_missed_sam2_covered": 16,
+      "both_covered": 135,
+      "both_missed": 160
+    },
+    "sam2_complement_semantic_exact_accuracy": 0.4375,
+    "sam2_genuine_complement_count": 16,
+    "sam2_genuine_complement_rate": 0.014375561545372867,
+    "sam2_improves_baseline_by_delta_count": 21,
+    "sam2_improves_baseline_by_delta_rate": 0.018867924528301886
+  },
+  "num_gt_instances": 1113
+}

@@ -1,0 +1,75 @@
+{
+  "gt_usage": "OFFLINE DIAGNOSTICS ONLY; never candidate generation, scoring, merging, or inference.",
+  "overall": {
+    "gt_recall_at_iou25": 0.07936507936507936,
+    "gt_recall_at_iou50": 0.047619047619047616,
+    "num_candidates": 20,
+    "num_gt_instances": 63
+  },
+  "scene_summaries": [
+    {
+      "candidate_error_counts": {
+        "background_or_non_instance": 1,
+        "weak_or_wrong_geometry": 4
+      },
+      "geometry_oracle": {
+        "candidate_precision_at_iou25": 0.0,
+        "candidate_precision_at_iou50": 0.0,
+        "gt_recall_at_iou25": 0.0,
+        "gt_recall_at_iou50": 0.0,
+        "mean_best_candidate_iou": 0.004592969090619804
+      },
+      "gt_status_counts": {
+        "missed": 17
+      },
+      "num_candidates": 5,
+      "num_gt_instances": 17,
+      "scene_name": "scene0019_01"
+    },
+    {
+      "candidate_error_counts": {
+        "background_or_non_instance": 2,
+        "good_geometry": 1,
+        "mixed_multiple_instances": 1,
+        "overmerged_or_boundary_leakage": 1,
+        "weak_or_wrong_geometry": 2
+      },
+      "geometry_oracle": {
+        "candidate_precision_at_iou25": 0.2857142857142857,
+        "candidate_precision_at_iou50": 0.14285714285714285,
+        "gt_recall_at_iou25": 0.05714285714285714,
+        "gt_recall_at_iou50": 0.02857142857142857,
+        "mean_best_candidate_iou": 0.2244050369048347
+      },
+      "gt_status_counts": {
+        "covered": 2,
+        "missed": 33
+      },
+      "num_candidates": 7,
+      "num_gt_instances": 35,
+      "scene_name": "scene0084_01"
+    },
+    {
+      "candidate_error_counts": {
+        "background_or_non_instance": 2,
+        "fragment_or_undercoverage": 2,
+        "good_geometry": 2,
+        "weak_or_wrong_geometry": 2
+      },
+      "geometry_oracle": {
+        "candidate_precision_at_iou25": 0.375,
+        "candidate_precision_at_iou50": 0.25,
+        "gt_recall_at_iou25": 0.2727272727272727,
+        "gt_recall_at_iou50": 0.18181818181818182,
+        "mean_best_candidate_iou": 0.2319716043752989
+      },
+      "gt_status_counts": {
+        "covered": 3,
+        "missed": 8
+      },
+      "num_candidates": 8,
+      "num_gt_instances": 11,
+      "scene_name": "scene0146_01"
+    }
+  ]
+}

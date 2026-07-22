@@ -1,0 +1,336 @@
+Matplotlib created a temporary cache directory at /tmp/matplotlib-e22j8unx because the default path (/home/jia/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+[场景完成] scene0019_01: 新增 11 条漏检实例记录
+[场景完成] scene0084_01: 新增 16 条漏检实例记录
+[场景完成] scene0084_02: 新增 7 条漏检实例记录
+[场景完成] scene0100_00: 新增 2 条漏检实例记录
+[场景完成] scene0146_01: 新增 0 条漏检实例记录
+[场景完成] scene0169_01: 新增 3 条漏检实例记录
+[场景完成] scene0207_01: 新增 14 条漏检实例记录
+[场景完成] scene0217_00: 新增 0 条漏检实例记录
+[场景完成] scene0256_02: 新增 10 条漏检实例记录
+[场景完成] scene0277_00: 新增 0 条漏检实例记录
+[场景完成] scene0277_01: 新增 2 条漏检实例记录
+[场景完成] scene0300_01: 新增 3 条漏检实例记录
+[场景完成] scene0307_02: 新增 18 条漏检实例记录
+[场景完成] scene0329_02: 新增 19 条漏检实例记录
+[场景完成] scene0338_01: 新增 0 条漏检实例记录
+[场景完成] scene0353_02: 新增 23 条漏检实例记录
+[场景完成] scene0355_01: 新增 0 条漏检实例记录
+[场景完成] scene0357_00: 新增 15 条漏检实例记录
+[场景完成] scene0377_00: 新增 3 条漏检实例记录
+[场景完成] scene0389_00: 新增 2 条漏检实例记录
+[场景完成] scene0412_01: 新增 4 条漏检实例记录
+[场景完成] scene0426_02: 新增 10 条漏检实例记录
+[场景完成] scene0430_00: 新增 2 条漏检实例记录
+[场景完成] scene0458_00: 新增 13 条漏检实例记录
+[场景完成] scene0474_00: 新增 8 条漏检实例记录
+[场景完成] scene0474_04: 新增 10 条漏检实例记录
+[场景完成] scene0496_00: 新增 5 条漏检实例记录
+[场景完成] scene0575_02: 新增 0 条漏检实例记录
+[场景完成] scene0578_02: 新增 2 条漏检实例记录
+[场景完成] scene0591_01: 新增 1 条漏检实例记录
+[场景完成] scene0593_01: 新增 3 条漏检实例记录
+[场景完成] scene0598_00: 新增 2 条漏检实例记录
+[场景完成] scene0598_01: 新增 0 条漏检实例记录
+[场景完成] scene0606_00: 新增 10 条漏检实例记录
+[场景完成] scene0606_01: 新增 5 条漏检实例记录
+[场景完成] scene0609_02: 新增 0 条漏检实例记录
+[场景完成] scene0645_01: 新增 10 条漏检实例记录
+[场景完成] scene0651_00: 新增 0 条漏检实例记录
+[场景完成] scene0655_01: 新增 0 条漏检实例记录
+[场景完成] scene0658_00: 新增 2 条漏检实例记录
+[场景完成] scene0663_02: 新增 3 条漏检实例记录
+[场景完成] scene0664_02: 新增 4 条漏检实例记录
+[场景完成] scene0686_02: 新增 1 条漏检实例记录
+[场景完成] scene0693_02: 新增 3 条漏检实例记录
+[场景完成] scene0697_03: 新增 7 条漏检实例记录
+[场景完成] scene0699_00: 新增 7 条漏检实例记录
+[场景完成] scene0701_01: 新增 0 条漏检实例记录
+[场景完成] scene0704_01: 新增 1 条漏检实例记录
+{
+  "decision_rule": "若 Mask3D 漏检实例大多没有可靠二维框，才值得比较新的二维检测器；已有充分框覆盖则优先研究三维实例形成。",
+  "gt_usage": "仅限离线 GT 诊断；绝不进入推理、候选生成、融合、打分或阈值选择。",
+  "max_frames": 30,
+  "min_box_point_coverage": 0.5,
+  "min_matched_frames": 2,
+  "min_visible_points": 30,
+  "scene_count": 48,
+  "thresholds": {
+    "iou25": {
+      "class_absent_from_yoloworld_prompts_count": 0,
+      "class_absent_from_yoloworld_prompts_rate": 0.0,
+      "class_counts": {
+        "armchair": 2,
+        "bag": 2,
+        "blinds": 1,
+        "book": 2,
+        "bottle": 3,
+        "bowl": 2,
+        "box": 2,
+        "broom": 1,
+        "cabinet": 2,
+        "calendar": 1,
+        "ceiling": 2,
+        "chair": 1,
+        "clothes": 2,
+        "computer tower": 1,
+        "door": 3,
+        "doorframe": 3,
+        "jacket": 1,
+        "keyboard": 1,
+        "ladder": 2,
+        "laptop": 1,
+        "mirror": 3,
+        "monitor": 1,
+        "object": 8,
+        "paper bag": 1,
+        "picture": 3,
+        "pillow": 3,
+        "pipe": 1,
+        "plate": 1,
+        "poster": 2,
+        "radiator": 1,
+        "recycling bin": 1,
+        "shelf": 2,
+        "shoe": 2,
+        "shower": 2,
+        "shower curtain": 1,
+        "shower head": 1,
+        "shower wall": 1,
+        "soap dish": 2,
+        "storage bin": 1,
+        "table": 1,
+        "toilet paper": 1,
+        "toilet paper holder": 1,
+        "tray": 2,
+        "whiteboard": 2,
+        "window": 6
+      },
+      "mask3d_missed_gt_count": 85,
+      "reliable_2d_box_count": 18,
+      "reliable_2d_box_rate": 0.21176470588235294
+    },
+    "iou50": {
+      "class_absent_from_yoloworld_prompts_count": 0,
+      "class_absent_from_yoloworld_prompts_rate": 0.0,
+      "class_counts": {
+        "armchair": 6,
+        "backpack": 1,
+        "bag": 2,
+        "bathroom stall": 1,
+        "bed": 2,
+        "blanket": 3,
+        "blinds": 2,
+        "board": 1,
+        "book": 2,
+        "bookshelf": 2,
+        "bottle": 5,
+        "bowl": 3,
+        "box": 4,
+        "broom": 2,
+        "bucket": 1,
+        "cabinet": 4,
+        "calendar": 1,
+        "ceiling": 2,
+        "chair": 5,
+        "closet": 1,
+        "clothes": 5,
+        "computer tower": 1,
+        "counter": 2,
+        "cup": 1,
+        "curtain": 2,
+        "door": 8,
+        "doorframe": 5,
+        "dresser": 1,
+        "dumbbell": 1,
+        "dustpan": 1,
+        "file cabinet": 1,
+        "jacket": 1,
+        "keyboard": 1,
+        "ladder": 2,
+        "lamp": 2,
+        "laptop": 2,
+        "mirror": 4,
+        "monitor": 2,
+        "object": 9,
+        "ottoman": 1,
+        "paper bag": 1,
+        "paper cutter": 1,
+        "picture": 6,
+        "pillow": 6,
+        "pipe": 2,
+        "plate": 1,
+        "poster": 2,
+        "projector screen": 1,
+        "radiator": 1,
+        "recycling bin": 1,
+        "refrigerator": 2,
+        "shelf": 3,
+        "shoe": 4,
+        "shower": 2,
+        "shower curtain": 1,
+        "shower head": 1,
+        "shower wall": 1,
+        "sink": 4,
+        "soap dish": 3,
+        "storage bin": 1,
+        "table": 3,
+        "toilet paper": 1,
+        "toilet paper holder": 1,
+        "towel": 4,
+        "trash can": 1,
+        "tray": 3,
+        "whiteboard": 3,
+        "window": 14
+      },
+      "mask3d_missed_gt_count": 176,
+      "reliable_2d_box_count": 45,
+      "reliable_2d_box_rate": 0.2556818181818182
+    }
+  }
+}
+[场景完成] scene0019_01: 新增 13 条候选动作记录
+[场景完成] scene0084_01: 新增 12 条候选动作记录
+[场景完成] scene0084_02: 新增 13 条候选动作记录
+[场景完成] scene0100_00: 新增 11 条候选动作记录
+[场景完成] scene0146_01: 新增 7 条候选动作记录
+[场景完成] scene0169_01: 新增 12 条候选动作记录
+[场景完成] scene0207_01: 新增 8 条候选动作记录
+[场景完成] scene0217_00: 新增 14 条候选动作记录
+[场景完成] scene0256_02: 新增 8 条候选动作记录
+[场景完成] scene0277_00: 新增 13 条候选动作记录
+[场景完成] scene0277_01: 新增 16 条候选动作记录
+[场景完成] scene0300_01: 新增 16 条候选动作记录
+[场景完成] scene0307_02: 新增 21 条候选动作记录
+[场景完成] scene0329_02: 新增 7 条候选动作记录
+[场景完成] scene0338_01: 新增 12 条候选动作记录
+[场景完成] scene0353_02: 新增 14 条候选动作记录
+[场景完成] scene0355_01: 新增 8 条候选动作记录
+[场景完成] scene0357_00: 新增 24 条候选动作记录
+[场景完成] scene0377_00: 新增 12 条候选动作记录
+[场景完成] scene0389_00: 新增 9 条候选动作记录
+[场景完成] scene0412_01: 新增 15 条候选动作记录
+[场景完成] scene0426_02: 新增 6 条候选动作记录
+[场景完成] scene0430_00: 新增 15 条候选动作记录
+[场景完成] scene0458_00: 新增 12 条候选动作记录
+[场景完成] scene0474_00: 新增 13 条候选动作记录
+[场景完成] scene0474_04: 新增 14 条候选动作记录
+[场景完成] scene0496_00: 新增 19 条候选动作记录
+[场景完成] scene0575_02: 新增 7 条候选动作记录
+[场景完成] scene0578_02: 新增 12 条候选动作记录
+[场景完成] scene0591_01: 新增 18 条候选动作记录
+[场景完成] scene0593_01: 新增 16 条候选动作记录
+[场景完成] scene0598_00: 新增 13 条候选动作记录
+[场景完成] scene0598_01: 新增 15 条候选动作记录
+[场景完成] scene0606_00: 新增 12 条候选动作记录
+[场景完成] scene0606_01: 新增 15 条候选动作记录
+[场景完成] scene0609_02: 新增 10 条候选动作记录
+[场景完成] scene0645_01: 新增 10 条候选动作记录
+[场景完成] scene0651_00: 新增 8 条候选动作记录
+[场景完成] scene0655_01: 新增 14 条候选动作记录
+[场景完成] scene0658_00: 新增 10 条候选动作记录
+[场景完成] scene0663_02: 新增 6 条候选动作记录
+[场景完成] scene0664_02: 新增 9 条候选动作记录
+[场景完成] scene0686_02: 新增 8 条候选动作记录
+[场景完成] scene0693_02: 新增 7 条候选动作记录
+[场景完成] scene0697_03: 新增 13 条候选动作记录
+[场景完成] scene0699_00: 新增 10 条候选动作记录
+[场景完成] scene0701_01: 新增 8 条候选动作记录
+[场景完成] scene0704_01: 新增 18 条候选动作记录
+{
+  "all_candidates": {
+    "both_nonkeep_worsen_count": 262,
+    "count": 583,
+    "oracle_best_action_counts": {
+      "intersection": 17,
+      "keep": 472,
+      "union": 94
+    },
+    "oracle_improves_count": 64
+  },
+  "decision_rule": "只有局部重叠候选中 oracle 改善明显多于双动作均恶化，且无 GT 特征有可分层信号，才实现 MV3DIS 式局部修正。",
+  "gt_usage": "仅限离线 GT 诊断；绝不进入推理、候选生成、融合、打分或阈值选择。",
+  "improvement_delta": 0.02,
+  "local_overlap_candidates": {
+    "both_nonkeep_worsen_count": 111,
+    "both_nonkeep_worsen_rate": 0.3041095890410959,
+    "count": 365,
+    "feature_groups": {
+      "not_oracle_improves": {
+        "count": 311,
+        "features": {
+          "best_existing_iou": {
+            "mean": 0.40345069572391534,
+            "median": 0.3295975547631177
+          },
+          "candidate_point_count": {
+            "mean": 2103.003215434084,
+            "median": 1153.0
+          },
+          "fusion_score": {
+            "mean": 0.17760408181105258,
+            "median": 0.13929691876954528
+          },
+          "score": {
+            "mean": 0.23026239166224907,
+            "median": 0.18719013035297394
+          },
+          "seed_in_existing_mask_ratio": {
+            "mean": 0.8565773569431306,
+            "median": 0.9870517928286853
+          },
+          "source_track_count": {
+            "mean": 1.144694533762058,
+            "median": 1.0
+          },
+          "support_score": {
+            "mean": 65.90347901148053,
+            "median": 41.14859044950484
+          }
+        }
+      },
+      "oracle_improves": {
+        "count": 54,
+        "features": {
+          "best_existing_iou": {
+            "mean": 0.4553571897412741,
+            "median": 0.4359782069514829
+          },
+          "candidate_point_count": {
+            "mean": 2951.925925925926,
+            "median": 2000.5
+          },
+          "fusion_score": {
+            "mean": 0.18813793533589923,
+            "median": 0.1492309364171011
+          },
+          "score": {
+            "mean": 0.2440857405739802,
+            "median": 0.1955425888299942
+          },
+          "seed_in_existing_mask_ratio": {
+            "mean": 0.8426248471122156,
+            "median": 0.9230207362452267
+          },
+          "source_track_count": {
+            "mean": 1.1296296296296295,
+            "median": 1.0
+          },
+          "support_score": {
+            "mean": 89.33849517779473,
+            "median": 47.68335164114532
+          }
+        }
+      }
+    },
+    "oracle_best_action_counts": {
+      "intersection": 17,
+      "keep": 273,
+      "union": 75
+    },
+    "oracle_improves_count": 54,
+    "oracle_improves_rate": 0.14794520547945206
+  },
+  "min_parent_iou": 0.05,
+  "scene_count": 48
+}

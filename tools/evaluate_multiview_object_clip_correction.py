@@ -462,8 +462,9 @@ def evaluate_with_clip_correction(args):
     reports = {}
     for scene_name in tqdm(scene_names):
         scene_id = scene_name.replace("scene", "")
+        processed_scene_root = args.processed_scene_root or path_2_dataset
         processed_file = (
-            osp.join(path_2_dataset, scene_name, f"{scene_id}.npy")
+            osp.join(processed_scene_root, scene_name, f"{scene_id}.npy")
             if args.dataset_name == "scannet200"
             else None
         )
@@ -479,6 +480,7 @@ def evaluate_with_clip_correction(args):
             reuse_2d_preds=args.reuse_2d_preds,
         )
         scene_prediction = prediction[scene_name]
+        backprojection_report = None
         if args.backprojection_candidates is not None:
             points_xyz, _ = openyolo3d.world2cam.load_ply(openyolo3d.world2cam.mesh)
             point_segments = None
@@ -520,6 +522,7 @@ def evaluate_with_clip_correction(args):
                 source_priorities=args.backprojection_source_priorities,
                 source_max_candidates=args.backprojection_source_max_candidates,
                 source_score_scales=args.backprojection_source_score_scales,
+                source_min_scores=args.backprojection_source_min_scores,
                 superpoint_refine=args.backprojection_superpoint_refine,
                 superpoint_min_coverage=args.backprojection_superpoint_min_coverage,
                 superpoint_max_expansion_ratio=args.backprojection_superpoint_max_expansion_ratio,
@@ -531,6 +534,7 @@ def evaluate_with_clip_correction(args):
                 superpoint_box_min_views=args.backprojection_superpoint_box_min_views,
             )
             scene_prediction = fused[:3]
+            backprojection_report = fused[3]
         pred_masks = _to_numpy(scene_prediction[0]).astype(bool)
         pred_classes = _to_numpy(scene_prediction[1]).astype(np.int64)
         pred_scores = _to_numpy(scene_prediction[2]).astype(np.float32)
@@ -553,21 +557,28 @@ def evaluate_with_clip_correction(args):
                 labels,
                 args,
             )
-        reports[scene_name] = report
+        reports[scene_name] = {"backprojection": backprojection_report, "clip": report}
 
-        keep = pred_scores >= args.score_threshold
-        for pred_id, keep_value in keep_overrides.items():
-            if 0 <= int(pred_id) < len(keep):
-                keep[int(pred_id)] = bool(keep_value)
-        if keep.sum() == 0 and args.keep_one_if_empty and len(pred_scores) > 0:
-            keep[int(pred_scores.argmax())] = True
         if args.base_eval_score_mode == "baseline":
             eval_scores = np.ones_like(pred_scores, dtype=np.float32)
             num_added = len(pred_scores) - int(_to_numpy(prediction[scene_name][0]).shape[1])
             if num_added > 0:
                 eval_scores[-num_added:] = corrected_scores[-num_added:]
+            # Baseline masks retain the established raw-score gate. Appended
+            # proposals have no calibrated Mask3D score, so gate them by the
+            # final semantic score used for their evaluation ranking.
+            keep_scores = pred_scores.copy()
+            if num_added > 0:
+                keep_scores[-num_added:] = corrected_scores[-num_added:]
         else:
             eval_scores = corrected_scores
+            keep_scores = corrected_scores
+        keep = keep_scores >= args.score_threshold
+        for pred_id, keep_value in keep_overrides.items():
+            if 0 <= int(pred_id) < len(keep):
+                keep[int(pred_id)] = bool(keep_value)
+        if keep.sum() == 0 and args.keep_one_if_empty and len(keep_scores) > 0:
+            keep[int(keep_scores.argmax())] = True
         preds[scene_name] = {
             "pred_masks": pred_masks[:, keep],
             "pred_scores": eval_scores[keep],
@@ -609,6 +620,7 @@ def build_parser():
     parser.add_argument("--path_to_3d_masks", default="./output/replica/replica_masks")
     parser.add_argument("--is_gt", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--path_to_2d_preds", default=None)
+    parser.add_argument("--processed_scene_root", default=None)
     parser.add_argument("--save_2d_preds", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--reuse_2d_preds", default=True, action=argparse.BooleanOptionalAction)
     parser.add_argument("--score_threshold", default=0.20, type=float)
@@ -674,6 +686,7 @@ def build_parser():
     parser.add_argument("--backprojection_source_priorities", default=None)
     parser.add_argument("--backprojection_source_max_candidates", default=None)
     parser.add_argument("--backprojection_source_score_scales", default=None)
+    parser.add_argument("--backprojection_source_min_scores", default=None)
     parser.add_argument("--backprojection_superpoint_refine", default=False, action=argparse.BooleanOptionalAction)
     parser.add_argument("--backprojection_superpoint_min_coverage", default=0.30, type=float)
     parser.add_argument("--backprojection_superpoint_max_expansion_ratio", default=2.0, type=float)

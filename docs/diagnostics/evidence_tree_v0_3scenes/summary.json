@@ -1,0 +1,22 @@
+{
+  "candidate_count": 18,
+  "clip_feature_status": "missing_in_source_trace",
+  "input_candidates_dir": "output/mask_graph_proposals_scannet200_even48_phase1_relation_fix_gpu",
+  "local_or_duplicate_count": 8,
+  "more_complete_like_count": 7,
+  "new_instance_like_count": 1,
+  "notes": [
+    "v0 uses same-frame containment/conflict edges from mask_graph_trace as the 2D mask tree approximation.",
+    "CLIP feature vectors were not serialized in the source trace, so v0 records a semantic proxy instead of vector similarity.",
+    "When superpoint observation evidence is missing, v0 records missing_superpoint_evidence instead of inferring fake superpoint votes.",
+    "Outputs are diagnostics only and are not AP predictions."
+  ],
+  "prototype": "evidence_tree_v0",
+  "scene_count": 3,
+  "scenes": [
+    "scene0011_00",
+    "scene0077_00",
+    "scene0608_01"
+  ],
+  "tree_node_count": 274
+}

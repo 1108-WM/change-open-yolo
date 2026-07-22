@@ -1,0 +1,299 @@
+{
+  "local_root": "data/scannet200",
+  "official_root": "/home/jia/Wm/Dataset/scannet_v2_official_audit_3scenes",
+  "passed": true,
+  "scenes": [
+    {
+      "mesh": {
+        "byte_identical": true,
+        "local_sha256": "22d02bc0885f982cea3fe8eacf26519701b3c6011251238aab4e235c2e32724a",
+        "npy_rgb_exact": true,
+        "npy_shape": [
+          165356,
+          12
+        ],
+        "npy_xyz_exact": true,
+        "official_sha256": "22d02bc0885f982cea3fe8eacf26519701b3c6011251238aab4e235c2e32724a",
+        "vertex_count": 165356
+      },
+      "passed": true,
+      "scene": "scene0019_01",
+      "sens": {
+        "color_shape": [
+          968,
+          1296,
+          3
+        ],
+        "counts_match": true,
+        "depth_shape": [
+          480,
+          640
+        ],
+        "depth_shift": 1000.0,
+        "frame_count": 630,
+        "intrinsic_color_vs_local": {
+          "allclose_atol_1e-5": true,
+          "max_absolute_difference_finite_entries": 0.0,
+          "shape_match": true
+        },
+        "local_color_count": 630,
+        "local_depth_count": 630,
+        "local_pose_count": 630,
+        "samples": {
+          "0": {
+            "color": {
+              "exact_value_fraction": 0.21854407926061967,
+              "max_absolute_difference": 35,
+              "mean_absolute_difference": 2.8741098909975173,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 4.78699803352356e-07,
+              "shape_match": true
+            }
+          },
+          "315": {
+            "color": {
+              "exact_value_fraction": 0.2949284511784512,
+              "max_absolute_difference": 30,
+              "mean_absolute_difference": 1.6336345887324422,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 4.470348358154297e-07,
+              "shape_match": true
+            }
+          },
+          "629": {
+            "color": {
+              "exact_value_fraction": 0.26115426146991805,
+              "max_absolute_difference": 36,
+              "mean_absolute_difference": 1.873105263493521,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 4.76837158203125e-07,
+              "shape_match": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "mesh": {
+        "byte_identical": true,
+        "local_sha256": "70cbe175fa5ce33eb66d09051fea2858b1acfdd79074f397f31a20a21e948c1e",
+        "npy_rgb_exact": true,
+        "npy_shape": [
+          111833,
+          12
+        ],
+        "npy_xyz_exact": true,
+        "official_sha256": "70cbe175fa5ce33eb66d09051fea2858b1acfdd79074f397f31a20a21e948c1e",
+        "vertex_count": 111833
+      },
+      "passed": true,
+      "scene": "scene0084_01",
+      "sens": {
+        "color_shape": [
+          968,
+          1296,
+          3
+        ],
+        "counts_match": true,
+        "depth_shape": [
+          480,
+          640
+        ],
+        "depth_shift": 1000.0,
+        "frame_count": 1652,
+        "intrinsic_color_vs_local": {
+          "allclose_atol_1e-5": true,
+          "max_absolute_difference_finite_entries": 0.0,
+          "shape_match": true
+        },
+        "local_color_count": 1652,
+        "local_depth_count": 1652,
+        "local_pose_count": 1652,
+        "samples": {
+          "0": {
+            "color": {
+              "exact_value_fraction": 0.1536280311532837,
+              "max_absolute_difference": 51,
+              "mean_absolute_difference": 2.4882489669421486,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 4.76837158203125e-07,
+              "shape_match": true
+            }
+          },
+          "1651": {
+            "color": {
+              "exact_value_fraction": 0.2505353939223889,
+              "max_absolute_difference": 47,
+              "mean_absolute_difference": 1.5301539702581368,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 4.172325134277344e-07,
+              "shape_match": true
+            }
+          },
+          "826": {
+            "color": {
+              "exact_value_fraction": 0.26614684300921676,
+              "max_absolute_difference": 56,
+              "mean_absolute_difference": 1.3985990481413462,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 3.5762786865234375e-07,
+              "shape_match": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "mesh": {
+        "byte_identical": true,
+        "local_sha256": "dbdd0f2298cd9cb33c7325a64a47e730590ee9978bac0c71fc48462070fd9461",
+        "npy_rgb_exact": true,
+        "npy_shape": [
+          98346,
+          12
+        ],
+        "npy_xyz_exact": true,
+        "official_sha256": "dbdd0f2298cd9cb33c7325a64a47e730590ee9978bac0c71fc48462070fd9461",
+        "vertex_count": 98346
+      },
+      "passed": true,
+      "scene": "scene0084_02",
+      "sens": {
+        "color_shape": [
+          968,
+          1296,
+          3
+        ],
+        "counts_match": true,
+        "depth_shape": [
+          480,
+          640
+        ],
+        "depth_shift": 1000.0,
+        "frame_count": 1121,
+        "intrinsic_color_vs_local": {
+          "allclose_atol_1e-5": true,
+          "max_absolute_difference_finite_entries": 0.0,
+          "shape_match": true
+        },
+        "local_color_count": 1121,
+        "local_depth_count": 1121,
+        "local_pose_count": 1121,
+        "samples": {
+          "0": {
+            "color": {
+              "exact_value_fraction": 0.1583974211815121,
+              "max_absolute_difference": 49,
+              "mean_absolute_difference": 2.398301459459919,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 4.76837158203125e-07,
+              "shape_match": true
+            }
+          },
+          "1120": {
+            "color": {
+              "exact_value_fraction": 0.24874109359589158,
+              "max_absolute_difference": 47,
+              "mean_absolute_difference": 1.5200378150188756,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 0.0,
+              "shape_match": true
+            }
+          },
+          "560": {
+            "color": {
+              "exact_value_fraction": 0.2432120553174846,
+              "max_absolute_difference": 42,
+              "mean_absolute_difference": 1.5325729411114513,
+              "shape_match": true
+            },
+            "depth": {
+              "exact_value_fraction": 1.0,
+              "max_absolute_difference": 0,
+              "mean_absolute_difference": 0.0,
+              "shape_match": true
+            },
+            "pose": {
+              "allclose_atol_1e-5": true,
+              "max_absolute_difference_finite_entries": 4.76837158203125e-07,
+              "shape_match": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "scope": "Three-scene source audit only. This verifies local inference inputs against official samples; it does not prove provenance for every ScanNet200 scene."
+}

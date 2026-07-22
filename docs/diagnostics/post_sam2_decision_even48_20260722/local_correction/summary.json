@@ -1,0 +1,97 @@
+{
+  "all_candidates": {
+    "both_nonkeep_worsen_count": 262,
+    "count": 583,
+    "oracle_best_action_counts": {
+      "intersection": 17,
+      "keep": 472,
+      "union": 94
+    },
+    "oracle_improves_count": 64
+  },
+  "decision_rule": "只有局部重叠候选中 oracle 改善明显多于双动作均恶化，且无 GT 特征有可分层信号，才实现 MV3DIS 式局部修正。",
+  "gt_usage": "仅限离线 GT 诊断；绝不进入推理、候选生成、融合、打分或阈值选择。",
+  "improvement_delta": 0.02,
+  "local_overlap_candidates": {
+    "both_nonkeep_worsen_count": 111,
+    "both_nonkeep_worsen_rate": 0.3041095890410959,
+    "count": 365,
+    "feature_groups": {
+      "not_oracle_improves": {
+        "count": 311,
+        "features": {
+          "best_existing_iou": {
+            "mean": 0.40345069572391534,
+            "median": 0.3295975547631177
+          },
+          "candidate_point_count": {
+            "mean": 2103.003215434084,
+            "median": 1153.0
+          },
+          "fusion_score": {
+            "mean": 0.17760408181105258,
+            "median": 0.13929691876954528
+          },
+          "score": {
+            "mean": 0.23026239166224907,
+            "median": 0.18719013035297394
+          },
+          "seed_in_existing_mask_ratio": {
+            "mean": 0.8565773569431306,
+            "median": 0.9870517928286853
+          },
+          "source_track_count": {
+            "mean": 1.144694533762058,
+            "median": 1.0
+          },
+          "support_score": {
+            "mean": 65.90347901148053,
+            "median": 41.14859044950484
+          }
+        }
+      },
+      "oracle_improves": {
+        "count": 54,
+        "features": {
+          "best_existing_iou": {
+            "mean": 0.4553571897412741,
+            "median": 0.4359782069514829
+          },
+          "candidate_point_count": {
+            "mean": 2951.925925925926,
+            "median": 2000.5
+          },
+          "fusion_score": {
+            "mean": 0.18813793533589923,
+            "median": 0.1492309364171011
+          },
+          "score": {
+            "mean": 0.2440857405739802,
+            "median": 0.1955425888299942
+          },
+          "seed_in_existing_mask_ratio": {
+            "mean": 0.8426248471122156,
+            "median": 0.9230207362452267
+          },
+          "source_track_count": {
+            "mean": 1.1296296296296295,
+            "median": 1.0
+          },
+          "support_score": {
+            "mean": 89.33849517779473,
+            "median": 47.68335164114532
+          }
+        }
+      }
+    },
+    "oracle_best_action_counts": {
+      "intersection": 17,
+      "keep": 273,
+      "union": 75
+    },
+    "oracle_improves_count": 54,
+    "oracle_improves_rate": 0.14794520547945206
+  },
+  "min_parent_iou": 0.05,
+  "scene_count": 48
+}
