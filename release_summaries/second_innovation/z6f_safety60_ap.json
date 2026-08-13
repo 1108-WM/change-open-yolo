@@ -1,0 +1,37 @@
+{
+  "candidate_mutation": false,
+  "current_control": {
+    "ap": 0.32640953851158716,
+    "ap25": 0.5204086096245164,
+    "ap50": 0.4360431781813136,
+    "common_ap": 0.3203914142352777,
+    "head_ap": 0.33508439040645704,
+    "tail_ap": 0.3195475103904395
+  },
+  "decision": "record only; no safety60-driven method, threshold, prompt, budget, or action changes",
+  "delta": {
+    "ap": -5.249503393311983e-05,
+    "ap25": -0.00016869646540607075,
+    "ap50": -0.00013874395361779257,
+    "common_ap": 3.703703703705763e-05,
+    "head_ap": -0.0001551024445057836,
+    "tail_ap": 0.0
+  },
+  "diagnostic_type": "one-way frozen Z6f safety60 open-vocabulary AP transfer",
+  "even48_read": false,
+  "geometry_mutation": false,
+  "ground_truth_usage": "evaluation_only_after_full_method_freeze",
+  "mutation_count": 3,
+  "safety60_read": true,
+  "scene_count": 60,
+  "score_mutation": false,
+  "test60_read": false,
+  "z6f_symmetric": {
+    "ap": 0.32635704347765404,
+    "ap25": 0.5202399131591103,
+    "ap50": 0.4359044342276958,
+    "common_ap": 0.3204284512723148,
+    "head_ap": 0.33492928796195126,
+    "tail_ap": 0.3195475103904395
+  }
+}

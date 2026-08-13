@@ -1,0 +1,139 @@
+{
+  "alpha_availability_counts": {
+    "native:geometry_alpha": 2934,
+    "native:inherited_alpha": 2934,
+    "pair_union:geometry_alpha": 1501,
+    "pair_union:inherited_alpha": 1501,
+    "track:geometry_alpha": 5168,
+    "track:inherited_alpha": 5168
+  },
+  "candidate_mutation": false,
+  "class_count": 198,
+  "contracts": {
+    "missing_alpha": "zero distribution plus explicit availability=false",
+    "native": "own geometry YOLO and own limited-context Alpha",
+    "pair_union": "own geometry YOLO/Alpha plus selected-track frozen-support YOLO/Alpha",
+    "track": "all-frame geometry YOLO plus frozen-support YOLO and track limited-context Alpha"
+  },
+  "diagnostic_type": "Z2 unified GT-free geometry-node semantic ledger",
+  "diagnostics": {
+    "native": {
+      "geometry_inherited_alpha_js": {
+        "count": 2934,
+        "mean": 0.0,
+        "median": 0.0,
+        "p90": 0.0
+      },
+      "geometry_yolo_alpha_agreement": {
+        "count": 2922,
+        "mean": 0.36892539356605064,
+        "median": 0.0,
+        "p90": 1.0
+      },
+      "geometry_yolo_alpha_js": {
+        "count": 2922,
+        "mean": 0.48877870052077993,
+        "median": 0.4842184648719505,
+        "p90": 0.7858084431537448
+      },
+      "inherited_yolo_alpha_agreement": {
+        "count": 2922,
+        "mean": 0.36892539356605064,
+        "median": 0.0,
+        "p90": 1.0
+      },
+      "inherited_yolo_alpha_js": {
+        "count": 2922,
+        "mean": 0.48877870052077993,
+        "median": 0.4842184648719505,
+        "p90": 0.7858084431537448
+      }
+    },
+    "pair_union": {
+      "geometry_inherited_alpha_js": {
+        "count": 1501,
+        "mean": 0.11911838857282409,
+        "median": 0.05054855761292113,
+        "p90": 0.3616106894573944
+      },
+      "geometry_yolo_alpha_agreement": {
+        "count": 1501,
+        "mean": 0.4103930712858095,
+        "median": 0.0,
+        "p90": 1.0
+      },
+      "geometry_yolo_alpha_js": {
+        "count": 1501,
+        "mean": 0.4461636826059752,
+        "median": 0.4398485747845291,
+        "p90": 0.6844782022199832
+      },
+      "inherited_yolo_alpha_agreement": {
+        "count": 1501,
+        "mean": 0.32045303131245834,
+        "median": 0.0,
+        "p90": 1.0
+      },
+      "inherited_yolo_alpha_js": {
+        "count": 1501,
+        "mean": 0.5624594868621186,
+        "median": 0.5689486845202406,
+        "p90": 0.8325830613088071
+      }
+    },
+    "track": {
+      "geometry_inherited_alpha_js": {
+        "count": 5168,
+        "mean": 0.0,
+        "median": 0.0,
+        "p90": 0.0
+      },
+      "geometry_yolo_alpha_agreement": {
+        "count": 5158,
+        "mean": 0.28189220628150446,
+        "median": 0.0,
+        "p90": 1.0
+      },
+      "geometry_yolo_alpha_js": {
+        "count": 5158,
+        "mean": 0.5928995947245956,
+        "median": 0.6024084574402997,
+        "p90": 0.8689082694216385
+      },
+      "inherited_yolo_alpha_agreement": {
+        "count": 5136,
+        "mean": 0.26947040498442365,
+        "median": 0.0,
+        "p90": 1.0
+      },
+      "inherited_yolo_alpha_js": {
+        "count": 5136,
+        "mean": 0.652961667980939,
+        "median": 0.6794491285391157,
+        "p90": 0.92963112986635
+      }
+    }
+  },
+  "distribution_arrays": [
+    "geometry_yolo",
+    "inherited_yolo",
+    "geometry_alpha",
+    "inherited_alpha"
+  ],
+  "ground_truth_usage": "none",
+  "node_count": 9708,
+  "params": {
+    "class_count": 198,
+    "node_alpha_root": "${PROJECT_ROOT}/docs/diagnostics/z2b_native_union_alphaclip_limited_context_official100_20260811",
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z2c_unified_semantic_node_ledger_official100_20260811",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "track_alpha_root": "${PROJECT_ROOT}/docs/diagnostics/z2_alphaclip_track_limited_context_official100_20260811",
+    "z1_root": "${PROJECT_ROOT}/docs/diagnostics/z1_yoloworld_multiview_distribution_official100_20260811_v3_frozen_support_vote"
+  },
+  "scene_count": 100,
+  "source_node_counts": {
+    "native": 2941,
+    "pair_union": 1501,
+    "track": 5266
+  }
+}

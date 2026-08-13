@@ -1,0 +1,80 @@
+{
+  "all_registered_assets_present": true,
+  "candidate_mutation": false,
+  "class_mutation": false,
+  "diagnostic_type": "Z6b GT-free frozen top-3 object-view manifest and prepared-asset audit",
+  "embedding_generated": false,
+  "even48_read": false,
+  "geometry_mutation": false,
+  "ground_truth_usage": "none",
+  "inference_plan_written": false,
+  "join_audit": {
+    "duplicate_node_count": 0,
+    "joined_node_count": 9708,
+    "registered_view_record_count": 9708,
+    "valid": true,
+    "z2c_node_count": 9708
+  },
+  "missing_asset_counts": {},
+  "mllm_invoked": false,
+  "node_count": 9708,
+  "node_view_count_histogram": {
+    "0": 105,
+    "1": 287,
+    "2": 1752,
+    "3": 7564
+  },
+  "node_with_view_count": 9603,
+  "node_without_view_count": 105,
+  "output_sha256": {
+    "coverage_by_scene.jsonl": "57bbd135cb47182693e3155a3bd6cb95abb2258a91bd0a62f9ad2c8617a33eaf",
+    "object_view_manifest.jsonl": "503261f316a0e9e642eb09c63c87d1fd10c9be60b3bd71041d3dfa8fb149107b"
+  },
+  "params": {
+    "node_alpha_root": "${PROJECT_ROOT}/docs/diagnostics/z2b_native_union_alphaclip_limited_context_official100_20260811",
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z6b_object_view_manifest_official100_20260812",
+    "prepared_dataset_root": "/media/jia/软件1/scannet_train_stream/prepared",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "track_alpha_root": "${PROJECT_ROOT}/docs/diagnostics/z2_alphaclip_track_limited_context_official100_20260811",
+    "unified_ledger_root": "${PROJECT_ROOT}/docs/diagnostics/z2c_unified_semantic_node_ledger_official100_20260811",
+    "z1_root": "${PROJECT_ROOT}/docs/diagnostics/z1_yoloworld_multiview_distribution_official100_20260811_v3_frozen_support_vote"
+  },
+  "safety60_read": false,
+  "scene_count": 100,
+  "score_mutation": false,
+  "selected_view_count": 26483,
+  "selection_contract": {
+    "crop_mode": "limited_context",
+    "crop_padding_ratio": 0.5,
+    "min_visible_points": 20,
+    "provenance": "reuse exact Z2/Z2b Alpha-CLIP view selection; no reprojection or reselection",
+    "ranking": "descending visible point count, then frozen Z2 frame order",
+    "top_views": 3
+  },
+  "source_node_counts": {
+    "native": 2941,
+    "pair_union": 1501,
+    "track": 5266
+  },
+  "source_node_with_view_counts": {
+    "native": 2934,
+    "pair_union": 1501,
+    "track": 5168
+  },
+  "source_node_without_view_counts": {
+    "native": 7,
+    "pair_union": 0,
+    "track": 98
+  },
+  "source_selected_view_counts": {
+    "native": 8757,
+    "pair_union": 4350,
+    "track": 13376
+  },
+  "test60_read": false,
+  "version": "z6b_object_view_manifest_official100_v1",
+  "view_role_counts": {
+    "native_prepared_view": 8757,
+    "track_support_view": 17726
+  }
+}

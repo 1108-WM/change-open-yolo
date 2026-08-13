@@ -1,0 +1,55 @@
+{
+  "candidate_mutation": false,
+  "class_mutation": false,
+  "diagnostic_type": "independent audit of Z6b official100 DINOv2 object appearance ledger",
+  "dispersion_one_minus_pairwise_mean": {
+    "count": 9603,
+    "max": 0.778388038277626,
+    "mean": 0.16395321823086303,
+    "median": 0.1447027325630188,
+    "min": 0.0,
+    "p10": 0.04781198501586914,
+    "p90": 0.3079256534576416
+  },
+  "encoded_view_count": 26483,
+  "error_count": 0,
+  "errors": [],
+  "ground_truth_usage": "none",
+  "inference_plan_written": false,
+  "manifest_sha256": "503261f316a0e9e642eb09c63c87d1fd10c9be60b3bd71041d3dfa8fb149107b",
+  "node_count": 9708,
+  "node_with_embedding_count": 9603,
+  "node_without_embedding_count": 105,
+  "pairwise_cosine_mean": {
+    "count": 9603,
+    "max": 1.0,
+    "mean": 0.8360467817691369,
+    "median": 0.8552972674369812,
+    "min": 0.22161196172237396,
+    "p10": 0.6920743465423584,
+    "p90": 0.9521880149841309
+  },
+  "params": {
+    "ledger_root": "${PROJECT_ROOT}/docs/diagnostics/z6b_dinov2_object_appearance_official100_20260812",
+    "manifest_root": "${PROJECT_ROOT}/docs/diagnostics/z6b_object_view_manifest_official100_20260812",
+    "output_path": "${PROJECT_ROOT}/docs/diagnostics/z6b_dinov2_object_appearance_official100_20260812/audit_summary.json",
+    "tolerance": 2e-05
+  },
+  "per_view_l2_norm": {
+    "count": 26483,
+    "max": 1.0000001192092896,
+    "mean": 0.9999999830118997,
+    "median": 1.0,
+    "min": 0.9999998211860657,
+    "p10": 0.9999999403953552,
+    "p90": 1.0
+  },
+  "scene_count": 100,
+  "score_mutation": false,
+  "source_node_with_embedding_counts": {
+    "native": 2934,
+    "pair_union": 1501,
+    "track": 5168
+  },
+  "valid": true
+}

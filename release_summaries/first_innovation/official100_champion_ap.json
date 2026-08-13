@@ -1,0 +1,171 @@
+{
+  "delta_vs_champion": {
+    "ap": 0.0010728750056783198,
+    "ap25": 0.00013759438225302567,
+    "ap50": 0.0002554427524046332
+  },
+  "delta_vs_frozen_coexist": {
+    "ap": 0.005917314735515489,
+    "ap25": 0.009235303669210104,
+    "ap50": 0.007502169833236705
+  },
+  "evaluation_contract": {
+    "champion_formula_unchanged": true,
+    "evaluated_challenger_count": 1,
+    "native_modified": false,
+    "pair_union_append_only": true,
+    "pair_union_formula_unchanged": true,
+    "threshold_weight_exponent_scan": false,
+    "uncontrolled_track_modified": false
+  },
+  "even48_read": false,
+  "folds": [
+    {
+      "champion_track_suppression_plus_pair_union_append": {
+        "ap": 0.6555628478430372,
+        "ap25": 0.8604145704896459,
+        "ap50": 0.7996570987135408
+      },
+      "combined_delta_vs_frozen": {
+        "ap": 0.004977485746415655,
+        "ap25": 0.00833941274331862,
+        "ap50": 0.0052782326543902025
+      },
+      "delta_combined_minus_champion": {
+        "ap": 0.000580770077815318,
+        "ap25": -0.00018521596923715133,
+        "ap50": -0.00012300289838573786
+      },
+      "fold_index": 0,
+      "frozen_coexist": {
+        "ap": 0.6505853620966215,
+        "ap25": 0.8520751577463272,
+        "ap50": 0.7943788660591506
+      }
+    },
+    {
+      "champion_track_suppression_plus_pair_union_append": {
+        "ap": 0.7503603294199395,
+        "ap25": 0.9173581332702806,
+        "ap50": 0.8943595813247414
+      },
+      "combined_delta_vs_frozen": {
+        "ap": 0.006519540277707403,
+        "ap25": 0.007899304327191436,
+        "ap50": 0.008956689776011384
+      },
+      "delta_combined_minus_champion": {
+        "ap": 0.0017665529377630662,
+        "ap25": -8.937857453705789e-06,
+        "ap50": 0.001036172663728463
+      },
+      "fold_index": 1,
+      "frozen_coexist": {
+        "ap": 0.7438407891422321,
+        "ap25": 0.9094588289430892,
+        "ap50": 0.88540289154873
+      }
+    },
+    {
+      "champion_track_suppression_plus_pair_union_append": {
+        "ap": 0.6713875793915574,
+        "ap25": 0.8708954139115943,
+        "ap50": 0.8352331463719986
+      },
+      "combined_delta_vs_frozen": {
+        "ap": 0.004664346287594712,
+        "ap25": 0.007431805198482633,
+        "ap50": 0.006575544493514385
+      },
+      "delta_combined_minus_champion": {
+        "ap": 0.0005421150396551777,
+        "ap25": -4.626988778477781e-05,
+        "ap50": -0.00011862590323397093
+      },
+      "fold_index": 2,
+      "frozen_coexist": {
+        "ap": 0.6667232331039626,
+        "ap25": 0.8634636087131117,
+        "ap50": 0.8286576018784843
+      }
+    },
+    {
+      "champion_track_suppression_plus_pair_union_append": {
+        "ap": 0.6562320729089088,
+        "ap25": 0.8735955411756866,
+        "ap50": 0.826962532029462
+      },
+      "combined_delta_vs_frozen": {
+        "ap": 0.006453676713764067,
+        "ap25": 0.009320983905566793,
+        "ap50": 0.00868381924781958
+      },
+      "delta_combined_minus_champion": {
+        "ap": 0.0013778639292868489,
+        "ap25": 0.0,
+        "ap50": 0.0006277276040187463
+      },
+      "fold_index": 3,
+      "frozen_coexist": {
+        "ap": 0.6497783961951448,
+        "ap25": 0.8642745572701198,
+        "ap50": 0.8182787127816424
+      }
+    },
+    {
+      "champion_track_suppression_plus_pair_union_append": {
+        "ap": 0.6631570653681229,
+        "ap25": 0.8845164479036989,
+        "ap50": 0.8102181392733532
+      },
+      "combined_delta_vs_frozen": {
+        "ap": 0.0069244435079912625,
+        "ap25": 0.013542637693251924,
+        "ap50": 0.007631066303851686
+      },
+      "delta_combined_minus_champion": {
+        "ap": 0.0012264375402949446,
+        "ap25": 0.0010315375682216077,
+        "ap50": -5.655620203526279e-05
+      },
+      "fold_index": 4,
+      "frozen_coexist": {
+        "ap": 0.6562326218601316,
+        "ap25": 0.870973810210447,
+        "ap50": 0.8025870729695015
+      }
+    }
+  ],
+  "ground_truth_usage": "official100 AP evaluation only after frozen combined no-GT plan",
+  "input_provenance": {
+    "champion_summary_sha256": "c673cc53c87aca3558128def94592de9f296a5c3cb647b4d09ab0da0394dd45f",
+    "combined_plan_summary_sha256": "f4335948cf5957712395a59b7b87a271cb3353d901ee28e8343aa8c14fdf0854",
+    "quality_oof_predictions_sha256": "a25f737e44da7d1409bbdc37f52c90a943d1ce4ab21901a0de1e974db2ca40ef",
+    "scene_list_sha256": "dfa9017e206190eb2973b247c78e4bf1b2d9c01bb8468a15775c30335e44fb68",
+    "split_manifest_sha256": "710157cb78b66048a181f5e38701a274f24add6416a2f25627d9e499b0668c72"
+  },
+  "main_ap_positive_fold_count_vs_champion": 5,
+  "main_ap_positive_fold_count_vs_frozen": 5,
+  "metrics": {
+    "champion_track_suppression_plus_pair_union_append": {
+      "ap": 0.6768351733792439,
+      "ap25": 0.8795907511062646,
+      "ap50": 0.832354216587369
+    },
+    "frozen_coexist": {
+      "ap": 0.6709178586437284,
+      "ap25": 0.8703554474370545,
+      "ap50": 0.8248520467541323
+    },
+    "track_harm_focal_suppression": {
+      "ap": 0.6757622983735656,
+      "ap25": 0.8794531567240116,
+      "ap50": 0.8320987738349643
+    }
+  },
+  "policy": "champion_track_suppression_plus_pair_union_append",
+  "safety60_read": false,
+  "scene_count": 100,
+  "test60_read": false,
+  "version": "official100_champion_pair_union_combined_oof_ap_v1"
+}

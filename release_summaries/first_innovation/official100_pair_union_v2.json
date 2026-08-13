@@ -1,0 +1,36 @@
+{
+  "ap_computed": false,
+  "contracts": {
+    "append_only": true,
+    "existing_candidate_class_modified": false,
+    "existing_candidate_count_modified": false,
+    "existing_candidate_geometry_modified": false,
+    "existing_candidate_score_modified": false,
+    "ground_truth_fields_written_to_plan": false,
+    "threshold_selected": false
+  },
+  "duplicate_relation_proposal_count": 3,
+  "even48_read": false,
+  "ground_truth_usage_for_plan_generation": "none; only frozen OOF probabilities, quality scores, relation identities, and geometry",
+  "input_provenance": {
+    "full_model_metadata_sha256": "2953ac128ed586ae94094f8374451f3011f615fd2053ba9ca44eb515c321f441",
+    "pair_union_oof_predictions_sha256": "e976454f1deb114dc9eca420c1b84135f96e123bad3d6802c332dcfda2e1ac12",
+    "pair_union_oof_summary_sha256": "9e5a2c43c0c334f80f9c1970a9a038a80ebe2ed9e19d261a658df5b41f801622",
+    "quality_oof_predictions_sha256": "a25f737e44da7d1409bbdc37f52c90a943d1ce4ab21901a0de1e974db2ca40ef",
+    "scene_list_sha256": "dfa9017e206190eb2973b247c78e4bf1b2d9c01bb8468a15775c30335e44fb68"
+  },
+  "policy": "pair_union_threshold_cross_focal_append",
+  "raw_novel_relation_proposal_count": 1504,
+  "safety60_read": false,
+  "scene_count": 100,
+  "score_contract": {
+    "append_score": "base_quality * (1 - (1 - P(threshold_cross))**3)",
+    "base_quality": "minimum of track quality q and native exact-group median quality q",
+    "duplicate_union_geometry_aggregation": "highest OOF threshold-cross probability",
+    "threshold": null,
+    "weight_or_exponent_scan": false
+  },
+  "test60_read": false,
+  "unique_materialized_candidate_count": 1501,
+  "version": "official100_pair_union_oof_append_plan_v1"
+}

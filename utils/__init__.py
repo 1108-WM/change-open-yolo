@@ -1,4 +1,17 @@
-from utils.utils_2d import Network_2D, load_yaml
+# WORLD_2_CAM 只依赖下方的通用几何库；让仅做三维投影的工具不必安装
+# YOLO-World 的完整 mmengine 运行时。主实验环境仍按原路径导入 Network_2D。
+try:
+    from utils.utils_2d import Network_2D, load_yaml
+except ModuleNotFoundError as exc:
+    if exc.name != "mmengine":
+        raise
+    Network_2D = None
+
+    def load_yaml(path):
+        import yaml
+
+        with open(path) as handle:
+            return yaml.safe_load(handle)
 import time
 import torch
 import os
@@ -574,7 +587,13 @@ class WORLD_2_CAM():
         return adapted_intrinsic
     
     def get_mesh_projections(self):
-        N_Large = 2000000*250
+        # Keeping an entire frame x point projection tensor on CUDA is fast
+        # for small scenes, but peaks well above 24 GiB for long ScanNet
+        # recordings with dense meshes.  The returned tensors remain exactly
+        # the same; larger inputs are calculated point-chunk by point-chunk
+        # and accumulated on CPU.
+        N_Large = 100000000
+        projection_point_batch_size = 50000
         
         points, colors = self.load_ply(self.mesh)
         points = torch.from_numpy(points).to(self.device)
@@ -587,13 +606,12 @@ class WORLD_2_CAM():
         if extrinsics.shape[0]*points.shape[0] < N_Large:
             word2cam_mat = torch.einsum('bij, jk -> bik',torch.einsum('bij,bjk -> bik', intrinsics,extrinsics), points.T).permute(0,2,1)
         else:
-            B_size = 800000
             Num_Points = points.shape[0]
-            Num_batches = Num_Points//B_size+1
+            Num_batches = (Num_Points + projection_point_batch_size - 1)//projection_point_batch_size
             word2cam_mat = []
             for b_i in range(Num_batches):
-                dim_start = b_i*B_size
-                dim_last = (b_i+1)*B_size if b_i != Num_batches-1 else points.shape[0]
+                dim_start = b_i*projection_point_batch_size
+                dim_last = min((b_i+1)*projection_point_batch_size, Num_Points)
                 word2cam_mat_i = torch.einsum('bij, jk -> bik',torch.einsum('bij,bjk -> bik', intrinsics,extrinsics), points[dim_start:dim_last].T).permute(0,2,1)
                 word2cam_mat.append(word2cam_mat_i.cpu())
             word2cam_mat = torch.cat(word2cam_mat, dim = 1)
@@ -614,14 +632,13 @@ class WORLD_2_CAM():
             inside_mask = ((projected_points[:,:,0] < self.width)*(projected_points[:,:,0] > 0)*(projected_points[:,:,1] < self.height)*(projected_points[:,:,1] >0) == 1 )
         
         else:
-            B_size = 200000
             Num_Points = word2cam_mat.shape[1]
-            Num_batches = Num_Points//B_size+1
+            Num_batches = (Num_Points + projection_point_batch_size - 1)//projection_point_batch_size
             projected_points = []
 
             for b_i in range(Num_batches):
-                dim_start = b_i*B_size
-                dim_last = (b_i+1)*B_size if b_i != Num_batches-1 else word2cam_mat.shape[1]
+                dim_start = b_i*projection_point_batch_size
+                dim_last = min((b_i+1)*projection_point_batch_size, Num_Points)
                 batch_z = word2cam_mat[:, dim_start:dim_last, 2].to(self.device)
                 batch_y = word2cam_mat[:, dim_start:dim_last, 1].to(self.device)
                 batch_x = word2cam_mat[:, dim_start:dim_last, 0].to(self.device)

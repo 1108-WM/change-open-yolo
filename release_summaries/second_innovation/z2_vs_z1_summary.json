@@ -1,0 +1,294 @@
+{
+  "comparison_contract": "no GT; fixed tracks; complete 198-class distributions",
+  "pair_statistics": {
+    "all_view__limited_context": {
+      "js_divergence": {
+        "count": 5158,
+        "mean": 0.4109666773142959,
+        "median": 0.4175577208377266,
+        "p90": 0.6022812773247865
+      },
+      "top1_agreement_count": 1454,
+      "top1_agreement_percent": 28.189220628150444,
+      "valid_pair_count": 5158
+    },
+    "all_view__object_center": {
+      "js_divergence": {
+        "count": 5158,
+        "mean": 0.46991913461575685,
+        "median": 0.49358963381942267,
+        "p90": 0.6381030371380132
+      },
+      "top1_agreement_count": 1074,
+      "top1_agreement_percent": 20.822024040325708,
+      "valid_pair_count": 5158
+    },
+    "frozen_support__all_view": {
+      "js_divergence": {
+        "count": 5229,
+        "mean": 0.11272319489025254,
+        "median": 0.07666893580513799,
+        "p90": 0.2596224999405992
+      },
+      "top1_agreement_count": 3781,
+      "top1_agreement_percent": 72.30828074201568,
+      "valid_pair_count": 5229
+    },
+    "frozen_support__independent_review": {
+      "js_divergence": {
+        "count": 5224,
+        "mean": 0.15272968546302493,
+        "median": 0.10942617001381691,
+        "p90": 0.34075619833596044
+      },
+      "top1_agreement_count": 3524,
+      "top1_agreement_percent": 67.45788667687596,
+      "valid_pair_count": 5224
+    },
+    "frozen_support__limited_context": {
+      "js_divergence": {
+        "count": 5136,
+        "mean": 0.4525985338855188,
+        "median": 0.47095820913786024,
+        "p90": 0.6443711929515519
+      },
+      "top1_agreement_count": 1384,
+      "top1_agreement_percent": 26.947040498442366,
+      "valid_pair_count": 5136
+    },
+    "frozen_support__object_center": {
+      "js_divergence": {
+        "count": 5136,
+        "mean": 0.5059848807497711,
+        "median": 0.5429424071968394,
+        "p90": 0.6638429322800463
+      },
+      "top1_agreement_count": 1057,
+      "top1_agreement_percent": 20.580218068535824,
+      "valid_pair_count": 5136
+    },
+    "frozen_support__sampled_support": {
+      "js_divergence": {
+        "count": 5207,
+        "mean": 0.0027936085019409345,
+        "median": 0.0,
+        "p90": 3.202650632541797e-17
+      },
+      "top1_agreement_count": 5167,
+      "top1_agreement_percent": 99.23180334165546,
+      "valid_pair_count": 5207
+    },
+    "independent_review__all_view": {
+      "js_divergence": {
+        "count": 5250,
+        "mean": 0.009231265802409334,
+        "median": 0.0029510695430403325,
+        "p90": 0.021396220384984985
+      },
+      "top1_agreement_count": 4956,
+      "top1_agreement_percent": 94.4,
+      "valid_pair_count": 5250
+    },
+    "independent_review__limited_context": {
+      "js_divergence": {
+        "count": 5154,
+        "mean": 0.41592121637629553,
+        "median": 0.42512420189917055,
+        "p90": 0.6063762283570798
+      },
+      "top1_agreement_count": 1450,
+      "top1_agreement_percent": 28.13348855258052,
+      "valid_pair_count": 5154
+    },
+    "independent_review__object_center": {
+      "js_divergence": {
+        "count": 5154,
+        "mean": 0.474516592179952,
+        "median": 0.4997195055447352,
+        "p90": 0.641249497704924
+      },
+      "top1_agreement_count": 1069,
+      "top1_agreement_percent": 20.74117190531626,
+      "valid_pair_count": 5154
+    },
+    "object_center__limited_context": {
+      "js_divergence": {
+        "count": 5168,
+        "mean": 0.10162706484398894,
+        "median": 0.07883689653050494,
+        "p90": 0.21440944828363007
+      },
+      "top1_agreement_count": 2292,
+      "top1_agreement_percent": 44.34984520123839,
+      "valid_pair_count": 5168
+    },
+    "sampled_support__all_view": {
+      "js_divergence": {
+        "count": 5207,
+        "mean": 0.11258483462735953,
+        "median": 0.07648112356807411,
+        "p90": 0.2595009388759613
+      },
+      "top1_agreement_count": 3769,
+      "top1_agreement_percent": 72.38333013251392,
+      "valid_pair_count": 5207
+    },
+    "sampled_support__independent_review": {
+      "js_divergence": {
+        "count": 5202,
+        "mean": 0.15311872584708613,
+        "median": 0.10953778790767824,
+        "p90": 0.344381681086106
+      },
+      "top1_agreement_count": 3510,
+      "top1_agreement_percent": 67.47404844290658,
+      "valid_pair_count": 5202
+    },
+    "sampled_support__limited_context": {
+      "js_divergence": {
+        "count": 5129,
+        "mean": 0.45252398930254223,
+        "median": 0.47097598886484937,
+        "p90": 0.6446577636842442
+      },
+      "top1_agreement_count": 1382,
+      "top1_agreement_percent": 26.944823552349387,
+      "valid_pair_count": 5129
+    },
+    "sampled_support__object_center": {
+      "js_divergence": {
+        "count": 5129,
+        "mean": 0.5058739397652051,
+        "median": 0.5425372908815819,
+        "p90": 0.6642590834296545
+      },
+      "top1_agreement_count": 1058,
+      "top1_agreement_percent": 20.62780269058296,
+      "valid_pair_count": 5129
+    }
+  },
+  "scene_count": 100,
+  "source_statistics": {
+    "all_view": {
+      "entropy": {
+        "count": 5255,
+        "mean": 0.2572688296889796,
+        "median": 0.2586092856527923,
+        "p90": 0.3966064724455326
+      },
+      "margin": {
+        "count": 5255,
+        "mean": 0.341626332465075,
+        "median": 0.2787301030416982,
+        "p90": 0.7415792650814327
+      },
+      "probability": {
+        "count": 5255,
+        "mean": 0.5358125126219868,
+        "median": 0.5091972954974848,
+        "p90": 0.8269096833373779
+      }
+    },
+    "frozen_support": {
+      "entropy": {
+        "count": 5233,
+        "mean": 0.18883608533301194,
+        "median": 0.19238227704916946,
+        "p90": 0.31261347893713864
+      },
+      "margin": {
+        "count": 5233,
+        "mean": 0.38178004120276154,
+        "median": 0.3020292315478242,
+        "p90": 0.8790227492275746
+      },
+      "probability": {
+        "count": 5233,
+        "mean": 0.6006180648265204,
+        "median": 0.5691605713706505,
+        "p90": 0.9326269313721857
+      }
+    },
+    "independent_review": {
+      "entropy": {
+        "count": 5250,
+        "mean": 0.25112205042631197,
+        "median": 0.25346716903973554,
+        "p90": 0.39070281493074716
+      },
+      "margin": {
+        "count": 5250,
+        "mean": 0.3466711892600468,
+        "median": 0.28351554886407093,
+        "p90": 0.7571145377414097
+      },
+      "probability": {
+        "count": 5250,
+        "mean": 0.5417153876730871,
+        "median": 0.5163134483474412,
+        "p90": 0.8372992214987002
+      }
+    },
+    "limited_context": {
+      "entropy": {
+        "count": 5168,
+        "mean": 0.6480463174319722,
+        "median": 0.6753324718691995,
+        "p90": 0.8804305393181182
+      },
+      "margin": {
+        "count": 5168,
+        "mean": 0.1305483949861768,
+        "median": 0.06427852116621643,
+        "p90": 0.3656547065955391
+      },
+      "probability": {
+        "count": 5168,
+        "mean": 0.24201729569356917,
+        "median": 0.19410500177608947,
+        "p90": 0.5019562999367062
+      }
+    },
+    "object_center": {
+      "entropy": {
+        "count": 5168,
+        "mean": 0.7346491305103425,
+        "median": 0.7875572759270453,
+        "p90": 0.9133465849807402
+      },
+      "margin": {
+        "count": 5168,
+        "mean": 0.09289493039563197,
+        "median": 0.036315744479816274,
+        "p90": 0.2605096937938977
+      },
+      "probability": {
+        "count": 5168,
+        "mean": 0.18003305003729758,
+        "median": 0.12648304379531383,
+        "p90": 0.39928472325765924
+      }
+    },
+    "sampled_support": {
+      "entropy": {
+        "count": 5207,
+        "mean": 0.18786686378879117,
+        "median": 0.19143547271885444,
+        "p90": 0.3127401256567368
+      },
+      "margin": {
+        "count": 5207,
+        "mean": 0.38537278986564594,
+        "median": 0.30475520280675694,
+        "p90": 0.8929034464411874
+      },
+      "probability": {
+        "count": 5207,
+        "mean": 0.6029063040550456,
+        "median": 0.5705391837511388,
+        "p90": 0.9415240993773456
+      }
+    }
+  },
+  "track_count": 5266
+}

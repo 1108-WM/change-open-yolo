@@ -6,6 +6,27 @@
     <img src="./docs/pipeline.png" width="100%">
 </div>
 
+## This research fork
+
+This repository is the working research fork at
+`1108-WM/change-open-yolo`.  It keeps the original Open-YOLO 3D backbone and
+adds the current multi-view proposal, risk-aware geometry completion, and
+open-vocabulary semantic calibration experiments.
+
+- Current frozen conclusions and metrics: [`CURRENT_EXPERIMENT_STATUS.md`](CURRENT_EXPERIMENT_STATUS.md)
+- Current pipeline and experimental contracts: [`资料/当前基线修改方向.md`](资料/当前基线修改方向.md)
+- New-session recovery entry: [`新开对话阅读内容.md`](新开对话阅读内容.md)
+- Remote-server setup and checkout verification: [`docs/REMOTE_SERVER_SETUP.md`](docs/REMOTE_SERVER_SETUP.md)
+- GitHub upload boundary: [`docs/GITHUB_UPLOAD_SCOPE.md`](docs/GITHUB_UPLOAD_SCOPE.md)
+
+Clone this fork with its pinned third-party submodules:
+
+```bash
+git clone --recurse-submodules https://github.com/1108-WM/change-open-yolo.git
+cd change-open-yolo
+python3 tools/verify_repository_checkout.py
+```
+
 </div>
 
 <div align="center">
@@ -121,4 +142,3 @@ year={2025}
 }
 }
 ```
-

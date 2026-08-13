@@ -19,6 +19,12 @@ from pathlib import Path
 REPO_ROOT = osp.dirname(osp.dirname(osp.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
+for _third_party_root in (
+    osp.join(REPO_ROOT, "models", "Mask3D"),
+    osp.join(REPO_ROOT, "models", "YOLO-World"),
+):
+    if _third_party_root not in sys.path:
+        sys.path.insert(0, _third_party_root)
 
 import imageio.v2 as imageio
 import numpy as np
@@ -37,6 +43,19 @@ def _read_scene_names(scene_names, scene_split, max_scenes):
 
         names = list(SCENE_NAMES_SCANNET200)
     return names[:max_scenes] if max_scenes is not None else names
+
+
+def select_frame_indices(total_frames, max_frames, frame_stride, selection):
+    """从配置已加载的视角中选择帧；默认 first 保持历史 f30 行为。"""
+    available = np.arange(0, total_frames, max(1, frame_stride), dtype=np.int64)
+    if max_frames is None or len(available) <= max_frames:
+        return available.tolist()
+    if selection == "first":
+        return available[:max_frames].tolist()
+    if selection == "uniform":
+        positions = np.rint(np.linspace(0, len(available) - 1, max_frames)).astype(np.int64)
+        return available[positions].tolist()
+    raise ValueError(f"未知帧采样方式：{selection}")
 
 
 def _mask_iou(left, right):
@@ -114,9 +133,9 @@ def export_scene_dense_observations(openyolo3d, predictor, scene_name, output_ro
     visible = _to_numpy(openyolo3d.mesh_projections[1]).astype(bool)
     labels = openyolo3d.openyolo3d_config["network2d"]["text_prompts"]
     image_height, image_width = openyolo3d.world2cam.image_resolution
-    frame_indices = list(range(0, len(openyolo3d.world2cam.color_paths), max(1, args.frame_stride)))
-    if args.max_frames is not None:
-        frame_indices = frame_indices[: args.max_frames]
+    frame_indices = select_frame_indices(
+        len(openyolo3d.world2cam.color_paths), args.max_frames, args.frame_stride, args.frame_selection
+    )
 
     records = []
     frame_stats = []
@@ -259,6 +278,9 @@ def main():
 
     parser = argparse.ArgumentParser(description="Export dense per-frame YOLO-World + SAM instance evidence.")
     parser.add_argument("--dataset", default="scannet200", choices=("scannet200",))
+    parser.add_argument("--dataset_root", default="./data/scannet200")
+    parser.add_argument("--processed_scene_root", default=None)
+    parser.add_argument("--config_path", default="./pretrained/config_scannet200.yaml")
     parser.add_argument("--path_to_3d_masks", required=True)
     parser.add_argument("--output_root", required=True)
     parser.add_argument("--sam_checkpoint", required=True)
@@ -276,6 +298,7 @@ def main():
     parser.add_argument("--max_scenes", default=None, type=int)
     parser.add_argument("--frame_stride", default=1, type=int)
     parser.add_argument("--max_frames", default=None, type=int)
+    parser.add_argument("--frame_selection", default="first", choices=("first", "uniform"))
     parser.add_argument("--detection_score_th", default=0.25, type=float)
     parser.add_argument("--max_detections_per_frame", default=20, type=int)
     parser.add_argument("--max_box_area_ratio", default=0.85, type=float)
@@ -291,21 +314,28 @@ def main():
     if args.allow_legacy_2d_cache:
         os.environ["OPENYOLO3D_ALLOW_LEGACY_2D_CACHE"] = "1"
 
-    config = load_yaml("./pretrained/config_scannet200.yaml")
+    args.dataset_root = osp.abspath(args.dataset_root)
+    args.processed_scene_root = osp.abspath(
+        args.processed_scene_root or args.dataset_root
+    )
+    args.config_path = osp.abspath(args.config_path)
+    config = load_yaml(args.config_path)
     scene_names = _read_scene_names(args.scene_names, args.scene_split, args.max_scenes)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     predictor = _load_sam_predictor(args.sam_checkpoint, args.sam_model_type, device, args.sam_source)
-    openyolo3d = OpenYolo3D("./pretrained/config_scannet200.yaml")
+    openyolo3d = OpenYolo3D(args.config_path)
     os.makedirs(args.output_root, exist_ok=True)
     summaries = []
     start_time = time.time()
     for scene_name in tqdm(scene_names):
         scene_id = scene_name.replace("scene", "")
         openyolo3d.predict(
-            path_2_scene_data=osp.join("./data/scannet200", scene_name),
+            path_2_scene_data=osp.join(args.dataset_root, scene_name),
             depth_scale=config["openyolo3d"]["depth_scale"],
             datatype="mesh",
-            processed_scene=osp.join("./data/scannet200", scene_name, f"{scene_id}.npy"),
+            processed_scene=osp.join(
+                args.processed_scene_root, scene_name, f"{scene_id}.npy"
+            ),
             path_to_3d_masks=args.path_to_3d_masks,
             is_gt=False,
             path_to_2d_preds=args.path_to_2d_preds,

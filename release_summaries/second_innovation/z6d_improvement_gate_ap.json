@@ -1,0 +1,313 @@
+{
+  "acceptance_contract": "accept proposed new class iff nested-OOF P(true AP-quality improvement) > 0.5",
+  "candidate_mutation": false,
+  "current_control": {
+    "ap": 0.3275573975430547,
+    "ap25": 0.4376924294463678,
+    "ap50": 0.4029802741973167,
+    "common_ap": 0.2734917475207624,
+    "head_ap": 0.44817343505701884,
+    "tail_ap": 0.22894633687225782
+  },
+  "decision": "terminate automatic selector/gate branch; neither system exceeds control or has stable positive folds",
+  "deltas_vs_current_control": {
+    "improvement_gated_semantic_only": {
+      "ap": -0.00866383875581711,
+      "ap25": -0.009529599206444528,
+      "ap50": -0.009691034528927445,
+      "common_ap": 0.001338013653992276,
+      "head_ap": -0.024927766572943988,
+      "tail_ap": 0.0016388544683306194
+    },
+    "improvement_gated_semantic_plus_dino": {
+      "ap": -0.012594844075369926,
+      "ap25": -0.0141477703010085,
+      "ap50": -0.014047064283494615,
+      "common_ap": -0.0030317671004631563,
+      "head_ap": -0.03157875138022337,
+      "tail_ap": 0.0017623034357905354
+    }
+  },
+  "diagnostic_type": "official100 nested-cross-fitted Z6d binary improvement gate AP",
+  "even48_read": false,
+  "folds": [
+    {
+      "current_control": {
+        "ap": 0.4874662151024476,
+        "ap25": 0.5937854685980603,
+        "ap50": 0.5610451069316328,
+        "common_ap": 0.3726938966383411,
+        "head_ap": 0.5323885924043441,
+        "tail_ap": 0.5380511463844797
+      },
+      "deltas_vs_current_control": {
+        "improvement_gated_semantic_only": {
+          "ap": 0.0035861873951244516,
+          "ap25": -0.00023317648209708608,
+          "ap50": 0.0024424007892960287,
+          "common_ap": 0.0004263494202241813,
+          "head_ap": 0.0067607765025352595,
+          "tail_ap": 8.818342151684089e-05
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": -0.006833978217994197,
+          "ap25": -0.005857602721899502,
+          "ap50": -0.005422303623181746,
+          "common_ap": 0.0004347484955451453,
+          "head_ap": -0.01369109512055866,
+          "tail_ap": 8.818342151684089e-05
+        }
+      },
+      "fold_index": 0,
+      "systems": {
+        "improvement_gated_semantic_only": {
+          "ap": 0.49105240249757204,
+          "ap25": 0.5935522921159632,
+          "ap50": 0.5634875077209288,
+          "common_ap": 0.3731202460585653,
+          "head_ap": 0.5391493689068794,
+          "tail_ap": 0.5381393298059965
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": 0.4806322368844534,
+          "ap25": 0.5879278658761607,
+          "ap50": 0.555622803308451,
+          "common_ap": 0.37312864513388627,
+          "head_ap": 0.5186974972837854,
+          "tail_ap": 0.5381393298059965
+        }
+      }
+    },
+    {
+      "current_control": {
+        "ap": 0.47327604344876933,
+        "ap25": 0.553678636171811,
+        "ap50": 0.5338597987534652,
+        "common_ap": 0.29189393939393943,
+        "head_ap": 0.5628526563934911,
+        "tail_ap": 0.4190066703343442
+      },
+      "deltas_vs_current_control": {
+        "improvement_gated_semantic_only": {
+          "ap": 0.014839562731184364,
+          "ap25": 0.007217992634550585,
+          "ap50": 0.01239475902807785,
+          "common_ap": 0.06852689644617543,
+          "head_ap": -0.006120573596830381,
+          "tail_ap": 4.9059916843452456e-05
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": 0.00491040060160558,
+          "ap25": -0.0005124686827081559,
+          "ap50": 0.0018156216812142967,
+          "common_ap": 0.04389699806366465,
+          "head_ap": -0.011366476957116567,
+          "tail_ap": 3.692657613979522e-05
+        }
+      },
+      "fold_index": 1,
+      "systems": {
+        "improvement_gated_semantic_only": {
+          "ap": 0.4881156061799537,
+          "ap25": 0.5608966288063616,
+          "ap50": 0.5462545577815431,
+          "common_ap": 0.36042083584011486,
+          "head_ap": 0.5567320827966608,
+          "tail_ap": 0.41905573025118764
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": 0.4781864440503749,
+          "ap25": 0.5531661674891029,
+          "ap50": 0.5356754204346795,
+          "common_ap": 0.3357909374576041,
+          "head_ap": 0.5514861794363746,
+          "tail_ap": 0.419043596910484
+        }
+      }
+    },
+    {
+      "current_control": {
+        "ap": 0.439927722223372,
+        "ap25": 0.561042589609965,
+        "ap50": 0.5367922935496205,
+        "common_ap": 0.4228985172297115,
+        "head_ap": 0.5117249099419963,
+        "tail_ap": 0.22033730158730158
+      },
+      "deltas_vs_current_control": {
+        "improvement_gated_semantic_only": {
+          "ap": -0.01613048127643263,
+          "ap25": -0.01837003303682383,
+          "ap50": -0.017226281845556746,
+          "common_ap": -0.007269130689005865,
+          "head_ap": -0.025944053564071812,
+          "tail_ap": 0.0
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": -0.015842511783007496,
+          "ap25": -0.017060282985688735,
+          "ap50": -0.016818323236449828,
+          "common_ap": -0.0011389071063601652,
+          "head_ap": -0.029060103845009677,
+          "tail_ap": 0.0
+        }
+      },
+      "fold_index": 2,
+      "systems": {
+        "improvement_gated_semantic_only": {
+          "ap": 0.4237972409469394,
+          "ap25": 0.5426725565731412,
+          "ap50": 0.5195660117040638,
+          "common_ap": 0.41562938654070564,
+          "head_ap": 0.48578085637792445,
+          "tail_ap": 0.22033730158730158
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": 0.4240852104403645,
+          "ap25": 0.5439823066242763,
+          "ap50": 0.5199739703131707,
+          "common_ap": 0.42175961012335134,
+          "head_ap": 0.4826648060969866,
+          "tail_ap": 0.22033730158730158
+        }
+      }
+    },
+    {
+      "current_control": {
+        "ap": 0.42932076043255885,
+        "ap25": 0.5582565009644198,
+        "ap50": 0.5247360316879012,
+        "common_ap": 0.38838574174459856,
+        "head_ap": 0.5252862954656874,
+        "tail_ap": 0.2818289335264644
+      },
+      "deltas_vs_current_control": {
+        "improvement_gated_semantic_only": {
+          "ap": -0.006501692520355762,
+          "ap25": -0.006374644643996952,
+          "ap50": -0.008737867972395397,
+          "common_ap": 0.0002092669959774529,
+          "head_ap": -0.01395878106321713,
+          "tail_ap": 0.0005140235850111807
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": -0.011031531747838497,
+          "ap25": -0.012256452821013952,
+          "ap50": -0.014048392386943442,
+          "common_ap": -0.000875029970672403,
+          "head_ap": -0.022628678602893637,
+          "tail_ap": 0.00023214097288165592
+        }
+      },
+      "fold_index": 3,
+      "systems": {
+        "improvement_gated_semantic_only": {
+          "ap": 0.4228190679122031,
+          "ap25": 0.5518818563204229,
+          "ap50": 0.5159981637155058,
+          "common_ap": 0.388595008740576,
+          "head_ap": 0.5113275144024703,
+          "tail_ap": 0.28234295711147556
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": 0.41828922868472035,
+          "ap25": 0.5460000481434059,
+          "ap50": 0.5106876393009577,
+          "common_ap": 0.38751071177392615,
+          "head_ap": 0.5026576168627938,
+          "tail_ap": 0.28206107449934603
+        }
+      }
+    },
+    {
+      "current_control": {
+        "ap": 0.40657283260995314,
+        "ap25": 0.532452272337275,
+        "ap50": 0.4868893263330081,
+        "common_ap": 0.28710120687393414,
+        "head_ap": 0.49020450895542317,
+        "tail_ap": 0.2910774410774411
+      },
+      "deltas_vs_current_control": {
+        "improvement_gated_semantic_only": {
+          "ap": -0.0037187802931242797,
+          "ap25": -0.00169933903755759,
+          "ap50": -0.0032297172919130146,
+          "common_ap": 0.004304517031789745,
+          "head_ap": -0.008530996741334396,
+          "tail_ap": 0.0008207070707070829
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": -0.0037993147995295518,
+          "ap25": -0.0012774714449295121,
+          "ap50": -0.003602347525927696,
+          "common_ap": 0.004304517031789745,
+          "head_ap": -0.008643774935808535,
+          "tail_ap": 0.0007215007215006786
+        }
+      },
+      "fold_index": 4,
+      "systems": {
+        "improvement_gated_semantic_only": {
+          "ap": 0.40285405231682886,
+          "ap25": 0.5307529332997174,
+          "ap50": 0.48365960904109506,
+          "common_ap": 0.2914057239057239,
+          "head_ap": 0.4816735122140888,
+          "tail_ap": 0.2918981481481482
+        },
+        "improvement_gated_semantic_plus_dino": {
+          "ap": 0.4027735178104236,
+          "ap25": 0.5311748008923455,
+          "ap50": 0.4832869788070804,
+          "common_ap": 0.2914057239057239,
+          "head_ap": 0.48156073401961463,
+          "tail_ap": 0.2917989417989418
+        }
+      }
+    }
+  ],
+  "gate_state_counts": {
+    "improvement_gated_semantic_only": {
+      "abstained_keep_current": 44228,
+      "accepted_new_class": 15182,
+      "accepted_no_valid_current": 126,
+      "base_kept_current": 7223
+    },
+    "improvement_gated_semantic_plus_dino": {
+      "abstained_keep_current": 43434,
+      "accepted_new_class": 15988,
+      "accepted_no_valid_current": 125,
+      "base_kept_current": 7212
+    }
+  },
+  "geometry_mutation": false,
+  "ground_truth_usage": "evaluation_only_after_nested_scene_isolated_oof_training",
+  "inference_plan_written": false,
+  "positive_fold_counts_main_ap": {
+    "improvement_gated_semantic_only": 2,
+    "improvement_gated_semantic_plus_dino": 1
+  },
+  "safety60_read": false,
+  "scene_count": 100,
+  "score_mutation": false,
+  "systems": {
+    "improvement_gated_semantic_only": {
+      "ap": 0.3188935587872376,
+      "ap25": 0.4281628302399233,
+      "ap50": 0.39328923966838925,
+      "common_ap": 0.27482976117475466,
+      "head_ap": 0.42324566848407486,
+      "tail_ap": 0.23058519134058844
+    },
+    "improvement_gated_semantic_plus_dino": {
+      "ap": 0.31496255346768476,
+      "ap25": 0.4235446591453593,
+      "ap50": 0.3889332099138221,
+      "common_ap": 0.27045998042029923,
+      "head_ap": 0.4165946836767955,
+      "tail_ap": 0.23070864030804836
+    }
+  },
+  "test60_read": false
+}

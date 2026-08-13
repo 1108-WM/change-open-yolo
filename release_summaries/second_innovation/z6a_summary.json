@@ -1,0 +1,863 @@
+{
+  "candidate_count": 66763,
+  "candidate_mutation": false,
+  "class_count": 198,
+  "contracts": {
+    "candidate_set": "per geometry node, elementwise max of geometry-own and inherited evidence, then frozen top-5 per model",
+    "full_class_oracle": "same frozen geometry and current hybrid scores; all 198 valid prediction classes are eligible",
+    "one_to_one_score": "GT-only Hungarian score diagnostic after the corresponding temporary oracle class assignment",
+    "oracle": "keep current class unless best-IoU GT class is present in the registered candidate set and IoU >= oracle_min_iou"
+  },
+  "control_reproduction": {
+    "max_abs_error": 0.0,
+    "reference_summary": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_ap_official100_20260811_v2_union_frozen_score_control/summary.json",
+    "tolerance": 1e-10,
+    "valid": true
+  },
+  "coverage": {
+    "0.25": {
+      "alpha_only_target_fraction": 0.2243363179390512,
+      "counts": {
+        "alpha_only_target_count": 11425,
+        "alpha_top5_oracle_attainable_correct_count": 44250,
+        "alpha_top5_oracle_contains_target_count": 43984,
+        "alpha_top5_oracle_node_target_contains_count": 3968,
+        "alpha_top5_oracle_repairable_wrong_count": 41364,
+        "current_correct_prediction_count": 2886,
+        "eligible_node_target_count": 4822,
+        "eligible_prediction_count": 50928,
+        "full_class_oracle_attainable_correct_count": 50928,
+        "full_class_oracle_contains_target_count": 50928,
+        "full_class_oracle_node_target_contains_count": 4822,
+        "full_class_oracle_repairable_wrong_count": 48042,
+        "incorrect_prediction_count": 48042,
+        "yolo_alpha_union_top5_oracle_attainable_correct_count": 47271,
+        "yolo_alpha_union_top5_oracle_contains_target_count": 47228,
+        "yolo_alpha_union_top5_oracle_node_target_contains_count": 4337,
+        "yolo_alpha_union_top5_oracle_repairable_wrong_count": 44385,
+        "yolo_only_target_count": 3244,
+        "yolo_top5_oracle_attainable_correct_count": 36101,
+        "yolo_top5_oracle_contains_target_count": 35803,
+        "yolo_top5_oracle_node_target_contains_count": 3383,
+        "yolo_top5_oracle_repairable_wrong_count": 33215
+      },
+      "current_correct_fraction": 0.056668237511781336,
+      "variants": {
+        "alpha_top5_oracle": {
+          "attainable_correct_fraction": 0.8688737040527804,
+          "candidate_contains_target_fraction": 0.863650644046497,
+          "node_target_contains_fraction": 0.8228950642886769,
+          "repairable_fraction_of_current_wrong": 0.8609966279505433
+        },
+        "full_class_oracle": {
+          "attainable_correct_fraction": 1.0,
+          "candidate_contains_target_fraction": 1.0,
+          "node_target_contains_fraction": 1.0,
+          "repairable_fraction_of_current_wrong": 1.0
+        },
+        "yolo_alpha_union_top5_oracle": {
+          "attainable_correct_fraction": 0.9281927426955702,
+          "candidate_contains_target_fraction": 0.9273484134464341,
+          "node_target_contains_fraction": 0.899419328079635,
+          "repairable_fraction_of_current_wrong": 0.9238791057824404
+        },
+        "yolo_top5_oracle": {
+          "attainable_correct_fraction": 0.708863493559535,
+          "candidate_contains_target_fraction": 0.703012095507383,
+          "node_target_contains_fraction": 0.7015761094981335,
+          "repairable_fraction_of_current_wrong": 0.6913742142292161
+        }
+      },
+      "yolo_only_target_fraction": 0.06369776939993717
+    },
+    "0.5": {
+      "alpha_only_target_fraction": 0.22186298127720722,
+      "counts": {
+        "alpha_only_target_count": 10499,
+        "alpha_top5_oracle_attainable_correct_count": 41364,
+        "alpha_top5_oracle_contains_target_count": 41143,
+        "alpha_top5_oracle_node_target_contains_count": 3170,
+        "alpha_top5_oracle_repairable_wrong_count": 38927,
+        "current_correct_prediction_count": 2437,
+        "eligible_node_target_count": 3813,
+        "eligible_prediction_count": 47322,
+        "full_class_oracle_attainable_correct_count": 47322,
+        "full_class_oracle_contains_target_count": 47322,
+        "full_class_oracle_node_target_contains_count": 3813,
+        "full_class_oracle_repairable_wrong_count": 44885,
+        "incorrect_prediction_count": 44885,
+        "yolo_alpha_union_top5_oracle_attainable_correct_count": 44212,
+        "yolo_alpha_union_top5_oracle_contains_target_count": 44174,
+        "yolo_alpha_union_top5_oracle_node_target_contains_count": 3447,
+        "yolo_alpha_union_top5_oracle_repairable_wrong_count": 41775,
+        "yolo_only_target_count": 3031,
+        "yolo_top5_oracle_attainable_correct_count": 33946,
+        "yolo_top5_oracle_contains_target_count": 33675,
+        "yolo_top5_oracle_node_target_contains_count": 2698,
+        "yolo_top5_oracle_repairable_wrong_count": 31509
+      },
+      "current_correct_fraction": 0.051498246058915516,
+      "variants": {
+        "alpha_top5_oracle": {
+          "attainable_correct_fraction": 0.8740966146823888,
+          "candidate_contains_target_fraction": 0.8694264823971937,
+          "node_target_contains_fraction": 0.8313663781799109,
+          "repairable_fraction_of_current_wrong": 0.8672607775426089
+        },
+        "full_class_oracle": {
+          "attainable_correct_fraction": 1.0,
+          "candidate_contains_target_fraction": 1.0,
+          "node_target_contains_fraction": 1.0,
+          "repairable_fraction_of_current_wrong": 1.0
+        },
+        "yolo_alpha_union_top5_oracle": {
+          "attainable_correct_fraction": 0.9342800388825493,
+          "candidate_contains_target_fraction": 0.9334770297113394,
+          "node_target_contains_fraction": 0.9040125885129819,
+          "repairable_fraction_of_current_wrong": 0.9307118190932383
+        },
+        "yolo_top5_oracle": {
+          "attainable_correct_fraction": 0.7173407717340772,
+          "candidate_contains_target_fraction": 0.7116140484341321,
+          "node_target_contains_fraction": 0.7075793338578547,
+          "repairable_fraction_of_current_wrong": 0.701993984627381
+        }
+      },
+      "yolo_only_target_fraction": 0.06405054731414564
+    }
+  },
+  "deltas_vs_current_frozen_class": {
+    "current_score": {
+      "alpha_top5_oracle": {
+        "ap": 0.09125214419362082,
+        "ap25": 0.1421913908043692,
+        "ap50": 0.1234810754299262,
+        "common_ap": 0.0973841859226795,
+        "head_ap": 0.12099211545050376,
+        "tail_ap": 0.04544763584312625
+      },
+      "full_class_oracle": {
+        "ap": 0.21978523848369835,
+        "ap25": 0.3151672578188545,
+        "ap50": 0.2834216993529079,
+        "common_ap": 0.3133897211349325,
+        "head_ap": 0.1996423510194077,
+        "tail_ap": 0.14286782868650869
+      },
+      "yolo_alpha_union_top5_oracle": {
+        "ap": 0.10529337516589954,
+        "ap25": 0.16431734618869492,
+        "ap50": 0.14258866916473928,
+        "common_ap": 0.11943252608813054,
+        "head_ap": 0.1358314030786561,
+        "tail_ap": 0.04960023438710978
+      },
+      "yolo_top5_oracle": {
+        "ap": 0.03251328517057356,
+        "ap25": 0.05972099653212393,
+        "ap50": 0.04601175120550571,
+        "common_ap": 0.03523741519334023,
+        "head_ap": 0.03768382202253412,
+        "tail_ap": 0.02271906198557075
+      }
+    },
+    "one_to_one_score": {
+      "alpha_top5_oracle": {
+        "ap": 0.06786165676897071,
+        "ap25": 0.09657276975958506,
+        "ap50": 0.08686004765668665,
+        "common_ap": 0.08692183078975535,
+        "head_ap": 0.06887914119341887,
+        "tail_ap": 0.04548059964726631
+      },
+      "full_class_oracle": {
+        "ap": 0.1806592225484931,
+        "ap25": 0.2353361428793741,
+        "ap50": 0.2163448172649265,
+        "common_ap": 0.2706247805304408,
+        "head_ap": 0.13017677295201702,
+        "tail_ap": 0.14758046737213404
+      },
+      "yolo_alpha_union_top5_oracle": {
+        "ap": 0.0818118125551699,
+        "ap25": 0.11720833530445107,
+        "ap50": 0.10141625702996926,
+        "common_ap": 0.10105933549329771,
+        "head_ap": 0.06949085229895713,
+        "tail_ap": 0.0767305996472663
+      },
+      "yolo_top5_oracle": {
+        "ap": 0.020284977978032748,
+        "ap25": 0.0350160551671459,
+        "ap50": 0.021473101251103355,
+        "common_ap": 0.024176208138472266,
+        "head_ap": 0.005717653521796318,
+        "tail_ap": 0.03510802469135804
+      }
+    }
+  },
+  "diagnostic_type": "Z6a frozen-geometry class candidate-space GT-only oracle",
+  "even48_read": false,
+  "folds": [
+    {
+      "deltas_vs_current_frozen_class": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.09367204572652976,
+            "ap25": 0.13467997916801444,
+            "ap50": 0.12589308546609024,
+            "common_ap": 0.17180478061033616,
+            "head_ap": 0.08027200007388069,
+            "tail_ap": 0.015873015873015928
+          },
+          "full_class_oracle": {
+            "ap": 0.17724030568224047,
+            "ap25": 0.2384161891906812,
+            "ap50": 0.22558150082567474,
+            "common_ap": 0.29940266420821965,
+            "head_ap": 0.13736309198657415,
+            "tail_ap": 0.10336514235323757
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.11359629608260535,
+            "ap25": 0.1536406875401244,
+            "ap50": 0.1466307693148372,
+            "common_ap": 0.19513811394366948,
+            "head_ap": 0.10363862195295226,
+            "tail_ap": 0.02223925765592427
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.014508232243433672,
+            "ap25": 0.023297798401530456,
+            "ap50": 0.017111991597678955,
+            "common_ap": 0.03342235850569181,
+            "head_ap": 0.007482753995347924,
+            "tail_ap": 0.005219020780615091
+          }
+        }
+      },
+      "fold_index": 0,
+      "systems": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.5811382608289773,
+            "ap25": 0.7284654477660747,
+            "ap50": 0.686938192397723,
+            "common_ap": 0.5444986772486773,
+            "head_ap": 0.6126605924782248,
+            "tail_ap": 0.5539241622574956
+          },
+          "current_frozen_class": {
+            "ap": 0.4874662151024476,
+            "ap25": 0.5937854685980603,
+            "ap50": 0.5610451069316328,
+            "common_ap": 0.3726938966383411,
+            "head_ap": 0.5323885924043441,
+            "tail_ap": 0.5380511463844797
+          },
+          "full_class_oracle": {
+            "ap": 0.6647065207846881,
+            "ap25": 0.8322016577887414,
+            "ap50": 0.7866266077573075,
+            "common_ap": 0.6720965608465608,
+            "head_ap": 0.6697516843909183,
+            "tail_ap": 0.6414162887377173
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.6010625111850529,
+            "ap25": 0.7474261561381846,
+            "ap50": 0.70767587624647,
+            "common_ap": 0.5678320105820106,
+            "head_ap": 0.6360272143572964,
+            "tail_ap": 0.560290404040404
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.5019744473458813,
+            "ap25": 0.6170832669995907,
+            "ap50": 0.5781570985293117,
+            "common_ap": 0.40611625514403293,
+            "head_ap": 0.539871346399692,
+            "tail_ap": 0.5432701671650948
+          }
+        }
+      },
+      "validation_scenes": [
+        "scene0027_01",
+        "scene0028_00",
+        "scene0038_02",
+        "scene0039_00",
+        "scene0065_01",
+        "scene0079_00",
+        "scene0090_00",
+        "scene0099_01",
+        "scene0141_00",
+        "scene0151_00",
+        "scene0171_00",
+        "scene0317_01",
+        "scene0394_01",
+        "scene0411_01",
+        "scene0416_02",
+        "scene0524_00",
+        "scene0587_00",
+        "scene0639_00",
+        "scene0649_00",
+        "scene0673_05"
+      ]
+    },
+    {
+      "deltas_vs_current_frozen_class": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.11236352099134989,
+            "ap25": 0.1559332166117796,
+            "ap50": 0.1372005243053127,
+            "common_ap": 0.09465157527657525,
+            "head_ap": 0.13501984942758005,
+            "tail_ap": 0.029790896981741644
+          },
+          "full_class_oracle": {
+            "ap": 0.22185520772237005,
+            "ap25": 0.28686658547707866,
+            "ap50": 0.2608959665314725,
+            "common_ap": 0.26274598087098083,
+            "head_ap": 0.21579105775633312,
+            "tail_ap": 0.1555897065037481
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.13917755812031957,
+            "ap25": 0.1984728437556198,
+            "ap50": 0.16684688497695366,
+            "common_ap": 0.10475378787878786,
+            "head_ap": 0.17400023029446732,
+            "tail_ap": 0.02986526218768587
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.05479232783087423,
+            "ap25": 0.10541822345305774,
+            "ap50": 0.0621897921342045,
+            "common_ap": 0.09575757575757571,
+            "head_ap": 0.04472318859441893,
+            "tail_ap": 0.010594717545910792
+          }
+        }
+      },
+      "fold_index": 1,
+      "systems": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.5856395644401192,
+            "ap25": 0.7096118527835906,
+            "ap50": 0.6710603230587779,
+            "common_ap": 0.3865455146705147,
+            "head_ap": 0.6978725058210712,
+            "tail_ap": 0.44879756731608583
+          },
+          "current_frozen_class": {
+            "ap": 0.47327604344876933,
+            "ap25": 0.553678636171811,
+            "ap50": 0.5338597987534652,
+            "common_ap": 0.29189393939393943,
+            "head_ap": 0.5628526563934911,
+            "tail_ap": 0.4190066703343442
+          },
+          "full_class_oracle": {
+            "ap": 0.6951312511711394,
+            "ap25": 0.8405452216488897,
+            "ap50": 0.7947557652849377,
+            "common_ap": 0.5546399202649203,
+            "head_ap": 0.7786437141498243,
+            "tail_ap": 0.5745963768380923
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.6124536015690889,
+            "ap25": 0.7521514799274308,
+            "ap50": 0.7007066837304189,
+            "common_ap": 0.3966477272727273,
+            "head_ap": 0.7368528866879585,
+            "tail_ap": 0.44887193252203006
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.5280683712796436,
+            "ap25": 0.6590968596248687,
+            "ap50": 0.5960495908876697,
+            "common_ap": 0.38765151515151514,
+            "head_ap": 0.6075758449879101,
+            "tail_ap": 0.429601387880255
+          }
+        }
+      },
+      "validation_scenes": [
+        "scene0032_00",
+        "scene0093_00",
+        "scene0116_01",
+        "scene0148_00",
+        "scene0204_00",
+        "scene0205_02",
+        "scene0218_00",
+        "scene0270_01",
+        "scene0274_01",
+        "scene0302_00",
+        "scene0398_00",
+        "scene0401_00",
+        "scene0420_01",
+        "scene0445_00",
+        "scene0463_00",
+        "scene0482_01",
+        "scene0516_01",
+        "scene0541_02",
+        "scene0587_03",
+        "scene0676_01"
+      ]
+    },
+    {
+      "deltas_vs_current_frozen_class": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.12804333946061947,
+            "ap25": 0.16049548013400616,
+            "ap50": 0.15545872462318389,
+            "common_ap": 0.11899276126843272,
+            "head_ap": 0.12127396531462853,
+            "tail_ap": 0.17139171351410937
+          },
+          "full_class_oracle": {
+            "ap": 0.2125631801537447,
+            "ap25": 0.27870871568920386,
+            "ap50": 0.25069612616275383,
+            "common_ap": 0.27571909460916355,
+            "head_ap": 0.18559366381608577,
+            "tail_ap": 0.17443576388888893
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.13610100797934593,
+            "ap25": 0.17427039547280287,
+            "ap50": 0.165794743376247,
+            "common_ap": 0.13311515151697406,
+            "head_ap": 0.12799686444985026,
+            "tail_ap": 0.1713169642857143
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.013046711194305394,
+            "ap25": 0.018070191891295884,
+            "ap50": 0.015344424264025824,
+            "common_ap": 0.024448501458698424,
+            "head_ap": 0.009187326660061501,
+            "tail_ap": 0.0025669642857142905
+          }
+        }
+      },
+      "fold_index": 2,
+      "systems": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.5679710616839915,
+            "ap25": 0.7215380697439712,
+            "ap50": 0.6922510181728044,
+            "common_ap": 0.5418912784981442,
+            "head_ap": 0.6329988752566248,
+            "tail_ap": 0.39172901510141095
+          },
+          "current_frozen_class": {
+            "ap": 0.439927722223372,
+            "ap25": 0.561042589609965,
+            "ap50": 0.5367922935496205,
+            "common_ap": 0.4228985172297115,
+            "head_ap": 0.5117249099419963,
+            "tail_ap": 0.22033730158730158
+          },
+          "full_class_oracle": {
+            "ap": 0.6524909023771167,
+            "ap25": 0.8397513052991689,
+            "ap50": 0.7874884197123744,
+            "common_ap": 0.698617611838875,
+            "head_ap": 0.697318573758082,
+            "tail_ap": 0.3947730654761905
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.5760287302027179,
+            "ap25": 0.7353129850827679,
+            "ap50": 0.7025870369258675,
+            "common_ap": 0.5560136687466856,
+            "head_ap": 0.6397217743918465,
+            "tail_ap": 0.3916542658730159
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.4529744334176774,
+            "ap25": 0.5791127815012609,
+            "ap50": 0.5521367178136464,
+            "common_ap": 0.4473470186884099,
+            "head_ap": 0.5209122366020578,
+            "tail_ap": 0.22290426587301587
+          }
+        }
+      },
+      "validation_scenes": [
+        "scene0018_00",
+        "scene0038_00",
+        "scene0042_02",
+        "scene0124_01",
+        "scene0166_02",
+        "scene0192_00",
+        "scene0248_02",
+        "scene0250_02",
+        "scene0261_02",
+        "scene0276_01",
+        "scene0306_01",
+        "scene0317_00",
+        "scene0358_00",
+        "scene0359_01",
+        "scene0408_01",
+        "scene0456_01",
+        "scene0529_01",
+        "scene0576_01",
+        "scene0673_04",
+        "scene0692_01"
+      ]
+    },
+    {
+      "deltas_vs_current_frozen_class": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.08471314178954226,
+            "ap25": 0.11491744888432176,
+            "ap50": 0.10538665738885189,
+            "common_ap": 0.060925742913202796,
+            "head_ap": 0.12466972819833644,
+            "tail_ap": 0.03179472411928552
+          },
+          "full_class_oracle": {
+            "ap": 0.20075841328968247,
+            "ap25": 0.2748985552502129,
+            "ap50": 0.2485224713412052,
+            "common_ap": 0.2759408220616985,
+            "head_ap": 0.20131346977750908,
+            "tail_ap": 0.10493304063905917
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.1110307159725783,
+            "ap25": 0.14722372782580084,
+            "ap50": 0.13585588465608078,
+            "common_ap": 0.1071461950543855,
+            "head_ap": 0.15027928063389906,
+            "tail_ap": 0.03451790449793357
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.04933135566347174,
+            "ap25": 0.054806013462893266,
+            "ap50": 0.054770891083483875,
+            "common_ap": 0.04931353411431516,
+            "head_ap": 0.06258556603503462,
+            "tail_ap": 0.021863583510279228
+          }
+        }
+      },
+      "fold_index": 3,
+      "systems": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.5140339022221011,
+            "ap25": 0.6731739498487416,
+            "ap50": 0.6301226890767531,
+            "common_ap": 0.44931148465780135,
+            "head_ap": 0.6499560236640238,
+            "tail_ap": 0.3136236576457499
+          },
+          "current_frozen_class": {
+            "ap": 0.42932076043255885,
+            "ap25": 0.5582565009644198,
+            "ap50": 0.5247360316879012,
+            "common_ap": 0.38838574174459856,
+            "head_ap": 0.5252862954656874,
+            "tail_ap": 0.2818289335264644
+          },
+          "full_class_oracle": {
+            "ap": 0.6300791737222413,
+            "ap25": 0.8331550562146327,
+            "ap50": 0.7732585030291064,
+            "common_ap": 0.6643265638062971,
+            "head_ap": 0.7265997652431965,
+            "tail_ap": 0.38676197416552355
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.5403514764051371,
+            "ap25": 0.7054802287902207,
+            "ap50": 0.660591916343982,
+            "common_ap": 0.49553193679898405,
+            "head_ap": 0.6755655760995865,
+            "tail_ap": 0.31634683802439795
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.4786521160960306,
+            "ap25": 0.6130625144273131,
+            "ap50": 0.579506922771385,
+            "common_ap": 0.4376992758589137,
+            "head_ap": 0.587871861500722,
+            "tail_ap": 0.3036925170367436
+          }
+        }
+      },
+      "validation_scenes": [
+        "scene0055_00",
+        "scene0092_00",
+        "scene0114_00",
+        "scene0121_00",
+        "scene0135_00",
+        "scene0152_01",
+        "scene0229_01",
+        "scene0272_01",
+        "scene0303_01",
+        "scene0313_02",
+        "scene0419_02",
+        "scene0421_01",
+        "scene0453_00",
+        "scene0479_01",
+        "scene0510_00",
+        "scene0532_01",
+        "scene0541_00",
+        "scene0586_01",
+        "scene0662_00",
+        "scene0692_00"
+      ]
+    },
+    {
+      "deltas_vs_current_frozen_class": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.10942278650658921,
+            "ap25": 0.16060419108662172,
+            "ap50": 0.13167143911403156,
+            "common_ap": 0.06712798985526253,
+            "head_ap": 0.14182863908193205,
+            "tail_ap": 0.057339836732649974
+          },
+          "full_class_oracle": {
+            "ap": 0.20334952627374836,
+            "ap25": 0.29723023972216855,
+            "ap50": 0.24870903018275747,
+            "common_ap": 0.23464995862723137,
+            "head_ap": 0.20792455041612962,
+            "tail_ap": 0.12766530372283802
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.12945845885007157,
+            "ap25": 0.19438306604925137,
+            "ap50": 0.16269219821357206,
+            "common_ap": 0.06712798985526253,
+            "head_ap": 0.17070536814735365,
+            "tail_ap": 0.07874334815142636
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.06690898779020066,
+            "ap25": 0.11264237227707308,
+            "ap50": 0.08629128511931805,
+            "common_ap": 0.046026826708644886,
+            "head_ap": 0.08465866705854713,
+            "tail_ap": 0.03419423269966748
+          }
+        }
+      },
+      "fold_index": 4,
+      "systems": {
+        "current_score": {
+          "alpha_top5_oracle": {
+            "ap": 0.5159956191165423,
+            "ap25": 0.6930564634238967,
+            "ap50": 0.6185607654470396,
+            "common_ap": 0.35422919672919667,
+            "head_ap": 0.6320331480373552,
+            "tail_ap": 0.3484172778100911
+          },
+          "current_frozen_class": {
+            "ap": 0.40657283260995314,
+            "ap25": 0.532452272337275,
+            "ap50": 0.4868893263330081,
+            "common_ap": 0.28710120687393414,
+            "head_ap": 0.49020450895542317,
+            "tail_ap": 0.2910774410774411
+          },
+          "full_class_oracle": {
+            "ap": 0.6099223588837015,
+            "ap25": 0.8296825120594435,
+            "ap50": 0.7355983565157656,
+            "common_ap": 0.5217511655011655,
+            "head_ap": 0.6981290593715528,
+            "tail_ap": 0.4187427448002791
+          },
+          "yolo_alpha_union_top5_oracle": {
+            "ap": 0.5360312914600247,
+            "ap25": 0.7268353383865264,
+            "ap50": 0.6495815245465801,
+            "common_ap": 0.35422919672919667,
+            "head_ap": 0.6609098771027768,
+            "tail_ap": 0.36982078922886746
+          },
+          "yolo_top5_oracle": {
+            "ap": 0.4734818204001538,
+            "ap25": 0.6450946446143481,
+            "ap50": 0.5731806114523261,
+            "common_ap": 0.33312803358257903,
+            "head_ap": 0.5748631760139703,
+            "tail_ap": 0.3252716737771086
+          }
+        }
+      },
+      "validation_scenes": [
+        "scene0001_01",
+        "scene0007_00",
+        "scene0048_00",
+        "scene0054_00",
+        "scene0127_00",
+        "scene0132_02",
+        "scene0150_01",
+        "scene0157_01",
+        "scene0236_01",
+        "scene0337_01",
+        "scene0381_02",
+        "scene0385_00",
+        "scene0393_01",
+        "scene0508_01",
+        "scene0509_02",
+        "scene0523_02",
+        "scene0536_02",
+        "scene0570_02",
+        "scene0682_00",
+        "scene0692_03"
+      ]
+    }
+  ],
+  "geometry_mutation": false,
+  "ground_truth_usage": "official_train_oracle_and_evaluation_only",
+  "inference_plan_written": false,
+  "input_ledger_audit": {
+    "split_manifest_sha256": "aa657449965bc76164a1a1b77c7785aa705a0295eeed1307163b325f7233fe3e",
+    "z1_binding_count": 66764,
+    "z2c_candidate_mutation": false,
+    "z2c_ground_truth_usage": "none",
+    "z2c_node_count": 9708
+  },
+  "model_trained": false,
+  "params": {
+    "allow_gt_diagnostics": true,
+    "allow_gt_evaluation": true,
+    "class_count": 198,
+    "combined_plan_root": "${PROJECT_ROOT}/output/train_candidate_champion_pair_union_combined_oof_plan_official100_v1",
+    "control_tolerance": 1e-10,
+    "gt_instance_dir": "/media/jia/软件1/scannet_train_stream/prepared/ground_truth",
+    "hybrid_control_summary": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_ap_official100_20260811_v2_union_frozen_score_control/summary.json",
+    "min_region_size": 100,
+    "oof_root": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_official100_20260811",
+    "oracle_min_iou": 0.25,
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z6a_class_candidate_space_oracle_official100_20260812",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "split_manifest": "${PROJECT_ROOT}/output/train_candidate_quality_oof_official100_v2/split_manifest.json",
+    "stream_records_root": "/media/jia/软件1/scannet_train_stream/records",
+    "top_k": 5,
+    "unified_ledger_root": "${PROJECT_ROOT}/docs/diagnostics/z2c_unified_semantic_node_ledger_official100_20260811",
+    "z1_root": "${PROJECT_ROOT}/docs/diagnostics/z1_yoloworld_multiview_distribution_official100_20260811_v3_frozen_support_vote"
+  },
+  "positive_fold_counts_main_ap": {
+    "current_score": {
+      "alpha_top5_oracle": 5,
+      "full_class_oracle": 5,
+      "yolo_alpha_union_top5_oracle": 5,
+      "yolo_top5_oracle": 5
+    }
+  },
+  "safety60_read": false,
+  "scene_count": 100,
+  "score_mutation_current_score_systems": false,
+  "source_candidate_counts": {
+    "native": 59997,
+    "pair_union": 1501,
+    "track": 5265
+  },
+  "systems": {
+    "current_score": {
+      "alpha_top5_oracle": {
+        "ap": 0.4188095417366755,
+        "ap25": 0.579883820250737,
+        "ap50": 0.5264613496272429,
+        "common_ap": 0.3708759334434419,
+        "head_ap": 0.5691655505075226,
+        "tail_ap": 0.27439397271538407
+      },
+      "current_frozen_class": {
+        "ap": 0.3275573975430547,
+        "ap25": 0.4376924294463678,
+        "ap50": 0.4029802741973167,
+        "common_ap": 0.2734917475207624,
+        "head_ap": 0.44817343505701884,
+        "tail_ap": 0.22894633687225782
+      },
+      "full_class_oracle": {
+        "ap": 0.547342636026753,
+        "ap25": 0.7528596872652223,
+        "ap50": 0.6864019735502246,
+        "common_ap": 0.5868814686556949,
+        "head_ap": 0.6478157860764265,
+        "tail_ap": 0.3718141655587665
+      },
+      "yolo_alpha_union_top5_oracle": {
+        "ap": 0.4328507727089542,
+        "ap25": 0.6020097756350627,
+        "ap50": 0.545568943362056,
+        "common_ap": 0.3929242736088929,
+        "head_ap": 0.5840048381356749,
+        "tail_ap": 0.2785465712593676
+      },
+      "yolo_top5_oracle": {
+        "ap": 0.36007068271362824,
+        "ap25": 0.49741342597849175,
+        "ap50": 0.4489920254028224,
+        "common_ap": 0.3087291627141026,
+        "head_ap": 0.48585725707955296,
+        "tail_ap": 0.25166539885782857
+      }
+    },
+    "one_to_one_score": {
+      "alpha_top5_oracle": {
+        "ap": 0.5855801387772457,
+        "ap25": 0.7329539843680759,
+        "ap50": 0.6911295856919788,
+        "common_ap": 0.5270264792277372,
+        "head_ap": 0.7721376282115784,
+        "tail_ap": 0.4053764329805996
+      },
+      "current_frozen_class": {
+        "ap": 0.517718482008275,
+        "ap25": 0.6363812146084908,
+        "ap50": 0.6042695380352922,
+        "common_ap": 0.4401046484379818,
+        "head_ap": 0.7032584870181595,
+        "tail_ap": 0.3598958333333333
+      },
+      "full_class_oracle": {
+        "ap": 0.6983777045567681,
+        "ap25": 0.8717173574878649,
+        "ap50": 0.8206143553002186,
+        "common_ap": 0.7107294289684226,
+        "head_ap": 0.8334352599701765,
+        "tail_ap": 0.5074763007054673
+      },
+      "yolo_alpha_union_top5_oracle": {
+        "ap": 0.5995302945634449,
+        "ap25": 0.7535895499129419,
+        "ap50": 0.7056857950652614,
+        "common_ap": 0.5411639839312795,
+        "head_ap": 0.7727493393171166,
+        "tail_ap": 0.4366264329805996
+      },
+      "yolo_top5_oracle": {
+        "ap": 0.5380034599863077,
+        "ap25": 0.6713972697756367,
+        "ap50": 0.6257426392863955,
+        "common_ap": 0.46428085657645407,
+        "head_ap": 0.7089761405399558,
+        "tail_ap": 0.39500385802469135
+      }
+    }
+  },
+  "test60_read": false,
+  "top_k_per_model": 5,
+  "version": "z6a_class_candidate_space_oracle_official100_v1"
+}

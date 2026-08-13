@@ -1,0 +1,191 @@
+{
+  "candidate_mutation": false,
+  "current_control": {
+    "ap": 0.3275573975430547,
+    "ap25": 0.4376924294463678,
+    "ap50": 0.4029802741973167,
+    "common_ap": 0.2734917475207624,
+    "head_ap": 0.44817343505701884,
+    "tail_ap": 0.22894633687225782
+  },
+  "decision": "freeze Z6f for one-way safety60 transfer audit; no official100 action pruning",
+  "decision_counts": {
+    "ABSTAIN": 74,
+    "PROPOSED": 8,
+    "order_disagreement_or_abstain": 74,
+    "symmetric_agreement": 8,
+    "valid_both": 82
+  },
+  "delta": {
+    "ap": 0.0005305100975657728,
+    "ap25": 0.00042979747155225123,
+    "ap50": 0.0006755485661218974,
+    "common_ap": 0.000972109996806747,
+    "head_ap": 0.000563203590000505,
+    "tail_ap": 0.0
+  },
+  "diagnostic_type": "official100 frozen symmetric-order selective Qwen2.5-VL AP summary",
+  "even48_read": false,
+  "folds": [
+    {
+      "current_control": {
+        "ap": 0.4874662151024476,
+        "ap25": 0.5937854685980603,
+        "ap50": 0.5610451069316328,
+        "common_ap": 0.3726938966383411,
+        "head_ap": 0.5323885924043441,
+        "tail_ap": 0.5380511463844797
+      },
+      "delta": {
+        "ap": 0.0,
+        "ap25": 0.0,
+        "ap50": 0.0,
+        "common_ap": 0.0,
+        "head_ap": 0.0,
+        "tail_ap": 0.0
+      },
+      "fold_index": 0,
+      "vlm_symmetric": {
+        "ap": 0.4874662151024476,
+        "ap25": 0.5937854685980603,
+        "ap50": 0.5610451069316328,
+        "common_ap": 0.3726938966383411,
+        "head_ap": 0.5323885924043441,
+        "tail_ap": 0.5380511463844797
+      }
+    },
+    {
+      "current_control": {
+        "ap": 0.47327604344876933,
+        "ap25": 0.553678636171811,
+        "ap50": 0.5338597987534652,
+        "common_ap": 0.29189393939393943,
+        "head_ap": 0.5628526563934911,
+        "tail_ap": 0.4190066703343442
+      },
+      "delta": {
+        "ap": 0.014011483433639393,
+        "ap25": 0.011399741347297265,
+        "ap50": 0.014130441123425652,
+        "common_ap": 0.037962962962962976,
+        "head_ap": 0.005994899458791947,
+        "tail_ap": 0.0
+      },
+      "fold_index": 1,
+      "vlm_symmetric": {
+        "ap": 0.48728752688240873,
+        "ap25": 0.5650783775191083,
+        "ap50": 0.5479902398768909,
+        "common_ap": 0.3298569023569024,
+        "head_ap": 0.5688475558522831,
+        "tail_ap": 0.4190066703343442
+      }
+    },
+    {
+      "current_control": {
+        "ap": 0.439927722223372,
+        "ap25": 0.561042589609965,
+        "ap50": 0.5367922935496205,
+        "common_ap": 0.4228985172297115,
+        "head_ap": 0.5117249099419963,
+        "tail_ap": 0.22033730158730158
+      },
+      "delta": {
+        "ap": -2.2871598418405803e-05,
+        "ap25": -2.9754525749159377e-05,
+        "ap50": -2.730798501970888e-05,
+        "common_ap": 0.0,
+        "head_ap": -4.2934404048566854e-05,
+        "tail_ap": 0.0
+      },
+      "fold_index": 2,
+      "vlm_symmetric": {
+        "ap": 0.4399048506249536,
+        "ap25": 0.5610128350842158,
+        "ap50": 0.5367649855646008,
+        "common_ap": 0.4228985172297115,
+        "head_ap": 0.5116819755379477,
+        "tail_ap": 0.22033730158730158
+      }
+    },
+    {
+      "current_control": {
+        "ap": 0.42932076043255885,
+        "ap25": 0.5582565009644198,
+        "ap50": 0.5247360316879012,
+        "common_ap": 0.38838574174459856,
+        "head_ap": 0.5252862954656874,
+        "tail_ap": 0.2818289335264644
+      },
+      "delta": {
+        "ap": 0.0,
+        "ap25": 0.0,
+        "ap50": 0.0,
+        "common_ap": 0.0,
+        "head_ap": 0.0,
+        "tail_ap": 0.0
+      },
+      "fold_index": 3,
+      "vlm_symmetric": {
+        "ap": 0.42932076043255885,
+        "ap25": 0.5582565009644198,
+        "ap50": 0.5247360316879012,
+        "common_ap": 0.38838574174459856,
+        "head_ap": 0.5252862954656874,
+        "tail_ap": 0.2818289335264644
+      }
+    },
+    {
+      "current_control": {
+        "ap": 0.40657283260995314,
+        "ap25": 0.532452272337275,
+        "ap50": 0.4868893263330081,
+        "common_ap": 0.28710120687393414,
+        "head_ap": 0.49020450895542317,
+        "tail_ap": 0.2910774410774411
+      },
+      "delta": {
+        "ap": 0.0,
+        "ap25": 0.0,
+        "ap50": 0.0,
+        "common_ap": 0.0,
+        "head_ap": 0.0,
+        "tail_ap": 0.0
+      },
+      "fold_index": 4,
+      "vlm_symmetric": {
+        "ap": 0.40657283260995314,
+        "ap25": 0.532452272337275,
+        "ap50": 0.4868893263330081,
+        "common_ap": 0.28710120687393414,
+        "head_ap": 0.49020450895542317,
+        "tail_ap": 0.2910774410774411
+      }
+    }
+  ],
+  "frozen_method": {
+    "decision": "current-first and proposed-first A/B prompts; mutate only when both semantic choices are PROPOSED; otherwise keep current",
+    "image_contract": "three frozen bbox crops, min_pixels=100352, max_pixels=200704",
+    "prompt_or_threshold_scan": false,
+    "reviewer": "Qwen2.5-VL-7B-Instruct revision cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "router": "Z6d semantic-only accepted proposal + YOLO/Alpha top1 conflict + exactly 3 views + DINO cosine mean >= 0.855297 + node cap 1"
+  },
+  "geometry_mutation": false,
+  "ground_truth_usage": "evaluation_only_after_method_freeze",
+  "inference_plan_written": false,
+  "negative_fold_count_main_ap": 1,
+  "no_op_fold_count_main_ap": 3,
+  "positive_fold_count_main_ap": 1,
+  "review_count": 82,
+  "safety60_read": false,
+  "score_mutation": false,
+  "test60_read": false,
+  "vlm_symmetric": {
+    "ap": 0.32808790764062046,
+    "ap25": 0.4381222269179201,
+    "ap50": 0.4036558227634386,
+    "common_ap": 0.27446385751756913,
+    "head_ap": 0.44873663864701935,
+    "tail_ap": 0.22894633687225782
+  }
+}

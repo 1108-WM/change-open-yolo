@@ -1,415 +1,463 @@
 # OpenYOLO3D 当前实验状态
 
-最后更新：2026-07-22
+更新日期：2026-08-12
 
-## 用途
+## 文件职责
 
-这是唯一的项目状态记录。只保留当前有效结论、已验证实现、运行边界和下一步；已淘汰的参数扫描、重复日志和逐次会话流水不再保留。
+- 本文件：实验结论、关键 AP、冠军产物、失败方向和待补实验。
+- `资料/当前基线修改方向.md`：当前唯一有效流程、问题定义和下一步实现合同。
+- `资料/论文阅读记录.md`：已合并的论文依据与可迁移思想。
+- `新开对话阅读内容.md`：新会话快速恢复入口。
 
-## 当前研究定位
+历史过程日志已压缩；被后续结论覆盖的 official 专题文件、旧流程文件和原始论文清单已删除。详细数值仍保存在对应 `summary.json` 中。
 
-目标是写一篇开放词汇 3D 实例分割论文。当前路线是：以 Open-YOLO 3D 的 YOLO-World 与 MVPDist 为快速语义基线，研究二维实例边界感知的 superpoint，以及由 superpoint 驱动的跨视角实例形成。
+## 当前结论
+
+第一创新点已在 official100 场景隔离五折上形成最终冠军：**轨迹伤害抑制 + pair-union 关系几何补全**。它相对纯原始基线主 AP 提升 `+2.274604` 个百分点，相对冻结共存对照提升 `+0.591731` 个百分点，且相对上一冠军的主 AP 五折 `5/5` 为正。
+
+该最终组合已完成唯一有效的 safety60 冻结复验：`48.424603 / 65.260285 / 75.990715`，相对冻结共存为 `+0.234963 / +0.209909 / -0.177901` 个百分点。主 AP/AP50 为正但 AP25 仍为负，故不满足三指标全正。第一创新点停止独立调参，但完整策略及全部模块冻结保留，不删除；第二创新点迁移也已结束，现在应在最终系统级比较中决定是否启用或移除轨迹伤害抑制及组合策略。不在 safety60 或 even48 回调。此前 v1 复验遗漏 50/50 平衡训练概率到自然正例率的先验校正，属于 `invalid_contract`，其指标不得采信。
+
+第二创新点 Z0-Z6f 及唯一一次 safety60 单向迁移均已完成。Z6f official100 为 `32.808791/40.365582/43.812223`，相对 Z3 控制 `+0.053051/+0.067555/+0.042980`；safety60 control/Z6f 为 `32.640954/43.604318/52.040861` 与 `32.635704/43.590443/52.023991`，即 `-0.005250/-0.013874/-0.016870`。负迁移只记录，不能据此删除三项动作或修改 prompt、A/B 对称规则、DINO 阈值、router、预算和任何上游模型。Z6f 分支现已封闭，even48/test60 继续冻结。
+
+当前决策不是“第二创新点完全没有修改空间”，而是**不能再对 Z6f 做局部参数修补**。如果仍需强化第二创新点，只能在 official100 上预注册一个结构性新分支，例如顺序不变的多视图候选类别验证器、YOLO/Alpha/DINO 多视图证据的 pairwise class verification，或显式风险/abstain 模型；不得使用 safety60 选设计或调参。Z6f 当前数值证据较弱，更适合作为语义校准扩展；若要形成强独立创新，必须重新设计核心验证器。下一步优先完成两个创新点的论文叙事、最终系统组合和必要 official100 消融的裁决，不立即继续推理或迁移实验。
+
+以下 Z0-Z6 各段是按时间记录的实验历史；其中“下一步”“只允许”等措辞仅描述当时合同，均由上述当前决策和后文 Z6f safety60 结论覆盖。
+
+第二创新点 Z0 已完成有效重跑。修复了 signed YOLO-World 缓存解包、prediction-index/semantic-ID 混用和全空轨迹静默放行后，official100 共 `5,266` 条轨迹中 `5,233` 条得到合法类别，覆盖率 `99.373338%`。pair-union 当前开放词汇 AP 为 `29.518969 / 35.628993 / 38.373681`，相对 native-only 为 `+1.586814 / +2.368424 / +2.557755`；GT 类别 + 当前分数达到 `62.205105 AP`，当前类别 + GT-only 排序达到 `48.588698 AP`，GT 类别 + 一对一竞争达到 `69.837770 AP`。
+
+Z1 无 GT YOLO-World 多视图分布账本也已完成。`59,997` 个 native、`5,266` 个 track 和 `1,501` 个 pair-union 候选绑定被折叠为 `9,708` 个 exact-geometry 语义证据节点，共选择 `276,967` 个视角，其中 `97.405828%` 产生非零框证据。冻结轨迹 support 投票有效率继续为 `99.373338%`，与 Z0 完全一致；但 independent-review top-1 仅在 `67.341869%` 的有效轨迹上与冻结 support top-1 一致，平均 JS divergence 为 `0.220342`。这确认类别错误、跨视角冲突和跨来源可靠性必须共同进入校准；其后 Z2-Z6 已全部完成。
+
+### 2026-08-11 第二点 Alpha 补全与 OOF 校准最新结论
+
+native exact-geometry 与 pair-union geometry 的有限上下文 Alpha-CLIP 补全已完成并通过无 GT 审计：
+
+- 目录：`docs/diagnostics/z2b_native_union_alphaclip_limited_context_official100_20260811/`；`4,442` 条记录，其中 native `2,941`、pair-union `1,501`，审计 `valid=true`、`error_count=0`。
+- native 有效 Alpha `2,934/2,941`，pair-union 自身 geometry 有效 `1,501/1,501`；固定 `crop_padding_ratio=0.50`，不读取 GT、不修改候选。
+- 统一无 GT 账本：`docs/diagnostics/z2c_unified_semantic_node_ledger_official100_20260811/`，共 `9,708` 节点。native YOLO/Alpha top-1 一致率 `36.8925%`，track 继承 YOLO/Alpha 一致率约 `26.9470%`；pair-union 自身 Alpha 与 selected-track Alpha 的 JS 均值/中位数为 `0.1191/0.0505`，因此保留两路证据而不硬替换。
+
+在 official100 场景隔离五折上训练的监督集与 OOF 产物：
+
+- 数据集：`docs/diagnostics/z3_semantic_reliability_dataset_official100_20260811/`，`66,589` 条有效 `(node,class)` 假设；native `59,823`、track `5,265`、pair-union `1,501`。GT 只用于 official train 显式标签。
+- OOF：`docs/diagnostics/z3_semantic_reliability_oof_official100_20260811/`，固定 frozen manifest SHA-256 `aa657449...3e3e`，五折、低容量 `HistGradientBoostingRegressor`，不含类别 ID 特征。
+- AP 评测：`docs/diagnostics/z3_semantic_reliability_oof_ap_official100_20260811_v2_union_frozen_score_control/`。固定 Alpha 融合控制精确复现 `30.311670/36.918962/39.993122`。
+
+当前最稳妥的 OOF 控制为：native/track 使用 joint YOLO+Alpha OOF 分数，pair-union 保留冻结原始低分（`C_joint_native_track_union_frozen_score`）。其 pair-union 全量 AP 为 `32.755740/40.298027/43.769243`，相对冻结 Alpha 控制为 `+2.444070/+3.379066/+3.787121`，相对原始 native-only 为 `+4.823585/+7.037459/+7.953317`。五折 pair-union AP delta 依次为 `+3.1695、+1.0575、+4.1597、+3.3377、-3.2307` 个百分点；因此这是强正向开发结果，但尚未冻结为最终方法。
+
+诊断结论：joint 模型若直接把 pair-union 也重排，AP 降至 `31.019096`；保留 union 原始低分后恢复至 `32.755740`。这证明当时的主要剩余瓶颈是 Z4 的类别条件同类重复竞争/跨来源排序，而不是 Alpha 证据本身或 pair-union geometry。该阶段已由后续 Z4b–Z4d 完成并取代；Z5a/Z5b 也已完成并以剩余几何动作上界过弱终止。
+
+### 2026-08-11 Z4 类别条件竞争首轮结论
+
+Z4 已完成四类 official100 OOF/plan-only 对照，但尚无规则满足冻结条件：
+
+1. 同类 mask IoU≥0.50 局部组件 winner：`66,589` 个候选中只有 `122` 个多候选组件、`260` 个受竞争候选；pair-union AP 相对 hybrid 为 `-0.000319` 个百分点，基本中性，track-only 明显下降。目录：`docs/diagnostics/z4_category_competition_plan_official100_20260811/` 与 `z4_category_competition_ap_official100_20260811/`。
+2. native exact-geometry 固定 top-5：保留 `13,587/59,823` 个 native 类别假设，pair-union 达 `32.858441/40.383017/43.907369`，相对 hybrid `+0.102701/+0.084990/+0.138126`；但五折 AP delta 为 `-0.0716/+0.5371/-0.0840/+0.2864/+1.0565`，只有 3/5 正，且 head AP `-0.2015`，不冻结。
+3. 自适应 top-5 + 95% OOF score mass、cap20：pair-union `32.789395/40.337377/43.812404`，相对 hybrid `+0.033655/+0.039350/+0.043161`；head/common/tail 全量均微正，但五折仍仅 3/5 正，不冻结。
+4. 一对一竞争监督：每场景每类别做 Hungarian candidate-GT 分配，TP50 正例从独立标签 `2,437` 降为 `1,718`。direct union 不再过抬，native+track/pair-union 分别为 `32.696966/32.697318 AP`；union-frozen 版本为 `32.710791/39.676960/43.392972`，相对固定 Alpha 仍三项正且五折 4/5 正，但绝对值低于当前 hybrid。仅对 union 使用一对一 OOF 的混合结果为 `32.745047 AP`，相对 hybrid `-0.010693`，五折 2/5 正，不保留为冠军。
+
+Z4 首轮结论：独立质量目标的 union-frozen hybrid `32.755740/40.298027/43.769243` 仍是开发控制；top-5 是最高全量 AP，但因 fold/head 不稳定不能冻结。其后 Z4b–Z4d 已完成 fold 4 审计和两项预注册稳定性对照；当前不得继续扫描 top-M、IoU 阈值、类别权重、融合权重，也不运行 safety60/even48/test60。
+
+### 2026-08-12 Z4b 审计与 Z4c 预注册
+
+Z4b 只读审计覆盖 official train100 的 `66,589` 行、`41` 个特征。fold 4 的 native/track 平均校准偏差分别为 `+0.005232/+0.005287`，OOF ROC-AUC/MAE 未出现整体崩坏；最大特征漂移主要落在 pair-union，而当前 hybrid 推理实际冻结 pair-union 原始低分。逐类官方 AP 归因显示 fold 4 宏 AP 对极稀疏类别高度敏感：bar/ottoman/shower wall 分别只有 `1/2/2` 个 TP50，却贡献 `-0.984848/-0.761905/-0.750000` 的类别 AP delta。结论是 fold 4 更接近稀有类类内排序方差，而不是全局均值校准漂移。
+
+Z4b 正式审计目录为 `docs/diagnostics/z4b_fold_distribution_shift_official100_20260812_v3_hybrid_rank_audit/`。无后缀目录和 `v2_hybrid_contract` 是审计器完善前的中间输出：前者误把 union OOF 输出当作已应用分数，后者逐类排序含 NaN 类；均不得作为正式结论引用。
+
+审计同时发现训练—应用来源合同不一致：`C_joint` 训练包含 pair-union，但 hybrid 最终只应用 native/track 的模型输出，pair-union 模型输出被丢弃。预注册唯一 Z4c 修正如下：保持 frozen 五折、41 特征、target、sample weight、随机种子和 HGBR 容量全部不变；仅把模型拟合集合改为 native+track，validation 仍覆盖全部来源，pair-union 推理继续冻结原始分数。只运行这一项 official100 OOF/AP 对照，不扫描参数；若不能改善 fold 4 且保持总体/五折稳定，则撤销并停止该修正。safety60/even48/test60 继续禁止运行。
+
+Z4c 已完成并撤销。其 hybrid 为 `32.195337/39.361500/42.895254`，相对原控制 `-0.560402/-0.936528/-0.873989`；fold 4 从 `-3.230659` 进一步降到 `-4.352688 AP`。因此 pair-union 虽不直接采用模型输出，其监督样本对共享可靠性边界仍有正作用，不能简单排除。
+
+Z4b 的最终方法学结论是训练目标与宏 AP 聚合不对齐：候选级损失几乎忽略只有 1–2 个 TP 的类别，但官方 AP 对每个出现类别等权。预注册唯一 Z4d：保留原始全部来源拟合、frozen 五折、41 特征、target、模型容量和随机种子；只在每个训练折内、每个来源内部把各预测类的总训练权重归一为相等，同时保持每个来源的总 base weight 不变。类别 ID 仅用于训练损失分组，不作为模型输入；无阈值、指数或容量扫描。只允许一次 official100 OOF/AP 对照，失败即撤销。
+
+Z4d 已完成，属于“根因验证成立、方法不冻结”。其 hybrid 为 `32.123798/39.577321/43.722213`，相对原控制为 `-0.631940/-0.720706/-0.047029`；head/common/tail 相对原控制为 `-2.717892/+0.747559/+0.582676`。但五折主 AP 相对固定 Alpha 控制全部为正：`+0.9647/+2.5500/+3.6539/+2.1367/+0.3120`，fold 4 从原 joint 的 `-3.2307` 修复为 `+0.3120`。因此类别宏失衡确实解释了 fold 4 不稳定；完全类等权又过度牺牲高频 head 类，不能作为最终规则。按预注册合同不继续扫描平滑指数、截断权重或 head/common/tail 手工权重；当前数值冠军仍是原 union-frozen hybrid `32.755740/40.298027/43.769243`，当前稳定性对照为 Z4d，但两者均不冻结为最终第二点方法。
+
+校准权重微调已停止；后续 Z5a/Z5b 已完成，证明现有 merge/split/boundary-owner 空间没有足以推进 plan-only 的独立上界。Z5c 已终止，仍不运行 safety60/even48/test60。
+
+### Z5 历史执行合同（Z5a/Z5b 已完成，Z5c 已终止）
+
+Z5 分三阶段，必须顺序执行：
+
+1. **Z5a official100 动作空间合同审计（已完成）**：无 GT、无 AP、无训练、无候选修改。以 `z2c_unified_semantic_node_ledger` 的 `9,708` 个节点为语义证据源，盘点并连接已有 merge/split/boundary-owner 动作。merge 先且只复用 `1,501` 个已冻结 pair-union 与其父候选；split/owner 若没有 official100 已物化且可追溯的动作空间，就报告 unavailable，不生成新 mask，不移植旧 safety60 参数。输出动作账本、join coverage、缺失原因和 provenance。
+2. **Z5b GT-only global-feasible oracle（仅在 Z5a 合同通过后）**：逐动作比较 no-op 与冻结反事实，报告 IoU、TP25/TP50、类别正确性、场景和类别归因，再聚合 official100 AP/AP50/AP25、head/common/tail 和 frozen 五折。GT 不得生成推理特征或写回动作计划。
+3. **Z5c no-GT plan-only（仅当 Z5b 显示跨折、跨场景的稳定独立上界）**：预注册语义—几何判据后生成计划，不立即跑 safety60；若 oracle 只由少数稀疏类/场景主导或上界微弱，直接终止相应动作族。
+
+Z5a 输入固定为 official train100 scene list、实际 SHA 为 `aa657449...3e3e` 的 frozen manifest、Z2c 统一语义节点、Z3 OOF 分数、当前 hybrid AP 控制与 official100 pair-union append plan。建议正式输出目录：`docs/diagnostics/z5a_semantic_geometry_action_space_official100_20260812/`。不得扫描新的 IoU、距离、语义融合、类别平衡、top-M 或模型容量参数。
+
+### 2026-08-12 Z5a 动作空间合同审计结论
+
+Z5a 已完成并通过，正式目录为：
 
 ```text
-RGB-D / 位姿 / 点云网格
--> YOLO-World + SAM 高覆盖逐帧实例观测
--> 真实深度约束的二维边界感知 IBSp superpoint
--> Any3DIS 式 SAM2 类别无关 mask 轨迹，并提升到 superpoint
--> Details Matter 式轨迹后 superpoint 共识、迭代合并、去重/包含删除、局部清理
--> Open-YOLO 3D 快速语义投票
--> 仅对低置信、冲突或长尾实例做上下文语义修正
+docs/diagnostics/z5a_semantic_geometry_action_space_official100_20260812/
 ```
 
-核心贡献候选：
+审计只读取 official100 冻结几何、Z1/Z2c 语义账本、Z3 OOF 冻结预测字段与已存在 pair-union 点集；未读取 GT，未计算 AP，未训练模型，未选择阈值，未生成或修改候选。主要结论：
 
-1. 多视角二维实例边界和真实深度共同细化三维 superpoint。
-2. superpoint 驱动的类别无关跨视角实例形成。
-3. 在不替换 Open-YOLO 3D 快速语义头的前提下，提高实例候选质量。
+- merge 动作空间可用：`1,501/1,501` 个冻结 pair-union，覆盖 `100/100` 场景；每个 child 均精确等于 selected track 与 native exact group 的点集并集，全部为 partial-overlap 父关系；
+- 三方语义节点 join 为 `4,503/4,503=100%`，动作级语义完整为 `1,501/1,501`；YOLO/Alpha 的 geometry-own/inherited top probability、margin、entropy、JS/agreement 及当前 hybrid OOF 分数摘要均已写入；
+- `6/1,501` 个动作没有 child/track/native 三方共同已选证据帧，但各节点自身语义仍完整；该字段保留为后续 oracle 归因，不据此设阈值；
+- split 不可用：没有 official100 上可追溯父候选且已物化子点集的冻结动作账本；旧 safety60 GT-oracle split 不得复用；
+- boundary-owner 不可用：没有 official100 可连接的 superpoint owner 动作账本；旧 safety60 MV3DIS owner 资产明确排除。
 
-详细研究方向见 `资料/当前基线修改方向.md`；论文依据见 `资料/论文阅读记录.md`。
+该审计当时只允许 merge 家族进入 **Z5b GT-only global-feasible oracle**；Z5b 现已完成。split 与 boundary-owner 在本轮终止；不得临时生成动作或迁移旧阈值。Z5c 因 Z5b 上界过弱而不启动。
 
-## 已完成且有效的实现
+### 2026-08-12 Z5b merge GT-only oracle 结论
 
-### 随机场景划分
-
-`tools/generate_random_scene_splits.py` 使用当前 `data/scannet200` 的 312 个场景和 seed `20260718` 生成：
-
-- `output/scannet200/scene_splits/even48.txt`：随机 48 场景方向筛选。
-- `output/scannet200/scene_splits/even96.txt`：随机 96 场景扩展集，包含 even48。
-- `output/scannet200/scene_splits/odd96.txt`：与 even96 不重叠的随机 96 场景确认集。
-
-文件名沿用 even/odd 只为兼容旧脚本，实际内容是可复现随机划分。
-
-### 官方 ScanNet v2 来源审计（进行中）
-
-当前本地 312 个场景与参考 `scannetv2_val.txt` 完全一致；每个场景都有 RGB、深度、pose、内参、`_vh_clean_2.ply` 和预处理 `.npy`，抽查中 `.npy` 点数与 mesh 顶点数相等。因此现有数据在项目所需的结构与几何对应上可用，但这不能单独证明历史下载来源。
-
-为论文可复现性，已在不覆盖当前数据的独立目录 `/home/jia/Wm/Dataset/scannet_v2_official_audit_3scenes/` 完成官方 ScanNet v2 三场景下载与逐项审计：最新版 label map 与 `scene0019_01`、`scene0084_01`、`scene0084_02` 的 `.sens`、mesh、场景元数据、aggregation、segs 均已齐全。最后的 `scene0084_02.sens` 经 `curl` 断点下载完成，大小校验为 `608020272` bytes。
-
-`tools/audit_official_scannet_v2.py` 的只读审计已在三个场景全部通过，报告为 `docs/diagnostics/official_scannet_v2_audit_3scenes.json`：本地与官方 mesh 的 SHA256 完全相同；`.npy` 的全部顶点 xyz/RGB 与官方 mesh 逐值一致；`.sens` 帧数、内参一致，首/中/末帧的深度逐像素一致、位姿在 `1e-5` 内一致。RGB JPEG 平均绝对像素差为 `1.40--2.87`，符合提取时重新 JPEG 编码，形状一致。结论是当前数据在这三个代表场景已由官方下载样本验证，可继续现有实验；该审计不证明全部 312 个场景的历史来源，因而不替换当前 `data/scannet200` 或声称全量来源已验证。
-
-### 高覆盖逐帧实例观测
-
-`tools/export_dense_frame_instance_observations.py` 已实现并在 GPU 上真实运行。它复用缓存的 YOLO-World 框、SAM 和 mesh 可见性投影，输出：
+Z5b 已完成，正式目录为：
 
 ```text
-<output>/<scene>/
-  observations.jsonl
-  masks/                 # 每个 mask 与对应 3D 点索引
-  frame_label_maps/      # 供 IBSp 使用的非重叠整数实例图
-  summary.json
+docs/diagnostics/z5b_merge_global_feasible_oracle_official100_20260812/
 ```
 
-默认策略：逐帧、检测阈值 0.25、每框前两个 SAM mask、每帧最多 20 mask、最少 8 个可见三维点。帧内仅删除近似同面积的重复 mask；小的嵌套实例在 label map 中优先占用重叠像素。
+合同为 append-only、target-wise global-feasible 可行构造：no-op 保持当前 native+track hybrid；动作只追加 Z5a 已存在的冻结 pair-union，类别与分数均保持冻结；GT 只选择离线 oracle 动作，不写推理计划。no-op 与全部 pair-union 控制均以 `0` 误差复现 Z3 正式结果。
 
-现有 2D 缓存是旧格式，运行时需显式传 `--allow_legacy_2d_cache`。这只允许读取现有 YOLO-World 缓存，不使用任何 GT 输入。
+主要结果（百分点）：
 
-### IBSp superpoint
+| 系统 | AP | AP50 | AP25 |
+|---|---:|---:|---:|
+| no-op：native+track hybrid | 32.740316 | 40.302467 | 43.774625 |
+| 当前控制：全部冻结 pair-union | 32.755740 | 40.298027 | 43.769243 |
+| Z5b GT-only target-wise oracle | 32.758354 | 40.301568 | 43.773069 |
+| oracle 相对 no-op | +0.018038 | -0.000899 | -0.001556 |
+| oracle 相对全部冻结 union | +0.002614 | +0.003541 | +0.003826 |
 
-`tools/generate_geometric_superpoints.py` 可在 `mesh_normal` 图上使用逐帧 label map 剪掉稳定跨实例边界的图边。新增参数：
+逐动作 `1,501` 个中，冻结类别语义正确 `556` 个；只有 `19` 个产生至少一个新的 official IoU threshold crossing。target-wise 去重后选择 `17` 个动作，分布于 `14` 个场景、`12` 个类别。五折主 AP 相对 no-op 为 `+0.019578/+0.005520/+0.019488/+0.021514/+0.007535` 个百分点，方向 `5/5` 正，但绝对幅度极小；TP25 新增 crossing 为 `0`，TP50 仅 `1`，收益主要来自 `0.70–0.90` 的高 IoU 阈值。全量 AP50/AP25 相对 no-op仍略负。
+
+结论：现有冻结 pair-union 已几乎吃满该 merge 动作空间；即使 GT-only 选择也只能在当前控制上增加 `+0.002614 AP` 个百分点。该上界过弱，不满足进入 Z5c no-GT plan-only 的推进门槛。Z5 merge 家族与先前 unavailable 的 split/boundary-owner 一并在本轮终止；不得训练动作分类器、扫描语义/几何阈值或运行 safety60/even48/test60。第二创新点当前仍以 Z3 union-frozen hybrid `32.755740/40.298027/43.769243` 为数值控制，Z4d 为稳定性消融，Z5 仅作为“几何动作剩余上界不足”的负结论。
+
+### 2026-08-12 Z6a 冻结几何类别候选空间 oracle
+
+Z6a 已完成，正式目录为：
 
 ```text
---boundary_mask_root <dense output>
---boundary_mask_subdir frame_label_maps
+docs/diagnostics/z6a_class_candidate_space_oracle_official100_20260812/
 ```
 
-指定子目录后，脚本按实际 label-map 文件名取帧，避免 OpenYolo3D 采样帧号 `0,10,...` 与颜色目录 `0..9` 错位。默认旧目录布局仍不受影响。
+该诊断固定 official100 的 `66,763` 个候选、`9,708` 个语义几何节点、当前类别与当前 hybrid 分数合同；GT 只用于离线 oracle 临时选择类别和评测，不写入推理计划。每个节点对 YOLO-World、Alpha-CLIP 分别取 geometry-own／inherited 分布逐类最大值后的 top-5。当前控制以最大误差 `0.0` 精确复现正式 Z3 结果。
 
-### 超点后处理原型
+当前分数结果（百分点）：
 
-`tools/refine_dense_observations_with_superpoints.py` 已实现：
+| 类别方案 | AP | AP50 | AP25 |
+|---|---:|---:|---:|
+| 当前 frozen class | 32.755740 | 40.298027 | 43.769243 |
+| YOLO top-5 oracle | 36.007068 | 44.899203 | 49.741343 |
+| Alpha top-5 oracle | 41.880954 | 52.646135 | 57.988382 |
+| YOLO+Alpha top-5 union oracle | 43.285077 | 54.556894 | 60.200978 |
+| full 198-class oracle | 54.734264 | 68.640197 | 75.285969 |
 
-1. 以观测点索引计算各 superpoint 覆盖率，筛出可靠核心。
-2. 用跨帧共享核心 superpoint 构建原型类别无关实例轨迹。
-3. 合并轨迹、删除近重复轨迹。
-4. 对竞争 superpoint 做保守归属；接近并列时从全部实例中删除。
-5. 输出独立 `refined_instances.json` 和实例点索引。
+GT-only 一对一分数诊断（百分点）：
 
-这不是最终的 Any3DIS SAM2 跟踪，也尚未实现 Details Matter 完整的可见性归一化共识和迭代细化；它只用于验证 IBSp、候选输出和后处理接口。该工具目前仅作 export-only 诊断，尚未接入 `backprojection_fusion.py` 或 AP。
+| 类别方案 | AP | AP50 | AP25 |
+|---|---:|---:|---:|
+| 当前 frozen class | 51.771848 | 60.426954 | 63.638121 |
+| YOLO top-5 oracle | 53.800346 | 62.574264 | 67.139727 |
+| Alpha top-5 oracle | 58.558014 | 69.112959 | 73.295398 |
+| YOLO+Alpha top-5 union oracle | 59.953029 | 70.568580 | 75.358955 |
+| full 198-class oracle | 69.837770 | 82.061436 | 87.171735 |
 
-## 三场景真实 GPU 烟测
+TP25/TP50 候选覆盖审计表明正确类别大多已经存在于当前两路证据中：
 
-环境：`/home/jia/anaconda3/envs/openyolo3d/bin/python`，RTX 4090。测试场景：`scene0011_00`、`scene0077_00`、`scene0608_01`；每场景 10 个实际 OpenYolo3D 采样帧。
+- TP25 eligible prediction `50,928` 个，当前类别正确率 `5.6668%`；Alpha top-5 包含 GT 类别 `86.3651%`，YOLO+Alpha union 为 `92.7348%`，节点—GT target 覆盖率为 `89.9419%`，union 可修复当前错误的 `92.3879%`。
+- TP50 eligible prediction `47,322` 个，当前类别正确率 `5.1498%`；Alpha top-5 包含 GT 类别 `86.9426%`，YOLO+Alpha union 为 `93.3477%`，节点—GT target 覆盖率为 `90.4013%`，union 可修复当前错误的 `93.0712%`。
+- current-score 的 YOLO+Alpha union oracle 五折 AP delta 为 `+11.3596/+13.9178/+13.6101/+11.1031/+12.9458`，Alpha top-5 为 `+9.3672/+11.2364/+12.8043/+8.4713/+10.9423`，均为 `5/5` 正。
 
-输出：
+历史结论：不引入第三个类别生成器，也不恢复几何扩张；当时据此固定已有 YOLO/Alpha top-k 候选空间，转向对象级多视图视觉证据与候选内类别选择。DINOv2 只作为对象外观一致性、跨视角聚合和难例路由特征，不能直接充当 198 类文本分类器；MLLM 仅允许选择性复核冲突/低置信节点，并保留 abstain/fallback。Z6a 是 GT-only 上界，不是实际方法结果；后续 Z6b-Z6f 均已完成。
 
-- `output/dense_frame_instance_observations_3scenes_smoke/`
-- `output/mesh_normal_ibsp_dense_3scenes_smoke_v2/`
-- `output/refined_dense_instances_3scenes_smoke_v2/`
+### 2026-08-12 Z6b 对象级固定 top-3 视角 manifest
 
-| 场景 | 有效观测 | 平均 label-map 覆盖 | IBSp 剪边 | 最终实例轨迹 |
-| --- | ---: | ---: | ---: | ---: |
-| scene0011_00 | 39 | 23.34% | 4512 | 4 |
-| scene0077_00 | 80 | 54.06% | 1242 | 6 |
-| scene0608_01 | 71 | 46.21% | 645 | 8 |
+Z6b 第一阶段已完成，正式目录为：
 
-多帧 IBSp 的二维边界观测图边为 `335956 / 194225 / 107182`，证明高覆盖观测确实影响了图结构。超点轨迹能形成多帧实例，如 dining table、printer、guitar；仍有单帧弱实例，因此不能直接进入最终预测。
+```text
+docs/diagnostics/z6b_object_view_manifest_official100_20260812/
+```
 
-结论：高覆盖观测 -> IBSp -> 共享核心原型关联/合并/去重/清理已跑通。三场景只证明链路正确，不证明最终 SAM2 跟踪或 ScanNet200 泛化。
+工具 `tools/build_z6b_object_view_manifest_official100.py` 只连接冻结 Z2c 节点、Z1 视角元数据、Z2/Z2b 已选择的 top-3 Alpha 视角和 official100 prepared RGB-D 资产；未读取 GT、未重投影或重选视角、未生成 embedding、未调用 MLLM，也未修改 geometry/candidate/class/score/inference plan。结果：
 
-## 随机 even48 的首轮 export-only 结果
+- official100 `100/100` 场景、`9,708/9,708` 节点严格 join，duplicate 为 0；
+- `9,603` 个节点有有效视角，`105` 个节点因冻结 Z2 `min_visible_points=20` 合同无视角，其中 track `98`、native `7`、pair-union `0`；
+- 共 `26,483` 个固定视角：native `8,757`、track `13,376`、pair-union `4,350`；节点视角数分布为 0/1/2/3 视角 `105/287/1,752/7,564`；
+- 每个已注册视角的 RGB、depth、pose、intrinsics 全部存在，missing asset 为 0；bbox 与有限上下文 `crop_padding_ratio=0.50` 合同已写入 manifest；
+- manifest SHA-256 为 `503261f316a0e9e642eb09c63c87d1fd10c9be60b3bd71041d3dfa8fb149107b`。
 
-已对随机 `even48` 完成同一条链路，每场景最多 10 个实际 OpenYolo3D 采样帧，不运行 AP：
+历史环境记录：当时无 CUDA，Z6b GPU embedding ledger 按合同在创建输出前以 `CUDA unavailable; refusing CPU fallback` 安全退出，且未静默回退 CPU。GPU 工具 `tools/build_z6b_dinov2_object_appearance_ledger.py` 与纯函数测试已实现；后续 GPU 已获授权，正式账本也已完成，以下一段为最终状态。
 
-- `output/dense_frame_instance_observations_even48_f10/`
-- `output/mesh_normal_ibsp_dense_even48_f10/`
-- `output/refined_dense_instances_even48_f10/`
+GPU 后续已获授权并完成正式运行。`docs/diagnostics/z6b_dinov2_object_appearance_official100_20260812/` 覆盖 `100/100` 场景、`9,708` 节点与 `26,483` 个固定视角；`9,603` 节点有 embedding，`105` 个无视角节点保持缺失。独立审计 `valid=true、error_count=0`；逐视角 L2 norm 均值 `0.99999998`，跨视角 cosine mean/median 为 `0.836047/0.855297`，dispersion mean/median/p90 为 `0.163953/0.144703/0.307926`。无 GT、无候选/几何/类别/分数修改。
 
-| 指标 | 48 场景结果 |
-| --- | ---: |
-| 实际处理帧 | 475 |
-| 有效二维观测 | 3042，均值 63.4/场景 |
-| 平均 label-map 覆盖 | 43.47%，中位数 42.49% |
-| 有二维边界观测图边 | 6308072 |
-| IBSp 剪边 | 39137，均值比例 0.001074 |
-| 可靠 superpoint 观测 | 1920 |
-| 原始轨迹 | 368 |
-| 诊断到的重复轨迹 | 111 |
-| 最终实例轨迹 | 290，其中多帧轨迹 243、单帧弱轨迹 47 |
+Z6c 无 GT review input 已完成：`docs/diagnostics/z6c_semantic_review_input_official100_20260812/`。`9,593/9,708` 节点具备完整 candidate+DINO 输入；YOLO/Alpha top-1 冲突 `6,495` 个（`66.9036%`）。监督集 `z6c_candidate_selector_dataset_official100_20260812` 含 `66,763` 个 prediction、`575,106` 个 option，TP50 target 覆盖 `93.4300%`。场景隔离五折 direct selector 虽有较高候选质量 AUC，但改类约 `89.2%`，official100 AP 降为 semantic-only `28.236506/35.230986/37.951838`、semantic+DINO `28.124939/35.069333/37.899258`，均明显低于当前控制。因此 direct argmax 终止；DINO 标量未在 direct 方案中带来 AP 增益。随后唯一允许的 nested-cross-fitted accept/abstain gate 也已完成，结果见下一段。
 
-所有 48 场景均完成 dense、IBSp 和轨迹后处理，没有缓存、帧号、投影或网格对齐失败。覆盖率范围为 16.34%--73.83%；低覆盖场景包括 `scene0412_01`、`scene0377_00`、`scene0389_00`。实例数较高的场景包括 `scene0655_01`、`scene0357_00`、`scene0307_02`、`scene0426_02`、`scene0606_00`、`scene0693_02`，应优先检查是否有背景污染或过分裂。
+Z6c/Z6d nested gate 已完成并终止自动 selector 分支。连续 delta gate 目录为 `docs/diagnostics/z6c_nested_abstain_gate_oof_official100_20260812/`，接受新类约 `88.5%`，AP 为 semantic-only `28.418329/35.299120/38.305845`、semantic+DINO `29.205986/36.124037/39.049373`，五折均 `0/5` 正。transition audit（`z6c_nested_abstain_gate_transition_audit_official100_20260812`）证明 gate 把大量 wrong-to-wrong 提议当作零增量并放行：semantic-only 接受项中仅 `37.73%` 是真实修正，semantic+DINO 为 `38.34%`。
 
-这次结果证明方法链路在随机 even48 上稳定可运行，也显示跨视角形成和去重实际在发生；它**不**证明相对基线 AP 提升。当前没有生成最终预测，也没有接入主融合。
+针对该目标漏洞，Z6d 只做一次预先定义的二元修正：nested `P(proposed target > current target)>0.5` 才接受，harm 与 wrong-to-wrong 都为负类，不扫描阈值/容量。正式 OOF/AP 目录为 `docs/diagnostics/z6d_nested_improvement_gate_oof_official100_20260812/` 与 `docs/diagnostics/z6d_nested_improvement_gate_oof_ap_official100_20260812/`。接受新类约 `22.6%/23.9%`；semantic-only `31.889356/39.328924/42.816283`（相对控制 `-0.866384/-0.969103/-0.952960`，`2/5` folds 正），semantic+DINO `31.496255/38.893321/42.354466`（`-1.259484/-1.404706/-1.414777`，`1/5` 正）。因此自动 selector/gate 分支正式终止，不再扫描阈值、模型容量或第三种 gate；当时转入的有限预算多视角视觉复核也已作为 Z6e/Z6f 完成。
 
-### even48 质量诊断与弱轨迹过滤
+Z6e/Z6f 有限预算多视角视觉复核已完成。使用固定 official100 路由：Z6d semantic-only `accepted_new_class`、YOLO/Alpha top-1 冲突、恰好 3 个冻结视角、DINO pairwise cosine mean 不低于冻结账本中位数 `0.855297`、每语义节点最多 1 个；共选出 `82` 项、覆盖 `52` 场景。复核器为本地 `Qwen/Qwen2.5-VL-7B-Instruct` 固定 revision `cc594898137f460bfe9f0759e9844b3ce807cfb5`，三张冻结 bbox crop，`min_pixels=100352/max_pixels=200704`。单顺序 CURRENT/PROPOSED/ABSTAIN 版本为 `80 CURRENT + 2 ABSTAIN + 0 PROPOSED`，证明明显偏保守。唯一一次预定义对称修正 Z6f 对 current-first 和 proposed-first 交换 A/B 次序，只有两次语义选择都为 proposed 才改类，否则 abstain 保持当前；结果 `74 ABSTAIN + 8 PROPOSED`，无非法输出。
 
-新增 `tools/diagnose_dense_ibsp_quality.py`，不使用 GT，自动选择低覆盖和高实例数场景，输出统计表、轨迹清单与 RGB + label-map 叠加图：
+Z6f 正式目录：manifest `docs/diagnostics/z6e_selective_vlm_review_manifest_official100_20260812/`，对称复核 `docs/diagnostics/z6f_qwen25vl_symmetric_review_official100_20260812/`，AP 汇总 `docs/diagnostics/z6f_vlm_selector_ap_summary_official100_20260812/`。8 个 class mutation 为 `door→closet door`、`bulletin board→blackboard`×2、`windowsill→window`、`table→desk`、`mattress→bed`×2、`printer→copier`。official100 为 `32.808791/40.365582/43.812223`，相对当前控制 `+0.053051/+0.067555/+0.042980`；head/common/tail 增量 `+0.056320/+0.097211/+0.000000`。五折主 AP 为 1 正、1 个 `-0.002287 AP` 微负、3 no-op；方法及 8 个动作在读取 GT 前已冻结，不允许依据逐动作 GT 做删选，也不再尝试 prompt/分辨率/路由变体。Z6f 是当前 official100 新冠军；其后唯一一次冻结 safety60 单向迁移已经完成，结果见下一节。
 
-- `docs/diagnostics/dense_ibsp_even48_f10_quality/`
-- `docs/visual_checks/dense_ibsp_even48_f10_quality/`
+### 2026-08-12 Z6f safety60 单向迁移结论
 
-审查显示代表帧的二维实例边界整体可用，未发现整帧背景被单一实例 mask 吞没的灾难性污染；主要噪声来自高实例数场景的单帧弱轨迹。对 `singleton_min_confidence` 做仅重跑后处理的扫描：
+完全冻结的 Z6f 已完成唯一一次 safety60 单向迁移，未使用 safety60 训练、选阈值、改 prompt、改预算或删动作。无 GT 输入共 `41,089` 个 candidate bindings，折叠为 `7,764` 个语义节点；full-official100 Z3 对 `41,034` 个合法候选生成预测，明确省略 `55` 个未注册 native class。固定 top-3 manifest 共 `19,156` 个视角，DINO 独立审计 `valid=true、error_count=0`；虽然 safety60 DINO cosine median 为 `0.854696`，router 仍使用冻结 official100 阈值 `0.855297`。
 
-| 单帧阈值 | 总实例 | 多帧实例 | 单帧弱实例 |
-| --- | ---: | ---: | ---: |
-| 2.0 | 290 | 243 | 47 |
-| 3.0 | 262 | 243 | 19 |
-| 4.0 | 250 | 243 | 7 |
-| 5.0 | 245 | 243 | 2 |
+full selector/gate 得到 `7,655` 个 accepted proposal；冻结 router 最终只送审 `61` 项。Qwen 对称复核得到 `56 ABSTAIN + 2 CURRENT + 3 PROPOSED`，最终三项为 `counter→kitchen counter`、`projector screen→whiteboard`、`folded chair→chair`。唯一一次 GT 评测结果（AP/AP50/AP25，百分点）：
 
-选择 `4.0`：删除 40 个弱单帧轨迹，同时不损失任何多帧轨迹；`5.0` 过于接近只保留多帧实例。`tools/refine_dense_observations_with_superpoints.py` 的默认 `singleton_min_confidence` 已从 `2.0` 改为 `4.0`，正式输出为 `output/refined_dense_instances_even48_f10_singleton4/`。
+| 系统 | AP | AP50 | AP25 |
+|---|---:|---:|---:|
+| frozen control | 32.640954 | 43.604318 | 52.040861 |
+| Z6f symmetric | 32.635704 | 43.590443 | 52.023991 |
+| delta | -0.005250 | -0.013874 | -0.016870 |
 
-### even48 f30 多视角扩展
+head/common/tail delta 为 `-0.015510/+0.003704/+0.000000`。结论是 Z6f 的 official100 微增益没有在 safety60 上迁移，且三项主指标均轻微下降；按冻结合同只记录该负迁移，不基于 safety60 删除三项动作或回调方法。正式目录为 `docs/diagnostics/z6f_safety60_transfer_ap_20260812/`；Qwen 输出 SHA-256 为 `26f32bca7181ed5eb5307eeae116ddcc6f1c61bd284bae13d6510516cf26ae7b`。even48/test60 继续冻结，当前不再运行第二创新点的额外迁移评测。
 
-已将同一随机 `even48` 的每场景上限扩大到 30 个实际采样帧，并完整执行 dense -> IBSp -> refined instances，仍为 export-only、不运行 AP：
+## 第一创新点总结
 
-- `output/dense_frame_instance_observations_even48_f30/`
-- `output/mesh_normal_ibsp_dense_even48_f30/`
-- `output/refined_dense_instances_even48_f30_singleton4/`
+### 名称
 
-| 指标 | f10 | f30 |
-| --- | ---: | ---: |
-| 实际处理帧 | 475 | 1411 |
-| 有效二维观测 | 3042 | 8416 |
-| 平均 label-map 覆盖 | 43.47% | 42.50% |
-| 有二维边界观测图边 | 6308072 | 13896146 |
-| IBSp 剪边 | 39137 | 59690 |
-| 可靠 superpoint 观测 | 1920 | 5109 |
-| 原始轨迹 | 368 | 720 |
-| 诊断到的重复轨迹 | 111 | 243 |
-| 最终实例轨迹 | 250 | 464 |
-| 多帧轨迹 | 243 | 447 |
-| 单帧弱轨迹 | 7 | 17 |
-| 每个最终实例的平均支持帧 | 5.46 | 7.71 |
+中文：**风险感知的多视图轨迹候选安全接入与关系几何补全**
 
-48 个场景均成功完成。f30 的平均单帧覆盖率没有被人为抬高，但多视角观测、可靠超点证据和多帧轨迹显著增加；这是扩大观测覆盖带来稳定实例支持的正向结构信号。单帧弱轨迹比例略有增加（7/250 -> 17/464），后续评测适配时应保持当前阈值并单独报告该风险。该结果仍不能替代与基线的 AP 对比。
+英文：**Risk-Aware Integration of Multi-view Track Proposals with Relational Geometry Completion**
 
-### even48 的首轮 AP：refined 候选补充
+### 问题定义
 
-已新增 `tools/export_refined_dense_candidates.py`，把 refined instances 适配为现有融合候选格式：保留每个实例的三维点索引，以 Open-YOLO 3D prompt 索引作为类别，并以支持观测的 `YOLO score x SAM score` 均值作为 0--1 分数。该适配不读取 GT，也不改动基线掩码。
+在不训练或替换 Open-YOLO 3D 主干、不使用 GT 推理、原始 Mask3D + YOLO-World 候选始终可回退的条件下：
 
-在相同随机 `even48`、相同二维缓存和默认统一评分下，先运行基线，再运行“基线 + f30 refined 候选”。输入的 424 条候选经过至少 100 点、至少 2 视角、与基线 IoU 0.30 和候选间 IoU 0.50 的过滤，实际加入 158 条；264 条因与已有掩码重叠而跳过，2 条低分跳过。
+1. 从独立多视图二维 mask 形成类别无关三维轨迹候选；
+2. 消除完全相同几何副本造成的重复竞争；
+3. 预测轨迹候选的边际伤害并连续降权，而不是硬删除；
+4. 对有互补关系的轨迹—基线候选追加 pair-union 几何补全候选；
+5. 所有学习、校准和策略冻结只发生在 official train 的场景隔离折内。
 
-| 指标 | 基线 | 基线 + refined | 差值 |
-| --- | ---: | ---: | ---: |
-| AP | 0.258700 | 0.258875 | +0.000175 |
-| AP50 | 0.336783 | 0.337401 | +0.000619 |
-| AP25 | 0.384666 | 0.389003 | +0.004337 |
+### official100 主 AP 路线
 
-结果文件：
+下表只比较主 AP，避免混用早期与最终组件评测中 AP25 候选合同的差异。单位均为百分点。
 
-- `output/scannet200/dense_ibsp_even48_ap/baseline.csv`
-- `output/scannet200/dense_ibsp_even48_ap/refined_dense.csv`
-- `output/scannet200/dense_ibsp_even48_ap/reports/refined_dense.json`
+| 阶段 | AP | 相对上一步 | 相对纯原始基线 |
+|---|---:|---:|---:|
+| 纯原始基线候选 | 65.408913 | — | — |
+| 加入多视图轨迹候选 | 66.846155 | +1.437242 | +1.437242 |
+| 完全相同几何组感知 | 66.992353 | +0.146198 | +1.583440 |
+| 轨迹 OOF 质量排序／冻结共存 | 67.091786 | +0.099433 | +1.682873 |
+| 轨迹伤害抑制 | 67.576230 | +0.484444 | +2.167317 |
+| 加入 pair-union 补全（最终冠军） | **67.683517** | **+0.107288** | **+2.274604** |
 
-结论：当前实现对宽松 IoU 的召回有小幅正信号，但总体 AP 增益极小，不能视为可靠提升，也不进入 `even96/odd96`。主要瓶颈是 refined 轨迹与原始掩码重叠时只会被作为重复候选跳过，尚未测试“以 refined 超点边界替换或局部修正已有实例”的作用。
-
-### 强 SAM-fused + BPR 基线的原始 superpoint / f30 IBSp 对照
-
-已在当前随机 `even48` 完成受控 B/C AP 对照，脚本为 `tools/run_scannet200_even48_ibsp_control.sh`，输出为 `output/scannet200/ibsp_control_even48_20260719/`。两轮均使用同一批 SAM-fused + BPR 候选、同一融合阈值、同一评分模式和同一 scene split；C 唯一改变是通过 `--processed_scene_root` 读取 `output/mesh_normal_ibsp_dense_even48_f30/`。脚本在运行前断言 48 个 `.npy` 的非第 9 列完全相同，而第 9 列正是评估读取的 superpoint id。
+最终冠军的完整 official100 指标：
 
 | 配置 | AP | AP50 | AP25 |
-| --- | ---: | ---: | ---: |
-| B：历史强 SAM-fused + BPR + 原始 superpoint | 0.264689 | 0.348004 | 0.395579 |
-| C：B，仅替换为 f30 IBSp | 0.266595 | 0.346625 | 0.395200 |
-| C - B | +0.001906 | -0.001379 | -0.000378 |
+|---|---:|---:|---:|
+| 冻结共存对照 | 67.091786 | 82.485205 | 87.035545 |
+| 轨迹伤害抑制 | 67.576230 | 83.209877 | 87.945316 |
+| 最终冠军 | **67.683517** | **83.235422** | **87.959075** |
+| 最终冠军相对冻结共存 | **+0.591731** | **+0.750217** | **+0.923530** |
 
-两轮都加载 7460 条候选；B 实际接入 295 条，C 接入 289 条。IBSp 的超点精炼输出点数从 178827 降至 158399，选中 segment 从 1326 降至 919，说明二维边界约束确实改变了候选几何，而不是空替换。结论是：IBSp 在强基线上有小幅 AP 正信号，但 AP50/AP25 同时轻微下降，尚不能作为独立显著提升或进入 `even96/odd96` 的依据。
-
-## 当前 SAM2 / Any3DIS 双轮烟测
-
-`tools/export_any3dis_sam2_tracks.py` 已从“关键视角 + 三个正点”扩展为：先在关键帧用 SAM2 image predictor 生成初始 mask，再作为 video predictor 的 mask prompt 前后向传播；当同一可靠 seed superpoint 在超过 7 帧的不可见间隔后重现时，再注入该帧的三维投影正点。三场景第一轮 24 条轨迹全部采用 image-mask 初始化，`scene0084_01` 有一条轨迹触发重现提示。
-
-已实现真实的无 GT 迭代采样闭环：
+最终冠军相对上一冠军的主 AP 五折增量为：
 
 ```text
-第一轮可靠超点种子
--> SAM2 轨迹 -> 动态超点优化 / 共识筛选 / 轨迹后清理
--> 可靠但未被清理实例认领的超点
--> 第二轮空间分散种子 -> SAM2 轨迹
--> 多轮轨迹连续重编号合并 -> 跨轮 Details Matter 式后处理
++0.058077 / +0.176655 / +0.054212 / +0.137786 / +0.122644
 ```
 
-新增 `tools/select_uncovered_any3dis_superpoints.py` 和 `tools/merge_any3dis_rounds.py`。后者只重编号和整合已有元数据与路径，不重跑 SAM2；因此现有后处理可跨轮做合并、包含删除和竞争超点清理。
+pair-union 单独相对冻结共存为 `+0.100521 AP / +0.030119 AP50 / +0.016003 AP25`，主 AP 五折也为 `5/5` 正；与轨迹伤害抑制组合后再获得上表的 `+0.107288 AP`。
 
-新版输出均为 30 个 f30 采样帧、每轮每场景最多 8 个种子：
+### 冻结冠军策略
 
-- 第一轮：`output/sam2_any3dis_v2_smoke3_20260720/`、`output/sam2_superpoint_lift_v2_smoke3_20260720/`、`output/sam2_details_postprocess_v2_smoke3_20260720/`，清理后分别保留 `6 / 7 / 5` 个实例；仍可探索可靠超点 `238 / 44 / 62` 个。
-- 第二轮：`output/sam2_any3dis_v2_round2_smoke3_20260720/`、`output/sam2_superpoint_lift_v2_round2_smoke3_20260720/`。
-- 两轮合并并再次清理：`output/sam2_any3dis_v2_merged_round12_smoke3_20260720/`、`output/sam2_superpoint_lift_v2_merged_round12_smoke3_20260720/`、`output/sam2_details_postprocess_v2_merged_round12_smoke3_20260720/`。输入候选为 `13 / 13 / 11`，输出为 `11 / 12 / 11`；跨轮发生 `2 / 1 / 0` 次合并，`scene0019_01` 清理了 23 个竞争超点。下一轮可探索种子仍为 `202 / 28 / 39`。
+- native 候选的几何、类别和原始分数保持不变。
+- 完全相同 native 几何先折叠为关系节点，避免类别副本重复支配组件关系。
+- 轨迹分数为全量 official100 模型输出的质量分数与 `P(keep)` 的固定连续组合；不设 safety 阈值。
+- pair-union 仅追加候选，不修改或删除已有候选；分数由双方保守质量下界与 `P(threshold-cross)` 的固定公式产生。
+- 两个模块无交叉调权，不扫描指数或门值。
 
-这些是链路和规则的 smoke 结果，尚未生成 Open-YOLO/MVPDist 语义标签、未接入强 B 基线融合，也未运行 AP，不能表示性能提升。
+最终模型包：
 
-## 当前 even48 的 Alpha-CLIP 语义校正对照
+```text
+output/train_candidate_champion_pair_union_combined_full_official100_v2_prior_corrected/model_package.pkl
+output/train_candidate_champion_pair_union_combined_full_official100_v2_prior_corrected/metadata.json
+```
 
-已在当前随机 `even48`（48/48 场景严格匹配）重新导出 Alpha-CLIP 多视角对象特征：`23508` 个候选记录、`68784` 个 crop。旧 Alpha-CLIP 缓存只与当前 split 重叠 8 个场景，保留作历史诊断，**不得引用其 AP**。
+最终 official100 结果：
 
-本轮以同一个 `evaluate_multiview_object_clip_correction.py` 入口、相同候选和阈值运行对照；唯一变量为是否采用 Alpha-CLIP 的低置信类别修正。无语义修正为 `AP 0.261404 / AP50 0.352537 / AP25 0.404424`，Alpha-CLIP 为 `AP 0.263244 / AP50 0.354621 / AP25 0.406099`，增量分别为 `+0.001840 / +0.002084 / +0.001675`。Alpha-CLIP 在 42 个场景中替换了 2182 个候选类别。
+```text
+output/evaluate_candidate_champion_pair_union_combined_oof_ap_official100_v1/summary.json
+output/train_candidate_champion_pair_union_combined_oof_plan_official100_v1/summary.json
+output/train_candidate_pair_union_oof_plan_official100_v2/summary.json
+```
 
-结论：Alpha-CLIP 在该受控语义入口中有小而一致的正向信号，可保留为 MVPDist/YOLO 语义后的可选低置信校正模块；该入口的绝对值不能与强 B 的 `0.264689` 混作同一主表，也不能说明 SAM2 候选已经提升。下一步必须把同一语义规则接到 SAM2/Details Matter 候选上做受控比较。
+注意：pair-union v1 计划是无效旧计划，已删除；有效计划是 v2。
 
-## SAM2 候选的 GT 仅离线诊断（3 场景）
+## safety60 与 even48 状态
 
-为定位瓶颈，新增 `tools/diagnose_sam2_refined_instances_gt.py`；它要求显式 `--allow_gt_diagnostics`，只读取 GT 生成 JSON/CSV/可视化，绝不向候选生成、种子选择、合并、类别打分或推理输出提供 GT。最终报告位于 `docs/diagnostics/sam2_details_gt_diagnostic_smoke3_20260720/`。
+### 类别无关几何／排序结果
 
-两轮 SAM2 + Details Matter 的最终输出为 34 个候选，对应 79 个有效 ScanNet200 GT 实例。类别无关几何 oracle 的 GT recall 为 IoU `>=0.25: 0.1519`、IoU `>=0.50: 0.1013`。清理前 lift 为 37 个候选，两个 recall 完全相同，说明当前 Details Matter 合并/去重没有造成已覆盖 GT 的下降；主要瓶颈在于前端种子覆盖不足与部分轨迹边界失控，而不是后处理删掉了正确实例。
+| 配置 | safety60 AP/AP50/AP25 | even48 AP/AP50/AP25 |
+|---|---|---|
+| 原始 Open-YOLO 3D | `47.029171 / 63.490185 / 74.777629` | `53.523950 / 70.924987 / 79.161021` |
+| F2 + 专属严格互重复过滤 | `48.044064 / 64.866299 / 76.042935` | `54.878766 / 72.990183 / 80.869714` |
 
-诊断可视化确认两类错误并存：存在高精度但低覆盖的碎片（例如 shower curtain），也存在轨迹吞入背景/邻近实例的扩张（例如 armchair）。更根本的是每场景两轮仅尝试 16 个种子，而仍有大量可靠超点未被采样。新增 `tools/select_uncovered_any3dis_superpoints.py` 的 GT-free baseline-novel 过滤后，三场景剩余可用新颖种子为 `87 / 14 / 19`；被 Mask3D 大面积覆盖而排除的种子为 `115 / 14 / 20`，说明后续 SAM2 应针对基线未覆盖区域，而不能盲目继续对自身未认领超点采样。
+F2 相对稳健 D2b+过滤仅为 safety60 `+0.000421/+0.000550/+0.001139`、even48 `+0.001010/+0.001579/+0.000944`，因此只保留为几何候选前端，不继续扫描 F1/F2 参数。
 
-已新增 `tools/export_sam2_refined_backprojection_candidates.py` 并成功将 34 个 refined instances 导出为现有 fusion schema（`source_kind=sam2_details`），但仅用当前 YOLO 2D box 与 SAM2 mask 的语义桥接时，12 个几何 IoU>=0.25 候选只有 4 个与 GT 类别完全一致。该接口已验证，**当前输出不得直接用于 even48 AP**；下一步要以 MVPDist 级多视角语义归属替换这个桥接，并先提高 baseline-novel SAM2 的覆盖和边界质量。
+轨迹伤害抑制与最终组合的 safety60 冻结结果：
 
-### baseline-novel 第三轮与融合接口的三场景验证
+| 配置 | AP | AP50 | AP25 |
+|---|---:|---:|---:|
+| safety60 冻结共存 | 48.189639 | 65.050376 | 76.168616 |
+| safety60 轨迹伤害抑制 | 48.290295 | 65.176631 | 75.875680 |
+| 最终组合：轨迹伤害抑制 + pair-union（prior-corrected v2） | **48.424603** | **65.260285** | **75.990715** |
+| 最终组合相对冻结共存 | **+0.234963** | **+0.209909** | **-0.177901** |
 
-在不使用 GT 的前提下，第三轮改为只从强 B 未充分覆盖的可靠 IBSp 中选种子，并把每场景预算提升到 `16 / 14 / 16`。新轨迹与前两轮合并、再经同一 Details Matter 清理后，候选从 34 增至 54。GT-only 几何 oracle recall 随之从 `0.1519 / 0.1013` 提升到 `0.2532 / 0.1646`（IoU `>=0.25 / >=0.50`），因此“baseline-novel 覆盖优先”有明确的候选几何正信号。
+结论：prior-corrected 最终组合的主 AP/AP50 为正，AP25 仍下降；不满足三指标全正，因此不开展 even48 重放，也不据 safety60 结果调整模型、阈值、损失或权重。唯一 AP 聚合完成收据已写入诊断目录。旧 v1 的 `48.353545/65.138110/75.825344` 使用未校正的平衡训练概率，标记为 `invalid_contract`，仅保留审计，不作结果。
 
-新增候选已通过现有 `backprojection_candidates` 融合接口，且修复了评测器：基线维持原始分数阈值，附加候选改以最终语义分数过滤，避免临时 YOLO 框分数在 Alpha-CLIP 重分类前错误删除候选。为可复现性，三场景另建了带签名的 YOLO-World 缓存 `output/scannet200/bboxes_2d_sam2_smoke3_20260720/`；旧 `bboxes_2d` 缓存为 legacy 格式，只可用于历史结果，不能用于当前入口。
+### 模块保留状态
 
-用 Alpha-CLIP 作为唯一语义头的融合 AP 没有提升：在相同三场景、新 2D 缓存和 `score_threshold=0.02` 下，纯基线与融合均为 `AP 0.373765 / AP50 0.492533 / AP25 0.515942`。离线语义诊断表明，54 个候选中 21 个 IoU>=0.25、13 个 IoU>=0.50；这些候选的 YOLO 临时标签精确率仅 `22.22% / 18.18%`，Alpha-CLIP top-1 均为 `0%`，平均 top-1 概率约 `0.07`。
+| 模块 | official100 OOF 判断 | safety60 判断 | 当前状态 |
+|---|---|---|---|
+| F2 轨迹前端与严格互重复过滤 | 构成第一点候选增益底座 | 相对原始三项全正 | 保留 |
+| exact geometry + 质量排序／冻结共存 | 主 AP 继续正增益 | 相对 F2 三项微正 | 保留为稳定底座 |
+| 轨迹伤害抑制 | 相对冻结共存 `+0.484444/+0.724672/+0.909771` | `+0.100656/+0.126255/-0.292936` | 冻结保留，标记 AP25 权衡，待最终裁决 |
+| prior-corrected pair-union | 相对伤害抑制 `+0.107287/+0.025545/+0.013759` | 相对伤害抑制 `+0.134308/+0.083654/+0.115035` | 保留；其自身跨集合三项均正 |
+| 完整组合 | official100 冠军 `67.683517/83.235422/87.959075` | `48.424603/65.260285/75.990715`，相对冻结共存 AP25 `-0.177901` | 冻结保留为 official100 冠军候选，待第二点完成后决定最终启用 |
 
-已新增 `tools/export_sam2_refined_mvpdist_candidates.py`，直接复用 Open-YOLO 3D 的 label-map/MVPDist 多视角投票，为 54 个 refined instances 产生一个类别和分数。对 IoU>=.25/.50 的候选，MVPDist 精确类别率升至 `33.33% / 38.46%`，优于 YOLO 和 Alpha-CLIP；但严格 `.20` 阈值 AP 对照仍为 `AP +0.000000 / AP50 +0.000000 / AP25 +0.002199`。故 MVPDist 是正确的主语义路径，但当前仍需 GT-free 的候选质量/边界筛选来提高高 IoU 候选的比例；在用户明确授权前，这些三场景结果本身不足以进入 even48。
+这里的“保留”仅表示保留代码、模型、计划账本和结果，不授权继续使用 safety60 选参数。`test60` 尚未运行并继续冻结。
 
-### 三场景 GT-free 质量门控原型
+even48 曾对较早的 structured soft suppression 做一次冻结稳健性重放，从 `55.082294/73.226117/80.891462` 到约 `55.156032/73.290909/81.008797`，三项微正；该策略已被后续 official100 冠军替代，不作为当前最终结论。
 
-新增 `tools/filter_sam2_refined_instances_gtfree.py`，只使用 mesh 面片、IBSp superpoint、refined instances 以及可选 MVPDist 候选元数据，不读取 GT。它可按 mesh superpoint 连通块裁掉离散小块，并按无 GT 的结构阈值过滤异常候选，输出新的 refined root。
+### 已完成的唯一第一点复验
 
-三场景 smoke 使用保守结构门控：`max_scene_point_fraction=0.10`、`max_superpoints=40`、`min_component_points=100`、`min_component_point_fraction=0.02`。输出为：
+`champion_track_suppression_plus_pair_union_append` 已复用全 official100 冻结模型权重，并按 official100 OOF 合同使用自然正例率 `0.047577720588447926` 校正 pair-union 概率。复验覆盖 60 场景、39,569 条既有评分记录、1,520 个 append-only pair-union，候选文件修改数为 0；无 GT 预检后只聚合一次 AP/AP50/AP25。唯一有效结果见 `docs/diagnostics/safety60_champion_pair_union_combined_class_agnostic_ap_20260811_v2_prior_corrected/summary.json`，完成收据见相邻隐藏 `.ap_once_receipt.json`。
+6. 只有三项均正才可讨论对 even48 原样重放，否则第一点停在 official100 主结论。
 
-- `output/sam2_details_postprocess_v3_merged_round123_quality_guard_s01_sp40_smoke3_20260720/`
-- `output/sam2_details_mvpdist_candidates_v3_merged_round123_quality_guard_s01_sp40_smoke3_20260720/`
-- GT-only 诊断：`docs/diagnostics/sam2_details_gt_diagnostic_v3_merged_round123_quality_guard_s01_sp40_smoke3_20260720/`
+该实验是**回顾性迁移复验**，不是独立测试。
 
-门控将候选从 `54` 降至 `48`，删除 `6` 个异常候选。离线 GT 诊断仅用于验证，oracle recall 保持 `0.2532 / 0.1646`（IoU .25/.50）不变；candidate precision 从 `0.3889 / 0.2407` 提升到 `0.4375 / 0.2708`。MVPDist 在几何合格子集上的类别准确率未变化：IoU>=.25 为 `0.3333`，IoU>=.50 为 `0.3846`。结论是该门控能无 GT 地删掉一部分明显泄漏/背景候选，且不牺牲当前三场景 oracle recall；但它没有解决 MVPDist 语义和剩余混合候选问题。若无用户明确授权，仍不足以进入 even48。
+## 正式开放词汇瓶颈
 
-### 策略与实现审计（2026-07-20）
+safety60 官方开放词汇 AP 已证明：类别无关几何增益尚不能可靠转成开放词汇 AP。
 
-当前链路不是 Details Matter 的完整复现，而是有意与 Any3DIS/SAM2 组合的裁剪实现。已完成：IBSp 可靠种子与关键视角、SAM2 图像 mask 初始化和双向传播、长不可见间隔的重现正点、逐帧 superpoint 回投及 Any3DIS 式 mask 贪心优化、可见性共识、跨轮迭代合并、包含删除、竞争 superpoint 清理和无 GT 质量门控。未发现足以单独解释低增益的显性运行、投影或评测接口错误。
+| 配置 | AP | AP50 | AP25 |
+|---|---:|---:|---:|
+| 纯 native | 29.971029 | 38.686177 | 44.231502 |
+| native + F2 | 29.820266 | 38.247102 | 43.621551 |
+| 变化 | -0.150763 | -0.439075 | -0.609951 |
 
-但仍缺少两个与当前“混合候选/边界泄漏”错误直接相关的环节：原 Details Matter 在提升到三维前会消除同一帧多个二维实例 mask 的重叠区域；当前 SAM2 种子独立传播，只在三维 superpoint 层处理竞争。原方法还以逐帧独立二维观测及逐帧集合交并比形成或校正轨迹；当前主要使用单个关键帧初始化后的连续 SAM2 传播，未实现独立重观测确认。默认只用正点、只按 SAM2 初始分选单个初始 mask、且只采样 30 个稀疏帧，也可能放大扩张和碎片。故当前结果不能说明 SAM2/Details Matter 思想无效，只能说明该组合版本的候选质量仍不足。
+head/common/tail AP 变化为 `-0.953639/+0.238703/+0.746089`。主要问题不是缺少更多几何候选，而是：
 
-用户已明确要求以当前冻结版本进行一次随机 `even48` 受控验证：三场景只用于定位，不能代替总体 AP。该运行只比较强基线 B 与强基线 B + 三轮基线未覆盖区域的 SAM2/Details Matter + 无 GT 质量门控 + MVPDist，不在 even48 上扫描参数；长任务只检查启动、中段/异常和完成三个状态。
+- 当前 top-1 式多视图语义过早丢失完整类别分布；
+- native 与 track 语义／质量分数不可直接比较；
+- 完全相同或近同几何的类别副本仍发生类别相关竞争；
+- 分类正确性、候选排序和同类重复抑制没有解耦。
 
-已检查现有 `output/`：没有上述完整组合在 `even48` 的输出或评测报告。已有 `even48` 的 IBSp 原型轨迹、SAM 融合或其他候选图试验均不是当前三轮 SAM2 + 后处理 + 质量门控 + MVPDist 配置，不能读取后替代本次受控验证，也不能混入比较。
+报告：`docs/diagnostics/f2_open_vocab_ap_gvc_safety60_20260808/summary.json`。
 
-第一次后台启动在工具会话退出后被终止，日志只写入“第一轮 SAM2 轨迹”，没有形成有效中间产物或评测结果；它不得视为已运行。随后已用独立会话重新启动，实际根目录为 `output/sam2_details_even48_frozen_20260720_run1/`，最终对照报告写入 `output/scannet200/sam2_details_even48_frozen_20260720_run1_eval/`。48 个场景均已完成三轮轨迹、提升到三维、后处理、质量门控、MVPDist 和两次评测。实际 SAM2 速度约为 3 秒/轨迹。
+## 已终止或被替代的方向
 
-此次完整运行共得到 `839` 个后处理实例，经无 GT 质量门控保留 `739` 个，并成功导出 `738` 个 MVPDist 候选。强基线与“强基线 + SAM2”报告均为 `AP 0.261404 / AP50 0.352537 / AP25 0.404424`。但该持平结果**不能作为有效负结论**：启动脚本复用了强基线的统一原始候选分数阈值 `0.50` 和重叠约束，738 个 SAM2 候选中只有 `3` 个同时通过；其余候选在融合前已被过滤。下一步不重跑 SAM2 生成，而是只修正融合层的按来源分数筛选，使强基线维持原阈值、SAM2 候选按其 MVPDist/几何融合分数的独立规则进入，再对同一 48 场景重新评测。
+只保留影响路线选择的结论：
 
-融合层修正：`evaluate_multiview_object_clip_correction.py` 已增加 `--backprojection_source_min_scores` 并传入已有融合函数；`tools/run_scannet200_even48_sam2_details_fusion_eval.sh` 只读取冻结输出重评测，不重新执行 SAM2。规则固定为 `sam_fused=0.50,bpr=0.50,sam2_details_mvpdist=0.00`：历史强基线的分数、排序、重叠过滤和来源上限均不变，SAM2 仍需通过既有实例重叠、superpoint 细化、几何优先级和每场景总预算，才可占用最多五个额外位置。
+| 方向 | 结论 |
+|---|---|
+| 直接以候选质量 `q` 替换最终分数 | safety60 AP 大幅下降；质量只可作辅助证据，不再扫描混合权重。 |
+| `structured_lower_relation_veto` | official100 曾 `+0.1615 AP` 且主 AP 五折全正，但 safety60 为 `-0.162377/-0.356668/-0.879877`，已被连续轨迹伤害抑制替代。 |
+| 轨迹 marginal joint score | 相对 state head 的 ROC/PR 五折 `0/5` 胜出，未获准进入 AP；不再继续。 |
+| pair-intersection | 仅 17 个正例，验证折正例 `2/5/5/1/4`，log-loss 仅 `2/5` 折胜出；未物化、未运行 AP。 |
+| F1 直接碎片合并 | 系统 AP 近乎持平但微负；停在消融。 |
+| MV3DIS A/B/unknown 边界 owner | 全局可行 oracle 仅 `+0.067988 AP`；1,393 个动作停在 plan-only。 |
+| grow/move/resolve 边界动作 | move 失败，resolve 被系统稀释，grow 跨集合不稳；不再调阈值。 |
+| SAMPro3D/medoid 候选族 | 未形成可推进的系统增益；大输出已按授权删除，结论保留。 |
+| SAM2、IBSp、残差图、直接 union/intersection/adaptive | 已验证不稳定或缺少独立补充，均不再作为当前主线。 |
 
-历史强 B/C 的 `0.264689 -> 0.266595` 不能与当前 `0.261404` 作绝对比较。B/C 由 `run_evaluation.py` 的原强基线入口产生，唯一变量是 `.npy` 第 9 列 superpoint id；当前数值来自 `evaluate_multiview_object_clip_correction.py` 的无语义修正入口，并显式写入空语义特征关闭类别校正。它与此前 Alpha-CLIP 对照中的无修正基线相同，不是当前改动使 B/C 降低。当前的有效结论只能来自同一入口内“强基线”与“强基线 + SAM2”的重评测差值；若需 IBSp 的绝对主表，须在 B/C 的 `run_evaluation.py` 配置内另行适配新增候选。
+## 第二创新点：当前开发主线
 
-来源门槛修正后的 48 场景重评测已完成，报告为 `output/scannet200/sam2_details_even48_frozen_20260720_run1_source_min_v1_eval/`：强基线为 `AP 0.261404 / AP50 0.352537 / AP25 0.404424`，加入 SAM2 后为 `AP 0.261435 / AP50 0.352678 / AP25 0.404573`，增量为 `+0.000031 / +0.000141 / +0.000149`。这是有效但极小的正信号，不能作为方法提升或进入 even96/odd96 的依据。类别 AP 的变化仅出现在 `monitor`，表明当前有效增益高度集中，尚非普遍的候选质量改善。
+建议名称：**几何节点上的多视图开放词汇证据校准与类别条件竞争**。
 
-原因不是新增候选仍被 `0.50` 错误过滤，而是两道保守筛选共同收窄了有效集合：738 条 MVPDist 候选中，分数达到后续最终 `score_threshold=0.20` 的有 229 条；按导出时已有实例重叠字段，二者同时满足的只有 31 条，实际融合还会继续经过 superpoint 细化和新候选去重。不能为了提高数量直接降低最终分数门槛或放宽重叠限制，因为那会在没有校准语义的情况下提高误检。后续应优先补齐候选形成的同帧二维 mask 重叠消除和独立重观测确认，并以 MVPDist 置信度、间隔与几何一致性做候选级软排序；修复 `evaluate_multiview_object_clip_correction.py` 使后续报告同时保留 `backprojection` 与 `clip` 明细，避免再次丢失实际接入统计。
+核心问题不是重新训练 Open-YOLO 3D 主干或直接训练新的 200 类分类器，而是把冻结候选展开为 `(geometry node, class)` 假设，建立跨 native/track/pair-union 可比较的语义—几何联合真阳性排序分数，并在局部重叠组件内处理同类重复竞争。
 
-已开始补齐第一个前端缺口：`tools/lift_sam2_tracks_to_superpoints.py` 新增可选的 `--same_frame_overlap_cleanup`。它在同一轮全部轨迹提升到三维前，对每一帧中被至少两条轨迹覆盖、且面积达到 `--same_frame_overlap_min_pixels`（默认 32）的像素从所有相关轨迹中删除，不按分数武断归属；每条 lifted record 和场景摘要均记录移除像素数与受影响帧数。冻结运行脚本的三轮提升均会在下一次新轨迹运行时显式启用。旧的冻结输出保持不变。合成断言验证了“达到门槛的交叠从双方移除、低于门槛的单像素交叠保留”；在 `scene0146_01` 第一轮旧轨迹上只读统计到 5 个受影响帧、29812 个待移除歧义像素，表明该模块并非空操作。当前 `openyolo3d` 环境没有 `pytest`，故该断言以同环境的直接 Python 执行完成，并已通过 `py_compile`、`--help` 与 `bash -n`。
+执行顺序：
 
-评测入口审计发现一项必须先修正的混合链路：历史 B/C 的 `run_evaluation.py` 支持 `--processed_scene_root`，C 因而在候选 superpoint 细化时读取 f30 IBSp；此前 `evaluate_multiview_object_clip_correction.py` 没有该参数，虽然 SAM2 轨迹和 MVPDist 候选来自 f30 IBSp，却在最终融合时固定读取 `data/scannet200/...npy` 的原始 superpoint。故 `0.261404 -> 0.261435` 既不等于 B 也不等于 C。现已为该入口增加 `--processed_scene_root`，并让仅融合重评测脚本默认传入 `output/mesh_normal_ibsp_dense_even48_f30`。修正后必须重做一次不运行 SAM2 的 48 场景融合评测，才是“f30 IBSp + SAM2/Details Matter”一致的数据流对照。
+```text
+Z0  固定 native/F2 几何的 GT-only 分类—排序 oracle 分解
+Z1  无 GT 的完整 YOLO-World 多视图类别分布账本
+Z2  本地 Alpha-CLIP 对象中心／上下文多视图账本（Z1 后再做）
+Z3  训练自由融合控制组 + official100 OOF 类别无关可靠性校准
+Z4  exact-geometry 类别聚合和冻结组件内类别相关竞争
+Z5  语义辅助的 merge/split/boundary-owner plan 与 oracle
+```
 
-系统自查的三步已完成。无 GT 接口契约审计 `docs/diagnostics/sam2_fusion_contract_even48_20260721/summary.json` 覆盖 48 场景，确认 f30 仅改变第 9 列、三类候选的点索引和类别映射合法，候选数为 `SAM-fused 275 / BPR 895 / SAM2 738`，无 error/warning。仅离线 GT-only 账本 `docs/diagnostics/sam2_mvpdist_fusion_ledger_even48_20260721/summary.json` 显示 738 条 SAM2 候选中 IoU>=.25/.50 为 `235/151`，但几何错误仍以弱几何、碎片和背景候选为主；MVPDist 类别精确率为全部候选 `.299`、IoU>=.25 `.443`、IoU>=.50 `.457`。最重要的诊断是：分数>=.20 的 229 条候选平均 IoU `.463`，而仅按“低既有实例重叠”保留的 330 条平均 IoU `.063`；二者交集 31 条平均 IoU `.120`。这表明“只追加未覆盖区域”系统性排除了较好几何候选，后续必须研究已有实例局部修正/替换的保守条件，而不是盲目降低阈值。
+Z0 已在同一 official100 候选合同下完成，结果目录：
 
-使用历史 `run_evaluation.py`、f30 IBSp、统一评分、相同强基线候选和同一 even48 的主对照已完成，脚本为 `tools/run_scannet200_even48_ibsp_sam2_control.sh`，输出为 `output/scannet200/ibsp_sam2_control_even48_20260721/`。f30 强基线精确复现历史 C：`AP 0.266595 / AP50 0.346625 / AP25 0.395200`；只追加现有 SAM2 MVPDist 候选后为 `AP 0.266907 / AP50 0.347182 / AP25 0.396167`，增量 `+0.000312 / +0.000557 / +0.000967`。历史候选实际接入数保持 `289`，SAM2 额外接入 `291`。这是当前冻结版本第一个可与 B/C 直接比较的有效正向结果，但幅度仍小，且该 even48 已被多轮诊断使用；不能据此宣称泛化。新实现的同帧二维 mask 重叠消除尚未进入该结果，必须先在三场景检查候选变化后再冻结一次新版本验证。
+```text
+docs/diagnostics/z0_open_vocab_oracle_official100_20260811_v2_fixed/
+```
 
-### 基础 Mask3D 与 SAM2 的 GT-only 互补性诊断（2026-07-21）
+旧目录 `docs/diagnostics/z0_open_vocab_oracle_official100_20260811/` 因错误读取 signed YOLO-World 缓存并混用类别编号空间，已标记为 `invalid_contract`，不得引用。
 
-新增 `tools/diagnose_baseline_sam2_complementarity_gt.py`，必须显式传入 `--allow_gt_diagnostics`，只在事后逐 GT 实例计算基础 Mask3D mask 和 SAM2 候选各自的最佳 IoU，输出 `CSV/JSON`，绝不回流到候选、融合、打分或阈值。完整 `even48` 报告在 `docs/diagnostics/baseline_sam2_complementarity_even48_20260721/`，覆盖 1113 个有效 GT 实例。
+Z0 固定评测矩阵为：
 
-结果否定了“SAM2 完全不能补出 Mask3D 漏检实例”的说法：IoU>=.25 时有 `19` 个实例为“Mask3D 漏、SAM2 覆盖”（`1.71%`），IoU>=.50 时仍有 `16` 个（`1.44%`）；分别还有 `29/21` 个实例中 SAM2 的 IoU 至少比 Mask3D 高 `.10`。但更多候选与 Mask3D 覆盖同一实例：IoU>=.25 为 `217` 个、IoU>=.50 为 `135` 个；而仅 Mask3D 覆盖、SAM2 未覆盖的实例仍为 `811/802`。因此当前小增益同时有两层原因：SAM2 的真正新增覆盖有限，且当前“低既有实例重叠才追加”的规则会拒绝大量同一对象上的较好 SAM2 边界候选。下一步应保留 SAM2 作为类别无关候选生成器，不用 Details Matter 替换它；应补齐 Details Matter 式的同帧重叠消解和独立重观测确认，并研究仅在高置信条件下局部修正/替换已有实例。
+1. 当前类别 + 当前分数；
+2. GT 类别 + 当前分数；
+3. 当前类别 + GT-only 理想排序；
+4. GT 类别 + GT-only 理想排序；
+5. GT 类别 + 一对一匹配/重复竞争理想排序。
 
-### Mask3D 漏检实例的种子覆盖诊断（2026-07-21）
+并对 native-only、track-only、native+track、pair-union 以及 head/common/tail 分开报告。GT 只用于显式 oracle／评测，不生成推理类别或分数。第五项用于隔离同类重复竞争造成的损失。
 
-新增严格 GT-only 工具 `tools/diagnose_sam2_seed_coverage_gt.py`，报告为 `docs/diagnostics/sam2_seed_coverage_even48_20260721/`。它把每个基础 Mask3D 漏检 GT 实例逐层定位为“无可靠超点”“有可靠超点但未采样”“已采样但轨迹或三维提升未恢复”或“SAM2 已覆盖”；GT 只写入离线 `CSV/JSON`，绝不回流推理。
+### Z0 official100 有效结果
 
-IoU>=.25 的 85 个 Mask3D 漏检实例中，`38` 个（`44.7%`）无可靠超点，`22` 个（`25.9%`）已采样但未恢复，`6` 个（`7.1%`）有可靠超点却未采样，`19` 个已被 SAM2 覆盖。IoU>=.50 的 176 个漏检实例中，对应为 `65/64/31/16`。因此不能把低互补率简单归因为“只跑了不够多的 SAM2 轨迹”：当前三轮预算确实被硬截断为每场景最多 `8+8+16` 个种子，且没有像 Any3DIS 原文那样迭代至无空闲超点；但在 IoU>=.25 下，直接因未采样漏掉的实例只占少数。优先问题是可靠超点定义/几何边界和多视图可见性使近半漏检实例没有可用种子，其次是已采样对象在 SAM2 传播、二维重叠、提升与共识筛选中失败。增加种子预算只能作为受控消融，不能替代前两项修正。
+| 来源 | 当前类+当前分数 AP/AP50/AP25 | GT类+当前分数 AP | 当前类+GT排序 AP | GT类+GT排序 AP | GT类+一对一 AP |
+|---|---:|---:|---:|---:|---:|
+| native-only | `27.932155/33.260568/35.815926` | `54.784376` | `47.972372` | `17.499986` | `60.476576` |
+| track-only | `4.969554/8.662474/12.117329` | `16.865692` | `7.960293` | `21.219134` | `21.219578` |
+| native+track | `29.507559/35.629562/38.375052` | `62.179954` | `49.959644` | `23.482631` | `69.469720` |
+| pair-union | `29.518969/35.628993/38.373681` | `62.205105` | `48.588698` | `24.176046` | `69.837770` |
 
-Any3DIS 式无约束二元优化并非缺失：`tools/lift_sam2_tracks_to_superpoints.py` 的 `--mask_optimization any3dis_dp` 已以“逐帧加入该帧全部候选超点或保持现状”的贪心动态过程，计算全帧投影落在 mask 内减去落在 mask 外的目标，近似原文的求解器。但当前实现在优化后额外施加 Details Matter 式多视图共识过滤，且候选超点先受逐帧覆盖率阈值限制，故不是原文优化的逐字复现。迭代三维物体采样已实现为三轮未认领/基线未覆盖超点采样，但固定停止于第三轮，不是原文“直到没有空闲超点”的完整实现。
+普通 `GT 类别 + GT IoU 排序` 在大量同类重复候选存在时并不是单调上界；第五项把每个 GT 只分配给一个同类预测后才恢复真实的一对一竞争上界。pair-union 相对 native+track 的当前主 AP 仅 `+0.011410`，说明现有 top-1 类别和分数几乎没有利用新增几何；但一对一 oracle 仍有 `+0.368050 AP`，因此 pair-union 保留并进入统一语义账本。
 
-### 无可靠超点原因与独立重观测（2026-07-21）
+### Z1 official100 有效账本
 
-进一步 GT-only 诊断 `tools/diagnose_unreliable_superpoints_gt.py`（报告 `docs/diagnostics/unreliable_superpoints_even48_20260721/`）显示，IoU>=.25/.50 下无可靠 IBSp 的 `38/65` 个 Mask3D 漏检实例全部属于“可见帧不足”，没有“超点规模不足”；其最佳超点 GT 纯度平均约为 `91.5%/91.0%`，仅 `3/6` 个实例低于 `50%`。这说明在**当前 f30 IBSp 已重分割完成之后**，可见性门槛又排除了许多仍有对象内部分的超点。2026-07-22 的原始/IBSp 全链路对照进一步证明，边界覆盖更早已在 f30 重分割下降；故可见性自适应是第二步，第一步必须先做 IBSp 基线粒度对齐。
+有效目录：
 
-已在 `tools/export_any3dis_sam2_tracks.py` 实现独立图像预测器重观测：每隔指定采样帧，使用 seed 在当前帧的独立 SAM2 图像预测 mask 与视频传播 mask 计算一致 IoU，保留完整原始轨迹和逐帧审计记录。`lift_sam2_tracks_to_superpoints.py` 的确认器不再硬删除低一致帧，而是以 `--reobservation_rejected_frame_weight` 软降权其超点支持和多视图优化贡献。三场景首轮真实 GPU smoke（24 条轨迹）产生 68 次重观测，51 次通过、17 次否决，平均一致 IoU `.637`。硬删除会使 IoU>=.50 的离线召回从 `.0635` 降至 `.0476`；软降权 `.50` 保持 `21` 个实例及 `.0794/.0635` 的 IoU>=.25/.50 召回，点数仅 `99114 -> 98749`。因此下一冻结版本采用软降权，不把该三场景结果解释为性能提升。
+```text
+docs/diagnostics/z1_yoloworld_multiview_distribution_official100_20260811_v3_frozen_support_vote/
+```
 
-新完整脚本为 `tools/run_scannet200_even48_sam2_details_reobserve.sh`，默认输出 `output/sam2_details_even48_reobserve_20260721/`。它通过环境变量调用旧脚本的固定其余配置，并显式启用 `stride=5`、一致 IoU `.30`、否决帧权重 `.50`。
+- 候选绑定：native `59,997`、track `5,266`、pair-union `1,501`；不改候选、不读取 GT。
+- exact-geometry／视角合同去重后为 `9,708` 个语义证据节点；native 本身只有 `2,941` 个唯一几何节点，类别副本不再重复放大证据。
+- 当前 ScanNet200 YOLO-World 缓存暴露 `198` 个有效实例 prompt，预测索引为 `0..197`；项目中“200 类”是数据集名称，不应伪造两个不存在的实例 prompt。
+- 冻结 all-support top-1 有效 `5,233/5,266`，并与 Z0 当前轨迹类别完全一致。
+- sampled-support top-1 与冻结 all-support top-1 在有效轨迹上 `98.738773%` 一致；它只用于分析，不替代冻结类别。
+- independent-review top-1 与冻结 support top-1 仅 `67.341869%` 一致；support vs independent JS divergence 为 mean `0.220342`、median `0.157905`、p90 `0.491751`。
+- pair-union 自身几何的 all-support top-1 与继承 track 类别仅 `83.544304%` 一致，independent top-1 仅 `61.025983%` 一致；因此必须同时保留 inherited inference class 和 union-geometry diagnostic distribution。
+- YOLO-World 缓存只保存检测框，不保存逐框二值 mask；Z1 的二维支持定义为 `score × 投影可见点落框比例`，深度一致性由冻结 WORLD_2_CAM visibility 提供。
 
-该新冻结 even48 已于 2026-07-21 完成，日志为 `output/sam2_details_even48_reobserve_20260721/driver.log`，报告目录为 `output/scannet200/sam2_details_even48_reobserve_20260721_eval/`。三轮轨迹、三维提升、后处理、无 GT 质量门控、MVPDist 导出和两次评测均正常结束。此入口的强基线为 `AP 0.261404 / AP50 0.352537 / AP25 0.404424`，加入同帧重叠消解和独立重观测软降权后的 SAM2 候选为 `AP 0.261404 / AP50 0.352537 / AP25 0.404511`：AP、AP50 不变，AP25 仅 `+0.000087`，没有可测总体提升。由于该运行脚本尚未向 `evaluate_multiview_object_clip_correction.py` 传入 f30 `--processed_scene_root`，它仍是混合 superpoint 特殊入口，不能同历史 B/C 主表或 `0.266907` 直接比较；不得重跑轨迹，应在需要时仅使用本次已导出的 MVPDist 候选完成 f30 一致的只读融合评测。
+早期 Z1 无后缀目录和 `v2_global_keys` 是中间账本，分别存在 join key 和 full-support vote 合同问题，已标记为 `invalid_contract`，不得作为正式输入。
 
-为防止后续重复该入口错误，`tools/run_scannet200_even48_sam2_details_frozen.sh` 已补传 `--processed_scene_root "$SUPERPOINT_ROOT"`；其派生的未来冻结运行将统一使用 f30 IBSp。原始 superpoint/f30 的双跑只保留给历史 B/C 的 IBSp 单变量对照，普通方法验证一律直接用 f30。该脚本修复不改写已完成 reobserve 的输出或数值。
+### Z2 official100 Alpha-CLIP 独立语义账本（已完成）
 
-## 下一步
+对象中心结果：`docs/diagnostics/z2_alphaclip_track_object_center_official100_20260811/`；有限上下文结果：`docs/diagnostics/z2_alphaclip_track_limited_context_official100_20260811/`。
 
-1. 不重跑已完成的三轮轨迹；先用本次已导出的 MVPDist 候选，在 f30 一致主入口完成一次只读融合评测，记录 AP、AP50、AP25、附加候选数量和被重叠过滤数量。
-2. 之后先做 48 场景 GT-only 定位，而非立刻增加模型：一项检查 YOLO-World 对 Mask3D 漏检实例的二维框覆盖，决定是否值得引入 Grounded-SAM/YOLOE；另一项量化 SAM2 候选对既有 Mask3D 的局部补全/裁剪 oracle 上界，并检验多视图、深度、superpoint 和语义特征能否在无 GT 条件下区分收益与恶化。仅当相应诊断通过，才实现唯一的一项后续方法。
+- 两路均为 `100/100` 场景、`5,266` 条轨迹、`5,168` 条有效语义，`98` 条空语义；两路视角选择和有效覆盖完全一致。
+- 对象中心 `crop_padding_ratio=0.15`；有限上下文固定为 `0.50`。Alpha mask、视角选择、候选和 YOLO-World 均未改变。
+- 两路均通过 `tools/audit_z2_alphaclip_track_semantics.py`：源轨迹键一一对应、198 维逐视角/聚合 logits 有限且自洽；精确 logit 并列按最大值并列集合处理。
+- 无 GT 对比账本：`docs/diagnostics/z2_alphaclip_vs_z1_track_distribution_official100_20260811/summary.json`。有限上下文与冻结 support top-1 一致率 `26.947040%`，对象中心 `20.580218%`；Alpha 与 YOLO 的 JS divergence 较高，不能直接覆盖 frozen YOLO-World。
 
-f30 一致的只读融合评测已于 2026-07-21 完成：`RUN_DIR=output/sam2_details_even48_reobserve_20260721 EVAL_DIR=output/scannet200/sam2_details_even48_reobserve_20260721_f30_eval bash tools/run_scannet200_even48_sam2_details_fusion_eval.sh`。报告目录为 `output/scannet200/sam2_details_even48_reobserve_20260721_f30_eval/`。它只读取已完成 reobserve 的 `mvpdist_candidates`，没有重新运行 SAM2、轨迹、提升、后处理、质量门控或 MVPDist。强基线为 `AP 0.263050 / AP50 0.350814 / AP25 0.404136`，加入 SAM2 后为 `AP 0.263049 / AP50 0.350813 / AP25 0.404653`，差值为 `-0.000001 / -0.000001 / +0.000517`。强基线实际接入 `SAM-fused 157 + BPR 132 = 289` 条，本次 SAM2 有 `236` 条全部接入，因而该无净 AP 收益不是来源分数过滤问题。此入口已统一 f30 superpoint，但评测器仍是 `evaluate_multiview_object_clip_correction.py`，不替代历史 B/C 的 `run_evaluation.py` 绝对主表；在自身受控入口中，它构成“同帧歧义消解 + 独立重观测软降权无总体 AP 正向”的有效负结果。下一步执行两个 48 场景 GT-only 定位诊断，不增加模型。
+### Z3 official100 训练自由控制组（已完成）
 
-### 48 场景决策诊断（2026-07-22，已完成）
+YOLO-only 结果：`docs/diagnostics/z3_yoloworld_control_group_official100_20260811_v1/summary.json`；Alpha 融合结果：`docs/diagnostics/z3_alphaclip_fusion_control_group_official100_20260811_v1/summary.json`；总审计：`docs/diagnostics/z3_control_group_audit_official100_20260811/summary.json`。
 
-已新增两个严格只读、GT-only 工具，并通过 `py_compile`、`--help`、`bash -n`、`git diff --check` 以及单场景冒烟。它们均要求显式 `--allow_gt_diagnostics`，GT 不会进入推理、候选、融合、打分或阈值。单场景二维覆盖投影实际耗时约 47 秒，局部修正约数秒。
+- YOLO-only `frozen_current/pair_union` 精确复现 Z0：`29.518969/35.628993/38.373681`；7 个替代 top-1/abstain/概率乘权规则均未提升主 AP。
+- 最佳固定融合是 `frozen_context_equal_top1`：冻结 YOLO support 分布与有限上下文 Alpha 分布等权（`0.5/0.5`），pair-union 为 `30.311670/36.918962/39.993122`，相对 Z0 `+0.792701/+1.289969/+1.619441 AP`（AP/AP50/AP25）。tail AP `+2.201957`，head AP 基本不变。
+- 对象中心等权仅 `+0.427271 AP`；Alpha 单独 top-1、agreement-abstain 均低于 frozen。该结果支持主线：YOLO-World 保持主语义，有限上下文 Alpha 作为软证据补充，不能硬覆盖或只在一致时保留。
+- 所有 Z3 均为 official100 显式 GT-only evaluator；不训练、不改候选、不运行 safety60/even48/test60。
 
-完整任务命令为 `bash tools/run_scannet200_even48_post_sam2_diagnostics.sh`，输出为 `docs/diagnostics/post_sam2_decision_even48_20260722/`。该命令按顺序执行：
+该历史阶段随后进入 official train100 场景隔离五折 OOF 的低容量、类别无关可靠性校准，并已由 Z3–Z4d 完成；后续 Z5a/Z5b 也已完成并以剩余动作上界过弱终止。当前不再手调固定融合或校准权重，且 safety60 仍不能用于回调或选择新方向。
 
-1. `tools/diagnose_yoloworld_mask3d_missed_coverage_gt.py`：仅看 f30 前 30 个采样帧，以“同类别 YOLO-World 框覆盖可见 GT 点的比例”而非框 IoU 判断二维观测；默认要求至少 2 帧、每帧覆盖至少 `.50`，用于决定是否有必要比较 Grounding DINO、YOLOE 或 Grounded-SAM。
-2. `tools/diagnose_mask3d_sam2_local_correction_gt.py`：对每条已导出的 SAM2 候选及其最高重叠 Mask3D 锚点，比较保留、并集补全、交集裁剪的 oracle IoU，并按 `support_score`、候选语义分数、既有重叠、已覆盖点比例和轨迹数进行无 GT 特征分组，用于决定是否值得实现 MV3DIS 式局部修正。
+### 第二点训练与评测合同
 
-完整任务已经正常结束，报告为 `docs/diagnostics/post_sam2_decision_even48_20260722/yoloworld_coverage/summary.json`、`docs/diagnostics/post_sam2_decision_even48_20260722/local_correction/summary.json`、`docs/diagnostics/post_sam2_decision_even48_20260722/local_correction/univariate_gate_scan.json`，过程日志为同目录 `driver.log`。
+- Z0–Z2 先做无训练 oracle、账本和融合控制组。
+- 若 Z0 证明主要瓶颈是排序和跨来源分数不可比，允许只在 official train100 上训练低容量、类别无关的校准器；它估计 `(node, class)` 真阳性概率，不直接学习 200 类分类替换，也不训练 Mask3D/YOLO-World 主干。
+- official100 使用场景隔离五折 OOF；每折外场景不得参与本折训练或校准。策略冻结后才用 official100 全量拟合最终校准器。
+- safety60 已完成第一点复验；对第二点只允许在方法冻结后做一次迁移 AP，不能训练、选阈值、选融合权重或回调。even48 只允许冻结后原样重放，test60 继续冻结。
 
-二维覆盖结论：在 IoU>=`.25` 的 `85` 个 Mask3D 漏检实例中，仅 `18` 个（`21.18%`）有可靠 YOLO-World 二维框；其余 `67` 个中，`43` 个没有任何满足最小可见点数的 f30 帧、`17` 个有可见帧但没有同类框、`7` 个只匹配一帧。IoU>=`.50` 时为 `45/176`（`25.57%`）可靠，其余 `131` 个中 `87/34/10` 分别属于无可用帧、可见但无框、仅一帧。所有 GT 类别均在当前提示词表内。因此当前首要瓶颈是 f30 的可见性/观测次数，而不是类别词表或单纯二维检测器能力；暂不优先引入 Grounding DINO、YOLOE 或 Grounded-SAM。
+## 数据纪律
 
-局部修正结论：`583` 条 SAM2 候选中有 `365` 条与 Mask3D 锚点形成局部重叠对。保持原 mask 是 oracle 最优动作 `273` 次（`74.8%`），并集 `75` 次、交集 `17` 次；只有 `54` 条（`14.79%`）的非保留动作可改善至少 `.02` IoU，而 `111` 条（`30.41%`）的并集和交集都至少恶化 `.02`。改善组的 `support_score` 均值虽较高（`89.34` 对 `65.90`），但同集单变量扫描中，满足最小 19 条样本的最高改善精度仅为 `support_score >= 236.65` 的 `7/19=36.8%`，没有可直接部署的无 GT 选择器。故暂不实现 MV3DIS 式自动局部补全/裁剪；原始 Mask3D 继续作为不可自动替换的回退。
+- official train：允许场景隔离训练、校准和五折 OOF。
+- safety60：回顾性开发／迁移复验集；不训练、不选阈值、不回调策略。
+- even48：已使用的零场景重叠 robustness set；只允许冻结后原样重放。
+- test60：继续冻结。
+- GT：只允许 official train 监督、显式标记的离线 oracle 和最终评测；不得进入推理特征。
+- 当前工作区很脏，但用户已决定暂不清理；不得运行 `git clean`、`git reset` 或回退用户修改。
 
-本段原先建议优先做无 GT 的可靠 superpoint 可见性自适应；该优先级已被随后完成的原始/IBSp 覆盖对照修正。可见性自适应仍要做，但只能在 IBSp 基线粒度对齐确认后进行；在此之前不增加二维大模型、不重跑 SAM2、不实现局部修正。
+## 存储清理
 
-### 超点链路复核与原始/IBSp 覆盖对照（2026-07-22）
-
-阅读本地 `Landrieu_Large-Scale_Point_Cloud_CVPR_2018_paper.pdf`、本地 OVSeg3R 原文、ScanNet `Segmentator` 源码后，新增严格 GT-only 账本 `tools/diagnose_superpoint_pipeline_gt.py`，报告在 `docs/diagnostics/superpoint_pipeline_even48_20260722/`。它依次比较原始 ScanNet 第 9 列 superpoint、当前 f30 IBSp、可靠种子、实际采样和当前 SAM2 候选；GT 从不回流。
-
-结论改变了后续优先级。原始 ScanNet 第 9 列是预计算的 mesh-normal `Segmentator` superpoint，不是本项目本轮生成；当前项目已在 `tools/generate_geometric_superpoints.py` 重写了其网格邻接、面法线平滑、法线边权、Felzenszwalb 合并和小组件合并。f30 IBSp 则是本项目生成的全新第 9 列：先从完整 mesh 建图，再用 30 个已有二维实例 label-map 剪掉冲突边，最后重新图分割。它不是在原始 superpoint 上原地细化。
-
-在 1,113 个有效 GT 实例上，原始 ScanNet superpoint 的“落在实例主属超点内的 GT 点覆盖”是 100%；当前 f30 IBSp 降为 86.2%，1,007 个实例变差、106 个不变、没有一个变好。对 85 个 Mask3D 漏检实例，该覆盖从 100% 降到 75.8%，74 个变差、11 个不变。下降因此发生在 **f30 IBSp 重分割**，早于可靠性筛选、采样、SAM2 跟踪和 Details Matter 后处理。当前 f30 输出平均每场景 superpoint 数从 990 降到约 779，而最大 superpoint 平均从约 12,207 点增至约 18,724 点；30 帧二维边界只剪掉全部 mesh 图边的约 0.15%，不足以抵消基础分割更粗造成的过合并。
-
-最可能的实现原因是粒度不等价：ScanNet `Segmentator` README 的默认分割阈值为 `0.01`，当前 f30 生成器使用 `merge_k=0.25`。本地原始 `.npy` 不含参数元数据，不能断言它一定使用默认值，但两者阈值和输出粒度明显不匹配。OVSeg3R 的正确思想是“先在与几何基线等价的图上删除二维实例不一致边，再按同一 Felzenszwalb 规则分割”；当前不能把 `.25` 的重分割直接称为原始 ScanNet superpoint 的保守细化。
-
-因此下一步顺序修正为：先做**无 GT 的 IBSp 基线粒度对齐**，以原始 ScanNet 分段数量、大小分布和图连通性作为结构参照，先用 `mesh_normal` 与原始兼容阈值重建几何基线，再仅追加二维冲突剪边；确认不再系统性吞并原始边界后，才做可靠 superpoint 可见性自适应。不得先重跑 SAM2。
-
-SAM2 的直接输入不是三维 superpoint mask 或 Details Matter 后处理结果，而是关键 RGB 帧、由可靠 f30 IBSp 投影得到的三个正点提示，以及 30 帧 RGB 序列；superpoint 在 SAM2 前用于选种子/关键帧，在 SAM2 后用于把二维轨迹提升回三维。Details Matter 原文先有预计算 superpoint，先按面积排序并从较大二维 mask 去除与较小 mask 的重叠，再把 mask 提升到 superpoint、按帧可见性/实例支持筛选，最后用帧级 sIoU 形成 tracklet。当前实现只在 SAM2 传播后才清理同帧重叠，并把重叠像素从两条轨迹同时删除，尚不等价于原文“小 mask 优先”的策略；该差异可在 IBSp 基线修正后作为单独受控改动，而不是现在与超点修复叠加。
-
-### 当前问答结论：超点、SAM2 与实例合并（2026-07-22）
-
-原始 ScanNet superpoint 对 1,113 个有效 GT 实例保持 100% 的“实例主属超点覆盖”，只表示真实实例边界没有在超点层被不可逆吞并；它是候选形成的几何上界，不是最终 AP。最终 AP 还取决于 `Mask3D`、`YOLO-World + SAM`、BPR 和 SAM2 的候选形成，MVPDist 语义，评分排序，以及 NMS。细粒度原料若没有可靠的跨视角关联和语义证据，仍可能无法形成正确实例，或形成重复候选而被过滤。
-
-当前未加 SAM2 的强基线数据流为：`Mask3D` 类别无关三维候选、`YOLO-World + SAM` 二维反投影候选和 BPR 候选，随后由 MVPDist 语义投票、superpoint 精炼、评分和 NMS 输出预测。历史主入口 `run_evaluation.py` 中，原始 superpoint 的 AP 为 26.4689%，f30 IBSp 的 AP 为 26.6595%；在完全相同的 f30 主入口追加现有 SAM2 候选后为 26.6907%，只增加 0.0312 个百分点。另一个 f30 一致只读融合入口的 AP 几乎不变。因此目前只能得出“SAM2 已跑通且可补少量实例，但没有稳定、可复现的总体 AP 增益”，不能把那次极小正值作为方法提升。
-
-“先过分割、再合并”应作为下一版的基本约束。当前 f30 IBSp 平均每场景 superpoint 从原始约 990 个降至约 779 个，最大 superpoint 变大，属于过早合并风险；一旦两个真实物体先被并入同一原子 superpoint，后续提升和合并通常无法可靠拆开。后续应以原始 ScanNet superpoint 或与其粒度等价的 mesh-normal 分割作为过分割底座，只用可靠二维实例边界做进一步切分，禁止无充分证据的跨原始超点早期合并；把对象合并延后交给多视角 SAM2 轨迹、二维边界与开放词汇语义共同决定，并始终保留 Mask3D 回退。完成该 IBSp 基线粒度对齐前，不重跑 SAM2。
-2. 无论 even48 结果正负，都补齐候选形成的两个缺口并以新版本重新验证：同帧跨轨迹的二维重叠区域消除，以及基于独立图像预测器重观测与传播 mask 一致性的 superpoint 支持/降权。它们应在提升到三维前抑制跨实例 mask，而不是只在三维末端删除竞争超点。
-3. 将 Alpha-CLIP 限制为 MVPDist 低置信或冲突候选的可选校正；借鉴 SAS 的“模型能力加权”思想准备候选级软选择：记录几何质量、多视角一致性、两个模型的置信度与类别间隔、及其冲突情况，输出加权类别或保守拒绝。SAS 本身不是 MLLM、CLIP、Alpha-CLIP 的实例选择器；先验证 MVPDist 与 Alpha-CLIP 的条件准确率和分数排序，再考虑只对极少数难判候选调用 MLLM。
-4. 只有 even48 的总体 AP 出现明确正向，才进入 `even96/odd96`。
-
-SAM2 准备状态：官方源码已浅克隆到 `_external/sam2`，commit 为 `2b90b9f`；独立 Conda 环境 `/home/jia/anaconda3/envs/sam2` 已安装 `torch 2.5.1+cu124`、`torchvision 0.20.1` 与本地 SAM2（关闭可选 CUDA 扩展编译）。`pretrained/sam2/sam2.1_hiera_small.pt` 已校验为 184416285 bytes，SHA256 为 `6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38`；`SAM2VideoPredictor` 已成功加载到 RTX 4090 的 `cuda:0`。Any3DIS 公开参考仓库已在 `_external/Any3DIS_unofficial/Any3DIS_unofficial-main` 定位；仅复用其“超点可见性选关键视角与提示点，再用 SAM2 双向传播”的思路，不能直接运行其依赖 GT、第三方特征和自有数据布局的完整管线。当前 `openyolo3d` 环境仍为 `torch 1.12.1+cu113`，不得在该环境内升级；SAM2 将由独立环境离线导出轨迹。
-
-## 明确不做
-
-- 不使用 ScanNet200 `.npy` 中的 GT 语义/实例列、官方二维 GT 投影或其他 GT 作为推理输入。
-- 不直接替换 Mask3D 或 YOLO-World 第三方主体。
-- 不在当前阶段接入 PoVo 或最终上下文语义模块。
-- 不把 SAM2 smoke/export-only 结果接入主融合，也不自行运行最终 AP；用户明确授权的冻结 even48 受控验证除外。
-- 不以三场景或 fixed-frame 实验声称数据集泛化。
-
-## 资源与验证
-
-- 项目：`/home/jia/Wm/wm_open-yolo/OpenYOLO3D`
-- 数据：`data/scannet200 -> /home/jia/Wm/Dataset/scannet200`
-- GPU Python：`/home/jia/anaconda3/envs/openyolo3d/bin/python`
-- 2D 缓存：`output/scannet200/bboxes_2d`
-- 基础 3D masks：`output/scannet200/scannet200_masks`
-
-本轮代码验证：`tools/filter_sam2_refined_instances_gtfree.py` 通过 `py_compile` 和 `--help` 参数检查，`git diff --check` 通过；三场景质量门控、GT-only 几何诊断和 MVPDist candidate schema 导出均已完成。本轮未运行新的 SAM2 even48 AP，也未重新运行完整 pytest。
-
-## 协作约定
-
-开始工作前检查 `git status --short`，保留已有未提交改动。重大方向变化或关键实验结论只更新本文件，方向变化同时更新 `资料/当前基线修改方向.md`；论文阅读只更新 `资料/论文阅读记录.md`。
-
-## 下一会话交接（2026-07-20）
-
-本会话已停止在三场景阶段，**尚未运行任何新的 SAM2 even48 AP**。下一位 agent 应先阅读本文件、`资料/当前基线修改方向.md`、`资料/技术问题与答复.md` 及 `related papers/` 中原文，再继续代码。
-
-已确认的事实：baseline-novel 第三轮使 SAM2/Details Matter 候选从 34 增至 54，GT-only 几何 oracle recall 从 `.1519/.1013` 提高到 `.2532/.1646`（IoU .25/.50）；Alpha-CLIP 单独语义头无 AP 增益；新 MVPDist 语义导出将几何合格候选的类别准确率提高到 `.3333/.3846`，但三场景 AP/AP50 仍与同条件基线持平，仅 AP25 `+ .002199`。第一版 GT-free 质量门控已将候选 `54 -> 48`，candidate precision 提升到 `.4375/.2708`，且 oracle recall 不变。已确认没有等价的 `even48` 完整组合结果；下一任务是运行一次冻结的 `even48` 对照，再补齐二维重叠区域消除、独立重观测和候选级软选择。
-
-本轮核心工具与输出：
-
-- `tools/filter_sam2_refined_instances_gtfree.py`：不读取 GT 的 refined instance 质量门控；当前三场景输出为 `output/sam2_details_postprocess_v3_merged_round123_quality_guard_s01_sp40_smoke3_20260720/`，候选 `54 -> 48`，oracle recall 不变，candidate precision 提升到 `.4375/.2708`。
-- `tools/export_sam2_refined_mvpdist_candidates.py`：将 refined instances 用 Open-YOLO 3D 原生 MVPDist 投票导出为融合候选；三场景 smoke 输出为 `output/sam2_details_mvpdist_candidates_v3_merged_round123_smoke3_20260720/`，质量门控后输出为 `output/sam2_details_mvpdist_candidates_v3_merged_round123_quality_guard_s01_sp40_smoke3_20260720/`。
-- `tools/diagnose_sam2_candidate_semantics_gt.py`：严格 GT-only 的候选几何后语义诊断；最新报告为 `docs/diagnostics/sam2_candidate_semantics_gt_mvpdist_v3_merged_round123_smoke3_20260720/`。
-- `tools/evaluate_multiview_object_clip_correction.py`：已修复附加候选的阈值过滤，基线仍按原始分数，附加候选按最终语义分数。
-- 三场景 MVPDist AP：`output/scannet200/sam2_v3_smoke3_eval/baseline_report.json` 对比 `fused_mvpdist_t020_report.json`。
-- 所有 GT 使用仅限 `docs/diagnostics/` 下的离线报告，绝不能进入推理、种子、合并、阈值或候选打分。
+2026-08-11 已完成清理约 `19.60 GB` 的 smoke、缓存和已终止分支。精确路径、删除前大小和复核结果见 `docs/cleanup_manifest_20260811.md`。当前冠军、正式大型缓存和用户工作区修改不在范围内。

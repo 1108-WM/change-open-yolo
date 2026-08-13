@@ -1,0 +1,71 @@
+{
+  "excluded_fields": [
+    "candidate_id",
+    "label_best_gt_instance_id",
+    "label_best_gt_semantic_id",
+    "native_class_id",
+    "native_exact_geometry_group_size",
+    "scene_name"
+  ],
+  "groups": {
+    "A_source_only": {
+      "categorical": [
+        "candidate_source"
+      ],
+      "numeric": []
+    },
+    "B_source_plus_original_score": {
+      "categorical": [
+        "candidate_source"
+      ],
+      "numeric": [
+        "original_source_score"
+      ]
+    },
+    "C_plus_geometry_track_structure": {
+      "categorical": [
+        "candidate_source"
+      ],
+      "numeric": [
+        "original_source_score",
+        "point_count",
+        "point_fraction_of_scene",
+        "support_view_count",
+        "superpoint_count",
+        "source_frame_count",
+        "merge_action_count",
+        "mean_consensus_rate",
+        "mean_edge_score",
+        "mean_node_quality"
+      ]
+    },
+    "D_plus_gvc": {
+      "categorical": [
+        "candidate_source"
+      ],
+      "numeric": [
+        "original_source_score",
+        "point_count",
+        "point_fraction_of_scene",
+        "support_view_count",
+        "superpoint_count",
+        "source_frame_count",
+        "merge_action_count",
+        "mean_consensus_rate",
+        "mean_edge_score",
+        "mean_node_quality",
+        "gvc_excluded_mean",
+        "gvc_excluded_max",
+        "gvc_excluded_variance",
+        "gvc_excluded_selected_view_count",
+        "gvc_excluded_matched_view_count",
+        "gvc_excluded_zero_support_fraction"
+      ]
+    }
+  },
+  "native_exact_geometry_group_size": "sample_weight_only",
+  "protocol_name": "official100_v2",
+  "track_missing_indicator": true,
+  "track_missing_value": "NaN",
+  "version": "official100_v2_candidate_quality_feature_schema_v1"
+}

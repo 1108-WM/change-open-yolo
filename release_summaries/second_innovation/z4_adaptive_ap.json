@@ -1,0 +1,301 @@
+{
+  "baseline_summary": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_ap_official100_20260811_v2_union_frozen_score_control/summary.json",
+  "candidate_membership_modified": "evaluation_view_only",
+  "class_modified": false,
+  "deltas_vs_union_frozen_hybrid": {
+    "native_only": {
+      "ap": 0.00019216387561427073,
+      "ap25": 0.0003013056729759822,
+      "ap50": 0.0002515641151486503,
+      "common_ap": 0.00034554487626997643,
+      "head_ap": 0.00018210368867449533,
+      "tail_ap": 3.6009682748777694e-05
+    },
+    "native_plus_track": {
+      "ap": 0.00032994342366932106,
+      "ap25": 0.00044054982514435403,
+      "ap50": 0.00040066764382817865,
+      "common_ap": 0.0005676126654076685,
+      "head_ap": 0.00012035962195916516,
+      "tail_ap": 0.0003425957089945031
+    },
+    "pair_union": {
+      "ap": 0.0003365531674555111,
+      "ap25": 0.0004316104676236332,
+      "ap50": 0.00039349957287593273,
+      "common_ap": 0.0005546817186345976,
+      "head_ap": 0.0001548989486006569,
+      "tail_ap": 0.00033412405444224746
+    },
+    "track_only": {
+      "ap": 0.0,
+      "ap25": 0.0,
+      "ap50": 0.0,
+      "common_ap": 0.0,
+      "head_ap": 0.0,
+      "tail_ap": 0.0
+    }
+  },
+  "diagnostic_type": "Z4 GT-only evaluation of class-conditional local winner plan",
+  "folds": [
+    {
+      "delta_vs_union_frozen_hybrid": {
+        "ap": -0.00011771971947188709,
+        "ap25": -0.00016779678028133738,
+        "ap50": -0.00016719726387914857,
+        "common_ap": 0.0,
+        "head_ap": -0.00023099718537877845,
+        "tail_ap": 0.0
+      },
+      "fold_index": 0,
+      "pair_union": {
+        "ap": 0.4873484953829757,
+        "ap25": 0.5936176718177789,
+        "ap50": 0.5608779096677536,
+        "common_ap": 0.3726938966383411,
+        "head_ap": 0.5321575952189653,
+        "tail_ap": 0.5380511463844797
+      },
+      "validation_scenes": [
+        "scene0027_01",
+        "scene0028_00",
+        "scene0038_02",
+        "scene0039_00",
+        "scene0065_01",
+        "scene0079_00",
+        "scene0090_00",
+        "scene0099_01",
+        "scene0141_00",
+        "scene0151_00",
+        "scene0171_00",
+        "scene0317_01",
+        "scene0394_01",
+        "scene0411_01",
+        "scene0416_02",
+        "scene0524_00",
+        "scene0587_00",
+        "scene0639_00",
+        "scene0649_00",
+        "scene0673_05"
+      ]
+    },
+    {
+      "delta_vs_union_frozen_hybrid": {
+        "ap": -0.00043131096284770853,
+        "ap25": -0.000674262769672973,
+        "ap50": -0.0006359752173004107,
+        "common_ap": 0.0,
+        "head_ap": -0.000698723759813169,
+        "tail_ap": 0.0
+      },
+      "fold_index": 1,
+      "pair_union": {
+        "ap": 0.4728447324859216,
+        "ap25": 0.553004373402138,
+        "ap50": 0.5332238235361648,
+        "common_ap": 0.29189393939393943,
+        "head_ap": 0.562153932633678,
+        "tail_ap": 0.4190066703343442
+      },
+      "validation_scenes": [
+        "scene0032_00",
+        "scene0093_00",
+        "scene0116_01",
+        "scene0148_00",
+        "scene0204_00",
+        "scene0205_02",
+        "scene0218_00",
+        "scene0270_01",
+        "scene0274_01",
+        "scene0302_00",
+        "scene0398_00",
+        "scene0401_00",
+        "scene0420_01",
+        "scene0445_00",
+        "scene0463_00",
+        "scene0482_01",
+        "scene0516_01",
+        "scene0541_02",
+        "scene0587_03",
+        "scene0676_01"
+      ]
+    },
+    {
+      "delta_vs_union_frozen_hybrid": {
+        "ap": 5.848818815673562e-05,
+        "ap25": 0.0002053721877783854,
+        "ap50": 9.127805239927955e-05,
+        "common_ap": 0.0,
+        "head_ap": 0.00010979361636442864,
+        "tail_ap": 0.0
+      },
+      "fold_index": 2,
+      "pair_union": {
+        "ap": 0.43998621041152874,
+        "ap25": 0.5612479617977434,
+        "ap50": 0.5368835716020198,
+        "common_ap": 0.4228985172297115,
+        "head_ap": 0.5118347035583607,
+        "tail_ap": 0.22033730158730158
+      },
+      "validation_scenes": [
+        "scene0018_00",
+        "scene0038_00",
+        "scene0042_02",
+        "scene0124_01",
+        "scene0166_02",
+        "scene0192_00",
+        "scene0248_02",
+        "scene0250_02",
+        "scene0261_02",
+        "scene0276_01",
+        "scene0306_01",
+        "scene0317_00",
+        "scene0358_00",
+        "scene0359_01",
+        "scene0408_01",
+        "scene0456_01",
+        "scene0529_01",
+        "scene0576_01",
+        "scene0673_04",
+        "scene0692_01"
+      ]
+    },
+    {
+      "delta_vs_union_frozen_hybrid": {
+        "ap": 0.0008372930797377331,
+        "ap25": 0.001019249668387734,
+        "ap50": 0.0009458996205404802,
+        "common_ap": 0.0005204422076925397,
+        "head_ap": 0.0014333617012100008,
+        "tail_ap": 0.0
+      },
+      "fold_index": 3,
+      "pair_union": {
+        "ap": 0.4301580535122966,
+        "ap25": 0.5592757506328075,
+        "ap50": 0.5256819313084417,
+        "common_ap": 0.3889061839522911,
+        "head_ap": 0.5267196571668974,
+        "tail_ap": 0.2818289335264644
+      },
+      "validation_scenes": [
+        "scene0055_00",
+        "scene0092_00",
+        "scene0114_00",
+        "scene0121_00",
+        "scene0135_00",
+        "scene0152_01",
+        "scene0229_01",
+        "scene0272_01",
+        "scene0303_01",
+        "scene0313_02",
+        "scene0419_02",
+        "scene0421_01",
+        "scene0453_00",
+        "scene0479_01",
+        "scene0510_00",
+        "scene0532_01",
+        "scene0541_00",
+        "scene0586_01",
+        "scene0662_00",
+        "scene0692_00"
+      ]
+    },
+    {
+      "delta_vs_union_frozen_hybrid": {
+        "ap": 0.000675913447726384,
+        "ap25": 0.0006731177893142259,
+        "ap50": 0.0006318901363513985,
+        "common_ap": 0.0010187098255279858,
+        "head_ap": -0.0016007332978444921,
+        "tail_ap": 0.009154040404040387
+      },
+      "fold_index": 4,
+      "pair_union": {
+        "ap": 0.4072487460576795,
+        "ap25": 0.5331253901265892,
+        "ap50": 0.4875212164693595,
+        "common_ap": 0.28811991669946213,
+        "head_ap": 0.4886037756575787,
+        "tail_ap": 0.3002314814814815
+      },
+      "validation_scenes": [
+        "scene0001_01",
+        "scene0007_00",
+        "scene0048_00",
+        "scene0054_00",
+        "scene0127_00",
+        "scene0132_02",
+        "scene0150_01",
+        "scene0157_01",
+        "scene0236_01",
+        "scene0337_01",
+        "scene0381_02",
+        "scene0385_00",
+        "scene0393_01",
+        "scene0508_01",
+        "scene0509_02",
+        "scene0523_02",
+        "scene0536_02",
+        "scene0570_02",
+        "scene0682_00",
+        "scene0692_03"
+      ]
+    }
+  ],
+  "geometry_modified": false,
+  "ground_truth_usage": "evaluation_only",
+  "params": {
+    "allow_gt_evaluation": true,
+    "combined_plan_root": "${PROJECT_ROOT}/output/train_candidate_champion_pair_union_combined_oof_plan_official100_v1",
+    "gt_instance_dir": "/media/jia/软件1/scannet_train_stream/prepared/ground_truth",
+    "hybrid_summary": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_ap_official100_20260811_v2_union_frozen_score_control/summary.json",
+    "keep_field": "keep_topm",
+    "oof_root": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_official100_20260811",
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z4_exact_geometry_adaptive95_top5_cap20_ap_official100_20260811",
+    "plan_contract": "native exact geometry keeps top-5 plus hypotheses needed for 95% normalized joint-OOF score mass, capped at top-20; track/pair-union unchanged",
+    "plan_root": "${PROJECT_ROOT}/docs/diagnostics/z4_exact_geometry_adaptive95_top5_cap20_plan_official100_20260811",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "split_manifest": "${PROJECT_ROOT}/output/train_candidate_quality_oof_official100_v2/split_manifest.json",
+    "stream_records_root": "/media/jia/软件1/scannet_train_stream/records"
+  },
+  "plan_candidate_count": 66589,
+  "plan_contract": "native exact geometry keeps top-5 plus hypotheses needed for 95% normalized joint-OOF score mass, capped at top-20; track/pair-union unchanged",
+  "plan_keep_field": "keep_topm",
+  "plan_winner_count": 31654,
+  "results": {
+    "native_only": {
+      "ap": 0.3168043752326442,
+      "ap25": 0.4163867131183778,
+      "ap50": 0.3867536013652056,
+      "common_ap": 0.25368970000187135,
+      "head_ap": 0.4590025483681882,
+      "tail_ap": 0.1998583935595546
+    },
+    "native_plus_track": {
+      "ap": 0.3277331073838234,
+      "ap25": 0.4381867954908043,
+      "ap50": 0.40342533377893264,
+      "common_ap": 0.27402985481378517,
+      "head_ap": 0.4481947336382828,
+      "tail_ap": 0.22892456430426256
+    },
+    "pair_union": {
+      "ap": 0.3278939507105102,
+      "ap25": 0.43812403991399146,
+      "ap50": 0.4033737737701926,
+      "common_ap": 0.274046429239397,
+      "head_ap": 0.4483283340056195,
+      "tail_ap": 0.22928046092670007
+    },
+    "track_only": {
+      "ap": 0.08482366922980568,
+      "ap25": 0.20894266270679213,
+      "ap50": 0.14222375991626643,
+      "common_ap": 0.09951217720085646,
+      "head_ap": 0.050843493107086454,
+      "tail_ap": 0.11320408950617283
+    }
+  }
+}

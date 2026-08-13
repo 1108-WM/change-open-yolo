@@ -1,9 +1,20 @@
 ## Clone the repository
 ```
-git clone https://github.com/aminebdj/OpenYOLO3D.git
-cd OpenYOLO3D
+git clone --recurse-submodules https://github.com/1108-WM/change-open-yolo.git
+cd change-open-yolo
+
+# If the repository was cloned without --recurse-submodules:
+git submodule update --init --recursive
+
+# Verify the code checkout and the small frozen project assets.
+python3 tools/verify_repository_checkout.py
 
 ```
+
+The GitHub repository intentionally does not contain ScanNet/Replica data,
+third-party foundation-model weights, generated experiment ledgers, or local
+virtual environments.  See `docs/REMOTE_SERVER_SETUP.md` for the exact split
+between Git-tracked files and assets that must be downloaded separately.
 
 ## Conda Environment
 ```

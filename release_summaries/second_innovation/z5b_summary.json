@@ -1,0 +1,462 @@
+{
+  "action_count": 1501,
+  "actions_with_any_official_threshold_crossing": 19,
+  "candidate_mutation": false,
+  "contracts": {
+    "action": "append one already materialized pair-union with frozen class and original frozen low score",
+    "noop": "current native+track C_joint OOF hybrid scores and frozen classes",
+    "oracle_isolation": "GT selections stay only in this diagnostic directory and are forbidden as inference labels/rules",
+    "selection": "at most one action per scene/GT instance; require a new official IoU threshold crossing over the complete same-class native+track baseline"
+  },
+  "control_reproduction": {
+    "all_frozen_pair_union_max_abs_error": 0.0,
+    "noop_native_plus_track_max_abs_error": 0.0,
+    "tolerance": 1e-10,
+    "valid": true
+  },
+  "deltas_vs_noop": {
+    "all_frozen_pair_union_control": {
+      "ap": 0.00015423358290062028,
+      "ap25": -5.381621929212432e-05,
+      "ap50": -4.439193778776884e-05,
+      "common_ap": 2.950537238488593e-05,
+      "head_ap": 9.906104069518085e-05,
+      "tail_ap": 0.00036436827698976826
+    },
+    "targetwise_global_feasible_oracle_frozen_score": {
+      "ap": 0.00018037543919152688,
+      "ap25": -1.555678611486755e-05,
+      "ap50": -8.985603167310785e-06,
+      "common_ap": 9.080146793966071e-05,
+      "head_ap": 0.00011524883679675524,
+      "tail_ap": 0.0003647586980920492
+    }
+  },
+  "diagnostic_type": "Z5b GT-only target-wise global-feasible append-only merge oracle",
+  "even48_read": false,
+  "folds": [
+    {
+      "deltas_vs_noop": {
+        "all_frozen_pair_union_control": {
+          "ap": 0.0001999701887560601,
+          "ap25": 0.0,
+          "ap50": 0.0,
+          "common_ap": 0.0,
+          "head_ap": 0.0003923943326531454,
+          "tail_ap": 0.0
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 0.0001957826753073988,
+          "ap25": 0.0,
+          "ap50": 0.0,
+          "common_ap": 0.0,
+          "head_ap": 0.00038417732513140734,
+          "tail_ap": 0.0
+        }
+      },
+      "fold_index": 0,
+      "selected_action_count": 4,
+      "systems": {
+        "all_frozen_pair_union_control": {
+          "ap": 0.4874662151024476,
+          "ap25": 0.5937854685980603,
+          "ap50": 0.5610451069316328,
+          "common_ap": 0.3726938966383411,
+          "head_ap": 0.5323885924043441,
+          "tail_ap": 0.5380511463844797
+        },
+        "noop_native_plus_track": {
+          "ap": 0.4872662449136915,
+          "ap25": 0.5937854685980603,
+          "ap50": 0.5610451069316328,
+          "common_ap": 0.3726938966383411,
+          "head_ap": 0.531996198071691,
+          "tail_ap": 0.5380511463844797
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 0.4874620275889989,
+          "ap25": 0.5937854685980603,
+          "ap50": 0.5610451069316328,
+          "common_ap": 0.3726938966383411,
+          "head_ap": 0.5323803753968224,
+          "tail_ap": 0.5380511463844797
+        }
+      },
+      "validation_scenes": [
+        "scene0027_01",
+        "scene0028_00",
+        "scene0038_02",
+        "scene0039_00",
+        "scene0065_01",
+        "scene0079_00",
+        "scene0090_00",
+        "scene0099_01",
+        "scene0141_00",
+        "scene0151_00",
+        "scene0171_00",
+        "scene0317_01",
+        "scene0394_01",
+        "scene0411_01",
+        "scene0416_02",
+        "scene0524_00",
+        "scene0587_00",
+        "scene0639_00",
+        "scene0649_00",
+        "scene0673_05"
+      ]
+    },
+    {
+      "deltas_vs_noop": {
+        "all_frozen_pair_union_control": {
+          "ap": -0.000342030085076217,
+          "ap25": -0.0005567774607828646,
+          "ap50": -0.0005567407085024234,
+          "common_ap": -0.0014562289562288777,
+          "head_ap": 8.665200291735342e-05,
+          "tail_ap": 0.0
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 5.5199355310175946e-05,
+          "ap25": 0.0,
+          "ap50": 0.0,
+          "common_ap": 0.0,
+          "head_ap": 8.942295560232516e-05,
+          "tail_ap": 0.0
+        }
+      },
+      "fold_index": 1,
+      "selected_action_count": 4,
+      "systems": {
+        "all_frozen_pair_union_control": {
+          "ap": 0.47327604344876933,
+          "ap25": 0.553678636171811,
+          "ap50": 0.5338597987534652,
+          "common_ap": 0.29189393939393943,
+          "head_ap": 0.5628526563934911,
+          "tail_ap": 0.4190066703343442
+        },
+        "noop_native_plus_track": {
+          "ap": 0.47361807353384555,
+          "ap25": 0.5542354136325939,
+          "ap50": 0.5344165394619677,
+          "common_ap": 0.2933501683501683,
+          "head_ap": 0.5627660043905738,
+          "tail_ap": 0.4190066703343442
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 0.4736732728891557,
+          "ap25": 0.5542354136325939,
+          "ap50": 0.5344165394619677,
+          "common_ap": 0.2933501683501683,
+          "head_ap": 0.5628554273461761,
+          "tail_ap": 0.4190066703343442
+        }
+      },
+      "validation_scenes": [
+        "scene0032_00",
+        "scene0093_00",
+        "scene0116_01",
+        "scene0148_00",
+        "scene0204_00",
+        "scene0205_02",
+        "scene0218_00",
+        "scene0270_01",
+        "scene0274_01",
+        "scene0302_00",
+        "scene0398_00",
+        "scene0401_00",
+        "scene0420_01",
+        "scene0445_00",
+        "scene0463_00",
+        "scene0482_01",
+        "scene0516_01",
+        "scene0541_02",
+        "scene0587_03",
+        "scene0676_01"
+      ]
+    },
+    {
+      "deltas_vs_noop": {
+        "all_frozen_pair_union_control": {
+          "ap": 0.00019212264020584957,
+          "ap25": -2.4956143166443567e-06,
+          "ap50": -2.4275190816380743e-06,
+          "common_ap": 0.0005446623093682268,
+          "head_ap": 3.576498216684154e-05,
+          "tail_ap": 0.0
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 0.00019488133835843247,
+          "ap25": 0.0,
+          "ap50": 0.0,
+          "common_ap": 0.0005446623093682268,
+          "head_ap": 4.0943590979614086e-05,
+          "tail_ap": 0.0
+        }
+      },
+      "fold_index": 2,
+      "selected_action_count": 3,
+      "systems": {
+        "all_frozen_pair_union_control": {
+          "ap": 0.439927722223372,
+          "ap25": 0.561042589609965,
+          "ap50": 0.5367922935496205,
+          "common_ap": 0.4228985172297115,
+          "head_ap": 0.5117249099419963,
+          "tail_ap": 0.22033730158730158
+        },
+        "noop_native_plus_track": {
+          "ap": 0.43973559958316616,
+          "ap25": 0.5610450852242816,
+          "ap50": 0.5367947210687022,
+          "common_ap": 0.4223538549203433,
+          "head_ap": 0.5116891449598294,
+          "tail_ap": 0.22033730158730158
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 0.4399304809215246,
+          "ap25": 0.5610450852242816,
+          "ap50": 0.5367947210687022,
+          "common_ap": 0.4228985172297115,
+          "head_ap": 0.511730088550809,
+          "tail_ap": 0.22033730158730158
+        }
+      },
+      "validation_scenes": [
+        "scene0018_00",
+        "scene0038_00",
+        "scene0042_02",
+        "scene0124_01",
+        "scene0166_02",
+        "scene0192_00",
+        "scene0248_02",
+        "scene0250_02",
+        "scene0261_02",
+        "scene0276_01",
+        "scene0306_01",
+        "scene0317_00",
+        "scene0358_00",
+        "scene0359_01",
+        "scene0408_01",
+        "scene0456_01",
+        "scene0529_01",
+        "scene0576_01",
+        "scene0673_04",
+        "scene0692_01"
+      ]
+    },
+    {
+      "deltas_vs_noop": {
+        "all_frozen_pair_union_control": {
+          "ap": 0.00021307540850112883,
+          "ap25": -1.3113769095074446e-06,
+          "ap50": 3.0966396955323106e-05,
+          "common_ap": 0.0,
+          "head_ap": 0.00013653343173836152,
+          "tail_ap": 0.0006401463191586521
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 0.00021514253600540822,
+          "ap25": 0.0,
+          "ap50": 3.5672091528771155e-05,
+          "common_ap": 0.0,
+          "head_ap": 0.00014085225170268334,
+          "tail_ap": 0.0006401463191586521
+        }
+      },
+      "fold_index": 3,
+      "selected_action_count": 4,
+      "systems": {
+        "all_frozen_pair_union_control": {
+          "ap": 0.42932076043255885,
+          "ap25": 0.5582565009644198,
+          "ap50": 0.5247360316879012,
+          "common_ap": 0.38838574174459856,
+          "head_ap": 0.5252862954656874,
+          "tail_ap": 0.2818289335264644
+        },
+        "noop_native_plus_track": {
+          "ap": 0.4291076850240577,
+          "ap25": 0.5582578123413293,
+          "ap50": 0.5247050652909458,
+          "common_ap": 0.38838574174459856,
+          "head_ap": 0.525149762033949,
+          "tail_ap": 0.2811887872073057
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 0.4293228275600631,
+          "ap25": 0.5582578123413293,
+          "ap50": 0.5247407373824746,
+          "common_ap": 0.38838574174459856,
+          "head_ap": 0.5252906142856517,
+          "tail_ap": 0.2818289335264644
+        }
+      },
+      "validation_scenes": [
+        "scene0055_00",
+        "scene0092_00",
+        "scene0114_00",
+        "scene0121_00",
+        "scene0135_00",
+        "scene0152_01",
+        "scene0229_01",
+        "scene0272_01",
+        "scene0303_01",
+        "scene0313_02",
+        "scene0419_02",
+        "scene0421_01",
+        "scene0453_00",
+        "scene0479_01",
+        "scene0510_00",
+        "scene0532_01",
+        "scene0541_00",
+        "scene0586_01",
+        "scene0662_00",
+        "scene0692_00"
+      ]
+    },
+    {
+      "deltas_vs_noop": {
+        "all_frozen_pair_union_control": {
+          "ap": -7.991463411588517e-05,
+          "ap25": -0.00014941978222104968,
+          "ap50": -0.00012906398890977222,
+          "common_ap": 0.0,
+          "head_ap": -0.00013652083328130615,
+          "tail_ap": 0.0
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 7.534855735108481e-05,
+          "ap25": 0.0,
+          "ap50": 0.0,
+          "common_ap": 0.0,
+          "head_ap": 0.0001287204521415175,
+          "tail_ap": 0.0
+        }
+      },
+      "fold_index": 4,
+      "selected_action_count": 2,
+      "systems": {
+        "all_frozen_pair_union_control": {
+          "ap": 0.40657283260995314,
+          "ap25": 0.532452272337275,
+          "ap50": 0.4868893263330081,
+          "common_ap": 0.28710120687393414,
+          "head_ap": 0.49020450895542317,
+          "tail_ap": 0.2910774410774411
+        },
+        "noop_native_plus_track": {
+          "ap": 0.406652747244069,
+          "ap25": 0.532601692119496,
+          "ap50": 0.48701839032191785,
+          "common_ap": 0.28710120687393414,
+          "head_ap": 0.4903410297887045,
+          "tail_ap": 0.2910774410774411
+        },
+        "targetwise_global_feasible_oracle_frozen_score": {
+          "ap": 0.4067280958014201,
+          "ap25": 0.532601692119496,
+          "ap50": 0.48701839032191785,
+          "common_ap": 0.28710120687393414,
+          "head_ap": 0.490469750240846,
+          "tail_ap": 0.2910774410774411
+        }
+      },
+      "validation_scenes": [
+        "scene0001_01",
+        "scene0007_00",
+        "scene0048_00",
+        "scene0054_00",
+        "scene0127_00",
+        "scene0132_02",
+        "scene0150_01",
+        "scene0157_01",
+        "scene0236_01",
+        "scene0337_01",
+        "scene0381_02",
+        "scene0385_00",
+        "scene0393_01",
+        "scene0508_01",
+        "scene0509_02",
+        "scene0523_02",
+        "scene0536_02",
+        "scene0570_02",
+        "scene0682_00",
+        "scene0692_03"
+      ]
+    }
+  ],
+  "ground_truth_usage": "official_train_oracle_and_evaluation_only",
+  "inference_plan_written": false,
+  "input_provenance": {
+    "combined_plan_summary_sha256": "f4335948cf5957712395a59b7b87a271cb3353d901ee28e8343aa8c14fdf0854",
+    "hybrid_control_summary_sha256": "058f7987a292b60c127da473eeccaeaf0d5c2440771b1993bddaadc3d88da02c",
+    "scene_list_sha256": "dfa9017e206190eb2973b247c78e4bf1b2d9c01bb8468a15775c30335e44fb68",
+    "split_manifest_sha256": "aa657449965bc76164a1a1b77c7785aa705a0295eeed1307163b325f7233fe3e",
+    "z3_oof_predictions_sha256": "c634de9795d9d6f39beb23a053eb72a2ccc9ca4649ef1e0c16246daeb409cc67",
+    "z3_oof_summary_sha256": "e577fa387d9bb9d996f9047dcaed4983ef4a0de76578090028605e977093196d",
+    "z5a_actions_sha256": "844d3dcb65cf676c51ca0024e239786e2b356a53e6092d94d7c1c654cf595bca",
+    "z5a_summary_sha256": "8ef2444bc9acc75a45c8c8de0b38d90a50c4b8daaa5622a6d70354101fc2a4e6"
+  },
+  "model_trained": false,
+  "not_mathematical_ap_upper_bound": true,
+  "positive_fold_count_main_ap_vs_noop": 5,
+  "proposal_materialization_applied": false,
+  "safety60_read": false,
+  "scene_count": 100,
+  "selected_action_count": 17,
+  "selected_scene_count": 14,
+  "selected_threshold_crossing_counts": {
+    "25": 0,
+    "50": 1,
+    "55": 1,
+    "60": 2,
+    "65": 2,
+    "70": 4,
+    "75": 3,
+    "80": 2,
+    "85": 6,
+    "90": 6
+  },
+  "semantic_correct_action_count": 556,
+  "systems": {
+    "all_frozen_pair_union_control": {
+      "ap": 0.3275573975430547,
+      "ap25": 0.4376924294463678,
+      "ap50": 0.4029802741973167,
+      "common_ap": 0.2734917475207624,
+      "head_ap": 0.44817343505701884,
+      "tail_ap": 0.22894633687225782
+    },
+    "noop_native_plus_track": {
+      "ap": 0.32740316396015406,
+      "ap25": 0.43774624566565995,
+      "ap50": 0.40302466613510446,
+      "common_ap": 0.2734622421483775,
+      "head_ap": 0.44807437401632366,
+      "tail_ap": 0.22858196859526805
+    },
+    "targetwise_global_feasible_oracle_frozen_score": {
+      "ap": 0.3275835393993456,
+      "ap25": 0.4377306888795451,
+      "ap50": 0.40301568053193715,
+      "common_ap": 0.27355304361631716,
+      "head_ap": 0.4481896228531204,
+      "tail_ap": 0.2289467272933601
+    }
+  },
+  "test60_read": false,
+  "threshold_crossing_counts": {
+    "25": 0,
+    "50": 1,
+    "55": 2,
+    "60": 2,
+    "65": 2,
+    "70": 4,
+    "75": 3,
+    "80": 2,
+    "85": 6,
+    "90": 7
+  },
+  "version": "z5b_merge_targetwise_global_feasible_oracle_official100_v1"
+}

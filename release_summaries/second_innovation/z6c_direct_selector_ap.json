@@ -1,0 +1,432 @@
+{
+  "candidate_mutation": false,
+  "contracts": {
+    "classes": "temporary OOF candidate argmax only; no inference plan written",
+    "geometry": "unchanged",
+    "membership": "unchanged",
+    "scores": "unchanged current hybrid scores"
+  },
+  "control_reproduction": {
+    "max_abs_error": 0.0,
+    "reference_summary": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_ap_official100_20260811_v2_union_frozen_score_control/summary.json",
+    "tolerance": 1e-10,
+    "valid": true
+  },
+  "deltas_vs_current_control": {
+    "semantic_only": {
+      "ap": -0.045192342056046386,
+      "ap25": -0.05817405044312696,
+      "ap50": -0.05067041560746299,
+      "common_ap": -0.03803819333158634,
+      "head_ap": -0.0792598622412285,
+      "tail_ap": -0.008378094362919558
+    },
+    "semantic_plus_dino": {
+      "ap": -0.0463080084275827,
+      "ap25": -0.05869985137763456,
+      "ap50": -0.052286945344128144,
+      "common_ap": -0.038457304239996104,
+      "head_ap": -0.0808525126474322,
+      "tail_ap": -0.009636832512823629
+    }
+  },
+  "diagnostic_type": "official100 scene-isolated OOF direct within-candidate selector AP",
+  "even48_read": false,
+  "folds": [
+    {
+      "deltas_vs_current_control": {
+        "semantic_only": {
+          "ap": -0.05625059568410018,
+          "ap25": -0.0816744349305919,
+          "ap50": -0.06682375374403549,
+          "common_ap": -0.026769146491368745,
+          "head_ap": -0.05669543258067394,
+          "tail_ap": -0.09724426807760139
+        },
+        "semantic_plus_dino": {
+          "ap": -0.06841881725672844,
+          "ap25": -0.09804159453800088,
+          "ap50": -0.08222029230827815,
+          "common_ap": -0.06613502752391642,
+          "head_ap": -0.058290123384011794,
+          "tail_ap": -0.09724426807760139
+        }
+      },
+      "fold_index": 0,
+      "systems": {
+        "current_control": {
+          "ap": 0.4874662151024476,
+          "ap25": 0.5937854685980603,
+          "ap50": 0.5610451069316328,
+          "common_ap": 0.3726938966383411,
+          "head_ap": 0.5323885924043441,
+          "tail_ap": 0.5380511463844797
+        },
+        "semantic_only": {
+          "ap": 0.4312156194183474,
+          "ap25": 0.5121110336674684,
+          "ap50": 0.4942213531875973,
+          "common_ap": 0.3459247501469724,
+          "head_ap": 0.47569315982367016,
+          "tail_ap": 0.4408068783068783
+        },
+        "semantic_plus_dino": {
+          "ap": 0.41904739784571915,
+          "ap25": 0.4957438740600594,
+          "ap50": 0.47882481462335463,
+          "common_ap": 0.3065588691144247,
+          "head_ap": 0.4740984690203323,
+          "tail_ap": 0.4408068783068783
+        }
+      },
+      "validation_scenes": [
+        "scene0027_01",
+        "scene0028_00",
+        "scene0038_02",
+        "scene0039_00",
+        "scene0065_01",
+        "scene0079_00",
+        "scene0090_00",
+        "scene0099_01",
+        "scene0141_00",
+        "scene0151_00",
+        "scene0171_00",
+        "scene0317_01",
+        "scene0394_01",
+        "scene0411_01",
+        "scene0416_02",
+        "scene0524_00",
+        "scene0587_00",
+        "scene0639_00",
+        "scene0649_00",
+        "scene0673_05"
+      ]
+    },
+    {
+      "deltas_vs_current_control": {
+        "semantic_only": {
+          "ap": -0.04905775985767674,
+          "ap25": -0.06808670740534822,
+          "ap50": -0.06379862847198531,
+          "common_ap": -0.046607744107744126,
+          "head_ap": -0.05730819041507451,
+          "tail_ap": -0.009210961927524686
+        },
+        "semantic_plus_dino": {
+          "ap": -0.04078321293136139,
+          "ap25": -0.05377346320518317,
+          "ap50": -0.05107659066851533,
+          "common_ap": -0.021355218855218905,
+          "head_ap": -0.055014535505554796,
+          "tail_ap": -0.009210961927524686
+        }
+      },
+      "fold_index": 1,
+      "systems": {
+        "current_control": {
+          "ap": 0.47327604344876933,
+          "ap25": 0.553678636171811,
+          "ap50": 0.5338597987534652,
+          "common_ap": 0.29189393939393943,
+          "head_ap": 0.5628526563934911,
+          "tail_ap": 0.4190066703343442
+        },
+        "semantic_only": {
+          "ap": 0.4242182835910926,
+          "ap25": 0.4855919287664628,
+          "ap50": 0.4700611702814799,
+          "common_ap": 0.2452861952861953,
+          "head_ap": 0.5055444659784166,
+          "tail_ap": 0.4097957084068195
+        },
+        "semantic_plus_dino": {
+          "ap": 0.43249283051740794,
+          "ap25": 0.49990517296662784,
+          "ap50": 0.4827832080849499,
+          "common_ap": 0.2705387205387205,
+          "head_ap": 0.5078381208879363,
+          "tail_ap": 0.4097957084068195
+        }
+      },
+      "validation_scenes": [
+        "scene0032_00",
+        "scene0093_00",
+        "scene0116_01",
+        "scene0148_00",
+        "scene0204_00",
+        "scene0205_02",
+        "scene0218_00",
+        "scene0270_01",
+        "scene0274_01",
+        "scene0302_00",
+        "scene0398_00",
+        "scene0401_00",
+        "scene0420_01",
+        "scene0445_00",
+        "scene0463_00",
+        "scene0482_01",
+        "scene0516_01",
+        "scene0541_02",
+        "scene0587_03",
+        "scene0676_01"
+      ]
+    },
+    {
+      "deltas_vs_current_control": {
+        "semantic_only": {
+          "ap": -0.04880835628610097,
+          "ap25": -0.06551269538127924,
+          "ap50": -0.05172869392588403,
+          "common_ap": -0.0506708232980162,
+          "head_ap": -0.07614087799691505,
+          "tail_ap": 0.0525214947089947
+        },
+        "semantic_plus_dino": {
+          "ap": -0.04305159974506029,
+          "ap25": -0.05859125123700881,
+          "ap50": -0.04520591916320932,
+          "common_ap": -0.039826259933099906,
+          "head_ap": -0.0721279082255874,
+          "tail_ap": 0.05367890211640214
+        }
+      },
+      "fold_index": 2,
+      "systems": {
+        "current_control": {
+          "ap": 0.439927722223372,
+          "ap25": 0.561042589609965,
+          "ap50": 0.5367922935496205,
+          "common_ap": 0.4228985172297115,
+          "head_ap": 0.5117249099419963,
+          "tail_ap": 0.22033730158730158
+        },
+        "semantic_only": {
+          "ap": 0.39111936593727104,
+          "ap25": 0.49552989422868576,
+          "ap50": 0.4850635996237365,
+          "common_ap": 0.3722276939316953,
+          "head_ap": 0.4355840319450812,
+          "tail_ap": 0.2728587962962963
+        },
+        "semantic_plus_dino": {
+          "ap": 0.3968761224783117,
+          "ap25": 0.5024513383729562,
+          "ap50": 0.49158637438641123,
+          "common_ap": 0.3830722572966116,
+          "head_ap": 0.43959700171640886,
+          "tail_ap": 0.2740162037037037
+        }
+      },
+      "validation_scenes": [
+        "scene0018_00",
+        "scene0038_00",
+        "scene0042_02",
+        "scene0124_01",
+        "scene0166_02",
+        "scene0192_00",
+        "scene0248_02",
+        "scene0250_02",
+        "scene0261_02",
+        "scene0276_01",
+        "scene0306_01",
+        "scene0317_00",
+        "scene0358_00",
+        "scene0359_01",
+        "scene0408_01",
+        "scene0456_01",
+        "scene0529_01",
+        "scene0576_01",
+        "scene0673_04",
+        "scene0692_01"
+      ]
+    },
+    {
+      "deltas_vs_current_control": {
+        "semantic_only": {
+          "ap": -0.0658452871302947,
+          "ap25": -0.0807099584199032,
+          "ap50": -0.07961808816265376,
+          "common_ap": -0.037881405394673995,
+          "head_ap": -0.10838681032317499,
+          "tail_ap": -0.01282479380473206
+        },
+        "semantic_plus_dino": {
+          "ap": -0.06947086004352321,
+          "ap25": -0.08208055433727102,
+          "ap50": -0.07968754539767214,
+          "common_ap": -0.03855076319340639,
+          "head_ap": -0.11453878922842947,
+          "tail_ap": -0.014933054804605272
+        }
+      },
+      "fold_index": 3,
+      "systems": {
+        "current_control": {
+          "ap": 0.42932076043255885,
+          "ap25": 0.5582565009644198,
+          "ap50": 0.5247360316879012,
+          "common_ap": 0.38838574174459856,
+          "head_ap": 0.5252862954656874,
+          "tail_ap": 0.2818289335264644
+        },
+        "semantic_only": {
+          "ap": 0.36347547330226415,
+          "ap25": 0.4775465425445166,
+          "ap50": 0.4451179435252474,
+          "common_ap": 0.35050433634992456,
+          "head_ap": 0.4168994851425124,
+          "tail_ap": 0.2690041397217323
+        },
+        "semantic_plus_dino": {
+          "ap": 0.35984990038903564,
+          "ap25": 0.4761759466271488,
+          "ap50": 0.44504848629022903,
+          "common_ap": 0.34983497855119217,
+          "head_ap": 0.4107475062372579,
+          "tail_ap": 0.2668958787218591
+        }
+      },
+      "validation_scenes": [
+        "scene0055_00",
+        "scene0092_00",
+        "scene0114_00",
+        "scene0121_00",
+        "scene0135_00",
+        "scene0152_01",
+        "scene0229_01",
+        "scene0272_01",
+        "scene0303_01",
+        "scene0313_02",
+        "scene0419_02",
+        "scene0421_01",
+        "scene0453_00",
+        "scene0479_01",
+        "scene0510_00",
+        "scene0532_01",
+        "scene0541_00",
+        "scene0586_01",
+        "scene0662_00",
+        "scene0692_00"
+      ]
+    },
+    {
+      "deltas_vs_current_control": {
+        "semantic_only": {
+          "ap": -0.10054301072465455,
+          "ap25": -0.1386016050552641,
+          "ap50": -0.13203901680523528,
+          "common_ap": -0.14518201495474223,
+          "head_ap": -0.1059452299013714,
+          "tail_ap": 0.0029040404040403534
+        },
+        "semantic_plus_dino": {
+          "ap": -0.09201636993479734,
+          "ap25": -0.11558983549416874,
+          "ap50": -0.1211786756167576,
+          "common_ap": -0.14518201495474223,
+          "head_ap": -0.0896427741075877,
+          "tail_ap": -0.004040404040404066
+        }
+      },
+      "fold_index": 4,
+      "systems": {
+        "current_control": {
+          "ap": 0.40657283260995314,
+          "ap25": 0.532452272337275,
+          "ap50": 0.4868893263330081,
+          "common_ap": 0.28710120687393414,
+          "head_ap": 0.49020450895542317,
+          "tail_ap": 0.2910774410774411
+        },
+        "semantic_only": {
+          "ap": 0.3060298218852986,
+          "ap25": 0.3938506672820109,
+          "ap50": 0.3548503095277728,
+          "common_ap": 0.14191919191919192,
+          "head_ap": 0.38425927905405177,
+          "tail_ap": 0.29398148148148145
+        },
+        "semantic_plus_dino": {
+          "ap": 0.3145564626751558,
+          "ap25": 0.41686243684310625,
+          "ap50": 0.3657106507162505,
+          "common_ap": 0.14191919191919192,
+          "head_ap": 0.40056173484783547,
+          "tail_ap": 0.28703703703703703
+        }
+      },
+      "validation_scenes": [
+        "scene0001_01",
+        "scene0007_00",
+        "scene0048_00",
+        "scene0054_00",
+        "scene0127_00",
+        "scene0132_02",
+        "scene0150_01",
+        "scene0157_01",
+        "scene0236_01",
+        "scene0337_01",
+        "scene0381_02",
+        "scene0385_00",
+        "scene0393_01",
+        "scene0508_01",
+        "scene0509_02",
+        "scene0523_02",
+        "scene0536_02",
+        "scene0570_02",
+        "scene0682_00",
+        "scene0692_03"
+      ]
+    }
+  ],
+  "geometry_mutation": false,
+  "ground_truth_usage": "evaluation_only_after_scene_isolated_oof_training",
+  "inference_plan_written": false,
+  "params": {
+    "allow_gt_evaluation": true,
+    "combined_plan_root": "${PROJECT_ROOT}/output/train_candidate_champion_pair_union_combined_oof_plan_official100_v1",
+    "control_tolerance": 1e-10,
+    "gt_instance_dir": "/media/jia/软件1/scannet_train_stream/prepared/ground_truth",
+    "hybrid_control_summary": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_ap_official100_20260811_v2_union_frozen_score_control/summary.json",
+    "oof_root": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_official100_20260811",
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z6c_candidate_selector_oof_ap_official100_20260812",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "selector_root": "${PROJECT_ROOT}/docs/diagnostics/z6c_candidate_selector_oof_official100_20260812",
+    "split_manifest": "${PROJECT_ROOT}/output/train_candidate_quality_oof_official100_v2/split_manifest.json",
+    "stream_records_root": "/media/jia/软件1/scannet_train_stream/records"
+  },
+  "positive_fold_counts_main_ap": {
+    "semantic_only": 0,
+    "semantic_plus_dino": 0
+  },
+  "safety60_read": false,
+  "scene_count": 100,
+  "score_mutation": false,
+  "systems": {
+    "current_control": {
+      "ap": 0.3275573975430547,
+      "ap25": 0.4376924294463678,
+      "ap50": 0.4029802741973167,
+      "common_ap": 0.2734917475207624,
+      "head_ap": 0.44817343505701884,
+      "tail_ap": 0.22894633687225782
+    },
+    "semantic_only": {
+      "ap": 0.2823650554870083,
+      "ap25": 0.37951837900324087,
+      "ap50": 0.3523098585898537,
+      "common_ap": 0.23545355418917605,
+      "head_ap": 0.36891357281579035,
+      "tail_ap": 0.22056824250933826
+    },
+    "semantic_plus_dino": {
+      "ap": 0.281249389115472,
+      "ap25": 0.37899257806873327,
+      "ap50": 0.35069332885318855,
+      "common_ap": 0.23503444328076628,
+      "head_ap": 0.36732092240958664,
+      "tail_ap": 0.2193095043594342
+    }
+  },
+  "test60_read": false
+}

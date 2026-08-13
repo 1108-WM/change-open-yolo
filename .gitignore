@@ -7,6 +7,7 @@ __pycache__/
 .ruff_cache/
 .ipynb_checkpoints/
 .venv/
+.venvs/
 venv/
 env/
 
@@ -56,3 +57,25 @@ cushion
 docs/visual_checks/
 docs/diagnostics/**/visuals/
 picture/
+
+# Generated experiment ledgers can be hundreds of MB per run.  Compact,
+# explicitly selected summaries are force-added when a frozen result is
+# published; raw JSONL/NPZ/CSV ledgers stay local or in external storage.
+docs/diagnostics/
+
+# Local model mirrors.  The small frozen project-specific model bundles are
+# explicitly force-added; third-party model repositories and weights are not.
+pretrained/bert-base-uncased/
+pretrained/clip-vit-base-patch32/
+pretrained/groundingdino/
+pretrained/sam2/
+pretrained/z3_full_semantic_reliability_official100_20260812/
+pretrained/z6f_full_inference_bundle_official100_20260812/
+
+# Unreferenced local research-note image; source documentation is versioned.
+资料/scannet数据集.png
+
+# Secrets and machine-local overrides.
+.env
+.env.*
+!.env.example

@@ -1,0 +1,826 @@
+{
+  "candidate_contract": {
+    "inference_ledger_written": false,
+    "native_unchanged": true,
+    "pair_union_append_only": true,
+    "pair_union_current_class": "selected_track_YOLO-World_vote",
+    "prediction_cache_modified": false,
+    "track_append_only": true,
+    "track_semantics": "in_memory_reconstruction_from_frozen_2D_YOLO-World_detections"
+  },
+  "diagnostic_only": true,
+  "diagnostic_type": "Z0 fixed-geometry open-vocabulary class/ranking oracle decomposition",
+  "ground_truth_usage": "evaluation_only/oracle_only",
+  "oracle_min_iou": 0.25,
+  "params": {
+    "allow_gt_diagnostics": true,
+    "allow_gt_evaluation": true,
+    "combined_plan_root": "${PROJECT_ROOT}/output/train_candidate_champion_pair_union_combined_oof_plan_official100_v1",
+    "config_path": "${PROJECT_ROOT}/pretrained/config_scannet200.yaml",
+    "gt_instance_dir": "/media/jia/软件1/scannet_train_stream/prepared/ground_truth",
+    "isolate_track_semantics_process": true,
+    "max_scenes": null,
+    "min_region_size": 100,
+    "native_prediction_cache": null,
+    "oracle_min_iou": 0.25,
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z0_open_vocab_oracle_official100_20260811_v2_fixed",
+    "prepared_dataset_root": "/media/jia/软件1/scannet_train_stream/prepared",
+    "reconstruct_track_semantics_from_stream": true,
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "semantic_root": null,
+    "stream_records_root": "/media/jia/软件1/scannet_train_stream/records",
+    "track_root": null
+  },
+  "scene_count": 100,
+  "semantic_coverage_summary": {
+    "invalid_voted_class_count": 33,
+    "scene_count_with_invalid_votes": 25,
+    "track_count": 5266,
+    "valid_fraction": 0.9937333839726548,
+    "valid_voted_class_count": 5233
+  },
+  "semantic_coverage": [
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0001_01",
+      "track_count": 47,
+      "valid_voted_class_count": 47
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0027_01",
+      "track_count": 38,
+      "valid_voted_class_count": 38
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0042_02",
+      "track_count": 29,
+      "valid_voted_class_count": 29
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0048_00",
+      "track_count": 34,
+      "valid_voted_class_count": 34
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0055_00",
+      "track_count": 37,
+      "valid_voted_class_count": 37
+    },
+    {
+      "invalid_voted_class_count": 2,
+      "scene_name": "scene0090_00",
+      "track_count": 41,
+      "valid_voted_class_count": 39
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0114_00",
+      "track_count": 64,
+      "valid_voted_class_count": 64
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0218_00",
+      "track_count": 56,
+      "valid_voted_class_count": 55
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0272_01",
+      "track_count": 75,
+      "valid_voted_class_count": 75
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0359_01",
+      "track_count": 41,
+      "valid_voted_class_count": 41
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0381_02",
+      "track_count": 35,
+      "valid_voted_class_count": 35
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0394_01",
+      "track_count": 71,
+      "valid_voted_class_count": 71
+    },
+    {
+      "invalid_voted_class_count": 2,
+      "scene_name": "scene0420_01",
+      "track_count": 68,
+      "valid_voted_class_count": 66
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0421_01",
+      "track_count": 95,
+      "valid_voted_class_count": 94
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0529_01",
+      "track_count": 61,
+      "valid_voted_class_count": 60
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0541_02",
+      "track_count": 59,
+      "valid_voted_class_count": 59
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0576_01",
+      "track_count": 71,
+      "valid_voted_class_count": 71
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0673_04",
+      "track_count": 83,
+      "valid_voted_class_count": 83
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0673_05",
+      "track_count": 78,
+      "valid_voted_class_count": 78
+    },
+    {
+      "invalid_voted_class_count": 2,
+      "scene_name": "scene0682_00",
+      "track_count": 25,
+      "valid_voted_class_count": 23
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0007_00",
+      "track_count": 44,
+      "valid_voted_class_count": 44
+    },
+    {
+      "invalid_voted_class_count": 2,
+      "scene_name": "scene0018_00",
+      "track_count": 56,
+      "valid_voted_class_count": 54
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0028_00",
+      "track_count": 69,
+      "valid_voted_class_count": 69
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0032_00",
+      "track_count": 33,
+      "valid_voted_class_count": 33
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0038_00",
+      "track_count": 37,
+      "valid_voted_class_count": 36
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0038_02",
+      "track_count": 37,
+      "valid_voted_class_count": 37
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0039_00",
+      "track_count": 19,
+      "valid_voted_class_count": 19
+    },
+    {
+      "invalid_voted_class_count": 2,
+      "scene_name": "scene0054_00",
+      "track_count": 70,
+      "valid_voted_class_count": 68
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0065_01",
+      "track_count": 27,
+      "valid_voted_class_count": 27
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0079_00",
+      "track_count": 57,
+      "valid_voted_class_count": 57
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0092_00",
+      "track_count": 80,
+      "valid_voted_class_count": 80
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0093_00",
+      "track_count": 48,
+      "valid_voted_class_count": 47
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0099_01",
+      "track_count": 67,
+      "valid_voted_class_count": 67
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0116_01",
+      "track_count": 33,
+      "valid_voted_class_count": 32
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0121_00",
+      "track_count": 95,
+      "valid_voted_class_count": 95
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0124_01",
+      "track_count": 47,
+      "valid_voted_class_count": 47
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0127_00",
+      "track_count": 46,
+      "valid_voted_class_count": 46
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0132_02",
+      "track_count": 45,
+      "valid_voted_class_count": 44
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0135_00",
+      "track_count": 26,
+      "valid_voted_class_count": 26
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0141_00",
+      "track_count": 72,
+      "valid_voted_class_count": 72
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0148_00",
+      "track_count": 34,
+      "valid_voted_class_count": 34
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0150_01",
+      "track_count": 42,
+      "valid_voted_class_count": 41
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0151_00",
+      "track_count": 52,
+      "valid_voted_class_count": 52
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0152_01",
+      "track_count": 55,
+      "valid_voted_class_count": 55
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0157_01",
+      "track_count": 26,
+      "valid_voted_class_count": 26
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0166_02",
+      "track_count": 90,
+      "valid_voted_class_count": 90
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0171_00",
+      "track_count": 45,
+      "valid_voted_class_count": 45
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0192_00",
+      "track_count": 34,
+      "valid_voted_class_count": 34
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0204_00",
+      "track_count": 41,
+      "valid_voted_class_count": 41
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0205_02",
+      "track_count": 32,
+      "valid_voted_class_count": 32
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0229_01",
+      "track_count": 58,
+      "valid_voted_class_count": 58
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0236_01",
+      "track_count": 91,
+      "valid_voted_class_count": 91
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0248_02",
+      "track_count": 58,
+      "valid_voted_class_count": 57
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0250_02",
+      "track_count": 58,
+      "valid_voted_class_count": 58
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0261_02",
+      "track_count": 71,
+      "valid_voted_class_count": 71
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0270_01",
+      "track_count": 73,
+      "valid_voted_class_count": 73
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0274_01",
+      "track_count": 47,
+      "valid_voted_class_count": 47
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0276_01",
+      "track_count": 61,
+      "valid_voted_class_count": 61
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0302_00",
+      "track_count": 53,
+      "valid_voted_class_count": 52
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0303_01",
+      "track_count": 41,
+      "valid_voted_class_count": 41
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0306_01",
+      "track_count": 87,
+      "valid_voted_class_count": 87
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0313_02",
+      "track_count": 56,
+      "valid_voted_class_count": 56
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0317_00",
+      "track_count": 52,
+      "valid_voted_class_count": 51
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0317_01",
+      "track_count": 63,
+      "valid_voted_class_count": 63
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0337_01",
+      "track_count": 41,
+      "valid_voted_class_count": 41
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0358_00",
+      "track_count": 56,
+      "valid_voted_class_count": 55
+    },
+    {
+      "invalid_voted_class_count": 3,
+      "scene_name": "scene0385_00",
+      "track_count": 88,
+      "valid_voted_class_count": 85
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0393_01",
+      "track_count": 65,
+      "valid_voted_class_count": 64
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0398_00",
+      "track_count": 58,
+      "valid_voted_class_count": 57
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0401_00",
+      "track_count": 69,
+      "valid_voted_class_count": 69
+    },
+    {
+      "invalid_voted_class_count": 2,
+      "scene_name": "scene0408_01",
+      "track_count": 59,
+      "valid_voted_class_count": 57
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0411_01",
+      "track_count": 50,
+      "valid_voted_class_count": 50
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0416_02",
+      "track_count": 66,
+      "valid_voted_class_count": 65
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0419_02",
+      "track_count": 65,
+      "valid_voted_class_count": 65
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0445_00",
+      "track_count": 32,
+      "valid_voted_class_count": 32
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0453_00",
+      "track_count": 50,
+      "valid_voted_class_count": 50
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0456_01",
+      "track_count": 46,
+      "valid_voted_class_count": 46
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0463_00",
+      "track_count": 42,
+      "valid_voted_class_count": 41
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0479_01",
+      "track_count": 53,
+      "valid_voted_class_count": 53
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0482_01",
+      "track_count": 38,
+      "valid_voted_class_count": 38
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0508_01",
+      "track_count": 52,
+      "valid_voted_class_count": 51
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0509_02",
+      "track_count": 38,
+      "valid_voted_class_count": 38
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0510_00",
+      "track_count": 55,
+      "valid_voted_class_count": 55
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0516_01",
+      "track_count": 73,
+      "valid_voted_class_count": 73
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0523_02",
+      "track_count": 38,
+      "valid_voted_class_count": 38
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0524_00",
+      "track_count": 55,
+      "valid_voted_class_count": 55
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0532_01",
+      "track_count": 33,
+      "valid_voted_class_count": 33
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0536_02",
+      "track_count": 56,
+      "valid_voted_class_count": 56
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0541_00",
+      "track_count": 57,
+      "valid_voted_class_count": 57
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0570_02",
+      "track_count": 25,
+      "valid_voted_class_count": 25
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0586_01",
+      "track_count": 49,
+      "valid_voted_class_count": 49
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0587_00",
+      "track_count": 37,
+      "valid_voted_class_count": 37
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0587_03",
+      "track_count": 31,
+      "valid_voted_class_count": 31
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0639_00",
+      "track_count": 19,
+      "valid_voted_class_count": 19
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0649_00",
+      "track_count": 67,
+      "valid_voted_class_count": 67
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0662_00",
+      "track_count": 46,
+      "valid_voted_class_count": 46
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0676_01",
+      "track_count": 45,
+      "valid_voted_class_count": 45
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0692_00",
+      "track_count": 74,
+      "valid_voted_class_count": 74
+    },
+    {
+      "invalid_voted_class_count": 0,
+      "scene_name": "scene0692_01",
+      "track_count": 58,
+      "valid_voted_class_count": 58
+    },
+    {
+      "invalid_voted_class_count": 1,
+      "scene_name": "scene0692_03",
+      "track_count": 44,
+      "valid_voted_class_count": 43
+    }
+  ],
+  "sources": {
+    "native_only": {
+      "evaluations": {
+        "current_class_current_score": {
+          "ap": 0.2793215503195742,
+          "ap25": 0.35815926278542587,
+          "ap50": 0.33260568287352443,
+          "common_ap": 0.20411874224037949,
+          "head_ap": 0.4227785807476508,
+          "tail_ap": 0.17407063180350102
+        },
+        "current_class_gt_score": {
+          "ap": 0.4797237192393955,
+          "ap25": 0.578493281680804,
+          "ap50": 0.5508633007361573,
+          "common_ap": 0.38870351055885644,
+          "head_ap": 0.6964620253864314,
+          "tail_ap": 0.29575617283950617
+        },
+        "gt_class_current_score": {
+          "ap": 0.5478437563331859,
+          "ap25": 0.6942917114605196,
+          "ap50": 0.6558448611557678,
+          "common_ap": 0.5351037118947757,
+          "head_ap": 0.7421409973897819,
+          "tail_ap": 0.30689575984714873
+        },
+        "gt_class_gt_score": {
+          "ap": 0.17499986484171173,
+          "ap25": 0.1950998277436036,
+          "ap50": 0.1883624843087928,
+          "common_ap": 0.2116388074337567,
+          "head_ap": 0.16119371900903565,
+          "tail_ap": 0.15266493213504956
+        },
+        "gt_class_one_to_one_score": {
+          "ap": 0.6047657599082603,
+          "ap25": 0.731425507201723,
+          "ap50": 0.6989658774141704,
+          "common_ap": 0.5856534683578708,
+          "head_ap": 0.8154723021395519,
+          "tail_ap": 0.3493165784832451
+        }
+      },
+      "ground_truth_usage": "evaluation_only/oracle_only"
+    },
+    "native_plus_track": {
+      "evaluations": {
+        "current_class_current_score": {
+          "ap": 0.2950755885452924,
+          "ap25": 0.3837505224166468,
+          "ap50": 0.35629562206224946,
+          "common_ap": 0.2280834205805074,
+          "head_ap": 0.42314741728946675,
+          "tail_ap": 0.2009518321130138
+        },
+        "current_class_gt_score": {
+          "ap": 0.4995964420658328,
+          "ap25": 0.6037299988205845,
+          "ap50": 0.5770525736854859,
+          "common_ap": 0.4272868503242779,
+          "head_ap": 0.69041675249077,
+          "tail_ap": 0.32898662551440333
+        },
+        "gt_class_current_score": {
+          "ap": 0.621799536651551,
+          "ap25": 0.8173365367609688,
+          "ap50": 0.759138648468077,
+          "common_ap": 0.631296340000929,
+          "head_ap": 0.7501615849372041,
+          "tail_ap": 0.44283829457835927
+        },
+        "gt_class_gt_score": {
+          "ap": 0.2348263063439727,
+          "ap25": 0.2872853783513827,
+          "ap50": 0.2645572727485306,
+          "common_ap": 0.2782622395030728,
+          "head_ap": 0.1654848522968261,
+          "tail_ap": 0.27787645525101295
+        },
+        "gt_class_one_to_one_score": {
+          "ap": 0.6946972024659237,
+          "ap25": 0.8719897871978939,
+          "ap50": 0.8202151102363393,
+          "common_ap": 0.7093318049292892,
+          "head_ap": 0.8291809689810264,
+          "tail_ap": 0.5020282186948853
+        }
+      },
+      "ground_truth_usage": "evaluation_only/oracle_only"
+    },
+    "pair_union": {
+      "evaluations": {
+        "current_class_current_score": {
+          "ap": 0.29518968608890556,
+          "ap25": 0.38373680816657185,
+          "ap50": 0.35628992527840514,
+          "common_ap": 0.22809919924948752,
+          "head_ap": 0.42325405113953996,
+          "tail_ap": 0.20118428617847206
+        },
+        "current_class_gt_score": {
+          "ap": 0.48588697577862194,
+          "ap25": 0.5816920926632734,
+          "ap50": 0.5571595563276304,
+          "common_ap": 0.4213780757965306,
+          "head_ap": 0.6573234385359019,
+          "tail_ap": 0.332105195473251
+        },
+        "gt_class_current_score": {
+          "ap": 0.6220510500325996,
+          "ap25": 0.8173362854429933,
+          "ap50": 0.7591437585838149,
+          "common_ap": 0.6314222436994497,
+          "head_ap": 0.7503537593876503,
+          "tail_ap": 0.44330638433028186
+        },
+        "gt_class_gt_score": {
+          "ap": 0.24176045619301725,
+          "ap25": 0.2938929627574196,
+          "ap50": 0.271150304746962,
+          "common_ap": 0.279913206887226,
+          "head_ap": 0.17492684302506628,
+          "tail_ap": 0.2873525779177641
+        },
+        "gt_class_one_to_one_score": {
+          "ap": 0.6983777045567681,
+          "ap25": 0.871717370756793,
+          "ap50": 0.8206143553002186,
+          "common_ap": 0.7107294289684226,
+          "head_ap": 0.8334352599701765,
+          "tail_ap": 0.5074763007054673
+        }
+      },
+      "ground_truth_usage": "evaluation_only/oracle_only"
+    },
+    "track_only": {
+      "evaluations": {
+        "current_class_current_score": {
+          "ap": 0.049695541269288726,
+          "ap25": 0.12117328737188017,
+          "ap50": 0.08662473895805244,
+          "common_ap": 0.05440933953107577,
+          "head_ap": 0.030214269737696645,
+          "tail_ap": 0.0700598912404468
+        },
+        "current_class_gt_score": {
+          "ap": 0.07960293161053307,
+          "ap25": 0.19444060805574997,
+          "ap50": 0.13077845279161082,
+          "common_ap": 0.08088394251916266,
+          "head_ap": 0.06951020542417324,
+          "tail_ap": 0.09143518518518517
+        },
+        "gt_class_current_score": {
+          "ap": 0.16865692043811836,
+          "ap25": 0.4249397184404159,
+          "ap50": 0.29168105070569783,
+          "common_ap": 0.2013690564071734,
+          "head_ap": 0.0967157821339767,
+          "tail_ap": 0.22696001432980598
+        },
+        "gt_class_gt_score": {
+          "ap": 0.21219133695115372,
+          "ap25": 0.48169762845255815,
+          "ap50": 0.339688802499042,
+          "common_ap": 0.2516440291597524,
+          "head_ap": 0.1556365532917377,
+          "tail_ap": 0.24285714285714285
+        },
+        "gt_class_one_to_one_score": {
+          "ap": 0.21219578047552723,
+          "ap25": 0.48338900577323207,
+          "ap50": 0.3397287942184037,
+          "common_ap": 0.2516440291597524,
+          "head_ap": 0.15564812056153543,
+          "tail_ap": 0.24285714285714285
+        }
+      },
+      "ground_truth_usage": "evaluation_only/oracle_only"
+    }
+  }
+}

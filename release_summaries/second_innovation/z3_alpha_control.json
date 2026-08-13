@@ -1,0 +1,213 @@
+{
+  "candidate_membership_unchanged": true,
+  "diagnostic_only": true,
+  "diagnostic_type": "Z3 GT-only Alpha-CLIP/YOLO-World fixed fusion control group",
+  "geometry_unchanged": true,
+  "ground_truth_usage": "evaluation_only/oracle_only",
+  "native_classes_scores_unchanged": true,
+  "native_only_reference": {
+    "ap": 0.2793215503195742,
+    "ap25": 0.35815926278542587,
+    "ap50": 0.33260568287352443,
+    "common_ap": 0.20411874224037949,
+    "head_ap": 0.4227785807476508,
+    "tail_ap": 0.17407063180350102
+  },
+  "params": {
+    "allow_gt_diagnostics": true,
+    "allow_gt_evaluation": true,
+    "class_count": 198,
+    "combined_plan_root": "${PROJECT_ROOT}/output/train_candidate_champion_pair_union_combined_oof_plan_official100_v1",
+    "gt_instance_dir": "/media/jia/软件1/scannet_train_stream/prepared/ground_truth",
+    "limited_context_root": "${PROJECT_ROOT}/docs/diagnostics/z2_alphaclip_track_limited_context_official100_20260811",
+    "max_scenes": null,
+    "object_center_root": "${PROJECT_ROOT}/docs/diagnostics/z2_alphaclip_track_object_center_official100_20260811",
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z3_alphaclip_fusion_control_group_official100_20260811_v1",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "stream_records_root": "/media/jia/软件1/scannet_train_stream/records",
+    "z1_root": "${PROJECT_ROOT}/docs/diagnostics/z1_yoloworld_multiview_distribution_official100_20260811_v3_frozen_support_vote"
+  },
+  "track_pair_base_scores_unchanged": true,
+  "variant_contracts": {
+    "alphaclip_*_top1": "Alpha-CLIP mean multi-view distribution top1; missing Alpha abstains",
+    "frozen_*_agreement_abstain": "emit frozen class only when frozen and Alpha top1 agree",
+    "frozen_*_equal_top1": "0.5 frozen all-support + 0.5 Alpha; missing Alpha falls back to frozen",
+    "pair_union": "uses the selected track Alpha distribution; union geometry remains unchanged"
+  },
+  "variants": {
+    "alphaclip_context_top1": {
+      "ground_truth_usage": "evaluation_only/oracle_only",
+      "sources": {
+        "native_plus_track": {
+          "ap": 0.29310936579715074,
+          "ap25": 0.3937000514472468,
+          "ap50": 0.36008307800506667,
+          "common_ap": 0.2115670120021312,
+          "head_ap": 0.42482240300192653,
+          "tail_ap": 0.21027235344788311
+        },
+        "pair_union": {
+          "ap": 0.29330783366331703,
+          "ap25": 0.39368980104846996,
+          "ap50": 0.3601536856969101,
+          "common_ap": 0.21159414602462373,
+          "head_ap": 0.42513907546113705,
+          "tail_ap": 0.2105048589047354
+        },
+        "track_only": {
+          "ap": 0.05764917699316094,
+          "ap25": 0.16159717528582515,
+          "ap50": 0.11083251761933757,
+          "common_ap": 0.0477839225221933,
+          "head_ap": 0.049528625025212575,
+          "tail_ap": 0.07920028659611993
+        }
+      }
+    },
+    "alphaclip_object_top1": {
+      "ground_truth_usage": "evaluation_only/oracle_only",
+      "sources": {
+        "native_plus_track": {
+          "ap": 0.29155438974632014,
+          "ap25": 0.385382737416115,
+          "ap50": 0.35179275263541515,
+          "common_ap": 0.21968980925338125,
+          "head_ap": 0.4249783584470578,
+          "tail_ap": 0.1957859051208887
+        },
+        "pair_union": {
+          "ap": 0.29174342057510355,
+          "ap25": 0.3853735862842442,
+          "ap50": 0.3518569336714815,
+          "common_ap": 0.21977190948567232,
+          "head_ap": 0.42518204540655036,
+          "tail_ap": 0.19607376897840978
+        },
+        "track_only": {
+          "ap": 0.06094024634535263,
+          "ap25": 0.14756346516130123,
+          "ap50": 0.10125998292051576,
+          "common_ap": 0.08035395782748755,
+          "head_ap": 0.04992983690613884,
+          "tail_ap": 0.053955435639463416
+        }
+      }
+    },
+    "frozen_context_agreement_abstain": {
+      "ground_truth_usage": "evaluation_only/oracle_only",
+      "sources": {
+        "native_plus_track": {
+          "ap": 0.2885562283884117,
+          "ap25": 0.37652841716477004,
+          "ap50": 0.34889027447755067,
+          "common_ap": 0.21565965135592957,
+          "head_ap": 0.4241974521403409,
+          "tail_ap": 0.19101709268737024
+        },
+        "pair_union": {
+          "ap": 0.2886680787567019,
+          "ap25": 0.37652039157732586,
+          "ap50": 0.3488916529247855,
+          "common_ap": 0.21567678985361785,
+          "head_ap": 0.42429698166224766,
+          "tail_ap": 0.19124969185699503
+        },
+        "track_only": {
+          "ap": 0.044126925191580194,
+          "ap25": 0.11691589032093848,
+          "ap50": 0.08063602733393839,
+          "common_ap": 0.031071078350952568,
+          "head_ap": 0.03444913479998273,
+          "tail_ap": 0.07124485596707819
+        }
+      }
+    },
+    "frozen_context_equal_top1": {
+      "ground_truth_usage": "evaluation_only/oracle_only",
+      "sources": {
+        "native_plus_track": {
+          "ap": 0.30300560283642597,
+          "ap25": 0.39994878781555976,
+          "ap50": 0.3691985074939482,
+          "common_ap": 0.2326209703329701,
+          "head_ap": 0.4231964906611417,
+          "tail_ap": 0.22297142762238575
+        },
+        "pair_union": {
+          "ap": 0.3031166973470229,
+          "ap25": 0.39993121674746146,
+          "ap50": 0.3691896168468387,
+          "common_ap": 0.23263688308540084,
+          "head_ap": 0.423295211387278,
+          "tail_ap": 0.2232038592497292
+        },
+        "track_only": {
+          "ap": 0.06861600562697244,
+          "ap25": 0.16989601292214546,
+          "ap50": 0.12068847181899717,
+          "common_ap": 0.0741400864050116,
+          "head_ap": 0.04141174364334452,
+          "tail_ap": 0.09822209362139918
+        }
+      }
+    },
+    "frozen_object_agreement_abstain": {
+      "ground_truth_usage": "evaluation_only/oracle_only",
+      "sources": {
+        "native_plus_track": {
+          "ap": 0.2892639676871799,
+          "ap25": 0.37054060166795333,
+          "ap50": 0.3444960217224995,
+          "common_ap": 0.21931961371032566,
+          "head_ap": 0.42425022480011765,
+          "tail_ap": 0.18932472940922562
+        },
+        "pair_union": {
+          "ap": 0.2893589476936431,
+          "ap25": 0.3705329915398092,
+          "ap50": 0.3444895925752024,
+          "common_ap": 0.21933709984487867,
+          "head_ap": 0.42430558329563456,
+          "tail_ap": 0.18955727879904005
+        },
+        "track_only": {
+          "ap": 0.04245497285210406,
+          "ap25": 0.10900161963908846,
+          "ap50": 0.07342871678369665,
+          "common_ap": 0.03810110516085359,
+          "head_ap": 0.03672424356492374,
+          "tail_ap": 0.05478395061728395
+        }
+      }
+    },
+    "frozen_object_equal_top1": {
+      "ground_truth_usage": "evaluation_only/oracle_only",
+      "sources": {
+        "native_plus_track": {
+          "ap": 0.29935034752337897,
+          "ap25": 0.3932529584421727,
+          "ap50": 0.36553046571268916,
+          "common_ap": 0.23001064137973823,
+          "head_ap": 0.42382506566927103,
+          "tail_ap": 0.21253987215716563
+        },
+        "pair_union": {
+          "ap": 0.29946239557357857,
+          "ap25": 0.3932339088551849,
+          "ap50": 0.36552216210097366,
+          "common_ap": 0.23002624454761622,
+          "head_ap": 0.4239265277846162,
+          "tail_ap": 0.21277230547109183
+        },
+        "track_only": {
+          "ap": 0.06253145022143812,
+          "ap25": 0.1585668676012807,
+          "ap50": 0.11465486424097815,
+          "common_ap": 0.06874381151337555,
+          "head_ap": 0.040242552375427315,
+          "tail_ap": 0.0849261463844797
+        }
+      }
+    }
+  }
+}

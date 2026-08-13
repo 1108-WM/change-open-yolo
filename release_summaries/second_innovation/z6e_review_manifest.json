@@ -1,0 +1,37 @@
+{
+  "candidate_mutation": false,
+  "class_mutation": false,
+  "decision_contract": "VLM must output CURRENT, PROPOSED, or ABSTAIN; only PROPOSED mutates class; invalid/ABSTAIN fall back to CURRENT",
+  "diagnostic_type": "official100 frozen budgeted selective multi-view VLM review manifest",
+  "eligible_count": 82,
+  "even48_read": false,
+  "geometry_mutation": false,
+  "ground_truth_usage": "none",
+  "inference_plan_written": false,
+  "maximum_budget": 512,
+  "model_invoked": false,
+  "params": {
+    "budget": 512,
+    "min_pairwise_cosine_mean": 0.855297,
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z6e_selective_vlm_review_manifest_official100_20260812",
+    "review_root": "${PROJECT_ROOT}/docs/diagnostics/z6c_semantic_review_input_official100_20260812",
+    "selector_root": "${PROJECT_ROOT}/docs/diagnostics/z6d_nested_improvement_gate_oof_official100_20260812",
+    "view_root": "${PROJECT_ROOT}/docs/diagnostics/z6b_object_view_manifest_official100_20260812"
+  },
+  "review_manifest_sha256": "e720a99aba01f52bf49410e44ca9d19284f3fcdb9ad6070929597cace3a19e06",
+  "routing_contract": {
+    "appearance_consistency": "DINO pairwise cosine mean >= frozen ledger median 0.855297",
+    "current_hypothesis": "prediction-specific current class; no result propagation to sibling predictions",
+    "node_cap": 1,
+    "ordering": "descending representative current hybrid score, then selector probability, then stable keys",
+    "selector_state": "accepted_new_class",
+    "semantic_conflict": "YOLO top1 != Alpha top1",
+    "views": "exact frozen top-3 views"
+  },
+  "safety60_read": false,
+  "scene_count": 52,
+  "score_mutation": false,
+  "selected_count": 82,
+  "selector_system": "improvement_gated_semantic_only",
+  "test60_read": false
+}

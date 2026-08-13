@@ -94,6 +94,8 @@ def test_pipeline_full(
     backprojection_source_max_candidates=None,
     backprojection_source_score_scales=None,
     backprojection_source_min_scores=None,
+    backprojection_append_only_source_kinds=None,
+    backprojection_append_only_same_class_dedup_iou=0.0,
     backprojection_max_candidates_per_class=None,
     backprojection_class_max_candidates=None,
     backprojection_quality_calibration_weight=0.0,
@@ -501,6 +503,8 @@ def test_pipeline_full(
                 source_max_candidates=backprojection_source_max_candidates,
                 source_score_scales=backprojection_source_score_scales,
                 source_min_scores=backprojection_source_min_scores,
+                append_only_source_kinds=backprojection_append_only_source_kinds,
+                append_only_same_class_dedup_iou=backprojection_append_only_same_class_dedup_iou,
                 max_candidates_per_class=backprojection_max_candidates_per_class,
                 class_max_candidates=backprojection_class_max_candidates,
                 quality_calibration_weight=backprojection_quality_calibration_weight,
@@ -1008,6 +1012,8 @@ if __name__ == '__main__':
     parser.add_argument('--backprojection_source_max_candidates', default=None, type=str, help='Comma-separated per-source proposal limits, e.g. sam_fused=20,bpr=10')
     parser.add_argument('--backprojection_source_score_scales', default=None, type=str, help='Comma-separated per-source score multipliers, e.g. sam_fused=1.2,bpr=0.9')
     parser.add_argument('--backprojection_source_min_scores', default=None, type=str, help='Comma-separated per-source minimum raw candidate scores, e.g. sam_fused=0.65,bpr=0.50')
+    parser.add_argument('--backprojection_append_only_source_kinds', default=None, type=str, help='来源列表：这些新增候选不因与 native 重叠被过滤，只在同来源同类内去重')
+    parser.add_argument('--backprojection_append_only_same_class_dedup_iou', default=0.0, type=float, help='append-only 来源内部同类候选的去重 IoU；0 禁用')
     parser.add_argument('--backprojection_max_candidates_per_class', default=None, type=int, help='Maximum added BPR proposals per predicted class in each scene')
     parser.add_argument('--backprojection_class_max_candidates', default=None, type=str, help='Comma-separated per-class proposal limits, e.g. "office chair=1,mat=2"')
     parser.add_argument('--backprojection_quality_calibration_weight', default=0.0, type=float, help='SQS z-score calibration weight for BPR proposal scoring; 0 disables')

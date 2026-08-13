@@ -1,0 +1,601 @@
+{
+  "ap_evaluation_run_count": 1,
+  "candidate_class_modified": false,
+  "candidate_count_modified": false,
+  "candidate_file_modification_count": 0,
+  "candidate_files_modified": false,
+  "candidate_geometry_modified": false,
+  "continuous_weight_scanning": false,
+  "delta_vs_frozen_coexist": {
+    "ap": 0.002349630792322366,
+    "ap25": -0.0017790074802539468,
+    "ap50": 0.0020990919493619753
+  },
+  "evaluated_policy_count": 1,
+  "experiment": "one-shot safety60 class-agnostic AP for frozen official100 combined champion",
+  "frozen_coexist_baseline": {
+    "ap": 0.4818963943145778,
+    "ap25": 0.761686158823776,
+    "ap50": 0.6505037617825293
+  },
+  "ground_truth_usage": "one frozen AP evaluation only",
+  "pair_union_append_only": true,
+  "pair_union_probability_prior_correction": {
+    "applied": true,
+    "natural_positive_rate": 0.047577720588447926
+  },
+  "policy": "champion_track_suppression_plus_pair_union_append",
+  "preflight": {
+    "ap_evaluation_run_count": 0,
+    "combined_model_package_sha256": "b5f91148eb9cf310bee25d1ee6237699965cd368b04a3bb3a3d143aa395652a8",
+    "frozen_coexist_baseline": {
+      "ap": 0.4818963943145778,
+      "ap25": 0.761686158823776,
+      "ap50": 0.6505037617825293
+    },
+    "ground_truth_read": false,
+    "official100_combined_eligibility": {
+      "ap": 0.005917314735515489,
+      "ap25": 0.009235303669210104,
+      "ap50": 0.007502169833236705
+    },
+    "pair_union_append_candidate_count": 1520,
+    "pair_union_probability_prior_correction": {
+      "applied": true,
+      "natural_positive_rate": 0.047577720588447926
+    },
+    "plan_summary_sha256": "d3487d4a5130ef87fa44610aa991e9254945f4795fbbf17b2ce02c1674ace656",
+    "preflight_passed": true,
+    "scene_count": 60,
+    "score_row_count": 39569
+  },
+  "scene_candidate_counts": [
+    {
+      "candidate_count": 158,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "e40749f7cd33f8c53d0d8a7c2e205e2e95cd7c9e275d72acc193a4aee20851ef",
+      "native_geometry_representative_count": 47,
+      "pair_union_append_candidate_count": 34,
+      "scene_name": "scene0015_00",
+      "track_candidate_count": 77
+    },
+    {
+      "candidate_count": 98,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "8f577feed00da958688f4d16dd5fab7344d57218a3140d555652c6b9455c9143",
+      "native_geometry_representative_count": 16,
+      "pair_union_append_candidate_count": 13,
+      "scene_name": "scene0019_00",
+      "track_candidate_count": 69
+    },
+    {
+      "candidate_count": 204,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "b5f49974fa2d4a778afdc60aa0d08d4ba38601de8e6bc2afe5af91f41a17d5fa",
+      "native_geometry_representative_count": 81,
+      "pair_union_append_candidate_count": 50,
+      "scene_name": "scene0030_01",
+      "track_candidate_count": 73
+    },
+    {
+      "candidate_count": 214,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "568d27a6810704e01ef83147820bbed48c284104c55f6f02f48a0f2f023777dc",
+      "native_geometry_representative_count": 92,
+      "pair_union_append_candidate_count": 43,
+      "scene_name": "scene0030_02",
+      "track_candidate_count": 79
+    },
+    {
+      "candidate_count": 193,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "6459b50a22dff17f97c5ceb7f7fabe730b1b55899cbcc42e2db29b316dfa4787",
+      "native_geometry_representative_count": 58,
+      "pair_union_append_candidate_count": 52,
+      "scene_name": "scene0064_01",
+      "track_candidate_count": 83
+    },
+    {
+      "candidate_count": 109,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "50cdadbeba7fb63a810992c79bc74e574963356cdc4673896ee664958d128000",
+      "native_geometry_representative_count": 39,
+      "pair_union_append_candidate_count": 12,
+      "scene_name": "scene0088_00",
+      "track_candidate_count": 58
+    },
+    {
+      "candidate_count": 138,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "aefab141faca094f700153f21c9c89b474ff0e627cb8e4a5d9f4c12eaed59e15",
+      "native_geometry_representative_count": 47,
+      "pair_union_append_candidate_count": 32,
+      "scene_name": "scene0088_02",
+      "track_candidate_count": 59
+    },
+    {
+      "candidate_count": 174,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "eef1473593a2b1f8e4be755d4c6a9ef015066372b9c397a1afd6ade96849a108",
+      "native_geometry_representative_count": 61,
+      "pair_union_append_candidate_count": 31,
+      "scene_name": "scene0131_01",
+      "track_candidate_count": 82
+    },
+    {
+      "candidate_count": 60,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "c167a3f76348a052c42e34ccb915280b57a10b8beed726f56dbc15b1aa75f579",
+      "native_geometry_representative_count": 17,
+      "pair_union_append_candidate_count": 9,
+      "scene_name": "scene0146_02",
+      "track_candidate_count": 34
+    },
+    {
+      "candidate_count": 182,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "4210b413b93f76ea129a2b092da596b4571feaafb3bd669b9669ce39e3d742bc",
+      "native_geometry_representative_count": 51,
+      "pair_union_append_candidate_count": 42,
+      "scene_name": "scene0164_01",
+      "track_candidate_count": 89
+    },
+    {
+      "candidate_count": 63,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "a120425530b714df55f42e132c0825e233fc1eb6779c08a4c4efb4bc60dd69df",
+      "native_geometry_representative_count": 16,
+      "pair_union_append_candidate_count": 11,
+      "scene_name": "scene0187_00",
+      "track_candidate_count": 36
+    },
+    {
+      "candidate_count": 52,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "475db3048bbcac56d56e769a2d5eef70b164973a1a23efeb2ea3a67e3cd05928",
+      "native_geometry_representative_count": 11,
+      "pair_union_append_candidate_count": 15,
+      "scene_name": "scene0193_01",
+      "track_candidate_count": 26
+    },
+    {
+      "candidate_count": 152,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "4bf0013fe66f66fcec17f9ce0196590541e04812a8b58ef18ed891101456ff76",
+      "native_geometry_representative_count": 50,
+      "pair_union_append_candidate_count": 23,
+      "scene_name": "scene0203_00",
+      "track_candidate_count": 79
+    },
+    {
+      "candidate_count": 182,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "39acf65bad97d421dba6c37a2838500f776c3ea86aec5cc27f22ad199f68e4ea",
+      "native_geometry_representative_count": 93,
+      "pair_union_append_candidate_count": 23,
+      "scene_name": "scene0207_00",
+      "track_candidate_count": 66
+    },
+    {
+      "candidate_count": 194,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "361b0b95a9ed0dbc848bca9d57e2926e70e4fd31867ea4f2e4846d0185d8eeee",
+      "native_geometry_representative_count": 95,
+      "pair_union_append_candidate_count": 22,
+      "scene_name": "scene0207_02",
+      "track_candidate_count": 77
+    },
+    {
+      "candidate_count": 235,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "5daf9e260cc3d33034a05e68efc1d06746c52084723ceaad8bea52c512f3c1ca",
+      "native_geometry_representative_count": 126,
+      "pair_union_append_candidate_count": 38,
+      "scene_name": "scene0208_00",
+      "track_candidate_count": 71
+    },
+    {
+      "candidate_count": 210,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "5ede7322fed3259ae3aebae67f6ddd1ad587200ec03dc8bbf2fbdffcd21a587d",
+      "native_geometry_representative_count": 83,
+      "pair_union_append_candidate_count": 42,
+      "scene_name": "scene0231_01",
+      "track_candidate_count": 85
+    },
+    {
+      "candidate_count": 108,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "9b71028297fd5c1cc221e1321634e51b8dbf543a62cea0d894b93be73bcba696",
+      "native_geometry_representative_count": 37,
+      "pair_union_append_candidate_count": 23,
+      "scene_name": "scene0251_00",
+      "track_candidate_count": 48
+    },
+    {
+      "candidate_count": 115,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "ef4690cac8c76b3e3ed2fbb3ed641575b63410724f1edf799003cb893ab3f0db",
+      "native_geometry_representative_count": 23,
+      "pair_union_append_candidate_count": 29,
+      "scene_name": "scene0256_00",
+      "track_candidate_count": 63
+    },
+    {
+      "candidate_count": 86,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "03f0020986c516adccbe31f2352bbdf81431d62ec81e22a790144ece0cc94be8",
+      "native_geometry_representative_count": 26,
+      "pair_union_append_candidate_count": 18,
+      "scene_name": "scene0278_01",
+      "track_candidate_count": 42
+    },
+    {
+      "candidate_count": 103,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "00a4cc4f7da9adb93ae1b1b5f186f23b0c94f9b10c2f1a30c8cc1f40bc32700e",
+      "native_geometry_representative_count": 28,
+      "pair_union_append_candidate_count": 28,
+      "scene_name": "scene0300_00",
+      "track_candidate_count": 47
+    },
+    {
+      "candidate_count": 111,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "0b4868cfb4a7882e7166db3e574140f782202f3e60b1f013ec19848bce3a67c0",
+      "native_geometry_representative_count": 31,
+      "pair_union_append_candidate_count": 27,
+      "scene_name": "scene0328_00",
+      "track_candidate_count": 53
+    },
+    {
+      "candidate_count": 114,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "11e35056b4dd458b5af7f73d6fa93feb63529416739b7c5919fdaf52ab039666",
+      "native_geometry_representative_count": 31,
+      "pair_union_append_candidate_count": 17,
+      "scene_name": "scene0343_00",
+      "track_candidate_count": 66
+    },
+    {
+      "candidate_count": 143,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "6a33a07389e38f026a5e0db034c0fa4dbf55b43880dd3efb6b475625170abf0a",
+      "native_geometry_representative_count": 43,
+      "pair_union_append_candidate_count": 28,
+      "scene_name": "scene0351_00",
+      "track_candidate_count": 72
+    },
+    {
+      "candidate_count": 70,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "3826e7dbb41d0a3fa2048f6a8ae3d18c84900fb209d5b2bb7a670df1447e1c69",
+      "native_geometry_representative_count": 18,
+      "pair_union_append_candidate_count": 5,
+      "scene_name": "scene0355_00",
+      "track_candidate_count": 47
+    },
+    {
+      "candidate_count": 65,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "14147df4f247b90b21c6eeac13a3965ad5062fc33401f5914bf4fc79fb8e10b9",
+      "native_geometry_representative_count": 17,
+      "pair_union_append_candidate_count": 16,
+      "scene_name": "scene0356_01",
+      "track_candidate_count": 32
+    },
+    {
+      "candidate_count": 187,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "51294edc013f5509d251f5b63d4bf550b600cf5c9d13ff10a791047ac8c6752b",
+      "native_geometry_representative_count": 69,
+      "pair_union_append_candidate_count": 50,
+      "scene_name": "scene0377_01",
+      "track_candidate_count": 68
+    },
+    {
+      "candidate_count": 177,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "1e392d30ec9bde91fed55dbb3f6fede94459b65999b0299f741235b4dea68f94",
+      "native_geometry_representative_count": 63,
+      "pair_union_append_candidate_count": 33,
+      "scene_name": "scene0378_02",
+      "track_candidate_count": 81
+    },
+    {
+      "candidate_count": 142,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "ddedaf9d519ae86b05dac25e47f46226dfa49dd54263820c080ac727b53a3cc8",
+      "native_geometry_representative_count": 56,
+      "pair_union_append_candidate_count": 32,
+      "scene_name": "scene0412_00",
+      "track_candidate_count": 54
+    },
+    {
+      "candidate_count": 77,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "e12ed1cf541fd8842c4b9e9d493ebf1c99ed1e60762a497e96f7bbb6c2d20ce1",
+      "native_geometry_representative_count": 19,
+      "pair_union_append_candidate_count": 12,
+      "scene_name": "scene0430_01",
+      "track_candidate_count": 46
+    },
+    {
+      "candidate_count": 50,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "aa3c99adf4ea3dcb714d8fa060700844a9093a03a33b81424003a6af2dc721d9",
+      "native_geometry_representative_count": 7,
+      "pair_union_append_candidate_count": 13,
+      "scene_name": "scene0432_01",
+      "track_candidate_count": 30
+    },
+    {
+      "candidate_count": 49,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "6ef0072903300ef107553dc3871c83b25eac4b2821e92b92bc627f424c7a8eee",
+      "native_geometry_representative_count": 11,
+      "pair_union_append_candidate_count": 14,
+      "scene_name": "scene0461_00",
+      "track_candidate_count": 24
+    },
+    {
+      "candidate_count": 107,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "f8b2b30b498d8d2de24c7f4e704f5402ab06c0a0d398e8a4d1fc44a9fae69d64",
+      "native_geometry_representative_count": 30,
+      "pair_union_append_candidate_count": 13,
+      "scene_name": "scene0462_00",
+      "track_candidate_count": 64
+    },
+    {
+      "candidate_count": 162,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "64ac135c6493259c60c957aba07bb2b90d829b3ce17e283e7d5198e50d98d4ba",
+      "native_geometry_representative_count": 56,
+      "pair_union_append_candidate_count": 31,
+      "scene_name": "scene0474_02",
+      "track_candidate_count": 75
+    },
+    {
+      "candidate_count": 97,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "09caebd198dbca44e9ecc230c9c06307b0080d9fb7e7532d1b7cffb43f1a0939",
+      "native_geometry_representative_count": 23,
+      "pair_union_append_candidate_count": 26,
+      "scene_name": "scene0488_01",
+      "track_candidate_count": 48
+    },
+    {
+      "candidate_count": 121,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "e96586610cdbb1249a435f5c6701c657e85b3f6d73ad0c3812359bb59f91b4df",
+      "native_geometry_representative_count": 45,
+      "pair_union_append_candidate_count": 26,
+      "scene_name": "scene0550_00",
+      "track_candidate_count": 50
+    },
+    {
+      "candidate_count": 133,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "f3c377021e23e3f592acae5165226f4e7dccb8e9e88936b858a61c20c915e9df",
+      "native_geometry_representative_count": 38,
+      "pair_union_append_candidate_count": 32,
+      "scene_name": "scene0552_00",
+      "track_candidate_count": 63
+    },
+    {
+      "candidate_count": 57,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "7419dd887520661ea3bdd6bfe28b9f02cdeeca7823a046443f1422a2a3ad51ae",
+      "native_geometry_representative_count": 19,
+      "pair_union_append_candidate_count": 9,
+      "scene_name": "scene0553_01",
+      "track_candidate_count": 29
+    },
+    {
+      "candidate_count": 101,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "7310ddd8a3191f4b836485d3afb95715b054de7cb8742066a41af4f54605d875",
+      "native_geometry_representative_count": 46,
+      "pair_union_append_candidate_count": 18,
+      "scene_name": "scene0580_00",
+      "track_candidate_count": 37
+    },
+    {
+      "candidate_count": 173,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "abca5cfc12eff48b08564d0e702befaebbd8661d26203ff08262e2faaf9761c1",
+      "native_geometry_representative_count": 92,
+      "pair_union_append_candidate_count": 19,
+      "scene_name": "scene0598_02",
+      "track_candidate_count": 62
+    },
+    {
+      "candidate_count": 56,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "4f3465baf00de69baf398d3c3347571cbcac88e43aa390acd183c19e9c238e31",
+      "native_geometry_representative_count": 14,
+      "pair_union_append_candidate_count": 6,
+      "scene_name": "scene0609_01",
+      "track_candidate_count": 36
+    },
+    {
+      "candidate_count": 129,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "8c04ca5f8c94cc43f9328e24ceb5a695e35afbc8de5df64af2b6848f35942c09",
+      "native_geometry_representative_count": 47,
+      "pair_union_append_candidate_count": 17,
+      "scene_name": "scene0621_00",
+      "track_candidate_count": 65
+    },
+    {
+      "candidate_count": 116,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "9e2611d5e01e3f03dd24fa1826e1e285e24a31f15d05e7bfd606c67ee8e3a2a2",
+      "native_geometry_representative_count": 29,
+      "pair_union_append_candidate_count": 17,
+      "scene_name": "scene0633_01",
+      "track_candidate_count": 70
+    },
+    {
+      "candidate_count": 182,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "95e426fe12b4ba33f2a22a9f7696bed0aa175f935252db3bb17be2b1b2f36566",
+      "native_geometry_representative_count": 76,
+      "pair_union_append_candidate_count": 43,
+      "scene_name": "scene0645_02",
+      "track_candidate_count": 63
+    },
+    {
+      "candidate_count": 182,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "4c16877db59ac1097cda62dfb0daca4672d0ea4670673be557d14d4f70284887",
+      "native_geometry_representative_count": 75,
+      "pair_union_append_candidate_count": 37,
+      "scene_name": "scene0648_00",
+      "track_candidate_count": 70
+    },
+    {
+      "candidate_count": 79,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "6fe2bc889ea0844d34e0a4288d04137e0310ccfa9b47e51a72d896130c1998d2",
+      "native_geometry_representative_count": 22,
+      "pair_union_append_candidate_count": 13,
+      "scene_name": "scene0651_01",
+      "track_candidate_count": 44
+    },
+    {
+      "candidate_count": 38,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "e15e020002f4a55580507df81b40b8788ccd9bffdacda2798f13be7383626ab1",
+      "native_geometry_representative_count": 13,
+      "pair_union_append_candidate_count": 3,
+      "scene_name": "scene0660_00",
+      "track_candidate_count": 22
+    },
+    {
+      "candidate_count": 172,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "bcfc03cff3c0aef38539b6ff188849c960ab6dd732715b1209614f04abcf8387",
+      "native_geometry_representative_count": 57,
+      "pair_union_append_candidate_count": 31,
+      "scene_name": "scene0663_00",
+      "track_candidate_count": 84
+    },
+    {
+      "candidate_count": 83,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "b3c91439400f5a19527719fc05a7231bbd4293569da4ca275a3c0a65ace6b7c5",
+      "native_geometry_representative_count": 28,
+      "pair_union_append_candidate_count": 17,
+      "scene_name": "scene0664_01",
+      "track_candidate_count": 38
+    },
+    {
+      "candidate_count": 244,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "5639f7e872480df05cce8e81862e37e28a2b74c6de1593b89fda53eb753ce0bb",
+      "native_geometry_representative_count": 91,
+      "pair_union_append_candidate_count": 43,
+      "scene_name": "scene0670_01",
+      "track_candidate_count": 110
+    },
+    {
+      "candidate_count": 94,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "6d29ef1a4799fbc96d7d90e6c98eed2969eeb3ab4808a110208b1996f3c79da8",
+      "native_geometry_representative_count": 18,
+      "pair_union_append_candidate_count": 17,
+      "scene_name": "scene0671_01",
+      "track_candidate_count": 59
+    },
+    {
+      "candidate_count": 167,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "a02dc487339025bd0c3328c1334e7e16e5850703c442a75a116142b124532bd0",
+      "native_geometry_representative_count": 49,
+      "pair_union_append_candidate_count": 40,
+      "scene_name": "scene0678_00",
+      "track_candidate_count": 78
+    },
+    {
+      "candidate_count": 179,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "018c32fbcadc221a97b2f18fb88264151d8cf736f1692a5d076929a40935e6c0",
+      "native_geometry_representative_count": 52,
+      "pair_union_append_candidate_count": 43,
+      "scene_name": "scene0678_02",
+      "track_candidate_count": 84
+    },
+    {
+      "candidate_count": 73,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "5d7d989241c3b368b1c2dd3e0a400e50b7a7263d590ddd4b17b2167653187128",
+      "native_geometry_representative_count": 23,
+      "pair_union_append_candidate_count": 9,
+      "scene_name": "scene0685_00",
+      "track_candidate_count": 41
+    },
+    {
+      "candidate_count": 82,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "e98a229921ea63ad8fa261dba455db5ce7a1dd67f168019f99315e34ac34dfc7",
+      "native_geometry_representative_count": 25,
+      "pair_union_append_candidate_count": 3,
+      "scene_name": "scene0690_01",
+      "track_candidate_count": 54
+    },
+    {
+      "candidate_count": 139,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "dff655405a9c78d2bf6879505c885c6972a7a1fa7eaa7c98294ca9a20b3ed5c6",
+      "native_geometry_representative_count": 58,
+      "pair_union_append_candidate_count": 20,
+      "scene_name": "scene0695_00",
+      "track_candidate_count": 61
+    },
+    {
+      "candidate_count": 286,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "38e3ef24e007fc209cd5007cf75ac43dc3f3c5632375142fb364c830b30ae73a",
+      "native_geometry_representative_count": 82,
+      "pair_union_append_candidate_count": 90,
+      "scene_name": "scene0696_00",
+      "track_candidate_count": 114
+    },
+    {
+      "candidate_count": 147,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "8cd823bc8e2331525de5a4fc2bb792089a0c9b0f90c62cef729555b8a159fc15",
+      "native_geometry_representative_count": 55,
+      "pair_union_append_candidate_count": 40,
+      "scene_name": "scene0697_00",
+      "track_candidate_count": 52
+    },
+    {
+      "candidate_count": 101,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "30c5f0a793f087da6d40005c064f26895bf56afdd1e5eca383b5e1eaa41391fc",
+      "native_geometry_representative_count": 36,
+      "pair_union_append_candidate_count": 13,
+      "scene_name": "scene0700_00",
+      "track_candidate_count": 52
+    },
+    {
+      "candidate_count": 49,
+      "candidate_files_modified": false,
+      "canonical_mask_element_sha256": "0f020fe6a88adb7d31c4f93d262c2f2dae9c9ba31cf7f635e3c2343355ac1f03",
+      "native_geometry_representative_count": 14,
+      "pair_union_append_candidate_count": 7,
+      "scene_name": "scene0702_02",
+      "track_candidate_count": 28
+    }
+  ],
+  "selected_policy_ap": {
+    "ap": 0.4842460251069002,
+    "ap25": 0.759907151343522,
+    "ap50": 0.6526028537318913
+  },
+  "threshold_scanning": false,
+  "version": "frozen_safety60_champion_pair_union_ap_v2_prior_corrected"
+}

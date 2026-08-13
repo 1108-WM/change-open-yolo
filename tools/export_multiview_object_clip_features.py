@@ -14,7 +14,6 @@ import yaml
 from PIL import Image
 from scipy.ndimage import binary_dilation
 from tqdm import tqdm
-from transformers import CLIPImageProcessor, CLIPModel, CLIPProcessor, CLIPTokenizerFast
 from torchvision import transforms
 from torchvision.transforms import InterpolationMode
 
@@ -39,6 +38,8 @@ def _to_numpy(value):
 
 
 def _load_clip_processor(clip_model_path):
+    from transformers import CLIPImageProcessor, CLIPProcessor, CLIPTokenizerFast
+
     tokenizer = CLIPTokenizerFast.from_pretrained(clip_model_path, local_files_only=True)
     image_processor = CLIPImageProcessor(
         do_resize=True,
@@ -407,6 +408,8 @@ def export_features(args):
     if args.vision_encoder == "alpha_clip":
         clip_state = _load_alpha_clip(args, labels, device)
     else:
+        from transformers import CLIPModel
+
         processor = _load_clip_processor(args.clip_model_path)
         model = CLIPModel.from_pretrained(args.clip_model_path, local_files_only=True).to(device)
         model.eval()

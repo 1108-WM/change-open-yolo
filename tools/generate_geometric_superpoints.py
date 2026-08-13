@@ -389,6 +389,82 @@ def _contiguous_labels(uf, num_points):
     return labels.astype(np.int32), unique_roots
 
 
+def _original_anchored_refinement(original_labels, left, right, keep):
+    """仅在原始 superpoint 内按已确认二维边界切分，绝不跨原始区域合并。"""
+    original_labels = np.asarray(original_labels)
+    if original_labels.ndim != 1 or len(original_labels) == 0:
+        raise ValueError("原始 superpoint 标签必须是一维非空数组")
+    if not np.all(np.isfinite(original_labels)):
+        raise ValueError("原始 superpoint 标签包含非有限值")
+    rounded = np.rint(original_labels)
+    if not np.array_equal(original_labels, rounded):
+        raise ValueError("原始 superpoint 标签必须为整数")
+    original_labels = rounded.astype(np.int64, copy=False)
+    if np.any(original_labels < 0):
+        raise ValueError("原始 superpoint 标签不能为负数")
+
+    same_original = original_labels[left] == original_labels[right]
+    internal_cut = same_original & ~keep
+    split_sources = np.unique(original_labels[left[internal_cut]])
+    source_values, output_labels = np.unique(original_labels, return_inverse=True)
+    output_labels = output_labels.astype(np.int32, copy=False)
+
+    if len(split_sources) == 0:
+        return output_labels, {
+            "mode": "original_anchor_split",
+            "original_segments": int(len(source_values)),
+            "source_segments_with_2d_cut": 0,
+            "source_segments_split": 0,
+            "cross_original_graph_edges": int((~same_original).sum()),
+            "retained_internal_edges": int(same_original.sum()),
+            "pruned_internal_edges": 0,
+            "new_segments": int(len(source_values)),
+            "partition_preserved": True,
+        }
+
+    # 仅对确实存在二维冲突边的原始区域求连通分量；未触发切分的区域保持原样，
+    # 避免网格局部缺边本身引入额外碎片。
+    split_source_mask = np.isin(original_labels, split_sources)
+    eligible_edges = (
+        same_original
+        & keep
+        & split_source_mask[left]
+        & split_source_mask[right]
+    )
+    uf = UnionFind(len(original_labels))
+    for edge_index in np.flatnonzero(eligible_edges):
+        uf.union(int(left[edge_index]), int(right[edge_index]), 0.0)
+
+    next_label = int(len(source_values))
+    split_count = 0
+    for source_id in split_sources:
+        point_indices = np.flatnonzero(original_labels == source_id)
+        roots = np.asarray([uf.find(index) for index in point_indices], dtype=np.int32)
+        _, inverse = np.unique(roots, return_inverse=True)
+        component_count = int(inverse.max(initial=-1)) + 1
+        if component_count <= 1:
+            continue
+        output_labels[point_indices] = next_label + inverse.astype(np.int32, copy=False)
+        next_label += component_count
+        split_count += 1
+
+    # 这是此模式的核心不变量：任一新标签只能来自一个原始 superpoint。
+    pairs = np.stack((output_labels, original_labels), axis=1)
+    if len(np.unique(pairs, axis=0)) != len(np.unique(output_labels)):
+        raise RuntimeError("原始 superpoint 锚定失败：检测到跨原始区域合并")
+    return output_labels, {
+        "mode": "original_anchor_split",
+        "original_segments": int(len(source_values)),
+        "source_segments_with_2d_cut": int(len(split_sources)),
+        "source_segments_split": int(split_count),
+        "cross_original_graph_edges": int((~same_original).sum()),
+        "retained_internal_edges": int(eligible_edges.sum()),
+        "pruned_internal_edges": int(internal_cut.sum()),
+        "new_segments": int(np.unique(output_labels).size),
+        "partition_preserved": True,
+    }
+
+
 def generate_superpoints(scene_array, args):
     if getattr(args, "graph_type", "knn") != "knn":
         raise RuntimeError("mesh_normal needs scene context; call generate_scene_superpoints.")
@@ -423,17 +499,22 @@ def generate_scene_superpoints(scene_array, scene_dir, scene_name, args):
         keep, boundary_stats = _boundary_keep_mask(
             points, left, right, scene_dir, scene_name, args
         )
-        left, right, weights = left[keep], right[keep], weights[keep]
     else:
+        keep = np.ones(left.shape[0], dtype=bool)
         boundary_stats = {
             "mode": "geometry",
             "edges": int(left.shape[0]),
             "pruned_edges": 0,
         }
     boundary_stats["graph_type"] = args.graph_type
-    uf = _felzenszwalb_segments(points.shape[0], left, right, weights, args.merge_k)
-    _merge_small_components(uf, left, right, weights, args.min_size)
-    labels, _ = _contiguous_labels(uf, points.shape[0])
+    if getattr(args, "anchor_original_superpoints", False):
+        labels, anchor_stats = _original_anchored_refinement(scene_array[:, 9], left, right, keep)
+        boundary_stats["anchor"] = anchor_stats
+    else:
+        left, right, weights = left[keep], right[keep], weights[keep]
+        uf = _felzenszwalb_segments(points.shape[0], left, right, weights, args.merge_k)
+        _merge_small_components(uf, left, right, weights, args.min_size)
+        labels, _ = _contiguous_labels(uf, points.shape[0])
     return labels, boundary_stats
 
 
@@ -500,6 +581,12 @@ def main():
         help="Mesh filename within each scene when --graph_type mesh_normal is selected.",
     )
     parser.add_argument("--mesh_alignment_tolerance", default=1e-6, type=float)
+    parser.add_argument(
+        "--anchor_original_superpoints",
+        default=False,
+        action="store_true",
+        help="以输入第 9 列为不可跨越底座；仅按可靠二维边界在原始 superpoint 内切分。",
+    )
     parser.add_argument(
         "--boundary_mask_root",
         default=None,

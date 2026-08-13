@@ -1,0 +1,61 @@
+{
+  "action_family_status": {
+    "boundary_owner": "unavailable",
+    "merge": "available",
+    "split": "unavailable"
+  },
+  "ap_computed": false,
+  "candidate_generation_applied": false,
+  "candidate_mutation": false,
+  "contracts": {
+    "boundary_owner": "unavailable unless an official100 traceable superpoint owner ledger already exists",
+    "contact": "shared point membership only; no distance, adjacency, IoU, or semantic threshold selected",
+    "merge": "only the 1,501 already materialized frozen pair-union actions are audited",
+    "split": "unavailable unless an official100 traceable materialized child-mask ledger already exists",
+    "z3_oof_projection": "only candidate/class/original-score/C_joint OOF prediction fields are used; label fields are ignored and never emitted"
+  },
+  "diagnostic_type": "Z5a frozen semantic-geometry action-space contract audit",
+  "even48_read": false,
+  "geometry_relation_counts": {
+    "partial_overlap": 1501
+  },
+  "ground_truth_usage": "none",
+  "input_provenance": {
+    "combined_plan_rows_sha256": "0c10445210fd00eb6af9fab279fbb751adac76e0fb8c68e9f215995a129ec3e7",
+    "combined_plan_summary_sha256": "f4335948cf5957712395a59b7b87a271cb3353d901ee28e8343aa8c14fdf0854",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "scene_list_sha256": "dfa9017e206190eb2973b247c78e4bf1b2d9c01bb8468a15775c30335e44fb68",
+    "split_manifest": "${PROJECT_ROOT}/output/train_candidate_quality_oof_official100_v2/split_manifest.json",
+    "split_manifest_sha256": "aa657449965bc76164a1a1b77c7785aa705a0295eeed1307163b325f7233fe3e",
+    "z1_bindings_sha256": "090502a09148e3f99251de7e5e9ba51e12b1f279b184c2acbeb4d86ddccc236b",
+    "z1_summary_sha256": "6ccd0b3f7ddfd845d32ee358b5a21620e9a097ee68b21c13108309540fe6ef6e",
+    "z2c_distributions_sha256": "4a9633b8a19402961f17b1aab458f216b9d456c03c893046d8b17a76a22b0675",
+    "z2c_nodes_sha256": "fbc76fa5803ace90c72de530d2796d1f2524041145d67e059600e97d7af533d4",
+    "z2c_summary_sha256": "78955e42b83165b4e0b57803dd042baee6007e2aab54c2444b9ea3dca9aa0b1d",
+    "z3_hybrid_ap_control_summary_reference": "${PROJECT_ROOT}/docs/diagnostics/z3_semantic_reliability_oof_ap_official100_20260811_v2_union_frozen_score_control/summary.json",
+    "z3_hybrid_ap_control_summary_sha256": "058f7987a292b60c127da473eeccaeaf0d5c2440771b1993bddaadc3d88da02c",
+    "z3_oof_predictions_sha256": "c634de9795d9d6f39beb23a053eb72a2ccc9ca4649ef1e0c16246daeb409cc67",
+    "z3_oof_summary_sha256": "e577fa387d9bb9d996f9047dcaed4983ef4a0de76578090028605e977093196d"
+  },
+  "merge_action_count": 1501,
+  "merge_action_scene_coverage_count": 100,
+  "merge_action_scene_missing_count": 0,
+  "missing_or_duplicate_counts": {},
+  "model_trained": false,
+  "safety60_read": false,
+  "scene_count": 100,
+  "scene_list_coverage_count": 100,
+  "semantic_join_counts": {
+    "complete": 1501,
+    "incomplete": 0
+  },
+  "semantic_node_join_expected_count": 4503,
+  "semantic_node_join_success_count": 4503,
+  "semantic_node_join_success_rate": 1.0,
+  "source_action_counts": {
+    "frozen_pair_union_append": 1501
+  },
+  "test60_read": false,
+  "threshold_or_weight_scanning": false,
+  "version": "z5a_semantic_geometry_action_space_official100_v1"
+}

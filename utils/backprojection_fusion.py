@@ -2125,6 +2125,78 @@ def _candidate_quality_score(candidate):
     )
 
 
+def _append_only_candidates(
+    masks_np,
+    classes_np,
+    scores_np,
+    candidates,
+    source_kinds,
+    same_class_dedup_iou,
+):
+    """追加受保护来源的原始候选，不套用 BPR 的阈值、增长或 native 重叠过滤。"""
+    report = {"applied": [], "skipped": []}
+    appended_by_source_class = defaultdict(list)
+    for candidate in sorted(
+        candidates,
+        key=lambda item: (
+            -float(item.get("proposal_priority", item.get("fusion_score", item.get("score", 0.0))) or 0.0),
+            int(item.get("candidate_id", -1) or -1),
+        ),
+    ):
+        source_kind = _candidate_source_kind(candidate)
+        if source_kind not in source_kinds:
+            continue
+        candidate_id = candidate.get("candidate_id")
+        try:
+            class_id = int(candidate["class_id"])
+        except (KeyError, TypeError, ValueError):
+            report["skipped"].append({"candidate_id": candidate_id, "reason": "invalid_append_only_class"})
+            continue
+        seed_indices = _load_seed_indices(candidate, masks_np.shape[0])
+        if seed_indices is None or len(seed_indices) == 0:
+            report["skipped"].append({"candidate_id": candidate_id, "reason": "missing_or_empty_append_only_seed"})
+            continue
+        score = float(candidate.get("fusion_score", candidate.get("score", 0.0)) or 0.0)
+        if not np.isfinite(score):
+            report["skipped"].append({"candidate_id": candidate_id, "reason": "nonfinite_append_only_score"})
+            continue
+        proposal_mask = np.zeros((masks_np.shape[0],), dtype=bool)
+        proposal_mask[seed_indices] = True
+        key = (source_kind, class_id)
+        previous = appended_by_source_class[key]
+        if previous and same_class_dedup_iou > 0.0:
+            proposal_iou = _mask_iou(proposal_mask, np.stack(previous, axis=1)).max(initial=0.0)
+            if proposal_iou >= same_class_dedup_iou:
+                report["skipped"].append(
+                    {
+                        "candidate_id": candidate_id,
+                        "reason": "duplicate_append_only_same_class_proposal",
+                        "iou": float(proposal_iou),
+                    }
+                )
+                continue
+        masks_np = np.concatenate([masks_np, proposal_mask[:, None]], axis=1)
+        classes_np = np.concatenate([classes_np, np.asarray([class_id], dtype=np.int64)])
+        scores_np = np.concatenate([scores_np, np.asarray([max(0.0, score)], dtype=np.float32)])
+        previous.append(proposal_mask)
+        report["applied"].append(
+            {
+                "candidate_id": int(candidate_id) if candidate_id is not None else None,
+                "class_id": class_id,
+                "class_name": candidate.get("class_name"),
+                "score": float(candidate.get("score", score)),
+                "fusion_score": score,
+                "proposal_score": max(0.0, score),
+                "num_seed_points": int(len(seed_indices)),
+                "source_json": candidate.get("_source_json"),
+                "source_name": _candidate_source_name(candidate),
+                "source_kind": source_kind,
+                "append_only": True,
+            }
+        )
+    return masks_np, classes_np, scores_np, report
+
+
 def append_backprojection_proposals(
     scene_name,
     pred_masks,
@@ -2176,6 +2248,8 @@ def append_backprojection_proposals(
     source_max_candidates=None,
     source_score_scales=None,
     source_min_scores=None,
+    append_only_source_kinds=None,
+    append_only_same_class_dedup_iou=0.0,
     max_candidates_per_class=None,
     class_max_candidates=None,
     quality_calibration_weight=0.0,
@@ -2259,6 +2333,25 @@ def append_backprojection_proposals(
 ):
     """Append conservative 2D-to-3D proposal masks to one scene prediction."""
 
+    class _ProvenanceSkipList(list):
+        """为审计报告保留跳过候选的来源，不影响任何融合决策。"""
+
+        def __init__(self):
+            super().__init__()
+            self.current_candidate = None
+
+        def set_current_candidate(self, candidate):
+            self.current_candidate = candidate
+
+        def append(self, item):
+            record = dict(item)
+            candidate = self.current_candidate
+            if candidate is not None:
+                record.setdefault("source_name", _candidate_source_name(candidate))
+                record.setdefault("source_kind", _candidate_source_kind(candidate))
+                record.setdefault("source_json", candidate.get("_source_json"))
+            super().append(record)
+
     masks_np = _to_numpy(pred_masks).astype(bool)
     classes_np = _to_numpy(pred_classes).astype(np.int64)
     scores_np = _to_numpy(pred_scores).astype(np.float32)
@@ -2269,7 +2362,7 @@ def append_backprojection_proposals(
     verifier_suppress_decisions = _parse_decision_filter(
         verifier_suppress_decisions or "suppress,bad_mask,invalid,reject"
     )
-    report = {"loaded": len(scene_candidates), "applied": [], "skipped": []}
+    report = {"loaded": len(scene_candidates), "applied": [], "skipped": _ProvenanceSkipList()}
     if not scene_candidates:
         return masks_np, classes_np, scores_np, report
     allowed_classes = _parse_class_filter(allowed_classes)
@@ -2278,6 +2371,7 @@ def append_backprojection_proposals(
     source_max_candidates = _parse_source_rules(source_max_candidates, int)
     source_score_scales = _parse_source_rules(source_score_scales, float)
     source_min_scores = _parse_source_rules(source_min_scores, float)
+    append_only_source_kinds = _parse_source_filter(append_only_source_kinds) or set()
     class_max_candidates = _parse_source_rules(class_max_candidates, int)
     cc_source_filter = _parse_source_filter(cc_source_kinds)
     scene_candidates = _annotate_candidate_quality_stats([dict(item) for item in scene_candidates])
@@ -2310,13 +2404,19 @@ def append_backprojection_proposals(
     )
 
     appended_masks = []
+    append_only_candidates = []
     source_counts = defaultdict(int)
     class_counts = defaultdict(int)
     for candidate in scene_candidates:
+        report["skipped"].set_current_candidate(candidate)
         candidate_id = candidate.get("candidate_id")
         class_name = candidate.get("class_name")
         source_name = _candidate_source_name(candidate)
         source_kind = _candidate_source_kind(candidate)
+        append_only_source = source_kind in append_only_source_kinds
+        if append_only_source:
+            append_only_candidates.append(candidate)
+            continue
         source_limit = _lookup_source_rule(candidate, source_max_candidates, None)
         if source_limit is not None and source_counts[source_kind] >= int(source_limit):
             report["skipped"].append(
@@ -3093,6 +3193,17 @@ def append_backprojection_proposals(
         hierarchy_substitution_min_children=hierarchy_substitution_min_children,
     )
     report["postprocess"] = postprocess_summary
+    masks_np, classes_np, scores_np, append_only_report = _append_only_candidates(
+        masks_np,
+        classes_np,
+        scores_np,
+        append_only_candidates,
+        append_only_source_kinds,
+        float(append_only_same_class_dedup_iou or 0.0),
+    )
+    report["applied"].extend(append_only_report["applied"])
+    report["skipped"].set_current_candidate(None)
+    report["skipped"].extend(append_only_report["skipped"])
     skipped_reason_counts = Counter(
         str(item.get("reason", "unknown"))
         for item in report["skipped"]

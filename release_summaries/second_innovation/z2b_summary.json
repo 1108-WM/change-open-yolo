@@ -1,0 +1,37 @@
+{
+  "candidate_mutation": false,
+  "class_prompt_count": 198,
+  "diagnostic_type": "Z2 GT-free native exact-geometry and pair-union geometry Alpha-CLIP ledger",
+  "ground_truth_usage": "none",
+  "params": {
+    "alpha_clip_base_model": "${PROJECT_ROOT}/pretrained/alpha_clip/checkpoints/ViT-L-14.pt",
+    "alpha_clip_checkpoint": "${PROJECT_ROOT}/pretrained/alpha_clip/checkpoints/clip_l14_grit20m_fultune_2xe.pth",
+    "alpha_clip_source": "${PROJECT_ROOT}/_external/AlphaCLIP/AlphaCLIP-main",
+    "alpha_mask_dilation_iters": 5,
+    "batch_size": 16,
+    "combined_plan_root": "${PROJECT_ROOT}/output/train_candidate_champion_pair_union_combined_oof_plan_official100_v1",
+    "config_path": "${PROJECT_ROOT}/pretrained/config_scannet200.yaml",
+    "crop_padding_ratio": 0.5,
+    "depth_scale": 1000.0,
+    "device": "cuda",
+    "max_scenes": null,
+    "min_visible_points": 20,
+    "output_root": "${PROJECT_ROOT}/docs/diagnostics/z2b_native_union_alphaclip_limited_context_official100_20260811",
+    "prepared_dataset_root": "/media/jia/软件1/scannet_train_stream/prepared",
+    "prompt_template": "a photo of a {label}",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "stream_records_root": "/media/jia/软件1/scannet_train_stream/records",
+    "top_views": 3,
+    "z1_root": "${PROJECT_ROOT}/docs/diagnostics/z1_yoloworld_multiview_distribution_official100_20260811_v3_frozen_support_vote"
+  },
+  "record_count": 4442,
+  "scene_count": 100,
+  "source_record_counts": {
+    "native": 2941,
+    "pair_union": 1501
+  },
+  "source_with_semantics_counts": {
+    "native": 2934,
+    "pair_union": 1501
+  }
+}

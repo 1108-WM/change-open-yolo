@@ -1,0 +1,1841 @@
+{
+  "candidate_counts": {
+    "native": 59997,
+    "pair_union": 1501,
+    "track": 5266
+  },
+  "candidate_mutation": false,
+  "class_prompt_contract": "config.network2d.text_prompts; prediction indices 0..class_space_size-1; current ScanNet200 cache exposes 198 instance prompts",
+  "class_prompt_count": 198,
+  "class_prompts": [
+    "chair",
+    "table",
+    "door",
+    "couch",
+    "cabinet",
+    "shelf",
+    "desk",
+    "office chair",
+    "bed",
+    "pillow",
+    "sink",
+    "picture",
+    "window",
+    "toilet",
+    "bookshelf",
+    "monitor",
+    "curtain",
+    "book",
+    "armchair",
+    "coffee table",
+    "box",
+    "refrigerator",
+    "lamp",
+    "kitchen cabinet",
+    "towel",
+    "clothes",
+    "tv",
+    "nightstand",
+    "counter",
+    "dresser",
+    "stool",
+    "cushion",
+    "plant",
+    "ceiling",
+    "bathtub",
+    "end table",
+    "dining table",
+    "keyboard",
+    "bag",
+    "backpack",
+    "toilet paper",
+    "printer",
+    "tv stand",
+    "whiteboard",
+    "blanket",
+    "shower curtain",
+    "trash can",
+    "closet",
+    "stairs",
+    "microwave",
+    "stove",
+    "shoe",
+    "computer tower",
+    "bottle",
+    "bin",
+    "ottoman",
+    "bench",
+    "board",
+    "washing machine",
+    "mirror",
+    "copier",
+    "basket",
+    "sofa chair",
+    "file cabinet",
+    "fan",
+    "laptop",
+    "shower",
+    "paper",
+    "person",
+    "paper towel dispenser",
+    "oven",
+    "blinds",
+    "rack",
+    "plate",
+    "blackboard",
+    "piano",
+    "suitcase",
+    "rail",
+    "radiator",
+    "recycling bin",
+    "container",
+    "wardrobe",
+    "soap dispenser",
+    "telephone",
+    "bucket",
+    "clock",
+    "stand",
+    "light",
+    "laundry basket",
+    "pipe",
+    "clothes dryer",
+    "guitar",
+    "toilet paper holder",
+    "seat",
+    "speaker",
+    "column",
+    "bicycle",
+    "ladder",
+    "bathroom stall",
+    "shower wall",
+    "cup",
+    "jacket",
+    "storage bin",
+    "coffee maker",
+    "dishwasher",
+    "paper towel roll",
+    "machine",
+    "mat",
+    "windowsill",
+    "bar",
+    "toaster",
+    "bulletin board",
+    "ironing board",
+    "fireplace",
+    "soap dish",
+    "kitchen counter",
+    "doorframe",
+    "toilet paper dispenser",
+    "mini fridge",
+    "fire extinguisher",
+    "ball",
+    "hat",
+    "shower curtain rod",
+    "water cooler",
+    "paper cutter",
+    "tray",
+    "shower door",
+    "pillar",
+    "ledge",
+    "toaster oven",
+    "mouse",
+    "toilet seat cover dispenser",
+    "furniture",
+    "cart",
+    "storage container",
+    "scale",
+    "tissue box",
+    "light switch",
+    "crate",
+    "power outlet",
+    "decoration",
+    "sign",
+    "projector",
+    "closet door",
+    "vacuum cleaner",
+    "candle",
+    "plunger",
+    "stuffed animal",
+    "headphones",
+    "dish rack",
+    "broom",
+    "guitar case",
+    "range hood",
+    "dustpan",
+    "hair dryer",
+    "water bottle",
+    "handicap bar",
+    "purse",
+    "vent",
+    "shower floor",
+    "water pitcher",
+    "mailbox",
+    "bowl",
+    "paper bag",
+    "alarm clock",
+    "music stand",
+    "projector screen",
+    "divider",
+    "laundry detergent",
+    "bathroom counter",
+    "object",
+    "bathroom vanity",
+    "closet wall",
+    "laundry hamper",
+    "bathroom stall door",
+    "ceiling light",
+    "trash bin",
+    "dumbbell",
+    "stair rail",
+    "tube",
+    "bathroom cabinet",
+    "cd case",
+    "closet rod",
+    "coffee kettle",
+    "structure",
+    "shower head",
+    "keyboard piano",
+    "case of water bottles",
+    "coat rack",
+    "storage organizer",
+    "folded chair",
+    "fire alarm",
+    "power strip",
+    "calendar",
+    "poster",
+    "potted plant",
+    "luggage",
+    "mattress"
+  ],
+  "class_space_size": 198,
+  "diagnostic_only": true,
+  "diagnostic_type": "Z1 GT-free YOLO-World multi-view 200-class distribution ledger",
+  "evidence_contract": "per-frame per-class max(score * projected-point-inside-fraction), summed over selected views",
+  "geometry_node_count_sum_over_scenes": 9708,
+  "ground_truth_usage": "none",
+  "join_contract": "candidate_bindings.semantic_evidence_node_key -> semantic_evidence_nodes.semantic_evidence_node_key; key is globally unique scene_name:local_id",
+  "params": {
+    "combined_plan_root": "${PROJECT_ROOT}/output/train_candidate_champion_pair_union_combined_oof_plan_official100_v1",
+    "config_path": "${PROJECT_ROOT}/pretrained/config_scannet200.yaml",
+    "depth_scale": 1000.0,
+    "max_scenes": null,
+    "max_views": 40,
+    "min_visible_points": 10,
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z1_yoloworld_multiview_distribution_official100_20260811_v3_frozen_support_vote",
+    "prepared_dataset_root": "/media/jia/软件1/scannet_train_stream/prepared",
+    "scene_list": "${PROJECT_ROOT}/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+    "stream_records_root": "/media/jia/软件1/scannet_train_stream/records",
+    "top_k": 10
+  },
+  "scene_count": 100,
+  "scene_summaries": [
+    {
+      "candidate_bindings_with_evidence_views": 649,
+      "candidate_bindings_with_selected_views": 649,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 2,
+        "track": 47
+      },
+      "duplicate_geometry_candidate_count": 581,
+      "geometry_node_count": 68,
+      "point_count": 124429,
+      "prepared_frame_count": 129,
+      "scene_name": "scene0001_01",
+      "semantic_evidence_node_count": 68,
+      "yoloworld_prediction_frame_count": 129
+    },
+    {
+      "candidate_bindings_with_evidence_views": 652,
+      "candidate_bindings_with_selected_views": 652,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 14,
+        "track": 38
+      },
+      "duplicate_geometry_candidate_count": 584,
+      "geometry_node_count": 68,
+      "point_count": 138308,
+      "prepared_frame_count": 97,
+      "scene_name": "scene0027_01",
+      "semantic_evidence_node_count": 68,
+      "yoloworld_prediction_frame_count": 97
+    },
+    {
+      "candidate_bindings_with_evidence_views": 638,
+      "candidate_bindings_with_selected_views": 638,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 11,
+        "track": 29
+      },
+      "duplicate_geometry_candidate_count": 589,
+      "geometry_node_count": 51,
+      "point_count": 84732,
+      "prepared_frame_count": 110,
+      "scene_name": "scene0042_02",
+      "semantic_evidence_node_count": 51,
+      "yoloworld_prediction_frame_count": 110
+    },
+    {
+      "candidate_bindings_with_evidence_views": 648,
+      "candidate_bindings_with_selected_views": 648,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 14,
+        "track": 34
+      },
+      "duplicate_geometry_candidate_count": 586,
+      "geometry_node_count": 62,
+      "point_count": 101053,
+      "prepared_frame_count": 113,
+      "scene_name": "scene0048_00",
+      "semantic_evidence_node_count": 62,
+      "yoloworld_prediction_frame_count": 113
+    },
+    {
+      "candidate_bindings_with_evidence_views": 649,
+      "candidate_bindings_with_selected_views": 649,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 12,
+        "track": 37
+      },
+      "duplicate_geometry_candidate_count": 589,
+      "geometry_node_count": 60,
+      "point_count": 95715,
+      "prepared_frame_count": 125,
+      "scene_name": "scene0055_00",
+      "semantic_evidence_node_count": 60,
+      "yoloworld_prediction_frame_count": 125
+    },
+    {
+      "candidate_bindings_with_evidence_views": 649,
+      "candidate_bindings_with_selected_views": 650,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 9,
+        "track": 41
+      },
+      "duplicate_geometry_candidate_count": 586,
+      "geometry_node_count": 64,
+      "point_count": 89604,
+      "prepared_frame_count": 54,
+      "scene_name": "scene0090_00",
+      "semantic_evidence_node_count": 64,
+      "yoloworld_prediction_frame_count": 54
+    },
+    {
+      "candidate_bindings_with_evidence_views": 679,
+      "candidate_bindings_with_selected_views": 679,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 15,
+        "track": 64
+      },
+      "duplicate_geometry_candidate_count": 575,
+      "geometry_node_count": 104,
+      "point_count": 176801,
+      "prepared_frame_count": 191,
+      "scene_name": "scene0114_00",
+      "semantic_evidence_node_count": 104,
+      "yoloworld_prediction_frame_count": 191
+    },
+    {
+      "candidate_bindings_with_evidence_views": 585,
+      "candidate_bindings_with_selected_views": 666,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 10,
+        "track": 56
+      },
+      "duplicate_geometry_candidate_count": 525,
+      "geometry_node_count": 141,
+      "point_count": 233708,
+      "prepared_frame_count": 156,
+      "scene_name": "scene0218_00",
+      "semantic_evidence_node_count": 141,
+      "yoloworld_prediction_frame_count": 156
+    },
+    {
+      "candidate_bindings_with_evidence_views": 697,
+      "candidate_bindings_with_selected_views": 697,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 22,
+        "track": 75
+      },
+      "duplicate_geometry_candidate_count": 581,
+      "geometry_node_count": 116,
+      "point_count": 117768,
+      "prepared_frame_count": 125,
+      "scene_name": "scene0272_01",
+      "semantic_evidence_node_count": 116,
+      "yoloworld_prediction_frame_count": 125
+    },
+    {
+      "candidate_bindings_with_evidence_views": 648,
+      "candidate_bindings_with_selected_views": 648,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 7,
+        "track": 41
+      },
+      "duplicate_geometry_candidate_count": 587,
+      "geometry_node_count": 61,
+      "point_count": 58646,
+      "prepared_frame_count": 63,
+      "scene_name": "scene0359_01",
+      "semantic_evidence_node_count": 61,
+      "yoloworld_prediction_frame_count": 63
+    },
+    {
+      "candidate_bindings_with_evidence_views": 645,
+      "candidate_bindings_with_selected_views": 645,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 10,
+        "track": 35
+      },
+      "duplicate_geometry_candidate_count": 593,
+      "geometry_node_count": 52,
+      "point_count": 74423,
+      "prepared_frame_count": 49,
+      "scene_name": "scene0381_02",
+      "semantic_evidence_node_count": 52,
+      "yoloworld_prediction_frame_count": 49
+    },
+    {
+      "candidate_bindings_with_evidence_views": 698,
+      "candidate_bindings_with_selected_views": 698,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 27,
+        "track": 71
+      },
+      "duplicate_geometry_candidate_count": 570,
+      "geometry_node_count": 128,
+      "point_count": 135172,
+      "prepared_frame_count": 178,
+      "scene_name": "scene0394_01",
+      "semantic_evidence_node_count": 128,
+      "yoloworld_prediction_frame_count": 178
+    },
+    {
+      "candidate_bindings_with_evidence_views": 697,
+      "candidate_bindings_with_selected_views": 698,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 30,
+        "track": 68
+      },
+      "duplicate_geometry_candidate_count": 561,
+      "geometry_node_count": 137,
+      "point_count": 242505,
+      "prepared_frame_count": 140,
+      "scene_name": "scene0420_01",
+      "semantic_evidence_node_count": 137,
+      "yoloworld_prediction_frame_count": 140
+    },
+    {
+      "candidate_bindings_with_evidence_views": 716,
+      "candidate_bindings_with_selected_views": 716,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 21,
+        "track": 95
+      },
+      "duplicate_geometry_candidate_count": 530,
+      "geometry_node_count": 186,
+      "point_count": 122357,
+      "prepared_frame_count": 219,
+      "scene_name": "scene0421_01",
+      "semantic_evidence_node_count": 186,
+      "yoloworld_prediction_frame_count": 219
+    },
+    {
+      "candidate_bindings_with_evidence_views": 670,
+      "candidate_bindings_with_selected_views": 670,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 9,
+        "track": 61
+      },
+      "duplicate_geometry_candidate_count": 560,
+      "geometry_node_count": 110,
+      "point_count": 289183,
+      "prepared_frame_count": 268,
+      "scene_name": "scene0529_01",
+      "semantic_evidence_node_count": 110,
+      "yoloworld_prediction_frame_count": 268
+    },
+    {
+      "candidate_bindings_with_evidence_views": 675,
+      "candidate_bindings_with_selected_views": 675,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 16,
+        "track": 59
+      },
+      "duplicate_geometry_candidate_count": 562,
+      "geometry_node_count": 113,
+      "point_count": 194620,
+      "prepared_frame_count": 148,
+      "scene_name": "scene0541_02",
+      "semantic_evidence_node_count": 113,
+      "yoloworld_prediction_frame_count": 148
+    },
+    {
+      "candidate_bindings_with_evidence_views": 702,
+      "candidate_bindings_with_selected_views": 702,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 31,
+        "track": 71
+      },
+      "duplicate_geometry_candidate_count": 557,
+      "geometry_node_count": 145,
+      "point_count": 166216,
+      "prepared_frame_count": 202,
+      "scene_name": "scene0576_01",
+      "semantic_evidence_node_count": 145,
+      "yoloworld_prediction_frame_count": 202
+    },
+    {
+      "candidate_bindings_with_evidence_views": 710,
+      "candidate_bindings_with_selected_views": 710,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 27,
+        "track": 83
+      },
+      "duplicate_geometry_candidate_count": 493,
+      "geometry_node_count": 217,
+      "point_count": 402977,
+      "prepared_frame_count": 388,
+      "scene_name": "scene0673_04",
+      "semantic_evidence_node_count": 217,
+      "yoloworld_prediction_frame_count": 388
+    },
+    {
+      "candidate_bindings_with_evidence_views": 694,
+      "candidate_bindings_with_selected_views": 694,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 16,
+        "track": 78
+      },
+      "duplicate_geometry_candidate_count": 500,
+      "geometry_node_count": 194,
+      "point_count": 361489,
+      "prepared_frame_count": 410,
+      "scene_name": "scene0673_05",
+      "semantic_evidence_node_count": 194,
+      "yoloworld_prediction_frame_count": 410
+    },
+    {
+      "candidate_bindings_with_evidence_views": 637,
+      "candidate_bindings_with_selected_views": 637,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 13,
+        "track": 25
+      },
+      "duplicate_geometry_candidate_count": 585,
+      "geometry_node_count": 53,
+      "point_count": 92790,
+      "prepared_frame_count": 134,
+      "scene_name": "scene0682_00",
+      "semantic_evidence_node_count": 53,
+      "yoloworld_prediction_frame_count": 134
+    },
+    {
+      "candidate_bindings_with_evidence_views": 654,
+      "candidate_bindings_with_selected_views": 654,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 10,
+        "track": 44
+      },
+      "duplicate_geometry_candidate_count": 576,
+      "geometry_node_count": 78,
+      "point_count": 85905,
+      "prepared_frame_count": 105,
+      "scene_name": "scene0007_00",
+      "semantic_evidence_node_count": 78,
+      "yoloworld_prediction_frame_count": 105
+    },
+    {
+      "candidate_bindings_with_evidence_views": 663,
+      "candidate_bindings_with_selected_views": 663,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 7,
+        "track": 56
+      },
+      "duplicate_geometry_candidate_count": 576,
+      "geometry_node_count": 87,
+      "point_count": 108462,
+      "prepared_frame_count": 82,
+      "scene_name": "scene0018_00",
+      "semantic_evidence_node_count": 87,
+      "yoloworld_prediction_frame_count": 82
+    },
+    {
+      "candidate_bindings_with_evidence_views": 682,
+      "candidate_bindings_with_selected_views": 682,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 13,
+        "track": 69
+      },
+      "duplicate_geometry_candidate_count": 579,
+      "geometry_node_count": 103,
+      "point_count": 207822,
+      "prepared_frame_count": 108,
+      "scene_name": "scene0028_00",
+      "semantic_evidence_node_count": 103,
+      "yoloworld_prediction_frame_count": 108
+    },
+    {
+      "candidate_bindings_with_evidence_views": 636,
+      "candidate_bindings_with_selected_views": 636,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 3,
+        "track": 33
+      },
+      "duplicate_geometry_candidate_count": 589,
+      "geometry_node_count": 47,
+      "point_count": 69918,
+      "prepared_frame_count": 84,
+      "scene_name": "scene0032_00",
+      "semantic_evidence_node_count": 47,
+      "yoloworld_prediction_frame_count": 84
+    },
+    {
+      "candidate_bindings_with_evidence_views": 645,
+      "candidate_bindings_with_selected_views": 646,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 9,
+        "track": 37
+      },
+      "duplicate_geometry_candidate_count": 580,
+      "geometry_node_count": 66,
+      "point_count": 185268,
+      "prepared_frame_count": 115,
+      "scene_name": "scene0038_00",
+      "semantic_evidence_node_count": 66,
+      "yoloworld_prediction_frame_count": 115
+    },
+    {
+      "candidate_bindings_with_evidence_views": 648,
+      "candidate_bindings_with_selected_views": 648,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 11,
+        "track": 37
+      },
+      "duplicate_geometry_candidate_count": 580,
+      "geometry_node_count": 68,
+      "point_count": 181336,
+      "prepared_frame_count": 102,
+      "scene_name": "scene0038_02",
+      "semantic_evidence_node_count": 68,
+      "yoloworld_prediction_frame_count": 102
+    },
+    {
+      "candidate_bindings_with_evidence_views": 623,
+      "candidate_bindings_with_selected_views": 623,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 4,
+        "track": 19
+      },
+      "duplicate_geometry_candidate_count": 589,
+      "geometry_node_count": 34,
+      "point_count": 81245,
+      "prepared_frame_count": 119,
+      "scene_name": "scene0039_00",
+      "semantic_evidence_node_count": 34,
+      "yoloworld_prediction_frame_count": 119
+    },
+    {
+      "candidate_bindings_with_evidence_views": 699,
+      "candidate_bindings_with_selected_views": 699,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 29,
+        "track": 70
+      },
+      "duplicate_geometry_candidate_count": 493,
+      "geometry_node_count": 206,
+      "point_count": 537406,
+      "prepared_frame_count": 663,
+      "scene_name": "scene0054_00",
+      "semantic_evidence_node_count": 206,
+      "yoloworld_prediction_frame_count": 663
+    },
+    {
+      "candidate_bindings_with_evidence_views": 636,
+      "candidate_bindings_with_selected_views": 636,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 9,
+        "track": 27
+      },
+      "duplicate_geometry_candidate_count": 588,
+      "geometry_node_count": 48,
+      "point_count": 49044,
+      "prepared_frame_count": 88,
+      "scene_name": "scene0065_01",
+      "semantic_evidence_node_count": 48,
+      "yoloworld_prediction_frame_count": 88
+    },
+    {
+      "candidate_bindings_with_evidence_views": 681,
+      "candidate_bindings_with_selected_views": 681,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 24,
+        "track": 57
+      },
+      "duplicate_geometry_candidate_count": 565,
+      "geometry_node_count": 116,
+      "point_count": 304563,
+      "prepared_frame_count": 120,
+      "scene_name": "scene0079_00",
+      "semantic_evidence_node_count": 116,
+      "yoloworld_prediction_frame_count": 120
+    },
+    {
+      "candidate_bindings_with_evidence_views": 701,
+      "candidate_bindings_with_selected_views": 702,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 22,
+        "track": 80
+      },
+      "duplicate_geometry_candidate_count": 542,
+      "geometry_node_count": 160,
+      "point_count": 141912,
+      "prepared_frame_count": 224,
+      "scene_name": "scene0092_00",
+      "semantic_evidence_node_count": 160,
+      "yoloworld_prediction_frame_count": 224
+    },
+    {
+      "candidate_bindings_with_evidence_views": 673,
+      "candidate_bindings_with_selected_views": 673,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 25,
+        "track": 48
+      },
+      "duplicate_geometry_candidate_count": 575,
+      "geometry_node_count": 98,
+      "point_count": 110038,
+      "prepared_frame_count": 108,
+      "scene_name": "scene0093_00",
+      "semantic_evidence_node_count": 98,
+      "yoloworld_prediction_frame_count": 108
+    },
+    {
+      "candidate_bindings_with_evidence_views": 671,
+      "candidate_bindings_with_selected_views": 672,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 5,
+        "track": 67
+      },
+      "duplicate_geometry_candidate_count": 588,
+      "geometry_node_count": 84,
+      "point_count": 170918,
+      "prepared_frame_count": 94,
+      "scene_name": "scene0099_01",
+      "semantic_evidence_node_count": 84,
+      "yoloworld_prediction_frame_count": 94
+    },
+    {
+      "candidate_bindings_with_evidence_views": 643,
+      "candidate_bindings_with_selected_views": 643,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 10,
+        "track": 33
+      },
+      "duplicate_geometry_candidate_count": 575,
+      "geometry_node_count": 68,
+      "point_count": 67426,
+      "prepared_frame_count": 207,
+      "scene_name": "scene0116_01",
+      "semantic_evidence_node_count": 68,
+      "yoloworld_prediction_frame_count": 207
+    },
+    {
+      "candidate_bindings_with_evidence_views": 712,
+      "candidate_bindings_with_selected_views": 712,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 17,
+        "track": 95
+      },
+      "duplicate_geometry_candidate_count": 578,
+      "geometry_node_count": 134,
+      "point_count": 91761,
+      "prepared_frame_count": 180,
+      "scene_name": "scene0121_00",
+      "semantic_evidence_node_count": 134,
+      "yoloworld_prediction_frame_count": 180
+    },
+    {
+      "candidate_bindings_with_evidence_views": 651,
+      "candidate_bindings_with_selected_views": 651,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 4,
+        "track": 47
+      },
+      "duplicate_geometry_candidate_count": 582,
+      "geometry_node_count": 69,
+      "point_count": 54153,
+      "prepared_frame_count": 209,
+      "scene_name": "scene0124_01",
+      "semantic_evidence_node_count": 69,
+      "yoloworld_prediction_frame_count": 209
+    },
+    {
+      "candidate_bindings_with_evidence_views": 664,
+      "candidate_bindings_with_selected_views": 664,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 19,
+        "track": 46
+      },
+      "duplicate_geometry_candidate_count": 578,
+      "geometry_node_count": 87,
+      "point_count": 155652,
+      "prepared_frame_count": 128,
+      "scene_name": "scene0127_00",
+      "semantic_evidence_node_count": 87,
+      "yoloworld_prediction_frame_count": 128
+    },
+    {
+      "candidate_bindings_with_evidence_views": 649,
+      "candidate_bindings_with_selected_views": 649,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 4,
+        "track": 45
+      },
+      "duplicate_geometry_candidate_count": 578,
+      "geometry_node_count": 71,
+      "point_count": 175860,
+      "prepared_frame_count": 97,
+      "scene_name": "scene0132_02",
+      "semantic_evidence_node_count": 71,
+      "yoloworld_prediction_frame_count": 97
+    },
+    {
+      "candidate_bindings_with_evidence_views": 632,
+      "candidate_bindings_with_selected_views": 632,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 6,
+        "track": 26
+      },
+      "duplicate_geometry_candidate_count": 585,
+      "geometry_node_count": 47,
+      "point_count": 44648,
+      "prepared_frame_count": 121,
+      "scene_name": "scene0135_00",
+      "semantic_evidence_node_count": 47,
+      "yoloworld_prediction_frame_count": 121
+    },
+    {
+      "candidate_bindings_with_evidence_views": 685,
+      "candidate_bindings_with_selected_views": 686,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 14,
+        "track": 72
+      },
+      "duplicate_geometry_candidate_count": 528,
+      "geometry_node_count": 158,
+      "point_count": 149455,
+      "prepared_frame_count": 95,
+      "scene_name": "scene0141_00",
+      "semantic_evidence_node_count": 158,
+      "yoloworld_prediction_frame_count": 95
+    },
+    {
+      "candidate_bindings_with_evidence_views": 644,
+      "candidate_bindings_with_selected_views": 644,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 10,
+        "track": 34
+      },
+      "duplicate_geometry_candidate_count": 593,
+      "geometry_node_count": 51,
+      "point_count": 115237,
+      "prepared_frame_count": 110,
+      "scene_name": "scene0148_00",
+      "semantic_evidence_node_count": 51,
+      "yoloworld_prediction_frame_count": 110
+    },
+    {
+      "candidate_bindings_with_evidence_views": 659,
+      "candidate_bindings_with_selected_views": 659,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 17,
+        "track": 42
+      },
+      "duplicate_geometry_candidate_count": 587,
+      "geometry_node_count": 72,
+      "point_count": 77935,
+      "prepared_frame_count": 38,
+      "scene_name": "scene0150_01",
+      "semantic_evidence_node_count": 72,
+      "yoloworld_prediction_frame_count": 38
+    },
+    {
+      "candidate_bindings_with_evidence_views": 661,
+      "candidate_bindings_with_selected_views": 662,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 11,
+        "track": 52
+      },
+      "duplicate_geometry_candidate_count": 560,
+      "geometry_node_count": 103,
+      "point_count": 357321,
+      "prepared_frame_count": 456,
+      "scene_name": "scene0151_00",
+      "semantic_evidence_node_count": 103,
+      "yoloworld_prediction_frame_count": 456
+    },
+    {
+      "candidate_bindings_with_evidence_views": 661,
+      "candidate_bindings_with_selected_views": 661,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 6,
+        "track": 55
+      },
+      "duplicate_geometry_candidate_count": 555,
+      "geometry_node_count": 106,
+      "point_count": 347334,
+      "prepared_frame_count": 268,
+      "scene_name": "scene0152_01",
+      "semantic_evidence_node_count": 106,
+      "yoloworld_prediction_frame_count": 268
+    },
+    {
+      "candidate_bindings_with_evidence_views": 637,
+      "candidate_bindings_with_selected_views": 637,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 11,
+        "track": 26
+      },
+      "duplicate_geometry_candidate_count": 589,
+      "geometry_node_count": 48,
+      "point_count": 53718,
+      "prepared_frame_count": 70,
+      "scene_name": "scene0157_01",
+      "semantic_evidence_node_count": 48,
+      "yoloworld_prediction_frame_count": 70
+    },
+    {
+      "candidate_bindings_with_evidence_views": 721,
+      "candidate_bindings_with_selected_views": 721,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 31,
+        "track": 90
+      },
+      "duplicate_geometry_candidate_count": 546,
+      "geometry_node_count": 175,
+      "point_count": 227522,
+      "prepared_frame_count": 281,
+      "scene_name": "scene0166_02",
+      "semantic_evidence_node_count": 175,
+      "yoloworld_prediction_frame_count": 281
+    },
+    {
+      "candidate_bindings_with_evidence_views": 662,
+      "candidate_bindings_with_selected_views": 662,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 17,
+        "track": 45
+      },
+      "duplicate_geometry_candidate_count": 581,
+      "geometry_node_count": 81,
+      "point_count": 132529,
+      "prepared_frame_count": 87,
+      "scene_name": "scene0171_00",
+      "semantic_evidence_node_count": 81,
+      "yoloworld_prediction_frame_count": 87
+    },
+    {
+      "candidate_bindings_with_evidence_views": 639,
+      "candidate_bindings_with_selected_views": 639,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 5,
+        "track": 34
+      },
+      "duplicate_geometry_candidate_count": 594,
+      "geometry_node_count": 45,
+      "point_count": 92497,
+      "prepared_frame_count": 94,
+      "scene_name": "scene0192_00",
+      "semantic_evidence_node_count": 45,
+      "yoloworld_prediction_frame_count": 94
+    },
+    {
+      "candidate_bindings_with_evidence_views": 658,
+      "candidate_bindings_with_selected_views": 658,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 17,
+        "track": 41
+      },
+      "duplicate_geometry_candidate_count": 570,
+      "geometry_node_count": 88,
+      "point_count": 173752,
+      "prepared_frame_count": 96,
+      "scene_name": "scene0204_00",
+      "semantic_evidence_node_count": 88,
+      "yoloworld_prediction_frame_count": 96
+    },
+    {
+      "candidate_bindings_with_evidence_views": 648,
+      "candidate_bindings_with_selected_views": 648,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 16,
+        "track": 32
+      },
+      "duplicate_geometry_candidate_count": 589,
+      "geometry_node_count": 59,
+      "point_count": 77180,
+      "prepared_frame_count": 112,
+      "scene_name": "scene0205_02",
+      "semantic_evidence_node_count": 59,
+      "yoloworld_prediction_frame_count": 112
+    },
+    {
+      "candidate_bindings_with_evidence_views": 669,
+      "candidate_bindings_with_selected_views": 669,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 11,
+        "track": 58
+      },
+      "duplicate_geometry_candidate_count": 573,
+      "geometry_node_count": 96,
+      "point_count": 124416,
+      "prepared_frame_count": 104,
+      "scene_name": "scene0229_01",
+      "semantic_evidence_node_count": 96,
+      "yoloworld_prediction_frame_count": 104
+    },
+    {
+      "candidate_bindings_with_evidence_views": 714,
+      "candidate_bindings_with_selected_views": 714,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 23,
+        "track": 91
+      },
+      "duplicate_geometry_candidate_count": 576,
+      "geometry_node_count": 138,
+      "point_count": 119606,
+      "prepared_frame_count": 167,
+      "scene_name": "scene0236_01",
+      "semantic_evidence_node_count": 138,
+      "yoloworld_prediction_frame_count": 167
+    },
+    {
+      "candidate_bindings_with_evidence_views": 673,
+      "candidate_bindings_with_selected_views": 673,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 15,
+        "track": 58
+      },
+      "duplicate_geometry_candidate_count": 585,
+      "geometry_node_count": 88,
+      "point_count": 112327,
+      "prepared_frame_count": 147,
+      "scene_name": "scene0248_02",
+      "semantic_evidence_node_count": 88,
+      "yoloworld_prediction_frame_count": 147
+    },
+    {
+      "candidate_bindings_with_evidence_views": 667,
+      "candidate_bindings_with_selected_views": 667,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 9,
+        "track": 58
+      },
+      "duplicate_geometry_candidate_count": 560,
+      "geometry_node_count": 107,
+      "point_count": 101515,
+      "prepared_frame_count": 326,
+      "scene_name": "scene0250_02",
+      "semantic_evidence_node_count": 107,
+      "yoloworld_prediction_frame_count": 326
+    },
+    {
+      "candidate_bindings_with_evidence_views": 684,
+      "candidate_bindings_with_selected_views": 684,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 13,
+        "track": 71
+      },
+      "duplicate_geometry_candidate_count": 578,
+      "geometry_node_count": 106,
+      "point_count": 123048,
+      "prepared_frame_count": 287,
+      "scene_name": "scene0261_02",
+      "semantic_evidence_node_count": 106,
+      "yoloworld_prediction_frame_count": 287
+    },
+    {
+      "candidate_bindings_with_evidence_views": 695,
+      "candidate_bindings_with_selected_views": 695,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 22,
+        "track": 73
+      },
+      "duplicate_geometry_candidate_count": 559,
+      "geometry_node_count": 136,
+      "point_count": 237880,
+      "prepared_frame_count": 204,
+      "scene_name": "scene0270_01",
+      "semantic_evidence_node_count": 136,
+      "yoloworld_prediction_frame_count": 204
+    },
+    {
+      "candidate_bindings_with_evidence_views": 655,
+      "candidate_bindings_with_selected_views": 655,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 8,
+        "track": 47
+      },
+      "duplicate_geometry_candidate_count": 587,
+      "geometry_node_count": 68,
+      "point_count": 149817,
+      "prepared_frame_count": 157,
+      "scene_name": "scene0274_01",
+      "semantic_evidence_node_count": 68,
+      "yoloworld_prediction_frame_count": 157
+    },
+    {
+      "candidate_bindings_with_evidence_views": 677,
+      "candidate_bindings_with_selected_views": 677,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 16,
+        "track": 61
+      },
+      "duplicate_geometry_candidate_count": 563,
+      "geometry_node_count": 114,
+      "point_count": 365656,
+      "prepared_frame_count": 257,
+      "scene_name": "scene0276_01",
+      "semantic_evidence_node_count": 114,
+      "yoloworld_prediction_frame_count": 257
+    },
+    {
+      "candidate_bindings_with_evidence_views": 680,
+      "candidate_bindings_with_selected_views": 681,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 28,
+        "track": 53
+      },
+      "duplicate_geometry_candidate_count": 570,
+      "geometry_node_count": 111,
+      "point_count": 292241,
+      "prepared_frame_count": 128,
+      "scene_name": "scene0302_00",
+      "semantic_evidence_node_count": 111,
+      "yoloworld_prediction_frame_count": 128
+    },
+    {
+      "candidate_bindings_with_evidence_views": 656,
+      "candidate_bindings_with_selected_views": 656,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 15,
+        "track": 41
+      },
+      "duplicate_geometry_candidate_count": 589,
+      "geometry_node_count": 67,
+      "point_count": 88210,
+      "prepared_frame_count": 108,
+      "scene_name": "scene0303_01",
+      "semantic_evidence_node_count": 67,
+      "yoloworld_prediction_frame_count": 108
+    },
+    {
+      "candidate_bindings_with_evidence_views": 722,
+      "candidate_bindings_with_selected_views": 722,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 35,
+        "track": 87
+      },
+      "duplicate_geometry_candidate_count": 555,
+      "geometry_node_count": 167,
+      "point_count": 157776,
+      "prepared_frame_count": 102,
+      "scene_name": "scene0306_01",
+      "semantic_evidence_node_count": 167,
+      "yoloworld_prediction_frame_count": 102
+    },
+    {
+      "candidate_bindings_with_evidence_views": 678,
+      "candidate_bindings_with_selected_views": 678,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 22,
+        "track": 56
+      },
+      "duplicate_geometry_candidate_count": 587,
+      "geometry_node_count": 91,
+      "point_count": 76652,
+      "prepared_frame_count": 70,
+      "scene_name": "scene0313_02",
+      "semantic_evidence_node_count": 91,
+      "yoloworld_prediction_frame_count": 70
+    },
+    {
+      "candidate_bindings_with_evidence_views": 665,
+      "candidate_bindings_with_selected_views": 666,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 14,
+        "track": 52
+      },
+      "duplicate_geometry_candidate_count": 571,
+      "geometry_node_count": 95,
+      "point_count": 158133,
+      "prepared_frame_count": 119,
+      "scene_name": "scene0317_00",
+      "semantic_evidence_node_count": 95,
+      "yoloworld_prediction_frame_count": 119
+    },
+    {
+      "candidate_bindings_with_evidence_views": 688,
+      "candidate_bindings_with_selected_views": 688,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 25,
+        "track": 63
+      },
+      "duplicate_geometry_candidate_count": 570,
+      "geometry_node_count": 118,
+      "point_count": 210050,
+      "prepared_frame_count": 130,
+      "scene_name": "scene0317_01",
+      "semantic_evidence_node_count": 118,
+      "yoloworld_prediction_frame_count": 130
+    },
+    {
+      "candidate_bindings_with_evidence_views": 654,
+      "candidate_bindings_with_selected_views": 654,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 13,
+        "track": 41
+      },
+      "duplicate_geometry_candidate_count": 591,
+      "geometry_node_count": 63,
+      "point_count": 32195,
+      "prepared_frame_count": 75,
+      "scene_name": "scene0337_01",
+      "semantic_evidence_node_count": 63,
+      "yoloworld_prediction_frame_count": 75
+    },
+    {
+      "candidate_bindings_with_evidence_views": 682,
+      "candidate_bindings_with_selected_views": 682,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 26,
+        "track": 56
+      },
+      "duplicate_geometry_candidate_count": 577,
+      "geometry_node_count": 105,
+      "point_count": 136013,
+      "prepared_frame_count": 233,
+      "scene_name": "scene0358_00",
+      "semantic_evidence_node_count": 105,
+      "yoloworld_prediction_frame_count": 233
+    },
+    {
+      "candidate_bindings_with_evidence_views": 711,
+      "candidate_bindings_with_selected_views": 711,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 23,
+        "track": 88
+      },
+      "duplicate_geometry_candidate_count": 574,
+      "geometry_node_count": 137,
+      "point_count": 214736,
+      "prepared_frame_count": 138,
+      "scene_name": "scene0385_00",
+      "semantic_evidence_node_count": 137,
+      "yoloworld_prediction_frame_count": 138
+    },
+    {
+      "candidate_bindings_with_evidence_views": 691,
+      "candidate_bindings_with_selected_views": 691,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 26,
+        "track": 65
+      },
+      "duplicate_geometry_candidate_count": 567,
+      "geometry_node_count": 124,
+      "point_count": 182153,
+      "prepared_frame_count": 124,
+      "scene_name": "scene0393_01",
+      "semantic_evidence_node_count": 124,
+      "yoloworld_prediction_frame_count": 124
+    },
+    {
+      "candidate_bindings_with_evidence_views": 672,
+      "candidate_bindings_with_selected_views": 673,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 15,
+        "track": 58
+      },
+      "duplicate_geometry_candidate_count": 579,
+      "geometry_node_count": 94,
+      "point_count": 134457,
+      "prepared_frame_count": 128,
+      "scene_name": "scene0398_00",
+      "semantic_evidence_node_count": 94,
+      "yoloworld_prediction_frame_count": 128
+    },
+    {
+      "candidate_bindings_with_evidence_views": 687,
+      "candidate_bindings_with_selected_views": 687,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 18,
+        "track": 69
+      },
+      "duplicate_geometry_candidate_count": 567,
+      "geometry_node_count": 120,
+      "point_count": 224056,
+      "prepared_frame_count": 244,
+      "scene_name": "scene0401_00",
+      "semantic_evidence_node_count": 120,
+      "yoloworld_prediction_frame_count": 244
+    },
+    {
+      "candidate_bindings_with_evidence_views": 681,
+      "candidate_bindings_with_selected_views": 681,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 22,
+        "track": 59
+      },
+      "duplicate_geometry_candidate_count": 525,
+      "geometry_node_count": 156,
+      "point_count": 146130,
+      "prepared_frame_count": 116,
+      "scene_name": "scene0408_01",
+      "semantic_evidence_node_count": 156,
+      "yoloworld_prediction_frame_count": 116
+    },
+    {
+      "candidate_bindings_with_evidence_views": 660,
+      "candidate_bindings_with_selected_views": 660,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 10,
+        "track": 50
+      },
+      "duplicate_geometry_candidate_count": 551,
+      "geometry_node_count": 109,
+      "point_count": 67457,
+      "prepared_frame_count": 153,
+      "scene_name": "scene0411_01",
+      "semantic_evidence_node_count": 109,
+      "yoloworld_prediction_frame_count": 153
+    },
+    {
+      "candidate_bindings_with_evidence_views": 689,
+      "candidate_bindings_with_selected_views": 689,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 23,
+        "track": 66
+      },
+      "duplicate_geometry_candidate_count": 550,
+      "geometry_node_count": 139,
+      "point_count": 171928,
+      "prepared_frame_count": 245,
+      "scene_name": "scene0416_02",
+      "semantic_evidence_node_count": 139,
+      "yoloworld_prediction_frame_count": 245
+    },
+    {
+      "candidate_bindings_with_evidence_views": 683,
+      "candidate_bindings_with_selected_views": 683,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 18,
+        "track": 65
+      },
+      "duplicate_geometry_candidate_count": 528,
+      "geometry_node_count": 155,
+      "point_count": 315321,
+      "prepared_frame_count": 348,
+      "scene_name": "scene0419_02",
+      "semantic_evidence_node_count": 155,
+      "yoloworld_prediction_frame_count": 348
+    },
+    {
+      "candidate_bindings_with_evidence_views": 642,
+      "candidate_bindings_with_selected_views": 642,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 10,
+        "track": 32
+      },
+      "duplicate_geometry_candidate_count": 590,
+      "geometry_node_count": 52,
+      "point_count": 96427,
+      "prepared_frame_count": 69,
+      "scene_name": "scene0445_00",
+      "semantic_evidence_node_count": 52,
+      "yoloworld_prediction_frame_count": 69
+    },
+    {
+      "candidate_bindings_with_evidence_views": 692,
+      "candidate_bindings_with_selected_views": 693,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 43,
+        "track": 50
+      },
+      "duplicate_geometry_candidate_count": 544,
+      "geometry_node_count": 149,
+      "point_count": 144638,
+      "prepared_frame_count": 73,
+      "scene_name": "scene0453_00",
+      "semantic_evidence_node_count": 149,
+      "yoloworld_prediction_frame_count": 73
+    },
+    {
+      "candidate_bindings_with_evidence_views": 664,
+      "candidate_bindings_with_selected_views": 664,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 18,
+        "track": 46
+      },
+      "duplicate_geometry_candidate_count": 582,
+      "geometry_node_count": 82,
+      "point_count": 120701,
+      "prepared_frame_count": 103,
+      "scene_name": "scene0456_01",
+      "semantic_evidence_node_count": 82,
+      "yoloworld_prediction_frame_count": 103
+    },
+    {
+      "candidate_bindings_with_evidence_views": 668,
+      "candidate_bindings_with_selected_views": 671,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 29,
+        "track": 42
+      },
+      "duplicate_geometry_candidate_count": 578,
+      "geometry_node_count": 93,
+      "point_count": 145086,
+      "prepared_frame_count": 120,
+      "scene_name": "scene0463_00",
+      "semantic_evidence_node_count": 93,
+      "yoloworld_prediction_frame_count": 120
+    },
+    {
+      "candidate_bindings_with_evidence_views": 659,
+      "candidate_bindings_with_selected_views": 659,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 6,
+        "track": 53
+      },
+      "duplicate_geometry_candidate_count": 567,
+      "geometry_node_count": 92,
+      "point_count": 68537,
+      "prepared_frame_count": 63,
+      "scene_name": "scene0479_01",
+      "semantic_evidence_node_count": 92,
+      "yoloworld_prediction_frame_count": 63
+    },
+    {
+      "candidate_bindings_with_evidence_views": 648,
+      "candidate_bindings_with_selected_views": 648,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 10,
+        "track": 38
+      },
+      "duplicate_geometry_candidate_count": 586,
+      "geometry_node_count": 62,
+      "point_count": 84143,
+      "prepared_frame_count": 64,
+      "scene_name": "scene0482_01",
+      "semantic_evidence_node_count": 62,
+      "yoloworld_prediction_frame_count": 64
+    },
+    {
+      "candidate_bindings_with_evidence_views": 667,
+      "candidate_bindings_with_selected_views": 667,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 15,
+        "track": 52
+      },
+      "duplicate_geometry_candidate_count": 580,
+      "geometry_node_count": 87,
+      "point_count": 122932,
+      "prepared_frame_count": 244,
+      "scene_name": "scene0508_01",
+      "semantic_evidence_node_count": 87,
+      "yoloworld_prediction_frame_count": 244
+    },
+    {
+      "candidate_bindings_with_evidence_views": 654,
+      "candidate_bindings_with_selected_views": 654,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 16,
+        "track": 38
+      },
+      "duplicate_geometry_candidate_count": 579,
+      "geometry_node_count": 75,
+      "point_count": 37237,
+      "prepared_frame_count": 97,
+      "scene_name": "scene0509_02",
+      "semantic_evidence_node_count": 75,
+      "yoloworld_prediction_frame_count": 97
+    },
+    {
+      "candidate_bindings_with_evidence_views": 662,
+      "candidate_bindings_with_selected_views": 662,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 7,
+        "track": 55
+      },
+      "duplicate_geometry_candidate_count": 558,
+      "geometry_node_count": 104,
+      "point_count": 155177,
+      "prepared_frame_count": 167,
+      "scene_name": "scene0510_00",
+      "semantic_evidence_node_count": 104,
+      "yoloworld_prediction_frame_count": 167
+    },
+    {
+      "candidate_bindings_with_evidence_views": 695,
+      "candidate_bindings_with_selected_views": 695,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 22,
+        "track": 73
+      },
+      "duplicate_geometry_candidate_count": 555,
+      "geometry_node_count": 140,
+      "point_count": 289323,
+      "prepared_frame_count": 214,
+      "scene_name": "scene0516_01",
+      "semantic_evidence_node_count": 140,
+      "yoloworld_prediction_frame_count": 214
+    },
+    {
+      "candidate_bindings_with_evidence_views": 651,
+      "candidate_bindings_with_selected_views": 651,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 13,
+        "track": 38
+      },
+      "duplicate_geometry_candidate_count": 583,
+      "geometry_node_count": 68,
+      "point_count": 51838,
+      "prepared_frame_count": 222,
+      "scene_name": "scene0523_02",
+      "semantic_evidence_node_count": 68,
+      "yoloworld_prediction_frame_count": 222
+    },
+    {
+      "candidate_bindings_with_evidence_views": 668,
+      "candidate_bindings_with_selected_views": 669,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 14,
+        "track": 55
+      },
+      "duplicate_geometry_candidate_count": 582,
+      "geometry_node_count": 87,
+      "point_count": 104315,
+      "prepared_frame_count": 178,
+      "scene_name": "scene0524_00",
+      "semantic_evidence_node_count": 87,
+      "yoloworld_prediction_frame_count": 178
+    },
+    {
+      "candidate_bindings_with_evidence_views": 640,
+      "candidate_bindings_with_selected_views": 640,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 7,
+        "track": 33
+      },
+      "duplicate_geometry_candidate_count": 586,
+      "geometry_node_count": 54,
+      "point_count": 49852,
+      "prepared_frame_count": 40,
+      "scene_name": "scene0532_01",
+      "semantic_evidence_node_count": 54,
+      "yoloworld_prediction_frame_count": 40
+    },
+    {
+      "candidate_bindings_with_evidence_views": 668,
+      "candidate_bindings_with_selected_views": 668,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 12,
+        "track": 56
+      },
+      "duplicate_geometry_candidate_count": 581,
+      "geometry_node_count": 87,
+      "point_count": 118491,
+      "prepared_frame_count": 103,
+      "scene_name": "scene0536_02",
+      "semantic_evidence_node_count": 87,
+      "yoloworld_prediction_frame_count": 103
+    },
+    {
+      "candidate_bindings_with_evidence_views": 671,
+      "candidate_bindings_with_selected_views": 671,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 14,
+        "track": 57
+      },
+      "duplicate_geometry_candidate_count": 567,
+      "geometry_node_count": 104,
+      "point_count": 177385,
+      "prepared_frame_count": 141,
+      "scene_name": "scene0541_00",
+      "semantic_evidence_node_count": 104,
+      "yoloworld_prediction_frame_count": 141
+    },
+    {
+      "candidate_bindings_with_evidence_views": 636,
+      "candidate_bindings_with_selected_views": 636,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 11,
+        "track": 25
+      },
+      "duplicate_geometry_candidate_count": 587,
+      "geometry_node_count": 49,
+      "point_count": 42242,
+      "prepared_frame_count": 40,
+      "scene_name": "scene0570_02",
+      "semantic_evidence_node_count": 49,
+      "yoloworld_prediction_frame_count": 40
+    },
+    {
+      "candidate_bindings_with_evidence_views": 656,
+      "candidate_bindings_with_selected_views": 656,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 7,
+        "track": 49
+      },
+      "duplicate_geometry_candidate_count": 586,
+      "geometry_node_count": 70,
+      "point_count": 90726,
+      "prepared_frame_count": 100,
+      "scene_name": "scene0586_01",
+      "semantic_evidence_node_count": 70,
+      "yoloworld_prediction_frame_count": 100
+    },
+    {
+      "candidate_bindings_with_evidence_views": 637,
+      "candidate_bindings_with_selected_views": 637,
+      "candidate_counts": {
+        "native": 597,
+        "pair_union": 3,
+        "track": 37
+      },
+      "duplicate_geometry_candidate_count": 594,
+      "geometry_node_count": 43,
+      "point_count": 57581,
+      "prepared_frame_count": 67,
+      "scene_name": "scene0587_00",
+      "semantic_evidence_node_count": 43,
+      "yoloworld_prediction_frame_count": 67
+    },
+    {
+      "candidate_bindings_with_evidence_views": 644,
+      "candidate_bindings_with_selected_views": 644,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 13,
+        "track": 31
+      },
+      "duplicate_geometry_candidate_count": 593,
+      "geometry_node_count": 51,
+      "point_count": 69656,
+      "prepared_frame_count": 59,
+      "scene_name": "scene0587_03",
+      "semantic_evidence_node_count": 51,
+      "yoloworld_prediction_frame_count": 59
+    },
+    {
+      "candidate_bindings_with_evidence_views": 625,
+      "candidate_bindings_with_selected_views": 625,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 6,
+        "track": 19
+      },
+      "duplicate_geometry_candidate_count": 591,
+      "geometry_node_count": 34,
+      "point_count": 19818,
+      "prepared_frame_count": 63,
+      "scene_name": "scene0639_00",
+      "semantic_evidence_node_count": 34,
+      "yoloworld_prediction_frame_count": 63
+    },
+    {
+      "candidate_bindings_with_evidence_views": 686,
+      "candidate_bindings_with_selected_views": 686,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 19,
+        "track": 67
+      },
+      "duplicate_geometry_candidate_count": 581,
+      "geometry_node_count": 105,
+      "point_count": 70554,
+      "prepared_frame_count": 162,
+      "scene_name": "scene0649_00",
+      "semantic_evidence_node_count": 105,
+      "yoloworld_prediction_frame_count": 162
+    },
+    {
+      "candidate_bindings_with_evidence_views": 652,
+      "candidate_bindings_with_selected_views": 652,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 6,
+        "track": 46
+      },
+      "duplicate_geometry_candidate_count": 580,
+      "geometry_node_count": 72,
+      "point_count": 46821,
+      "prepared_frame_count": 193,
+      "scene_name": "scene0662_00",
+      "semantic_evidence_node_count": 72,
+      "yoloworld_prediction_frame_count": 193
+    },
+    {
+      "candidate_bindings_with_evidence_views": 660,
+      "candidate_bindings_with_selected_views": 660,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 15,
+        "track": 45
+      },
+      "duplicate_geometry_candidate_count": 579,
+      "geometry_node_count": 81,
+      "point_count": 51168,
+      "prepared_frame_count": 168,
+      "scene_name": "scene0676_01",
+      "semantic_evidence_node_count": 81,
+      "yoloworld_prediction_frame_count": 168
+    },
+    {
+      "candidate_bindings_with_evidence_views": 683,
+      "candidate_bindings_with_selected_views": 683,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 9,
+        "track": 74
+      },
+      "duplicate_geometry_candidate_count": 532,
+      "geometry_node_count": 151,
+      "point_count": 218655,
+      "prepared_frame_count": 132,
+      "scene_name": "scene0692_00",
+      "semantic_evidence_node_count": 151,
+      "yoloworld_prediction_frame_count": 132
+    },
+    {
+      "candidate_bindings_with_evidence_views": 680,
+      "candidate_bindings_with_selected_views": 680,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 22,
+        "track": 58
+      },
+      "duplicate_geometry_candidate_count": 540,
+      "geometry_node_count": 140,
+      "point_count": 268706,
+      "prepared_frame_count": 100,
+      "scene_name": "scene0692_01",
+      "semantic_evidence_node_count": 140,
+      "yoloworld_prediction_frame_count": 100
+    },
+    {
+      "candidate_bindings_with_evidence_views": 646,
+      "candidate_bindings_with_selected_views": 646,
+      "candidate_counts": {
+        "native": 600,
+        "pair_union": 2,
+        "track": 44
+      },
+      "duplicate_geometry_candidate_count": 561,
+      "geometry_node_count": 85,
+      "point_count": 118195,
+      "prepared_frame_count": 101,
+      "scene_name": "scene0692_03",
+      "semantic_evidence_node_count": 85,
+      "yoloworld_prediction_frame_count": 101
+    }
+  ],
+  "semantic_evidence_node_count_sum_over_scenes": 9708,
+  "view_contract": {
+    "max_views": 40,
+    "min_visible_points": 10,
+    "native": "all prepared frames, ranked by visible point count",
+    "pair_union": "all prepared frames with selected-track support/review stratification; geometry distribution diagnostic-only",
+    "track": "all prepared frames; support and independent-review views are stratified before ranking"
+  }
+}

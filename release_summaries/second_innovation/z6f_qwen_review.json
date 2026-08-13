@@ -1,0 +1,33 @@
+{
+  "candidate_mutation": false,
+  "decision_contract": "run current-first and proposed-first; mutate only if both semantic choices are PROPOSED; disagreement/abstain keeps current",
+  "decision_counts": {
+    "ABSTAIN": 74,
+    "PROPOSED": 8,
+    "order_disagreement_or_abstain": 74,
+    "symmetric_agreement": 8,
+    "valid_both": 82
+  },
+  "diagnostic_type": "official100 frozen symmetric-order selective Qwen2.5-VL review",
+  "even48_read": false,
+  "geometry_mutation": false,
+  "ground_truth_usage": "none",
+  "inference_plan_written": false,
+  "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "model_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "output_sha256": "9673fb23fdb5e875ffab0d6f6ca59e4e1d9d3bcaf5f7ac212efd11bd248bbdff",
+  "params": {
+    "count": null,
+    "manifest_root": "${PROJECT_ROOT}/docs/diagnostics/z6e_selective_vlm_review_manifest_official100_20260812",
+    "max_pixels": 200704,
+    "min_pixels": 100352,
+    "model_dir": "${PROJECT_ROOT}/pretrained/checkpoints/Qwen2.5-VL-7B-Instruct",
+    "output_dir": "${PROJECT_ROOT}/docs/diagnostics/z6f_qwen25vl_symmetric_review_official100_20260812",
+    "start_index": 0
+  },
+  "review_count": 82,
+  "safety60_read": false,
+  "score_mutation": false,
+  "start_index": 0,
+  "test60_read": false
+}

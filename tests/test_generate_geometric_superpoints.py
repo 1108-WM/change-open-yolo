@@ -105,3 +105,21 @@ def test_mesh_normal_graph_uses_triangle_connectivity_and_aligns_vertices(tmp_pa
 
     assert list(zip(left.tolist(), right.tolist())) == [(0, 1), (0, 2), (2, 1)]
     assert np.allclose(weights, 0.0)
+
+
+def test_original_anchor_only_splits_and_never_merges_source_superpoints():
+    original = np.array([4, 4, 4, 9, 9, 9], dtype=np.float32)
+    left = np.array([0, 1, 3, 4, 2], dtype=np.int32)
+    right = np.array([1, 2, 4, 5, 3], dtype=np.int32)
+    # 第一个原始区域的第一条边有二维冲突；最后一条边跨原始区域，不能用于合并。
+    keep = np.array([False, True, True, True, True])
+
+    labels, stats = GENERATOR._original_anchored_refinement(original, left, right, keep)
+
+    assert stats["partition_preserved"] is True
+    assert stats["source_segments_with_2d_cut"] == 1
+    assert stats["source_segments_split"] == 1
+    for label in np.unique(labels):
+        assert len(np.unique(original[labels == label])) == 1
+    assert len(np.unique(labels[original == 4])) == 2
+    assert len(np.unique(labels[original == 9])) == 1

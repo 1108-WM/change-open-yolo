@@ -41,3 +41,18 @@ def test_frame_label_map_gives_overlap_to_smaller_mask():
     assert labels[1, 1] == by_detection[1]
     assert labels[0, 0] == by_detection[0]
     assert labels[4, 4] == 0
+
+
+def test_uniform_frame_selection_spans_loaded_sequence():
+    assert EXPORTER.select_frame_indices(100, 30, 1, "first") == list(range(30))
+    selected = EXPORTER.select_frame_indices(100, 30, 1, "uniform")
+    assert len(selected) == 30
+    assert selected[0] == 0
+    assert selected[-1] == 99
+
+
+def test_streaming_dataset_arguments_keep_legacy_defaults():
+    source = MODULE_PATH.read_text()
+    assert 'parser.add_argument("--dataset_root", default="./data/scannet200")' in source
+    assert 'parser.add_argument("--processed_scene_root", default=None)' in source
+    assert 'parser.add_argument("--config_path", default="./pretrained/config_scannet200.yaml")' in source

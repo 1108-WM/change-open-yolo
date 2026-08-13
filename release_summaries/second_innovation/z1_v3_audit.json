@@ -1,0 +1,62 @@
+{
+  "audit_type": "Z1 official100 GT-free ledger integrity and cross-view agreement audit",
+  "valid_contract": true,
+  "ground_truth_usage": "none",
+  "scene_count": 100,
+  "candidate_counts": {
+    "native": 59997,
+    "track": 5266,
+    "pair_union": 1501
+  },
+  "geometry_node_counts_by_source": {
+    "native": 2941,
+    "track": 5266,
+    "pair_union": 1501
+  },
+  "semantic_evidence_node_count": 9708,
+  "selected_view_count": 276967,
+  "supported_view_count": 269782,
+  "supported_view_fraction": 0.974058281311492,
+  "maximum_distribution_probability_sum_error": 1.1102230246251565e-15,
+  "candidate_bindings_without_selected_views": {
+    "native": 5,
+    "track": 0,
+    "pair_union": 0
+  },
+  "candidate_bindings_without_yoloworld_evidence": {
+    "native": 90,
+    "track": 11,
+    "pair_union": 0
+  },
+  "track_semantic_audit": {
+    "track_count": 5266,
+    "frozen_all_support_vote_valid_count": 5233,
+    "frozen_all_support_vote_valid_fraction": 0.9937333839726548,
+    "binding_matches_frozen_vote_count": 5266,
+    "selected_support_top1_matches_frozen_valid_vote_count": 5167,
+    "selected_support_top1_matches_frozen_valid_vote_fraction": 0.9873877317026563,
+    "independent_review_top1_valid_count": 5250,
+    "independent_review_top1_matches_frozen_valid_vote_count": 3524,
+    "independent_review_top1_matches_frozen_valid_vote_fraction": 0.673418689088477,
+    "frozen_support_vs_independent_js_divergence": {
+      "mean": 0.2203423598140388,
+      "median": 0.1579050720514589,
+      "p90": 0.4917509608144692
+    }
+  },
+  "pair_union_semantic_audit": {
+    "candidate_count": 1501,
+    "valid_inherited_selected_track_vote_count": 1501,
+    "valid_selected_track_evidence_reference_count": 1501,
+    "union_geometry_all_support_top1_matches_inherited_track_count": 1254,
+    "union_geometry_all_support_top1_matches_inherited_track_fraction": 0.8354430379746836,
+    "union_geometry_independent_top1_matches_inherited_track_count": 916,
+    "union_geometry_independent_top1_matches_inherited_track_fraction": 0.6102598267821452
+  },
+  "interpretation": [
+    "The Z0 frozen track vote is reproduced exactly from all support frames; sampled support views remain analysis-only.",
+    "Independent-review top-1 disagrees with the frozen support top-1 on roughly one third of valid tracks, so agreement, margin, entropy and JS divergence are required Z3 reliability features.",
+    "Pair-union geometry often supports a different class from its inherited selected-track label; inherited inference semantics and union-geometry evidence must remain separate until calibrated.",
+    "Exact native geometry duplicates are represented as candidate bindings to shared evidence nodes, preventing category copies from multiplying semantic evidence."
+  ]
+}

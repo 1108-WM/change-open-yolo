@@ -301,6 +301,7 @@ def evaluate_matches(matches):
                     rc_current = 0.0
                 else:
                     ap_current = float('nan')
+                    ar_current = float('nan')
                     rc_current = float('nan')
                 ap[di, li, oi] = ap_current
                 ar[di, li, oi] = ar_current

@@ -1,0 +1,182 @@
+{
+  "acceptance_contract": "accept proposed new class iff nested-OOF predicted AP-quality delta > 0; otherwise keep current",
+  "candidate_mutation": false,
+  "class_id_is_feature": false,
+  "class_name_is_feature": false,
+  "diagnostic_type": "official100 merged nested-cross-fitted Z6c accept/abstain gate",
+  "even48_read": false,
+  "fold_count": 5,
+  "folds": [
+    {
+      "fold_index": 0,
+      "models": {
+        "semantic_only": {
+          "gate_target_negative_count": 628,
+          "gate_target_positive_count": 18513,
+          "gate_target_zero_count": 28850,
+          "gate_train_example_count": 47991,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 88,
+            "accepted_new_class": 11709,
+            "base_kept_current": 1502
+          }
+        },
+        "semantic_plus_dino": {
+          "gate_target_negative_count": 620,
+          "gate_target_positive_count": 18465,
+          "gate_target_zero_count": 28880,
+          "gate_train_example_count": 47965,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 54,
+            "accepted_new_class": 11758,
+            "base_kept_current": 1487
+          }
+        }
+      }
+    },
+    {
+      "fold_index": 1,
+      "models": {
+        "semantic_only": {
+          "gate_target_negative_count": 605,
+          "gate_target_positive_count": 17668,
+          "gate_target_zero_count": 29413,
+          "gate_train_example_count": 47686,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 127,
+            "accepted_new_class": 11846,
+            "accepted_no_valid_current": 2,
+            "base_kept_current": 1317
+          }
+        },
+        "semantic_plus_dino": {
+          "gate_target_negative_count": 613,
+          "gate_target_positive_count": 17849,
+          "gate_target_zero_count": 29207,
+          "gate_train_example_count": 47669,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 98,
+            "accepted_new_class": 11868,
+            "accepted_no_valid_current": 2,
+            "base_kept_current": 1324
+          }
+        }
+      }
+    },
+    {
+      "fold_index": 2,
+      "models": {
+        "semantic_only": {
+          "gate_target_negative_count": 600,
+          "gate_target_positive_count": 18184,
+          "gate_target_zero_count": 28989,
+          "gate_train_example_count": 47773,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 81,
+            "accepted_new_class": 11742,
+            "base_kept_current": 1663
+          }
+        },
+        "semantic_plus_dino": {
+          "gate_target_negative_count": 599,
+          "gate_target_positive_count": 18141,
+          "gate_target_zero_count": 29040,
+          "gate_train_example_count": 47780,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 58,
+            "accepted_new_class": 11785,
+            "base_kept_current": 1643
+          }
+        }
+      }
+    },
+    {
+      "fold_index": 3,
+      "models": {
+        "semantic_only": {
+          "gate_target_negative_count": 616,
+          "gate_target_positive_count": 17860,
+          "gate_target_zero_count": 29471,
+          "gate_train_example_count": 47947,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 126,
+            "accepted_new_class": 11764,
+            "base_kept_current": 1560
+          }
+        },
+        "semantic_plus_dino": {
+          "gate_target_negative_count": 611,
+          "gate_target_positive_count": 18295,
+          "gate_target_zero_count": 29045,
+          "gate_train_example_count": 47951,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 119,
+            "accepted_new_class": 11767,
+            "accepted_no_valid_current": 1,
+            "base_kept_current": 1563
+          }
+        }
+      }
+    },
+    {
+      "fold_index": 4,
+      "models": {
+        "semantic_only": {
+          "gate_target_negative_count": 628,
+          "gate_target_positive_count": 17563,
+          "gate_target_zero_count": 29754,
+          "gate_train_example_count": 47945,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 46,
+            "accepted_new_class": 12005,
+            "base_kept_current": 1181
+          }
+        },
+        "semantic_plus_dino": {
+          "gate_target_negative_count": 631,
+          "gate_target_positive_count": 17655,
+          "gate_target_zero_count": 29596,
+          "gate_train_example_count": 47882,
+          "inner_fold_count": 4,
+          "validation_gate_state_counts": {
+            "abstained_keep_current": 127,
+            "accepted_new_class": 11910,
+            "base_kept_current": 1195
+          }
+        }
+      }
+    }
+  ],
+  "gate_state_counts": {
+    "gated_semantic_only": {
+      "abstained_keep_current": 468,
+      "accepted_new_class": 59066,
+      "accepted_no_valid_current": 2,
+      "base_kept_current": 7223
+    },
+    "gated_semantic_plus_dino": {
+      "abstained_keep_current": 456,
+      "accepted_new_class": 59088,
+      "accepted_no_valid_current": 3,
+      "base_kept_current": 7212
+    }
+  },
+  "geometry_mutation": false,
+  "ground_truth_usage": "official_train_supervision_only_with_nested_scene_isolated_oof",
+  "inference_plan_written": false,
+  "oof_selections_sha256": "6284ac6b45aeacc6b117a3cc3bc0bbdfcc246309a7bfa51058e9cd7b845e6c19",
+  "prediction_count": 66759,
+  "safety60_read": false,
+  "scene_count": 100,
+  "score_mutation": false,
+  "test60_read": false
+}

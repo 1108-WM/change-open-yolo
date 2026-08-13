@@ -1,0 +1,62 @@
+{
+  "ap_computed": false,
+  "champion_track_override_count": 3380,
+  "combination_contract": {
+    "candidate_removed": false,
+    "champion_formula_unchanged": true,
+    "cross_module_weight_added": false,
+    "native_geometry_score_class_modified": false,
+    "pair_union_append_only": true,
+    "pair_union_formula_unchanged": true,
+    "threshold_selected": false,
+    "uncontrolled_track_modified": false
+  },
+  "even48_read": false,
+  "ground_truth_usage_for_plan_generation": "none; joins two frozen no-GT OOF plans",
+  "input_provenance": {
+    "champion_oof_scores_sha256": "954347b4a6718c4dc51f43747a597d0ef23661e478506b4d12b19615e5aa79c0",
+    "champion_summary_sha256": "c673cc53c87aca3558128def94592de9f296a5c3cb647b4d09ab0da0394dd45f",
+    "pair_union_plan_rows_sha256": "0c10445210fd00eb6af9fab279fbb751adac76e0fb8c68e9f215995a129ec3e7",
+    "pair_union_plan_summary_sha256": "e9fbc29a001a9170669a2bdc510ce08907a1916b7da639aa7d40955a3ed7f828",
+    "scene_list_sha256": "dfa9017e206190eb2973b247c78e4bf1b2d9c01bb8468a15775c30335e44fb68"
+  },
+  "pair_union_append_candidate_count": 1501,
+  "policy": "champion_track_suppression_plus_pair_union_append",
+  "safety60_read": false,
+  "scene_count": 100,
+  "score_collision_audit": {
+    "champion_track_new_score_distribution": {
+      "count": 3380,
+      "max": 0.7592221255848196,
+      "mean": 0.06398250340244595,
+      "median": 0.011656098475179354,
+      "min": 1.0000000000000008e-06,
+      "p25": 0.0038534005771792648,
+      "p75": 0.05365019385084576
+    },
+    "inherited_champion_zero_to_1e6_clip_count": 1,
+    "nonfinite_score_count": 0,
+    "pair_union_score_above_selected_source_track_count": 31,
+    "pair_union_score_distribution": {
+      "count": 1501,
+      "max": 0.21758503035975663,
+      "mean": 0.00405626126013801,
+      "median": 0.0008897000343532671,
+      "min": 7.969046952055175e-06,
+      "p25": 0.0003467721603932065,
+      "p75": 0.002699005144349497
+    },
+    "pair_union_score_equal_selected_source_track_count": 0,
+    "selected_source_track_score_after_champion_distribution": {
+      "count": 1501,
+      "max": 0.7592221255848196,
+      "mean": 0.176779905942419,
+      "median": 0.08049055831760635,
+      "min": 0.0009812861348392902,
+      "p25": 0.027951058754405636,
+      "p75": 0.26917606545639644
+    }
+  },
+  "test60_read": false,
+  "version": "official100_champion_pair_union_combined_oof_plan_v1"
+}
