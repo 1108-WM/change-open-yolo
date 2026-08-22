@@ -1,0 +1,144 @@
+{
+  "version": "ncs_openyolo3d_native_only_class_agnostic_baseline_provenance_v1",
+  "date": "2026-08-22",
+  "status": "completed_single_preregistered_native_only_evaluation_and_independent_audit",
+  "scope": "raw OpenYOLO3D native-only class-agnostic AP on NCS-train100",
+  "preregistration": {
+    "path": "docs/NCS_OPENYOLO3D_NATIVE_ONLY_CLASS_AGNOSTIC_BASELINE_PREREGISTRATION_20260822.md",
+    "sha256": "ffe7e6b7afbb443b67fb0727b7ed62cc28dc469af597c9eaa3a4cd8037dc9dcf",
+    "completed_before_evaluation": true,
+    "single_fixed_evaluation": true,
+    "result_registered_regardless_of_direction": true
+  },
+  "raw_candidate_contract": {
+    "dataset": "NCS-train100",
+    "scene_count": 100,
+    "candidate_count": 60000,
+    "candidate_count_per_scene": 600,
+    "source": "raw exported native masks/classes/scores from frozen Mask3D and YOLO-World caches",
+    "original_duplicates_retained": true,
+    "exact_geometry_collapse": false,
+    "track_candidate_count": 0,
+    "union_candidate_count": 0,
+    "refined_candidate_count": 0,
+    "candidate_deletion": false,
+    "geometry_mutation": false,
+    "class_mutation": false,
+    "score_mutation": false,
+    "class_agnostic_mapping_only_during_evaluation": true
+  },
+  "evaluation": {
+    "script": "tools/evaluate_ncs_openyolo3d_native_only_class_agnostic_ap_gt.py",
+    "script_sha256": "e90294da4f163b4fd81db5c89b09ff43f2101e9b334811603d5ac55ca3b72ba6",
+    "result_directory": "docs/diagnostics/ncs_openyolo3d_raw_native_only_class_agnostic_ap_train100_20260822",
+    "result_summary_sha256": "03eae1c7a209f67506a4d1f9518df46d0722fc6c208664f7a2b2ffde2675353b",
+    "raw_ap_arrays_sha256": "b66ed74f7029d8762dd9f6d06acf8a709d533cd449b901a4a7179875659e54ee",
+    "overall": {
+      "ap": 0.7201771142884845,
+      "ap50": 0.8519394344548605,
+      "ap25": 0.885045684264071
+    },
+    "folds": {
+      "0": {
+        "scene_count": 20,
+        "ap": 0.6664790614500544,
+        "ap50": 0.8084049391730666,
+        "ap25": 0.8509661974293417
+      },
+      "1": {
+        "scene_count": 21,
+        "ap": 0.7199180254701939,
+        "ap50": 0.8391382527565734,
+        "ap25": 0.8843015368416789
+      },
+      "2": {
+        "scene_count": 20,
+        "ap": 0.7696878018007495,
+        "ap50": 0.8828372896332892,
+        "ap25": 0.9031718653288417
+      },
+      "3": {
+        "scene_count": 19,
+        "ap": 0.7820444796851201,
+        "ap50": 0.8900569727949739,
+        "ap25": 0.9012999717547208
+      },
+      "4": {
+        "scene_count": 20,
+        "ap": 0.6835339940024182,
+        "ap50": 0.8480046197583511,
+        "ap25": 0.8912405228073739
+      }
+    }
+  },
+  "independent_audit": {
+    "script": "tools/audit_ncs_openyolo3d_native_only_class_agnostic_ap.py",
+    "script_sha256": "e1172cad2fec4160904830a7b8a1f44500d94f3d98e87c5a24e7fde65da3b070",
+    "audit_directory": "docs/diagnostics/ncs_openyolo3d_raw_native_only_class_agnostic_ap_train100_audit_20260822",
+    "audit_summary_sha256": "dff424429983f0a78e7adeab4f2f18ba0efca45a6edd51c6b47dcd89e92e1a3b",
+    "audit_valid": true,
+    "contract_valid": true,
+    "error_count": 0
+  },
+  "three_level_comparison": {
+    "raw_openyolo3d": {
+      "ap": 0.7201771142884845,
+      "ap50": 0.8519394344548605,
+      "ap25": 0.885045684264071
+    },
+    "fi1_legacy": {
+      "ap": 0.7371134994039011,
+      "ap50": 0.8767936673734247,
+      "ap25": 0.9170574554246322
+    },
+    "fi1_d_v3": {
+      "ap": 0.7411222970181878,
+      "ap50": 0.8865867949016996,
+      "ap25": 0.9246991969487371
+    },
+    "fi1_legacy_minus_raw": {
+      "ap": 0.01693638511541662,
+      "ap50": 0.0248542329185642,
+      "ap25": 0.0320117711605612,
+      "percentage_points": {
+        "ap": 1.693638511541662,
+        "ap50": 2.48542329185642,
+        "ap25": 3.20117711605612
+      }
+    },
+    "fi1_d_v3_minus_raw": {
+      "ap": 0.0209451827297033,
+      "ap50": 0.0346473604468391,
+      "ap25": 0.0396535126846661,
+      "percentage_points": {
+        "ap": 2.09451827297033,
+        "ap50": 3.46473604468391,
+        "ap25": 3.96535126846661
+      }
+    },
+    "fi1_d_v3_minus_fi1_legacy": {
+      "ap": 0.00400879761428663,
+      "ap50": 0.00979312752827488,
+      "ap25": 0.007641741524104906,
+      "percentage_points": {
+        "ap": 0.400879761428663,
+        "ap50": 0.979312752827488,
+        "ap25": 0.7641741524104906
+      }
+    }
+  },
+  "safety_contract": {
+    "gpu_used": false,
+    "validation60_read": false,
+    "val312_read": false,
+    "threshold_or_weight_scan_count": 0,
+    "fi1_legacy_modified": false,
+    "fi1_d_v3_modified": false,
+    "dm_sms1_modified": false
+  },
+  "interpretation": {
+    "corrected_baseline_identity": "0.720177/0.851939/0.885046 is the raw OpenYOLO3D native-only baseline; 0.737113/0.876794/0.917057 is FI1-Legacy, not raw OpenYOLO3D",
+    "claim_boundary": "This run establishes the missing common raw baseline on NCS-train100. It does not reopen method selection, validation60, or val312.",
+    "conclusion": "Both FI1-Legacy and FI1-D-v3 improve class-agnostic AP over raw OpenYOLO3D; FI1-D-v3 adds a smaller further gain over FI1-Legacy."
+  }
+}

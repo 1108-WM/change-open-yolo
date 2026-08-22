@@ -1,0 +1,75 @@
+{
+  "version": "ncs_fi1_stage_a_unified_quality_provenance_v1",
+  "date": "2026-08-22",
+  "dataset": "NCS-train100",
+  "scope": "first-innovation stage A unified continuous geometry quality; train100 OOF diagnostics only",
+  "scene_count": 100,
+  "geometry_count": 10169,
+  "source_counts": {
+    "native": 2946,
+    "track": 5645,
+    "pair_union": 1578
+  },
+  "quality_target": "mean indicator of best class-agnostic IoU at 0.50:0.05:0.95",
+  "preregistration": "docs/NCS_FI1_STAGE_A_PREREGISTRATION_20260822.md",
+  "dataset_root": "docs/diagnostics/ncs_fi1_stage_a_quality_dataset_train100_20260822",
+  "dataset_audit_root": "docs/diagnostics/ncs_fi1_stage_a_quality_dataset_train100_audit_v3_20260822",
+  "oof_root": "docs/diagnostics/ncs_fi1_stage_a_unified_quality_oof_train100_20260822",
+  "oof_audit_root": "docs/diagnostics/ncs_fi1_stage_a_unified_quality_oof_train100_audit_20260822",
+  "metrics": {
+    "frozen_score_control": {
+      "mae": 0.2302043207232833,
+      "rmse": 0.3913934979254905,
+      "spearman": 0.43016972813616455,
+      "absolute_mean_bias": 0.04771734978697023
+    },
+    "unified_quality": {
+      "mae": 0.1557080238833713,
+      "rmse": 0.24870250339460373,
+      "spearman": 0.7300569803172667,
+      "absolute_mean_bias": 0.0005239185030274096
+    },
+    "source_unified_quality": {
+      "native": {
+        "mae": 0.2613943503676819,
+        "absolute_mean_bias": 0.0037943894553951196
+      },
+      "track": {
+        "mae": 0.0933784165430453,
+        "absolute_mean_bias": 0.0005690384852961028
+      },
+      "pair_union": {
+        "mae": 0.181372609189684,
+        "absolute_mean_bias": 0.00574319792636524
+      }
+    },
+    "fold_mae": [
+      0.1663037472479283,
+      0.12757948255742305,
+      0.1589941533844356,
+      0.15137892679882667,
+      0.16607201672520625
+    ]
+  },
+  "dataset_audit_valid": true,
+  "dataset_audit_error_count": 0,
+  "oof_audit_valid": true,
+  "oof_audit_error_count": 0,
+  "advancement_authorized": true,
+  "hashes": {
+    "preregistration_sha256": "b1e01c95c288e6e9e1d56a5868e2d5693736a4e000ed630dd136676cfa651e4c",
+    "dataset_summary_sha256": "a2e883e21f145bbdb19502c97d914e8d3a20b743eecc8ca893ef4d76c9f44b90",
+    "dataset_sha256": "4f8ce602e5375721de0971507402ec894d6b5515cfd0e27bb2391d6e0f3d0a10",
+    "dataset_audit_sha256": "7ddd8832871000cfb912a9534e9287a6964a4aed2da1710d6014fea87ba287d9",
+    "oof_summary_sha256": "176a90804c8751e68d0b1d9da52312a181a1aed67bdfa852b0c01228b3cb4ee7",
+    "oof_predictions_sha256": "e035754fd7224f4203ea8e07f47a6e1b13f3ea7dde88c5c3539d30d8c0ec006f",
+    "oof_audit_sha256": "e203e121207b49d4d232045d39a3c6c89e3b344b58761f5540adcb9388041e0e"
+  },
+  "candidate_mutation": false,
+  "geometry_mutation": false,
+  "score_mutation": false,
+  "replacement_plan_generated": false,
+  "ap_computed": false,
+  "validation60_read": false,
+  "val312_read": false
+}

@@ -1,0 +1,71 @@
+{
+  "ap_computed": false,
+  "deployment_target": "single frozen ScanNet200 val312 transfer",
+  "ground_truth_usage": "official100 training labels only",
+  "input_hashes": {
+    "stage_a_dataset": "adbbe76e0bae18f7ef60d5e52209b9355d3b6b9b0d389b06e2765e51afc569c0",
+    "stage_a_oof": "49bb1bc07963a36f08ab4a166eb0f20e0ea7592854b80e79acfd1996d59f9bc1",
+    "stage_c_dataset_summary": "35d4f7f548e681d76107d8a31645c25746fc55ac5f99acb014a65a40a1af43e4",
+    "stage_c_oof_summary": "fd6c7d484062453a68456856bd78d41c7ba8d55362349e3d7ab4c916a65d9e2f",
+    "stage_d_dataset_summary": "ddceb8b7d516dc85540600e64e875255733b6cf2463db5761c62806bf8a0a58f",
+    "stage_d_oof_summary": "9f07bf3601586a4f03666f9e2c06d99fb02cfaf7f7835fa54a8b648438e48ce3"
+  },
+  "model_count": 7,
+  "models": [
+    {
+      "calibration_count": 2941,
+      "fit_count": 2941,
+      "model_file": "models/stage_a_native.joblib",
+      "model_kind": "stage_a_native_quality",
+      "model_sha256": "4359c47c73b1a3aa4362a49a2ed2cff534bc69082c01e7e82cd1bbcba8b8c1e8"
+    },
+    {
+      "calibration_count": 5266,
+      "fit_count": 5266,
+      "model_file": "models/stage_a_track.joblib",
+      "model_kind": "stage_a_track_quality",
+      "model_sha256": "f3702890f80b8b6e5723aa1ff3aa0a3e276deec54c1b4491b9f6e2ad7a5de8ed"
+    },
+    {
+      "calibration_count": 1501,
+      "fit_count": 1501,
+      "model_file": "models/stage_a_pair_union.joblib",
+      "model_kind": "stage_a_pair_union_quality",
+      "model_sha256": "0f53ec1de4c31379d2af1be477d2f5f5f1783c29bd97fdef72603901e1588728"
+    },
+    {
+      "calibration_count": 14831,
+      "fit_count": 14831,
+      "model_file": "models/stage_c_member_delta_track_only.joblib",
+      "model_kind": "stage_c_member_delta_track_only",
+      "model_sha256": "2e6a16585951230260ea7abcda55e966542b004526b76fce99f3edaa576602df"
+    },
+    {
+      "calibration_count": 57621,
+      "fit_count": 57621,
+      "model_file": "models/stage_c_member_delta_native_only.joblib",
+      "model_kind": "stage_c_member_delta_native_only",
+      "model_sha256": "2f95b9806a1d7a8ca3f394739c277280dbae7fad00ab1427e85ab52b3693673c"
+    },
+    {
+      "calibration_count": 1501,
+      "fit_count": 1501,
+      "model_file": "models/stage_c_temporary_refined_quality.joblib",
+      "model_kind": "stage_c_temporary_refined_quality",
+      "model_sha256": "ff7e024ad313ba204388023c43f91ba0c684b864cbd5d2ecabf9fbfc9dfbffeb"
+    },
+    {
+      "calibration_count": 1543,
+      "fit_count": 1543,
+      "model_file": "models/stage_d_v3_rank_marginal_gain.joblib",
+      "model_kind": "stage_d_v3_rank_marginal_gain",
+      "model_sha256": "a388f79fad657b054084f890da15f57a9ed051596bb3918ff601a72f64776262"
+    }
+  ],
+  "stage_a_calibration_contract": "isotonic fitted on frozen OOF raw prediction and label, per source",
+  "stage_c_d_calibration_contract": "global additive OOF mean residual and OOF absolute residual q90",
+  "training_dataset": "official100",
+  "val312_read": false,
+  "validation60_read": false,
+  "version": "fi1_d_v3_official100_full_models_v1"
+}

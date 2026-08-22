@@ -1,0 +1,95 @@
+{
+  "version": "ncs_fi1_stage_d_marginal_gain_provenance_v1",
+  "date": "2026-08-22",
+  "status": "completed_not_advanced",
+  "decision": "DO_NOT_RUN_AP_OR_FREEZE_TRANSFER",
+  "preregistration": {
+    "path": "docs/NCS_FI1_STAGE_D_PREREGISTRATION_20260822.md",
+    "sha256": "52c29fc4332d8d9f48c6cad097e91f9b5464b2a0b3f40b8f276d12275cb7f3d5"
+  },
+  "formal_artifacts": {
+    "dataset_root": "docs/diagnostics/ncs_fi1_stage_d_marginal_gain_dataset_train100_20260822",
+    "dataset_summary_sha256": "2c98009eea9ffbc08d052c0d13cb10cd8e44cf4198258331db56f28ae7f73a1c",
+    "dataset_audit_root": "docs/diagnostics/ncs_fi1_stage_d_marginal_gain_dataset_train100_audit_20260822",
+    "dataset_audit_summary_sha256": "b91ad2a4e3964620b0af05616c3072ff19493dd7333310eee63b5e105295ad2b",
+    "result_root": "docs/diagnostics/ncs_fi1_stage_d_marginal_gain_oof_train100_v2_20260822",
+    "result_summary_sha256": "dbdb2009c9db6b152ab4db735cd7ac9695c5ce10b156b727ee85244569949e35",
+    "result_audit_root": "docs/diagnostics/ncs_fi1_stage_d_marginal_gain_oof_train100_audit_v3_20260822",
+    "result_audit_summary_sha256": "2214779872485c948adcbdbd54d53f390a1755a4b4954e3ae80c24fe528c1c8a"
+  },
+  "historical_reproduction_artifacts": {
+    "result_root_with_scene_summary_99": "docs/diagnostics/ncs_fi1_stage_d_marginal_gain_oof_train100_20260822",
+    "first_audit_root_with_null_spearman_comparison_bug": "docs/diagnostics/ncs_fi1_stage_d_marginal_gain_oof_train100_audit_20260822",
+    "second_audit_root_before_scene_summary_correction": "docs/diagnostics/ncs_fi1_stage_d_marginal_gain_oof_train100_audit_v2_20260822",
+    "history_retained": true
+  },
+  "data_results": {
+    "protocol_scene_count": 100,
+    "scene_with_append_candidate_count": 99,
+    "native_track_baseline_geometry_count": 8591,
+    "original_union_candidate_count": 1578,
+    "refined_union_candidate_count": 85,
+    "total_candidate_count": 1663,
+    "positive_marginal_iou_gain_count": 174,
+    "positive_distinct_rounded_6_count": 174,
+    "fold_positive_counts": {
+      "0": 44,
+      "1": 18,
+      "2": 38,
+      "3": 39,
+      "4": 35
+    },
+    "threshold_cross_positive_count": 58,
+    "original_positive_count": 170,
+    "refined_positive_count": 4,
+    "positive_gain_quantiles": {
+      "min": 0.00006953535661646804,
+      "q25": 0.007688225259410486,
+      "median": 0.02082870602221165,
+      "q75": 0.044805477275736194,
+      "q90": 0.10677423890567446,
+      "max": 0.3976746146841591
+    },
+    "dataset_independent_audit_error_count": 0
+  },
+  "oof_results": {
+    "oof_mae": 0.008052858301529435,
+    "oof_rmse": 0.023815331066650177,
+    "oof_spearman": 0.14527059038859585,
+    "zero_prediction_control_mae": 0.004406650644682247,
+    "threshold_cross_probability_control_mae": 0.007365581152648263,
+    "confident_positive_count": 101,
+    "confident_positive_by_fold": {
+      "0": 25,
+      "1": 13,
+      "2": 28,
+      "3": 17,
+      "4": 18
+    },
+    "confident_true_positive_count": 19,
+    "confident_neutral_count": 82,
+    "confident_true_positive_fraction": 0.18811881188118812,
+    "nonzero_append_score_count": 97,
+    "result_independent_audit_error_count": 0
+  },
+  "failed_preregistered_gates": [
+    "oof_mae_strictly_better_than_zero_prediction_control",
+    "oof_mae_strictly_better_than_frozen_threshold_cross_probability_control",
+    "confident_true_positive_fraction_at_least_0.70"
+  ],
+  "diagnosis": {
+    "primary": "Using every native and track geometry as the existing set is too close to a geometry oracle and does not represent the current high-score prefix required by the stage-D review contract.",
+    "evidence": "Only 174/1663 candidates have any gain; refined candidates have only 4/85 positives. The all-zero predictor therefore minimizes all-candidate MAE more effectively than the direct regressor.",
+    "next_branch": "Preregister a rank-conditioned target using only native/track candidates ranked ahead of the append candidate by the frozen stage-B score; retain all safety and no-AP constraints."
+  },
+  "contracts": {
+    "candidate_deletion_count": 0,
+    "geometry_mutation": false,
+    "class_mutation": false,
+    "frozen_cache_write": false,
+    "ap_computed": false,
+    "validation60_read": false,
+    "val312_read": false,
+    "advancement_authorized": false
+  }
+}

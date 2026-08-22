@@ -1,0 +1,80 @@
+{
+  "version": "ncs_fi1_stage_c_v2_member_refinement_provenance_v1",
+  "date": "2026-08-22",
+  "dataset": "NCS-train100",
+  "scope": "first-innovation stage C-v2 member-level multiview/depth evidence, continuous removal utility, and conservative append-only refinement",
+  "dataset_scene_count": 100,
+  "involved_union_scene_count": 99,
+  "union_count": 1578,
+  "atom_count": 66323,
+  "exclusive_distinct_delta_iou_remove_rounded_6_count": 30756,
+  "preregistration": "docs/NCS_FI1_STAGE_C_V2_PREREGISTRATION_20260822.md",
+  "dataset_root": "docs/diagnostics/ncs_fi1_stage_c_v2_member_dataset_train100_v2_20260822",
+  "dataset_audit_root": "docs/diagnostics/ncs_fi1_stage_c_v2_member_dataset_train100_audit_20260822",
+  "oof_root": "docs/diagnostics/ncs_fi1_stage_c_v2_refinement_oof_train100_20260822",
+  "oof_audit_root": "docs/diagnostics/ncs_fi1_stage_c_v2_refinement_oof_train100_audit_20260822",
+  "exclusive_role_metrics": {
+    "track_only": {
+      "oof_mae": 0.01767368253837566,
+      "zero_prediction_control_mae": 0.022545134558911873,
+      "oof_spearman": 0.44840154166781304,
+      "confident_positive_lower_bound_count": 633
+    },
+    "native_only": {
+      "oof_mae": 0.007080204762818916,
+      "zero_prediction_control_mae": 0.014592762048023051,
+      "oof_spearman": 0.6068648219186413,
+      "confident_positive_lower_bound_count": 66
+    }
+  },
+  "member_action_counts": {
+    "confident_remove": 699,
+    "forced_keep_shared": 6704,
+    "uncertain_keep": 58920
+  },
+  "final_status_counts": {
+    "append_eligible_refined_union": 85,
+    "quality_guard_fallback_original_union": 1493
+  },
+  "append_quality_change_counts": {
+    "improved": 68,
+    "neutral": 11,
+    "harmed": 6
+  },
+  "append_improvement_fraction": 0.8,
+  "append_harm_fraction": 0.07058823529411765,
+  "append_mean_quality_delta": 0.49058823529411766,
+  "append_fold_mean_quality_delta": {
+    "0": 0.46904761904761905,
+    "1": 0.6466666666666666,
+    "2": 0.45,
+    "3": 0.7,
+    "4": 0.32
+  },
+  "all_union_conservative_mean_quality_delta": 0.026425855513307988,
+  "dataset_audit_valid": true,
+  "dataset_audit_error_count": 0,
+  "oof_audit_valid": true,
+  "oof_audit_error_count": 0,
+  "advancement_authorized": true,
+  "hashes": {
+    "preregistration_sha256": "ff9505af85d0b07df51bf5e2a5687cda40eb1cd3fe20824684c2d2bf13d7fe8c",
+    "dataset_summary_sha256": "b68d5318a51c8cdce69c8199b3fa85b7a09bf595d034bad7659fa46ba6e26ae7",
+    "dataset_sha256": "9e595299fe0132b720a98fe934c625eb0df3d136184b4ec1c2857f7eca09afcb",
+    "unions_sha256": "41e7da336d3f10d133bbfdbd935ecf1caf8adee5b21898d60c393d9225caa322",
+    "dataset_audit_sha256": "694e7c23cb0cfcf5e5863cec5c033b21e7c00b1eafd8e1c68e29c33537ff1e5b",
+    "oof_summary_sha256": "85db7174c2bfa5c2cb98d74228ea9391597bef0dd6b15dac6573da7356456169",
+    "member_predictions_sha256": "2cd0c48ea9a1d98c62edea2296ad98632086b39db0fac81bb30bb8197dc6f33b",
+    "refined_plan_sha256": "8c69d387cf3189f1288905269894b8e8ca2e4300930289c5b18cb864bd619e3b",
+    "oof_audit_sha256": "86453f41a1905ed1aade7b7530c1b3678462b95b18227d624887d3db8e5e09cd"
+  },
+  "shared_point_deleted_count": 0,
+  "outside_union_added_point_count": 0,
+  "original_union_deleted_count": 0,
+  "candidate_deletion": false,
+  "parent_geometry_mutation": false,
+  "frozen_cache_write": false,
+  "ap_computed": false,
+  "validation60_read": false,
+  "val312_read": false
+}

@@ -1,0 +1,128 @@
+{
+  "version": "ncs_fi1_stage_d_v2_rank_marginal_provenance_v1",
+  "date": "2026-08-22",
+  "status": "completed_and_advanced",
+  "decision": "AUTHORIZED_FOR_SEPARATE_ONE_TIME_FROZEN_TRANSFER_DISCUSSION_NO_AP_RUN_IN_THIS_BRANCH",
+  "preregistration": {
+    "path": "docs/NCS_FI1_STAGE_D_V2_PREREGISTRATION_20260822.md",
+    "sha256": "0bffe71bc229cacd5ce44dad48d5c930cf67182bd0bb650ddd5abdfa802f22f0"
+  },
+  "formal_artifacts": {
+    "dataset_root": "docs/diagnostics/ncs_fi1_stage_d_v2_rank_marginal_dataset_train100_20260822",
+    "dataset_summary_sha256": "d145efbaa82f7cb8510cab6edb69cf05b26dcc2d580b512689563e26475912a1",
+    "dataset_audit_root": "docs/diagnostics/ncs_fi1_stage_d_v2_rank_marginal_dataset_train100_audit_20260822",
+    "dataset_audit_summary_sha256": "3bd0bbbf425e0d734f419650c6bc4c1f5978912e9fe3597425a62e6e827f3875",
+    "result_root": "docs/diagnostics/ncs_fi1_stage_d_v2_rank_marginal_oof_train100_20260822",
+    "result_summary_sha256": "f4a86f748f992b4107570f4cb5910af6478f80e51186c8dc95ae47133603f396",
+    "result_audit_root": "docs/diagnostics/ncs_fi1_stage_d_v2_rank_marginal_oof_train100_audit_20260822",
+    "result_audit_summary_sha256": "5c49d5950b347d782f6820dfa8f08421f43c24f214fc09de9f1b8fb7b1721200"
+  },
+  "implementation": {
+    "build_dataset": {
+      "path": "tools/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "sha256": "bb46cc0cb0acb3269fc9a9a63ec41daa81134c68d164dc1c8228936bf4a0794c"
+    },
+    "audit_dataset": {
+      "path": "tools/audit_ncs_fi1_stage_d_v2_rank_marginal_dataset.py",
+      "sha256": "2713099c95be5bd8b6ecca61cb926ea2e457f52b5ada684880f8a51278ee3f4f"
+    },
+    "train_oof": {
+      "path": "tools/train_ncs_fi1_stage_d_v2_rank_marginal_oof.py",
+      "sha256": "861b8669ee382660060e0ceff2c7f24a3426419da0d9ffb96e730d1125f1d903"
+    },
+    "audit_oof": {
+      "path": "tools/audit_ncs_fi1_stage_d_v2_rank_marginal_oof.py",
+      "sha256": "6687b615d76b46ca326853ce8ef637d72b92e3a166dff23aeaceb56459414d87"
+    }
+  },
+  "target_contract": {
+    "candidate_reference_score_original": "stage-B original union score",
+    "candidate_reference_score_refined": "clipped C-v2 refined-Q lower confidence bound",
+    "rank_prefix": "all native/track geometries with stage-B score >= candidate reference score",
+    "primary_target": "max_gt max(0, candidate_iou - rank_prefix_best_iou)",
+    "model": "single HistGradientBoostingRegressor with fixed next-fold additive calibration and absolute residual q90",
+    "score": "candidate_reference_score * max(0, corrected_prediction - q90)"
+  },
+  "data_results": {
+    "protocol_scene_count": 100,
+    "scene_with_append_candidate_count": 99,
+    "native_track_geometry_count": 8591,
+    "original_union_candidate_count": 1578,
+    "refined_union_candidate_count": 85,
+    "total_candidate_count": 1663,
+    "positive_rank_marginal_gain_count": 530,
+    "positive_distinct_rounded_6_count": 528,
+    "fold_positive_counts": {
+      "0": 129,
+      "1": 106,
+      "2": 103,
+      "3": 94,
+      "4": 98
+    },
+    "original_positive_count": 515,
+    "refined_positive_count": 15,
+    "threshold_cross_positive_count": 142,
+    "positive_gain_quantiles": {
+      "min": 0.00007359117106453539,
+      "q25": 0.014759068184235696,
+      "median": 0.07028769097184669,
+      "q75": 0.242645594968992,
+      "q90": 0.7547662181166129,
+      "max": 1.0
+    },
+    "dataset_independent_audit_error_count": 0
+  },
+  "oof_results": {
+    "oof_mae": 0.040225281879909744,
+    "oof_rmse": 0.08910117932642632,
+    "oof_spearman": 0.4635121038374377,
+    "zero_prediction_control_mae": 0.06427863224179137,
+    "threshold_cross_probability_control_mae": 0.06596268948269851,
+    "confident_positive_count": 210,
+    "confident_positive_by_fold": {
+      "0": 37,
+      "1": 50,
+      "2": 47,
+      "3": 21,
+      "4": 55
+    },
+    "confident_true_positive_count": 170,
+    "confident_neutral_count": 40,
+    "confident_true_positive_fraction": 0.8095238095238095,
+    "original_confident_count": 208,
+    "original_confident_true_positive_count": 170,
+    "refined_confident_count": 2,
+    "refined_confident_true_positive_count": 0,
+    "nonzero_append_score_count": 210,
+    "mean_append_score": 0.022777564788871878,
+    "max_append_score": 0.7325342411221295,
+    "result_independent_audit_error_count": 0
+  },
+  "stability": {
+    "all_folds_have_positive_targets": true,
+    "all_folds_have_confident_positive_predictions": true,
+    "all_fold_oof_mae_strictly_better_than_zero_control": true,
+    "all_fold_oof_mae_strictly_better_than_threshold_cross_probability_control": true
+  },
+  "verification": {
+    "related_regression_test_count": 30,
+    "related_regression_tests_passed": 30,
+    "related_regression_tests_failed": 0
+  },
+  "contracts": {
+    "candidate_deletion_count": 0,
+    "geometry_mutation": false,
+    "class_mutation": false,
+    "parent_candidate_mutation": false,
+    "frozen_cache_write": false,
+    "ap_computed": false,
+    "validation60_read": false,
+    "val312_read": false,
+    "advancement_authorized": true
+  },
+  "interpretation": {
+    "stage_d_v1": "The all-native+track oracle-like baseline was too sparse and failed preregistered model and confidence gates.",
+    "stage_d_v2": "The rank-prefix definition matches the current-high-score-set semantics, expands continuous positives without adding candidates or scanning thresholds, and passes all preregistered data, calibration, confidence, safety, and independent-audit gates.",
+    "next_step": "A separately authorized one-time frozen transfer evaluation may now be designed; no AP or validation-set read was performed here."
+  }
+}

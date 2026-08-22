@@ -1,0 +1,138 @@
+{
+  "version": "ncs_fi1_stage_d_v3_rank_marginal_and_official100_ap_provenance_v1",
+  "date": "2026-08-22",
+  "status": "completed_single_frozen_official100_oof_evaluation",
+  "scope": "first innovation point; class-agnostic instance AP on official100 / NCS-train100",
+  "preregistration": {
+    "path": "docs/NCS_FI1_STAGE_D_V3_PREREGISTRATION_20260822.md",
+    "sha256": "90904480aea4a59cd3143a2939d7fd2a9174a250804e5616d298dd8c4d4059d0",
+    "status_at_first_run": "frozen_before_first_run"
+  },
+  "d_v3_dataset": {
+    "candidate_count": 1663,
+    "original_candidate_count": 1578,
+    "refined_candidate_count": 85,
+    "positive_full_rank_marginal_gain_count": 475,
+    "positive_distinct_rounded_6_count": 475,
+    "fold_positive_counts": {
+      "0": 121,
+      "1": 94,
+      "2": 87,
+      "3": 80,
+      "4": 93
+    },
+    "dataset_summary_sha256": "44f11323b2489cd2edc1ac4239f14d48f69b156491c436bd7f880a8cbe887062",
+    "independent_audit_summary_sha256": "932f2a4e2bd3e33b76816141b8acbe48de5c6f5d65d6599613a4f44e033cf4fa",
+    "independent_audit_error_count": 0,
+    "advancement_authorized": true
+  },
+  "d_v3_oof_model": {
+    "oof_mae": 0.0379598273194236,
+    "zero_prediction_mae": 0.057855900390624236,
+    "frozen_threshold_cross_numeric_control_mae": 0.05974674810014813,
+    "oof_spearman": 0.404014899215714,
+    "confident_candidate_count": 181,
+    "confident_true_positive_count": 147,
+    "confident_true_positive_fraction": 0.8121546961325967,
+    "nonzero_append_score_count": 181,
+    "result_summary_sha256": "6e2f19f4efd65eef3f45f6108a6d2474e9e8308d52fa89ba857d6da378a247cb",
+    "independent_audit_summary_sha256": "ba2f9dce57dfb5acb7999b1f6f22acb85fa7bcaa589cd6afc8a21f60d31ada79",
+    "independent_audit_error_count": 0,
+    "advancement_authorized": true
+  },
+  "complete_oof_plan": {
+    "control_candidate_count": 10169,
+    "challenger_candidate_count": 10254,
+    "source_counts": {
+      "native": 2946,
+      "track": 5645,
+      "pair_union": 1578,
+      "refined_union": 85
+    },
+    "all_frozen_candidates_retained": true,
+    "refined_append_only_count": 85,
+    "candidate_deletion_count": 0,
+    "geometry_mutation": false,
+    "class_mutation": false,
+    "plan_summary_sha256": "1f4f02683fbc615584f75d9216e05ea120fac5045b81feee7f463fb9f0924416",
+    "independent_audit_summary_sha256": "f01a82949448a0b256052c4bad180616dc1698146b0bf4b367e09ceeaf046e63",
+    "independent_audit_error_count": 0,
+    "advancement_authorized": true,
+    "superseded_failed_audit_note": "The first plan audit was correctly rejected because SHA-1 frozen geometry digests were mislabeled as SHA-256. No AP was run from that plan. A new v2 plan explicitly records the digest algorithm and passed independent audit."
+  },
+  "single_frozen_class_agnostic_ap_evaluation": {
+    "allow_gt_evaluation_explicit": true,
+    "single_fixed_challenger": true,
+    "threshold_or_weight_scan_count": 0,
+    "control": {
+      "ap": 0.7371134994039011,
+      "ap50": 0.8767936673734247,
+      "ap25": 0.9170574554246322
+    },
+    "challenger": {
+      "ap": 0.7411222970181878,
+      "ap50": 0.8865867949016996,
+      "ap25": 0.9246991969487371
+    },
+    "delta": {
+      "ap": 0.00400879761428663,
+      "ap50": 0.00979312752827488,
+      "ap25": 0.007641741524104906
+    },
+    "fold_delta": {
+      "0": {
+        "ap": 0.015097767778225246,
+        "ap50": 0.01711469891057993,
+        "ap25": 0.020776553973229417
+      },
+      "1": {
+        "ap": 0.01550102258630126,
+        "ap50": 0.014429057290901603,
+        "ap25": 0.0058042701078278025
+      },
+      "2": {
+        "ap": 0.00060382058710029,
+        "ap50": 0.006140923711618118,
+        "ap25": 0.0016460325954559263
+      },
+      "3": {
+        "ap": 0.007277087247133274,
+        "ap50": 0.0049050385544869846,
+        "ap25": 0.003993580667342456
+      },
+      "4": {
+        "ap": -0.0021985048175139354,
+        "ap50": 0.01576761832515694,
+        "ap25": 0.0071589045246522875
+      }
+    },
+    "primary_class_agnostic_ap_improved": true,
+    "all_overall_reported_metrics_improved": true,
+    "fold_ap_positive_count": 4,
+    "fold_ap50_positive_count": 5,
+    "fold_ap25_positive_count": 5,
+    "result_summary_sha256": "c1e643293f920a9ac51ad0a07fb7c957772c37ddadaa89ce9e0e8f3f72a16ada",
+    "independent_audit_summary_sha256": "3055476455c21f298f48c2db92c7d8f696f4f59ec607d3c750cb1cff37aabfbc",
+    "independent_audit_error_count": 0,
+    "contract_valid": true
+  },
+  "interpretation": {
+    "first_innovation_point_objective_met_on_frozen_official100_oof": true,
+    "claim_boundary": "This establishes a positive class-agnostic AP result on the preregistered official100 OOF protocol. It is not yet evidence of external validation-set transfer.",
+    "fold_stability_note": "Overall AP/AP50/AP25 all improve. AP improves in four of five folds; fold 4 AP decreases slightly while its AP50 and AP25 improve.",
+    "next_unexecuted_step": "Only after a separately frozen full-model/ensemble inference adapter exists, preregister one external migration evaluation. NCS-validation60 and val312 were not read in this run."
+  },
+  "safety_contract": {
+    "gpu_used": false,
+    "dm_sms1_modified": false,
+    "frozen_champion_modified": false,
+    "native_geometry_modified": false,
+    "candidate_deleted": false,
+    "validation60_read": false,
+    "val312_read": false
+  },
+  "verification": {
+    "relevant_pytest_passed": 14,
+    "git_diff_check_passed": true
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "version": "ncs_fi1_stage_b_relation_rerank_provenance_v1",
+  "date": "2026-08-22",
+  "dataset": "NCS-train100",
+  "scope": "first-innovation stage B relation audit and no-deletion continuous rerank; train100 diagnostics only",
+  "scene_count": 100,
+  "geometry_count": 10169,
+  "component_count": 3620,
+  "relation_count": 46570,
+  "relation_type_counts": {
+    "exact_duplicate": 0,
+    "near_duplicate": 1128,
+    "containment": 8254,
+    "complementary": 4017,
+    "conflict": 31787,
+    "uncertain": 1384
+  },
+  "changed_candidate_counts": {
+    "pair_union": 779,
+    "track": 2904
+  },
+  "fold_changed_candidate_counts": {
+    "0": 848,
+    "1": 775,
+    "2": 762,
+    "3": 475,
+    "4": 823
+  },
+  "preregistration": "docs/NCS_FI1_STAGE_B_PREREGISTRATION_20260822.md",
+  "plan_root": "docs/diagnostics/ncs_fi1_stage_b_relation_rerank_plan_train100_20260822",
+  "audit_root": "docs/diagnostics/ncs_fi1_stage_b_relation_rerank_plan_train100_audit_20260822",
+  "audit_valid": true,
+  "audit_error_count": 0,
+  "advancement_authorized": true,
+  "hashes": {
+    "preregistration_sha256": "1aebe66d6f7dc12dbbbcadb6977878539dfffb5a010c82d8f843a4e33c8ecf6c",
+    "plan_summary_sha256": "1a234c5b25c35b6491bfc1e95c606317bd5ab9110cdb179c17965c222ab2f87f",
+    "components_sha256": "3eb7f095b2960148fc923e7354f0308035c4ca40eec6595472a51b8974bd05f3",
+    "relations_sha256": "ba6e9b7971d59b01540ecc514fc1855df6f4da095a0b02bdaa73a518d6dd04b1",
+    "plan_sha256": "db7edba8cba3ed9745ab1f726cd91b1de99c962f3d6f21d8612e0b60fcec2bb8",
+    "audit_sha256": "a83fad44dc51b2cb81b3122dd06d32d6c040181c84eb95d6c03295b12d50da49"
+  },
+  "candidate_deletion_count": 0,
+  "candidate_mutation": false,
+  "geometry_mutation": false,
+  "class_mutation": false,
+  "score_increase_count": 0,
+  "frozen_cache_write": false,
+  "ap_computed": false,
+  "validation60_read": false,
+  "val312_read": false
+}

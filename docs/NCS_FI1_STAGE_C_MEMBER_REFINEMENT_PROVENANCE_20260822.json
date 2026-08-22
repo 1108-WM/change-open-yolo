@@ -1,0 +1,80 @@
+{
+  "version": "ncs_fi1_stage_c_member_refinement_provenance_v1",
+  "date": "2026-08-22",
+  "dataset": "NCS-train100",
+  "scope": "first-innovation stage C append-only pair-union member refinement; train100 OOF diagnostics only",
+  "scene_count": 100,
+  "union_count": 1578,
+  "atom_count": 66323,
+  "role_atom_counts": {
+    "shared": 6704,
+    "track_only": 13972,
+    "native_only": 45647
+  },
+  "preregistration": "docs/NCS_FI1_STAGE_C_PREREGISTRATION_20260822.md",
+  "dataset_root": "docs/diagnostics/ncs_fi1_stage_c_member_dataset_train100_20260822",
+  "dataset_audit_root": "docs/diagnostics/ncs_fi1_stage_c_member_dataset_train100_audit_20260822",
+  "oof_root": "docs/diagnostics/ncs_fi1_stage_c_member_refinement_oof_train100_20260822",
+  "oof_audit_root": "docs/diagnostics/ncs_fi1_stage_c_member_refinement_oof_train100_audit_20260822",
+  "materialization_status_counts": {
+    "append_refined_union": 1500,
+    "fallback_original_union_min_points": 59,
+    "no_op_exact_original_union": 19
+  },
+  "quality_change_counts": {
+    "improved": 632,
+    "neutral": 682,
+    "harmed": 264
+  },
+  "mean_quality_delta": 0.08200253485424588,
+  "fold_mean_quality_delta": {
+    "0": 0.11206896551724138,
+    "1": 0.16141078838174278,
+    "2": 0.07914285714285714,
+    "3": 0.07862595419847329,
+    "4": -0.010344827586206895
+  },
+  "member_metrics": {
+    "mae": 0.29597805445550474,
+    "rmse": 0.38902894935542176,
+    "spearman": 0.48377820842040753,
+    "absolute_mean_bias": 0.00007521360473883298,
+    "expected_calibration_error": 0.01829848663780185
+  },
+  "refined_quality_metrics": {
+    "mae": 0.2206342347933229,
+    "rmse": 0.2924297017896769,
+    "spearman": 0.6726406660106785,
+    "absolute_mean_bias": 0.012831710435082244,
+    "expected_calibration_error": 0.043939878312895954
+  },
+  "dataset_audit_valid": true,
+  "dataset_audit_error_count": 0,
+  "oof_audit_valid": true,
+  "oof_audit_error_count": 0,
+  "advancement_authorized": false,
+  "failed_advancement_checks": {
+    "member_oof_mae_at_most_0.25": false,
+    "fold_4_quality_delta_at_least_minus_0.01": false
+  },
+  "stage_d_started": false,
+  "hashes": {
+    "preregistration_sha256": "429ad6a8d6fe11f0e4b4d27510996d9b54a60cecd3cd7686bfa8f63cacb8b70b",
+    "dataset_summary_sha256": "4dec19b0c7a35d61d7596d7a9ec13ca869e10ec8e9b98f78866368b4b343703d",
+    "atoms_sha256": "716122c9d68accf640934416cae473521b9a289e09e60830616e39357f4b4b45",
+    "unions_sha256": "b0088aa949659e0b1d8da04fa7eb674907df4af3a81f1b647ccf083125687fdd",
+    "dataset_audit_sha256": "b814f562f2c5ba6eee5e49a1a5e4450dda9e6ca3b08198301b3cec15572c1564",
+    "oof_summary_sha256": "1c980c08138fef8924e7db55f661c44504529a55a823cfa8c71d65b9873e6fe9",
+    "member_predictions_sha256": "44236529d4b5eb4a4ebd2b92bcd2b5f9f582ad4144d75bffbeb164ee1659eaae",
+    "refined_plan_sha256": "3c23fbbde0207ccd9efa0c028801d00ee50fb55075a1091971f88511c0601d6e",
+    "oof_audit_sha256": "0c8a8f50598f92d2bbbbee06728dca8b3cf22c9cc5cbe08229e3eb86880e4f1d"
+  },
+  "original_union_deleted_count": 0,
+  "shared_point_deleted_count": 0,
+  "outside_union_added_point_count": 0,
+  "parent_geometry_mutation": false,
+  "frozen_cache_write": false,
+  "ap_computed": false,
+  "validation60_read": false,
+  "val312_read": false
+}
