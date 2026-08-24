@@ -1,0 +1,138 @@
+{
+  "version": "dm_sms1_asset_provenance_v1",
+  "date": "2026-08-17",
+  "dataset": {
+    "train100_scene_list": "output/scannet200/scene_splits/ncs_independent_20260813/ncs_train100.txt",
+    "train100_scene_list_sha256": "ecebf3a682a02665a9770c2fa0ef83cc61c0c4ec2f185820aa44d667c8c4cd40",
+    "train100_folds": "output/scannet200/scene_splits/ncs_independent_20260813/ncs_train100_folds_v1.json",
+    "train100_folds_sha256": "e51f6aad4dcc20b758dc7cdde73ff9047c2a495da85ce3e1587a21290a2374e5",
+    "validation60_status": "frozen_not_read",
+    "val312_status": "final_only_not_read"
+  },
+  "models": {
+    "alpha_clip_source": "_external/AlphaCLIP/AlphaCLIP-main",
+    "alpha_clip_source_commit": "299482c81e154189524ff1fa3b4af28028b04fb5",
+    "alpha_clip_base": "pretrained/alpha_clip/checkpoints/ViT-L-14.pt",
+    "alpha_clip_base_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+    "alpha_clip_checkpoint": "pretrained/alpha_clip/checkpoints/clip_l14_grit20m_fultune_2xe.pth",
+    "alpha_clip_checkpoint_sha256": "42c621bb5bac89a511ab625a878f026c11de4de8cf7abf52db5dfd11862bdb8e",
+    "sam_source": "_external/segment-anything/segment-anything-main",
+    "sam_source_commit": "299482c81e154189524ff1fa3b4af28028b04fb5",
+    "sam_checkpoint": "pretrained/checkpoints/sam_vit_b_01ec64.pth",
+    "sam_checkpoint_sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912"
+  },
+  "frozen_first_innovation": {
+    "model_package": "output/train_candidate_champion_pair_union_combined_full_official100_v2_prior_corrected/model_package.pkl",
+    "model_package_sha256": "b5f91148eb9cf310bee25d1ee6237699965cd368b04a3bb3a3d143aa395652a8",
+    "status_on_ncs_train100": "materialized_and_independently_audited_before_stage_d"
+  },
+  "formal_stage_bc_assets": {
+    "root": "/media/jia/软件1/scannet_train_stream/dm_sms1_ncs_train100_20260817",
+    "pipeline_state": "assets_complete",
+    "pipeline_state_sha256": "cb17eb6b51bd94e6d4d9e42b6b14e5cd07064b0efdf25a7478da0ab0c6fe3c35",
+    "scene_count": 100,
+    "member_count": 67223,
+    "unique_geometry_count": 10169,
+    "unique_geometry_ledger_sha256": "2a007740bbb22cbdf72142d60c96c53627d2fa72e0f2c003db44123bee52e727",
+    "unique_geometry_summary_sha256": "14d3907572db2b4f8b8394b55bbbd6b28b4d104be6a1ea4c87f70537cd04e681",
+    "unique_geometry_audit_sha256": "63d1c7a2bd5f7d2dee8d817fc7ea4cea04ce2292fe878d73a87ded7267d0426c",
+    "selected_view_count": 188462,
+    "crop_scale_count": 565386,
+    "alpha_view_manifest_sha256": "2d4e5b1b1bc6899721ae1ca5df6a6e7b8f4565411d124a30d43fb06151a49099",
+    "alpha_view_manifest_summary_sha256": "1d30c9ccd81c1b9811a68b9f8a2c1e5ea837b7077c8ad0894cf5cf68270cf28e",
+    "alpha_view_manifest_audit_sha256": "9d604ae82311dcc981e17f439aa924a399d9d766147950bc14d51ca65f7ecc01",
+    "unique_geometry_audit_valid": true,
+    "alpha_view_manifest_audit_valid": true,
+    "ground_truth_read": false,
+    "ap_computed": false,
+    "embedding_computed": false,
+    "short_sequence_contract": "uniform max-30 configured views; use all configured views when fewer than 30"
+  },
+  "formal_stage_bc_code": {
+    "run_scannet200_train_scene_track_pipeline_sha256": "88e5a4726abead0253977cba938d8fa35f326c107be430523092b57da86d4932",
+    "run_dm_sms1_ncs_train100_assets_sha256": "c742096400d0eb37ffc4bb1c89aba51cffed060aa356e18b1639931d5e37a044"
+  },
+  "formal_stage_d": {
+    "stage": "D_gpu_alpha_sms",
+    "ledger_root": "/media/jia/软件1/scannet_train_stream/dm_sms1_ncs_train100_20260817/alpha_embedding_ledger",
+    "audit_root": "/media/jia/软件1/scannet_train_stream/dm_sms1_ncs_train100_20260817/alpha_embedding_audit",
+    "ledger_summary_sha256": "8d25e0dc36ad607b55c63c021959c36fe6c8cbeb42b4fe634da7fd317856b783",
+    "audit_summary_sha256": "178cf533381305950546bb584a86b240cb67d6e1b96a6824fea388b826e1c99e",
+    "build_code_sha256": "5c36eba731270765c52fdc8522d96029bd25b1604674a57b1170b4e805370a78",
+    "audit_code_sha256": "da37a7f04a241385e920e75606c1a45174db0838b05113f673f143b922ff7a24",
+    "run_script_sha256": "fb9904f27c837af17cafd988223a0d3856051a2f3e2903379189a15a40964aef",
+    "scene_count": 100,
+    "geometry_count": 10169,
+    "selected_view_count": 188462,
+    "scale_feature_count": 565386,
+    "alpha_valid_count": 10169,
+    "alpha_invalid_count": 0,
+    "sam_missing_view_count": 116,
+    "sms_deleted_count": 155,
+    "sms_kept_count": 10014,
+    "sms_population_complete_scene_count": 100,
+    "ground_truth_read": false,
+    "ap_computed": false,
+    "audit_valid": true,
+    "audit_error_counts": {
+      "manifest_join": 0,
+      "feature_hash": 0,
+      "feature_norm": 0,
+      "aggregation": 0,
+      "similarity": 0,
+      "sms_decision": 0,
+      "sms_population": 0,
+      "candidate_geometry_mutation": 0
+    }
+  },
+  "formal_stage_e": {
+    "stage": "E_train100_gt_evaluation",
+    "evaluation_root": "/media/jia/软件1/scannet_train_stream/dm_sms1_ncs_train100_20260817/stage_e_train100_evaluation",
+    "audit_root": "/media/jia/软件1/scannet_train_stream/dm_sms1_ncs_train100_20260817/stage_e_train100_audit",
+    "evaluation_summary_sha256": "4870a2cc9b9dc0a2cc007f79ce3c0c50fbff46fef1e87f471d611035c07f22d8",
+    "audit_summary_sha256": "0158f401cfb059f4778d62d895ce58e19c45ce6616f66c3396d26b96890837c3",
+    "evaluate_code_sha256": "2afd2902505f61bbe69e57e5535286baa8e21fc0b1e21b43e68651e7c89242b8",
+    "audit_code_sha256": "f12e24daa48ee5812f6882b75c71cdddf62925d07603366abd53aaca25c48fbb",
+    "scene_count": 100,
+    "evaluation_complete": true,
+    "audit_valid": true,
+    "advancement_authorized": false,
+    "validation60_ground_truth_read": false,
+    "val312_read": false,
+    "unit_alpha_vs_control_ap": 0.005905572980296425,
+    "unit_alpha_positive_fold_count": 2,
+    "unit_sms_vs_alpha_ap": -0.0005058143384935043,
+    "unit_sms_nonnegative_fold_count": 3,
+    "frozen_score_alpha_sms_vs_control_ap": 0.015356057743984741,
+    "class_agnostic_unit_sms_vs_alpha_ap": -0.0006859587591063754,
+    "max_deleted_predicted_class_fraction": 0.3161290322580645,
+    "max_deleted_scene_fraction": 0.13548387096774195,
+    "gate_failures": [
+      "unit_alpha_main_at_least_4_positive_folds",
+      "unit_sms_ap_positive",
+      "unit_sms_ap50_positive",
+      "unit_sms_at_least_4_nonnegative_folds",
+      "deleted_class_concentration_within_20_percent",
+      "deleted_scene_concentration_within_10_percent"
+    ],
+    "closure": "DM-SMS-1A closed on train100; no validation60 application and no parameter/prompt/scale/view/mask scan"
+  },
+  "native_inputs": {
+    "records_root": "/media/jia/软件1/scannet_train_stream/records_ncs",
+    "native_asset_audit_sha256": "2f2926636d9a292339f864b0dd1235c7833885fc470ed6186bc403ae3ecbe899",
+    "z1_candidate_bindings_sha256": "0f7a34055f786ad8fd66cf456ce68f78118fe5722359e295e15a4bc5e1af6332",
+    "z1_semantic_evidence_nodes_sha256": "fb1305d9588d899a0e5fb875078476d0b747743f11993b1e045ab0a197513222",
+    "z1_summary_sha256": "601fbc816cf86a8d98a49f60c5b978bd541b61a8f07cce5749e005e35794e796"
+  },
+  "prompt_contract": {
+    "config": "pretrained/config_scannet200.yaml",
+    "config_sha256": "a8fd4b96a832e2d42b2035011e094c6a656986d37126dca7a866da049874c21f",
+    "class_count": 198,
+    "template": "a blurry photo of {CLASS_NAME} in a room."
+  },
+  "legacy_code_audit": {
+    "evaluate_multiview_object_clip_correction_sha256": "a5a7e50f4170c94157302086f271e9a8bae287fc99f2b86b7942aac699de555f",
+    "export_multiview_object_clip_features_sha256": "ed24be4bd380ff79fb41fbe598b9f59a7cb87cb9c226ac36a7db05e134b7f4ff",
+    "result": "not_contract_compatible_do_not_use_for_formal_dm_sms1"
+  }
+}
