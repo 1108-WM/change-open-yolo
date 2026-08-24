@@ -6,7 +6,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
+from functools import lru_cache
 from pathlib import Path
+
+import numpy as np
 
 
 def _rows(path: Path) -> list[dict]:
@@ -19,6 +23,114 @@ def _sha256(path: Path) -> str:
 
 def _member_value(member: dict, primary: str, legacy: str) -> object:
     return member[primary] if primary in member else member.get(legacy)
+
+
+def _finite(value: object) -> bool:
+    try:
+        return math.isfinite(float(value))
+    except (TypeError, ValueError):
+        return False
+
+
+@lru_cache(maxsize=65536)
+def _camera_center(pose_path: str) -> np.ndarray:
+    matrix = np.asarray(np.loadtxt(pose_path), dtype=np.float64)
+    if matrix.shape != (4, 4) or not np.isfinite(matrix).all():
+        raise ValueError(f"invalid pose matrix: {pose_path}")
+    return matrix[:3, 3]
+
+
+def _view_paths(view: dict) -> tuple[str, str, str, str]:
+    rgb_path = Path(str(view["rgb_path"]))
+    scene_root = rgb_path.parent.parent
+    frame_id = str(view["frame_id"])
+    return (
+        str(rgb_path),
+        str(view.get("depth_path") or (scene_root / "depth" / f"{frame_id}.png")),
+        str(view.get("pose_path") or (scene_root / "poses" / f"{frame_id}.txt")),
+        str(view.get("intrinsics_path") or (scene_root / "intrinsics.txt")),
+    )
+
+
+def _select_complementary_views(
+    views: list[dict], target_count: int, max_input_views: int,
+) -> list[int]:
+    candidates = [
+        (index, view) for index, view in enumerate(views[:max_input_views])
+        if _finite(view.get("visible_ratio", 0.0))
+        and float(view.get("visible_ratio", 0.0)) > 0.0
+        and bool(view.get("sam_mask_valid", False))
+    ]
+    candidates.sort(key=lambda item: (
+        -float(item[1].get("visible_ratio", 0.0)),
+        int(item[1].get("frame_index", 0)),
+        str(item[1].get("frame_id", "")),
+    ))
+    if not candidates:
+        return []
+    selected = [candidates[0][0]]
+    centers = {
+        str(view["frame_id"]): _camera_center(_view_paths(view)[2])
+        for view in views[:max_input_views]
+    }
+    while len(selected) < min(target_count, len(candidates)):
+        scored = []
+        for index, view in candidates:
+            if index in selected:
+                continue
+            center = centers[str(view["frame_id"])]
+            min_distance = min(
+                float(np.linalg.norm(center - centers[str(views[prior]["frame_id"])]))
+                for prior in selected
+            )
+            scored.append((
+                min_distance, float(view.get("visible_ratio", 0.0)),
+                -int(view.get("frame_index", index)), str(view.get("frame_id", "")), index,
+            ))
+        scored.sort(key=lambda item: (-item[0], -item[1], -item[2], item[3]))
+        selected.append(scored[0][-1])
+    return selected
+
+
+def _expected_selected_views(alpha: dict, target_count: int, max_input_views: int) -> list[dict]:
+    views = list(alpha.get("views", []))
+    selected = []
+    for rank, index in enumerate(_select_complementary_views(views, target_count, max_input_views)):
+        view = views[index]
+        rgb_path, depth_path, pose_path, intrinsics_path = _view_paths(view)
+        selected.append({
+            "selection_rank": rank,
+            "source_view_index": index,
+            "frame_id": str(view["frame_id"]),
+            "frame_index": int(view["frame_index"]),
+            "visible_ratio": float(view["visible_ratio"]),
+            "visible_point_count": int(view["visible_point_count"]),
+            "rgb_path": rgb_path,
+            "depth_path": depth_path,
+            "pose_path": pose_path,
+            "intrinsics_path": intrinsics_path,
+            "sam_box_prompt_xyxy": list(view["sam_box_prompt_xyxy"]),
+            "sam_mask_sha256": str(view["sam_mask_sha256"]),
+            "sam_mask_valid": bool(view["sam_mask_valid"]),
+            "sam_mask_area": int(view["sam_mask_area"]),
+            "view_selection_reason": "highest_visible_then_farthest_camera_center",
+        })
+    return selected
+
+
+def _finite_hypotheses(frozen_class: int, alpha_class: object) -> list[dict]:
+    expected = []
+    if 0 <= frozen_class < 198:
+        expected.append({"class_index": frozen_class, "sources": ["frozen_control"]})
+    if alpha_class is not None and 0 <= int(alpha_class) < 198:
+        alpha = int(alpha_class)
+        if expected and alpha == frozen_class:
+            expected[0]["sources"].append("alpha_main")
+        else:
+            expected.append({"class_index": alpha, "sources": ["alpha_main"]})
+    if not expected:
+        raise ValueError("candidate has no valid frozen finite hypothesis")
+    return expected
 
 
 def audit(
@@ -35,6 +147,10 @@ def audit(
     rows = _rows(records_path)
     joint_rows = _rows(joint_path)
     errors: list[str] = []
+    target_views = int(summary.get("target_views", -1))
+    max_input_views = int(summary.get("max_input_views", -1))
+    if target_views != 3 or max_input_views != 20:
+        errors.append("semantic summary complementary-view parameters differ from frozen contract")
 
     joint_by_geometry: dict[tuple[str, str], dict] = {}
     expected_by_plan: dict[tuple[str, str], dict] = {}
@@ -49,6 +165,11 @@ def audit(
             errors.append(f"joint[{geometry_index}]: invalid member contract")
             continue
         for member in members:
+            if (
+                int(member.get("point_count", -1)) != int(geometry.get("point_count", -2))
+                or str(member.get("geometry_hash", identity[1])) != identity[1]
+            ):
+                errors.append(f"joint[{geometry_index}]: member geometry metadata differs")
             plan_key = str(member.get("plan_key") or member.get("fi1_d_v3_plan_key") or "")
             candidate_identity = (identity[0], plan_key)
             if not plan_key or candidate_identity in expected_by_plan:
@@ -58,6 +179,9 @@ def audit(
                 "plan_index": int(member.get("plan_index", -1)),
                 "geometry_hash": identity[1],
                 "visual_geometry_key": str(geometry.get("geometry_key", "")),
+                "point_count": int(geometry.get("point_count", -1)),
+                "canonical_candidate_id": int(member.get("candidate_id", -1)),
+                "member_count": int(geometry.get("member_count", -1)),
                 "geometry_locator_read_only": _member_value(
                     member, "geometry_locator_read_only", "geometry_locator"
                 ),
@@ -126,18 +250,34 @@ def audit(
                 "candidate_source": row.get("candidate_source") == expected["candidate_source"],
                 "append_only": row.get("append_only") == expected["append_only"],
                 "visual_geometry_key": row.get("visual_geometry_key") == expected["visual_geometry_key"],
+                "geometry_key": row.get("geometry_key") == row.get("plan_key"),
+                "point_count": row.get("point_count") == expected["point_count"],
+                "canonical_candidate_id": (
+                    row.get("canonical_candidate_id") == expected["canonical_candidate_id"]
+                ),
+                "visual_evidence_shared_member_count": (
+                    row.get("visual_evidence_shared_member_count") == expected["member_count"]
+                ),
             }
             for name, valid in checks.items():
                 if not valid:
                     errors.append(f"{prefix}: frozen {name} differs from joint ledger")
         if alpha is None:
             errors.append(f"{prefix}: visual evidence is absent from Alpha ledger")
-        elif (
-            row.get("alpha_class_index") != alpha.get("alpha_class_index")
-            or row.get("alpha_top_similarity") != alpha.get("alpha_top_similarity")
-            or row.get("sms_keep") != alpha.get("sms_keep")
-        ):
-            errors.append(f"{prefix}: Alpha/SMS evidence differs from Stage D")
+        else:
+            if (
+                row.get("alpha_class_index") != alpha.get("alpha_class_index")
+                or row.get("alpha_top_similarity") != alpha.get("alpha_top_similarity")
+                or row.get("sms_keep") != alpha.get("sms_keep")
+            ):
+                errors.append(f"{prefix}: Alpha/SMS evidence differs from Stage D")
+            try:
+                expected_views = _expected_selected_views(alpha, target_views, max_input_views)
+            except (KeyError, TypeError, ValueError, OSError) as error:
+                errors.append(f"{prefix}: complementary-view reconstruction failed: {error}")
+            else:
+                if row.get("selected_views") != expected_views:
+                    errors.append(f"{prefix}: selected views differ from frozen complementary selection")
         if row.get("fi1_d_v3_plan_key") != row.get("plan_key") or not row.get("plan_key"):
             errors.append(f"{prefix}: invalid plan_key identity")
         if row.get("ground_truth_read") is not False or row.get("ap_computed") is not False:
@@ -146,7 +286,6 @@ def audit(
             row.get("candidate_source") != row.get("canonical_candidate_source")
             or row.get("frozen_class_index") != row.get("canonical_frozen_class_index")
             or row.get("challenger_score") != row.get("canonical_frozen_score")
-            or row.get("candidate_source") != row.get("canonical_candidate_source")
             or row.get("append_only") != row.get("fi1_d_v3_append_only")
             or not isinstance(row.get("geometry_locator_read_only"), dict)
             or row.get("candidate_retained") is not True
@@ -160,12 +299,16 @@ def audit(
             if row.get(key) is not False:
                 errors.append(f"{prefix}: {key} is true")
         candidates = row.get("finite_class_hypotheses", [])
-        if not candidates or len(candidates) > 2:
-            errors.append(f"{prefix}: invalid finite class hypothesis count")
-        for candidate in candidates:
-            value = candidate.get("class_index")
-            if not isinstance(value, int) or not 0 <= value < 198:
-                errors.append(f"{prefix}: invalid class index")
+        if expected is not None and alpha is not None:
+            try:
+                expected_candidates = _finite_hypotheses(
+                    expected["frozen_class_index"], alpha.get("alpha_class_index")
+                )
+            except (TypeError, ValueError) as error:
+                errors.append(f"{prefix}: finite hypothesis reconstruction failed: {error}")
+            else:
+                if candidates != expected_candidates:
+                    errors.append(f"{prefix}: finite hypotheses differ from frozen class union")
         views = row.get("selected_views", [])
         if len(views) > 3 or len({view.get("frame_id") for view in views}) != len(views):
             errors.append(f"{prefix}: selected views are not unique or exceed three")
@@ -204,7 +347,7 @@ def audit(
     if summary.get("ground_truth_read") is not False or summary.get("ap_computed") is not False:
         errors.append("summary GT/AP provenance is not false")
     result = {
-        "version": "dm_sms1_semantic_arbitration_manifest_audit_v2",
+        "version": "dm_sms1_semantic_arbitration_manifest_audit_v3",
         "manifest_root": str(root),
         "candidate_count": len(rows),
         "unique_geometry_count": unique_geometries,

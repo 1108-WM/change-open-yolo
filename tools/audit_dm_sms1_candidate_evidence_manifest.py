@@ -8,6 +8,23 @@ import hashlib
 import json
 from pathlib import Path
 
+import yaml
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+FROZEN_EVIDENCE_PROMPT_PREFIX = (
+    "你已经得到同一个三维物体的无类别属性证据。现在只比较下面给出的有限候选，"
+    "不要提出候选列表之外的新类别。请分别记录每个候选的支持证据、反对证据、"
+    "证据来自哪些视角，以及证据把握度。不要修改几何、候选成员或排序分数。候选顺序为："
+)
+FROZEN_DECISION_RULE = {
+    "only_alternative_supported_in_both_orders_may_be_considered": True,
+    "otherwise_keep_frozen_control_class": True,
+    "all_geometry_nodes_decided_simultaneously": True,
+    "no_proposal_deletion": True,
+    "no_score_change": True,
+}
+
 
 def _rows(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
@@ -23,6 +40,7 @@ def audit(
     semantic_root: Path,
     expected_candidate_count: int = 39304,
     expected_unique_geometry_count: int = 39250,
+    config_path: Path = PROJECT_ROOT / "pretrained/config_scannet200.yaml",
 ) -> dict:
     records_path = root / "candidate_evidence_manifest.jsonl"
     attribute_path = attribute_root / "attribute_extraction_manifest.jsonl"
@@ -34,6 +52,13 @@ def audit(
     attribute_summary = json.loads((attribute_root / "summary.json").read_text())
     semantic_summary = json.loads((semantic_root / "summary.json").read_text())
     errors: list[str] = []
+    config_sha256 = _sha256(config_path)
+    config = yaml.safe_load(config_path.read_text())
+    class_names = [str(value) for value in config.get("network2d", {}).get("text_prompts", [])]
+    if len(class_names) != 198:
+        errors.append("frozen ScanNet200 class mapping does not contain 198 classes")
+    if summary.get("input_provenance", {}).get("config_sha256") != config_sha256:
+        errors.append("candidate manifest was not built from the audited frozen config")
 
     attribute_ids = [
         (str(row.get("scene_name", "")), str(row.get("plan_key", ""))) for row in attributes
@@ -94,6 +119,10 @@ def audit(
             expected_hypotheses = [
                 {
                     "class_index": int(candidate["class_index"]),
+                    "class_name": (
+                        class_names[int(candidate["class_index"])]
+                        if 0 <= int(candidate["class_index"]) < len(class_names) else None
+                    ),
                     "sources": list(candidate.get("sources", [])),
                 }
                 for candidate in semantic.get("finite_class_hypotheses", [])
@@ -101,6 +130,7 @@ def audit(
             observed_hypotheses = [
                 {
                     "class_index": int(candidate.get("class_index", -1)),
+                    "class_name": candidate.get("class_name"),
                     "sources": list(candidate.get("sources", [])),
                 }
                 for candidate in row.get("candidate_hypotheses", [])
@@ -114,25 +144,35 @@ def audit(
         candidates = row.get("candidate_hypotheses", [])
         if len(candidates) not in (1, 2):
             errors.append(f"{prefix}: candidate count is not one or two")
+        expected_names_ab = [candidate.get("class_name") for candidate in candidates]
+        if any(not isinstance(name, str) for name in expected_names_ab):
+            errors.append(f"{prefix}: candidate class name is not a string")
+        prompt_names_ab = [str(name) for name in expected_names_ab]
+        expected_names_ba = list(reversed(expected_names_ab))
+        prompt_names_ba = list(reversed(prompt_names_ab))
+        if row.get("candidate_order_ab") != expected_names_ab:
+            errors.append(f"{prefix}: AB candidate order differs from class mapping")
+        if row.get("candidate_order_ba") != expected_names_ba:
+            errors.append(f"{prefix}: BA candidate order is not the exact reverse")
+        if row.get("evidence_prompt_ab") != FROZEN_EVIDENCE_PROMPT_PREFIX + "、".join(prompt_names_ab):
+            errors.append(f"{prefix}: complete AB evidence prompt differs")
+        if row.get("evidence_prompt_ba") != FROZEN_EVIDENCE_PROMPT_PREFIX + "、".join(prompt_names_ba):
+            errors.append(f"{prefix}: complete BA evidence prompt differs")
         if len(candidates) == 2:
             pairs += 1
-            if row.get("candidate_order_ba") != list(reversed(row.get("candidate_order_ab", []))):
-                errors.append(f"{prefix}: swapped order is not exact reverse")
         else:
             singles += 1
+        if row.get("attribute_evidence_required") is not True:
+            errors.append(f"{prefix}: attribute evidence execution switch differs")
+        if row.get("swap_order_required") is not (len(candidates) == 2):
+            errors.append(f"{prefix}: swap-order execution switch differs")
         if row.get("class_decision_made") is not False or row.get("selected_class_index") is not None:
             errors.append(f"{prefix}: class decision already made")
         for key in ("candidate_mutation", "geometry_mutation", "score_mutation"):
             if row.get(key) is not False:
                 errors.append(f"{prefix}: {key} is true")
-        rule = row.get("decision_rule", {})
-        for key in (
-            "only_alternative_supported_in_both_orders_may_be_considered",
-            "otherwise_keep_frozen_control_class", "all_geometry_nodes_decided_simultaneously",
-            "no_proposal_deletion", "no_score_change",
-        ):
-            if rule.get(key) is not True:
-                errors.append(f"{prefix}: decision rule {key} is not true")
+        if row.get("decision_rule") != FROZEN_DECISION_RULE:
+            errors.append(f"{prefix}: frozen decision rule or execution flags differ")
         if row.get("ground_truth_read") is not False or row.get("ap_computed") is not False:
             errors.append(f"{prefix}: GT/AP provenance is not false")
 
@@ -166,7 +206,7 @@ def audit(
     if summary.get("class_decision_made") is not False or summary.get("selected_class_count") != 0:
         errors.append("summary class decision contract mismatch")
     result = {
-        "version": "dm_sms1_candidate_evidence_manifest_audit_v2",
+        "version": "dm_sms1_candidate_evidence_manifest_audit_v3",
         "candidate_count": len(rows),
         "unique_geometry_count": unique_geometries,
         "candidate_deletion_count": len(set(semantic_ids) - set(identities)),
@@ -184,6 +224,7 @@ def audit(
             "semantic_manifest_sha256": _sha256(semantic_path),
             "attribute_summary_sha256": _sha256(attribute_root / "summary.json"),
             "semantic_summary_sha256": _sha256(semantic_root / "summary.json"),
+            "config_sha256": config_sha256,
         },
     }
     (root / "audit_summary.json").write_text(
@@ -199,10 +240,14 @@ def main() -> None:
     parser.add_argument("--semantic-root", type=Path, required=True)
     parser.add_argument("--expected-candidate-count", type=int, default=39304)
     parser.add_argument("--expected-unique-geometry-count", type=int, default=39250)
+    parser.add_argument(
+        "--config-path", type=Path,
+        default=PROJECT_ROOT / "pretrained/config_scannet200.yaml",
+    )
     args = parser.parse_args()
     result = audit(
         args.manifest_root, args.attribute_root, args.semantic_root,
-        args.expected_candidate_count, args.expected_unique_geometry_count,
+        args.expected_candidate_count, args.expected_unique_geometry_count, args.config_path,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     if not result["audit_valid"]:

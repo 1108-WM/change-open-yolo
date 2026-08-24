@@ -9,9 +9,23 @@ import json
 from pathlib import Path
 
 
-REQUIRED_PROMPT_PARTS = (
-    "不要猜测类别", "外观颜色和纹理", "材质", "形状和结构", "功能线索", "空间关系",
+FROZEN_ATTRIBUTE_PROMPT = (
+    "你将看到同一个三维候选物体的三张互补视角，以及对应的深度、位姿和候选掩码证据。"
+    "不要猜测类别，不要输出任何类别名称，也不要把它和候选类别列表联系起来。"
+    "只根据可观察证据记录：外观颜色和纹理、材质、形状和结构、可能的功能线索、"
+    "与周围环境的空间关系。每项都要给出观察内容、支持它的视角编号、0到1的证据把握度、"
+    "以及看不清或相互矛盾的地方；无法判断时填写 unknown。"
 )
+
+FROZEN_RESPONSE_SCHEMA = {
+    "appearance": {"observation": "string", "supporting_view_ranks": ["integer"], "confidence": "number_0_to_1", "counterevidence": "string"},
+    "material": {"observation": "string", "supporting_view_ranks": ["integer"], "confidence": "number_0_to_1", "counterevidence": "string"},
+    "shape_structure": {"observation": "string", "supporting_view_ranks": ["integer"], "confidence": "number_0_to_1", "counterevidence": "string"},
+    "function_cues": {"observation": "string", "supporting_view_ranks": ["integer"], "confidence": "number_0_to_1", "counterevidence": "string"},
+    "spatial_context": {"observation": "string", "supporting_view_ranks": ["integer"], "confidence": "number_0_to_1", "counterevidence": "string"},
+    "cross_view_consistency": {"observation": "string", "confidence": "number_0_to_1", "counterevidence": "string"},
+    "missing_or_unclear_evidence": ["string"],
+}
 
 
 def _rows(path: Path) -> list[dict]:
@@ -20,6 +34,18 @@ def _rows(path: Path) -> list[dict]:
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _expected_task_id(semantic: dict) -> str:
+    payload = {
+        "scene_name": semantic["scene_name"],
+        "plan_key": semantic["plan_key"],
+        "geometry_hash": semantic["geometry_hash"],
+        "frames": [view["frame_id"] for view in semantic.get("selected_views", [])],
+        "mask_hashes": [view["sam_mask_sha256"] for view in semantic.get("selected_views", [])],
+    }
+    digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
+    return f"{semantic['scene_name']}::{semantic['plan_key']}::{digest}"
 
 
 def audit(
@@ -76,6 +102,7 @@ def audit(
                 for view in semantic.get("selected_views", [])
             ]
             checks = {
+                "task_id": row.get("task_id") == _expected_task_id(semantic),
                 "plan_index": row.get("plan_index") == semantic.get("plan_index"),
                 "geometry_key": row.get("geometry_key") == semantic.get("geometry_key"),
                 "geometry_hash": row.get("geometry_hash") == semantic.get("geometry_hash"),
@@ -105,8 +132,10 @@ def audit(
                 errors.append(f"{prefix}: {key} is true")
         if row.get("ground_truth_read") is not False or row.get("ap_computed") is not False:
             errors.append(f"{prefix}: GT/AP provenance is not false")
-        if any(part not in str(row.get("attribute_prompt", "")) for part in REQUIRED_PROMPT_PARTS):
-            errors.append(f"{prefix}: fixed category-blind prompt is incomplete")
+        if row.get("attribute_prompt") != FROZEN_ATTRIBUTE_PROMPT:
+            errors.append(f"{prefix}: fixed category-blind prompt differs")
+        if row.get("response_schema") != FROZEN_RESPONSE_SCHEMA:
+            errors.append(f"{prefix}: fixed response schema differs")
         forbidden_keys = {
             "finite_class_hypotheses", "canonical_frozen_class_index", "alpha_class_index",
             "class_names", "candidate_labels",
@@ -157,7 +186,7 @@ def audit(
     ):
         errors.append("summary contract mismatch")
     result = {
-        "version": "dm_sms1_attribute_extraction_manifest_audit_v2",
+        "version": "dm_sms1_attribute_extraction_manifest_audit_v3",
         "candidate_count": len(records),
         "unique_geometry_count": unique_geometries,
         "candidate_deletion_count": len(set(semantic_ids) - set(candidate_ids)),

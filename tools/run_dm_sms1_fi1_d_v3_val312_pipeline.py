@@ -153,6 +153,7 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
             [py, _tool("audit_dm_sms1_candidate_evidence_manifest.py"), p(out["candidate_manifest"]),
              "--attribute-root", p(out["attribute_manifest"]),
              "--semantic-root", p(out["semantic_manifest"]),
+             "--config-path", p(cfg["config_path"]),
              "--expected-candidate-count", "39304", "--expected-unique-geometry-count", "39250"],
         ],
         "smoke": [
