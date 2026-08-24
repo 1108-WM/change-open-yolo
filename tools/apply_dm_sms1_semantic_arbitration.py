@@ -89,8 +89,14 @@ def decide_row(manifest_row: dict, evidence_row: dict) -> dict:
     changed = selected != incumbent
     return {
         "scene_name": manifest_row["scene_name"],
+        "plan_key": manifest_row["plan_key"],
+        "fi1_d_v3_plan_key": manifest_row["plan_key"],
         "geometry_key": manifest_row["geometry_key"],
+        "visual_geometry_key": manifest_row["visual_geometry_key"],
         "geometry_hash": manifest_row["geometry_hash"],
+        "candidate_source": manifest_row["candidate_source"],
+        "challenger_score": manifest_row["challenger_score"],
+        "append_only": manifest_row["append_only"],
         "canonical_frozen_class_index": incumbent,
         "arbitrated_class_index": int(selected),
         "class_changed": bool(changed),
@@ -123,7 +129,9 @@ def run(manifest_path: Path, evidence_path: Path, output_root: Path) -> dict:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
     summary = {
         "version": "dm_sms1_semantic_arbitration_decisions_v1",
+        "candidate_count": len(decisions),
         "geometry_count": len(decisions),
+        "unique_geometry_count": len({(row["scene_name"], row["geometry_hash"]) for row in decisions}),
         "class_change_count": sum(row["class_changed"] for row in decisions),
         "class_decision_made": True,
         "candidate_mutation": False,

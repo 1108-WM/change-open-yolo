@@ -7,7 +7,10 @@ from tools.build_dm_sms1_attribute_extraction_manifest import (
 def test_attribute_row_hides_candidate_labels_and_keeps_only_input_evidence():
     row = {
         "scene_name": "scene0001_00",
-        "geometry_key": "scene0001_00:geometry:x",
+        "plan_index": 0,
+        "plan_key": "plan-0",
+        "geometry_key": "plan-0",
+        "visual_geometry_key": "scene0001_00:geometry:x",
         "geometry_hash": "x",
         "point_count": 10,
         "finite_class_hypotheses": [{"class_index": 1}, {"class_index": 2}],

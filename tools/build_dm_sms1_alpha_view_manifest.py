@@ -199,6 +199,8 @@ def _scene_rows(
             "canonical_frozen_class_index": int(row["canonical_frozen_class_index"]),
             "canonical_frozen_class_valid": bool(row["canonical_frozen_class_valid"]),
             "canonical_frozen_score": float(row["canonical_frozen_score"]),
+            "member_count": int(row.get("member_count", 1)),
+            "members": [dict(member) for member in row.get("members", [])],
             "eligible_visible_view_count": int(np.count_nonzero(counts > 0)),
             "selected_view_count": len(views),
             "feature_missing_if_no_valid_sam_or_incomplete_scales": True,
@@ -211,6 +213,7 @@ def _scene_rows(
     return output, {
         "scene_name": scene,
         "geometry_count": len(output),
+        "member_count": sum(int(row.get("member_count", 1)) for row in output),
         "selected_view_count": view_count,
         "crop_scale_count": scale_count,
         "no_visible_view_geometry_count": no_view_count,
@@ -273,6 +276,7 @@ def run(args: argparse.Namespace) -> dict:
             "version": "dm_sms1_alpha_view_manifest_v1",
             "scene_count": len(scenes),
             "geometry_count": len(all_rows),
+            "member_count": sum(int(row.get("member_count", 1)) for row in all_rows),
             "selected_view_count": selected_view_count,
             "crop_scale_count": scale_count,
             "no_visible_view_geometry_count": sum(
@@ -289,6 +293,8 @@ def run(args: argparse.Namespace) -> dict:
             "aggregation_contract": "L2Norm(sum_v sum_l visible_ratio[v] * feature[v,l])",
             "manifest_valid": (
                 len(all_rows) == int(input_summary["unique_geometry_count"])
+                and sum(int(row.get("member_count", 1)) for row in all_rows)
+                == int(input_summary["member_count"])
                 and len(identities) == len(set(identities))
                 and scale_count == 3 * selected_view_count
             ),

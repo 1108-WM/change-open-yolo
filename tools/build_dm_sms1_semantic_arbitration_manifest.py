@@ -163,7 +163,7 @@ def _view_paths(view: Mapping[str, object]) -> tuple[str, str, str, str]:
     return str(rgb_path), depth, pose, intrinsics
 
 
-def build_row(row: Mapping[str, object], target_count: int, max_input_views: int) -> dict:
+def build_rows(row: Mapping[str, object], target_count: int, max_input_views: int) -> list[dict]:
     views = list(row.get("views", []))
     if not views:
         raise ValueError(f"{row.get('geometry_key')}: no Stage D views")
@@ -197,30 +197,56 @@ def build_row(row: Mapping[str, object], target_count: int, max_input_views: int
             "sam_mask_area": int(view["sam_mask_area"]),
             "view_selection_reason": "highest_visible_then_farthest_camera_center",
         })
-    canonical = int(row["canonical_frozen_class_index"])
     alpha = int(row["alpha_class_index"]) if row.get("alpha_class_index") is not None else None
-    return {
-        "scene_name": str(row["scene_name"]),
-        "geometry_key": str(row["geometry_key"]),
-        "geometry_hash": str(row["geometry_hash"]),
-        "point_count": int(row["point_count"]),
-        "canonical_candidate_source": str(row["canonical_candidate_source"]),
-        "canonical_candidate_id": int(row["canonical_candidate_id"]),
-        "canonical_frozen_class_index": canonical,
-        "canonical_frozen_score": float(row["canonical_frozen_score"]),
-        "alpha_class_index": alpha,
-        "alpha_top_similarity": float(row["alpha_top_similarity"]),
-        "sms_keep": bool(row["sms_keep"]),
-        "finite_class_hypotheses": finite_candidate_classes(canonical, alpha),
-        "selected_views": selected,
-        "candidate_mutation": False,
-        "geometry_mutation": False,
-        "score_mutation": False,
-        "class_decision_made": False,
-        "ground_truth_usage": "none",
-        "ground_truth_read": False,
-        "ap_computed": False,
-    }
+    members = list(row.get("members", []))
+    if not members or int(row.get("member_count", -1)) != len(members):
+        raise ValueError(f"{row.get('geometry_key')}: invalid visual-geometry member contract")
+    built = []
+    for member in members:
+        plan_key = str(member.get("plan_key") or member.get("fi1_d_v3_plan_key") or "")
+        if not plan_key:
+            raise ValueError(f"{row.get('geometry_key')}: member has empty plan_key")
+        canonical = int(member["frozen_class_index"])
+        built.append({
+            "scene_name": str(row["scene_name"]),
+            "plan_index": int(member["plan_index"]),
+            "plan_key": plan_key,
+            "fi1_d_v3_plan_key": plan_key,
+            "geometry_key": plan_key,
+            "visual_geometry_key": str(row["geometry_key"]),
+            "geometry_hash": str(row["geometry_hash"]),
+            "point_count": int(row["point_count"]),
+            "geometry_locator_read_only": dict(member["geometry_locator_read_only"]),
+            "candidate_source": str(member["candidate_source"]),
+            "canonical_candidate_source": str(member["candidate_source"]),
+            "canonical_candidate_id": int(member["candidate_id"]),
+            "frozen_class_index": canonical,
+            "canonical_frozen_class_index": canonical,
+            "challenger_score": float(member["challenger_score"]),
+            "canonical_frozen_score": float(member["challenger_score"]),
+            "append_only": bool(member["append_only"]),
+            "fi1_d_v3_append_only": bool(member["append_only"]),
+            "alpha_class_index": alpha,
+            "alpha_top_similarity": (
+                float(row["alpha_top_similarity"])
+                if row.get("alpha_top_similarity") is not None else None
+            ),
+            "sms_keep": bool(row["sms_keep"]),
+            "finite_class_hypotheses": finite_candidate_classes(canonical, alpha),
+            "selected_views": selected,
+            "visual_evidence_shared_member_count": len(members),
+            "candidate_retained": True,
+            "candidate_deletion": False,
+            "candidate_mutation": False,
+            "geometry_mutation": False,
+            "class_mutation": False,
+            "score_mutation": False,
+            "class_decision_made": False,
+            "ground_truth_usage": "none",
+            "ground_truth_read": False,
+            "ap_computed": False,
+        })
+    return built
 
 
 def run(args: argparse.Namespace) -> dict:
@@ -237,17 +263,26 @@ def run(args: argparse.Namespace) -> dict:
     if args.output_root.exists() and any(args.output_root.iterdir()):
         raise FileExistsError(f"output root is non-empty: {args.output_root}")
     args.output_root.mkdir(parents=True, exist_ok=False)
-    built = [build_row(row, args.target_views, args.max_input_views) for row in rows]
-    identities = [(row["scene_name"], row["geometry_hash"]) for row in built]
+    built = [
+        candidate
+        for row in rows
+        for candidate in build_rows(row, args.target_views, args.max_input_views)
+    ]
+    built.sort(key=lambda row: int(row["plan_index"]))
+    identities = [(row["scene_name"], row["plan_key"]) for row in built]
     if len(identities) != len(set(identities)):
-        raise ValueError("duplicate geometry identity")
+        raise ValueError("duplicate FI1-D-v3 candidate identity")
+    visual_identities = {(row["scene_name"], row["geometry_hash"]) for row in built}
     with (args.output_root / "semantic_arbitration_manifest.jsonl").open("w") as handle:
         for row in built:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
     summary = {
         "version": "dm_sms1_semantic_arbitration_manifest_v1",
         "scene_count": len(scenes),
+        "candidate_count": len(built),
         "geometry_count": len(built),
+        "unique_geometry_count": len(visual_identities),
+        "candidate_deletion_count": 0,
         "selected_view_count": sum(len(row["selected_views"]) for row in built),
         "view_target_shortfall_geometry_count": sum(
             len(row["selected_views"]) < args.target_views for row in built
@@ -257,7 +292,10 @@ def run(args: argparse.Namespace) -> dict:
         "max_input_views": args.max_input_views,
         "view_selection_contract": "first highest visible ratio; then farthest camera centre, visible ratio and frame tie-breaks",
         "class_hypothesis_contract": "frozen control plus Alpha-CLIP top class; no class selected",
-        "geometry_contract": "exact Stage D geometry, mask and membership frozen",
+        "candidate_identity_contract": "(scene_name, plan_key)",
+        "visual_geometry_identity_contract": "(scene_name, geometry_hash)",
+        "visual_evidence_contract": "computed once per unique geometry and expanded to every member plan_key",
+        "geometry_contract": "exact Stage D geometry and mask shared read-only; all candidate members retained",
         "mutation_contract": {
             "candidate_mutation": False,
             "geometry_mutation": False,

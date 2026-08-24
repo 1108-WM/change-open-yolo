@@ -59,6 +59,15 @@ def audit(
         if candidate is None or attribute is None:
             errors.append(f"{prefix}: task is missing from an input manifest")
             continue
+        if (
+            record.get("scene_name") != candidate.get("scene_name")
+            or record.get("plan_key") != candidate.get("plan_key")
+            or record.get("geometry_hash") != candidate.get("geometry_hash")
+            or attribute.get("scene_name") != candidate.get("scene_name")
+            or attribute.get("plan_key") != candidate.get("plan_key")
+            or attribute.get("geometry_hash") != candidate.get("geometry_hash")
+        ):
+            errors.append(f"{prefix}: plan/geometry identity mismatch")
         if record.get("ground_truth_read") is not False or record.get("ap_computed") is not False:
             errors.append(f"{prefix}: no-GT/no-AP provenance is invalid")
         if not isinstance(record.get("valid"), bool):

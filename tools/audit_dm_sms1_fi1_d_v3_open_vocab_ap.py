@@ -30,6 +30,7 @@ from evaluate.scannet200.scannet_constants import (
 VERSION = "dm_sms1_fi1_d_v3_open_vocab_ap_audit_v1"
 AUTHORIZATION_ID = "DM-SMS-1-FI1-D-v3-val312-one-shot-20260824"
 METRICS = ("ap", "ap50", "ap25", "head_ap", "common_ap", "tail_ap")
+DUPLICATE_SAFE_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md"
 
 
 def _resolve(path: Path) -> Path:
@@ -82,9 +83,11 @@ def _csv_metrics(path: Path) -> tuple[dict[str, float], int]:
 
 
 def run(args: argparse.Namespace) -> dict:
+    if getattr(args, "duplicate_safe_preregistration_path", None) is None:
+        args.duplicate_safe_preregistration_path = DUPLICATE_SAFE_PREREGISTRATION
     for name in (
         "result_root", "scene_list", "cache_root", "cache_audit_root",
-        "decision_root", "preregistration_path", "output_root",
+        "decision_root", "preregistration_path", "duplicate_safe_preregistration_path", "output_root",
     ):
         setattr(args, name, _resolve(getattr(args, name)))
     summary_path = args.result_root / "summary.json"
@@ -159,6 +162,7 @@ def run(args: argparse.Namespace) -> dict:
         "decision_summary": args.decision_root / "summary.json",
         "decision_audit": args.decision_root / "audit_summary.json",
         "preregistration": args.preregistration_path,
+        "duplicate_safe_preregistration": args.duplicate_safe_preregistration_path,
     }
     recorded = summary.get("input_provenance", {})
     for name, path in external.items():
@@ -171,8 +175,9 @@ def run(args: argparse.Namespace) -> dict:
     if (
         int(summary.get("scene_count", -1)) != args.expected_scene_count
         or int(cache_summary.get("scene_count", -1)) != args.expected_scene_count
-        or int(summary.get("geometry_count", -1)) != int(cache_summary.get("geometry_count", -2))
-        or int(summary.get("geometry_count", -1)) != int(decision_summary.get("geometry_count", -3))
+        or int(summary.get("candidate_count", -1)) != int(cache_summary.get("candidate_count", -2))
+        or int(summary.get("candidate_count", -1)) != int(decision_summary.get("candidate_count", -3))
+        or int(summary.get("unique_geometry_count", -1)) != int(cache_summary.get("unique_geometry_count", -2))
         or int(summary.get("class_change_count", -1)) != int(decision_summary.get("class_change_count", -2))
     ):
         errors["count_contract"] += 1
@@ -198,7 +203,9 @@ def run(args: argparse.Namespace) -> dict:
         "delta": {name: challenge[name] - control[name] for name in METRICS},
         "csv_class_count": control_class_count,
         "scene_count": int(summary.get("scene_count", -1)),
-        "geometry_count": int(summary.get("geometry_count", -1)),
+        "candidate_count": int(summary.get("candidate_count", -1)),
+        "geometry_count": int(summary.get("candidate_count", -1)),
+        "unique_geometry_count": int(summary.get("unique_geometry_count", -1)),
         "class_change_count": int(summary.get("class_change_count", -1)),
         "ap_invocation_count": 1,
         "official_evaluator_call_count": 2,
@@ -231,6 +238,10 @@ def main() -> None:
     parser.add_argument("--cache-audit-root", type=Path, required=True)
     parser.add_argument("--decision-root", type=Path, required=True)
     parser.add_argument("--preregistration-path", type=Path, required=True)
+    parser.add_argument(
+        "--duplicate-safe-preregistration-path", type=Path,
+        default=DUPLICATE_SAFE_PREREGISTRATION,
+    )
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--expected-scene-count", type=int, default=312)
     result = run(parser.parse_args())

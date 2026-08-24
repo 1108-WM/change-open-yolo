@@ -102,12 +102,16 @@ def run(args: argparse.Namespace) -> dict:
         raise ValueError("FI1-D-v3 complete plan scene coverage differs")
 
     resolver = GeometryResolver()
-    rows = []
+    grouped: dict[tuple[str, str], dict] = {}
     counts = Counter()
     seen_original = set()
-    identities = set()
-    for plan_row in plan:
+    seen_plan_keys = set()
+    for plan_index, plan_row in enumerate(plan):
         scene = str(plan_row["scene_name"])
+        plan_key = str(plan_row.get("plan_key", ""))
+        if not plan_key or plan_key in seen_plan_keys:
+            raise ValueError("FI1-D-v3 complete plan has empty or duplicate plan_key")
+        seen_plan_keys.add(plan_key)
         source = str(plan_row["candidate_source"])
         if source not in SOURCES:
             raise ValueError(f"unsupported FI1-D-v3 candidate source: {source}")
@@ -135,9 +139,6 @@ def run(args: argparse.Namespace) -> dict:
         if str(plan_row.get("geometry_digest", "")) != expected_plan_digest:
             raise ValueError(f"{plan_row.get('plan_key')}: FI1-D-v3 geometry digest differs")
         identity = (scene, digest)
-        if identity in identities:
-            raise ValueError(f"exact geometry is duplicated in FI1-D-v3 challenge: {identity}")
-        identities.add(identity)
         frozen_class = int(plan_row["frozen_class_index"])
         frozen_valid = _valid_class(frozen_class, args.class_count)
         score = float(plan_row["challenger_score"])
@@ -174,54 +175,77 @@ def run(args: argparse.Namespace) -> dict:
             append_only = False
 
         member = {
+            "plan_index": plan_index,
+            "plan_key": plan_key,
             "candidate_source": source,
             "candidate_id": candidate_id,
             "frozen_class_index": frozen_class,
             "frozen_class_valid": frozen_valid,
+            "challenger_score": score,
             "frozen_score": score,
             "geometry_hash": digest,
             "point_count": len(points),
+            "geometry_locator_read_only": locator,
             "geometry_locator": locator,
-            "fi1_d_v3_plan_key": str(plan_row["plan_key"]),
+            "append_only": append_only,
+            "fi1_d_v3_plan_key": plan_key,
             "fi1_d_v3_append_only": append_only,
-        }
-        row = {
-            "scene_name": scene,
-            "geometry_key": str(plan_row["plan_key"]),
-            "geometry_hash": digest,
-            "point_count": len(points),
-            "member_count": 1,
-            "member_sources": [source],
-            "members": [member],
-            "canonical_member_index": 0,
-            "canonical_candidate_source": source,
-            "canonical_candidate_id": candidate_id,
-            "canonical_frozen_class_index": frozen_class,
-            "canonical_frozen_class_valid": frozen_valid,
-            "canonical_frozen_score": score,
-            "canonical_geometry_locator": locator,
-            "fi1_d_v3_plan_key": str(plan_row["plan_key"]),
-            "fi1_d_v3_original_geometry_key": plan_row.get("geometry_key"),
-            "fi1_d_v3_original_union_geometry_key": plan_row.get("original_union_geometry_key"),
-            "fi1_d_v3_geometry_digest": str(plan_row["geometry_digest"]),
-            "fi1_d_v3_geometry_digest_algorithm": str(plan_row["geometry_digest_algorithm"]),
-            "fi1_d_v3_append_only": append_only,
-            "ground_truth_usage": "none",
-            "ground_truth_read": False,
-            "ap_computed": False,
-            "embedding_computed": False,
-            "candidate_mutation": False,
+            "candidate_retained": True,
+            "candidate_deletion": False,
             "geometry_mutation": False,
             "class_mutation": False,
             "score_mutation": False,
         }
-        rows.append(row)
+        row = grouped.get(identity)
+        if row is None:
+            row = {
+                "scene_name": scene,
+                "geometry_key": f"{scene}:visual_geometry:{digest}",
+                "geometry_hash": digest,
+                "point_count": len(points),
+                "member_count": 0,
+                "member_sources": [],
+                "members": [],
+                "canonical_member_index": 0,
+                "canonical_candidate_source": source,
+                "canonical_candidate_id": candidate_id,
+                "canonical_frozen_class_index": frozen_class,
+                "canonical_frozen_class_valid": frozen_valid,
+                "canonical_frozen_score": score,
+                "canonical_geometry_locator": locator,
+                "ground_truth_usage": "none",
+                "ground_truth_read": False,
+                "ap_computed": False,
+                "embedding_computed": False,
+                "candidate_mutation": False,
+                "geometry_mutation": False,
+                "class_mutation": False,
+                "score_mutation": False,
+            }
+            grouped[identity] = row
+        else:
+            canonical_points = resolver.points(row["canonical_geometry_locator"])
+            if not np.array_equal(canonical_points, points):
+                raise ValueError(f"{plan_key}: duplicate geometry hash has different point indices")
+        row["members"].append(member)
+        row["member_count"] = len(row["members"])
+        row["member_sources"] = sorted({item["candidate_source"] for item in row["members"]})
         counts[f"source::{source}"] += 1
         counts["invalid_class"] += int(not frozen_valid)
 
     if seen_original != set(legacy_by_key):
         raise ValueError("FI1-D-v3 challenge does not cover every frozen Legacy geometry exactly once")
-    rows.sort(key=lambda row: (row["scene_name"], row["geometry_hash"]))
+    rows = sorted(grouped.values(), key=lambda row: (row["scene_name"], row["geometry_hash"]))
+    duplicate_rows = [row for row in rows if int(row["member_count"]) > 1]
+    duplicate_scene_count = len({row["scene_name"] for row in duplicate_rows})
+    duplicate_different_class_count = sum(
+        len({int(member["frozen_class_index"]) for member in row["members"]}) > 1
+        for row in duplicate_rows
+    )
+    duplicate_different_score_count = sum(
+        len({float(member["frozen_score"]) for member in row["members"]}) > 1
+        for row in duplicate_rows
+    )
     staging = args.output_root.parent / f".{args.output_root.name}.tmp.{os.getpid()}"
     if args.output_root.exists() or staging.exists():
         raise FileExistsError(f"output or staging exists: {args.output_root}, {staging}")
@@ -232,23 +256,33 @@ def run(args: argparse.Namespace) -> dict:
             json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows
         ))
         source_counts = {source: int(counts[f"source::{source}"]) for source in SOURCES}
+        canonical_source_counts = Counter(row["canonical_candidate_source"] for row in rows)
         summary = {
             "version": "dm_sms1_unique_geometry_ledger_v1",
             "adapter_version": VERSION,
             "dataset": args.dataset_name,
             "scene_count": len(scenes),
-            "member_count": len(rows),
+            "member_count": len(plan),
             "unique_geometry_count": len(rows),
-            "duplicate_member_count": 0,
-            "cross_source_duplicate_geometry_count": 0,
+            "duplicate_member_count": len(plan) - len(rows),
+            "cross_source_duplicate_geometry_count": sum(
+                len(row["member_sources"]) > 1 for row in duplicate_rows
+            ),
             "duplicate_geometry_output_count": 0,
+            "duplicate_geometry_group_count": len(duplicate_rows),
+            "duplicate_geometry_scene_count": duplicate_scene_count,
+            "duplicate_group_different_class_count": duplicate_different_class_count,
+            "duplicate_group_different_score_count": duplicate_different_score_count,
             "invalid_frozen_class_member_count": int(counts["invalid_class"]),
-            "invalid_canonical_frozen_class_count": int(counts["invalid_class"]),
+            "invalid_canonical_frozen_class_count": sum(
+                not bool(row["canonical_frozen_class_valid"]) for row in rows
+            ),
             "source_member_counts": {key: value for key, value in source_counts.items() if value},
-            "canonical_source_counts": {key: value for key, value in source_counts.items() if value},
+            "canonical_source_counts": dict(sorted(canonical_source_counts.items())),
             "fi1_d_v3_control_candidate_count": len(legacy_rows),
             "fi1_d_v3_challenger_candidate_count": len(plan),
             "fi1_d_v3_refined_union_candidate_count": source_counts["refined_union"],
+            "candidate_deletion_count": 0,
             "contract_valid": True,
             "ground_truth_usage": "none",
             "ground_truth_read": False,
@@ -258,6 +292,9 @@ def run(args: argparse.Namespace) -> dict:
             "geometry_mutation": False,
             "class_mutation": False,
             "score_mutation": False,
+            "candidate_identity_contract": "(scene_name, plan_key)",
+            "visual_geometry_identity_contract": "(scene_name, geometry_hash)",
+            "visual_evidence_computed_once_per_unique_geometry": True,
             "input_provenance": {
                 "scene_list_sha256": _sha256(args.scene_list),
                 "fi1_d_v3_inference_summary_sha256": _sha256(args.inference_root / "summary.json"),

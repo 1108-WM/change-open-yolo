@@ -16,10 +16,16 @@ def audit(root: Path) -> dict:
     records = [json.loads(line) for line in (root / "attribute_extraction_manifest.jsonl").read_text().splitlines() if line.strip()]
     errors: list[str] = []
     task_ids = []
+    candidate_ids = []
     view_count = 0
     for index, row in enumerate(records):
         prefix = f"row[{index}]"
         task_ids.append(row.get("task_id"))
+        candidate_ids.append((row.get("scene_name"), row.get("plan_key")))
+        if row.get("fi1_d_v3_plan_key") != row.get("plan_key") or not row.get("plan_key"):
+            errors.append(f"{prefix}: invalid plan_key identity")
+        if str(row.get("plan_key", "")) not in str(row.get("task_id", "")):
+            errors.append(f"{prefix}: task_id does not contain plan_key")
         if row.get("candidate_labels_hidden") is not True:
             errors.append(f"{prefix}: candidate labels are not hidden")
         if row.get("attribute_extraction_completed") is not False or row.get("class_decision_made") is not False:
@@ -44,8 +50,12 @@ def audit(root: Path) -> dict:
         view_count += len(views)
     if len(task_ids) != len(set(task_ids)):
         errors.append("duplicate task ids")
+    if len(candidate_ids) != len(set(candidate_ids)):
+        errors.append("duplicate scene/plan identities")
     if int(summary.get("task_count", -1)) != len(records):
         errors.append("summary task count mismatch")
+    if int(summary.get("candidate_count", -1)) != len(records):
+        errors.append("summary candidate count mismatch")
     if int(summary.get("view_input_count", -1)) != view_count:
         errors.append("summary view count mismatch")
     if summary.get("candidate_labels_hidden") is not True or summary.get("ground_truth_read") is not False or summary.get("ap_computed") is not False:
@@ -53,6 +63,8 @@ def audit(root: Path) -> dict:
     result = {
         "version": "dm_sms1_attribute_extraction_manifest_audit_v1",
         "row_count": len(records),
+        "candidate_count": len(records),
+        "unique_geometry_count": len({(row.get("scene_name"), row.get("geometry_hash")) for row in records}),
         "error_count": len(errors),
         "errors": errors,
         "audit_valid": not errors,

@@ -29,6 +29,7 @@ def _sha256(path: Path) -> str:
 def build_candidate_row(attribute_row: dict, semantic_row: dict, class_names: list[str]) -> dict:
     if (
         attribute_row["scene_name"] != semantic_row["scene_name"]
+        or attribute_row["plan_key"] != semantic_row["plan_key"]
         or attribute_row["geometry_hash"] != semantic_row["geometry_hash"]
     ):
         raise ValueError("attribute/semantic scene and geometry join mismatch")
@@ -55,8 +56,17 @@ def build_candidate_row(attribute_row: dict, semantic_row: dict, class_names: li
     return {
         "task_id": str(attribute_row["task_id"]),
         "scene_name": str(attribute_row["scene_name"]),
+        "plan_index": int(attribute_row["plan_index"]),
+        "plan_key": str(attribute_row["plan_key"]),
+        "fi1_d_v3_plan_key": str(attribute_row["plan_key"]),
         "geometry_key": str(attribute_row["geometry_key"]),
+        "visual_geometry_key": str(attribute_row["visual_geometry_key"]),
         "geometry_hash": str(attribute_row["geometry_hash"]),
+        "geometry_locator_read_only": dict(semantic_row["geometry_locator_read_only"]),
+        "candidate_source": str(semantic_row["candidate_source"]),
+        "frozen_class_index": int(semantic_row["frozen_class_index"]),
+        "challenger_score": float(semantic_row["challenger_score"]),
+        "append_only": bool(semantic_row["append_only"]),
         "canonical_frozen_class_index": int(semantic_row["canonical_frozen_class_index"]),
         "canonical_frozen_score": float(semantic_row["canonical_frozen_score"]),
         "attribute_task_id": str(attribute_row["task_id"]),
@@ -99,21 +109,21 @@ def run(args: argparse.Namespace) -> dict:
         json.loads(line) for line in semantic_path.read_text().splitlines() if line.strip()
     ]
     attribute_ids = [
-        (str(row.get("scene_name", "")), str(row.get("geometry_hash", "")))
+        (str(row.get("scene_name", "")), str(row.get("plan_key", "")))
         for row in attribute_rows
     ]
     semantic_ids = [
-        (str(row.get("scene_name", "")), str(row.get("geometry_hash", "")))
+        (str(row.get("scene_name", "")), str(row.get("plan_key", "")))
         for row in semantic_list
     ]
     if any(not scene or not digest for scene, digest in attribute_ids):
-        raise ValueError("attribute manifest contains an empty scene/geometry identity")
+        raise ValueError("attribute manifest contains an empty scene/plan identity")
     if any(not scene or not digest for scene, digest in semantic_ids):
-        raise ValueError("semantic manifest contains an empty scene/geometry identity")
+        raise ValueError("semantic manifest contains an empty scene/plan identity")
     if len(attribute_ids) != len(set(attribute_ids)):
-        raise ValueError("attribute manifest contains duplicate scene/geometry identities")
+        raise ValueError("attribute manifest contains duplicate scene/plan identities")
     if len(semantic_ids) != len(set(semantic_ids)):
-        raise ValueError("semantic manifest contains duplicate scene/geometry identities")
+        raise ValueError("semantic manifest contains duplicate scene/plan identities")
     if set(attribute_ids) != set(semantic_ids):
         missing = sorted(set(attribute_ids) - set(semantic_ids))[:3]
         extra = sorted(set(semantic_ids) - set(attribute_ids))[:3]
@@ -128,7 +138,7 @@ def run(args: argparse.Namespace) -> dict:
     for row in attribute_rows:
         if row.get("attribute_extraction_completed") is not False:
             raise ValueError("attribute input unexpectedly contains completed evidence")
-        identity = (str(row["scene_name"]), str(row["geometry_hash"]))
+        identity = (str(row["scene_name"]), str(row["plan_key"]))
         built.append(build_candidate_row(row, semantic_rows[identity], class_names))
     with (args.output_root / "candidate_evidence_manifest.jsonl").open("w") as handle:
         for row in built:
@@ -136,7 +146,10 @@ def run(args: argparse.Namespace) -> dict:
     summary = {
         "version": "dm_sms1_candidate_evidence_manifest_v1",
         "scene_count": len({row["scene_name"] for row in built}),
+        "candidate_count": len(built),
         "geometry_count": len(built),
+        "unique_geometry_count": len({(row["scene_name"], row["geometry_hash"]) for row in built}),
+        "candidate_deletion_count": 0,
         "candidate_pair_count": sum(len(row["candidate_hypotheses"]) == 2 for row in built),
         "single_candidate_count": sum(len(row["candidate_hypotheses"]) == 1 for row in built),
         "class_decision_made": False,

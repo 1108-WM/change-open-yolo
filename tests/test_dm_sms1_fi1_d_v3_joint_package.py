@@ -140,12 +140,14 @@ def test_joint_adapter_accepts_append_only_refined_union_and_cache_is_exact(tmp_
     assert cache_audit["audit_valid"] is True
 
     hashes = json.loads((cache_root / "prediction_cache/scene_smoke/geometry_hashes.json").read_text())
+    plan_keys = json.loads((cache_root / "prediction_cache/scene_smoke/plan_keys.json").read_text())
     decisions = {
-        ("scene_smoke", digest): {
+        ("scene_smoke", plan_key): {
+            "geometry_hash": digest,
             "canonical_frozen_class_index": 4,
             "arbitrated_class_index": 5 if index == 0 else 4,
         }
-        for index, digest in enumerate(hashes)
+        for index, (digest, plan_key) in enumerate(zip(hashes, plan_keys))
     }
     control = FrozenPredictionMapping(["scene_smoke"], cache_root, decisions, challenge=False)
     challenge = FrozenPredictionMapping(["scene_smoke"], cache_root, decisions, challenge=True)
@@ -238,17 +240,19 @@ def test_one_shot_ap_markers_and_independent_csv_audit(tmp_path: Path, monkeypat
         cache_root=cache_root, ledger_root=geometry_root, output_root=cache_audit_root,
     ))
     hashes = json.loads((cache_root / "prediction_cache/scene_smoke/geometry_hashes.json").read_text())
+    plan_keys = json.loads((cache_root / "prediction_cache/scene_smoke/plan_keys.json").read_text())
     decision_root = tmp_path / "decisions"
     decision_root.mkdir()
     decision_rows = [{
-        "scene_name": "scene_smoke", "geometry_hash": digest,
+        "scene_name": "scene_smoke", "plan_key": plan_key, "geometry_hash": digest,
         "canonical_frozen_class_index": 4,
         "arbitrated_class_index": 5 if index == 0 else 4,
         "class_changed": index == 0,
-    } for index, digest in enumerate(hashes)]
+    } for index, (digest, plan_key) in enumerate(zip(hashes, plan_keys))]
     _write_jsonl(decision_root / "safe_decisions.jsonl", decision_rows)
     (decision_root / "summary.json").write_text(json.dumps({
-        "geometry_count": 2, "two_candidate_count": 1, "single_candidate_count": 1,
+        "candidate_count": 2, "geometry_count": 2,
+        "two_candidate_count": 1, "single_candidate_count": 1,
         "model_evidence_valid_count": 1, "invalid_evidence_fallback_count": 0,
         "class_change_count": 1, "ground_truth_read": False, "ap_computed": False,
     }))

@@ -73,12 +73,21 @@ def run(args: argparse.Namespace) -> dict:
         raise ValueError("joint unique geometry ledger is not fully audited")
     ledger_path = args.ledger_root / "unique_geometry_ledger.jsonl"
     by_scene = defaultdict(list)
+    observed_plan_keys = set()
     for row in _rows(ledger_path):
-        by_scene[str(row["scene_name"])].append(row)
+        members = row.get("members", [])
+        if not members or int(row.get("member_count", -1)) != len(members):
+            raise ValueError(f"{row.get('geometry_key')}: invalid member contract")
+        for member in members:
+            plan_key = str(member.get("plan_key") or member.get("fi1_d_v3_plan_key") or "")
+            if not plan_key or plan_key in observed_plan_keys:
+                raise ValueError("candidate ledger contains an empty or duplicate plan_key")
+            observed_plan_keys.add(plan_key)
+            by_scene[str(row["scene_name"])].append((row, member))
     if set(by_scene) != set(scenes):
         raise ValueError("joint unique geometry scene coverage differs")
     for scene in scenes:
-        by_scene[scene].sort(key=lambda row: str(row["geometry_hash"]))
+        by_scene[scene].sort(key=lambda item: int(item[1]["plan_index"]))
 
     staging = args.output_root.parent / f".{args.output_root.name}.tmp.{os.getpid()}"
     if args.output_root.exists() or staging.exists():
@@ -95,9 +104,9 @@ def run(args: argparse.Namespace) -> dict:
             masks = np.zeros((point_count, len(rows)), dtype=bool)
             classes = np.empty(len(rows), dtype=np.int64)
             scores = np.empty(len(rows), dtype=np.float32)
-            hashes, plan_keys, sources = [], [], []
-            for column, row in enumerate(rows):
-                points = resolver.points(row["canonical_geometry_locator"])
+            hashes, plan_keys, sources, plan_indices = [], [], [], []
+            for column, (row, member) in enumerate(rows):
+                points = resolver.points(member["geometry_locator_read_only"])
                 if (
                     len(points) != int(row["point_count"])
                     or points[-1] >= point_count
@@ -105,27 +114,31 @@ def run(args: argparse.Namespace) -> dict:
                 ):
                     raise ValueError(f"{scene}/{row['geometry_hash']}: geometry cache mismatch")
                 masks[points, column] = True
-                classes[column] = int(row["canonical_frozen_class_index"])
-                scores[column] = float(row["canonical_frozen_score"])
+                classes[column] = int(member["frozen_class_index"])
+                scores[column] = float(member["challenger_score"])
                 hashes.append(str(row["geometry_hash"]))
-                plan_keys.append(str(row["fi1_d_v3_plan_key"]))
-                sources.append(str(row["canonical_candidate_source"]))
+                plan_keys.append(str(member["plan_key"]))
+                sources.append(str(member["candidate_source"]))
+                plan_indices.append(int(member["plan_index"]))
             np.save(root / "masks.npy", masks, allow_pickle=False)
             np.save(root / "frozen_classes.npy", classes, allow_pickle=False)
             np.save(root / "frozen_scores.npy", scores, allow_pickle=False)
             (root / "geometry_hashes.json").write_text(json.dumps(hashes, indent=2) + "\n")
             (root / "plan_keys.json").write_text(json.dumps(plan_keys, indent=2) + "\n")
             (root / "sources.json").write_text(json.dumps(sources, indent=2) + "\n")
+            (root / "plan_indices.json").write_text(json.dumps(plan_indices, indent=2) + "\n")
             files = {
                 name: _sha256(root / name) for name in (
                     "masks.npy", "frozen_classes.npy", "frozen_scores.npy",
-                    "geometry_hashes.json", "plan_keys.json", "sources.json",
+                    "geometry_hashes.json", "plan_keys.json", "sources.json", "plan_indices.json",
                 )
             }
             scene_summary = {
                 "scene_name": scene,
                 "point_count": point_count,
+                "candidate_count": len(rows),
                 "geometry_count": len(rows),
+                "unique_geometry_count": len({row[0]["geometry_hash"] for row in rows}),
                 "file_sha256": files,
                 "ground_truth_read": False,
                 "ap_computed": False,
@@ -139,7 +152,13 @@ def run(args: argparse.Namespace) -> dict:
             "version": "dm_sms1_fi1_d_v3_prediction_cache_v1",
             "dataset": args.dataset_name,
             "scene_count": len(scenes),
-            "geometry_count": sum(row["geometry_count"] for row in scene_summaries),
+            "candidate_count": sum(row["candidate_count"] for row in scene_summaries),
+            "geometry_count": sum(row["candidate_count"] for row in scene_summaries),
+            "unique_geometry_count": sum(row["unique_geometry_count"] for row in scene_summaries),
+            "candidate_identity_contract": "(scene_name, plan_key)",
+            "duplicate_geometry_columns_preserved": True,
+            "candidate_deletion_count": 0,
+            "plan_key_unique": True,
             "cache_valid": True,
             "ground_truth_usage": "none",
             "ground_truth_read": False,

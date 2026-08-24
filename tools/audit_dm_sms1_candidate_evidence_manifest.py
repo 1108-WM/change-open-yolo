@@ -16,8 +16,20 @@ def audit(root: Path) -> dict:
     pairs = singles = 0
     for index, row in enumerate(rows):
         prefix = f"row[{index}]"
-        identities.append((row.get("scene_name"), row.get("geometry_hash")))
+        identities.append((row.get("scene_name"), row.get("plan_key")))
+        if row.get("fi1_d_v3_plan_key") != row.get("plan_key") or not row.get("plan_key"):
+            errors.append(f"{prefix}: invalid plan_key identity")
+        if str(row.get("plan_key", "")) not in str(row.get("task_id", "")):
+            errors.append(f"{prefix}: task_id does not contain plan_key")
         candidates = row.get("candidate_hypotheses", [])
+        if (
+            row.get("frozen_class_index") != row.get("canonical_frozen_class_index")
+            or row.get("challenger_score") != row.get("canonical_frozen_score")
+            or not isinstance(row.get("candidate_source"), str)
+            or not isinstance(row.get("append_only"), bool)
+            or not isinstance(row.get("geometry_locator_read_only"), dict)
+        ):
+            errors.append(f"{prefix}: frozen candidate fields differ")
         if len(candidates) not in (1, 2):
             errors.append(f"{prefix}: candidate count is not one or two")
         if len(candidates) == 2:
@@ -38,9 +50,11 @@ def audit(root: Path) -> dict:
         if row.get("ground_truth_read") is not False or row.get("ap_computed") is not False:
             errors.append(f"{prefix}: GT/AP provenance is not false")
     if len(identities) != len(set(identities)):
-        errors.append("duplicate geometry identities")
-    if int(summary.get("geometry_count", -1)) != len(rows):
-        errors.append("summary geometry count mismatch")
+        errors.append("duplicate scene/plan identities")
+    if int(summary.get("candidate_count", -1)) != len(rows):
+        errors.append("summary candidate count mismatch")
+    if int(summary.get("candidate_deletion_count", -1)) != 0:
+        errors.append("summary candidate deletion count mismatch")
     if int(summary.get("candidate_pair_count", -1)) != pairs or int(summary.get("single_candidate_count", -1)) != singles:
         errors.append("summary candidate count mismatch")
     if summary.get("class_decision_made") is not False or summary.get("selected_class_count") != 0:
@@ -48,6 +62,8 @@ def audit(root: Path) -> dict:
     result = {
         "version": "dm_sms1_candidate_evidence_manifest_audit_v1",
         "row_count": len(rows),
+        "candidate_count": len(rows),
+        "unique_geometry_count": len({(row.get("scene_name"), row.get("geometry_hash")) for row in rows}),
         "error_count": len(errors),
         "errors": errors,
         "audit_valid": not errors,

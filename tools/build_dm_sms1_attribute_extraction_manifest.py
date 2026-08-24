@@ -49,11 +49,13 @@ def _sha256(path: Path) -> str:
 def _task_id(row: dict) -> str:
     payload = {
         "scene_name": row["scene_name"],
+        "plan_key": row["plan_key"],
         "geometry_hash": row["geometry_hash"],
         "frames": [view["frame_id"] for view in row["selected_views"]],
         "mask_hashes": [view["sam_mask_sha256"] for view in row["selected_views"]],
     }
-    return hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
+    evidence_digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
+    return f"{row['scene_name']}::{row['plan_key']}::{evidence_digest}"
 
 
 def build_attribute_row(row: dict) -> dict:
@@ -78,7 +80,11 @@ def build_attribute_row(row: dict) -> dict:
     result = {
         "task_id": _task_id(row),
         "scene_name": str(row["scene_name"]),
+        "plan_index": int(row["plan_index"]),
+        "plan_key": str(row["plan_key"]),
+        "fi1_d_v3_plan_key": str(row["plan_key"]),
         "geometry_key": str(row["geometry_key"]),
+        "visual_geometry_key": str(row["visual_geometry_key"]),
         "geometry_hash": str(row["geometry_hash"]),
         "point_count": int(row["point_count"]),
         "view_inputs": view_inputs,
@@ -119,7 +125,9 @@ def run(args: argparse.Namespace) -> dict:
     summary = {
         "version": "dm_sms1_attribute_extraction_manifest_v1",
         "scene_count": len({row["scene_name"] for row in built}),
+        "candidate_count": len(built),
         "geometry_count": len(built),
+        "unique_geometry_count": len({(row["scene_name"], row["geometry_hash"]) for row in built}),
         "task_count": len(built),
         "view_input_count": sum(len(row["view_inputs"]) for row in built),
         "candidate_labels_hidden": True,

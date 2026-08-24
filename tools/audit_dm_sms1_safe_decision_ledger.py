@@ -15,18 +15,18 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
         json.loads(line) for line in candidate_manifest.read_text().splitlines() if line.strip()
     ]
     candidate_task_ids = [str(row.get("task_id", "")) for row in candidate_rows]
-    candidate_identities = [(row.get("scene_name"), row.get("geometry_hash")) for row in candidate_rows]
+    candidate_identities = [(row.get("scene_name"), row.get("plan_key")) for row in candidate_rows]
     errors: list[str] = []
     if any(not task_id for task_id in candidate_task_ids) or len(candidate_task_ids) != len(set(candidate_task_ids)):
         errors.append("candidate manifest has an empty or duplicate task_id")
     if len(candidate_identities) != len(set(candidate_identities)):
-        errors.append("candidate manifest has duplicate geometry identities")
+        errors.append("candidate manifest has duplicate scene/plan identities")
     candidates_by_task = dict(zip(candidate_task_ids, candidate_rows))
     identities = []
     source_task_ids = []
     for index, row in enumerate(rows):
         prefix = f"row[{index}]"
-        identity = (row.get("scene_name"), row.get("geometry_hash"))
+        identity = (row.get("scene_name"), row.get("plan_key"))
         identities.append(identity)
         task_id = str(row.get("decision_source_task_id", ""))
         source_task_ids.append(task_id)
@@ -34,8 +34,18 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
         if candidate is None:
             errors.append(f"{prefix}: decision task is absent from candidate manifest")
             continue
-        if identity != (candidate.get("scene_name"), candidate.get("geometry_hash")):
+        if row.get("fi1_d_v3_plan_key") != row.get("plan_key"):
+            errors.append(f"{prefix}: plan_key alias mismatch")
+        if identity != (candidate.get("scene_name"), candidate.get("plan_key")):
             errors.append(f"{prefix}: decision identity does not match candidate task")
+        if row.get("geometry_hash") != candidate.get("geometry_hash"):
+            errors.append(f"{prefix}: visual geometry provenance mismatch")
+        if (
+            row.get("candidate_source") != candidate.get("candidate_source")
+            or row.get("challenger_score") != candidate.get("challenger_score")
+            or row.get("append_only") != candidate.get("append_only")
+        ):
+            errors.append(f"{prefix}: frozen candidate provenance mismatch")
         allowed = {int(item["class_index"]) for item in candidate.get("candidate_hypotheses", [])}
         incumbent = int(candidate.get("canonical_frozen_class_index", -1))
         selected = int(row.get("arbitrated_class_index", -1))
@@ -65,11 +75,13 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
         if row.get("ground_truth_usage") != "none" or row.get("class_decision_made") is not True:
             errors.append(f"{prefix}: decision provenance is incomplete")
     if len(identities) != len(set(identities)):
-        errors.append("duplicate decision identities")
+        errors.append("duplicate scene/plan decision identities")
     if len(source_task_ids) != len(set(source_task_ids)):
         errors.append("duplicate decision source task_id")
-    if int(summary.get("geometry_count", -1)) != len(rows):
-        errors.append("summary geometry count mismatch")
+    if int(summary.get("candidate_count", -1)) != len(rows):
+        errors.append("summary candidate count mismatch")
+    if int(summary.get("candidate_deletion_count", -1)) != 0:
+        errors.append("summary candidate deletion count mismatch")
     expected_counts = {
         "model_evidence_valid_count": sum(row.get("model_evidence_valid") is True for row in rows),
         "fallback_keep_count": sum(row.get("model_evidence_valid") is False for row in rows),

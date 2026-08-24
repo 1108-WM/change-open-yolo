@@ -341,9 +341,11 @@ def validate_completed_model_record(
     if str(record.get("task_id", "")) != task_id:
         raise ValueError(f"{task_id}: completed model record task join mismatch")
     if (record.get("scene_name") != candidate_row.get("scene_name")
+            or record.get("plan_key") != candidate_row.get("plan_key")
             or record.get("geometry_hash") != candidate_row.get("geometry_hash")):
         raise ValueError(f"{task_id}: completed model record identity mismatch")
     if (attribute_row.get("scene_name") != candidate_row.get("scene_name")
+            or attribute_row.get("plan_key") != candidate_row.get("plan_key")
             or attribute_row.get("geometry_hash") != candidate_row.get("geometry_hash")):
         raise ValueError(f"{task_id}: attribute/candidate identity mismatch")
     reparsed = {}
@@ -391,6 +393,7 @@ def validate_completed_model_record(
 def _selection_records(selected: list[dict]) -> list[dict]:
     return [{
         "task_id": row["task_id"], "scene_name": row["scene_name"],
+        "plan_key": row["plan_key"],
         "geometry_hash": row["geometry_hash"],
         "candidate_indices": [item["class_index"] for item in row["candidate_hypotheses"]],
         "candidate_names": [item["class_name"] for item in row["candidate_hypotheses"]],
@@ -421,7 +424,12 @@ def summarize_batch_records(records: list[dict], selected: list[dict]) -> dict:
         "model_id": "Qwen2.5-VL-7B-Instruct",
         "model_revision": EXPECTED_MODEL_REVISION,
         "selected_scene_count": len({row["scene_name"] for row in selected}),
+        "selected_candidate_count": len(selected),
         "selected_geometry_count": len(selected),
+        "selected_unique_geometry_count": len({
+            (row.get("scene_name"), row.get("geometry_hash")) for row in selected
+            if row.get("scene_name") and row.get("geometry_hash")
+        }),
         "processed_record_count": len(records),
         "valid_count": counts["valid"],
         "invalid_count": counts["invalid"],
@@ -547,7 +555,9 @@ def run(args: argparse.Namespace) -> dict:
         raise ValueError("resume batch output is not the exact append-only selection prefix")
     for record, candidate_row in zip(existing_records, selected):
         task_id = str(record["task_id"])
-        if record.get("scene_name") != candidate_row.get("scene_name") or record.get("geometry_hash") != candidate_row.get("geometry_hash"):
+        if (record.get("scene_name") != candidate_row.get("scene_name")
+                or record.get("plan_key") != candidate_row.get("plan_key")
+                or record.get("geometry_hash") != candidate_row.get("geometry_hash")):
             raise ValueError(f"resume batch identity mismatch: {task_id}")
         if record.get("ground_truth_read") is not False or record.get("ap_computed") is not False:
             raise ValueError(f"resume batch violates no-GT/no-AP contract: {task_id}")
@@ -659,6 +669,7 @@ def run(args: argparse.Namespace) -> dict:
             record = {
                 "task_id": candidate_row["task_id"],
                 "scene_name": candidate_row["scene_name"],
+                "plan_key": candidate_row["plan_key"],
                 "geometry_hash": candidate_row["geometry_hash"],
                 "valid": False,
                 "error": None,

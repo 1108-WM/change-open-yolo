@@ -27,8 +27,14 @@ def fallback_decision(manifest_row: dict, task_id: str, reason: str) -> dict:
         raise ValueError(f"{task_id}: frozen class is outside finite candidates")
     return {
         "scene_name": manifest_row["scene_name"],
+        "plan_key": manifest_row["plan_key"],
+        "fi1_d_v3_plan_key": manifest_row["plan_key"],
         "geometry_key": manifest_row["geometry_key"],
+        "visual_geometry_key": manifest_row["visual_geometry_key"],
         "geometry_hash": manifest_row["geometry_hash"],
+        "candidate_source": manifest_row["candidate_source"],
+        "challenger_score": manifest_row["challenger_score"],
+        "append_only": manifest_row["append_only"],
         "canonical_frozen_class_index": incumbent,
         "arbitrated_class_index": incumbent,
         "class_changed": False,
@@ -88,7 +94,9 @@ def run(
     for row in outputs:
         task_id = str(row["task_id"])
         manifest_row = candidates[task_id]
-        if row.get("scene_name") != manifest_row.get("scene_name") or row.get("geometry_hash") != manifest_row.get("geometry_hash"):
+        if (row.get("scene_name") != manifest_row.get("scene_name")
+                or row.get("plan_key") != manifest_row.get("plan_key")
+                or row.get("geometry_hash") != manifest_row.get("geometry_hash")):
             raise ValueError(f"{task_id}: batch/candidate identity mismatch")
         if row.get("ground_truth_read") is not False or row.get("ap_computed") is not False:
             raise ValueError(f"{task_id}: batch row violates no-GT/no-AP contract")
@@ -113,7 +121,9 @@ def run(
                 selected = int(decision.get("arbitrated_class_index", -1))
                 if decision.get("decision_source_task_id") != task_id:
                     raise ValueError(f"{task_id}: decision task join mismatch")
-                if decision.get("scene_name") != manifest_row.get("scene_name") or decision.get("geometry_hash") != manifest_row.get("geometry_hash"):
+                if (decision.get("scene_name") != manifest_row.get("scene_name")
+                        or decision.get("plan_key") != manifest_row.get("plan_key")
+                        or decision.get("geometry_hash") != manifest_row.get("geometry_hash")):
                     raise ValueError(f"{task_id}: decision identity mismatch")
                 if int(decision.get("canonical_frozen_class_index", -1)) != incumbent:
                     raise ValueError(f"{task_id}: decision frozen class mismatch")
@@ -136,7 +146,7 @@ def run(
                 raise ValueError(f"{task_id}: invalid row unexpectedly contains a decision")
             decision = fallback_decision(manifest_row, task_id, str(row.get("error")))
         decisions.append(decision)
-    identities = [(row["scene_name"], row["geometry_hash"]) for row in decisions]
+    identities = [(row["scene_name"], row["plan_key"]) for row in decisions]
     if len(identities) != len(set(identities)):
         raise ValueError("duplicate safe decision identities")
     if any(row["candidate_mutation"] or row["geometry_mutation"] or row["score_mutation"] or row["proposal_deletion"] for row in decisions):
@@ -147,7 +157,10 @@ def run(
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
     summary = {
         "version": "dm_sms1_safe_decision_ledger_v2",
+        "candidate_count": len(decisions),
         "geometry_count": len(decisions),
+        "unique_geometry_count": len({(row["scene_name"], row["geometry_hash"]) for row in decisions}),
+        "candidate_deletion_count": 0,
         "model_evidence_valid_count": sum(row["model_evidence_valid"] for row in decisions),
         "fallback_keep_count": sum(not row["model_evidence_valid"] for row in decisions),
         "strict_validation_fallback_count": strict_validation_fallback_count,

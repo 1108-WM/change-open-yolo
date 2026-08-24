@@ -26,6 +26,7 @@ from evaluate.scannet200 import eval_semantic_instance as instance_eval  # noqa:
 VERSION = "dm_sms1_fi1_d_v3_open_vocab_ap_v1"
 AUTHORIZATION_ID = "DM-SMS-1-FI1-D-v3-val312-one-shot-20260824"
 METRICS = ("ap", "ap50", "ap25", "head_ap", "common_ap", "tail_ap")
+DUPLICATE_SAFE_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md"
 
 
 def _resolve(path: Path) -> Path:
@@ -108,21 +109,24 @@ class FrozenPredictionMapping(Mapping):
         classes = np.asarray(np.load(root / "frozen_classes.npy"), dtype=np.int64).copy()
         scores = np.asarray(np.load(root / "frozen_scores.npy"), dtype=np.float32)
         hashes = json.loads((root / "geometry_hashes.json").read_text())
+        plan_keys = json.loads((root / "plan_keys.json").read_text())
         if not (
             masks.ndim == 2
-            and masks.shape[1] == len(classes) == len(scores) == len(hashes)
+            and masks.shape[1] == len(classes) == len(scores) == len(hashes) == len(plan_keys)
         ):
             raise ValueError(f"{scene}: frozen prediction cache dimensions disagree")
-        for column, geometry_hash in enumerate(hashes):
-            decision = self.decisions.get((scene, str(geometry_hash)))
+        for column, (geometry_hash, plan_key) in enumerate(zip(hashes, plan_keys)):
+            decision = self.decisions.get((scene, str(plan_key)))
             if decision is None:
-                raise ValueError(f"{scene}/{geometry_hash}: decision is missing")
+                raise ValueError(f"{scene}/{plan_key}: decision is missing")
+            if str(decision.get("geometry_hash", "")) != str(geometry_hash):
+                raise ValueError(f"{scene}/{plan_key}: visual geometry provenance differs")
             frozen = int(classes[column])
             if int(decision.get("canonical_frozen_class_index", -999)) != frozen:
-                raise ValueError(f"{scene}/{geometry_hash}: frozen class differs from decision ledger")
+                raise ValueError(f"{scene}/{plan_key}: frozen class differs from decision ledger")
             selected = int(decision.get("arbitrated_class_index", -999))
             if selected < 0 or selected > 198 or frozen < 0 or frozen > 198:
-                raise ValueError(f"{scene}/{geometry_hash}: class index is outside evaluator contract")
+                raise ValueError(f"{scene}/{plan_key}: class index is outside evaluator contract")
             if self.challenge:
                 classes[column] = selected
                 self.observed_class_change_count += int(selected != frozen)
@@ -142,9 +146,11 @@ def run(args: argparse.Namespace) -> dict:
         raise PermissionError("pass --allow-gt-evaluation for the one authorized GT-reading step")
     if args.authorization_id != AUTHORIZATION_ID:
         raise PermissionError("the explicit frozen authorization identifier does not match")
+    if getattr(args, "duplicate_safe_preregistration_path", None) is None:
+        args.duplicate_safe_preregistration_path = DUPLICATE_SAFE_PREREGISTRATION
     for name in (
         "scene_list", "ground_truth_root", "cache_root", "cache_audit_root",
-        "decision_root", "preregistration_path", "output_root",
+        "decision_root", "preregistration_path", "duplicate_safe_preregistration_path", "output_root",
     ):
         setattr(args, name, _resolve(getattr(args, name)))
     scenes = _read_scenes(args.scene_list, args.expected_scene_count)
@@ -159,6 +165,7 @@ def run(args: argparse.Namespace) -> dict:
         "decision_summary": args.decision_root / "summary.json",
         "decision_audit": args.decision_root / "audit_summary.json",
         "preregistration": args.preregistration_path,
+        "duplicate_safe_preregistration": args.duplicate_safe_preregistration_path,
     }
     missing = [f"{name}: {path}" for name, path in required.items() if not path.is_file()]
     if not args.ground_truth_root.is_dir():
@@ -185,17 +192,17 @@ def run(args: argparse.Namespace) -> dict:
         raise ValueError("prediction cache or complete decision ledger is not fully audited")
 
     decision_rows = _read_jsonl(required["decision_ledger"])
-    decision_keys = [(str(row.get("scene_name", "")), str(row.get("geometry_hash", ""))) for row in decision_rows]
-    if any(not scene or not digest for scene, digest in decision_keys) or len(decision_keys) != len(set(decision_keys)):
-        raise ValueError("complete decision ledger has empty or duplicate geometry identity")
+    decision_keys = [(str(row.get("scene_name", "")), str(row.get("plan_key", ""))) for row in decision_rows]
+    if any(not scene or not plan_key for scene, plan_key in decision_keys) or len(decision_keys) != len(set(decision_keys)):
+        raise ValueError("complete decision ledger has empty or duplicate plan identity")
     decisions = dict(zip(decision_keys, decision_rows))
     if {scene for scene, _ in decision_keys} != set(scenes):
         raise ValueError("complete decision ledger scene coverage differs")
-    geometry_count = int(cache_summary.get("geometry_count", -1))
+    geometry_count = int(cache_summary.get("candidate_count", -1))
     class_change_count = sum(bool(row.get("class_changed")) for row in decision_rows)
     if (
         len(decision_rows) != geometry_count
-        or int(decision_summary.get("geometry_count", -1)) != geometry_count
+        or int(decision_summary.get("candidate_count", -1)) != geometry_count
         or int(decision_summary.get("class_change_count", -1)) != class_change_count
     ):
         raise ValueError("cache and decision ledger counts differ")
@@ -234,6 +241,8 @@ def run(args: argparse.Namespace) -> dict:
             "evaluation_scope": "official ScanNet200 open-vocabulary instance AP",
             "scene_count": len(scenes),
             "geometry_count": geometry_count,
+            "candidate_count": geometry_count,
+            "unique_geometry_count": int(cache_summary.get("unique_geometry_count", -1)),
             "two_candidate_count": int(decision_summary.get("two_candidate_count", -1)),
             "single_candidate_count": int(decision_summary.get("single_candidate_count", -1)),
             "model_evidence_valid_count": int(decision_summary.get("model_evidence_valid_count", -1)),
@@ -306,6 +315,10 @@ def main() -> None:
     parser.add_argument("--cache-audit-root", type=Path, required=True)
     parser.add_argument("--decision-root", type=Path, required=True)
     parser.add_argument("--preregistration-path", type=Path, required=True)
+    parser.add_argument(
+        "--duplicate-safe-preregistration-path", type=Path,
+        default=DUPLICATE_SAFE_PREREGISTRATION,
+    )
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--expected-scene-count", type=int, default=312)
     parser.add_argument("--dataset-name", default="ScanNet200-val312")

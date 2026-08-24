@@ -74,6 +74,11 @@ def _audit_scene(
         ledger = ledger_by_hash.get(digest)
         if ledger is None or str(ledger["geometry_key"]) != str(row["geometry_key"]):
             raise ValueError(f"{scene}/{digest}: manifest-to-ledger join mismatch")
+        if (
+            int(row.get("member_count", -1)) != int(ledger.get("member_count", -2))
+            or row.get("members") != ledger.get("members")
+        ):
+            raise ValueError(f"{scene}/{digest}: member propagation mismatch")
         if row.get("ground_truth_usage") != "none" or row.get("embedding_computed") is not False:
             raise ValueError(f"{scene}/{digest}: manifest row violates no-GT/no-embedding contract")
         points = resolver.points(ledger["canonical_geometry_locator"])
@@ -140,6 +145,7 @@ def _audit_scene(
     return {
         "scene_name": scene,
         "geometry_count": len(manifest_rows),
+        "member_count": sum(int(row["member_count"]) for row in manifest_rows),
         "audited_view_count": audited_views,
         "audited_scale_count": audited_scales,
         "no_visible_view_geometry_count": no_view_count,
@@ -201,6 +207,7 @@ def run(args: argparse.Namespace) -> dict:
     derived = {
         "scene_count": len(scenes),
         "geometry_count": sum(row["geometry_count"] for row in summaries),
+        "member_count": sum(row["member_count"] for row in summaries),
         "selected_view_count": sum(row["audited_view_count"] for row in summaries),
         "crop_scale_count": sum(row["audited_scale_count"] for row in summaries),
         "no_visible_view_geometry_count": sum(
@@ -212,6 +219,8 @@ def run(args: argparse.Namespace) -> dict:
             raise ValueError(f"manifest aggregate mismatch for {key}")
     if derived["geometry_count"] != int(ledger_summary["unique_geometry_count"]):
         raise ValueError("manifest geometry count differs from unique ledger")
+    if derived["member_count"] != int(ledger_summary["member_count"]):
+        raise ValueError("manifest member count differs from candidate ledger")
     args.output_root.mkdir(parents=True, exist_ok=False)
     output = {
         "version": "dm_sms1_alpha_view_manifest_audit_v1",

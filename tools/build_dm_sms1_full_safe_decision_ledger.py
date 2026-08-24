@@ -44,8 +44,14 @@ def run(pair_decisions: Path, candidate_manifest: Path, output_root: Path) -> di
             # retain the frozen incumbent and record the finite candidate.
             decision = {
                 "scene_name": candidate["scene_name"],
+                "plan_key": candidate["plan_key"],
+                "fi1_d_v3_plan_key": candidate["plan_key"],
                 "geometry_key": candidate["geometry_key"],
+                "visual_geometry_key": candidate["visual_geometry_key"],
                 "geometry_hash": candidate["geometry_hash"],
+                "candidate_source": candidate["candidate_source"],
+                "challenger_score": candidate["challenger_score"],
+                "append_only": candidate["append_only"],
                 "canonical_frozen_class_index": incumbent,
                 "arbitrated_class_index": incumbent,
                 "class_changed": False,
@@ -66,20 +72,25 @@ def run(pair_decisions: Path, candidate_manifest: Path, output_root: Path) -> di
             }
         else:
             raise ValueError(f"{task_id}: expected one or two candidates")
-        if decision.get("scene_name") != candidate.get("scene_name") or decision.get("geometry_hash") != candidate.get("geometry_hash"):
+        if (decision.get("scene_name") != candidate.get("scene_name")
+                or decision.get("plan_key") != candidate.get("plan_key")
+                or decision.get("geometry_hash") != candidate.get("geometry_hash")):
             raise ValueError(f"{task_id}: decision identity mismatch")
         decisions.append(decision)
 
-    identities = [(row["scene_name"], row["geometry_hash"]) for row in decisions]
+    identities = [(row["scene_name"], row["plan_key"]) for row in decisions]
     if len(identities) != len(set(identities)):
-        raise ValueError("full ledger has duplicate geometry identities")
+        raise ValueError("full ledger has duplicate scene/plan identities")
     output_root.mkdir(parents=True, exist_ok=False)
     with (output_root / "safe_decisions.jsonl").open("w") as handle:
         for row in decisions:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
     summary = {
         "version": "dm_sms1_full_safe_decision_ledger_v1",
+        "candidate_count": len(decisions),
         "geometry_count": len(decisions),
+        "unique_geometry_count": len({(row["scene_name"], row["geometry_hash"]) for row in decisions}),
+        "candidate_deletion_count": 0,
         "two_candidate_count": len(expected_pair_ids),
         "single_candidate_count": len(decisions) - len(expected_pair_ids),
         "model_evidence_valid_count": sum(row.get("model_evidence_valid") is True for row in decisions),

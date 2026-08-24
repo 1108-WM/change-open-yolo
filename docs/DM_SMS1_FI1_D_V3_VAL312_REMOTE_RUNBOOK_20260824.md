@@ -2,6 +2,10 @@
 
 状态：代码包执行说明；不包含任何 val312 新结果。
 
+重复几何安全适配时，本说明必须与
+`DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md`
+共同使用；该修订只替换旧包中“候选几何必须逐条唯一”的错误接口假设。
+
 ## 1. 方法和边界
 
 本代码包以远程已经冻结并审计通过的 FI1-D-v3 完整挑战计划为唯一几何、候选和排序底座。控制组使用 FI1-D-v3 的冻结类别，挑战组只应用旧版正收益 DM-SMS-1 的完整安全类别决定。两组的点掩码、候选数、候选来源和分数完全相同。
@@ -32,7 +36,8 @@ AP25 = 0.826733
 ```bash
 python -m pytest -q \
   tests/test_fi1_d_v3_frozen_deployment.py \
-  tests/test_dm_sms1_fi1_d_v3_joint_package.py
+  tests/test_dm_sms1_fi1_d_v3_joint_package.py \
+  tests/test_dm_sms1_fi1_d_v3_duplicate_safe.py
 ```
 
 ## 3. 分阶段执行
@@ -55,7 +60,8 @@ python tools/run_dm_sms1_fi1_d_v3_val312_pipeline.py \
   --paths dm_sms1_fi1_d_v3_val312_paths.json --stage geometry
 ```
 
-要求 `02_unique_geometry_audit/summary.json` 中 `audit_valid=true` 且 `error_count=0`。
+要求 `02_unique_geometry_audit/summary.json` 中 `audit_valid=true` 且 `error_count=0`，并严格核对
+39,304 个候选、39,250 个唯一几何、54 个重复组、50 个重复场景、33 个类别不同组和53个分数不同组。
 
 ### 3.3 Alpha-CLIP 与 SAM 视觉账本
 
@@ -109,7 +115,8 @@ python tools/run_dm_sms1_fi1_d_v3_val312_pipeline.py \
   --paths dm_sms1_fi1_d_v3_val312_paths.json --stage cache
 ```
 
-缓存只物化 FI1-D-v3 冻结掩码、类别和分数，不读取真实标注。要求 `17_prediction_cache_audit/summary.json` 为零错误。
+缓存按原计划顺序物化39,304列 FI1-D-v3 冻结掩码、类别和分数；重复几何保留重复掩码列，
+不得折叠为39,250列，也不读取真实标注。要求 `17_prediction_cache_audit/summary.json` 为零错误。
 
 ## 4. 唯一一次正式 AP
 

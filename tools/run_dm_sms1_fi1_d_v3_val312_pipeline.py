@@ -12,6 +12,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 AUTHORIZATION_ID = "DM-SMS-1-FI1-D-v3-val312-one-shot-20260824"
+DUPLICATE_SAFE_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md"
 
 
 def _resolve(path: str | Path) -> Path:
@@ -86,6 +87,7 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
             "--sam-checkpoint", p(cfg["sam_checkpoint"]),
             "--qwen-model-dir", p(cfg["qwen_model_dir"]),
             "--preregistration-path", p(cfg["preregistration_path"]),
+            "--duplicate-safe-preregistration-path", p(DUPLICATE_SAFE_PREREGISTRATION),
             "--run-root", p(cfg["run_root"]), "--output-root", p(out["preflight"]),
         ]],
         "geometry": [
@@ -98,7 +100,13 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
             [py, _tool("audit_dm_sms1_fi1_d_v3_unique_geometry_ledger.py"),
              "--ledger-root", p(out["geometry"]),
              "--inference-root", p(cfg["fi1_d_v3_inference_root"]),
-             "--output-root", p(out["geometry_audit"])],
+             "--output-root", p(out["geometry_audit"]),
+             "--expected-candidate-count", "39304",
+             "--expected-unique-geometry-count", "39250",
+             "--expected-duplicate-group-count", "54",
+             "--expected-duplicate-scene-count", "50",
+             "--expected-different-class-group-count", "33",
+             "--expected-different-score-group-count", "53"],
         ],
         "alpha": [
             [py, _tool("build_dm_sms1_alpha_view_manifest.py"),
@@ -185,6 +193,8 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
              "--output-root", p(out["prediction_cache"]), "--expected-scene-count", "312"],
             [py, _tool("audit_dm_sms1_fi1_d_v3_prediction_cache.py"),
              "--cache-root", p(out["prediction_cache"]), "--ledger-root", p(out["geometry"]),
+             "--decision-root", p(out["full_decisions"]),
+             "--expected-candidate-count", "39304", "--expected-unique-geometry-count", "39250",
              "--output-root", p(out["prediction_cache_audit"])],
         ],
         "audit": [[
@@ -192,6 +202,7 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
             "--result-root", p(out["ap"]), "--scene-list", p(cfg["scene_list"]),
             "--cache-root", p(out["prediction_cache"]), "--cache-audit-root", p(out["prediction_cache_audit"]),
             "--decision-root", p(out["full_decisions"]), "--preregistration-path", p(cfg["preregistration_path"]),
+            "--duplicate-safe-preregistration-path", p(DUPLICATE_SAFE_PREREGISTRATION),
             "--output-root", p(out["ap_audit"]), "--expected-scene-count", "312",
         ]],
     }
@@ -203,6 +214,7 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
             "--scene-list", p(cfg["scene_list"]), "--ground-truth-root", p(cfg["ground_truth_root"]),
             "--cache-root", p(out["prediction_cache"]), "--cache-audit-root", p(out["prediction_cache_audit"]),
             "--decision-root", p(out["full_decisions"]), "--preregistration-path", p(cfg["preregistration_path"]),
+            "--duplicate-safe-preregistration-path", p(DUPLICATE_SAFE_PREREGISTRATION),
             "--output-root", p(out["ap"]), "--expected-scene-count", "312",
             "--dataset-name", "ScanNet200-val312", "--authorization-id", AUTHORIZATION_ID,
             "--allow-gt-evaluation",

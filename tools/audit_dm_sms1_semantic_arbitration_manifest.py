@@ -19,10 +19,24 @@ def audit(root: Path) -> dict:
     hypotheses = 0
     for index, row in enumerate(rows):
         prefix = f"row[{index}]"
-        identities.append((row.get("scene_name"), row.get("geometry_hash")))
+        identities.append((row.get("scene_name"), row.get("plan_key")))
+        if row.get("fi1_d_v3_plan_key") != row.get("plan_key") or not row.get("plan_key"):
+            errors.append(f"{prefix}: invalid plan_key identity")
+        if not row.get("visual_geometry_key") or not row.get("geometry_hash"):
+            errors.append(f"{prefix}: visual geometry provenance is incomplete")
         if row.get("ground_truth_read") is not False or row.get("ap_computed") is not False:
             errors.append(f"{prefix}: GT/AP provenance is not false")
-        for key in ("candidate_mutation", "geometry_mutation", "score_mutation", "class_decision_made"):
+        if (
+            row.get("candidate_source") != row.get("canonical_candidate_source")
+            or row.get("frozen_class_index") != row.get("canonical_frozen_class_index")
+            or row.get("challenger_score") != row.get("canonical_frozen_score")
+            or row.get("append_only") != row.get("fi1_d_v3_append_only")
+            or not isinstance(row.get("geometry_locator_read_only"), dict)
+            or row.get("candidate_retained") is not True
+            or row.get("candidate_deletion") is not False
+        ):
+            errors.append(f"{prefix}: frozen candidate fields differ")
+        for key in ("candidate_mutation", "geometry_mutation", "class_mutation", "score_mutation", "class_decision_made"):
             if row.get(key) is not False:
                 errors.append(f"{prefix}: {key} is true")
         candidates = row.get("finite_class_hypotheses", [])
@@ -44,9 +58,14 @@ def audit(root: Path) -> dict:
         selected_view_count += len(views)
         hypotheses += len(candidates)
     if len(identities) != len(set(identities)):
-        errors.append("duplicate scene/geometry identities")
-    if int(summary.get("geometry_count", -1)) != len(rows):
-        errors.append("summary geometry count mismatch")
+        errors.append("duplicate scene/plan identities")
+    unique_geometries = len({(row.get("scene_name"), row.get("geometry_hash")) for row in rows})
+    if int(summary.get("candidate_count", -1)) != len(rows):
+        errors.append("summary candidate count mismatch")
+    if int(summary.get("candidate_deletion_count", -1)) != 0:
+        errors.append("summary candidate deletion count mismatch")
+    if int(summary.get("unique_geometry_count", -1)) != unique_geometries:
+        errors.append("summary unique geometry count mismatch")
     if int(summary.get("selected_view_count", -1)) != selected_view_count:
         errors.append("summary selected view count mismatch")
     if int(summary.get("candidate_hypothesis_count", -1)) != hypotheses:
@@ -57,6 +76,8 @@ def audit(root: Path) -> dict:
         "version": "dm_sms1_semantic_arbitration_manifest_audit_v1",
         "manifest_root": str(root),
         "row_count": len(rows),
+        "candidate_count": len(rows),
+        "unique_geometry_count": unique_geometries,
         "error_count": len(errors),
         "errors": errors,
         "audit_valid": not errors,

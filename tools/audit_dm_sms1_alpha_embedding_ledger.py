@@ -94,6 +94,8 @@ def _audit_scene(
             or str(row["geometry_hash"]) != str(source["geometry_hash"])
             or str(row["geometry_key"]) != str(source["geometry_key"])
             or int(row["point_count"]) != int(source["point_count"])
+            or int(row.get("member_count", -1)) != int(source.get("member_count", -2))
+            or row.get("members") != source.get("members")
             or len(row["views"]) != len(source["views"])
         ):
             raise ValueError(f"{scene}: Stage C join mismatch at geometry {geometry_index}")
@@ -206,6 +208,7 @@ def _audit_scene(
             raise ValueError(f"{scene}: incomplete population was not conservatively retained")
     derived = {
         "geometry_count": len(records),
+        "member_count": sum(int(row["member_count"]) for row in records),
         "selected_view_count": sum(len(row["views"]) for row in records),
         "scale_feature_count": expected_scale_count,
         "sam_missing_view_count": sum(
@@ -325,6 +328,7 @@ def run(args: argparse.Namespace) -> dict:
     derived = {
         "scene_count": len(scenes),
         "geometry_count": sum(row["geometry_count"] for row in scene_summaries),
+        "member_count": sum(row["member_count"] for row in scene_summaries),
         "selected_view_count": sum(row["selected_view_count"] for row in scene_summaries),
         "scale_feature_count": sum(row["scale_feature_count"] for row in scene_summaries),
         "sam_missing_view_count": sum(row["sam_missing_view_count"] for row in scene_summaries),
@@ -341,7 +345,7 @@ def run(args: argparse.Namespace) -> dict:
         ),
     }
     for key in (
-        "scene_count", "geometry_count", "selected_view_count", "scale_feature_count",
+        "scene_count", "geometry_count", "member_count", "selected_view_count", "scale_feature_count",
         "sam_missing_view_count",
         "alpha_valid_count", "alpha_invalid_count",
         "sms_population_complete_scene_count", "sms_deleted_count", "sms_kept_count",

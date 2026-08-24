@@ -32,12 +32,22 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
         candidate = candidates_by_id.get(task_id)
         if candidate is None:
             continue
+        if row.get("fi1_d_v3_plan_key") != row.get("plan_key"):
+            errors.append(f"{prefix}: plan_key alias mismatch")
         hypotheses = candidate.get("candidate_hypotheses", [])
         allowed = {int(item["class_index"]) for item in hypotheses}
         incumbent = int(candidate["canonical_frozen_class_index"])
         selected = int(row.get("arbitrated_class_index", -1))
-        if (row.get("scene_name"), row.get("geometry_hash")) != (candidate.get("scene_name"), candidate.get("geometry_hash")):
+        if (row.get("scene_name"), row.get("plan_key")) != (candidate.get("scene_name"), candidate.get("plan_key")):
             errors.append(f"{prefix}: identity mismatch")
+        if row.get("geometry_hash") != candidate.get("geometry_hash"):
+            errors.append(f"{prefix}: visual geometry provenance mismatch")
+        if (
+            row.get("candidate_source") != candidate.get("candidate_source")
+            or row.get("challenger_score") != candidate.get("challenger_score")
+            or row.get("append_only") != candidate.get("append_only")
+        ):
+            errors.append(f"{prefix}: frozen candidate provenance mismatch")
         # Singleton rows never promote their sole alternative. The frozen
         # incumbent may be a foreground class or an explicit background
         # sentinel (-1/198), so deterministic keep is valid whenever the
@@ -68,11 +78,11 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
                 errors.append(f"{prefix}: {key} is not false")
         if row.get("ground_truth_usage") != "none" or row.get("class_decision_made") is not True:
             errors.append(f"{prefix}: provenance is incomplete")
-    identities = [(row.get("scene_name"), row.get("geometry_hash")) for row in rows]
+    identities = [(row.get("scene_name"), row.get("plan_key")) for row in rows]
     if len(identities) != len(set(identities)):
-        errors.append("duplicate geometry identities")
+        errors.append("duplicate scene/plan identities")
     expected = {
-        "geometry_count": len(rows),
+        "candidate_count": len(rows),
         "two_candidate_count": sum(len(row.get("candidate_hypotheses", [])) == 2 for row in candidates),
         "single_candidate_count": sum(len(row.get("candidate_hypotheses", [])) == 1 for row in candidates),
         "model_evidence_valid_count": sum(row.get("model_evidence_valid") is True for row in rows),
@@ -84,6 +94,8 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
     for key, value in expected.items():
         if int(summary.get(key, -1)) != value:
             errors.append(f"summary {key} mismatch")
+    if int(summary.get("candidate_deletion_count", -1)) != 0:
+        errors.append("summary candidate deletion count mismatch")
     if float(summary.get("decision_coverage_fraction", -1.0)) != 1.0:
         errors.append("summary coverage is not complete")
     for key in ("candidate_mutation", "geometry_mutation", "score_mutation", "proposal_deletion", "ground_truth_read", "ap_computed"):

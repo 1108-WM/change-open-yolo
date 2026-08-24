@@ -5,8 +5,10 @@ from tools.apply_dm_sms1_semantic_arbitration import decide_row
 
 def _manifest():
     return {
-        "scene_name": "scene", "geometry_key": "scene:g", "geometry_hash": "g",
+        "scene_name": "scene", "plan_key": "plan", "geometry_key": "plan",
+        "visual_geometry_key": "scene:g", "geometry_hash": "g",
         "task_id": "task",
+        "candidate_source": "native", "challenger_score": 0.5, "append_only": False,
         "canonical_frozen_class_index": 0,
         "candidate_hypotheses": [{"class_index": 0}, {"class_index": 1}],
     }
