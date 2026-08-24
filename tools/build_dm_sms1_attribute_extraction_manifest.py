@@ -128,6 +128,7 @@ def run(args: argparse.Namespace) -> dict:
         "candidate_count": len(built),
         "geometry_count": len(built),
         "unique_geometry_count": len({(row["scene_name"], row["geometry_hash"]) for row in built}),
+        "candidate_deletion_count": 0,
         "task_count": len(built),
         "view_input_count": sum(len(row["view_inputs"]) for row in built),
         "candidate_labels_hidden": True,

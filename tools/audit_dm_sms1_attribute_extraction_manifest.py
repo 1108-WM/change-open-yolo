@@ -1,27 +1,97 @@
 #!/usr/bin/env python3
-"""Audit category-blind attribute extraction inputs without GT or AP."""
+"""Audit category-blind attribute inputs against the semantic manifest."""
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
 
-REQUIRED_PROMPT_PARTS = ("不要猜测类别", "外观颜色和纹理", "材质", "形状和结构", "功能线索", "空间关系")
+REQUIRED_PROMPT_PARTS = (
+    "不要猜测类别", "外观颜色和纹理", "材质", "形状和结构", "功能线索", "空间关系",
+)
 
 
-def audit(root: Path) -> dict:
-    summary = json.loads((root / "summary.json").read_text())
-    records = [json.loads(line) for line in (root / "attribute_extraction_manifest.jsonl").read_text().splitlines() if line.strip()]
+def _rows(path: Path) -> list[dict]:
+    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def audit(
+    root: Path,
+    semantic_root: Path,
+    expected_candidate_count: int = 39304,
+    expected_unique_geometry_count: int = 39250,
+) -> dict:
+    summary_path = root / "summary.json"
+    records_path = root / "attribute_extraction_manifest.jsonl"
+    semantic_path = semantic_root / "semantic_arbitration_manifest.jsonl"
+    summary = json.loads(summary_path.read_text())
+    semantic_summary = json.loads((semantic_root / "summary.json").read_text())
+    records = _rows(records_path)
+    semantic_rows = _rows(semantic_path)
     errors: list[str] = []
+
+    semantic_ids = [
+        (str(row.get("scene_name", "")), str(row.get("plan_key", "")))
+        for row in semantic_rows
+    ]
+    semantic_by_id = dict(zip(semantic_ids, semantic_rows))
+    if any(not scene or not key for scene, key in semantic_ids):
+        errors.append("semantic manifest has empty scene/plan identity")
+    if len(semantic_ids) != len(set(semantic_ids)):
+        errors.append("semantic manifest has duplicate scene/plan identities")
+
     task_ids = []
     candidate_ids = []
     view_count = 0
     for index, row in enumerate(records):
         prefix = f"row[{index}]"
-        task_ids.append(row.get("task_id"))
-        candidate_ids.append((row.get("scene_name"), row.get("plan_key")))
+        task_ids.append(str(row.get("task_id", "")))
+        identity = (str(row.get("scene_name", "")), str(row.get("plan_key", "")))
+        candidate_ids.append(identity)
+        semantic = semantic_by_id.get(identity)
+        if semantic is None:
+            errors.append(f"{prefix}: plan_key is absent from semantic manifest")
+        else:
+            expected_views = [
+                {
+                    "view_rank": view.get("selection_rank"),
+                    "frame_id": view.get("frame_id"),
+                    "frame_index": view.get("frame_index"),
+                    "rgb_path": view.get("rgb_path"),
+                    "depth_path": view.get("depth_path"),
+                    "pose_path": view.get("pose_path"),
+                    "intrinsics_path": view.get("intrinsics_path"),
+                    "sam_box_prompt_xyxy": view.get("sam_box_prompt_xyxy"),
+                    "sam_mask_sha256": view.get("sam_mask_sha256"),
+                    "visible_ratio": view.get("visible_ratio"),
+                    "visible_point_count": view.get("visible_point_count"),
+                }
+                for view in semantic.get("selected_views", [])
+            ]
+            checks = {
+                "plan_index": row.get("plan_index") == semantic.get("plan_index"),
+                "geometry_key": row.get("geometry_key") == semantic.get("geometry_key"),
+                "geometry_hash": row.get("geometry_hash") == semantic.get("geometry_hash"),
+                "visual_geometry_key": (
+                    row.get("visual_geometry_key") == semantic.get("visual_geometry_key")
+                ),
+                "point_count": row.get("point_count") == semantic.get("point_count"),
+                "candidate_hypothesis_count": (
+                    row.get("candidate_hypothesis_count")
+                    == len(semantic.get("finite_class_hypotheses", []))
+                ),
+                "view_inputs": row.get("view_inputs") == expected_views,
+            }
+            for name, valid in checks.items():
+                if not valid:
+                    errors.append(f"{prefix}: semantic {name} differs")
         if row.get("fi1_d_v3_plan_key") != row.get("plan_key") or not row.get("plan_key"):
             errors.append(f"{prefix}: invalid plan_key identity")
         if str(row.get("plan_key", "")) not in str(row.get("task_id", "")):
@@ -37,7 +107,10 @@ def audit(root: Path) -> dict:
             errors.append(f"{prefix}: GT/AP provenance is not false")
         if any(part not in str(row.get("attribute_prompt", "")) for part in REQUIRED_PROMPT_PARTS):
             errors.append(f"{prefix}: fixed category-blind prompt is incomplete")
-        forbidden_keys = {"finite_class_hypotheses", "canonical_frozen_class_index", "alpha_class_index", "class_names", "candidate_labels"}
+        forbidden_keys = {
+            "finite_class_hypotheses", "canonical_frozen_class_index", "alpha_class_index",
+            "class_names", "candidate_labels",
+        }
         if forbidden_keys.intersection(row):
             errors.append(f"{prefix}: candidate label field leaked into model input")
         views = row.get("view_inputs", [])
@@ -48,39 +121,76 @@ def audit(root: Path) -> dict:
                 if not Path(view.get(key, "")).is_file():
                     errors.append(f"{prefix}: missing {key}")
         view_count += len(views)
-    if len(task_ids) != len(set(task_ids)):
-        errors.append("duplicate task ids")
+
+    unique_geometries = len({(row.get("scene_name"), row.get("geometry_hash")) for row in records})
+    if candidate_ids != semantic_ids:
+        errors.append("attribute plan_key coverage or order differs from semantic manifest")
+    if len(task_ids) != len(set(task_ids)) or any(not value for value in task_ids):
+        errors.append("empty or duplicate task ids")
     if len(candidate_ids) != len(set(candidate_ids)):
         errors.append("duplicate scene/plan identities")
-    if int(summary.get("task_count", -1)) != len(records):
-        errors.append("summary task count mismatch")
-    if int(summary.get("candidate_count", -1)) != len(records):
-        errors.append("summary candidate count mismatch")
+    if len(records) != expected_candidate_count:
+        errors.append("frozen candidate_count mismatch")
+    if unique_geometries != expected_unique_geometry_count:
+        errors.append("frozen unique_geometry_count mismatch")
+    if int(summary.get("task_count", -1)) != expected_candidate_count:
+        errors.append("summary task_count mismatch")
+    if int(summary.get("candidate_count", -1)) != expected_candidate_count:
+        errors.append("summary candidate_count mismatch")
+    if int(summary.get("unique_geometry_count", -1)) != expected_unique_geometry_count:
+        errors.append("summary unique_geometry_count mismatch")
+    if int(summary.get("candidate_deletion_count", -1)) != 0:
+        errors.append("summary candidate_deletion_count mismatch")
+    if (
+        int(semantic_summary.get("candidate_count", -1)) != expected_candidate_count
+        or int(semantic_summary.get("unique_geometry_count", -1))
+        != expected_unique_geometry_count
+        or int(semantic_summary.get("candidate_deletion_count", -1)) != 0
+    ):
+        errors.append("semantic summary frozen counts mismatch")
     if int(summary.get("view_input_count", -1)) != view_count:
         errors.append("summary view count mismatch")
-    if summary.get("candidate_labels_hidden") is not True or summary.get("ground_truth_read") is not False or summary.get("ap_computed") is not False:
+    if (
+        summary.get("candidate_labels_hidden") is not True
+        or summary.get("ground_truth_read") is not False
+        or summary.get("ap_computed") is not False
+    ):
         errors.append("summary contract mismatch")
     result = {
-        "version": "dm_sms1_attribute_extraction_manifest_audit_v1",
-        "row_count": len(records),
+        "version": "dm_sms1_attribute_extraction_manifest_audit_v2",
         "candidate_count": len(records),
-        "unique_geometry_count": len({(row.get("scene_name"), row.get("geometry_hash")) for row in records}),
+        "unique_geometry_count": unique_geometries,
+        "candidate_deletion_count": len(set(semantic_ids) - set(candidate_ids)),
+        "plan_key_coverage_complete": candidate_ids == semantic_ids,
         "error_count": len(errors),
         "errors": errors,
         "audit_valid": not errors,
         "candidate_labels_hidden": True,
         "ground_truth_read": False,
         "ap_computed": False,
+        "input_provenance": {
+            "attribute_manifest_sha256": _sha256(records_path),
+            "semantic_manifest_sha256": _sha256(semantic_path),
+            "semantic_summary_sha256": _sha256(semantic_root / "summary.json"),
+        },
     }
-    (root / "audit_summary.json").write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
+    (root / "audit_summary.json").write_text(
+        json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    )
     return result
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("manifest_root", type=Path)
+    parser.add_argument("--semantic-root", type=Path, required=True)
+    parser.add_argument("--expected-candidate-count", type=int, default=39304)
+    parser.add_argument("--expected-unique-geometry-count", type=int, default=39250)
     args = parser.parse_args()
-    result = audit(args.manifest_root)
+    result = audit(
+        args.manifest_root, args.semantic_root,
+        args.expected_candidate_count, args.expected_unique_geometry_count,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     if not result["audit_valid"]:
         raise SystemExit(1)
