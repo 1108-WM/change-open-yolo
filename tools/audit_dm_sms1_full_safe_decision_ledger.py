@@ -5,9 +5,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
-from tools.dm_sms1_terminal_safe_keep import (
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from tools.dm_sms1_terminal_safe_keep import (  # noqa: E402
     TERMINAL_KEEP_REASON,
     terminal_expected_identities,
 )

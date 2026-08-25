@@ -6,17 +6,20 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 import yaml
 
-from tools.dm_sms1_terminal_safe_keep import (
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from tools.dm_sms1_terminal_safe_keep import (  # noqa: E402
     TERMINAL_KEEP_REASON,
     terminal_expected_identities,
 )
 
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
 FROZEN_EVIDENCE_PROMPT_PREFIX = (
     "你已经得到同一个三维物体的无类别属性证据。现在只比较下面给出的有限候选，"
     "不要提出候选列表之外的新类别。请分别记录每个候选的支持证据、反对证据、"

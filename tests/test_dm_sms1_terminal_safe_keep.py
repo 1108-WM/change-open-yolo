@@ -5,6 +5,8 @@ import copy
 import hashlib
 import json
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -232,6 +234,34 @@ def test_pipeline_preflight_freezes_terminal_preregistration_path(tmp_path: Path
     command = _commands("preflight", config, _outputs(config["run_root"]), False)[0]
     index = command.index("--terminal-safe-keep-preregistration-path")
     assert command[index + 1] == str(TERMINAL_SAFE_KEEP_PREREGISTRATION)
+
+
+@pytest.mark.parametrize(
+    "script_name",
+    [
+        "build_dm_sms1_semantic_arbitration_manifest.py",
+        "audit_dm_sms1_semantic_arbitration_manifest.py",
+        "build_dm_sms1_attribute_extraction_manifest.py",
+        "audit_dm_sms1_attribute_extraction_manifest.py",
+        "build_dm_sms1_candidate_evidence_manifest.py",
+        "audit_dm_sms1_candidate_evidence_manifest.py",
+        "build_dm_sms1_full_safe_decision_ledger.py",
+        "audit_dm_sms1_full_safe_decision_ledger.py",
+    ],
+)
+def test_terminal_safe_keep_tools_support_direct_cli_execution(
+    tmp_path: Path, script_name: str,
+):
+    project_root = Path(__file__).resolve().parents[1]
+    result = subprocess.run(
+        [sys.executable, str(project_root / "tools" / script_name), "--help"],
+        cwd=tmp_path,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "ModuleNotFoundError" not in result.stderr
 
 
 @pytest.mark.parametrize(
