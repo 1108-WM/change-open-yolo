@@ -7,6 +7,11 @@ import argparse
 import json
 from pathlib import Path
 
+from tools.dm_sms1_terminal_safe_keep import (  # noqa: E402
+    TERMINAL_KEEP_REASON,
+    terminal_identity,
+)
+
 
 def _read_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
@@ -34,7 +39,31 @@ def run(pair_decisions: Path, candidate_manifest: Path, output_root: Path) -> di
         task_id = str(candidate["task_id"])
         hypotheses = candidate.get("candidate_hypotheses", [])
         incumbent = int(candidate["canonical_frozen_class_index"])
-        if len(hypotheses) == 2:
+        if candidate.get("terminal_safe_keep") is True:
+            if (
+                hypotheses != [] or incumbent != 198
+                or not terminal_identity(
+                    int(candidate.get("plan_index", -1)), str(candidate.get("plan_key", ""))
+                )
+            ):
+                raise ValueError(f"{task_id}: invalid terminal-safe-keep candidate")
+            decision = {
+                "scene_name": candidate["scene_name"], "plan_key": candidate["plan_key"],
+                "fi1_d_v3_plan_key": candidate["plan_key"], "geometry_key": candidate["geometry_key"],
+                "visual_geometry_key": candidate["visual_geometry_key"], "geometry_hash": candidate["geometry_hash"],
+                "candidate_source": candidate["candidate_source"], "challenger_score": candidate["challenger_score"],
+                "append_only": candidate["append_only"], "frozen_class_index": incumbent,
+                "canonical_frozen_class_index": incumbent, "arbitrated_class_index": incumbent,
+                "class_changed": False, "change_reason": "terminal_safe_keep",
+                "decision_source": "terminal_safe_keep", "decision_source_task_id": task_id,
+                "decision_path": "terminal_safe_keep", "model_evidence_used": False,
+                "model_evidence_valid": None, "fallback_reason": None,
+                "terminal_safe_keep": True, "terminal_keep_reason": TERMINAL_KEEP_REASON,
+                "candidate_mutation": False, "geometry_mutation": False, "score_mutation": False,
+                "proposal_deletion": False, "class_decision_made": True,
+                "ground_truth_usage": "none", "ground_truth_read": False, "ap_computed": False,
+            }
+        elif len(hypotheses) == 2:
             decision = dict(pairs_by_id[task_id])
             decision["decision_path"] = "two_candidate_vlm_arbitration"
         elif len(hypotheses) == 1:
@@ -72,6 +101,7 @@ def run(pair_decisions: Path, candidate_manifest: Path, output_root: Path) -> di
             }
         else:
             raise ValueError(f"{task_id}: expected one or two candidates")
+        decision["plan_index"] = int(candidate["plan_index"])
         if (decision.get("scene_name") != candidate.get("scene_name")
                 or decision.get("plan_key") != candidate.get("plan_key")
                 or decision.get("geometry_hash") != candidate.get("geometry_hash")):
@@ -92,10 +122,13 @@ def run(pair_decisions: Path, candidate_manifest: Path, output_root: Path) -> di
         "unique_geometry_count": len({(row["scene_name"], row["geometry_hash"]) for row in decisions}),
         "candidate_deletion_count": 0,
         "two_candidate_count": len(expected_pair_ids),
-        "single_candidate_count": len(decisions) - len(expected_pair_ids),
+        "single_candidate_count": sum(
+            len(row.get("candidate_hypotheses", [])) == 1 for row in candidates
+        ),
         "model_evidence_valid_count": sum(row.get("model_evidence_valid") is True for row in decisions),
         "invalid_evidence_fallback_count": sum(row.get("model_evidence_valid") is False for row in decisions),
         "single_candidate_keep_count": sum(row.get("decision_path") == "single_candidate_deterministic_keep" for row in decisions),
+        "terminal_safe_keep_count": sum(row.get("decision_path") == "terminal_safe_keep" for row in decisions),
         "class_change_count": sum(row["class_changed"] for row in decisions),
         "kept_frozen_control_count": sum(not row["class_changed"] for row in decisions),
         "decision_coverage_fraction": 1.0 if decisions else 0.0,

@@ -7,12 +7,21 @@ import argparse
 import json
 from pathlib import Path
 
+from tools.dm_sms1_terminal_safe_keep import (
+    TERMINAL_KEEP_REASON,
+    terminal_expected_identities,
+)
+
 
 def _read_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
 
-def audit(root: Path, candidate_manifest: Path) -> dict:
+def audit(
+    root: Path,
+    candidate_manifest: Path,
+    expected_terminal_identities: set[tuple[int, str]] | None = None,
+) -> dict:
     rows = _read_jsonl(root / "safe_decisions.jsonl")
     candidates = _read_jsonl(candidate_manifest)
     summary = json.loads((root / "summary.json").read_text())
@@ -23,9 +32,10 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
         errors.append("candidate manifest has empty or duplicate task_id")
     if any(not value for value in decision_ids) or len(decision_ids) != len(set(decision_ids)):
         errors.append("decision ledger has empty or duplicate source task_id")
-    if set(candidate_ids) != set(decision_ids):
-        errors.append("decision coverage does not exactly match candidate manifest")
+    if decision_ids != candidate_ids:
+        errors.append("decision coverage or order does not exactly match candidate manifest")
     candidates_by_id = dict(zip(candidate_ids, candidates))
+    terminal_hits: set[tuple[int, str]] = set()
     for index, row in enumerate(rows):
         prefix = f"row[{index}]"
         task_id = str(row.get("decision_source_task_id", ""))
@@ -34,6 +44,8 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
             continue
         if row.get("fi1_d_v3_plan_key") != row.get("plan_key"):
             errors.append(f"{prefix}: plan_key alias mismatch")
+        if row.get("plan_index") != candidate.get("plan_index"):
+            errors.append(f"{prefix}: plan_index mismatch")
         hypotheses = candidate.get("candidate_hypotheses", [])
         allowed = {int(item["class_index"]) for item in hypotheses}
         incumbent = int(candidate["canonical_frozen_class_index"])
@@ -48,16 +60,33 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
             or row.get("append_only") != candidate.get("append_only")
         ):
             errors.append(f"{prefix}: frozen candidate provenance mismatch")
+        terminal = candidate.get("terminal_safe_keep") is True
+        if terminal:
+            terminal_hits.add((int(candidate.get("plan_index", -1)), str(candidate.get("plan_key", ""))))
+            required = {
+                "frozen_class_index": 198, "canonical_frozen_class_index": 198,
+                "arbitrated_class_index": 198, "class_changed": False,
+                "decision_source": "terminal_safe_keep", "decision_path": "terminal_safe_keep",
+                "model_evidence_used": False, "model_evidence_valid": None,
+                "terminal_safe_keep": True, "terminal_keep_reason": TERMINAL_KEEP_REASON,
+            }
+            if hypotheses != []:
+                errors.append(f"{prefix}: terminal row has finite hypotheses")
+            for key, value in required.items():
+                if row.get(key) != value:
+                    errors.append(f"{prefix}: terminal decision field {key} differs")
         # Singleton rows never promote their sole alternative. The frozen
         # incumbent may be a foreground class or an explicit background
         # sentinel (-1/198), so deterministic keep is valid whenever the
         # selected value exactly equals that frozen incumbent.
-        selected_allowed = selected in allowed or (len(hypotheses) == 1 and selected == incumbent)
+        selected_allowed = terminal or selected in allowed or (len(hypotheses) == 1 and selected == incumbent)
         if not selected_allowed or int(row.get("canonical_frozen_class_index", -1)) != incumbent:
             errors.append(f"{prefix}: class contract mismatch")
         if row.get("class_changed") != (selected != incumbent):
             errors.append(f"{prefix}: class_changed mismatch")
-        if len(hypotheses) == 1:
+        if terminal:
+            pass
+        elif len(hypotheses) == 1:
             if row.get("decision_path") != "single_candidate_deterministic_keep" or selected != incumbent:
                 errors.append(f"{prefix}: invalid single-candidate decision")
             if int(row.get("singleton_candidate_class_index", -999)) != int(hypotheses[0]["class_index"]):
@@ -88,12 +117,20 @@ def audit(root: Path, candidate_manifest: Path) -> dict:
         "model_evidence_valid_count": sum(row.get("model_evidence_valid") is True for row in rows),
         "invalid_evidence_fallback_count": sum(row.get("model_evidence_valid") is False for row in rows),
         "single_candidate_keep_count": sum(row.get("decision_path") == "single_candidate_deterministic_keep" for row in rows),
+        "terminal_safe_keep_count": sum(row.get("decision_path") == "terminal_safe_keep" for row in rows),
         "class_change_count": sum(row.get("class_changed") is True for row in rows),
         "kept_frozen_control_count": sum(row.get("class_changed") is False for row in rows),
     }
     for key, value in expected.items():
         if int(summary.get(key, -1)) != value:
             errors.append(f"summary {key} mismatch")
+    required_terminal = (
+        terminal_expected_identities()
+        if expected_terminal_identities is None and len(candidates) == 39304
+        else set(expected_terminal_identities or ())
+    )
+    if terminal_hits != required_terminal:
+        errors.append("terminal-safe-keep decision coverage is not exactly the frozen four")
     if int(summary.get("candidate_deletion_count", -1)) != 0:
         errors.append("summary candidate deletion count mismatch")
     if float(summary.get("decision_coverage_fraction", -1.0)) != 1.0:

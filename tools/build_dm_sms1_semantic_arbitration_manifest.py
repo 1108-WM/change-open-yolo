@@ -21,6 +21,11 @@ import numpy as np
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+from tools.dm_sms1_terminal_safe_keep import (  # noqa: E402
+    TERMINAL_KEEP_REASON,
+    terminal_safe_keep_eligible,
+)
+
 
 def _resolve(path: Path) -> Path:
     return path if path.is_absolute() else PROJECT_ROOT / path
@@ -165,7 +170,22 @@ def _view_paths(view: Mapping[str, object]) -> tuple[str, str, str, str]:
 
 def build_rows(row: Mapping[str, object], target_count: int, max_input_views: int) -> list[dict]:
     views = list(row.get("views", []))
-    if not views:
+    members = list(row.get("members", []))
+    if not members or int(row.get("member_count", -1)) != len(members):
+        raise ValueError(f"{row.get('geometry_key')}: invalid visual-geometry member contract")
+    if not views and not all(
+        terminal_safe_keep_eligible(
+            plan_index=int(member["plan_index"]),
+            plan_key=str(member.get("plan_key") or member.get("fi1_d_v3_plan_key") or ""),
+            frozen_class_index=int(member["frozen_class_index"]),
+            selected_views=views,
+            selected_view_count=int(row.get("selected_view_count", len(views))),
+            alpha_feature_valid=bool(row.get("alpha_feature_valid")),
+            alpha_class_index=row.get("alpha_class_index"),
+            candidate_retained=bool(member.get("candidate_retained", True)),
+            candidate_deletion=bool(member.get("candidate_deletion", False)),
+        ) for member in members
+    ):
         raise ValueError(f"{row.get('geometry_key')}: no Stage D views")
     centers: dict[str, np.ndarray] = {}
     for view in views[:max_input_views]:
@@ -175,7 +195,7 @@ def build_rows(row: Mapping[str, object], target_count: int, max_input_views: in
         centers[frame_id] = camera_center(pose_path)
     selected_indices = select_complementary_views(
         views, target_count=target_count, max_input_views=max_input_views, centers=centers,
-    )
+    ) if views else []
     selected = []
     for rank, index in enumerate(selected_indices):
         view = views[index]
@@ -198,15 +218,21 @@ def build_rows(row: Mapping[str, object], target_count: int, max_input_views: in
             "view_selection_reason": "highest_visible_then_farthest_camera_center",
         })
     alpha = int(row["alpha_class_index"]) if row.get("alpha_class_index") is not None else None
-    members = list(row.get("members", []))
-    if not members or int(row.get("member_count", -1)) != len(members):
-        raise ValueError(f"{row.get('geometry_key')}: invalid visual-geometry member contract")
     built = []
     for member in members:
         plan_key = str(member.get("plan_key") or member.get("fi1_d_v3_plan_key") or "")
         if not plan_key:
             raise ValueError(f"{row.get('geometry_key')}: member has empty plan_key")
         canonical = int(member["frozen_class_index"])
+        terminal = terminal_safe_keep_eligible(
+            plan_index=int(member["plan_index"]), plan_key=plan_key,
+            frozen_class_index=canonical, selected_views=views,
+            selected_view_count=int(row.get("selected_view_count", len(views))),
+            alpha_feature_valid=bool(row.get("alpha_feature_valid")),
+            alpha_class_index=alpha,
+            candidate_retained=bool(member.get("candidate_retained", True)),
+            candidate_deletion=bool(member.get("candidate_deletion", False)),
+        )
         built.append({
             "scene_name": str(row["scene_name"]),
             "plan_index": int(member["plan_index"]),
@@ -227,16 +253,23 @@ def build_rows(row: Mapping[str, object], target_count: int, max_input_views: in
             "append_only": bool(member["append_only"]),
             "fi1_d_v3_append_only": bool(member["append_only"]),
             "alpha_class_index": alpha,
+            "alpha_feature_valid": bool(row["alpha_feature_valid"]) if "alpha_feature_valid" in row else alpha is not None,
             "alpha_top_similarity": (
                 float(row["alpha_top_similarity"])
                 if row.get("alpha_top_similarity") is not None else None
             ),
             "sms_keep": bool(row["sms_keep"]),
-            "finite_class_hypotheses": finite_candidate_classes(canonical, alpha),
+            "finite_class_hypotheses": [] if terminal else finite_candidate_classes(canonical, alpha),
             "selected_views": selected,
             "visual_evidence_shared_member_count": len(members),
             "candidate_retained": True,
             "candidate_deletion": False,
+            "arbitration_eligible": not terminal,
+            "terminal_safe_keep": terminal,
+            "terminal_keep_reason": TERMINAL_KEEP_REASON if terminal else None,
+            "attribute_execution_required": not terminal,
+            "qwen_execution_required": not terminal,
+            "arbitrated_class_index": None,
             "candidate_mutation": False,
             "geometry_mutation": False,
             "class_mutation": False,
@@ -288,6 +321,7 @@ def run(args: argparse.Namespace) -> dict:
             len(row["selected_views"]) < args.target_views for row in built
         ),
         "candidate_hypothesis_count": sum(len(row["finite_class_hypotheses"]) for row in built),
+        "terminal_safe_keep_count": sum(bool(row["terminal_safe_keep"]) for row in built),
         "target_views": args.target_views,
         "max_input_views": args.max_input_views,
         "view_selection_contract": "first highest visible ratio; then farthest camera centre, visible ratio and frame tie-breaks",

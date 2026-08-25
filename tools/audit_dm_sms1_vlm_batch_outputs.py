@@ -15,6 +15,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from tools.run_dm_sms1_vlm_batch_smoke import validate_completed_model_record
+from tools.dm_sms1_terminal_safe_keep import terminal_expected_identities
 
 
 def _rows(path: Path) -> list[dict]:
@@ -51,6 +52,25 @@ def audit(
         errors.append("selection contains an empty or duplicate task_id")
     if record_ids != selection_ids:
         errors.append("batch outputs do not exactly cover selection order")
+    terminal_ids = {
+        task_id for task_id, row in candidates.items()
+        if row.get("terminal_safe_keep") is True or row.get("qwen_execution_required") is False
+    }
+    if terminal_ids.intersection(selection_ids):
+        errors.append("Qwen selection contains a terminal-safe-keep task")
+    terminal_identities = {
+        (int(row.get("plan_index", -1)), str(row.get("plan_key", "")))
+        for row in candidates.values() if row.get("terminal_safe_keep") is True
+    }
+    if len(candidates) == 39304 and terminal_identities != terminal_expected_identities():
+        errors.append("candidate manifest terminal-safe-keep coverage is not the frozen four")
+    for task_id in selection_ids:
+        candidate = candidates.get(task_id)
+        if candidate is not None and (
+            candidate.get("qwen_execution_required") is not True
+            or len(candidate.get("candidate_hypotheses", [])) != 2
+        ):
+            errors.append(f"Qwen selection contains ineligible task: {task_id}")
     for index, record in enumerate(records):
         task_id = str(record.get("task_id", ""))
         prefix = f"row[{index}] {task_id}"

@@ -10,6 +10,11 @@ from pathlib import Path
 
 import yaml
 
+from tools.dm_sms1_terminal_safe_keep import (
+    TERMINAL_KEEP_REASON,
+    terminal_expected_identities,
+)
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 FROZEN_EVIDENCE_PROMPT_PREFIX = (
@@ -41,6 +46,7 @@ def audit(
     expected_candidate_count: int = 39304,
     expected_unique_geometry_count: int = 39250,
     config_path: Path = PROJECT_ROOT / "pretrained/config_scannet200.yaml",
+    expected_terminal_identities: set[tuple[int, str]] | None = None,
 ) -> dict:
     records_path = root / "candidate_evidence_manifest.jsonl"
     attribute_path = attribute_root / "attribute_extraction_manifest.jsonl"
@@ -77,6 +83,7 @@ def audit(
 
     identities = []
     pairs = singles = 0
+    terminal_hits: set[tuple[int, str]] = set()
     for index, row in enumerate(rows):
         prefix = f"row[{index}]"
         identity = (str(row.get("scene_name", "")), str(row.get("plan_key", "")))
@@ -142,10 +149,35 @@ def audit(
         if str(row.get("plan_key", "")) not in str(row.get("task_id", "")):
             errors.append(f"{prefix}: task_id does not contain plan_key")
         candidates = row.get("candidate_hypotheses", [])
-        if len(candidates) not in (1, 2):
+        terminal = bool(row.get("terminal_safe_keep", False))
+        if terminal:
+            terminal_hits.add((int(row.get("plan_index", -1)), identity[1]))
+            required = {
+                "candidate_hypotheses": [], "candidate_order_ab": [], "candidate_order_ba": [],
+                "evidence_prompt_ab": None, "evidence_prompt_ba": None,
+                "attribute_evidence_required": False, "swap_order_required": False,
+                "qwen_execution_required": False, "terminal_safe_keep": True,
+                "terminal_keep_reason": TERMINAL_KEEP_REASON,
+                "canonical_frozen_class_index": 198,
+            }
+            for key, value in required.items():
+                if row.get(key) != value:
+                    errors.append(f"{prefix}: terminal field {key} differs")
+            if attribute is not None and attribute.get("terminal_safe_keep") is not True:
+                errors.append(f"{prefix}: terminal attribute join differs")
+            if semantic is not None and semantic.get("terminal_safe_keep") is not True:
+                errors.append(f"{prefix}: terminal semantic join differs")
+        elif len(candidates) not in (1, 2):
             errors.append(f"{prefix}: candidate count is not one or two")
+        if not terminal:
+            if attribute is not None and attribute.get("terminal_safe_keep") is not False:
+                errors.append(f"{prefix}: ordinary attribute join has terminal-safe-keep state")
+            if semantic is not None and semantic.get("terminal_safe_keep") is not False:
+                errors.append(f"{prefix}: ordinary semantic join has terminal-safe-keep state")
+            if row.get("qwen_execution_required") is not True:
+                errors.append(f"{prefix}: ordinary row disables Qwen execution")
         expected_names_ab = [candidate.get("class_name") for candidate in candidates]
-        if any(not isinstance(name, str) for name in expected_names_ab):
+        if not terminal and any(not isinstance(name, str) for name in expected_names_ab):
             errors.append(f"{prefix}: candidate class name is not a string")
         prompt_names_ab = [str(name) for name in expected_names_ab]
         expected_names_ba = list(reversed(expected_names_ab))
@@ -154,15 +186,15 @@ def audit(
             errors.append(f"{prefix}: AB candidate order differs from class mapping")
         if row.get("candidate_order_ba") != expected_names_ba:
             errors.append(f"{prefix}: BA candidate order is not the exact reverse")
-        if row.get("evidence_prompt_ab") != FROZEN_EVIDENCE_PROMPT_PREFIX + "、".join(prompt_names_ab):
+        if not terminal and row.get("evidence_prompt_ab") != FROZEN_EVIDENCE_PROMPT_PREFIX + "、".join(prompt_names_ab):
             errors.append(f"{prefix}: complete AB evidence prompt differs")
-        if row.get("evidence_prompt_ba") != FROZEN_EVIDENCE_PROMPT_PREFIX + "、".join(prompt_names_ba):
+        if not terminal and row.get("evidence_prompt_ba") != FROZEN_EVIDENCE_PROMPT_PREFIX + "、".join(prompt_names_ba):
             errors.append(f"{prefix}: complete BA evidence prompt differs")
         if len(candidates) == 2:
             pairs += 1
-        else:
+        elif not terminal:
             singles += 1
-        if row.get("attribute_evidence_required") is not True:
+        if not terminal and row.get("attribute_evidence_required") is not True:
             errors.append(f"{prefix}: attribute evidence execution switch differs")
         if row.get("swap_order_required") is not (len(candidates) == 2):
             errors.append(f"{prefix}: swap-order execution switch differs")
@@ -205,6 +237,19 @@ def audit(
         errors.append("summary finite candidate count mismatch")
     if summary.get("class_decision_made") is not False or summary.get("selected_class_count") != 0:
         errors.append("summary class decision contract mismatch")
+    required_terminal = (
+        terminal_expected_identities()
+        if expected_terminal_identities is None and expected_candidate_count == 39304
+        and expected_unique_geometry_count == 39250
+        else set(expected_terminal_identities or ())
+    )
+    if terminal_hits != required_terminal:
+        errors.append("terminal-safe-keep identity coverage is not exactly the frozen four")
+    summary_terminal_count = summary.get(
+        "terminal_safe_keep_count", 0 if not required_terminal else -1
+    )
+    if int(summary_terminal_count) != len(terminal_hits) or terminal_hits != required_terminal:
+        errors.append("terminal-safe-keep count or identity set differs")
     result = {
         "version": "dm_sms1_candidate_evidence_manifest_audit_v3",
         "candidate_count": len(rows),
@@ -218,6 +263,7 @@ def audit(
         "class_decision_made": False,
         "ground_truth_read": False,
         "ap_computed": False,
+        "terminal_safe_keep_count": len(terminal_hits),
         "input_provenance": {
             "candidate_manifest_sha256": _sha256(records_path),
             "attribute_manifest_sha256": _sha256(attribute_path),

@@ -102,13 +102,29 @@ def select_batch(
         raise ValueError("per_scene_offset must be non-negative")
     grouped: dict[str, list[dict]] = defaultdict(list)
     for row in candidate_rows:
+        if row.get("terminal_safe_keep") is True:
+            if row.get("qwen_execution_required") is not False or row.get("candidate_hypotheses") != []:
+                raise ValueError("terminal-safe-keep row violates Qwen exclusion contract")
+            continue
         if len(row.get("candidate_hypotheses", [])) == 2:
+            if row.get("qwen_execution_required", True) is not True:
+                raise ValueError("ordinary pair task unexpectedly disables Qwen")
             grouped[str(row["scene_name"])].append(row)
     selected = []
     for scene in sorted(grouped)[:scene_count]:
         rows = sorted(grouped[scene], key=lambda row: (row["geometry_hash"], row["task_id"]))
         selected.extend(rows[per_scene_offset:per_scene_offset + per_scene])
     return selected
+
+
+def _validate_qwen_selection(selected: list[dict]) -> None:
+    for row in selected:
+        if row.get("terminal_safe_keep") is True:
+            raise ValueError("Qwen selection contains a terminal-safe-keep task")
+        if row.get("qwen_execution_required", True) is not True:
+            raise ValueError("Qwen selection contains a task with execution disabled")
+        if len(row.get("candidate_hypotheses", [])) != 2:
+            raise ValueError("Qwen selection contains a non-pair task")
 
 
 def _string_values(value):
@@ -484,6 +500,7 @@ def run(args: argparse.Namespace) -> dict:
         if not requested.issubset(by_task):
             raise ValueError("requested task_id is absent from candidate manifest")
         selected = [by_task[task_id] for task_id in args.task_id]
+    _validate_qwen_selection(selected)
     if args.offset < 0:
         raise ValueError("offset must be non-negative")
     if args.limit is not None and args.limit <= 0:

@@ -15,6 +15,11 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+from tools.dm_sms1_terminal_safe_keep import (  # noqa: E402
+    TERMINAL_KEEP_REASON,
+    terminal_identity,
+)
+
 ATTRIBUTE_PROMPT = (
     "你将看到同一个三维候选物体的三张互补视角，以及对应的深度、位姿和候选掩码证据。"
     "不要猜测类别，不要输出任何类别名称，也不要把它和候选类别列表联系起来。"
@@ -60,7 +65,20 @@ def _task_id(row: dict) -> str:
 
 def build_attribute_row(row: dict) -> dict:
     views = list(row.get("selected_views", []))
-    if not views:
+    terminal = bool(row.get("terminal_safe_keep", False))
+    if terminal and (
+        not terminal_identity(int(row.get("plan_index", -1)), str(row.get("plan_key", "")))
+        or
+        row.get("attribute_execution_required") is not False
+        or row.get("qwen_execution_required") is not False
+        or row.get("terminal_keep_reason") != TERMINAL_KEEP_REASON
+        or row.get("canonical_frozen_class_index") != 198
+        or row.get("alpha_class_index") is not None
+        or row.get("alpha_feature_valid") is not False
+        or row.get("finite_class_hypotheses") != []
+    ):
+        raise ValueError(f"{row.get('geometry_key')}: invalid terminal-safe-keep semantic row")
+    if not views and not terminal:
         raise ValueError(f"{row.get('geometry_key')}: no selected views")
     view_inputs = []
     for view in views:
@@ -90,8 +108,11 @@ def build_attribute_row(row: dict) -> dict:
         "view_inputs": view_inputs,
         "candidate_labels_hidden": True,
         "candidate_hypothesis_count": len(row.get("finite_class_hypotheses", [])),
-        "attribute_prompt": ATTRIBUTE_PROMPT,
-        "response_schema": RESPONSE_SCHEMA,
+        "attribute_prompt": None if terminal else ATTRIBUTE_PROMPT,
+        "response_schema": None if terminal else RESPONSE_SCHEMA,
+        "attribute_execution_required": not terminal,
+        "terminal_safe_keep": terminal,
+        "terminal_keep_reason": TERMINAL_KEEP_REASON if terminal else None,
         "attribute_extraction_completed": False,
         "class_decision_made": False,
         "candidate_mutation": False,
@@ -131,6 +152,7 @@ def run(args: argparse.Namespace) -> dict:
         "candidate_deletion_count": 0,
         "task_count": len(built),
         "view_input_count": sum(len(row["view_inputs"]) for row in built),
+        "terminal_safe_keep_count": sum(bool(row["terminal_safe_keep"]) for row in built),
         "candidate_labels_hidden": True,
         "attribute_extraction_completed": False,
         "class_decision_made": False,

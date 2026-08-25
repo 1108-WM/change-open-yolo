@@ -13,6 +13,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 AUTHORIZATION_ID = "DM-SMS-1-FI1-D-v3-val312-one-shot-20260824"
 DUPLICATE_SAFE_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md"
+TERMINAL_SAFE_KEEP_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_TERMINAL_SAFE_KEEP_PREREGISTRATION_REVISION_20260825.md"
 
 
 def _resolve(path: str | Path) -> Path:
@@ -88,6 +89,7 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
             "--qwen-model-dir", p(cfg["qwen_model_dir"]),
             "--preregistration-path", p(cfg["preregistration_path"]),
             "--duplicate-safe-preregistration-path", p(DUPLICATE_SAFE_PREREGISTRATION),
+            "--terminal-safe-keep-preregistration-path", p(TERMINAL_SAFE_KEEP_PREREGISTRATION),
             "--run-root", p(cfg["run_root"]), "--output-root", p(out["preflight"]),
         ]],
         "geometry": [

@@ -21,6 +21,10 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from tools.audit_dm_sms1_unique_geometry_ledger import GeometryResolver  # noqa: E402
 from tools.dm_sms_core import geometry_hash  # noqa: E402
+from tools.dm_sms1_terminal_safe_keep import (  # noqa: E402
+    TERMINAL_KEEP_REASON,
+    terminal_expected_identities,
+)
 
 
 def _resolve(path: Path) -> Path:
@@ -83,6 +87,7 @@ def run(args: argparse.Namespace) -> dict:
         errors["cache_scene_coverage_mismatch"] += 1
     resolver = GeometryResolver()
     geometry_count = 0
+    terminal_hits: set[tuple[int, str]] = set()
     for scene, rows in sorted(by_scene.items()):
         rows.sort(key=lambda item: int(item[1]["plan_index"]))
         root = args.cache_root / "prediction_cache" / scene
@@ -150,6 +155,16 @@ def run(args: argparse.Namespace) -> dict:
                         ))
                     ):
                         errors["challenge_class_overlay_contract"] += 1
+                    if decision is not None and decision.get("terminal_safe_keep") is True:
+                        terminal_hits.add((int(member["plan_index"]), str(member["plan_key"])))
+                        if (
+                            int(classes[column]) != 198
+                            or int(decision.get("arbitrated_class_index", -999)) != 198
+                            or decision.get("class_changed") is not False
+                            or decision.get("decision_source") != "terminal_safe_keep"
+                            or decision.get("terminal_keep_reason") != TERMINAL_KEEP_REASON
+                        ):
+                            errors["terminal_safe_keep_cache_contract"] += 1
             geometry_count += len(rows)
         except (FileNotFoundError, KeyError, ValueError, OSError, json.JSONDecodeError):
             errors["scene_cache_read_error"] += 1
@@ -167,6 +182,11 @@ def run(args: argparse.Namespace) -> dict:
         errors["summary_mismatch"] += 1
     expected_candidate_count = getattr(args, "expected_candidate_count", None)
     expected_unique_geometry_count = getattr(args, "expected_unique_geometry_count", None)
+    required_terminal = (
+        terminal_expected_identities()
+        if expected_candidate_count == 39304 and expected_unique_geometry_count == 39250
+        else set(getattr(args, "expected_terminal_identities", ()) or ())
+    )
     if expected_candidate_count is not None and int(expected_candidate_count) != len(expected_plan_keys):
         errors["frozen_contract::candidate_count"] += 1
     if expected_unique_geometry_count is not None and int(expected_unique_geometry_count) != len(ledger):
@@ -176,6 +196,8 @@ def run(args: argparse.Namespace) -> dict:
         for scene, rows in by_scene.items() for _row, member in rows
     }:
         errors["decision_coverage_mismatch"] += 1
+    if decision_root is not None and terminal_hits != required_terminal:
+        errors["terminal_safe_keep_coverage_mismatch"] += 1
     if str(summary.get("input_provenance", {}).get("unique_geometry_ledger_sha256", "")) != _sha256(
         args.ledger_root / "unique_geometry_ledger.jsonl"
     ):
@@ -197,6 +219,11 @@ def run(args: argparse.Namespace) -> dict:
         "control_challenge_scores_identical": audit_valid,
         "control_challenge_order_identical": audit_valid,
         "challenge_relative_to_control_class_only": audit_valid and decision_root is not None,
+        "terminal_safe_keep_count": len(terminal_hits),
+        "terminal_control_challenge_class_198": (
+            decision_root is not None and terminal_hits == required_terminal
+            and "terminal_safe_keep_cache_contract" not in errors
+        ),
         "ground_truth_usage": "none",
         "ground_truth_read": False,
         "ap_computed": False,

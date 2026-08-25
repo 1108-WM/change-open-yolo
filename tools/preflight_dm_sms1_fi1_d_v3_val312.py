@@ -20,6 +20,7 @@ from tools.run_dm_sms1_vlm_batch_smoke import _verify_model_revision  # noqa: E4
 
 EXPECTED_DV3 = {"ap": 0.526344, "ap50": 0.729213, "ap25": 0.826733}
 DUPLICATE_SAFE_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md"
+TERMINAL_SAFE_KEEP_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_TERMINAL_SAFE_KEEP_PREREGISTRATION_REVISION_20260825.md"
 
 
 def _resolve(path: Path) -> Path:
@@ -48,12 +49,15 @@ def _rows(path: Path) -> list[dict]:
 def run(args: argparse.Namespace) -> dict:
     if getattr(args, "duplicate_safe_preregistration_path", None) is None:
         args.duplicate_safe_preregistration_path = DUPLICATE_SAFE_PREREGISTRATION
+    if getattr(args, "terminal_safe_keep_preregistration_path", None) is None:
+        args.terminal_safe_keep_preregistration_path = TERMINAL_SAFE_KEEP_PREREGISTRATION
     path_names = (
         "scene_list", "prepared_root", "legacy_unique_geometry_root", "inference_root",
         "inference_audit_root", "dv3_ap_result_root", "dv3_ap_audit_root", "config_path",
         "asset_provenance", "alpha_clip_source", "alpha_clip_base", "alpha_clip_checkpoint",
         "sam_source", "sam_checkpoint", "qwen_model_dir", "run_root", "output_root",
         "preregistration_path", "duplicate_safe_preregistration_path",
+        "terminal_safe_keep_preregistration_path",
     )
     for name in path_names:
         setattr(args, name, _resolve(getattr(args, name)))
@@ -63,6 +67,7 @@ def run(args: argparse.Namespace) -> dict:
         "asset_provenance": args.asset_provenance,
         "preregistration": args.preregistration_path,
         "duplicate_safe_preregistration": args.duplicate_safe_preregistration_path,
+        "terminal_safe_keep_preregistration": args.terminal_safe_keep_preregistration_path,
         "alpha_clip_base": args.alpha_clip_base,
         "alpha_clip_checkpoint": args.alpha_clip_checkpoint,
         "sam_checkpoint": args.sam_checkpoint,
@@ -166,6 +171,7 @@ def run(args: argparse.Namespace) -> dict:
         "asset_provenance_sha256": _sha256(args.asset_provenance),
         "preregistration_sha256": _sha256(args.preregistration_path),
         "duplicate_safe_preregistration_sha256": _sha256(args.duplicate_safe_preregistration_path),
+        "terminal_safe_keep_preregistration_sha256": _sha256(args.terminal_safe_keep_preregistration_path),
         "ground_truth_read": False,
         "ap_computed": False,
         "qwen_inference_run": False,
@@ -198,6 +204,10 @@ def main() -> None:
     parser.add_argument(
         "--duplicate-safe-preregistration-path", type=Path,
         default=DUPLICATE_SAFE_PREREGISTRATION,
+    )
+    parser.add_argument(
+        "--terminal-safe-keep-preregistration-path", type=Path,
+        default=TERMINAL_SAFE_KEEP_PREREGISTRATION,
     )
     parser.add_argument("--run-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)

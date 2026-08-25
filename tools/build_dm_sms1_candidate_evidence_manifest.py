@@ -10,6 +10,11 @@ from pathlib import Path
 
 import yaml
 
+from tools.dm_sms1_terminal_safe_keep import (  # noqa: E402
+    TERMINAL_KEEP_REASON,
+    terminal_identity,
+)
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,6 +39,47 @@ def build_candidate_row(attribute_row: dict, semantic_row: dict, class_names: li
     ):
         raise ValueError("attribute/semantic scene and geometry join mismatch")
     candidates = list(semantic_row.get("finite_class_hypotheses", []))
+    terminal = bool(semantic_row.get("terminal_safe_keep", False))
+    if terminal:
+        if (
+            candidates
+            or not terminal_identity(
+                int(semantic_row.get("plan_index", -1)), str(semantic_row.get("plan_key", ""))
+            )
+            or semantic_row.get("qwen_execution_required") is not False
+            or semantic_row.get("attribute_execution_required") is not False
+            or semantic_row.get("canonical_frozen_class_index") != 198
+            or attribute_row.get("terminal_safe_keep") is not True
+            or attribute_row.get("attribute_execution_required") is not False
+            or attribute_row.get("view_inputs") != []
+        ):
+            raise ValueError(f"{semantic_row['geometry_key']}: terminal row has finite hypotheses")
+        return {
+            "task_id": str(attribute_row["task_id"]), "scene_name": str(attribute_row["scene_name"]),
+            "plan_index": int(attribute_row["plan_index"]), "plan_key": str(attribute_row["plan_key"]),
+            "fi1_d_v3_plan_key": str(attribute_row["plan_key"]), "geometry_key": str(attribute_row["geometry_key"]),
+            "visual_geometry_key": str(attribute_row["visual_geometry_key"]), "geometry_hash": str(attribute_row["geometry_hash"]),
+            "geometry_locator_read_only": dict(semantic_row["geometry_locator_read_only"]),
+            "candidate_source": str(semantic_row["candidate_source"]), "frozen_class_index": int(semantic_row["frozen_class_index"]),
+            "challenger_score": float(semantic_row["challenger_score"]), "append_only": bool(semantic_row["append_only"]),
+            "canonical_frozen_class_index": int(semantic_row["canonical_frozen_class_index"]),
+            "canonical_frozen_score": float(semantic_row["canonical_frozen_score"]),
+            "attribute_task_id": str(attribute_row["task_id"]), "candidate_hypotheses": [],
+            "candidate_order_ab": [], "candidate_order_ba": [],
+            "evidence_prompt_ab": None, "evidence_prompt_ba": None,
+            "attribute_evidence_required": False, "swap_order_required": False,
+            "qwen_execution_required": False, "terminal_safe_keep": True,
+            "terminal_keep_reason": TERMINAL_KEEP_REASON,
+            "decision_rule": {
+                "only_alternative_supported_in_both_orders_may_be_considered": True,
+                "otherwise_keep_frozen_control_class": True,
+                "all_geometry_nodes_decided_simultaneously": True,
+                "no_proposal_deletion": True, "no_score_change": True,
+            },
+            "class_decision_made": False, "selected_class_index": None,
+            "candidate_mutation": False, "geometry_mutation": False, "score_mutation": False,
+            "ground_truth_usage": "none", "ground_truth_read": False, "ap_computed": False,
+        }
     if not candidates or len(candidates) > 2:
         raise ValueError(f"{semantic_row['geometry_key']}: finite candidate count must be 1 or 2")
     hypotheses = []
@@ -77,6 +123,9 @@ def build_candidate_row(attribute_row: dict, semantic_row: dict, class_names: li
         "evidence_prompt_ba": base + "、".join(names_ba),
         "attribute_evidence_required": True,
         "swap_order_required": len(hypotheses) == 2,
+        "qwen_execution_required": True,
+        "terminal_safe_keep": False,
+        "terminal_keep_reason": None,
         "decision_rule": {
             "only_alternative_supported_in_both_orders_may_be_considered": True,
             "otherwise_keep_frozen_control_class": True,
@@ -152,6 +201,7 @@ def run(args: argparse.Namespace) -> dict:
         "candidate_deletion_count": 0,
         "candidate_pair_count": sum(len(row["candidate_hypotheses"]) == 2 for row in built),
         "single_candidate_count": sum(len(row["candidate_hypotheses"]) == 1 for row in built),
+        "terminal_safe_keep_count": sum(bool(row.get("terminal_safe_keep")) for row in built),
         "class_decision_made": False,
         "selected_class_count": 0,
         "mutation_contract": {

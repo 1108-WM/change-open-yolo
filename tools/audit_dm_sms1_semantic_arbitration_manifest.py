@@ -12,6 +12,13 @@ from pathlib import Path
 
 import numpy as np
 
+from tools.dm_sms1_terminal_safe_keep import (
+    TERMINAL_KEEP_REASON,
+    TERMINAL_PLAN_INDICES,
+    terminal_expected_identities,
+    terminal_safe_keep_eligible,
+)
+
 
 def _rows(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
@@ -139,6 +146,7 @@ def audit(
     joint_geometry_root: Path,
     expected_candidate_count: int = 39304,
     expected_unique_geometry_count: int = 39250,
+    expected_terminal_identities: set[tuple[int, str]] | None = None,
 ) -> dict:
     summary_path = root / "summary.json"
     records_path = root / "semantic_arbitration_manifest.jsonl"
@@ -230,6 +238,7 @@ def audit(
     identities = []
     selected_view_count = 0
     hypotheses = 0
+    terminal_hits: set[tuple[int, str]] = set()
     for index, row in enumerate(rows):
         prefix = f"row[{index}]"
         identity = (str(row.get("scene_name", "")), str(row.get("plan_key", "")))
@@ -271,6 +280,12 @@ def audit(
                 or row.get("sms_keep") != alpha.get("sms_keep")
             ):
                 errors.append(f"{prefix}: Alpha/SMS evidence differs from Stage D")
+            alpha_feature_valid = (
+                bool(alpha["alpha_feature_valid"])
+                if "alpha_feature_valid" in alpha else alpha.get("alpha_class_index") is not None
+            )
+            if row.get("alpha_feature_valid") != alpha_feature_valid:
+                errors.append(f"{prefix}: alpha_feature_valid differs from Stage D")
             try:
                 expected_views = _expected_selected_views(alpha, target_views, max_input_views)
             except (KeyError, TypeError, ValueError, OSError) as error:
@@ -299,7 +314,52 @@ def audit(
             if row.get(key) is not False:
                 errors.append(f"{prefix}: {key} is true")
         candidates = row.get("finite_class_hypotheses", [])
-        if expected is not None and alpha is not None:
+        terminal_expected = bool(
+            expected is not None and alpha is not None and terminal_safe_keep_eligible(
+                plan_index=int(expected["plan_index"]), plan_key=identity[1],
+                frozen_class_index=int(expected["frozen_class_index"]),
+                selected_views=list(alpha.get("views", [])),
+                selected_view_count=int(alpha.get("selected_view_count", len(alpha.get("views", [])))),
+                alpha_feature_valid=(
+                    bool(alpha["alpha_feature_valid"])
+                    if "alpha_feature_valid" in alpha else alpha.get("alpha_class_index") is not None
+                ),
+                alpha_class_index=alpha.get("alpha_class_index"),
+                candidate_retained=True, candidate_deletion=False,
+            )
+        )
+        if terminal_expected:
+            terminal_hits.add((int(expected["plan_index"]), identity[1]))
+            required_terminal = {
+                "arbitration_eligible": False,
+                "terminal_safe_keep": True,
+                "terminal_keep_reason": TERMINAL_KEEP_REASON,
+                "selected_views": [],
+                "alpha_feature_valid": False,
+                "alpha_class_index": None,
+                "finite_class_hypotheses": [],
+                "attribute_execution_required": False,
+                "qwen_execution_required": False,
+                "canonical_frozen_class_index": 198,
+                "arbitrated_class_index": None,
+                "candidate_retained": True,
+                "candidate_deletion": False,
+            }
+            for key, value in required_terminal.items():
+                if row.get(key) != value:
+                    errors.append(f"{prefix}: terminal field {key} differs")
+        else:
+            for key, value in {
+                "arbitration_eligible": True,
+                "terminal_safe_keep": False,
+                "terminal_keep_reason": None,
+                "attribute_execution_required": True,
+                "qwen_execution_required": True,
+                "arbitrated_class_index": None,
+            }.items():
+                if row.get(key, value) != value:
+                    errors.append(f"{prefix}: ordinary execution field {key} differs")
+        if expected is not None and alpha is not None and not terminal_expected:
             try:
                 expected_candidates = _finite_hypotheses(
                     expected["frozen_class_index"], alpha.get("alpha_class_index")
@@ -346,6 +406,22 @@ def audit(
         errors.append("summary candidate hypothesis count mismatch")
     if summary.get("ground_truth_read") is not False or summary.get("ap_computed") is not False:
         errors.append("summary GT/AP provenance is not false")
+    required_terminal = (
+        terminal_expected_identities()
+        if expected_terminal_identities is None and expected_candidate_count == 39304
+        and expected_unique_geometry_count == 39250
+        else set(expected_terminal_identities or ())
+    )
+    if terminal_hits != required_terminal:
+        errors.append(
+            f"terminal-safe-keep identity set differs: expected={sorted(required_terminal)}, "
+            f"observed={sorted(terminal_hits)}"
+        )
+    summary_terminal_count = summary.get(
+        "terminal_safe_keep_count", 0 if not required_terminal else -1
+    )
+    if int(summary_terminal_count) != len(terminal_hits) or terminal_hits != required_terminal:
+        errors.append("terminal-safe-keep count or identity set differs")
     result = {
         "version": "dm_sms1_semantic_arbitration_manifest_audit_v3",
         "manifest_root": str(root),
@@ -359,6 +435,7 @@ def audit(
         "audit_valid": not errors,
         "ground_truth_read": False,
         "ap_computed": False,
+        "terminal_safe_keep_count": len(terminal_hits),
         "input_provenance": {
             "semantic_manifest_sha256": _sha256(records_path),
             "alpha_summary_sha256": _sha256(alpha_ledger_root / "summary.json"),

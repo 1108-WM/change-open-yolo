@@ -8,6 +8,11 @@ import hashlib
 import json
 from pathlib import Path
 
+from tools.dm_sms1_terminal_safe_keep import (
+    TERMINAL_KEEP_REASON,
+    terminal_expected_identities,
+)
+
 
 FROZEN_ATTRIBUTE_PROMPT = (
     "你将看到同一个三维候选物体的三张互补视角，以及对应的深度、位姿和候选掩码证据。"
@@ -53,6 +58,7 @@ def audit(
     semantic_root: Path,
     expected_candidate_count: int = 39304,
     expected_unique_geometry_count: int = 39250,
+    expected_terminal_identities: set[tuple[int, str]] | None = None,
 ) -> dict:
     summary_path = root / "summary.json"
     records_path = root / "attribute_extraction_manifest.jsonl"
@@ -76,6 +82,7 @@ def audit(
     task_ids = []
     candidate_ids = []
     view_count = 0
+    terminal_hits: set[tuple[int, str]] = set()
     for index, row in enumerate(records):
         prefix = f"row[{index}]"
         task_ids.append(str(row.get("task_id", "")))
@@ -119,6 +126,25 @@ def audit(
             for name, valid in checks.items():
                 if not valid:
                     errors.append(f"{prefix}: semantic {name} differs")
+            if semantic.get("terminal_safe_keep") is True:
+                terminal_identity = (int(semantic.get("plan_index", -1)), identity[1])
+                terminal_hits.add(terminal_identity)
+                for key, value in {
+                    "attribute_execution_required": False,
+                    "view_inputs": [],
+                    "attribute_extraction_completed": False,
+                    "terminal_safe_keep": True,
+                    "terminal_keep_reason": TERMINAL_KEEP_REASON,
+                    "candidate_hypothesis_count": 0,
+                    "attribute_prompt": None,
+                    "response_schema": None,
+                }.items():
+                    if row.get(key) != value:
+                        errors.append(f"{prefix}: terminal field {key} differs")
+            elif row.get("terminal_safe_keep") is not False:
+                errors.append(f"{prefix}: ordinary row has terminal-safe-keep state")
+            elif row.get("attribute_execution_required") is not True:
+                errors.append(f"{prefix}: ordinary row disables attribute execution")
         if row.get("fi1_d_v3_plan_key") != row.get("plan_key") or not row.get("plan_key"):
             errors.append(f"{prefix}: invalid plan_key identity")
         if str(row.get("plan_key", "")) not in str(row.get("task_id", "")):
@@ -132,9 +158,10 @@ def audit(
                 errors.append(f"{prefix}: {key} is true")
         if row.get("ground_truth_read") is not False or row.get("ap_computed") is not False:
             errors.append(f"{prefix}: GT/AP provenance is not false")
-        if row.get("attribute_prompt") != FROZEN_ATTRIBUTE_PROMPT:
+        terminal = bool(row.get("terminal_safe_keep", False))
+        if not terminal and row.get("attribute_prompt") != FROZEN_ATTRIBUTE_PROMPT:
             errors.append(f"{prefix}: fixed category-blind prompt differs")
-        if row.get("response_schema") != FROZEN_RESPONSE_SCHEMA:
+        if not terminal and row.get("response_schema") != FROZEN_RESPONSE_SCHEMA:
             errors.append(f"{prefix}: fixed response schema differs")
         forbidden_keys = {
             "finite_class_hypotheses", "canonical_frozen_class_index", "alpha_class_index",
@@ -143,7 +170,7 @@ def audit(
         if forbidden_keys.intersection(row):
             errors.append(f"{prefix}: candidate label field leaked into model input")
         views = row.get("view_inputs", [])
-        if not views or len(views) > 3 or len({view.get("frame_id") for view in views}) != len(views):
+        if (terminal and views) or (not terminal and (not views or len(views) > 3)) or len({view.get("frame_id") for view in views}) != len(views):
             errors.append(f"{prefix}: invalid view input set")
         for view in views:
             for key in ("rgb_path", "depth_path", "pose_path", "intrinsics_path"):
@@ -185,6 +212,19 @@ def audit(
         or summary.get("ap_computed") is not False
     ):
         errors.append("summary contract mismatch")
+    required_terminal = (
+        terminal_expected_identities()
+        if expected_terminal_identities is None and expected_candidate_count == 39304
+        and expected_unique_geometry_count == 39250
+        else set(expected_terminal_identities or ())
+    )
+    if terminal_hits != required_terminal:
+        errors.append("terminal-safe-keep identity coverage is not exactly the frozen four")
+    summary_terminal_count = summary.get(
+        "terminal_safe_keep_count", 0 if not required_terminal else -1
+    )
+    if int(summary_terminal_count) != len(terminal_hits) or terminal_hits != required_terminal:
+        errors.append("terminal-safe-keep count or identity set differs")
     result = {
         "version": "dm_sms1_attribute_extraction_manifest_audit_v3",
         "candidate_count": len(records),
@@ -197,6 +237,7 @@ def audit(
         "candidate_labels_hidden": True,
         "ground_truth_read": False,
         "ap_computed": False,
+        "terminal_safe_keep_count": len(terminal_hits),
         "input_provenance": {
             "attribute_manifest_sha256": _sha256(records_path),
             "semantic_manifest_sha256": _sha256(semantic_path),
