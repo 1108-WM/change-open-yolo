@@ -236,6 +236,20 @@ def test_pipeline_preflight_freezes_terminal_preregistration_path(tmp_path: Path
     assert command[index + 1] == str(TERMINAL_SAFE_KEEP_PREREGISTRATION)
 
 
+def test_pipeline_qwen_smoke_is_append_only_resumable(tmp_path: Path):
+    config_keys = (
+        "scene_list", "prepared_root", "legacy_unique_geometry_root",
+        "fi1_d_v3_inference_root", "fi1_d_v3_inference_audit_root",
+        "fi1_d_v3_ap_result_root", "fi1_d_v3_ap_audit_root", "config_path",
+        "asset_provenance", "alpha_clip_source", "alpha_clip_base",
+        "alpha_clip_checkpoint", "sam_source", "sam_checkpoint", "qwen_model_dir",
+        "ground_truth_root", "run_root", "preregistration_path",
+    )
+    config = {key: tmp_path / key for key in config_keys}
+    command = _commands("smoke", config, _outputs(config["run_root"]), False)[0]
+    assert "--resume" in command
+
+
 @pytest.mark.parametrize(
     "script_name",
     [

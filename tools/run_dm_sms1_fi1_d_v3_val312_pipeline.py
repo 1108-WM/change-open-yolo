@@ -164,7 +164,7 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
              "--candidate-manifest", p(out["candidate_manifest"] / "candidate_evidence_manifest.jsonl"),
              "--model-dir", p(cfg["qwen_model_dir"]), "--output-root", p(out["qwen_smoke"]),
              "--scene-count", "10", "--per-scene", "2", "--attribute-max-tokens", "700",
-             "--candidate-max-tokens", "450", "--config-path", p(cfg["config_path"])],
+             "--candidate-max-tokens", "450", "--config-path", p(cfg["config_path"]), "--resume"],
             [py, _tool("audit_dm_sms1_vlm_batch_outputs.py"), p(out["qwen_smoke"]),
              "--candidate-manifest", p(out["candidate_manifest"] / "candidate_evidence_manifest.jsonl"),
              "--attribute-manifest", p(out["attribute_manifest"] / "attribute_extraction_manifest.jsonl"),
