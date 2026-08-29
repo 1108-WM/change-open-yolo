@@ -1,0 +1,68 @@
+{
+  "version": "a100_server_asset_manifest_v1",
+  "date": "2026-08-29",
+  "code_base": {
+    "deployment_branch": "a100-server-repro-20260829",
+    "base_branch": "dm-sms1-fi1-d-v3-val312-duplicate-safe-20260824",
+    "base_commit": "52f73a44c9e666338ef59c9c25757f212408a2a7",
+    "deployment_only_changes": true
+  },
+  "reference_machine": {
+    "os": "Ubuntu 22.04.1 LTS",
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "driver": "580.126.09",
+    "python": "3.10.9",
+    "torch": "2.5.1+cu121",
+    "torchvision": "0.20.1+cu121",
+    "transformers": "4.49.0",
+    "qwen_vl_utils": "0.0.10"
+  },
+  "scannet_val312": {
+    "scene_count": 312,
+    "scene_list": "configs/repro/scannetv2_val_312.txt",
+    "scene_list_sha256": "d75d4971c3fa7128c643695840e279042c212ef904fe933bd00cf9918c61b083",
+    "raw_server_size_approx": "210 GiB",
+    "prepared_server_size_approx": "24 GiB",
+    "git_included": false,
+    "license_required": true
+  },
+  "public_models": {
+    "alpha_clip_source_commit": "ef9262bc539728bf8ef2dfe9c402ae12bbfcd9ff",
+    "sam_source_commit": "dca509fe793f601edb92606367a655c15ac00fdf",
+    "qwen_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "clip_vit_l14_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+    "alpha_clip_l14_grit20m_sha256": "42c621bb5bac89a511ab625a878f026c11de4de8cf7abf52db5dfd11862bdb8e",
+    "sam_vit_b_sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912",
+    "git_included": false
+  },
+  "frozen_fi1_d_v3_package": {
+    "source_path": "/root/fi1_d_v3_val312_run_20260822",
+    "size_approx": "768 MiB",
+    "git_included": false,
+    "must_copy_for_exact_joint_replay": true,
+    "summary_sha256": {
+      "class_agnostic_ap": "edd610db2f40a892a15100c684fa798c08a2666c27a880b1a25f990877dfc2a7",
+      "class_agnostic_ap_audit": "a647f0b0c7e23e417214cddcb6018de9305d196cfa95ea9783df41646b874177",
+      "frozen_inference": "1481c93c79795c2007c89e8ff046cb25bc11b35dd2fbb179d14d0b00be8a50b9",
+      "frozen_inference_audit": "c0644fed75dd96f999964746fcc8e783f0efd06789d1bd68ce3d7acedd1ede18",
+      "track_yoloworld_semantics": "c275b45569f6f49c06ff8afaffe071614123c47381df12ee314a41061ac1a7dc",
+      "unique_geometry_audit": "c7646eff79a82790464179f5f8a8710b619e9c3850b5d49b74b0cdf28fd8616c",
+      "unique_geometry_ledger": "a0337046c235601ac7bf9b4a8141e194eb33aa5134fd15617617b3ecf8c8b76c"
+    }
+  },
+  "reference_no_gt_run": {
+    "run_root": "/root/OpenYOLO3D/output/dm_sms1_fi1_d_v3_val312_terminal_safe_keep_20260825",
+    "git_included": false,
+    "preflight_summary_sha256": "eadd6df0a5f85d6833dac27350982077bbe3d422fbf837af342b6fab36f91449",
+    "geometry_audit_summary_sha256": "0893ed50fd935b60eb188e5d673dd1bde2a0edc3175d0f84fa1a8dee45f7b859",
+    "alpha_audit_summary_sha256": "d4e8954630bca7dc447d3e885112b455a107524aba58bb52257dc3e3afa81fce",
+    "qwen_smoke_audit_summary_sha256": "38997164da6f895751d9293dcecd05fed905247fbdb2cc910ea4922911780ae9"
+  },
+  "research_invariants": {
+    "candidate_count": 39304,
+    "unique_geometry_count": 39250,
+    "duplicate_geometry_group_count": 54,
+    "terminal_safe_keep_count": 4,
+    "candidate_deletion_count": 0
+  }
+}

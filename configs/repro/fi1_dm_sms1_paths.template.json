@@ -1,0 +1,20 @@
+{
+  "scene_list": "configs/repro/scannetv2_val_312.txt",
+  "prepared_root": "data/scannet200",
+  "legacy_unique_geometry_root": "/ABSOLUTE/PATH/fi1_d_v3_val312_run_20260822/unique_geometry_ledger",
+  "fi1_d_v3_inference_root": "/ABSOLUTE/PATH/fi1_d_v3_val312_run_20260822/frozen_inference",
+  "fi1_d_v3_inference_audit_root": "/ABSOLUTE/PATH/fi1_d_v3_val312_run_20260822/frozen_inference_audit",
+  "fi1_d_v3_ap_result_root": "/ABSOLUTE/PATH/fi1_d_v3_val312_run_20260822/class_agnostic_ap",
+  "fi1_d_v3_ap_audit_root": "/ABSOLUTE/PATH/fi1_d_v3_val312_run_20260822/class_agnostic_ap_audit",
+  "config_path": "pretrained/config_scannet200.yaml",
+  "asset_provenance": "docs/DM_SMS1_ASSET_PROVENANCE_20260817.json",
+  "alpha_clip_source": "_external/AlphaCLIP/AlphaCLIP-main",
+  "alpha_clip_base": "pretrained/alpha_clip/checkpoints/ViT-L-14.pt",
+  "alpha_clip_checkpoint": "pretrained/alpha_clip/checkpoints/clip_l14_grit20m_fultune_2xe.pth",
+  "sam_source": "_external/segment-anything/segment-anything-main",
+  "sam_checkpoint": "pretrained/checkpoints/sam_vit_b_01ec64.pth",
+  "qwen_model_dir": "pretrained/checkpoints/Qwen2.5-VL-7B-Instruct",
+  "ground_truth_root": "data/scannet200/ground_truth",
+  "run_root": "/ABSOLUTE/PATH/NEW_EMPTY_RUN_ROOT",
+  "preregistration_path": "docs/DM_SMS1_FI1_D_V3_VAL312_JOINT_PREREGISTRATION_20260824.md"
+}
