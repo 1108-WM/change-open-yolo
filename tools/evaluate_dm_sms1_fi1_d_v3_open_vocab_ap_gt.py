@@ -21,12 +21,25 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from evaluate.scannet200 import eval_semantic_instance as instance_eval  # noqa: E402
+from tools.dm_sms1_minus1_evaluator_boundary import (  # noqa: E402
+    EXPECTED_FOREGROUND_COUNT,
+    EXPECTED_MINUS1_COUNT,
+    EXPECTED_NATIVE_BACKGROUND_198_COUNT,
+    EXPECTED_TOTAL_CANDIDATE_COUNT,
+    RECOVERY_AUTHORIZATION_ID,
+    audit_boundary_inputs,
+    frozen_minus1_identities,
+    validate_frozen_recovery_inputs,
+    validate_prior_failure,
+    validate_minus1_decision,
+)
 
 
 VERSION = "dm_sms1_fi1_d_v3_open_vocab_ap_v1"
 AUTHORIZATION_ID = "DM-SMS-1-FI1-D-v3-val312-one-shot-20260824"
 METRICS = ("ap", "ap50", "ap25", "head_ap", "common_ap", "tail_ap")
 DUPLICATE_SAFE_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md"
+MINUS1_BOUNDARY_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_MINUS1_EVALUATOR_BOUNDARY_PREREGISTRATION_REVISION_20260907.md"
 
 
 def _resolve(path: Path) -> Path:
@@ -72,13 +85,18 @@ class FrozenPredictionMapping(Mapping):
         cache_root: Path,
         decisions: dict[tuple[str, str], dict],
         challenge: bool,
+        minus1_boundary_identities: frozenset[tuple[int, str]] | None = None,
     ) -> None:
         self.scenes = scenes
         self.cache_root = cache_root
         self.decisions = decisions
         self.challenge = challenge
+        self.minus1_boundary_identities = minus1_boundary_identities
         self.observed_geometry_count = 0
         self.observed_class_change_count = 0
+        self.observed_minus1_boundary_identities: set[tuple[int, str]] = set()
+        self.observed_native_background_198_count = 0
+        self.observed_foreground_count = 0
 
     def __len__(self) -> int:
         return len(self.scenes)
@@ -94,6 +112,9 @@ class FrozenPredictionMapping(Mapping):
     def items(self):
         self.observed_geometry_count = 0
         self.observed_class_change_count = 0
+        self.observed_minus1_boundary_identities.clear()
+        self.observed_native_background_198_count = 0
+        self.observed_foreground_count = 0
         for index, scene in enumerate(self.scenes, 1):
             prediction = self._prediction(scene)
             print(
@@ -110,12 +131,17 @@ class FrozenPredictionMapping(Mapping):
         scores = np.asarray(np.load(root / "frozen_scores.npy"), dtype=np.float32)
         hashes = json.loads((root / "geometry_hashes.json").read_text())
         plan_keys = json.loads((root / "plan_keys.json").read_text())
+        plan_indices = json.loads((root / "plan_indices.json").read_text())
+        sources = json.loads((root / "sources.json").read_text())
         if not (
             masks.ndim == 2
-            and masks.shape[1] == len(classes) == len(scores) == len(hashes) == len(plan_keys)
+            and masks.shape[1] == len(classes) == len(scores) == len(hashes)
+            == len(plan_keys) == len(plan_indices) == len(sources)
         ):
             raise ValueError(f"{scene}: frozen prediction cache dimensions disagree")
-        for column, (geometry_hash, plan_key) in enumerate(zip(hashes, plan_keys)):
+        for column, (geometry_hash, plan_key, plan_index, source) in enumerate(
+            zip(hashes, plan_keys, plan_indices, sources)
+        ):
             decision = self.decisions.get((scene, str(plan_key)))
             if decision is None:
                 raise ValueError(f"{scene}/{plan_key}: decision is missing")
@@ -125,11 +151,28 @@ class FrozenPredictionMapping(Mapping):
             if int(decision.get("canonical_frozen_class_index", -999)) != frozen:
                 raise ValueError(f"{scene}/{plan_key}: frozen class differs from decision ledger")
             selected = int(decision.get("arbitrated_class_index", -999))
-            if selected < 0 or selected > 198 or frozen < 0 or frozen > 198:
+            if frozen == -1 or selected == -1:
+                identity = (int(plan_index), str(plan_key))
+                if self.minus1_boundary_identities is None:
+                    raise ValueError(f"{scene}/{plan_key}: class index is outside evaluator contract")
+                if identity not in self.minus1_boundary_identities:
+                    raise ValueError(f"{scene}/{plan_key}: unexpected minus-one evaluator-boundary identity")
+                if (
+                    validate_minus1_decision(decision) != identity
+                    or str(decision.get("candidate_source")) != str(source)
+                ):
+                    raise ValueError(f"{scene}/{plan_key}: minus-one evaluator-boundary provenance differs")
+                classes[column] = 198
+                self.observed_minus1_boundary_identities.add(identity)
+            elif selected < 0 or selected > 198 or frozen < 0 or frozen > 198:
                 raise ValueError(f"{scene}/{plan_key}: class index is outside evaluator contract")
-            if self.challenge:
+            elif self.challenge:
                 classes[column] = selected
                 self.observed_class_change_count += int(selected != frozen)
+            if frozen == 198:
+                self.observed_native_background_198_count += 1
+            elif 0 <= frozen < 198:
+                self.observed_foreground_count += 1
         self.observed_geometry_count += len(hashes)
         return {"pred_masks": masks, "pred_classes": classes, "pred_scores": scores}
 
@@ -144,15 +187,22 @@ def _evaluate(mapping: FrozenPredictionMapping, gt_root: Path, csv_path: Path) -
 def run(args: argparse.Namespace) -> dict:
     if not args.allow_gt_evaluation:
         raise PermissionError("pass --allow-gt-evaluation for the one authorized GT-reading step")
-    if args.authorization_id != AUTHORIZATION_ID:
+    recovery_mode = bool(getattr(args, "minus1_evaluator_boundary_safe", False))
+    expected_authorization = RECOVERY_AUTHORIZATION_ID if recovery_mode else AUTHORIZATION_ID
+    if args.authorization_id != expected_authorization:
         raise PermissionError("the explicit frozen authorization identifier does not match")
     if getattr(args, "duplicate_safe_preregistration_path", None) is None:
         args.duplicate_safe_preregistration_path = DUPLICATE_SAFE_PREREGISTRATION
+    if recovery_mode and getattr(args, "minus1_boundary_preregistration_path", None) is None:
+        args.minus1_boundary_preregistration_path = MINUS1_BOUNDARY_PREREGISTRATION
     for name in (
         "scene_list", "ground_truth_root", "cache_root", "cache_audit_root",
         "decision_root", "preregistration_path", "duplicate_safe_preregistration_path", "output_root",
     ):
         setattr(args, name, _resolve(getattr(args, name)))
+    if recovery_mode:
+        for name in ("minus1_boundary_preregistration_path", "prior_failed_ap_root", "prior_failed_ap_log"):
+            setattr(args, name, _resolve(getattr(args, name)))
     scenes = _read_scenes(args.scene_list, args.expected_scene_count)
     if args.output_root.exists():
         raise FileExistsError(
@@ -167,6 +217,13 @@ def run(args: argparse.Namespace) -> dict:
         "preregistration": args.preregistration_path,
         "duplicate_safe_preregistration": args.duplicate_safe_preregistration_path,
     }
+    if recovery_mode:
+        required.update({
+            "minus1_boundary_preregistration": args.minus1_boundary_preregistration_path,
+            "prior_ap_started_marker": args.prior_failed_ap_root / "ap_invocation_started.json",
+            "prior_ap_failed_marker": args.prior_failed_ap_root / "ap_invocation_failed.json",
+            "prior_ap_log": args.prior_failed_ap_log,
+        })
     missing = [f"{name}: {path}" for name, path in required.items() if not path.is_file()]
     if not args.ground_truth_root.is_dir():
         missing.append(f"ground_truth_root: {args.ground_truth_root}")
@@ -199,6 +256,18 @@ def run(args: argparse.Namespace) -> dict:
     if {scene for scene, _ in decision_keys} != set(scenes):
         raise ValueError("complete decision ledger scene coverage differs")
     geometry_count = int(cache_summary.get("candidate_count", -1))
+    minus1_identities = frozen_minus1_identities(decision_rows) if recovery_mode else None
+    boundary_preflight = None
+    prior_failure_provenance = None
+    frozen_recovery_provenance = None
+    if recovery_mode:
+        frozen_recovery_provenance = validate_frozen_recovery_inputs(
+            args.cache_root, args.cache_audit_root, args.decision_root
+        )
+        prior_failure_provenance = validate_prior_failure(
+            args.prior_failed_ap_root, args.prior_failed_ap_log
+        )
+        boundary_preflight = audit_boundary_inputs(scenes, args.cache_root, decision_rows)
     class_change_count = sum(bool(row.get("class_changed")) for row in decision_rows)
     if (
         len(decision_rows) != geometry_count
@@ -212,21 +281,31 @@ def run(args: argparse.Namespace) -> dict:
     started = {
         "version": "dm_sms1_fi1_d_v3_ap_invocation_marker_v1",
         "status": "started",
-        "authorization_id": AUTHORIZATION_ID,
+        "authorization_id": expected_authorization,
         "process_id": os.getpid(),
         "ap_invocation_count": 1,
         "planned_official_evaluator_call_count": 2,
         "input_provenance": {name: _sha256(path) for name, path in required.items()},
         "scene_list_sha256": _sha256(args.scene_list),
     }
+    if recovery_mode:
+        started["minus1_evaluator_boundary_preflight"] = boundary_preflight
+        started["prior_failed_ap_provenance"] = prior_failure_provenance
+        started["frozen_recovery_provenance"] = frozen_recovery_provenance
     started_path.write_text(json.dumps(started, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
     try:
         control_csv = args.output_root / "fi1_d_v3_frozen_control.csv"
         challenge_csv = args.output_root / "fi1_d_v3_plus_dm_sms1.csv"
-        control_mapping = FrozenPredictionMapping(scenes, args.cache_root, decisions, challenge=False)
+        control_mapping = FrozenPredictionMapping(
+            scenes, args.cache_root, decisions, challenge=False,
+            minus1_boundary_identities=minus1_identities,
+        )
         control = _evaluate(control_mapping, args.ground_truth_root, control_csv)
         gc.collect()
-        challenge_mapping = FrozenPredictionMapping(scenes, args.cache_root, decisions, challenge=True)
+        challenge_mapping = FrozenPredictionMapping(
+            scenes, args.cache_root, decisions, challenge=True,
+            minus1_boundary_identities=minus1_identities,
+        )
         challenge = _evaluate(challenge_mapping, args.ground_truth_root, challenge_csv)
         if control_mapping.observed_geometry_count != geometry_count:
             raise ValueError("control evaluator did not consume every frozen geometry")
@@ -234,6 +313,20 @@ def run(args: argparse.Namespace) -> dict:
             raise ValueError("challenge evaluator did not consume every frozen geometry")
         if challenge_mapping.observed_class_change_count != class_change_count:
             raise ValueError("challenge evaluator class-change count differs from decision ledger")
+        if recovery_mode and (
+            control_mapping.observed_minus1_boundary_identities != set(minus1_identities)
+            or challenge_mapping.observed_minus1_boundary_identities != set(minus1_identities)
+            or control_mapping.observed_minus1_boundary_identities
+            != challenge_mapping.observed_minus1_boundary_identities
+            or control_mapping.observed_native_background_198_count
+            != EXPECTED_NATIVE_BACKGROUND_198_COUNT
+            or challenge_mapping.observed_native_background_198_count
+            != EXPECTED_NATIVE_BACKGROUND_198_COUNT
+            or control_mapping.observed_foreground_count != EXPECTED_FOREGROUND_COUNT
+            or challenge_mapping.observed_foreground_count != EXPECTED_FOREGROUND_COUNT
+            or geometry_count != EXPECTED_TOTAL_CANDIDATE_COUNT
+        ):
+            raise ValueError("minus-one evaluator-boundary aggregate contract differs")
         delta = {name: challenge[name] - control[name] for name in METRICS}
         summary = {
             "version": VERSION,
@@ -263,7 +356,7 @@ def run(args: argparse.Namespace) -> dict:
             "only_allowed_difference": "predicted class index from the audited complete decision ledger",
             "ap_invocation_count": 1,
             "official_evaluator_call_count": 2,
-            "authorization_id": AUTHORIZATION_ID,
+            "authorization_id": expected_authorization,
             "files": {
                 "control_csv": control_csv.name,
                 "challenge_csv": challenge_csv.name,
@@ -277,12 +370,32 @@ def run(args: argparse.Namespace) -> dict:
             "input_provenance": started["input_provenance"],
             "scene_list_sha256": started["scene_list_sha256"],
         }
+        summary["authorization_id"] = expected_authorization
+        if recovery_mode:
+            summary.update({
+                "minus1_evaluator_boundary_safe": True,
+                "minus1_to_background_count_control": len(control_mapping.observed_minus1_boundary_identities),
+                "minus1_to_background_count_challenge": len(challenge_mapping.observed_minus1_boundary_identities),
+                "native_background_198_count_control": control_mapping.observed_native_background_198_count,
+                "native_background_198_count_challenge": challenge_mapping.observed_native_background_198_count,
+                "foreground_candidate_count_control": control_mapping.observed_foreground_count,
+                "foreground_candidate_count_challenge": challenge_mapping.observed_foreground_count,
+                "evaluator_background_or_invalid_count": (
+                    EXPECTED_MINUS1_COUNT + EXPECTED_NATIVE_BACKGROUND_198_COUNT
+                ),
+                "minus1_boundary_plan_indices": sorted(index for index, _ in minus1_identities),
+                "frozen_cache_or_decision_write_count": 0,
+                "prior_failed_ap_preserved": True,
+                "minus1_evaluator_boundary_preflight": boundary_preflight,
+                "prior_failed_ap_provenance": prior_failure_provenance,
+                "frozen_recovery_provenance": frozen_recovery_provenance,
+            })
         summary_path = args.output_root / "summary.json"
         summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
         completed = {
             "version": "dm_sms1_fi1_d_v3_ap_invocation_marker_v1",
             "status": "completed",
-            "authorization_id": AUTHORIZATION_ID,
+            "authorization_id": expected_authorization,
             "ap_invocation_count": 1,
             "official_evaluator_call_count": 2,
             "summary_sha256": _sha256(summary_path),
@@ -295,7 +408,7 @@ def run(args: argparse.Namespace) -> dict:
         failed = {
             "version": "dm_sms1_fi1_d_v3_ap_invocation_marker_v1",
             "status": "failed_no_rerun_allowed",
-            "authorization_id": AUTHORIZATION_ID,
+            "authorization_id": expected_authorization,
             "ap_invocation_count": 1,
             "error_type": type(error).__name__,
             "error": str(error),
@@ -323,6 +436,13 @@ def main() -> None:
     parser.add_argument("--expected-scene-count", type=int, default=312)
     parser.add_argument("--dataset-name", default="ScanNet200-val312")
     parser.add_argument("--authorization-id", required=True)
+    parser.add_argument("--minus1-evaluator-boundary-safe", action="store_true")
+    parser.add_argument(
+        "--minus1-boundary-preregistration-path", type=Path,
+        default=MINUS1_BOUNDARY_PREREGISTRATION,
+    )
+    parser.add_argument("--prior-failed-ap-root", type=Path)
+    parser.add_argument("--prior-failed-ap-log", type=Path)
     parser.add_argument("--allow-gt-evaluation", action="store_true")
     result = run(parser.parse_args())
     print(json.dumps({

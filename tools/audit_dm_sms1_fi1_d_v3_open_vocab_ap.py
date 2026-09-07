@@ -25,12 +25,24 @@ from evaluate.scannet200.scannet_constants import (
     HEAD_CATS_SCANNET_200,
     TAIL_CATS_SCANNET_200,
 )
+from tools.dm_sms1_minus1_evaluator_boundary import (
+    EXPECTED_FOREGROUND_COUNT,
+    EXPECTED_MINUS1_COUNT,
+    EXPECTED_MINUS1_PLAN_INDICES,
+    EXPECTED_NATIVE_BACKGROUND_198_COUNT,
+    EXPECTED_TOTAL_CANDIDATE_COUNT,
+    RECOVERY_AUTHORIZATION_ID,
+    audit_boundary_inputs,
+    validate_frozen_recovery_inputs,
+    validate_prior_failure,
+)
 
 
 VERSION = "dm_sms1_fi1_d_v3_open_vocab_ap_audit_v1"
 AUTHORIZATION_ID = "DM-SMS-1-FI1-D-v3-val312-one-shot-20260824"
 METRICS = ("ap", "ap50", "ap25", "head_ap", "common_ap", "tail_ap")
 DUPLICATE_SAFE_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md"
+MINUS1_BOUNDARY_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_MINUS1_EVALUATOR_BOUNDARY_PREREGISTRATION_REVISION_20260907.md"
 
 
 def _resolve(path: Path) -> Path:
@@ -83,13 +95,20 @@ def _csv_metrics(path: Path) -> tuple[dict[str, float], int]:
 
 
 def run(args: argparse.Namespace) -> dict:
+    recovery_mode = bool(getattr(args, "minus1_evaluator_boundary_safe", False))
+    expected_authorization = RECOVERY_AUTHORIZATION_ID if recovery_mode else AUTHORIZATION_ID
     if getattr(args, "duplicate_safe_preregistration_path", None) is None:
         args.duplicate_safe_preregistration_path = DUPLICATE_SAFE_PREREGISTRATION
+    if recovery_mode and getattr(args, "minus1_boundary_preregistration_path", None) is None:
+        args.minus1_boundary_preregistration_path = MINUS1_BOUNDARY_PREREGISTRATION
     for name in (
         "result_root", "scene_list", "cache_root", "cache_audit_root",
         "decision_root", "preregistration_path", "duplicate_safe_preregistration_path", "output_root",
     ):
         setattr(args, name, _resolve(getattr(args, name)))
+    if recovery_mode:
+        for name in ("minus1_boundary_preregistration_path", "prior_failed_ap_root", "prior_failed_ap_log"):
+            setattr(args, name, _resolve(getattr(args, name)))
     summary_path = args.result_root / "summary.json"
     started_path = args.result_root / "ap_invocation_started.json"
     completed_path = args.result_root / "ap_invocation_completed.json"
@@ -103,9 +122,9 @@ def run(args: argparse.Namespace) -> dict:
     if (
         started.get("status") != "started"
         or completed.get("status") != "completed"
-        or started.get("authorization_id") != AUTHORIZATION_ID
-        or completed.get("authorization_id") != AUTHORIZATION_ID
-        or summary.get("authorization_id") != AUTHORIZATION_ID
+        or started.get("authorization_id") != expected_authorization
+        or completed.get("authorization_id") != expected_authorization
+        or summary.get("authorization_id") != expected_authorization
     ):
         errors["invocation_marker_contract"] += 1
     if (
@@ -164,6 +183,13 @@ def run(args: argparse.Namespace) -> dict:
         "preregistration": args.preregistration_path,
         "duplicate_safe_preregistration": args.duplicate_safe_preregistration_path,
     }
+    if recovery_mode:
+        external.update({
+            "minus1_boundary_preregistration": args.minus1_boundary_preregistration_path,
+            "prior_ap_started_marker": args.prior_failed_ap_root / "ap_invocation_started.json",
+            "prior_ap_failed_marker": args.prior_failed_ap_root / "ap_invocation_failed.json",
+            "prior_ap_log": args.prior_failed_ap_log,
+        })
     recorded = summary.get("input_provenance", {})
     for name, path in external.items():
         if not path.is_file() or str(recorded.get(name, "")) != _sha256(path):
@@ -172,6 +198,59 @@ def run(args: argparse.Namespace) -> dict:
         errors["scene_list_sha256"] += 1
     decision_summary = json.loads((args.decision_root / "summary.json").read_text())
     cache_summary = json.loads((args.cache_root / "summary.json").read_text())
+    boundary_input_audit = None
+    if recovery_mode:
+        try:
+            scenes = [line.strip() for line in args.scene_list.read_text().splitlines() if line.strip()]
+            decision_rows = [
+                json.loads(line) for line in
+                (args.decision_root / "safe_decisions.jsonl").read_text().splitlines()
+                if line.strip()
+            ]
+            validate_frozen_recovery_inputs(
+                args.cache_root, args.cache_audit_root, args.decision_root
+            )
+            validate_prior_failure(args.prior_failed_ap_root, args.prior_failed_ap_log)
+            boundary_input_audit = audit_boundary_inputs(scenes, args.cache_root, decision_rows)
+        except (FileNotFoundError, KeyError, ValueError, OSError, json.JSONDecodeError):
+            errors["minus1_boundary_input_audit"] += 1
+        expected_boundary = {
+            "candidate_count": EXPECTED_TOTAL_CANDIDATE_COUNT,
+            "foreground_candidate_count": EXPECTED_FOREGROUND_COUNT,
+            "native_background_198_count": EXPECTED_NATIVE_BACKGROUND_198_COUNT,
+            "minus1_to_background_count": EXPECTED_MINUS1_COUNT,
+            "evaluator_background_or_invalid_count": (
+                EXPECTED_MINUS1_COUNT + EXPECTED_NATIVE_BACKGROUND_198_COUNT
+            ),
+            "candidate_deletion_count": 0,
+            "cache_or_decision_write_count": 0,
+        }
+        for key, value in expected_boundary.items():
+            if boundary_input_audit is None or boundary_input_audit.get(key) != value:
+                errors[f"minus1_boundary::{key}"] += 1
+        for key, value in {
+            "minus1_evaluator_boundary_safe": True,
+            "minus1_to_background_count_control": EXPECTED_MINUS1_COUNT,
+            "minus1_to_background_count_challenge": EXPECTED_MINUS1_COUNT,
+            "native_background_198_count_control": EXPECTED_NATIVE_BACKGROUND_198_COUNT,
+            "native_background_198_count_challenge": EXPECTED_NATIVE_BACKGROUND_198_COUNT,
+            "foreground_candidate_count_control": EXPECTED_FOREGROUND_COUNT,
+            "foreground_candidate_count_challenge": EXPECTED_FOREGROUND_COUNT,
+            "evaluator_background_or_invalid_count": (
+                EXPECTED_MINUS1_COUNT + EXPECTED_NATIVE_BACKGROUND_198_COUNT
+            ),
+            "frozen_cache_or_decision_write_count": 0,
+            "prior_failed_ap_preserved": True,
+        }.items():
+            if summary.get(key) != value:
+                errors[f"minus1_summary::{key}"] += 1
+        recorded_preflight = summary.get("minus1_evaluator_boundary_preflight", {})
+        if boundary_input_audit is None or recorded_preflight != boundary_input_audit:
+            errors["minus1_boundary_preflight_provenance"] += 1
+        if summary.get("minus1_boundary_plan_indices") != sorted(
+            EXPECTED_MINUS1_PLAN_INDICES
+        ):
+            errors["minus1_boundary_plan_indices"] += 1
     if (
         int(summary.get("scene_count", -1)) != args.expected_scene_count
         or int(cache_summary.get("scene_count", -1)) != args.expected_scene_count
@@ -215,6 +294,12 @@ def run(args: argparse.Namespace) -> dict:
             "completed_marker_sha256": _sha256(completed_path),
         },
     }
+    if recovery_mode:
+        audit.update({
+            "minus1_evaluator_boundary_safe": True,
+            "minus1_boundary_input_audit": boundary_input_audit,
+            "prior_failed_ap_preserved": "minus1_boundary_input_audit" not in errors,
+        })
     staging = args.output_root.parent / f".{args.output_root.name}.tmp.{os.getpid()}"
     if args.output_root.exists() or staging.exists():
         raise FileExistsError(f"output or staging exists: {args.output_root}, {staging}")
@@ -244,6 +329,13 @@ def main() -> None:
     )
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--expected-scene-count", type=int, default=312)
+    parser.add_argument("--minus1-evaluator-boundary-safe", action="store_true")
+    parser.add_argument(
+        "--minus1-boundary-preregistration-path", type=Path,
+        default=MINUS1_BOUNDARY_PREREGISTRATION,
+    )
+    parser.add_argument("--prior-failed-ap-root", type=Path)
+    parser.add_argument("--prior-failed-ap-log", type=Path)
     result = run(parser.parse_args())
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     if not result["audit_valid"]:

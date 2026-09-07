@@ -14,6 +14,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 AUTHORIZATION_ID = "DM-SMS-1-FI1-D-v3-val312-one-shot-20260824"
 DUPLICATE_SAFE_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_DUPLICATE_SAFE_PREREGISTRATION_REVISION_20260824.md"
 TERMINAL_SAFE_KEEP_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_TERMINAL_SAFE_KEEP_PREREGISTRATION_REVISION_20260825.md"
+MINUS1_BOUNDARY_PREREGISTRATION = PROJECT_ROOT / "docs/DM_SMS1_FI1_D_V3_VAL312_MINUS1_EVALUATOR_BOUNDARY_PREREGISTRATION_REVISION_20260907.md"
+RECOVERY_AUTHORIZATION_ID = "DM-SMS-1-FI1-D-v3-val312-minus1-evaluator-boundary-recovery-20260907"
 
 
 def _resolve(path: str | Path) -> Path:
@@ -59,6 +61,8 @@ def _outputs(run_root: Path) -> dict[str, Path]:
         "prediction_cache_audit": run_root / "17_prediction_cache_audit",
         "ap": run_root / "18_open_vocab_ap",
         "ap_audit": run_root / "19_open_vocab_ap_audit",
+        "recovery_ap": run_root / "20_open_vocab_ap_minus1_safe_20260907",
+        "recovery_ap_audit": run_root / "21_open_vocab_ap_minus1_safe_audit_20260907",
     }
 
 
@@ -230,6 +234,35 @@ def _commands(stage: str, cfg: dict[str, Path], out: dict[str, Path], authorize_
             "--dataset-name", "ScanNet200-val312", "--authorization-id", AUTHORIZATION_ID,
             "--allow-gt-evaluation",
         ]]
+    if stage == "recovery-ap":
+        if not authorize_ap:
+            raise PermissionError("the recovery AP stage additionally requires --authorize-ap")
+        return [[
+            py, _tool("evaluate_dm_sms1_fi1_d_v3_open_vocab_ap_gt.py"),
+            "--scene-list", p(cfg["scene_list"]), "--ground-truth-root", p(cfg["ground_truth_root"]),
+            "--cache-root", p(out["prediction_cache"]), "--cache-audit-root", p(out["prediction_cache_audit"]),
+            "--decision-root", p(out["full_decisions"]), "--preregistration-path", p(cfg["preregistration_path"]),
+            "--duplicate-safe-preregistration-path", p(DUPLICATE_SAFE_PREREGISTRATION),
+            "--minus1-boundary-preregistration-path", p(MINUS1_BOUNDARY_PREREGISTRATION),
+            "--prior-failed-ap-root", p(out["ap"]),
+            "--prior-failed-ap-log", p(cfg["run_root"] / "formal_ap_one_shot_20260907.log"),
+            "--output-root", p(out["recovery_ap"]), "--expected-scene-count", "312",
+            "--dataset-name", "ScanNet200-val312", "--authorization-id", RECOVERY_AUTHORIZATION_ID,
+            "--minus1-evaluator-boundary-safe", "--allow-gt-evaluation",
+        ]]
+    if stage == "recovery-audit":
+        return [[
+            py, _tool("audit_dm_sms1_fi1_d_v3_open_vocab_ap.py"),
+            "--result-root", p(out["recovery_ap"]), "--scene-list", p(cfg["scene_list"]),
+            "--cache-root", p(out["prediction_cache"]), "--cache-audit-root", p(out["prediction_cache_audit"]),
+            "--decision-root", p(out["full_decisions"]), "--preregistration-path", p(cfg["preregistration_path"]),
+            "--duplicate-safe-preregistration-path", p(DUPLICATE_SAFE_PREREGISTRATION),
+            "--minus1-boundary-preregistration-path", p(MINUS1_BOUNDARY_PREREGISTRATION),
+            "--prior-failed-ap-root", p(out["ap"]),
+            "--prior-failed-ap-log", p(cfg["run_root"] / "formal_ap_one_shot_20260907.log"),
+            "--output-root", p(out["recovery_ap_audit"]), "--expected-scene-count", "312",
+            "--minus1-evaluator-boundary-safe",
+        ]]
     return commands[stage]
 
 
@@ -238,7 +271,7 @@ def main() -> None:
     parser.add_argument("--paths", type=Path, required=True, help="JSON path configuration")
     parser.add_argument(
         "--stage", required=True,
-        choices=("preflight", "geometry", "alpha", "manifests", "smoke", "qwen", "decisions", "cache", "ap", "audit"),
+        choices=("preflight", "geometry", "alpha", "manifests", "smoke", "qwen", "decisions", "cache", "ap", "audit", "recovery-ap", "recovery-audit"),
     )
     parser.add_argument("--authorize-ap", action="store_true")
     parser.add_argument("--print-only", action="store_true")
