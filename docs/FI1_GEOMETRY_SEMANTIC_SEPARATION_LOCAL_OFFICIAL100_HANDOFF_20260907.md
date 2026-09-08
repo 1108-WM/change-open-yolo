@@ -161,3 +161,11 @@ error_count                               0
 - 不把 safety60/even48/test60 用于新方法选择；
 - 不覆盖本机已有代码或数据；
 - 不在资产和控制未通过审计前开始 B1/B2 训练。
+
+## 9. val312 第一次 AP 失败的 evaluator 边界修复
+
+当时 `class_index=-1` 导致官方 evaluator 入口停止的修复代码已在本分支的祖先提交 `e4642e1e73b55ad0523a0d776cdbf22f78ae7be8` 中。本机排查、精确适用边界和不得直接复用远程失败哈希的说明见：
+
+```text
+docs/VAL312_AP_MINUS1_EVALUATOR_BOUNDARY_LOCAL_HANDOFF_20260908.md
+```
