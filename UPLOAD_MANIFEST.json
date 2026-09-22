@@ -1,0 +1,38 @@
+{
+  "purpose": "GD10 source reference for adapting an existing OpenYOLO3D checkout; not a standalone executable distribution",
+  "core": "tools/run_fi1_frontend_comparison.py",
+  "stride10_reference": "tools/run_fi1_g10_closure_holdout.py",
+  "adaptation_required": [
+    "Create a platform-local entry with dataset root, processed root, output root and scene-list arguments.",
+    "Do not execute the heldout wrapper unchanged: its closure_assets import, LOCAL/OUT/TRAIN_FRONT, inventory, selection and auditor refer to this host and are intentionally not bundled.",
+    "Use Frontends(grounded_sam), export_frame, assemble_arm and track_arm from the unchanged core. Explicitly set manifest arms D to list(range(0, original_frame_count, 10)); core D defaults to stride5.",
+    "Preserve original frame IDs, exact point order, receipts and hash validation; create a new output directory.",
+    "Audit the adapted entry and run one-scene verification before the complete312. Do not tune on validation312."
+  ],
+  "external_assets_not_included": [
+    "_external/segment-anything/segment-anything-main/",
+    "_external/GroundingDINO/GroundingDINO-main/ (install/compile for target CUDA/PyTorch)",
+    "pretrained/checkpoints/sam_vit_b_01ec64.pth",
+    "pretrained/groundingdino/groundingdino_swint_ogc.pth",
+    "pretrained/bert-base-uncased/{config.json,pytorch_model.bin,model.safetensors,tokenizer.json,tokenizer_config.json,vocab.txt}"
+  ],
+  "input_requirements": [
+    "Original RGB/depth/poses with original numeric frame IDs; 30-frame caches alone are insufficient.",
+    "Scene mesh, intrinsics.txt, processed point/superpoint numpy with identical mesh point order.",
+    "Current build_scene_manifest inventories uniform30 plus stride5 before D is overridden; keep the full original input sequence available."
+  ],
+  "downstream": "Outputs are geometry frontend assets, not final instance AP. New geometry requires matching D-v3 inference, own-geometry YOLO/Alpha evidence and scorer application. GD text labels are provenance, not final semantic binding.",
+  "source_sha256": {
+    "tools/run_fi1_frontend_comparison.py": "b4d0fce6fcd4f40ed91bdf85eccd95e14b7cdde9def986e690d0a12249179cb3",
+    "tools/run_fi1_g10_closure_holdout.py": "826f72c01282f46d3574b2ff639b094be793d9882c6bb68d246aef1d4a4a8c1a",
+    "tools/fi1_frontend_protocol.py": "5b610ad84fce311d5473e12100db586b402cdfd567f8ba332a91bd6b06334592",
+    "tools/export_sam_automatic_observations.py": "88e6b3b88ed591f8f0bc310cee3f0eee3def2afc286bb53d4b820ddc5aa9c9d4",
+    "tools/export_groundingdino_f30_boxes.py": "bae334d2795bb997e245bd3a05c7bcd4abbe83971306e6b4ce51847bf1393b42",
+    "tools/build_details_same_frame_hierarchy_preprocessor.py": "436e12155d761e3571de56e92e449caa651bd9651b5a5f87fd2a2b17029fa204",
+    "tools/build_details_frame_siou_tracks.py": "ea05faff778b4e9292bcb73ff0d88000112e75262e37ab56d0b85a39e8285205",
+    "tools/refine_details_automatic_tracks_consensus.py": "e72faad27022a80c08f86ff122bfe29cc194e3725d84318e6f32e69ae6ca6ba8",
+    "tools/build_details_iterative_proposal_merges.py": "6e257020422d980567decf0e001c532fa7987a637b1c9552d35efbf15a3f4aae",
+    "utils/__init__.py": "d9a7a67d8130880fa6d291a6dad6ab568e4a2e51773a253c15ac008c770578c7",
+    "pretrained/config_scannet200.yaml": "a8fd4b96a832e2d42b2035011e094c6a656986d37126dca7a866da049874c21f"
+  }
+}
