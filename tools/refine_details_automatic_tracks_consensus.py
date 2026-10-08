@@ -251,7 +251,7 @@ def _superpoint_points(superpoints):
     }
 
 
-def _refine_scene(scene_name, args):
+def _refine_scene(scene_name, args, visibility=None):
     from utils import WORLD_2_CAM
 
     processed_path = args.processed_scene_root / scene_name / f"{scene_name.replace('scene', '')}.npy"
@@ -265,9 +265,11 @@ def _refine_scene(scene_name, args):
     }
     points_by_superpoint = _superpoint_points(superpoints)
 
-    world = WORLD_2_CAM(str(args.dataset_root / scene_name), args.depth_scale, args.config)
-    _, raw_visibility = world.get_mesh_projections()
-    visibility = raw_visibility.detach().cpu().numpy().astype(bool, copy=False)
+    world = raw_visibility = None
+    if visibility is None:
+        world = WORLD_2_CAM(str(args.dataset_root / scene_name), args.depth_scale, args.config)
+        _, raw_visibility = world.get_mesh_projections()
+        visibility = raw_visibility.detach().cpu().numpy().astype(bool, copy=False)
     observations = _load_observations(args.automatic_root / scene_name, superpoints, visibility)
     source = json.loads((args.track_root / scene_name / "automatic_tracks.json").read_text())
 

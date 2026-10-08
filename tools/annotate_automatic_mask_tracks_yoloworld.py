@@ -14,6 +14,7 @@ from pathlib import Path
 import numpy as np
 import torch
 import yaml
+from collections.abc import Mapping
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -32,6 +33,22 @@ def _read_scenes(path):
 
 def _as_numpy(value):
     return value.detach().cpu().numpy() if torch.is_tensor(value) else np.asarray(value)
+
+
+def _load_predictions(path, scene_name):
+    """Accept the signed NCS cache and the frozen legacy frame mapping."""
+    payload = torch.load(path, map_location="cpu")
+    if not isinstance(payload, Mapping):
+        raise ValueError(f"{scene_name}: YOLO-World cache is not a mapping")
+    if "metadata" in payload or "predictions" in payload:
+        metadata = payload.get("metadata")
+        predictions = payload.get("predictions")
+        if not isinstance(metadata, Mapping) or metadata.get("scene_name") != scene_name:
+            raise ValueError(f"{scene_name}: signed YOLO-World cache metadata mismatch")
+        if not isinstance(predictions, Mapping):
+            raise ValueError(f"{scene_name}: signed YOLO-World predictions are not a mapping")
+        return predictions, "signed_metadata_predictions"
+    return payload, "legacy_frame_mapping"
 
 
 def frame_class_votes(xs, ys, boxes, labels, scores):
@@ -54,7 +71,9 @@ def _scene_records(scene_name, args):
     from utils import WORLD_2_CAM
 
     track_payload = json.loads((args.track_root / scene_name / "automatic_tracks.json").read_text())
-    predictions = torch.load(args.bboxes_2d_root / f"{scene_name}.pt", map_location="cpu")
+    predictions, cache_contract = _load_predictions(
+        args.bboxes_2d_root / f"{scene_name}.pt", scene_name
+    )
     world = WORLD_2_CAM(str(args.dataset_root / scene_name), args.depth_scale, args.config)
     projections, visibility = world.get_mesh_projections()
     projections = projections.detach().cpu().numpy().astype(np.int64)
@@ -114,6 +133,7 @@ def _scene_records(scene_name, args):
             "vote_margin": float((best_vote - second_vote) / max(best_vote, 1e-6)),
             "voted_class_support_views": int(support_views.get(best_label, 0)),
             "class_votes": [{"class_index": int(label), "vote": float(value), "support_views": int(support_views[label])} for label, value in ordered[:8]],
+            "yoloworld_cache_contract": cache_contract,
         })
     del world, projections, visibility
     if torch.cuda.is_available():
@@ -130,10 +150,11 @@ def main():
     parser.add_argument("--config_path", type=Path, default=Path("pretrained/config_scannet200.yaml"))
     parser.add_argument("--output_root", type=Path, required=True)
     parser.add_argument("--max_scenes", type=int)
+    parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     for name in ("scene_list", "track_root", "bboxes_2d_root", "dataset_root", "config_path", "output_root"):
         setattr(args, name, _resolve(getattr(args, name)))
-    if args.output_root.exists() and any(args.output_root.iterdir()):
+    if args.output_root.exists() and any(args.output_root.iterdir()) and not args.resume:
         raise SystemExit(f"输出目录已存在且非空，为避免覆盖已拒绝执行：{args.output_root}")
     with args.config_path.open() as handle:
         args.config = yaml.safe_load(handle)
@@ -144,10 +165,23 @@ def main():
     args.output_root.mkdir(parents=True, exist_ok=True)
     all_records = []
     for index, scene_name in enumerate(scenes, start=1):
+        existing_path = (
+            args.output_root / scene_name / "automatic_track_yoloworld_semantics.json"
+        )
+        if args.resume and existing_path.is_file():
+            records = json.loads(existing_path.read_text())
+            source_tracks = json.loads(
+                (args.track_root / scene_name / "automatic_tracks.json").read_text()
+            ).get("tracks", [])
+            if len(records) != len(source_tracks):
+                raise SystemExit(f"场景 {scene_name} 的语义 resume 数量与轨迹不一致")
+            print(f"[场景跳过] {index}/{len(scenes)} {scene_name}: {len(records)} 条语义轨迹", flush=True)
+            all_records.extend(records)
+            continue
         records = _scene_records(scene_name, args)
         all_records.extend(records)
         scene_root = args.output_root / scene_name
-        scene_root.mkdir()
+        scene_root.mkdir(parents=True, exist_ok=False)
         (scene_root / "automatic_track_yoloworld_semantics.json").write_text(
             json.dumps(records, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
         )

@@ -204,6 +204,41 @@ def build_processed_scene(raw_scene: Path, scene_root: Path, label_map: Path) ->
     }
 
 
+def build_geometry_only_scene(raw_scene: Path, scene_root: Path) -> dict:
+    """Build the 12-column geometry array without opening ScanNet labels.
+
+    This is the validation/holdout path.  The last two columns retain the
+    historical processed-scene schema but are set to ``-1`` because semantic
+    and instance GT must not be read or materialized for a frozen validation
+    split.  Geometry consumers only require coordinates, RGB/normals and the
+    segment column, so keeping the schema identical avoids a second pipeline.
+    """
+    scene = raw_scene.name
+    mesh_path = raw_scene / f"{scene}_vh_clean_2.ply"
+    segment_path = raw_scene / f"{scene}_vh_clean_2.0.010000.segs.json"
+    coords, features, _ = _ply_arrays(mesh_path, normals=True)
+    segments_payload = json.loads(segment_path.read_text())
+    raw_segments = np.asarray(segments_payload["segIndices"], dtype=np.int64)
+    if raw_segments.shape[0] != coords.shape[0]:
+        raise ValueError("segment index count does not match mesh vertices")
+    segment_ids = np.unique(raw_segments, return_inverse=True)[1].astype(np.float32)
+    unknown_labels = np.full((coords.shape[0], 2), -1.0, dtype=np.float32)
+    processed = np.hstack(
+        (coords, features, segment_ids[:, None], unknown_labels)
+    ).astype(np.float32)
+    short_scene = scene.removeprefix("scene")
+    np.save(scene_root / f"{short_scene}.npy", processed)
+    return {
+        "point_count": int(processed.shape[0]),
+        "processed_columns": int(processed.shape[1]),
+        "superpoint_count": int(np.unique(segment_ids).size),
+        "instance_count": 0,
+        "missing_raw_categories": [],
+        "gt_materialized": False,
+        "label_access": "forbidden",
+    }
+
+
 def _scene_names(path: Path) -> set[str]:
     return {line.strip() for line in path.read_text().splitlines() if line.strip()}
 

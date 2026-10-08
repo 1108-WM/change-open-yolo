@@ -324,9 +324,9 @@ def _scene_records(scene: str, args: argparse.Namespace, prompts: list[str]) -> 
 
     masks, native_classes, native_scores = _load_native(args.stream_records_root, scene)
     point_count = int(masks.shape[0])
-    tracks = _load_tracks(args.stream_records_root, scene)
+    tracks = [] if args.native_only else _load_tracks(args.stream_records_root, scene)
     track_by_id = {int(row["track_id"]): row for row in tracks}
-    union_rows = _load_union_rows(args.combined_plan_root, scene)
+    union_rows = [] if args.native_only else _load_union_rows(args.combined_plan_root, scene)
     predictions = _load_yoloworld_cache(
         args.stream_records_root / scene / "yoloworld_bboxes_2d" / f"{scene}.pt", scene
     )
@@ -482,6 +482,7 @@ def _scene_records(scene: str, args: argparse.Namespace, prompts: list[str]) -> 
             evidence_by_id[int(row["semantic_evidence_node_id"])]["distribution"]["evidence_view_count"] > 0
             for row in records
         ),
+        "candidate_mode": "native_only" if args.native_only else "native_track_pair_union",
     }
     del world, projection, visibility
     return records, evidence_records, summary
@@ -518,6 +519,7 @@ def run(args: argparse.Namespace) -> dict:
             )
     summary = {
         "diagnostic_type": "Z1 GT-free YOLO-World multi-view 200-class distribution ledger",
+        "candidate_mode": "native_only" if args.native_only else "native_track_pair_union",
         "diagnostic_only": True,
         "ground_truth_usage": "none",
         "candidate_mutation": False,
@@ -550,7 +552,12 @@ def main() -> None:
     parser.add_argument("--scene-list", type=Path, required=True)
     parser.add_argument("--stream-records-root", type=Path, required=True)
     parser.add_argument("--prepared-dataset-root", type=Path, required=True)
-    parser.add_argument("--combined-plan-root", type=Path, required=True)
+    parser.add_argument("--combined-plan-root", type=Path)
+    parser.add_argument(
+        "--native-only",
+        action="store_true",
+        help="Build only the native candidate distribution; do not require frozen track/pair-union assets.",
+    )
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--config-path", type=Path, default=Path("pretrained/config_scannet200.yaml"))
     parser.add_argument("--max-views", type=int, default=40)
@@ -561,10 +568,13 @@ def main() -> None:
     if args.max_views <= 0 or args.min_visible_points <= 0 or args.top_k <= 0:
         raise SystemExit("--max-views, --min-visible-points and --top-k must be positive")
     for name in (
-        "scene_list", "stream_records_root", "prepared_dataset_root", "combined_plan_root",
-        "output_dir", "config_path",
+        "scene_list", "stream_records_root", "prepared_dataset_root", "output_dir", "config_path",
     ):
         setattr(args, name, _resolve(getattr(args, name)))
+    if args.combined_plan_root is not None:
+        args.combined_plan_root = _resolve(args.combined_plan_root)
+    if not args.native_only and args.combined_plan_root is None:
+        raise SystemExit("--combined-plan-root is required unless --native-only is set")
     if args.output_dir.exists() and any(args.output_dir.iterdir()):
         raise SystemExit(f"refusing to overwrite non-empty output: {args.output_dir}")
     with args.config_path.open() as handle:

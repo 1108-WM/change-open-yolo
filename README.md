@@ -1,3 +1,5 @@
+> **2026-10-08 frozen production reproduction release:** historical official100 D-v3 + GD10-matched597 B26 + K800. Start with [the A100 runbook](reproduction/README.md). Project weights and portable source are included; ScanNet and third-party visual assets are prepared separately. The older upstream README below describes the original OpenYOLO3D project.
+
  <div align="center">
  
 ## Open-YOLO 3D: Towards Fast and Accurate Open-Vocabulary 3D Instance Segmentation

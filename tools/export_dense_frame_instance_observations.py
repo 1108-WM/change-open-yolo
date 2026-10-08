@@ -309,6 +309,7 @@ def main():
     parser.add_argument("--duplicate_containment", default=0.985, type=float)
     parser.add_argument("--max_masks_per_frame", default=20, type=int)
     parser.add_argument("--overwrite", default=False, action="store_true")
+    parser.add_argument("--resume", default=False, action="store_true")
     args = parser.parse_args()
 
     if args.allow_legacy_2d_cache:
@@ -328,6 +329,10 @@ def main():
     summaries = []
     start_time = time.time()
     for scene_name in tqdm(scene_names):
+        existing = _scene_output_paths(args.output_root, scene_name)
+        if args.resume and existing["summary"].is_file() and existing["observations"].is_file():
+            summaries.append(json.loads(existing["summary"].read_text()))
+            continue
         scene_id = scene_name.replace("scene", "")
         openyolo3d.predict(
             path_2_scene_data=osp.join(args.dataset_root, scene_name),

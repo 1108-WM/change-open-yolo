@@ -410,7 +410,7 @@ def _scene_summary(scene_name, source_count, final, actions, rounds, relations):
     }
 
 
-def _build_and_publish_scene(scene_name, args):
+def _build_and_publish_scene(scene_name, args, visibility=None):
     from utils import WORLD_2_CAM
 
     processed_path = (
@@ -431,11 +431,13 @@ def _build_and_publish_scene(scene_name, args):
     )
     source_tracks = source.get("tracks", [])
     _validate_source_point_files(source_tracks, superpoints)
-    world = WORLD_2_CAM(
-        str(args.dataset_root / scene_name), args.depth_scale, args.config
-    )
-    _, raw_visibility = world.get_mesh_projections()
-    visibility = raw_visibility.detach().cpu().numpy().astype(bool, copy=False)
+    world = raw_visibility = None
+    if visibility is None:
+        world = WORLD_2_CAM(
+            str(args.dataset_root / scene_name), args.depth_scale, args.config
+        )
+        _, raw_visibility = world.get_mesh_projections()
+        visibility = raw_visibility.detach().cpu().numpy().astype(bool, copy=False)
     observations = _load_observations(
         args.automatic_root / scene_name, superpoints, visibility
     )

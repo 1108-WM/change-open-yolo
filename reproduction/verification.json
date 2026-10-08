@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "cpu_tests": 43,
+  "subtests": 4,
+  "all_runtime_file_hashes_verified": true,
+  "D_v3_seven_models_loaded_in_sklearn130": true,
+  "nine_geometry_kernel_modules_resolve_inside_release": true,
+  "cached_replays": [
+    {
+      "scene": "scene0549_00",
+      "X26_rows": 6934,
+      "all_X26_features_exact": true,
+      "all_B26_scores_exact": true,
+      "selected_800_members_classes_scores_order_exact": true,
+      "historical_selected_sha256": "d5d4ebf7f943a6b19cb4d57c11c07de47242ba15b4b2ad1f0ebb812cda475dae"
+    },
+    {
+      "scene": "scene0354_00",
+      "X26_rows": 5936,
+      "all_X26_features_exact": true,
+      "all_B26_scores_exact": true,
+      "selected_800_members_classes_scores_order_exact": true,
+      "historical_selected_sha256": "1d70edf6c0696c72cef9f907bc06e41166ebca769c495a29534180ec266c9eab"
+    }
+  ],
+  "new_training": false,
+  "new_GPU_inference": false,
+  "new_AP": false,
+  "validation312_rerun": false,
+  "A100_full_GPU_pipeline_tested": false,
+  "GPU_pipeline_validation": "not run; new portable orchestration reuses original kernels and requires A100 single-scene verification",
+  "models": "byte-identical frozen official100 D-v3 / matched597 B26 / champion",
+  "frozen_runtime_files": 925,
+  "vendored_tool_modules": 97,
+  "existing_GD10_frontend_contract_and_callback_source_hashes_verified": "scene0354_00",
+  "original_evaluator_and_instance_utility_AST_exact": {
+    "evaluate/scannet200/eval_semantic_instance.py": true,
+    "evaluate/scannet200/util_3d.py": true
+  }
+}

@@ -211,7 +211,7 @@ def _write_scene(scene_name, nodes, tracks, output_root):
     return payload
 
 
-def _build_scene(scene_name, args):
+def _build_scene(scene_name, args, visibility=None):
     from utils import WORLD_2_CAM
 
     processed_path = args.processed_scene_root / scene_name / f"{scene_name.replace('scene', '')}.npy"
@@ -219,9 +219,11 @@ def _build_scene(scene_name, args):
     if processed.shape[1] < 10:
         raise ValueError(f"{scene_name} 缺少原始 superpoint 列")
     superpoints = np.asarray(processed[:, 9], dtype=np.int64)
-    world = WORLD_2_CAM(str(args.dataset_root / scene_name), args.depth_scale, args.config)
-    _, raw_visibility = world.get_mesh_projections()
-    visibility = raw_visibility.detach().cpu().numpy().astype(bool, copy=False)
+    world = raw_visibility = None
+    if visibility is None:
+        world = WORLD_2_CAM(str(args.dataset_root / scene_name), args.depth_scale, args.config)
+        _, raw_visibility = world.get_mesh_projections()
+        visibility = raw_visibility.detach().cpu().numpy().astype(bool, copy=False)
     # 只按自动观测已经使用的帧关联，绝不借用未导出的帧。
     observation_path = args.automatic_root / scene_name / "automatic_observations.jsonl"
     used_frames = {int(json.loads(line)["frame_index"]) for line in observation_path.read_text().splitlines() if line.strip()}
