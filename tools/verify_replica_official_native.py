@@ -1,0 +1,1 @@
+../full_bundle/code/tools/verify_replica_official_native.py

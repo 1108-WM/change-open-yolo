@@ -1,0 +1,24 @@
+{
+  "version": "fi1_scoring_population_contract_v1",
+  "dataset": "official100",
+  "geometry_scope": "all B1 geometries and every C-v2 temporary candidate including rejected and unchanged",
+  "candidate_selection_uses_gt": false,
+  "sample_seed": "fi1-scoring-population-20260910-v1",
+  "sample_per_fold_stratum": 8,
+  "sample_strata": "B1 sources and C final/temporary status; union of independently hash-ranked strata; include parents of selected refined",
+  "semantic_scope": "all 198 classes for requested geometries; preserve full B1 members separately",
+  "evidence_controls": [
+    "original_label_map",
+    "full_alpha",
+    "bbox_separate"
+  ],
+  "scoring_features": "own per-class evidence, raw geometry/view metadata, continuous per-class overlapping-neighbor evidence; no learned legacy scores in feature matrix",
+  "legacy_scores": "metadata only until nested exclusion and replay verified",
+  "nested_exclusions": "outer holdout plus inner row fold for training-feature generation; transitive upstream selection, geometry and scores rebuilt under same exclusions",
+  "current_population_role": "diagnostic/future evidence requests, not nested-supervised training input",
+  "ap_target": "future evaluator-aligned strict > over existing evaluator thresholds .50 through .90; .25 separate",
+  "no_new_ap_this_phase": true,
+  "no_parameter_search": true,
+  "no_qwen_this_phase": true,
+  "production_ready": false
+}

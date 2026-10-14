@@ -1,0 +1,1272 @@
+{
+  "targets": [
+    {
+      "original": "full_bundle/code/tools/train_candidate_target_consistency_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/train_candidate_target_consistency_oof.py",
+      "required_symbols": [
+        "EXCLUSIVE_PAIR_MODEL_FEATURES",
+        "LogisticRegression",
+        "MODEL_FEATURES",
+        "Pipeline",
+        "RANDOM_SEED",
+        "StandardScaler",
+        "_fit_base",
+        "_fit_platt",
+        "_make_base_model",
+        "class_balanced_weights",
+        "defaultdict",
+        "np",
+        "scene_track_balanced_weights",
+        "seeded_scene_folds"
+      ],
+      "functions_classes": [
+        {
+          "name": "scene_track_balanced_weights",
+          "ast_sha256": "c66049e113e9dca418dc1efd278122c7f403c1c125b4aa13375fbaa4fb156de7"
+        },
+        {
+          "name": "class_balanced_weights",
+          "ast_sha256": "4ea479a1cd45409d82f0dea0affbb6d26afea387eb089e6dcd0df2813bb8b733"
+        },
+        {
+          "name": "seeded_scene_folds",
+          "ast_sha256": "185f054fc4179f5b79b6f8f1e1d19a9eaf925d0183b38b0da32fbdc39bb1052d"
+        },
+        {
+          "name": "_make_base_model",
+          "ast_sha256": "0f60a36055ba32c48f85aa026bfa151428a6909cb28e82cba52b6e367ce71a7f"
+        },
+        {
+          "name": "_fit_base",
+          "ast_sha256": "55071ce483b7d1f879a1889479d445388c1fd30abcb4b1a70034e380af11e175"
+        },
+        {
+          "name": "_fit_platt",
+          "ast_sha256": "6a2fb76acb249a768cc015eb1fa15329ec6a189d84434c0f5c41f488214c4b25"
+        }
+      ],
+      "original_lines": 699,
+      "retained_lines": 229
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 573,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_official_relevance_gap_rank_oof.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 372,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_relative_quality_multitask_oof.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 561,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_component_list_calibration_head_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/train_candidate_component_list_calibration_head_oof.py",
+      "required_symbols": [
+        "CANDIDATE_NUMERIC_FEATURES",
+        "RAW_RELATION_FEATURES",
+        "TRACK_SOURCE",
+        "_aggregate",
+        "_candidate_relation_pairs",
+        "_feature_matrix",
+        "_finite",
+        "build_candidate_feature_rows",
+        "defaultdict",
+        "math",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "_finite",
+          "ast_sha256": "ba77da8b10f3b6ddd8bea5f45eab76eae95c10b8c334fd6c7a86c1dccf14cc2d"
+        },
+        {
+          "name": "_aggregate",
+          "ast_sha256": "e595e81364b2ad428ab57d3cb131d70442d212fb4ab1a0e499d196d2e0f06207"
+        },
+        {
+          "name": "_candidate_relation_pairs",
+          "ast_sha256": "b39cd17fd7a5b71867934f5c8552e6debeb595a2e302df55cd67d0257a740c91"
+        },
+        {
+          "name": "build_candidate_feature_rows",
+          "ast_sha256": "7879002424440a54a9611adfffbf63c480b3e892438b3563ec77e94fb9bcb7d6"
+        },
+        {
+          "name": "_feature_matrix",
+          "ast_sha256": "2b7ca05170c9fbd1e3dde9631c763589cea22a43859d93cf9935fec288c583b8"
+        }
+      ],
+      "original_lines": 875,
+      "retained_lines": 227
+    },
+    {
+      "original": "full_bundle/code/tools/build_ncs_fi1_stage_b_relation_rerank_plan.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_ncs_fi1_stage_b_relation_rerank_plan.py",
+      "required_symbols": [
+        "Counter",
+        "GeometryResolver",
+        "RELATION_TYPES",
+        "SOURCE_ORDER",
+        "VERSION",
+        "_direct_fields",
+        "_geometry_relation",
+        "_read_jsonl",
+        "_resolve",
+        "_sha256",
+        "argparse",
+        "classify_relation",
+        "defaultdict",
+        "itertools",
+        "json",
+        "np",
+        "os",
+        "relation_decay_action",
+        "run",
+        "shutil"
+      ],
+      "functions_classes": [
+        {
+          "name": "classify_relation",
+          "ast_sha256": "5899bc52de576f8ddeafb5e006059068455c0e80b00c7c0d305c4b7bd7c22096"
+        },
+        {
+          "name": "relation_decay_action",
+          "ast_sha256": "eaf5ee892c5a09372e255b134b35f7e627d295d434e1fccb667e57993fc2040c"
+        },
+        {
+          "name": "_geometry_relation",
+          "ast_sha256": "ca6a81eac23f34f59b043fbebc3ff928e404be3ff43e36edcedee8b5b3593514"
+        },
+        {
+          "name": "_direct_fields",
+          "ast_sha256": "aebb49def25b62cb3ae7cb03628ace8ae01f4fdd127751ee78aa58d187a2c349"
+        },
+        {
+          "name": "run",
+          "ast_sha256": "f5481d0dfbb3aaeb2bfdb6e4dca945d9b88dfb5404608b4e96ebc9115f387815"
+        }
+      ],
+      "original_lines": 512,
+      "retained_lines": 459
+    },
+    {
+      "original": "full_bundle/code/tools/fit_candidate_pair_union_threshold_cross_full.py",
+      "destination": "full_bundle/code/tools/fi1_shared/fit_candidate_pair_union_threshold_cross_full.py",
+      "required_symbols": [
+        "VERSIONS"
+      ],
+      "functions_classes": [],
+      "original_lines": 163,
+      "retained_lines": 7
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_relative_quality_nested_q_oof.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 518,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "destination": "full_bundle/code/tools/fi1_shared/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "required_symbols": [
+        "EXPECTED_OOF_SHA256",
+        "Path",
+        "defaultdict",
+        "geometry_groups_and_audit",
+        "hashlib",
+        "json",
+        "load_oof_predictions",
+        "math",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "load_oof_predictions",
+          "ast_sha256": "31e181861b3c6eed2e7b2bec728778187d0e15d34d9d9772e0bbdf7dabe9d6d7"
+        },
+        {
+          "name": "geometry_groups_and_audit",
+          "ast_sha256": "00010079d2dce8d6d5f12d872c308257d4cd9cc65899ab45faacd94116f4a83f"
+        }
+      ],
+      "original_lines": 498,
+      "retained_lines": 92
+    },
+    {
+      "original": "full_bundle/code/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "required_symbols": [
+        "ADJACENCY",
+        "FEATURE_NAMES",
+        "RELATION_FEATURES",
+        "ROLES",
+        "_atom_features",
+        "_geometry_sha256",
+        "_mean_edge",
+        "_normalize_normals",
+        "_normalize_rgb",
+        "decompose_union_atoms",
+        "hashlib",
+        "math",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "_geometry_sha256",
+          "ast_sha256": "fa0cda3d3212fb84335eb74b9c7f238e108ae171d25c2feb4280d1fc4b03d337"
+        },
+        {
+          "name": "decompose_union_atoms",
+          "ast_sha256": "2692c8ca9ab3bbcdc25450eb5c19941366a0654684cfd9226017786456855c50"
+        },
+        {
+          "name": "_mean_edge",
+          "ast_sha256": "3b5a6c7b7b230cf475fd91815041d4afa5c433860b0dc87efcfe1f89aef42f64"
+        },
+        {
+          "name": "_atom_features",
+          "ast_sha256": "97f2a282a3cbb8c2b56d3d721add81de3966d8e7ef3694b7acd74fda122e60b2"
+        }
+      ],
+      "original_lines": 432,
+      "retained_lines": 174
+    },
+    {
+      "original": "full_bundle/code/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "destination": "full_bundle/code/tools/fi1_shared/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "required_symbols": [
+        "FEATURE_GROUP",
+        "MIN_REGION_SIZE",
+        "NATIVE_SOURCE",
+        "PROTOCOL_NAME",
+        "Path",
+        "TRACK_FEATURES",
+        "TRACK_SOURCE",
+        "UNIFIED_PREDICTED_CLASS",
+        "_canonical_mask_audit",
+        "_evaluate",
+        "_finite",
+        "_flatten_gvc",
+        "_load_track_points",
+        "_prediction",
+        "_sha256",
+        "hashlib",
+        "instance_eval",
+        "json",
+        "load_safety_scene",
+        "math",
+        "np",
+        "safety_feature_row"
+      ],
+      "functions_classes": [
+        {
+          "name": "_sha256",
+          "ast_sha256": "db516c58caa4f6d6c513e2ad77f21ed378fda23d9569b0038a1fa71314361aa3"
+        },
+        {
+          "name": "_finite",
+          "ast_sha256": "feb1a329148a0b95ac5b3585b59cba3320ef78cda85910a7b68300ec72fa90fa"
+        },
+        {
+          "name": "_flatten_gvc",
+          "ast_sha256": "0d0f807c949a69acf252d4d150cca2fb9da6d4320142de4e2c9786c38d6a2426"
+        },
+        {
+          "name": "safety_feature_row",
+          "ast_sha256": "eefb018bb6d7615cd3f33fdff299d1d5015bcde5f505470ef6798c2fbe0be906"
+        },
+        {
+          "name": "_canonical_mask_audit",
+          "ast_sha256": "10b5a86ea99ccaf1ed6eaee28e1695e4d4ed4e768fb2c8e443f5f93b2cb019c9"
+        },
+        {
+          "name": "_load_track_points",
+          "ast_sha256": "470935a29dfe14392d48e01068aad78397a62aa61908ef6b883a1ee6d1fd25f8"
+        },
+        {
+          "name": "load_safety_scene",
+          "ast_sha256": "dac785cc5408b6235b331bd9945927daf6de9eccf52027b6c42703044bf4f936"
+        },
+        {
+          "name": "_prediction",
+          "ast_sha256": "d38225a9c3baf4839c10caeadffcbcfbe81cd41573a9eded93168defdcb37dd9"
+        },
+        {
+          "name": "_evaluate",
+          "ast_sha256": "24660932a266f1a4c640425234481706b9e9a0439655a13ec9360cc8b2c22ddc"
+        }
+      ],
+      "original_lines": 589,
+      "retained_lines": 231
+    },
+    {
+      "original": "full_bundle/code/tools/train_ncs_fi1_stage_a_quality_oof.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 361,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/diagnose_candidate_component_geometry_ceiling_gt.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 590,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_component_action_head_structured_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/train_candidate_component_action_head_structured_oof.py",
+      "required_symbols": [
+        "ACTION_TIE_PRIORITY",
+        "RELATIVE_FEATURES",
+        "RELATIVE_MODEL_FEATURES",
+        "STACKED_RELATION_FIELDS",
+        "TARGET_FEATURES",
+        "TARGET_MODEL_FEATURES",
+        "UTILITY_SCALE",
+        "_aggregate",
+        "_finite",
+        "action_feature_row",
+        "choose_structured_action",
+        "defaultdict",
+        "math",
+        "np",
+        "structured_action_feature_row"
+      ],
+      "functions_classes": [
+        {
+          "name": "_finite",
+          "ast_sha256": "e9fc782d3ef3c25c6751bf65ab527c40505a74e2c1059d3ac8637511948013bb"
+        },
+        {
+          "name": "_aggregate",
+          "ast_sha256": "19fb024adc13379f4ed4f1fa18a5ee8e6e3e3064ae475b33756e5b55ffffa675"
+        },
+        {
+          "name": "structured_action_feature_row",
+          "ast_sha256": "61af85a8fa7c4393c3395a7a9000a6df28289caa205f1ca2facc5a53228ef448"
+        },
+        {
+          "name": "choose_structured_action",
+          "ast_sha256": "9ab7424fe41e33566b58a95eddd95921b58c47218c79585ce75d2be48c9af978"
+        }
+      ],
+      "original_lines": 1071,
+      "retained_lines": 173
+    },
+    {
+      "original": "full_bundle/code/tools/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "required_symbols": [
+        "FEATURE_NAMES",
+        "V1_FEATURE_NAMES",
+        "_prefix_name",
+        "label_candidate",
+        "rank_labels"
+      ],
+      "functions_classes": [
+        {
+          "name": "_prefix_name",
+          "ast_sha256": "2824c85ca84b7a5d14d12a29555889b4870872de6d237a28949c495e776b234e"
+        },
+        {
+          "name": "rank_labels",
+          "ast_sha256": "b10daaf9f0ad0fde210e23d86f4c12a59a046dd3a04769cda307557ec44cf382"
+        }
+      ],
+      "original_lines": 313,
+      "retained_lines": 23
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_component_action_head_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/train_candidate_component_action_head_oof.py",
+      "required_symbols": [
+        "AGGREGATIONS",
+        "Counter",
+        "EPS",
+        "EXPECTED_ACTION_LEDGER_SCENE_SHA256",
+        "EXPECTED_SPLIT_SHA256",
+        "Path",
+        "RELATION_FEATURES",
+        "_action_candidate_sets",
+        "_action_utility",
+        "_aggregate_feature_rows",
+        "_append",
+        "_class_agnostic_gt_ids",
+        "_configure_scannet200_instance_eval",
+        "_empty_record",
+        "_finite",
+        "_metrics_from_records",
+        "_scene_inputs",
+        "_scene_records",
+        "action_feature_row",
+        "build_component_actions",
+        "defaultdict",
+        "evaluate_policies",
+        "global_metrics",
+        "instance_eval",
+        "load_training_rows",
+        "math",
+        "np",
+        "read_jsonl",
+        "selection_metrics"
+      ],
+      "functions_classes": [
+        {
+          "name": "_finite",
+          "ast_sha256": "812c605d021d6cdb2f1b93472ae05898f0cdda09d5d47a672ab4af8981d04ea7"
+        },
+        {
+          "name": "_aggregate_feature_rows",
+          "ast_sha256": "c0cef3cbe853b22a822448953def38f933ce2751e4956ae7a53a65c8051c8ed1"
+        },
+        {
+          "name": "action_feature_row",
+          "ast_sha256": "306b3b81d7c95f2c7524fd272ef2354406d1c9eefed700408d683d9420229bc3"
+        },
+        {
+          "name": "_action_utility",
+          "ast_sha256": "87728b18819925d44585122dafdff3a07f56b6866114134ce916daa3d4bacb21"
+        },
+        {
+          "name": "load_training_rows",
+          "ast_sha256": "0274b5d12c364885ef9c3d2d233d2512327ad41946b9df0b87fc3e652602d804"
+        },
+        {
+          "name": "selection_metrics",
+          "ast_sha256": "632f53562ec77812e803c7d1b4bac4d1fe00663b11cd5a9f9a4d011a1fe937c1"
+        },
+        {
+          "name": "_metrics_from_records",
+          "ast_sha256": "89ee0ec6c127c5c26ab675acdb373e3a622873f97158e64f258dda48e0cd0424"
+        },
+        {
+          "name": "evaluate_policies",
+          "ast_sha256": "9606db312b6d0cdc8032a7ca2c66c35220f8fc557bff6d5e54ed84dd6e41f4fa"
+        }
+      ],
+      "original_lines": 715,
+      "retained_lines": 282
+    },
+    {
+      "original": "full_bundle/code/tools/diagnose_train_candidate_relation_features.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 374,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/build_ncs1_scene_folds.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_ncs1_scene_folds.py",
+      "required_symbols": [
+        "SCENE_RE",
+        "_main_scene",
+        "build_folds",
+        "defaultdict",
+        "hashlib",
+        "re"
+      ],
+      "functions_classes": [
+        {
+          "name": "_main_scene",
+          "ast_sha256": "c524f14d651b4c76258e7559574557218980c58480c22e041651a8f8f939107a"
+        },
+        {
+          "name": "build_folds",
+          "ast_sha256": "63d80a2b0e635e550d5c4576c2ea75bc83b8b9a30e3276df14e1c8ebadd38c05"
+        }
+      ],
+      "original_lines": 138,
+      "retained_lines": 36
+    },
+    {
+      "original": "full_bundle/code/tools/build_train_candidate_component_action_utility_ledger.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_train_candidate_component_action_utility_ledger.py",
+      "required_symbols": [
+        "ACTION_TIE_PRIORITY",
+        "ACTION_ZH",
+        "DIAGNOSTIC",
+        "EPS",
+        "EXPECTED_OOF_SHA256",
+        "MIN_REGION_SIZE",
+        "NATIVE_SOURCE",
+        "OFFICIAL",
+        "Path",
+        "TRACK_SOURCE",
+        "_action_candidate_sets",
+        "_append",
+        "_average_precision",
+        "_canonical_native_groups",
+        "_load_track_points",
+        "_prediction",
+        "_read_components",
+        "_record_from_matches",
+        "_scene_inputs",
+        "_scene_records",
+        "_sha256",
+        "_write_jsonl",
+        "build_component_actions",
+        "candidate_ledger_path",
+        "configure_track_score_context",
+        "geometry_groups_and_audit",
+        "global_metrics",
+        "hashlib",
+        "instance_eval",
+        "json",
+        "load_oof_predictions",
+        "np",
+        "read_jsonl",
+        "select_candidate_sets"
+      ],
+      "functions_classes": [
+        {
+          "name": "_sha256",
+          "ast_sha256": "db516c58caa4f6d6c513e2ad77f21ed378fda23d9569b0038a1fa71314361aa3"
+        },
+        {
+          "name": "_write_jsonl",
+          "ast_sha256": "d8e6007f71ee41d2421a99058f69e22417329750d4580533e543fc3c977aea61"
+        },
+        {
+          "name": "configure_track_score_context",
+          "ast_sha256": "aa7f827a94d3450f1fc9d19b4041114720884eb6c9947ce34fa820a8b9893c77"
+        },
+        {
+          "name": "_read_components",
+          "ast_sha256": "3e5a041c80560b2926a05be36389d9618f6598a605143caa2a0b420a3271ad37"
+        },
+        {
+          "name": "build_component_actions",
+          "ast_sha256": "584ff8c4fa6dc36eecba39e1d7f4326d1120ec4ea272d28561851629813c0e37"
+        },
+        {
+          "name": "select_candidate_sets",
+          "ast_sha256": "8818aaeabd29ee8e3f8f5d39e67842cbe79e18dc784697af256a5d3f16f0b17a"
+        },
+        {
+          "name": "_canonical_native_groups",
+          "ast_sha256": "d3167206d2bbed8b69a081fd9e0c5043de2805fb3ced027ffed8d22095eeaa31"
+        },
+        {
+          "name": "_scene_inputs",
+          "ast_sha256": "0dc0de642089a147ee3496c4189005cfe70b94cdfda7803ec41d8ac5ffa0d248"
+        },
+        {
+          "name": "_scene_records",
+          "ast_sha256": "ae5994d120d6d9f10b5da72d7de318377f0a345dbc47788c3c3ad7b48405be89"
+        },
+        {
+          "name": "global_metrics",
+          "ast_sha256": "25a3c494d5ad982fca802df99320ea3a3a6a5440e9aff50b8544c627a11b8046"
+        },
+        {
+          "name": "_action_candidate_sets",
+          "ast_sha256": "6c6e0eec5ed6861a15e8bb52d3d65a151fb7f876b436735e15abd2221fa14249"
+        }
+      ],
+      "original_lines": 812,
+      "retained_lines": 410
+    },
+    {
+      "original": "full_bundle/code/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "required_symbols": [
+        "EXCLUSIVE_ROLES",
+        "MEMBER_EVIDENCE_FEATURE_NAMES",
+        "QUALITY_BASE_FEATURE_NAMES",
+        "QUALITY_FEATURE_NAMES",
+        "conservative_kept_indexes",
+        "defaultdict"
+      ],
+      "functions_classes": [
+        {
+          "name": "conservative_kept_indexes",
+          "ast_sha256": "97e3758e8631cc638ed3e6cb0b71a04d5457f18178c4064ab60253b2071b03c3"
+        }
+      ],
+      "original_lines": 631,
+      "retained_lines": 86
+    },
+    {
+      "original": "full_bundle/code/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_train_candidate_pair_union_utility_ledger.py",
+      "required_symbols": [
+        "LEARNED_SCORE_TOKENS",
+        "MIN_REGION_SIZE",
+        "_pure_inference_relation_features",
+        "math",
+        "np",
+        "proposal_points"
+      ],
+      "functions_classes": [
+        {
+          "name": "proposal_points",
+          "ast_sha256": "562cc8046925c9b0e609530172a63caf172c576505667378114fab52823bcdcd"
+        },
+        {
+          "name": "_pure_inference_relation_features",
+          "ast_sha256": "5e519093d0fcfeabcd7bc5b03ff837647d0b31e74466cff4287283355b685f5a"
+        }
+      ],
+      "original_lines": 413,
+      "retained_lines": 33
+    },
+    {
+      "original": "full_bundle/code/tools/build_frozen_track_harm_score_plan.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_frozen_track_harm_score_plan.py",
+      "required_symbols": [
+        "NATIVE_SOURCE",
+        "TRACK_SOURCE",
+        "_component_candidates",
+        "_components",
+        "_relation_predictions",
+        "_stacked_relation_rows",
+        "defaultdict",
+        "fixed_track_score",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "fixed_track_score",
+          "ast_sha256": "2496103b882bc2b47b0bcff8975b236d071194eb8a3f217f1cd8ff9fca7e6090"
+        },
+        {
+          "name": "_components",
+          "ast_sha256": "43c8d266ce8400b49c39e6536d0225ff6efa7cf556c52e6f45d72324250e1da2"
+        },
+        {
+          "name": "_component_candidates",
+          "ast_sha256": "b516d670b2442bb3eb43f71ba1d4cabb1dbf33be1a4007fb8571c1850a474d85"
+        },
+        {
+          "name": "_stacked_relation_rows",
+          "ast_sha256": "d5768b1f19c7a559eead364925b9935ced478efb0cdf9398dfff8c5bc6e249f8"
+        }
+      ],
+      "original_lines": 452,
+      "retained_lines": 114
+    },
+    {
+      "original": "full_bundle/code/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "required_symbols": [
+        "FEATURE_NAMES_BY_SOURCE",
+        "GVC_FEATURE_NAMES",
+        "GeometryResolver",
+        "PROJECT_ROOT",
+        "Path",
+        "THRESHOLDS",
+        "UNION_FEATURE_NAMES",
+        "_finite",
+        "_fold_by_scene",
+        "_gvc_features",
+        "_quality_target",
+        "_read_jsonl",
+        "_read_scenes",
+        "_resolve",
+        "_sha256",
+        "_stats",
+        "_union_features",
+        "hashlib",
+        "json",
+        "math",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "_resolve",
+          "ast_sha256": "b947afd93c792ab17f3f36ecb4db50946635e62aae5f4c4806025be4da19e4b6"
+        },
+        {
+          "name": "_sha256",
+          "ast_sha256": "db516c58caa4f6d6c513e2ad77f21ed378fda23d9569b0038a1fa71314361aa3"
+        },
+        {
+          "name": "_read_jsonl",
+          "ast_sha256": "c3b0b475bee0ee3f339ddd883db124efec31a46b96c423fe00b171bbd4cd3fe0"
+        },
+        {
+          "name": "_read_scenes",
+          "ast_sha256": "181c580c46dae7b8041161d3fc4932302e6130426a4e50c81d9edbe5476856d9"
+        },
+        {
+          "name": "_fold_by_scene",
+          "ast_sha256": "bd15770a28e5c07ef18558e75baf82310f2ac6afd7fbc677caeff33340901228"
+        },
+        {
+          "name": "GeometryResolver",
+          "ast_sha256": "988deb98d228dbef05e4f618b11235b9157f9588f2d3c4e6029b24a88f1a7ed2"
+        },
+        {
+          "name": "_finite",
+          "ast_sha256": "9bd90c7c50d9540a04c2fffc95b49a8f15fefa5aadca4f820de51bdff5dd2b47"
+        },
+        {
+          "name": "_stats",
+          "ast_sha256": "be3c9b3319c975f2d8d519542f4405ee98df76fc2b52eb550077dc3877666656"
+        },
+        {
+          "name": "_gvc_features",
+          "ast_sha256": "8f65e450f11606c86d48c21afedf9e9498b5781e8db22c4f62319b0e7f96afe2"
+        },
+        {
+          "name": "_union_features",
+          "ast_sha256": "29130b0e91f42dc6e6c1f62d10f4307e31844cc6bcd4e6e7d2cab537d4a11dc2"
+        },
+        {
+          "name": "_quality_target",
+          "ast_sha256": "da0fbd254243c41afef3b3c7a13c3aa79caa07b751ce933bffb1cac49977b4be"
+        }
+      ],
+      "original_lines": 528,
+      "retained_lines": 257
+    },
+    {
+      "original": "full_bundle/code/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "destination": "full_bundle/code/tools/fi1_shared/run_frozen_safety60_champion_pair_union_ap.py",
+      "required_symbols": [
+        "COMBINED_PACKAGE_VERSION",
+        "MIN_REGION_SIZE",
+        "NATIVE_SOURCE",
+        "PAIR_UNION_PACKAGE_VERSION",
+        "POLICY",
+        "Path",
+        "TRACK_SOURCE",
+        "_component_candidates",
+        "_components",
+        "_existing_geometry_digests",
+        "_feature_matrix",
+        "_geometry_digest",
+        "_load_combined_package",
+        "_load_track_points",
+        "_pure_inference_relation_features",
+        "_quality_predictions",
+        "_sha256",
+        "_stacked_relation_rows",
+        "_track_score_rows_for_scene",
+        "_union_feature_row",
+        "_union_rows_for_scene",
+        "append_score",
+        "augment_union_features",
+        "build_candidate_feature_rows",
+        "component_track_features",
+        "corrected_pair_union_probability",
+        "fixed_track_score",
+        "json",
+        "np",
+        "pickle",
+        "prior_correct_balanced_probability",
+        "proposal_points"
+      ],
+      "functions_classes": [
+        {
+          "name": "_load_combined_package",
+          "ast_sha256": "088775b087ec276141a02fc447123c4ecac2c0441a828a45b8554373099e6647"
+        },
+        {
+          "name": "corrected_pair_union_probability",
+          "ast_sha256": "16101731a7313fc5d1ba2f55393435681e7d57195ebdd76eae495f245e125c8f"
+        },
+        {
+          "name": "_existing_geometry_digests",
+          "ast_sha256": "d56f2a805df698d9323125eb345d2b80a0987eb1f0da522e5e44dc28180d2ec7"
+        },
+        {
+          "name": "_union_feature_row",
+          "ast_sha256": "d82de3a29def91fa752586cedf5d52dfed21968741cfc3059f7c2bd1090c7e83"
+        },
+        {
+          "name": "_union_rows_for_scene",
+          "ast_sha256": "4d67d61756069219061b7e1878221729f1664133c2c8d11b2124fba2c71b3b54"
+        },
+        {
+          "name": "_track_score_rows_for_scene",
+          "ast_sha256": "7f74a6682e77d844c81005c398bd79a9d9bdc951fb04abb2089bbf84c4e7f2f2"
+        }
+      ],
+      "original_lines": 977,
+      "retained_lines": 307
+    },
+    {
+      "original": "full_bundle/code/tools/build_train_candidate_relation_feature_ledger.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_train_candidate_relation_feature_ledger.py",
+      "required_symbols": [
+        "ADJACENCY_KNN",
+        "ADJACENCY_MAX_DISTANCE",
+        "EXCLUSIVE_PAIR_MODEL_FEATURES",
+        "MAX_PUBLIC_COMMON_VIEWS",
+        "MIN_CONTACT_POINTS",
+        "MIN_CONTACT_RATIO",
+        "MIN_VISIBLE_POINTS",
+        "_aabb_metrics",
+        "_boundary_metrics",
+        "_box_iou",
+        "_candidate_stats",
+        "_candidate_view_rows_with_box",
+        "_component_count",
+        "_component_features",
+        "_geometry_features",
+        "_normalise_rgb",
+        "_normalise_rows",
+        "_public_view_features",
+        "_relation_components",
+        "_summary",
+        "build_inference_relation_rows",
+        "defaultdict",
+        "deque",
+        "math",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "_normalise_rgb",
+          "ast_sha256": "7acba4c9b2e7fe671419738d5229d254dc1e2e0b613a507c63c4fbfc1d31285c"
+        },
+        {
+          "name": "_normalise_rows",
+          "ast_sha256": "24d38ca01d5ac270fbc5c35d67c442cd5f77b2652919eee52138c438548ee7ab"
+        },
+        {
+          "name": "_component_count",
+          "ast_sha256": "35fff9995677cb5aa05906cb3ed64d7c1d8a2130868ca075aeaf7e2f3963db90"
+        },
+        {
+          "name": "_candidate_stats",
+          "ast_sha256": "fa1e1e17d0141969c24233cf83f669d9090d52b1d22383e7434600ed1f2a9e85"
+        },
+        {
+          "name": "_aabb_metrics",
+          "ast_sha256": "cae1542d958401307e8ab6df33a76e32378f9609107617a397b461009f6b0a96"
+        },
+        {
+          "name": "_boundary_metrics",
+          "ast_sha256": "ab024ce2fb86828a64f256eafe082d1e10c82b251a86e8ba91487326f22fdc4d"
+        },
+        {
+          "name": "_geometry_features",
+          "ast_sha256": "10798be261126a44d3ecbfe58a2b657c5c987367f6267c79690ed83e232662b1"
+        },
+        {
+          "name": "_candidate_view_rows_with_box",
+          "ast_sha256": "024b748a5f0e1a99120b4a572ea34c4c9ffcbe36ca8b9404ad1b94dfac8ac6ad"
+        },
+        {
+          "name": "_public_view_features",
+          "ast_sha256": "8ca3fea5dff8e15d455563ee2efa47b11fd9f6485a7e3bdb4c254389607305e3"
+        },
+        {
+          "name": "_relation_components",
+          "ast_sha256": "e99f8a84078187aae0953901bee943c2370cbf1ec14575da5a785fd63f585f39"
+        },
+        {
+          "name": "_component_features",
+          "ast_sha256": "85bbd3d107a5c887da6fe09802306e3a5037f8d533818428d0a54b65f3eeb235"
+        },
+        {
+          "name": "build_inference_relation_rows",
+          "ast_sha256": "10176aee43d4d9d6c0b24aad7506372007e75eef2b2659fd82f5a0ccbe5744ef"
+        }
+      ],
+      "original_lines": 1037,
+      "retained_lines": 534
+    },
+    {
+      "original": "full_bundle/code/tools/build_train_scene_candidate_quality_ledger.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 285,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/export_mv3dis_relative_depth_observations.py",
+      "destination": "full_bundle/code/tools/fi1_shared/export_mv3dis_relative_depth_observations.py",
+      "required_symbols": [
+        "PROJECTION_CONTRACT",
+        "RELATIVE_DEPTH_ALPHA",
+        "mask_points_from_projection",
+        "np",
+        "project_relative_depth_frame",
+        "relative_depth_weights"
+      ],
+      "functions_classes": [
+        {
+          "name": "relative_depth_weights",
+          "ast_sha256": "3eaee96dd6b7f8936baa115487161872d8413d764843fba7cb3e5fcd495baccb"
+        },
+        {
+          "name": "project_relative_depth_frame",
+          "ast_sha256": "7369ad18947bb8f479a61381c994c2888965fc8ac4080b768c55b2af84a1d3e3"
+        },
+        {
+          "name": "mask_points_from_projection",
+          "ast_sha256": "407d4e1055ea3b51ea1dc6b4e0b0f0e946b255d7b820c800d0c2b568be2a9ce2"
+        }
+      ],
+      "original_lines": 369,
+      "retained_lines": 93
+    },
+    {
+      "original": "full_bundle/code/tools/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "required_symbols": [
+        "BASE_FEATURE_NAMES",
+        "Counter",
+        "EXPECTED_BASELINE_COUNT",
+        "EXPECTED_ORIGINAL_COUNT",
+        "EXPECTED_REFINED_COUNT",
+        "FEATURE_NAMES",
+        "OFFICIAL_THRESHOLDS",
+        "QUALITY_FEATURE_NAMES",
+        "RELATION_TYPES",
+        "UNION_FEATURE_NAMES",
+        "_finite",
+        "_quality_target",
+        "candidate_features",
+        "iou_by_gt",
+        "label_candidate",
+        "math",
+        "np",
+        "overlap_features",
+        "relation_features",
+        "soft_quality"
+      ],
+      "functions_classes": [
+        {
+          "name": "_finite",
+          "ast_sha256": "f446cf03472b0fce89c0fb67f1b27d18e3d9fc773eb1ee04235d7810cf3e6725"
+        },
+        {
+          "name": "soft_quality",
+          "ast_sha256": "940524735da822ea113f246365e6807607895ad1b3b2487fa2a363ba62ff2964"
+        },
+        {
+          "name": "iou_by_gt",
+          "ast_sha256": "c6039d60380459f64f1582d4703269c97da979c856680b4db408cb18edea00ce"
+        },
+        {
+          "name": "label_candidate",
+          "ast_sha256": "04e695783fe1f7322291dbbc0f8ae227ac8e8ee95d5e6eb4ed9e2914bc77cdfb"
+        },
+        {
+          "name": "overlap_features",
+          "ast_sha256": "36501b019e9fefe78b35670f650230ee29a5923fdbc5c2c7a7fb72a6c2d5ad84"
+        },
+        {
+          "name": "relation_features",
+          "ast_sha256": "efd72ed59d74c88155965d39a44c9ad6f9abee3ac6fe58abbf11619e0cc1131c"
+        },
+        {
+          "name": "candidate_features",
+          "ast_sha256": "d4ead36895026519ba3047a0cd37f345bdd81b073945387fc121d82b7b86d809"
+        }
+      ],
+      "original_lines": 560,
+      "retained_lines": 237
+    },
+    {
+      "original": "full_bundle/code/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "required_symbols": [
+        "VERSIONS",
+        "np",
+        "prior_correct_balanced_probability"
+      ],
+      "functions_classes": [
+        {
+          "name": "prior_correct_balanced_probability",
+          "ast_sha256": "f0f5a9df037f75ecc1e65f3d180f8179c8a53516d59172cc2290b3a0045008bf"
+        }
+      ],
+      "original_lines": 410,
+      "retained_lines": 19
+    },
+    {
+      "original": "full_bundle/code/tools/build_train_candidate_component_union_feature_ledger.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_train_candidate_component_union_feature_ledger.py",
+      "required_symbols": [
+        "Path",
+        "_aggregate",
+        "_intersection_count",
+        "_pair_geometry",
+        "_track_points",
+        "component_track_features",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "_track_points",
+          "ast_sha256": "ee19289c0de1b6b6247b8785d64e40fda760d50feea7100f0fb2fe08bd1763bc"
+        },
+        {
+          "name": "_intersection_count",
+          "ast_sha256": "70bc6909c622f49b201a90e2579dcab920fc4a72e6f28395a2b7e1ac8f71a5e0"
+        },
+        {
+          "name": "_pair_geometry",
+          "ast_sha256": "1e1d4ee014d38ca4088423162afad1f756f6dda769c222eac073d9c37addbde4"
+        },
+        {
+          "name": "_aggregate",
+          "ast_sha256": "f0fda5976d461dc9084255b39b67a4f5ee78514120977e22f75d83e29a567cef"
+        },
+        {
+          "name": "component_track_features",
+          "ast_sha256": "96dfddbb702b399a515b9db9ecba34fe5b784789a4f79684fdcc883cf075bb0b"
+        }
+      ],
+      "original_lines": 334,
+      "retained_lines": 103
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_quality_head_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/train_candidate_quality_head_oof.py",
+      "required_symbols": [
+        "NATIVE_SOURCE",
+        "TRACK_FEATURES",
+        "_as_float",
+        "canonicalize_predictions",
+        "feature_matrix",
+        "feature_schema",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "_as_float",
+          "ast_sha256": "a48599f687eed254786716ded5a38c30c3072acf8e50baf63b41312b67b95046"
+        },
+        {
+          "name": "feature_matrix",
+          "ast_sha256": "1210302ed13596b0fe2fc00485df6ee54ab27815a949fd69a4ecb665387101f4"
+        },
+        {
+          "name": "canonicalize_predictions",
+          "ast_sha256": "bb83789a57fc8dfe0f18bd7d60840b35407dba4d78eec5365c7af28c5efde16a"
+        }
+      ],
+      "original_lines": 396,
+      "retained_lines": 31
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_component_union_list_head_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/train_candidate_component_union_list_head_oof.py",
+      "required_symbols": [
+        "TRACK_SOURCE",
+        "augment_union_features"
+      ],
+      "functions_classes": [
+        {
+          "name": "augment_union_features",
+          "ast_sha256": "3376c89f6eeec71ebfb1dd0b6bb043d2f1c853428e801793f1a437d38b41d8bf"
+        }
+      ],
+      "original_lines": 469,
+      "retained_lines": 34
+    },
+    {
+      "original": "full_bundle/code/tools/train_candidate_relative_quality_oof.py",
+      "destination": "full_bundle/code/tools/fi1_shared/train_candidate_relative_quality_oof.py",
+      "required_symbols": [
+        "EXCLUSIVE_PAIR_MODEL_FEATURES",
+        "MODEL_FEATURES"
+      ],
+      "functions_classes": [],
+      "original_lines": 430,
+      "retained_lines": 133
+    },
+    {
+      "original": "full_bundle/code/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "required_symbols": [
+        "MEMBER_EVIDENCE_FEATURE_NAMES",
+        "Path",
+        "_summary",
+        "_union_observation_arrays",
+        "decode_binary_mask_rle",
+        "imageio",
+        "mask_points_from_projection",
+        "math",
+        "member_evidence_features",
+        "np",
+        "project_relative_depth_frame"
+      ],
+      "functions_classes": [
+        {
+          "name": "_summary",
+          "ast_sha256": "900dc051fbfc10b2852b954e649288fb0341c89801391e64a18a643162903058"
+        },
+        {
+          "name": "member_evidence_features",
+          "ast_sha256": "0502548d11d4a63cfcf3001e2daa91b80957cc6075757aab828b1d0732f0b365"
+        },
+        {
+          "name": "_union_observation_arrays",
+          "ast_sha256": "dca64505f00435697b38cc39f88fe7a316cd0cb2d3fdc49f7211b2bdafbb6575"
+        }
+      ],
+      "original_lines": 502,
+      "retained_lines": 212
+    },
+    {
+      "original": "full_bundle/code/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "destination": null,
+      "required_symbols": [],
+      "functions_classes": [],
+      "original_lines": 394,
+      "retained_lines": 0
+    },
+    {
+      "original": "full_bundle/code/tools/export_sam_fused_proposals.py",
+      "destination": "full_bundle/code/tools/fi1_shared/export_sam_fused_proposals.py",
+      "required_symbols": [
+        "_add_sam_to_path",
+        "_clamp_box",
+        "_frame_key",
+        "_load_sam_predictor",
+        "_prepare_image",
+        "_safe_label",
+        "_sam_mask_to_indices",
+        "_to_numpy",
+        "imageio",
+        "np",
+        "osp",
+        "sys",
+        "torch"
+      ],
+      "functions_classes": [
+        {
+          "name": "_add_sam_to_path",
+          "ast_sha256": "2aff47fd4c7e11c484e2d3f10f445118f8dde1ad9400f26c5d986225592802c6"
+        },
+        {
+          "name": "_load_sam_predictor",
+          "ast_sha256": "f0f23c8ead8fada0535fed17d3f430c33eccfb5375e81ef31f3f0206a5a7c831"
+        },
+        {
+          "name": "_to_numpy",
+          "ast_sha256": "6e20899d49c923551f83c3e28144a0ad9aa3ad195a4b6f52298c229030e6da1e"
+        },
+        {
+          "name": "_frame_key",
+          "ast_sha256": "13cb11611597ddf0773e541fd2896394953c4f1ed63ffb21559a6f816a98d637"
+        },
+        {
+          "name": "_safe_label",
+          "ast_sha256": "975440ba692821aedd9b555c55217160c6fc2067a9ac73e91fff893eb65d35a4"
+        },
+        {
+          "name": "_clamp_box",
+          "ast_sha256": "364a52c4ea1a63b53d674c94726ed2849c3ed12656b71596fb8f71e59117264e"
+        },
+        {
+          "name": "_prepare_image",
+          "ast_sha256": "fcd2ee24afa52d1bedfbe5b4007af06a2c2045da52294fe08168559a28a2a63e"
+        },
+        {
+          "name": "_sam_mask_to_indices",
+          "ast_sha256": "1ac7d0735a2128a349ef53574a13c4735cc9d76baab988dd11dc4127f1c3ab7c"
+        }
+      ],
+      "original_lines": 2008,
+      "retained_lines": 72
+    },
+    {
+      "original": "full_bundle/code/tools/build_ncs_fi1_stage_d_v3_full_rank_marginal_dataset_gt.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_ncs_fi1_stage_d_v3_full_rank_marginal_dataset_gt.py",
+      "required_symbols": [
+        "EXTRA_FEATURE_NAMES",
+        "FEATURE_NAMES",
+        "V2_FEATURE_NAMES",
+        "append_precedes",
+        "candidate_key",
+        "full_rank_prefix"
+      ],
+      "functions_classes": [
+        {
+          "name": "candidate_key",
+          "ast_sha256": "f54106e23de0399ced6ff263890089617b01b2aaae4e10fed2029abda7343641"
+        },
+        {
+          "name": "append_precedes",
+          "ast_sha256": "ae043b5c6f633549c31030f71d722637a6150597630963533103ffeec1a8ce99"
+        },
+        {
+          "name": "full_rank_prefix",
+          "ast_sha256": "17b1ce057a5b419adbe594b093a254d872526a0a46f7bbf36795568a18bf0e70"
+        }
+      ],
+      "original_lines": 326,
+      "retained_lines": 32
+    },
+    {
+      "original": "full_bundle/code/tools/build_safety60_structured_action_plan.py",
+      "destination": "full_bundle/code/tools/fi1_shared/build_safety60_structured_action_plan.py",
+      "required_symbols": [
+        "FEATURE_GROUP",
+        "PROTOCOL_NAME",
+        "Path",
+        "RELATIVE_FEATURES",
+        "TARGET_FEATURES",
+        "_native_groups",
+        "_positive_pairs",
+        "_quality_predictions",
+        "_relation_predictions",
+        "_track_points",
+        "canonicalize_predictions",
+        "defaultdict",
+        "feature_matrix",
+        "hashlib",
+        "np"
+      ],
+      "functions_classes": [
+        {
+          "name": "_track_points",
+          "ast_sha256": "17d28d331990f3ea512c1fc98c64ff9b60c18b78392ea9e4e6d951aa616535f2"
+        },
+        {
+          "name": "_native_groups",
+          "ast_sha256": "633b8ce85146f1264bf2616a50936c793683ddb64e403206f51b28182d9e2375"
+        },
+        {
+          "name": "_positive_pairs",
+          "ast_sha256": "a61415ce429994f83a3a72e9aa96a2300d3efde3507a9476dbb67666d82ae6ab"
+        },
+        {
+          "name": "_quality_predictions",
+          "ast_sha256": "46c8d08c6b6d92d847ec58cbad6c871753ac3bd7f8e8e1080e793e6a2382f371"
+        },
+        {
+          "name": "_relation_predictions",
+          "ast_sha256": "a2fab4f2297af7addbd6705837d241087d9ea262bdf1b8e07aa963b045f19af0"
+        }
+      ],
+      "original_lines": 516,
+      "retained_lines": 138
+    }
+  ],
+  "retired_tests": [],
+  "modified_callers": [],
+  "original_lines": 21203,
+  "retained_lines": 4778,
+  "old_entrypoints": 38,
+  "shared_modules": 29
+}

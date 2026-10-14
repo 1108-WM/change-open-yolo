@@ -1,0 +1,639 @@
+{
+  "code": {
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_fi1_deletion_block_opportunities.py": "bf74b5727fe382f8197c1fed2c445c95995b4459980eff6742d8e4513b518674"
+  },
+  "complete": true,
+  "posthoc_GT_only": true,
+  "targets": 4,
+  "used_for_training_or_action_selection": false,
+  "witnesses": [
+    {
+      "NT_best": 0.8884663148090655,
+      "actions": [
+        {
+          "actual_iou": 0.8884663148090655,
+          "actual_pool_delta": 0.0,
+          "all_pure_block_probabilities": [
+            {
+              "block": 4,
+              "p_safe": 0.0001342296600341797,
+              "points": 278,
+              "selected": false
+            },
+            {
+              "block": 14,
+              "p_safe": 0.00030112266540527344,
+              "points": 3,
+              "selected": false
+            },
+            {
+              "block": 17,
+              "p_safe": 0.0008144378662109375,
+              "points": 2,
+              "selected": false
+            },
+            {
+              "block": 18,
+              "p_safe": 0.0011138916015625,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 77,
+              "p_safe": 0.0005550384521484375,
+              "points": 4,
+              "selected": false
+            }
+          ],
+          "kind": "summary",
+          "pure_blocks": 5,
+          "selected_pure_blocks": 0,
+          "selected_target_points": 0
+        },
+        {
+          "actual_iou": 0.8884663148090655,
+          "actual_pool_delta": 0.0,
+          "all_pure_block_probabilities": [
+            {
+              "block": 4,
+              "p_safe": 0.0157623291015625,
+              "points": 278,
+              "selected": false
+            },
+            {
+              "block": 14,
+              "p_safe": 0.01763916015625,
+              "points": 3,
+              "selected": false
+            },
+            {
+              "block": 17,
+              "p_safe": 0.0198822021484375,
+              "points": 2,
+              "selected": false
+            },
+            {
+              "block": 18,
+              "p_safe": 0.02587890625,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 77,
+              "p_safe": 0.0221099853515625,
+              "points": 4,
+              "selected": false
+            }
+          ],
+          "kind": "relation",
+          "pure_blocks": 5,
+          "selected_pure_blocks": 0,
+          "selected_target_points": 0
+        }
+      ],
+      "candidate_id": "c003",
+      "oracle_gain": 0.020314250449746885,
+      "oracle_iou": 0.9087805652588123,
+      "parent_iou": 0.8884663148090655,
+      "pure_deleted": 288,
+      "scene": "scene0051_00",
+      "source": "native",
+      "stable": true,
+      "target": 78011
+    },
+    {
+      "NT_best": 0.7409931840311588,
+      "actions": [
+        {
+          "actual_iou": 0.7353535353535353,
+          "actual_pool_delta": -0.0056396486776234545,
+          "all_pure_block_probabilities": [
+            {
+              "block": 0,
+              "p_safe": 0.9970703125,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 1,
+              "p_safe": 0.9951171875,
+              "points": 15,
+              "selected": true
+            },
+            {
+              "block": 4,
+              "p_safe": 0.99853515625,
+              "points": 5,
+              "selected": true
+            },
+            {
+              "block": 5,
+              "p_safe": 0.99658203125,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 6,
+              "p_safe": 0.994140625,
+              "points": 3,
+              "selected": true
+            },
+            {
+              "block": 8,
+              "p_safe": 0.99560546875,
+              "points": 4,
+              "selected": true
+            },
+            {
+              "block": 12,
+              "p_safe": 0.99853515625,
+              "points": 2,
+              "selected": true
+            },
+            {
+              "block": 13,
+              "p_safe": 0.99658203125,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 14,
+              "p_safe": 1.0,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 21,
+              "p_safe": 0.99267578125,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 22,
+              "p_safe": 0.99609375,
+              "points": 3,
+              "selected": true
+            }
+          ],
+          "kind": "summary",
+          "pure_blocks": 11,
+          "selected_pure_blocks": 11,
+          "selected_target_points": 33
+        },
+        {
+          "actual_iou": 0.7409931840311588,
+          "actual_pool_delta": 0.0,
+          "all_pure_block_probabilities": [
+            {
+              "block": 0,
+              "p_safe": 4.32133674621582e-05,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 1,
+              "p_safe": 0.00014483928680419922,
+              "points": 15,
+              "selected": false
+            },
+            {
+              "block": 4,
+              "p_safe": 0.00012135505676269531,
+              "points": 5,
+              "selected": false
+            },
+            {
+              "block": 5,
+              "p_safe": 0.0001208186149597168,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 6,
+              "p_safe": 7.408857345581055e-05,
+              "points": 3,
+              "selected": false
+            },
+            {
+              "block": 8,
+              "p_safe": 7.861852645874023e-05,
+              "points": 4,
+              "selected": false
+            },
+            {
+              "block": 12,
+              "p_safe": 0.0003132820129394531,
+              "points": 2,
+              "selected": false
+            },
+            {
+              "block": 13,
+              "p_safe": 7.271766662597656e-05,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 14,
+              "p_safe": 6.896257400512695e-05,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 21,
+              "p_safe": 0.00019085407257080078,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 22,
+              "p_safe": 0.0034847259521484375,
+              "points": 3,
+              "selected": false
+            }
+          ],
+          "kind": "relation",
+          "pure_blocks": 11,
+          "selected_pure_blocks": 0,
+          "selected_target_points": 0
+        }
+      ],
+      "candidate_id": "c005",
+      "oracle_gain": 0.02769368465570987,
+      "oracle_iou": 0.7686868686868686,
+      "parent_iou": 0.7409931840311588,
+      "pure_deleted": 37,
+      "scene": "scene0101_00",
+      "source": "track",
+      "stable": true,
+      "target": 14088
+    },
+    {
+      "NT_best": 0.7257318952234206,
+      "actions": [
+        {
+          "actual_iou": 0.7124662292551138,
+          "actual_pool_delta": -0.013265665968306806,
+          "all_pure_block_probabilities": [
+            {
+              "block": 12,
+              "p_safe": 0.63916015625,
+              "points": 9,
+              "selected": false
+            },
+            {
+              "block": 13,
+              "p_safe": 0.22314453125,
+              "points": 105,
+              "selected": false
+            },
+            {
+              "block": 15,
+              "p_safe": 0.64208984375,
+              "points": 5,
+              "selected": false
+            },
+            {
+              "block": 19,
+              "p_safe": 0.80419921875,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 22,
+              "p_safe": 0.96484375,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 25,
+              "p_safe": 0.74365234375,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 26,
+              "p_safe": 0.69970703125,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 32,
+              "p_safe": 0.93896484375,
+              "points": 2,
+              "selected": true
+            }
+          ],
+          "kind": "summary",
+          "pure_blocks": 8,
+          "selected_pure_blocks": 2,
+          "selected_target_points": 38
+        },
+        {
+          "actual_iou": 0.7036462373933282,
+          "actual_pool_delta": -0.02208565783009242,
+          "all_pure_block_probabilities": [
+            {
+              "block": 12,
+              "p_safe": 0.77587890625,
+              "points": 9,
+              "selected": false
+            },
+            {
+              "block": 13,
+              "p_safe": 0.78369140625,
+              "points": 105,
+              "selected": false
+            },
+            {
+              "block": 15,
+              "p_safe": 0.9775390625,
+              "points": 5,
+              "selected": true
+            },
+            {
+              "block": 19,
+              "p_safe": 0.98681640625,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 22,
+              "p_safe": 0.00684356689453125,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 25,
+              "p_safe": 0.00255584716796875,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 26,
+              "p_safe": 0.9912109375,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 32,
+              "p_safe": 0.9306640625,
+              "points": 2,
+              "selected": true
+            }
+          ],
+          "kind": "relation",
+          "pure_blocks": 8,
+          "selected_pure_blocks": 4,
+          "selected_target_points": 70
+        }
+      ],
+      "candidate_id": "c001",
+      "oracle_gain": 0.03671245928892253,
+      "oracle_iou": 0.7624443545123432,
+      "parent_iou": 0.7257318952234206,
+      "pure_deleted": 125,
+      "scene": "scene0214_00",
+      "source": "native",
+      "stable": true,
+      "target": 29010
+    },
+    {
+      "NT_best": 0.7628415300546448,
+      "actions": [
+        {
+          "actual_iou": 0.726962457337884,
+          "actual_pool_delta": -0.03587907271676083,
+          "all_pure_block_probabilities": [
+            {
+              "block": 10,
+              "p_safe": 0.9990234375,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 11,
+              "p_safe": 0.99658203125,
+              "points": 30,
+              "selected": true
+            },
+            {
+              "block": 12,
+              "p_safe": 0.99951171875,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 13,
+              "p_safe": 0.99951171875,
+              "points": 4,
+              "selected": true
+            },
+            {
+              "block": 14,
+              "p_safe": 0.99951171875,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 15,
+              "p_safe": 0.99951171875,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 16,
+              "p_safe": 0.99951171875,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 17,
+              "p_safe": 0.99951171875,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 18,
+              "p_safe": 0.99951171875,
+              "points": 2,
+              "selected": true
+            },
+            {
+              "block": 19,
+              "p_safe": 0.99951171875,
+              "points": 2,
+              "selected": true
+            },
+            {
+              "block": 20,
+              "p_safe": 0.99951171875,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 21,
+              "p_safe": 0.99951171875,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 22,
+              "p_safe": 0.99853515625,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 23,
+              "p_safe": 0.99951171875,
+              "points": 2,
+              "selected": true
+            },
+            {
+              "block": 24,
+              "p_safe": 1.0,
+              "points": 1,
+              "selected": true
+            },
+            {
+              "block": 25,
+              "p_safe": 0.99951171875,
+              "points": 2,
+              "selected": true
+            },
+            {
+              "block": 26,
+              "p_safe": 0.9990234375,
+              "points": 1,
+              "selected": true
+            }
+          ],
+          "kind": "summary",
+          "pure_blocks": 17,
+          "selected_pure_blocks": 17,
+          "selected_target_points": 118
+        },
+        {
+          "actual_iou": 0.7636761487964989,
+          "actual_pool_delta": 0.0008346187418540874,
+          "all_pure_block_probabilities": [
+            {
+              "block": 10,
+              "p_safe": 0.006256103515625,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 11,
+              "p_safe": 0.0015134811401367188,
+              "points": 30,
+              "selected": false
+            },
+            {
+              "block": 12,
+              "p_safe": 0.759765625,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 13,
+              "p_safe": 0.06109619140625,
+              "points": 4,
+              "selected": false
+            },
+            {
+              "block": 14,
+              "p_safe": 0.0192718505859375,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 15,
+              "p_safe": 0.330078125,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 16,
+              "p_safe": 0.53857421875,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 17,
+              "p_safe": 0.41259765625,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 18,
+              "p_safe": 0.67041015625,
+              "points": 2,
+              "selected": false
+            },
+            {
+              "block": 19,
+              "p_safe": 0.8408203125,
+              "points": 2,
+              "selected": false
+            },
+            {
+              "block": 20,
+              "p_safe": 0.6552734375,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 21,
+              "p_safe": 0.00122833251953125,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 22,
+              "p_safe": 0.128662109375,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 23,
+              "p_safe": 0.970703125,
+              "points": 2,
+              "selected": true
+            },
+            {
+              "block": 24,
+              "p_safe": 0.73583984375,
+              "points": 1,
+              "selected": false
+            },
+            {
+              "block": 25,
+              "p_safe": 0.81298828125,
+              "points": 2,
+              "selected": false
+            },
+            {
+              "block": 26,
+              "p_safe": 0.2890625,
+              "points": 1,
+              "selected": false
+            }
+          ],
+          "kind": "relation",
+          "pure_blocks": 17,
+          "selected_pure_blocks": 1,
+          "selected_target_points": 0
+        }
+      ],
+      "candidate_id": "c000",
+      "oracle_gain": 0.022752167187898742,
+      "oracle_iou": 0.7855936972425436,
+      "parent_iou": 0.7628415300546448,
+      "pure_deleted": 53,
+      "scene": "scene0332_01",
+      "source": "native",
+      "stable": true,
+      "target": 161013
+    }
+  ]
+}

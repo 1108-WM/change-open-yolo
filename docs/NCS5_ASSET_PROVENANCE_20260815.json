@@ -1,0 +1,46 @@
+{
+  "asset_manifest_version": "ncs5_asset_provenance_v1",
+  "created_date": "2026-08-15",
+  "experiment": "NCS-5 ProxyCLIP dense mask-token evidence with SMS-inspired class standardization",
+  "ground_truth_usage": "none",
+  "validation60_read": false,
+  "ap_run": false,
+  "proxyclip": {
+    "repository": "https://github.com/mc-lan/ProxyCLIP.git",
+    "local_path": "_external/ProxyCLIP",
+    "git_commit": "a0e38d1989c990651fda0d8fbf8aad41bde955b5",
+    "git_status_at_registration": "clean",
+    "relevant_file_sha256": {
+      "open_clip/model.py": "1397571ca827327341bb35f98559eabeecd572714a7212f04cc9317727f02fff",
+      "open_clip/transformer.py": "40e0ddadb7d1ad19152dc0cdced85dd75769b87231db4dba1db039dec0a3168d",
+      "prompts/imagenet_template.py": "2c9a73bc4baf567d37d0de6fcb42fe8c0a1ebabbdb8f511e971ccde01a2dc5ec",
+      "proxyclip_segmentor.py": "8aed381f1d19b4b0404f8edbd1147d3d52d53d25376c1d2c34630d55e9b8e8ee"
+    },
+    "openai_imagenet_template_count": 80,
+    "upstream_default_note": "The upstream default is OpenAI CLIP ViT-B/16 plus DINO v1 ViT-B/8. NCS-5 is a registered project adaptation using the same proxy-attention implementation with the existing DINOv2 ViT-S/14 checkpoint."
+  },
+  "checkpoints": {
+    "openai_clip_vit_b16": {
+      "source_url": "https://openaipublic.azureedge.net/clip/models/5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f/ViT-B-16.pt",
+      "local_path": "pretrained/checkpoints/ViT-B-16.pt",
+      "size_bytes": 350837078,
+      "sha256": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f"
+    },
+    "dinov2_vits14": {
+      "source_url": "https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth",
+      "local_path": "pretrained/checkpoints/dinov2_vits14_pretrain.pth",
+      "size_bytes": 88283115,
+      "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9"
+    }
+  },
+  "method_sources": {
+    "proxyclip_paper": "https://arxiv.org/abs/2408.04883",
+    "details_matter_paper": "https://arxiv.org/abs/2507.23134"
+  },
+  "execution_state_at_registration": {
+    "isolated_runtime_built": false,
+    "offline_smoke_completed": false,
+    "view_manifest_generated": false,
+    "formal_gpu_embedding_started": false
+  }
+}

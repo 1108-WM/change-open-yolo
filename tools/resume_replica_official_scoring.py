@@ -1,0 +1,1 @@
+../full_bundle/code/tools/resume_replica_official_scoring.py

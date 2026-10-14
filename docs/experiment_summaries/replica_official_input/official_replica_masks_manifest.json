@@ -1,0 +1,175 @@
+{
+  "complete": true,
+  "installed_at": "2026-10-12T02:42:48.020121+00:00",
+  "date": "2026-10-12",
+  "source": "official upstream scripts/get_class_agn_masks.sh",
+  "upstream_commit": "24f344d001d28d1cdd4087d3769c0d53c34d64cd",
+  "url": "https://drive.google.com/file/d/1FneLaYaClWDO51L9lIvlTQbheh5SfOFD/view",
+  "archive": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/download/OpenYOLO3D.zip",
+  "archive_sha256": "8c129b4d94f36ef5a256594d0cf4135c263adec83f07db3b6fb3cc5c55c1036a",
+  "archive_size": 1850040608,
+  "source_verified_sha256": "a13f94bf2e85daff1a76f336a828326c20877cf647d0aeeb9f326d712df960a6",
+  "data_directory": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/data/replica",
+  "resolved_data_directory": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/OpenYOLO3D/replica",
+  "installed_directory": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks",
+  "mesh_identity_receipt": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/mesh_identity_verified.json",
+  "mesh_identity_receipt_sha256": "7c7a38bba8dcaf53b418c528c74f0dc89cd7c7d7e9057bc783991cf8f32c768f",
+  "evaluation_report": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/replica_official_masks_full_20261011_v1/report.md",
+  "GT_read": false,
+  "new_training_prediction_evaluation": false,
+  "copied_without_changing_source": true,
+  "scenes": [
+    {
+      "scene": "office0",
+      "archive_member": "OpenYOLO3D/output/replica/replica_masks/office0.pt",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks/office0.pt",
+      "sha256": "f582df8bfb737c925b7dfc2497e58cbb0766b466117476efac1643366fa953c2",
+      "points": 589517,
+      "proposals": 22,
+      "mask_dtype": "torch.float32",
+      "min_proposal_points": 233,
+      "max_proposal_points": 96183,
+      "score_range": [
+        0.021558048203587532,
+        0.9894800782203674
+      ],
+      "CRC_verified": true,
+      "point_domain_count_matches": true,
+      "source_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/extracted/replica_masks/office0.pt",
+      "size_bytes": 51878503
+    },
+    {
+      "scene": "office1",
+      "archive_member": "OpenYOLO3D/output/replica/replica_masks/office1.pt",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks/office1.pt",
+      "sha256": "9f062ce7dc708b5c62918c1650b7b9e1ff8de5f0f21673ff75b82f9f4a3b9bbe",
+      "points": 423007,
+      "proposals": 23,
+      "mask_dtype": "torch.float32",
+      "min_proposal_points": 253,
+      "max_proposal_points": 63066,
+      "score_range": [
+        0.03326321393251419,
+        0.9860727787017822
+      ],
+      "CRC_verified": true,
+      "point_domain_count_matches": true,
+      "source_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/extracted/replica_masks/office1.pt",
+      "size_bytes": 38917671
+    },
+    {
+      "scene": "office2",
+      "archive_member": "OpenYOLO3D/output/replica/replica_masks/office2.pt",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks/office2.pt",
+      "sha256": "d2341ebf2fa1e1607482d1127b860798b167e7db2cdd77e6d0ff2106cd61061a",
+      "points": 858623,
+      "proposals": 27,
+      "mask_dtype": "torch.float32",
+      "min_proposal_points": 219,
+      "max_proposal_points": 169889,
+      "score_range": [
+        0.020823661237955093,
+        0.9873194098472595
+      ],
+      "CRC_verified": true,
+      "point_domain_count_matches": true,
+      "source_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/extracted/replica_masks/office2.pt",
+      "size_bytes": 92732327
+    },
+    {
+      "scene": "office3",
+      "archive_member": "OpenYOLO3D/output/replica/replica_masks/office3.pt",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks/office3.pt",
+      "sha256": "02953efee8bd728ce84168834eb24df3abd5dcb907e09e6a9ca41f747fa0aa7a",
+      "points": 1187140,
+      "proposals": 27,
+      "mask_dtype": "torch.float32",
+      "min_proposal_points": 131,
+      "max_proposal_points": 244670,
+      "score_range": [
+        0.04629884287714958,
+        0.9981772899627686
+      ],
+      "CRC_verified": true,
+      "point_domain_count_matches": true,
+      "source_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/extracted/replica_masks/office3.pt",
+      "size_bytes": 128212135
+    },
+    {
+      "scene": "office4",
+      "archive_member": "OpenYOLO3D/output/replica/replica_masks/office4.pt",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks/office4.pt",
+      "sha256": "a1da3bb4a400d846e9ef9a9bd735901abee7442c984a82048dd7840b05087291",
+      "points": 993008,
+      "proposals": 28,
+      "mask_dtype": "torch.float32",
+      "min_proposal_points": 303,
+      "max_proposal_points": 193541,
+      "score_range": [
+        0.035815656185150146,
+        0.9861001968383789
+      ],
+      "CRC_verified": true,
+      "point_domain_count_matches": true,
+      "source_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/extracted/replica_masks/office4.pt",
+      "size_bytes": 111217895
+    },
+    {
+      "scene": "room0",
+      "archive_member": "OpenYOLO3D/output/replica/replica_masks/room0.pt",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks/room0.pt",
+      "sha256": "cfe925fb7c6b7f02d27b4972477b9b4d03d301c0b523666ba24a6866d7525ec5",
+      "points": 954492,
+      "proposals": 36,
+      "mask_dtype": "torch.float32",
+      "min_proposal_points": 471,
+      "max_proposal_points": 201595,
+      "score_range": [
+        0.03491471707820892,
+        0.999007523059845
+      ],
+      "CRC_verified": true,
+      "point_domain_count_matches": true,
+      "source_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/extracted/replica_masks/room0.pt",
+      "size_bytes": 137447911
+    },
+    {
+      "scene": "room1",
+      "archive_member": "OpenYOLO3D/output/replica/replica_masks/room1.pt",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks/room1.pt",
+      "sha256": "4443a3fa83d2df4d18138f337786848f870624bbbcae72d853f10e92aa7152fd",
+      "points": 645512,
+      "proposals": 25,
+      "mask_dtype": "torch.float32",
+      "min_proposal_points": 567,
+      "max_proposal_points": 121517,
+      "score_range": [
+        0.027009231969714165,
+        0.9838476181030273
+      ],
+      "CRC_verified": true,
+      "point_domain_count_matches": true,
+      "source_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/extracted/replica_masks/room1.pt",
+      "size_bytes": 64552231
+    },
+    {
+      "scene": "room2",
+      "archive_member": "OpenYOLO3D/output/replica/replica_masks/room2.pt",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/replica/replica_masks/room2.pt",
+      "sha256": "3ee3032af19a93e8e32d89eac8826c48cb8f5d5f2d5427f6da05b782838f6529",
+      "points": 722496,
+      "proposals": 21,
+      "mask_dtype": "torch.float32",
+      "min_proposal_points": 815,
+      "max_proposal_points": 134460,
+      "score_range": [
+        0.021234774962067604,
+        0.9968225359916687
+      ],
+      "CRC_verified": true,
+      "point_domain_count_matches": true,
+      "source_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/official_openyolo3d_assets_20261011/extracted/replica_masks/room2.pt",
+      "size_bytes": 60690663
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "complete": true,
+  "counts": {
+    "AP_aggregates": 16,
+    "S_zero_fixed": 48756,
+    "coverage_checks": 2000,
+    "full_scores": 2801700,
+    "geometry_projections": 13674,
+    "independent_pair_checks": 1248506,
+    "negative_delta": 1306904,
+    "positive_delta": 1494796,
+    "recovered424_checks": 424,
+    "selected_members": 160000
+  },
+  "first_attempt": "v1 dataset halted before training because Full geometry binding was not restricted to NT. v2 explicitly uses registered NT; v1 contract/log preserved.",
+  "fold_pair_analysis": {
+    "0_heldout": {
+      "after": {
+        "inversion": 0.1067408172149913,
+        "pair_loss": 0.2460228188411393
+      },
+      "before": {
+        "inversion": 0.12476638122532029,
+        "pair_loss": 0.300619413755712
+      },
+      "finite_class_count": 119,
+      "max_inverse_gap": 7.4807246803044265,
+      "pairs": 49075,
+      "weighted_inversions_beyond_fixed_bound": 0.03353738843837051,
+      "weighted_original_inversions": 0.12321128108022358
+    },
+    "0_train": {
+      "after": {
+        "inversion": 0.16553761468651845,
+        "pair_loss": 0.37761312113998025
+      },
+      "before": {
+        "inversion": 0.22216562598476577,
+        "pair_loss": 0.5551945552467196
+      },
+      "finite_class_count": 167,
+      "max_inverse_gap": 8.309167122556147,
+      "pairs": 198581,
+      "weighted_inversions_beyond_fixed_bound": 0.07577079935872044,
+      "weighted_original_inversions": 0.22093463849026204
+    },
+    "1_heldout": {
+      "after": {
+        "inversion": 0.1068402753910099,
+        "pair_loss": 0.2714000308999277
+      },
+      "before": {
+        "inversion": 0.11799758443480478,
+        "pair_loss": 0.3278189796569267
+      },
+      "finite_class_count": 120,
+      "max_inverse_gap": 7.79775269419489,
+      "pairs": 64354,
+      "weighted_inversions_beyond_fixed_bound": 0.04304819734034826,
+      "weighted_original_inversions": 0.11614255219793838
+    },
+    "1_train": {
+      "after": {
+        "inversion": 0.16450779223391965,
+        "pair_loss": 0.3691427851840777
+      },
+      "before": {
+        "inversion": 0.2288130133734921,
+        "pair_loss": 0.5413213864798045
+      },
+      "finite_class_count": 170,
+      "max_inverse_gap": 8.270274175144621,
+      "pairs": 186176,
+      "weighted_inversions_beyond_fixed_bound": 0.06736588805964444,
+      "weighted_original_inversions": 0.22754949103734773
+    },
+    "2_heldout": {
+      "after": {
+        "inversion": 0.11161753947028585,
+        "pair_loss": 0.2709020396159891
+      },
+      "before": {
+        "inversion": 0.13312246222032043,
+        "pair_loss": 0.33584272460535997
+      },
+      "finite_class_count": 103,
+      "max_inverse_gap": 7.291069520477605,
+      "pairs": 57976,
+      "weighted_inversions_beyond_fixed_bound": 0.03842982253897511,
+      "weighted_original_inversions": 0.13115006847875682
+    },
+    "2_train": {
+      "after": {
+        "inversion": 0.17528379849063086,
+        "pair_loss": 0.3898924554930008
+      },
+      "before": {
+        "inversion": 0.23174472367843346,
+        "pair_loss": 0.5749923729158348
+      },
+      "finite_class_count": 175,
+      "max_inverse_gap": 8.290221078859693,
+      "pairs": 193318,
+      "weighted_inversions_beyond_fixed_bound": 0.07996165985250878,
+      "weighted_original_inversions": 0.2304906959150999
+    },
+    "3_heldout": {
+      "after": {
+        "inversion": 0.08481231681906634,
+        "pair_loss": 0.20820759870356936
+      },
+      "before": {
+        "inversion": 0.10222444043160756,
+        "pair_loss": 0.2507133199488447
+      },
+      "finite_class_count": 107,
+      "max_inverse_gap": 7.8363911927868966,
+      "pairs": 49176,
+      "weighted_inversions_beyond_fixed_bound": 0.021919373273367154,
+      "weighted_original_inversions": 0.10113160578209718
+    },
+    "3_train": {
+      "after": {
+        "inversion": 0.17655209764458218,
+        "pair_loss": 0.3995992682368193
+      },
+      "before": {
+        "inversion": 0.2363814515877922,
+        "pair_loss": 0.5819675817676198
+      },
+      "finite_class_count": 172,
+      "max_inverse_gap": 8.451391551061658,
+      "pairs": 199464,
+      "weighted_inversions_beyond_fixed_bound": 0.07866613181158395,
+      "weighted_original_inversions": 0.23501639108033376
+    },
+    "4_heldout": {
+      "after": {
+        "inversion": 0.10999044409613473,
+        "pair_loss": 0.2468227965531532
+      },
+      "before": {
+        "inversion": 0.13145893140159176,
+        "pair_loss": 0.3079030843703155
+      },
+      "finite_class_count": 116,
+      "max_inverse_gap": 8.270274175144621,
+      "pairs": 52893,
+      "weighted_inversions_beyond_fixed_bound": 0.0357347120004112,
+      "weighted_original_inversions": 0.13055555703472374
+    },
+    "4_train": {
+      "after": {
+        "inversion": 0.16212712374572844,
+        "pair_loss": 0.374273588023086
+      },
+      "before": {
+        "inversion": 0.22304226579663314,
+        "pair_loss": 0.5571007022352916
+      },
+      "finite_class_count": 170,
+      "max_inverse_gap": 8.290221078859693,
+      "pairs": 197493,
+      "weighted_inversions_beyond_fixed_bound": 0.07809024664111451,
+      "weighted_original_inversions": 0.22139461526119417
+    }
+  },
+  "learnability_gate_exact": true,
+  "weighting": "Each pair-active class finite equal total; sparse/no-positive classes not learnable via this pair objective. No class-specific inference."
+}

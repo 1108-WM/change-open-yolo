@@ -1,0 +1,28 @@
+{
+  "version": "dm_sms1_attribute_extraction_provenance_v1",
+  "stage": "category_blind_attribute_input_manifest",
+  "date": "2026-08-18",
+  "output_root": "docs/diagnostics/dm_sms1_attribute_extraction_manifest_train100_20260818",
+  "manifest_file": "attribute_extraction_manifest.jsonl",
+  "manifest_sha256": "b047155cdf0854664b086bcc8f61c995dd46ee8b1d30adf982b4cb7d9154ffd2",
+  "summary_sha256": "d1e9219e45869e11bb9589d99efb4ec4c78fbaa306ac454049ba190775e04e2b",
+  "audit_summary_sha256": "0cfe206d7b2d3e1319622c7fe64d52b4494ca9a3c206c02c0f86939815b779b5",
+  "scene_count": 100,
+  "geometry_count": 10169,
+  "task_count": 10169,
+  "view_input_count": 30485,
+  "candidate_labels_hidden": true,
+  "attribute_extraction_completed": false,
+  "class_decision_made": false,
+  "prompt_contract": "record appearance, material, shape/structure, function cues and spatial context without category names",
+  "mutation_contract": {
+    "candidate_mutation": false,
+    "geometry_mutation": false,
+    "score_mutation": false,
+    "proposal_deletion": false
+  },
+  "ground_truth_read": false,
+  "ap_computed": false,
+  "audit_valid": true,
+  "input_manifest_sha256": "9168bdfe54cf636a3898fb4092ef0810687f3af46dae2106baffdd0fdbc7efb8"
+}

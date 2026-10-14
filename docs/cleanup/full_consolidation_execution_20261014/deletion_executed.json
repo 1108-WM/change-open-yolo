@@ -1,0 +1,465 @@
+{
+  "complete": true,
+  "deleted": [
+    {
+      "path": "pretrained/yoloe",
+      "reason": "approved YOLOE/MobileCLIP, SigLIP or ProxyCLIP retirement",
+      "files": 4,
+      "apparent_bytes": 803556738,
+      "unique_single_link_allocated_bytes": 803581952
+    },
+    {
+      "path": "pretrained/checkpoints/ViT-B-16.pt",
+      "reason": "approved YOLOE/MobileCLIP, SigLIP or ProxyCLIP retirement",
+      "files": 1,
+      "apparent_bytes": 350837078,
+      "unique_single_link_allocated_bytes": 350842880
+    },
+    {
+      "path": "_external/SigLIP",
+      "reason": "approved YOLOE/MobileCLIP, SigLIP or ProxyCLIP retirement",
+      "files": 25,
+      "apparent_bytes": 815876896,
+      "unique_single_link_allocated_bytes": 815939584
+    },
+    {
+      "path": "_external/YOLOE",
+      "reason": "approved YOLOE/MobileCLIP, SigLIP or ProxyCLIP retirement",
+      "files": 1397,
+      "apparent_bytes": 65530244,
+      "unique_single_link_allocated_bytes": 68898816
+    },
+    {
+      "path": "_external/ProxyCLIP",
+      "reason": "approved YOLOE/MobileCLIP, SigLIP or ProxyCLIP retirement",
+      "files": 160,
+      "apparent_bytes": 4574814,
+      "unique_single_link_allocated_bytes": 5054464
+    },
+    {
+      "path": "output/yoloe_mask_observations_even48_f30_v0_20260801",
+      "reason": "retired visual model comparison; records archived",
+      "files": 25853,
+      "apparent_bytes": 40397358,
+      "unique_single_link_allocated_bytes": 120872960
+    },
+    {
+      "path": "output/yoloe_mask_observations_even48_f30_v1_20260801",
+      "reason": "retired visual model comparison; records archived",
+      "files": 25853,
+      "apparent_bytes": 40397380,
+      "unique_single_link_allocated_bytes": 120872960
+    },
+    {
+      "path": "output/yoloe_boxes_even48_f30_v1_20260726",
+      "reason": "retired visual model comparison; records archived",
+      "files": 49,
+      "apparent_bytes": 5389841,
+      "unique_single_link_allocated_bytes": 5492736
+    },
+    {
+      "path": ".local/siglip_runtime",
+      "reason": "retired visual model comparison; records archived",
+      "files": 3115,
+      "apparent_bytes": 67685052,
+      "unique_single_link_allocated_bytes": 74240000
+    },
+    {
+      "path": "docs/diagnostics/ncs5_proxyclip_view_manifest_train100_20260815",
+      "reason": "retired visual model comparison; records archived",
+      "files": 5,
+      "apparent_bytes": 34708358,
+      "unique_single_link_allocated_bytes": 34721792
+    },
+    {
+      "path": "docs/diagnostics/yoloe_mask_geometry_even48_f30_v0_20260801",
+      "reason": "retired visual model comparison; records archived",
+      "files": 2,
+      "apparent_bytes": 2508,
+      "unique_single_link_allocated_bytes": 8192
+    },
+    {
+      "path": "docs/diagnostics/yoloe_independent_coverage_even48_f30_v1_20260726",
+      "reason": "retired visual model comparison; records archived",
+      "files": 14,
+      "apparent_bytes": 61173,
+      "unique_single_link_allocated_bytes": 90112
+    },
+    {
+      "path": "docs/diagnostics/ncs5_proxyclip_embedding_train100_20260815",
+      "reason": "retired visual model comparison; records archived",
+      "files": 510,
+      "apparent_bytes": 119693296,
+      "unique_single_link_allocated_bytes": 120774656
+    },
+    {
+      "path": "docs/diagnostics/ncs4_siglip_embedding_train100_20260815",
+      "reason": "retired visual model comparison; records archived",
+      "files": 306,
+      "apparent_bytes": 82292072,
+      "unique_single_link_allocated_bytes": 83038208
+    },
+    {
+      "path": "docs/diagnostics/ncs4_siglip_offline_smoke_20260815",
+      "reason": "retired visual model comparison; records archived",
+      "files": 1,
+      "apparent_bytes": 2116,
+      "unique_single_link_allocated_bytes": 4096
+    },
+    {
+      "path": "docs/diagnostics/ncs5_proxyclip_offline_smoke_20260815",
+      "reason": "retired visual model comparison; records archived",
+      "files": 1,
+      "apparent_bytes": 1109,
+      "unique_single_link_allocated_bytes": 4096
+    },
+    {
+      "path": "docs/diagnostics/ncs4_siglip_view_manifest_train100_20260815",
+      "reason": "retired visual model comparison; records archived",
+      "files": 3,
+      "apparent_bytes": 27203704,
+      "unique_single_link_allocated_bytes": 27205632
+    },
+    {
+      "path": "docs/diagnostics/ncs4_siglip_proposal_audit_gt_train100_20260815",
+      "reason": "retired visual model comparison; records archived",
+      "files": 2,
+      "apparent_bytes": 2129644,
+      "unique_single_link_allocated_bytes": 2134016
+    },
+    {
+      "path": "docs/diagnostics/ncs5_proxyclip_proposal_audit_gt_train100_20260815",
+      "reason": "retired visual model comparison; records archived",
+      "files": 2,
+      "apparent_bytes": 2017340,
+      "unique_single_link_allocated_bytes": 2023424
+    },
+    {
+      "path": "pretrained/z3_full_semantic_reliability_official100_20260812",
+      "reason": "legacy small model archived",
+      "files": 2,
+      "apparent_bytes": 154030,
+      "unique_single_link_allocated_bytes": 159744
+    },
+    {
+      "path": "pretrained/z6f_full_inference_bundle_official100_20260812",
+      "reason": "legacy small model archived",
+      "files": 3,
+      "apparent_bytes": 256093,
+      "unique_single_link_allocated_bytes": 262144
+    },
+    {
+      "path": "_external/OV3D-CG",
+      "reason": "reference implementation archived; ESAM metadata migrated",
+      "files": 102,
+      "apparent_bytes": 104724402,
+      "unique_single_link_allocated_bytes": 104939520
+    },
+    {
+      "path": "_external/SegDINO3D_official",
+      "reason": "reference implementation archived; ESAM metadata migrated",
+      "files": 78,
+      "apparent_bytes": 5534859,
+      "unique_single_link_allocated_bytes": 5718016
+    },
+    {
+      "path": "_external/ESAM",
+      "reason": "reference implementation archived; ESAM metadata migrated",
+      "files": 227,
+      "apparent_bytes": 60295972,
+      "unique_single_link_allocated_bytes": 60760064
+    },
+    {
+      "path": "_external/Any3DIS_unofficial",
+      "reason": "418/418 source files represented by retained original ZIP",
+      "files": 418,
+      "apparent_bytes": 84245593,
+      "unique_single_link_allocated_bytes": 85147648
+    },
+    {
+      "path": "_external/GroundingDINO.zip",
+      "reason": "duplicate download; original ms_deform_attn and current patched GD source retained",
+      "files": 1,
+      "apparent_bytes": 11176497,
+      "unique_single_link_allocated_bytes": 11177984
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/frontend/arms/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 10946,
+      "apparent_bytes": 399637036,
+      "unique_single_link_allocated_bytes": 431083520
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch01/backend/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 534,
+      "apparent_bytes": 91067941,
+      "unique_single_link_allocated_bytes": 92225536
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch01/own_evidence/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 141,
+      "apparent_bytes": 299165795,
+      "unique_single_link_allocated_bytes": 299466752
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch02/backend/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 524,
+      "apparent_bytes": 90172399,
+      "unique_single_link_allocated_bytes": 91369472
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch02/own_evidence/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 97,
+      "apparent_bytes": 222206418,
+      "unique_single_link_allocated_bytes": 222412800
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch03/backend/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 509,
+      "apparent_bytes": 91696007,
+      "unique_single_link_allocated_bytes": 92852224
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch03/own_evidence/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 123,
+      "apparent_bytes": 321591605,
+      "unique_single_link_allocated_bytes": 321855488
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch04/backend/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 452,
+      "apparent_bytes": 96920399,
+      "unique_single_link_allocated_bytes": 97890304
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch04/own_evidence/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 97,
+      "apparent_bytes": 176019888,
+      "unique_single_link_allocated_bytes": 176181248
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch05/backend/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 511,
+      "apparent_bytes": 102694837,
+      "unique_single_link_allocated_bytes": 103841792
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch05/own_evidence/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 135,
+      "apparent_bytes": 295376811,
+      "unique_single_link_allocated_bytes": 295665664
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch06/backend/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 579,
+      "apparent_bytes": 102296991,
+      "unique_single_link_allocated_bytes": 103555072
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch06/own_evidence/A",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 123,
+      "apparent_bytes": 398763632,
+      "unique_single_link_allocated_bytes": 399028224
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/frontend/arms/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 30758,
+      "apparent_bytes": 4720153495,
+      "unique_single_link_allocated_bytes": 4812292096
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch01/backend/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 915,
+      "apparent_bytes": 351162032,
+      "unique_single_link_allocated_bytes": 353140736
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch01/own_evidence/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 165,
+      "apparent_bytes": 837863756,
+      "unique_single_link_allocated_bytes": 838250496
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch02/backend/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 1038,
+      "apparent_bytes": 564081227,
+      "unique_single_link_allocated_bytes": 566378496
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch02/own_evidence/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 165,
+      "apparent_bytes": 1107339079,
+      "unique_single_link_allocated_bytes": 1107701760
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch03/backend/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 1263,
+      "apparent_bytes": 931792342,
+      "unique_single_link_allocated_bytes": 934481920
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch03/own_evidence/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 165,
+      "apparent_bytes": 1280365542,
+      "unique_single_link_allocated_bytes": 1280692224
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch04/backend/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 758,
+      "apparent_bytes": 374773871,
+      "unique_single_link_allocated_bytes": 376369152
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch04/own_evidence/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 165,
+      "apparent_bytes": 785045318,
+      "unique_single_link_allocated_bytes": 785395712
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch05/backend/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 1424,
+      "apparent_bytes": 1810608026,
+      "unique_single_link_allocated_bytes": 1813536768
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch05/own_evidence/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 165,
+      "apparent_bytes": 1416859605,
+      "unique_single_link_allocated_bytes": 1417216000
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch06/backend/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 1361,
+      "apparent_bytes": 967145824,
+      "unique_single_link_allocated_bytes": 970055680
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch06/own_evidence/B",
+      "reason": "abandoned automatic SAM A/B branch; Full GD10 input retained",
+      "files": 165,
+      "apparent_bytes": 1515668046,
+      "unique_single_link_allocated_bytes": 1516027904
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/frontend/arms/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 3960,
+      "apparent_bytes": 120188441,
+      "unique_single_link_allocated_bytes": 130871296
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch01/backend/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 406,
+      "apparent_bytes": 60578477,
+      "unique_single_link_allocated_bytes": 61480960
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch01/own_evidence/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 165,
+      "apparent_bytes": 197416109,
+      "unique_single_link_allocated_bytes": 197771264
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch02/backend/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 394,
+      "apparent_bytes": 61137502,
+      "unique_single_link_allocated_bytes": 62050304
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch02/own_evidence/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 165,
+      "apparent_bytes": 200441585,
+      "unique_single_link_allocated_bytes": 200794112
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch03/backend/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 390,
+      "apparent_bytes": 61316982,
+      "unique_single_link_allocated_bytes": 62185472
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch03/own_evidence/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 165,
+      "apparent_bytes": 202910407,
+      "unique_single_link_allocated_bytes": 203276288
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch04/backend/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 380,
+      "apparent_bytes": 61864706,
+      "unique_single_link_allocated_bytes": 62726144
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch04/own_evidence/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 165,
+      "apparent_bytes": 155210032,
+      "unique_single_link_allocated_bytes": 155545600
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch05/backend/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 354,
+      "apparent_bytes": 57122151,
+      "unique_single_link_allocated_bytes": 57950208
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch05/own_evidence/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 165,
+      "apparent_bytes": 158567856,
+      "unique_single_link_allocated_bytes": 158945280
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch06/backend/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 394,
+      "apparent_bytes": 61220311,
+      "unique_single_link_allocated_bytes": 62083072
+    },
+    {
+      "path": ".local/fi1_val48_frontend_full_pipeline_20260914/full_batches/batch06/own_evidence/C",
+      "reason": "unused GD uniform30 comparison; current GD10 and GD5 D lineage retained",
+      "files": 165,
+      "apparent_bytes": 233655672,
+      "unique_single_link_allocated_bytes": 234016768
+    }
+  ],
+  "deleted_single_link_allocated_bytes": 24052629504,
+  "filesystem_free_before": 55372832768,
+  "filesystem_free_after": 79241383936,
+  "net_filesystem_free_delta": 23851933696,
+  "caveat": "Net delta includes archives and other concurrent filesystem activity; hardlinked bytes excluded from per-root total."
+}

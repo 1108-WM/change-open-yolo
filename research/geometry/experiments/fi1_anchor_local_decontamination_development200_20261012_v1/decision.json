@@ -1,0 +1,21 @@
+{
+  "SL_modified": false,
+  "checks": {
+    "action_scene_support": true,
+    "aggregate_target_loss": true,
+    "minimum_actions": true,
+    "multi_threshold_or_continuous_value": false,
+    "no_parent_high_iou_loss": true,
+    "no_reliable_anchor_drift": true,
+    "paired_old_mask_improvement": false,
+    "per_action_target_loss": true,
+    "positive_sum_paired_pool_iou": false,
+    "reliable_pollution_precision": false,
+    "unknown_anchor_fraction": false
+  },
+  "complete": true,
+  "geometry_gate_passed": false,
+  "new_training": false,
+  "next_phase": "stop_before_own_semantics_SL",
+  "production_modified": false
+}

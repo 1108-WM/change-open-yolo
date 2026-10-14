@@ -1,0 +1,1 @@
+../sl_bundle/code/tests/test_fi1_s_member_quality_competition.py

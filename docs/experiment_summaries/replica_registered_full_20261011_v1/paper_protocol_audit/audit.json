@@ -1,0 +1,82 @@
+{
+  "upstream_commit": "24f344d001d28d1cdd4087d3769c0d53c34d64cd",
+  "paper_table2": [
+    23.7,
+    28.6,
+    34.8
+  ],
+  "evaluator_core_AST_equal": {
+    "assign_instances_for_scan": true,
+    "evaluate_matches": true,
+    "compute_averages": true
+  },
+  "upstream_cached_semantic_AP_exact_replay": true,
+  "Replica_YAML_equal": true,
+  "scientific_function_AST_equal": {
+    "utils/utils_2d.py": true,
+    "utils/utils_3d.py": true,
+    "models/Mask3D/mask3d/__init__.py": true
+  },
+  "baseline_uniform_is_upstream_behavior": true,
+  "upstream_Replica_datatype": "point cloud",
+  "executed_baseline_Mask3D_datatype": "mesh",
+  "input_feature_difference": "mesh: uint8 RGB then ScanNet mean/std normalization; point cloud: Open3D float RGB without that normalization",
+  "NMS_equal": false,
+  "NMS_counterexample": {
+    "masks_point_by_candidate": [
+      [
+        true,
+        true,
+        false
+      ],
+      [
+        true,
+        true,
+        false
+      ],
+      [
+        false,
+        false,
+        true
+      ],
+      [
+        false,
+        false,
+        true
+      ],
+      [
+        false,
+        true,
+        false
+      ]
+    ],
+    "scores": [
+      0.10000000149011612,
+      0.8999999761581421,
+      0.5
+    ],
+    "upstream_indices": [
+      2,
+      0
+    ],
+    "local_indices": [
+      1,
+      2
+    ]
+  },
+  "author_precomputed_masks_present": false,
+  "no_raw_GT_read": true,
+  "no_new_training_or_prediction": true,
+  "cause_of_full_numerical_gap_quantified": false,
+  "original_results_preserved": true,
+  "upstream_snapshot_hashes": {
+    "run_evaluation.py": "ebf4d9e2a8fee1fc91136c21475d9412742118f07aaf10ab1d5fab9aef232104",
+    "README.md": "2def74e0fbebe982b9b5ac42dc006b2b735c40caae04c7d8ad4218ab80ba0a2c",
+    "pretrained/config_replica.yaml": "49d9bf73aa17c645b310266da65126214027eb0f4ac654400a403ed2665d949f",
+    "utils/utils_3d.py": "b8518f428fd059b92bc77763d2dcf79dce2eb7886111182943b578dc6ae6034c",
+    "utils/__init__.py": "882454cdad425f8c497d91fdaa9026a658581ef0e5b53e885966141982053b4e",
+    "utils/utils_2d.py": "5e031bd5fc8cefe49030dec2c200e6c98822e48de388d7f91c3e09ae876c07fb",
+    "models/Mask3D/mask3d/__init__.py": "1ece45130463cd98ffc1e414e6dc184edcf8875853d0ec273fe37a36490eaf3e",
+    "evaluate/replica/eval_semantic_instance.py": "b14bfd89404b5aea936b67f59b7a89ce84c3c7b9ae43ec83302348a4fa989985"
+  }
+}

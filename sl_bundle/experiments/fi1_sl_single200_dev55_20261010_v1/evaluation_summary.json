@@ -1,0 +1,40 @@
+{
+  "AP": {
+    "class_agnostic": {
+      "S": {
+        "ap": 0.6361122741269057,
+        "ap25": 0.8775738052380987,
+        "ap50": 0.8108206085499778
+      },
+      "SL": {
+        "ap": 0.6655706603593452,
+        "ap25": 0.9245911229882058,
+        "ap50": 0.8521214976201735
+      }
+    },
+    "semantic": {
+      "S": {
+        "ap": 0.42594174846890287,
+        "ap25": 0.5507468162128633,
+        "ap50": 0.5139644446530643
+      },
+      "SL": {
+        "ap": 0.45894360530571454,
+        "ap25": 0.6009133274939513,
+        "ap50": 0.5650739136791524
+      }
+    }
+  },
+  "AP_arrays": {
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_sl_single200_dev55_20261010_v1/evaluation/development55_class_agnostic_SL_AP.npy": "6fa92a0290ed50a37363014cdc3810bbe15cc26ec3f13ed82e57aaae601e9b66",
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_sl_single200_dev55_20261010_v1/evaluation/development55_class_agnostic_S_AP.npy": "1c464f5bd46b4501118580599ebeab810b1ca98f670cd2e377fdc58809297f71",
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_sl_single200_dev55_20261010_v1/evaluation/development55_semantic_SL_AP.npy": "9a95d8f1cd39e75b70764948e44e9935c1929c2a27a5a197cedf993716a20c63",
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_sl_single200_dev55_20261010_v1/evaluation/development55_semantic_S_AP.npy": "801b57503de31053673e6c9ccd6b780a5101aae82f868772144613bd5b194200"
+  },
+  "complete": true,
+  "four_reverse_order_replays": true,
+  "physical_scenes": 29,
+  "pooled_scans": 55,
+  "single_model": true,
+  "validation_is_blind": false
+}

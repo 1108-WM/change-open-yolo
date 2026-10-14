@@ -1,0 +1,106 @@
+{
+  "scope": "Cached-only independent audit: no raw GT, training, GPU inference or instance AP.",
+  "checks": {
+    "hashes": 27,
+    "pairs": 39405,
+    "same": 2377,
+    "different": 15129,
+    "unknown": 21899,
+    "summary_dim": 21,
+    "visual_dim": 151,
+    "feature_observations": {
+      "pairs_with_no_visual_views": 2188,
+      "selected_pair_views": 96839,
+      "either_region_one_token": 212,
+      "both_regions_one_token": 0
+    },
+    "exact_OOF_scores": 78810
+  },
+  "metrics": {
+    "summary": {
+      "pair_AP": 0.5112478307178184,
+      "ROC_AUC": 0.855484746757746,
+      "fold_AP": [
+        0.4865567635420902,
+        0.5584867100757225,
+        0.4304704175438054,
+        0.5353582136665518,
+        0.5308223786543009
+      ]
+    },
+    "summary_plus_visual": {
+      "pair_AP": 0.5307790816954527,
+      "ROC_AUC": 0.8741762644649645,
+      "fold_AP": [
+        0.48882245834073956,
+        0.5760075880587584,
+        0.47791137262919875,
+        0.573062368990385,
+        0.5286677316892727
+      ]
+    }
+  },
+  "action_diagnostics": {
+    "summary": {
+      "0.5": {
+        "accepted": 2686,
+        "same": 678,
+        "different": 428,
+        "unknown": 1580,
+        "new_coverage": {
+          "0.50": 12,
+          "0.75": 20,
+          "0.90": 29
+        }
+      },
+      "0.9": {
+        "accepted": 151,
+        "same": 60,
+        "different": 5,
+        "unknown": 86,
+        "new_coverage": {
+          "0.50": 1,
+          "0.75": 1,
+          "0.90": 2
+        }
+      }
+    },
+    "summary_plus_visual": {
+      "0.5": {
+        "accepted": 3295,
+        "same": 830,
+        "different": 541,
+        "unknown": 1924,
+        "new_coverage": {
+          "0.50": 9,
+          "0.75": 19,
+          "0.90": 28
+        }
+      },
+      "0.9": {
+        "accepted": 62,
+        "same": 24,
+        "different": 3,
+        "unknown": 35,
+        "new_coverage": {
+          "0.50": 0,
+          "0.75": 0,
+          "0.90": 0
+        }
+      }
+    }
+  },
+  "limitations": [
+    "No independent rerun of DINO GPU feature extraction or pixel registration in this audit.",
+    "Cached GT-derived labels used for audit, no raw GT reads.",
+    "Identity classification of exclusive regions does not establish full-union quality or new coverage.",
+    "OOF evaluations exclude unknown labels; thresholds on unknown pairs are not safety guarantees.",
+    "Exact zero distance is encoded as .2 by truthiness fallback in both arms; quantified, not changed in frozen experiment."
+  ],
+  "same_instance_objective": {
+    "positive_pairs": 2377,
+    "positive_pairs_with_new075": 69,
+    "positive_pairs_without_new075": 2308
+  },
+  "script_sha256": "913fb37c6836bcccab25676ced4d491ef9c9ca55e88e7b2d3cb6a0375c9751d6"
+}

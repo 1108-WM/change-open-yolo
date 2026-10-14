@@ -40,6 +40,8 @@ ScanNet200 data folder should be structured as follows
 
 ## Replica
 
+本地8个作者官方候选掩码已安装到 `output/replica/replica_masks/`（office0—office4、room0—room2），与原始RGB-D／网格目录 `data/replica/`分开保存，符合仓库README的预计算掩码入口。来源、逐文件SHA256、数据身份和官方基线／生产Full复现边界见[Replica资产与复现说明](../output/replica/README.md)。不要用本地重生成候选覆盖这些作者文件。
+
 Run the following command. 
 ```
 sh scripts/get_replica_dataset.sh

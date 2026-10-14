@@ -1,0 +1,34 @@
+{
+  "complete": true,
+  "conclusion": "Region evidence improves heldout affiliation ranking, not safe completion value. No threshold/feature/capacity scan. Need actual new ownership observations or independent contamination split/crop study before next geometry action.",
+  "models": {
+    "summary": {
+      "mean_heldout_pair_AP": 0.5083388966964942,
+      "mean_training_pair_AP": 0.6446607898153858,
+      "retrieved_opportunity_score_quantiles": [
+        0.014534064277798154,
+        0.1802021554448544,
+        0.31136347708491896,
+        0.45726075058716953,
+        0.8694175807443689
+      ]
+    },
+    "summary_plus_visual": {
+      "mean_heldout_pair_AP": 0.5288943039416709,
+      "mean_training_pair_AP": 0.8047673422238653,
+      "retrieved_opportunity_score_quantiles": [
+        0.025018419378437056,
+        0.1880828264223943,
+        0.3428653003508426,
+        0.4649985125702736,
+        0.7983569285756289
+      ]
+    }
+  },
+  "no_new_method_implemented": true,
+  "opportunity_identity_counts": {
+    "mixed_or_unreliable": 6,
+    "not_retrieved": 10,
+    "same_instance": 44
+  }
+}

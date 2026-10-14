@@ -1,0 +1,1 @@
+../full_bundle/code/tools/export_scannet200_ncs_native_assets.py

@@ -1,0 +1,1776 @@
+{
+  "seeds": [
+    "tools/fi1_sl_inference.py",
+    "tools/run_fi1_sl_single200_dev55.py",
+    "tools/run_fi1_mask3d_feature_ab.py",
+    "tools/export_fi1_mask3d_instance_features.py",
+    "tools/evaluate_fi1_mask3d_feature_ab.py",
+    "tools/verify_fi1_mask3d_feature_ab.py",
+    "tools/run_fi1_g10_closure.py",
+    "tools/run_fi1_g10_closure_assets.py",
+    "tools/run_fi1_g10_closure_learning.py",
+    "tools/run_scannet200_train_scene_track_pipeline.py",
+    "run_evaluation.py",
+    "single_scene_inference.py",
+    "outputs/Full点云展示_20261011/render.py",
+    "outputs/Full点云展示_20261011/verify.py"
+  ],
+  "static_import_files": [
+    "evaluate/scannet200/eval_semantic_instance.py",
+    "evaluate/scannet200/scannet_constants.py",
+    "evaluate/scannet200/util.py",
+    "evaluate/scannet200/util_3d.py",
+    "outputs/Full点云展示_20261011/render.py",
+    "outputs/Full点云展示_20261011/verify.py",
+    "run_evaluation.py",
+    "single_scene_inference.py",
+    "tools/analyze_fi1_r3.py",
+    "tools/audit_fi1_gd10_candidate_observations.py",
+    "tools/audit_fi1_r0_r1_geometry.py",
+    "tools/audit_fi1_r0_r1_predictions.py",
+    "tools/audit_fi1_r2_dataset.py",
+    "tools/audit_fi1_r2_training.py",
+    "tools/build_details_frame_siou_tracks.py",
+    "tools/build_details_iterative_proposal_merges.py",
+    "tools/build_details_same_frame_hierarchy_preprocessor.py",
+    "tools/build_fi1_margin_dataset.py",
+    "tools/build_fi1_prepared_margin_dataset.py",
+    "tools/build_fi1_scene_margin_dataset.py",
+    "tools/build_ncs1_scene_folds.py",
+    "tools/diagnose_fi1_local_repair_capacity.py",
+    "tools/diagnose_fi1_nt_geometry_gaps.py",
+    "tools/diagnose_fi1_sl_remaining_development200.py",
+    "tools/evaluate_fi1_candidate_local_repair.py",
+    "tools/evaluate_fi1_deletion_blocks.py",
+    "tools/evaluate_fi1_local_edit_ablation.py",
+    "tools/evaluate_fi1_mask3d_feature_ab.py",
+    "tools/evaluate_fi1_r0_r1_gt.py",
+    "tools/export_fi1_mask3d_instance_features.py",
+    "tools/export_groundingdino_f30_boxes.py",
+    "tools/export_sam_automatic_observations.py",
+    "tools/extract_fi1_val312_yolo.py",
+    "tools/fi1_action_training_data.py",
+    "tools/fi1_anchor_local_decontamination.py",
+    "tools/fi1_candidate_local_segmenter.py",
+    "tools/fi1_candidate_observation_selection.py",
+    "tools/fi1_class_agnostic_ablation.py",
+    "tools/fi1_complementary_fragment_evidence.py",
+    "tools/fi1_core_ablation.py",
+    "tools/fi1_deletion_block_core.py",
+    "tools/fi1_evaluator_delta_core.py",
+    "tools/fi1_failure_attribution_core.py",
+    "tools/fi1_frontend_protocol.py",
+    "tools/fi1_g10_closure_selection.py",
+    "tools/fi1_gain_attribution_core.py",
+    "tools/fi1_geometry_feature_ablation.py",
+    "tools/fi1_local_edit_ablation_core.py",
+    "tools/fi1_local_repair_capacity.py",
+    "tools/fi1_margin_preparation.py",
+    "tools/fi1_mask3d_feature_ab_core.py",
+    "tools/fi1_r0_r1_protocol.py",
+    "tools/fi1_r2_core.py",
+    "tools/fi1_r3_analysis_core.py",
+    "tools/fi1_r3_core.py",
+    "tools/fi1_r3b_delta_diagnostic_core.py",
+    "tools/fi1_r4_qwen_core.py",
+    "tools/fi1_s_member_quality_competition.py",
+    "tools/fi1_s_semantic_rank_residual.py",
+    "tools/fi1_same_class_mask_nms.py",
+    "tools/fi1_scene_reference.py",
+    "tools/fi1_sl_inference.py",
+    "tools/fi1_split_grow_core.py",
+    "tools/fi1_sr_cross_control.py",
+    "tools/fi1_sr_score_factorization.py",
+    "tools/fi1_union_admission_learning.py",
+    "tools/fi1_union_budget_sensitivity.py",
+    "tools/fi1_union_development_replay.py",
+    "tools/fi1_union_loss_attribution.py",
+    "tools/ncs5_proxyclip_core.py",
+    "tools/prepare_fi1_r0_r1_inputs.py",
+    "tools/prepare_fi1_r3b_val312.py",
+    "tools/prepare_scannet200_train_scene.py",
+    "tools/refine_details_automatic_tracks_consensus.py",
+    "tools/run_fi1_anchor_local_decontamination.py",
+    "tools/run_fi1_candidate_local_repair.py",
+    "tools/run_fi1_core_ablation_train90.py",
+    "tools/run_fi1_deletion_blocks.py",
+    "tools/run_fi1_frontend_comparison.py",
+    "tools/run_fi1_g10_closure.py",
+    "tools/run_fi1_g10_closure_assets.py",
+    "tools/run_fi1_g10_closure_learning.py",
+    "tools/run_fi1_g10_matched_oof.py",
+    "tools/run_fi1_g10_matched_pilot.py",
+    "tools/run_fi1_local_edit_ablation.py",
+    "tools/run_fi1_mask3d_feature_ab.py",
+    "tools/run_fi1_native_symmetric_eligibility_development200.py",
+    "tools/run_fi1_r2.py",
+    "tools/run_fi1_r3.py",
+    "tools/run_fi1_r3b_val312.py",
+    "tools/run_fi1_r4_qwen.py",
+    "tools/run_fi1_s_fixed_L_rescore_development200.py",
+    "tools/run_fi1_s_member_quality_competition_development200.py",
+    "tools/run_fi1_s_semantic_rank_residual_development200.py",
+    "tools/run_fi1_selection_control_development200.py",
+    "tools/run_fi1_sl_replay_stability_development200.py",
+    "tools/run_fi1_sl_single200_dev55.py",
+    "tools/run_fi1_sr_cross_control_development200.py",
+    "tools/run_fi1_sr_score_factorization_development200.py",
+    "tools/run_fi1_train597.py",
+    "tools/run_fi1_union_loss_attribution_development200.py",
+    "tools/run_fi1_union_loss_attribution_train90.py",
+    "tools/run_fi1_union_refinement_ablation_development200.py",
+    "tools/run_fi1_union_screened_factorial_ap_development200.py",
+    "tools/run_scannet200_train_scene_track_pipeline.py",
+    "tools/train_fi1_action_contribution.py",
+    "tools/verify_fi1_anchor_local_decontamination.py",
+    "tools/verify_fi1_mask3d_feature_ab.py",
+    "utils/backprojection_fusion.py",
+    "utils/clip_object_rescore.py",
+    "utils/context_fusion.py",
+    "utils/object_query_rescore.py",
+    "utils/utils_2d.py"
+  ],
+  "import_edges": [
+    {
+      "source": "run_evaluation.py",
+      "target": "utils/backprojection_fusion.py",
+      "line": 6
+    },
+    {
+      "source": "run_evaluation.py",
+      "target": "utils/context_fusion.py",
+      "line": 11
+    },
+    {
+      "source": "run_evaluation.py",
+      "target": "utils/object_query_rescore.py",
+      "line": 12
+    },
+    {
+      "source": "run_evaluation.py",
+      "target": "utils/clip_object_rescore.py",
+      "line": 13
+    },
+    {
+      "source": "utils/clip_object_rescore.py",
+      "target": "utils/backprojection_fusion.py",
+      "line": 9
+    },
+    {
+      "source": "utils/object_query_rescore.py",
+      "target": "utils/backprojection_fusion.py",
+      "line": 9
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/run_fi1_g10_closure_assets.py",
+      "line": 18
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/run_fi1_g10_matched_oof.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/run_fi1_train597.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/audit_fi1_r2_dataset.py",
+      "line": 24
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 25
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/fi1_geometry_feature_ablation.py",
+      "line": 26
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/prepare_fi1_r3b_val312.py",
+      "line": 27
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/run_fi1_r3b_val312.py",
+      "line": 28
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "tools/analyze_fi1_r3.py",
+      "line": 29
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_learning.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 30
+    },
+    {
+      "source": "evaluate/scannet200/eval_semantic_instance.py",
+      "target": "evaluate/scannet200/scannet_constants.py",
+      "line": 32
+    },
+    {
+      "source": "evaluate/scannet200/eval_semantic_instance.py",
+      "target": "evaluate/scannet200/util.py",
+      "line": 41
+    },
+    {
+      "source": "evaluate/scannet200/eval_semantic_instance.py",
+      "target": "evaluate/scannet200/util_3d.py",
+      "line": 42
+    },
+    {
+      "source": "evaluate/scannet200/util_3d.py",
+      "target": "evaluate/scannet200/util.py",
+      "line": 17
+    },
+    {
+      "source": "tools/analyze_fi1_r3.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 16
+    },
+    {
+      "source": "tools/analyze_fi1_r3.py",
+      "target": "tools/run_fi1_r2.py",
+      "line": 17
+    },
+    {
+      "source": "tools/analyze_fi1_r3.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 18
+    },
+    {
+      "source": "tools/analyze_fi1_r3.py",
+      "target": "tools/fi1_r3_analysis_core.py",
+      "line": 19
+    },
+    {
+      "source": "tools/analyze_fi1_r3.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 21
+    },
+    {
+      "source": "tools/analyze_fi1_r3.py",
+      "target": "tools/run_fi1_r4_qwen.py",
+      "line": 62
+    },
+    {
+      "source": "tools/run_fi1_r4_qwen.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 18
+    },
+    {
+      "source": "tools/run_fi1_r4_qwen.py",
+      "target": "tools/fi1_r4_qwen_core.py",
+      "line": 19
+    },
+    {
+      "source": "tools/prepare_fi1_r0_r1_inputs.py",
+      "target": "tools/build_ncs1_scene_folds.py",
+      "line": 19
+    },
+    {
+      "source": "tools/fi1_r3_analysis_core.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "source": "tools/run_fi1_r2.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_r2.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 24
+    },
+    {
+      "source": "tools/run_fi1_r2.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 25
+    },
+    {
+      "source": "tools/run_fi1_r2.py",
+      "target": "tools/evaluate_fi1_r0_r1_gt.py",
+      "line": 26
+    },
+    {
+      "source": "tools/run_fi1_r2.py",
+      "target": "tools/prepare_scannet200_train_scene.py",
+      "line": 27
+    },
+    {
+      "source": "tools/run_fi1_r2.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 28
+    },
+    {
+      "source": "tools/evaluate_fi1_r0_r1_gt.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 19
+    },
+    {
+      "source": "tools/evaluate_fi1_r0_r1_gt.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 20
+    },
+    {
+      "source": "tools/evaluate_fi1_r0_r1_gt.py",
+      "target": "tools/prepare_scannet200_train_scene.py",
+      "line": 21
+    },
+    {
+      "source": "tools/evaluate_fi1_r0_r1_gt.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 92
+    },
+    {
+      "source": "tools/evaluate_fi1_r0_r1_gt.py",
+      "target": "evaluate/scannet200/scannet_constants.py",
+      "line": 106
+    },
+    {
+      "source": "tools/fi1_r2_core.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "tools/prepare_fi1_r3b_val312.py",
+      "line": 18
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "tools/audit_fi1_r0_r1_predictions.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "tools/audit_fi1_r2_dataset.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "tools/extract_fi1_val312_yolo.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "tools/analyze_fi1_r3.py",
+      "line": 176
+    },
+    {
+      "source": "tools/run_fi1_r3b_val312.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 177
+    },
+    {
+      "source": "tools/extract_fi1_val312_yolo.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 13
+    },
+    {
+      "source": "tools/extract_fi1_val312_yolo.py",
+      "target": "utils/utils_2d.py",
+      "line": 112
+    },
+    {
+      "source": "tools/audit_fi1_r2_dataset.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "source": "tools/audit_fi1_r2_dataset.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 18
+    },
+    {
+      "source": "tools/audit_fi1_r0_r1_predictions.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 20
+    },
+    {
+      "source": "tools/prepare_fi1_r3b_val312.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 16
+    },
+    {
+      "source": "tools/prepare_fi1_r3b_val312.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 17
+    },
+    {
+      "source": "tools/prepare_fi1_r3b_val312.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 18
+    },
+    {
+      "source": "tools/prepare_fi1_r3b_val312.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 19
+    },
+    {
+      "source": "tools/prepare_fi1_r3b_val312.py",
+      "target": "tools/audit_fi1_r0_r1_geometry.py",
+      "line": 275
+    },
+    {
+      "source": "tools/audit_fi1_r0_r1_geometry.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 21
+    },
+    {
+      "source": "tools/fi1_geometry_feature_ablation.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "source": "tools/fi1_geometry_feature_ablation.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 18
+    },
+    {
+      "source": "tools/fi1_geometry_feature_ablation.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 19
+    },
+    {
+      "source": "tools/fi1_geometry_feature_ablation.py",
+      "target": "tools/prepare_fi1_r3b_val312.py",
+      "line": 20
+    },
+    {
+      "source": "tools/fi1_geometry_feature_ablation.py",
+      "target": "tools/analyze_fi1_r3.py",
+      "line": 262
+    },
+    {
+      "source": "tools/fi1_geometry_feature_ablation.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 263
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 28
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 29
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 30
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 31
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/run_fi1_r3.py",
+      "line": 32
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/run_fi1_r2.py",
+      "line": 33
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/audit_fi1_r2_dataset.py",
+      "line": 34
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/evaluate_fi1_r0_r1_gt.py",
+      "line": 35
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/prepare_scannet200_train_scene.py",
+      "line": 36
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "tools/analyze_fi1_r3.py",
+      "line": 37
+    },
+    {
+      "source": "tools/run_fi1_train597.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 38
+    },
+    {
+      "source": "tools/run_fi1_r3.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "source": "tools/run_fi1_r3.py",
+      "target": "tools/run_fi1_r2.py",
+      "line": 18
+    },
+    {
+      "source": "tools/run_fi1_r3.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_r3.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_r3.py",
+      "target": "tools/audit_fi1_r2_training.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_r3.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_r3.py",
+      "target": "tools/analyze_fi1_r3.py",
+      "line": 276
+    },
+    {
+      "source": "tools/audit_fi1_r2_training.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 23
+    },
+    {
+      "source": "tools/audit_fi1_r2_training.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 24
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_oof.py",
+      "target": "tools/analyze_fi1_r3.py",
+      "line": 40
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_oof.py",
+      "target": "tools/fi1_geometry_feature_ablation.py",
+      "line": 41
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_oof.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 42
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_oof.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 43
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_oof.py",
+      "target": "tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 44
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_oof.py",
+      "target": "tools/prepare_scannet200_train_scene.py",
+      "line": 45
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_oof.py",
+      "target": "tools/run_fi1_train597.py",
+      "line": 46
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_oof.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 55
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_assets.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_assets.py",
+      "target": "tools/fi1_g10_closure_selection.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_assets.py",
+      "target": "tools/run_fi1_g10_matched_pilot.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_assets.py",
+      "target": "tools/prepare_fi1_r3b_val312.py",
+      "line": 144
+    },
+    {
+      "source": "tools/run_fi1_g10_closure_assets.py",
+      "target": "tools/prepare_fi1_r3b_val312.py",
+      "line": 193
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_pilot.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 26
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_pilot.py",
+      "target": "tools/run_fi1_frontend_comparison.py",
+      "line": 27
+    },
+    {
+      "source": "tools/run_fi1_g10_matched_pilot.py",
+      "target": "tools/prepare_fi1_r3b_val312.py",
+      "line": 230
+    },
+    {
+      "source": "tools/run_fi1_frontend_comparison.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_frontend_comparison.py",
+      "target": "tools/export_sam_automatic_observations.py",
+      "line": 307
+    },
+    {
+      "source": "tools/run_fi1_frontend_comparison.py",
+      "target": "tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 451
+    },
+    {
+      "source": "tools/run_fi1_frontend_comparison.py",
+      "target": "tools/build_details_frame_siou_tracks.py",
+      "line": 452
+    },
+    {
+      "source": "tools/run_fi1_frontend_comparison.py",
+      "target": "tools/refine_details_automatic_tracks_consensus.py",
+      "line": 453
+    },
+    {
+      "source": "tools/run_fi1_frontend_comparison.py",
+      "target": "tools/build_details_iterative_proposal_merges.py",
+      "line": 454
+    },
+    {
+      "source": "tools/run_fi1_frontend_comparison.py",
+      "target": "tools/export_groundingdino_f30_boxes.py",
+      "line": 267
+    },
+    {
+      "source": "tools/run_fi1_frontend_comparison.py",
+      "target": "tools/export_groundingdino_f30_boxes.py",
+      "line": 209
+    },
+    {
+      "source": "tools/build_details_iterative_proposal_merges.py",
+      "target": "tools/refine_details_automatic_tracks_consensus.py",
+      "line": 28
+    },
+    {
+      "source": "tools/fi1_g10_closure_selection.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 5
+    },
+    {
+      "source": "tools/fi1_g10_closure_selection.py",
+      "target": "tools/run_fi1_frontend_comparison.py",
+      "line": 32
+    },
+    {
+      "source": "tools/run_fi1_g10_closure.py",
+      "target": "tools/run_fi1_g10_closure_assets.py",
+      "line": 14
+    },
+    {
+      "source": "tools/run_fi1_g10_closure.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 15
+    },
+    {
+      "source": "tools/run_fi1_g10_closure.py",
+      "target": "tools/run_fi1_train597.py",
+      "line": 16
+    },
+    {
+      "source": "tools/verify_fi1_mask3d_feature_ab.py",
+      "target": "tools/run_fi1_mask3d_feature_ab.py",
+      "line": 9
+    },
+    {
+      "source": "tools/verify_fi1_mask3d_feature_ab.py",
+      "target": "tools/evaluate_fi1_mask3d_feature_ab.py",
+      "line": 89
+    },
+    {
+      "source": "tools/evaluate_fi1_mask3d_feature_ab.py",
+      "target": "tools/run_fi1_mask3d_feature_ab.py",
+      "line": 8
+    },
+    {
+      "source": "tools/evaluate_fi1_mask3d_feature_ab.py",
+      "target": "tools/evaluate_fi1_deletion_blocks.py",
+      "line": 9
+    },
+    {
+      "source": "tools/evaluate_fi1_deletion_blocks.py",
+      "target": "tools/run_fi1_deletion_blocks.py",
+      "line": 8
+    },
+    {
+      "source": "tools/evaluate_fi1_deletion_blocks.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 9
+    },
+    {
+      "source": "tools/run_fi1_deletion_blocks.py",
+      "target": "tools/run_fi1_local_edit_ablation.py",
+      "line": 9
+    },
+    {
+      "source": "tools/run_fi1_deletion_blocks.py",
+      "target": "tools/fi1_deletion_block_core.py",
+      "line": 10
+    },
+    {
+      "source": "tools/run_fi1_deletion_blocks.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 11
+    },
+    {
+      "source": "tools/fi1_deletion_block_core.py",
+      "target": "tools/fi1_candidate_local_segmenter.py",
+      "line": 7
+    },
+    {
+      "source": "tools/run_fi1_local_edit_ablation.py",
+      "target": "tools/run_fi1_candidate_local_repair.py",
+      "line": 11
+    },
+    {
+      "source": "tools/run_fi1_local_edit_ablation.py",
+      "target": "tools/fi1_local_edit_ablation_core.py",
+      "line": 12
+    },
+    {
+      "source": "tools/run_fi1_local_edit_ablation.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 13
+    },
+    {
+      "source": "tools/run_fi1_local_edit_ablation.py",
+      "target": "tools/evaluate_fi1_local_edit_ablation.py",
+      "line": 274
+    },
+    {
+      "source": "tools/evaluate_fi1_local_edit_ablation.py",
+      "target": "tools/run_fi1_local_edit_ablation.py",
+      "line": 6
+    },
+    {
+      "source": "tools/evaluate_fi1_local_edit_ablation.py",
+      "target": "tools/evaluate_fi1_candidate_local_repair.py",
+      "line": 7
+    },
+    {
+      "source": "tools/evaluate_fi1_local_edit_ablation.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 8
+    },
+    {
+      "source": "tools/evaluate_fi1_candidate_local_repair.py",
+      "target": "tools/run_fi1_candidate_local_repair.py",
+      "line": 6
+    },
+    {
+      "source": "tools/evaluate_fi1_candidate_local_repair.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 7
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/diagnose_fi1_nt_geometry_gaps.py",
+      "line": 13
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/audit_fi1_gd10_candidate_observations.py",
+      "line": 14
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/fi1_local_repair_capacity.py",
+      "line": 15
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/fi1_candidate_observation_selection.py",
+      "line": 16
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/fi1_candidate_local_segmenter.py",
+      "line": 17
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/ncs5_proxyclip_core.py",
+      "line": 18
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/fi1_complementary_fragment_evidence.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_candidate_local_repair.py",
+      "target": "tools/evaluate_fi1_candidate_local_repair.py",
+      "line": 400
+    },
+    {
+      "source": "tools/audit_fi1_gd10_candidate_observations.py",
+      "target": "tools/diagnose_fi1_local_repair_capacity.py",
+      "line": 11
+    },
+    {
+      "source": "tools/audit_fi1_gd10_candidate_observations.py",
+      "target": "tools/fi1_local_repair_capacity.py",
+      "line": 12
+    },
+    {
+      "source": "tools/audit_fi1_gd10_candidate_observations.py",
+      "target": "tools/fi1_candidate_observation_selection.py",
+      "line": 13
+    },
+    {
+      "source": "tools/audit_fi1_gd10_candidate_observations.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 14
+    },
+    {
+      "source": "tools/audit_fi1_gd10_candidate_observations.py",
+      "target": "tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 15
+    },
+    {
+      "source": "tools/audit_fi1_gd10_candidate_observations.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 16
+    },
+    {
+      "source": "tools/diagnose_fi1_local_repair_capacity.py",
+      "target": "tools/fi1_local_repair_capacity.py",
+      "line": 17
+    },
+    {
+      "source": "tools/diagnose_fi1_local_repair_capacity.py",
+      "target": "tools/run_fi1_anchor_local_decontamination.py",
+      "line": 18
+    },
+    {
+      "source": "tools/diagnose_fi1_local_repair_capacity.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/diagnose_fi1_nt_geometry_gaps.py",
+      "line": 16
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/fi1_anchor_local_decontamination.py",
+      "line": 17
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 18
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/fi1_complementary_fragment_evidence.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/run_fi1_frontend_comparison.py",
+      "line": 276
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/export_sam_automatic_observations.py",
+      "line": 277
+    },
+    {
+      "source": "tools/run_fi1_anchor_local_decontamination.py",
+      "target": "tools/verify_fi1_anchor_local_decontamination.py",
+      "line": 402
+    },
+    {
+      "source": "tools/verify_fi1_anchor_local_decontamination.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 12
+    },
+    {
+      "source": "tools/verify_fi1_anchor_local_decontamination.py",
+      "target": "tools/run_fi1_anchor_local_decontamination.py",
+      "line": 13
+    },
+    {
+      "source": "tools/fi1_core_ablation.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "source": "tools/fi1_core_ablation.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 8
+    },
+    {
+      "source": "tools/fi1_core_ablation.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 9
+    },
+    {
+      "source": "tools/fi1_core_ablation.py",
+      "target": "tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 10
+    },
+    {
+      "source": "tools/diagnose_fi1_nt_geometry_gaps.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 10
+    },
+    {
+      "source": "tools/diagnose_fi1_nt_geometry_gaps.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 11
+    },
+    {
+      "source": "tools/diagnose_fi1_nt_geometry_gaps.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 12
+    },
+    {
+      "source": "tools/diagnose_fi1_nt_geometry_gaps.py",
+      "target": "tools/diagnose_fi1_sl_remaining_development200.py",
+      "line": 13
+    },
+    {
+      "source": "tools/diagnose_fi1_nt_geometry_gaps.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 14
+    },
+    {
+      "source": "tools/diagnose_fi1_nt_geometry_gaps.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 125
+    },
+    {
+      "source": "tools/diagnose_fi1_sl_remaining_development200.py",
+      "target": "tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "line": 10
+    },
+    {
+      "source": "tools/diagnose_fi1_sl_remaining_development200.py",
+      "target": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "line": 11
+    },
+    {
+      "source": "tools/diagnose_fi1_sl_remaining_development200.py",
+      "target": "tools/fi1_sl_inference.py",
+      "line": 12
+    },
+    {
+      "source": "tools/diagnose_fi1_sl_remaining_development200.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 13
+    },
+    {
+      "source": "tools/diagnose_fi1_sl_remaining_development200.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 14
+    },
+    {
+      "source": "tools/diagnose_fi1_sl_remaining_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 15
+    },
+    {
+      "source": "tools/fi1_sl_inference.py",
+      "target": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "line": 16
+    },
+    {
+      "source": "tools/fi1_sl_inference.py",
+      "target": "tools/fi1_s_semantic_rank_residual.py",
+      "line": 17
+    },
+    {
+      "source": "tools/fi1_sl_inference.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 18
+    },
+    {
+      "source": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "target": "tools/run_fi1_selection_control_development200.py",
+      "line": 28
+    },
+    {
+      "source": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 29
+    },
+    {
+      "source": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 30
+    },
+    {
+      "source": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 31
+    },
+    {
+      "source": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 32
+    },
+    {
+      "source": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 33
+    },
+    {
+      "source": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 34
+    },
+    {
+      "source": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "target": "tools/fi1_union_development_replay.py",
+      "line": 35
+    },
+    {
+      "source": "tools/fi1_union_development_replay.py",
+      "target": "tools/run_fi1_union_loss_attribution_train90.py",
+      "line": 3
+    },
+    {
+      "source": "tools/fi1_union_development_replay.py",
+      "target": "tools/fi1_class_agnostic_ablation.py",
+      "line": 4
+    },
+    {
+      "source": "tools/fi1_union_development_replay.py",
+      "target": "tools/fi1_union_loss_attribution.py",
+      "line": 5
+    },
+    {
+      "source": "tools/fi1_union_loss_attribution.py",
+      "target": "tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 5
+    },
+    {
+      "source": "tools/fi1_class_agnostic_ablation.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 5
+    },
+    {
+      "source": "tools/fi1_class_agnostic_ablation.py",
+      "target": "tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 6
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_train90.py",
+      "target": "tools/run_fi1_core_ablation_train90.py",
+      "line": 18
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_train90.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_train90.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_train90.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_train90.py",
+      "target": "tools/fi1_union_loss_attribution.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_train90.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_core_ablation_train90.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 25
+    },
+    {
+      "source": "tools/run_fi1_core_ablation_train90.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 26
+    },
+    {
+      "source": "tools/run_fi1_core_ablation_train90.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 27
+    },
+    {
+      "source": "tools/run_fi1_core_ablation_train90.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 28
+    },
+    {
+      "source": "tools/run_fi1_core_ablation_train90.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 29
+    },
+    {
+      "source": "tools/run_fi1_core_ablation_train90.py",
+      "target": "tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 30
+    },
+    {
+      "source": "tools/run_fi1_core_ablation_train90.py",
+      "target": "tools/fi1_failure_attribution_core.py",
+      "line": 31
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/run_fi1_union_loss_attribution_development200.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/fi1_same_class_mask_nms.py",
+      "line": 24
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/fi1_failure_attribution_core.py",
+      "line": 25
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/fi1_union_development_replay.py",
+      "line": 26
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/fi1_class_agnostic_ablation.py",
+      "line": 27
+    },
+    {
+      "source": "tools/run_fi1_selection_control_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 28
+    },
+    {
+      "source": "tools/fi1_same_class_mask_nms.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 10
+    },
+    {
+      "source": "tools/fi1_same_class_mask_nms.py",
+      "target": "tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 11
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_development200.py",
+      "target": "tools/run_fi1_union_loss_attribution_train90.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_development200.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_development200.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_development200.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_development200.py",
+      "target": "tools/fi1_union_loss_attribution.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_development200.py",
+      "target": "tools/fi1_union_budget_sensitivity.py",
+      "line": 24
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_development200.py",
+      "target": "tools/fi1_union_development_replay.py",
+      "line": 25
+    },
+    {
+      "source": "tools/run_fi1_union_loss_attribution_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 26
+    },
+    {
+      "source": "tools/fi1_union_budget_sensitivity.py",
+      "target": "tools/fi1_union_loss_attribution.py",
+      "line": 3
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 24
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 25
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 26
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/fi1_union_admission_learning.py",
+      "line": 27
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/fi1_union_development_replay.py",
+      "line": 28
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/fi1_class_agnostic_ablation.py",
+      "line": 29
+    },
+    {
+      "source": "tools/run_fi1_union_refinement_ablation_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 30
+    },
+    {
+      "source": "tools/fi1_union_admission_learning.py",
+      "target": "tools/fi1_core_ablation.py",
+      "line": 12
+    },
+    {
+      "source": "tools/fi1_union_admission_learning.py",
+      "target": "tools/fi1_split_grow_core.py",
+      "line": 13
+    },
+    {
+      "source": "tools/fi1_union_admission_learning.py",
+      "target": "tools/fi1_r0_r1_protocol.py",
+      "line": 14
+    },
+    {
+      "source": "tools/fi1_union_admission_learning.py",
+      "target": "tools/train_fi1_action_contribution.py",
+      "line": 15
+    },
+    {
+      "source": "tools/train_fi1_action_contribution.py",
+      "target": "tools/fi1_action_training_data.py",
+      "line": 23
+    },
+    {
+      "source": "tools/train_fi1_action_contribution.py",
+      "target": "tools/fi1_evaluator_delta_core.py",
+      "line": 24
+    },
+    {
+      "source": "tools/train_fi1_action_contribution.py",
+      "target": "tools/fi1_gain_attribution_core.py",
+      "line": 25
+    },
+    {
+      "source": "tools/train_fi1_action_contribution.py",
+      "target": "tools/fi1_scene_reference.py",
+      "line": 26
+    },
+    {
+      "source": "tools/fi1_scene_reference.py",
+      "target": "tools/build_ncs1_scene_folds.py",
+      "line": 23
+    },
+    {
+      "source": "tools/fi1_scene_reference.py",
+      "target": "tools/fi1_evaluator_delta_core.py",
+      "line": 24
+    },
+    {
+      "source": "tools/fi1_scene_reference.py",
+      "target": "tools/fi1_gain_attribution_core.py",
+      "line": 28
+    },
+    {
+      "source": "tools/fi1_scene_reference.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 283
+    },
+    {
+      "source": "tools/fi1_gain_attribution_core.py",
+      "target": "evaluate/scannet200/scannet_constants.py",
+      "line": 74
+    },
+    {
+      "source": "tools/fi1_evaluator_delta_core.py",
+      "target": "tools/fi1_gain_attribution_core.py",
+      "line": 18
+    },
+    {
+      "source": "tools/fi1_evaluator_delta_core.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 202
+    },
+    {
+      "source": "tools/fi1_evaluator_delta_core.py",
+      "target": "evaluate/scannet200/eval_semantic_instance.py",
+      "line": 271
+    },
+    {
+      "source": "tools/fi1_action_training_data.py",
+      "target": "tools/build_fi1_prepared_margin_dataset.py",
+      "line": 10
+    },
+    {
+      "source": "tools/fi1_action_training_data.py",
+      "target": "tools/fi1_evaluator_delta_core.py",
+      "line": 11
+    },
+    {
+      "source": "tools/fi1_action_training_data.py",
+      "target": "tools/fi1_gain_attribution_core.py",
+      "line": 12
+    },
+    {
+      "source": "tools/fi1_action_training_data.py",
+      "target": "tools/fi1_margin_preparation.py",
+      "line": 13
+    },
+    {
+      "source": "tools/fi1_action_training_data.py",
+      "target": "tools/fi1_scene_reference.py",
+      "line": 14
+    },
+    {
+      "source": "tools/fi1_margin_preparation.py",
+      "target": "tools/build_fi1_margin_dataset.py",
+      "line": 15
+    },
+    {
+      "source": "tools/fi1_margin_preparation.py",
+      "target": "tools/fi1_evaluator_delta_core.py",
+      "line": 16
+    },
+    {
+      "source": "tools/fi1_margin_preparation.py",
+      "target": "tools/fi1_gain_attribution_core.py",
+      "line": 17
+    },
+    {
+      "source": "tools/fi1_margin_preparation.py",
+      "target": "tools/fi1_scene_reference.py",
+      "line": 18
+    },
+    {
+      "source": "tools/build_fi1_margin_dataset.py",
+      "target": "tools/fi1_evaluator_delta_core.py",
+      "line": 21
+    },
+    {
+      "source": "tools/build_fi1_margin_dataset.py",
+      "target": "tools/fi1_gain_attribution_core.py",
+      "line": 25
+    },
+    {
+      "source": "tools/build_fi1_prepared_margin_dataset.py",
+      "target": "tools/build_fi1_scene_margin_dataset.py",
+      "line": 14
+    },
+    {
+      "source": "tools/build_fi1_prepared_margin_dataset.py",
+      "target": "tools/fi1_evaluator_delta_core.py",
+      "line": 15
+    },
+    {
+      "source": "tools/build_fi1_prepared_margin_dataset.py",
+      "target": "tools/fi1_gain_attribution_core.py",
+      "line": 16
+    },
+    {
+      "source": "tools/build_fi1_prepared_margin_dataset.py",
+      "target": "tools/fi1_margin_preparation.py",
+      "line": 17
+    },
+    {
+      "source": "tools/build_fi1_prepared_margin_dataset.py",
+      "target": "tools/fi1_scene_reference.py",
+      "line": 18
+    },
+    {
+      "source": "tools/build_fi1_scene_margin_dataset.py",
+      "target": "tools/build_fi1_margin_dataset.py",
+      "line": 16
+    },
+    {
+      "source": "tools/build_fi1_scene_margin_dataset.py",
+      "target": "tools/fi1_evaluator_delta_core.py",
+      "line": 17
+    },
+    {
+      "source": "tools/build_fi1_scene_margin_dataset.py",
+      "target": "tools/fi1_gain_attribution_core.py",
+      "line": 18
+    },
+    {
+      "source": "tools/build_fi1_scene_margin_dataset.py",
+      "target": "tools/fi1_scene_reference.py",
+      "line": 19
+    },
+    {
+      "source": "tools/fi1_split_grow_core.py",
+      "target": "tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 217
+    },
+    {
+      "source": "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "target": "tools/run_fi1_core_ablation_train90.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "target": "tools/fi1_class_agnostic_ablation.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "target": "tools/fi1_union_development_replay.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "target": "tools/fi1_union_loss_attribution.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "target": "tools/fi1_union_budget_sensitivity.py",
+      "line": 24
+    },
+    {
+      "source": "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 25
+    },
+    {
+      "source": "tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "target": "tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "line": 8
+    },
+    {
+      "source": "tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "target": "tools/run_fi1_sr_cross_control_development200.py",
+      "line": 9
+    },
+    {
+      "source": "tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "target": "tools/run_fi1_sr_score_factorization_development200.py",
+      "line": 10
+    },
+    {
+      "source": "tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 11
+    },
+    {
+      "source": "tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "target": "tools/fi1_sr_cross_control.py",
+      "line": 12
+    },
+    {
+      "source": "tools/run_fi1_sr_score_factorization_development200.py",
+      "target": "tools/run_fi1_sr_cross_control_development200.py",
+      "line": 12
+    },
+    {
+      "source": "tools/run_fi1_sr_score_factorization_development200.py",
+      "target": "tools/fi1_sr_score_factorization.py",
+      "line": 13
+    },
+    {
+      "source": "tools/run_fi1_sr_score_factorization_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 14
+    },
+    {
+      "source": "tools/run_fi1_sr_cross_control_development200.py",
+      "target": "tools/run_fi1_s_member_quality_competition_development200.py",
+      "line": 13
+    },
+    {
+      "source": "tools/run_fi1_sr_cross_control_development200.py",
+      "target": "tools/fi1_sr_cross_control.py",
+      "line": 14
+    },
+    {
+      "source": "tools/run_fi1_sr_cross_control_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 15
+    },
+    {
+      "source": "tools/run_fi1_s_member_quality_competition_development200.py",
+      "target": "tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "line": 19
+    },
+    {
+      "source": "tools/run_fi1_s_member_quality_competition_development200.py",
+      "target": "tools/fi1_s_member_quality_competition.py",
+      "line": 20
+    },
+    {
+      "source": "tools/run_fi1_s_member_quality_competition_development200.py",
+      "target": "tools/fi1_r2_core.py",
+      "line": 21
+    },
+    {
+      "source": "tools/run_fi1_s_member_quality_competition_development200.py",
+      "target": "tools/fi1_r3_core.py",
+      "line": 22
+    },
+    {
+      "source": "tools/run_fi1_s_member_quality_competition_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "source": "tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "target": "tools/fi1_s_semantic_rank_residual.py",
+      "line": 10
+    },
+    {
+      "source": "tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "target": "tools/run_fi1_sr_score_factorization_development200.py",
+      "line": 11
+    },
+    {
+      "source": "tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 12
+    },
+    {
+      "source": "tools/fi1_local_edit_ablation_core.py",
+      "target": "tools/fi1_candidate_local_segmenter.py",
+      "line": 5
+    },
+    {
+      "source": "tools/run_fi1_mask3d_feature_ab.py",
+      "target": "tools/fi1_mask3d_feature_ab_core.py",
+      "line": 9
+    },
+    {
+      "source": "tools/run_fi1_mask3d_feature_ab.py",
+      "target": "tools/run_fi1_candidate_local_repair.py",
+      "line": 10
+    },
+    {
+      "source": "tools/run_fi1_mask3d_feature_ab.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 11
+    },
+    {
+      "source": "tools/run_fi1_mask3d_feature_ab.py",
+      "target": "tools/evaluate_fi1_mask3d_feature_ab.py",
+      "line": 166
+    },
+    {
+      "source": "tools/fi1_mask3d_feature_ab_core.py",
+      "target": "tools/fi1_candidate_local_segmenter.py",
+      "line": 5
+    },
+    {
+      "source": "tools/fi1_mask3d_feature_ab_core.py",
+      "target": "tools/fi1_deletion_block_core.py",
+      "line": 6
+    },
+    {
+      "source": "tools/export_fi1_mask3d_instance_features.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 9
+    },
+    {
+      "source": "tools/export_fi1_mask3d_instance_features.py",
+      "target": "tools/fi1_mask3d_feature_ab_core.py",
+      "line": 10
+    },
+    {
+      "source": "tools/run_fi1_sl_single200_dev55.py",
+      "target": "tools/run_fi1_sl_replay_stability_development200.py",
+      "line": 11
+    },
+    {
+      "source": "tools/run_fi1_sl_single200_dev55.py",
+      "target": "tools/fi1_sl_inference.py",
+      "line": 12
+    },
+    {
+      "source": "tools/run_fi1_sl_single200_dev55.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 13
+    },
+    {
+      "source": "tools/run_fi1_sl_replay_stability_development200.py",
+      "target": "tools/fi1_sl_inference.py",
+      "line": 9
+    },
+    {
+      "source": "tools/run_fi1_sl_replay_stability_development200.py",
+      "target": "tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "line": 10
+    },
+    {
+      "source": "tools/run_fi1_sl_replay_stability_development200.py",
+      "target": "tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "line": 11
+    },
+    {
+      "source": "tools/run_fi1_sl_replay_stability_development200.py",
+      "target": "tools/fi1_frontend_protocol.py",
+      "line": 12
+    }
+  ],
+  "missing_seed_files": [],
+  "dynamic_import_limitation": "未执行动态导入或全部生产推理；无静态引用不构成安全删除证据",
+  "latest_contract_sha256": "c65e240cfa02ddc58cc694216dff28aee541e90b402586a94198501af2826930",
+  "visual_manifest_sha256": "910eb4b745dd0717cbd6b8f2643f19017aa9f0df111e1a9c82fb4000911e3b32",
+  "binding_counts": {
+    "source_bindings": 1281,
+    "inputs": 960,
+    "GT_inputs": 160,
+    "frozen_SL_models": 11
+  },
+  "external_protection": {
+    "/media/jia/软件1/scannet_additional_train_stream/fi1_G10_closure_20260921": "生产 Full B/Q、几何、自身语义证据",
+    "/media/jia/软件1/scannet_additional_train_stream/fi1_G10_full597_20260919/frontend": "生产 GD10 前端",
+    "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25": "D-v3 七模型及历史源码依赖",
+    "/home/jia/Wm/Dataset/scannet200": "data/scannet200 链接目标，另计，不清理"
+  }
+}

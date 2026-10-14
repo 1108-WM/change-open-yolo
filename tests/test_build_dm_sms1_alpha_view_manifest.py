@@ -1,0 +1,1 @@
+../full_bundle/code/tests/test_build_dm_sms1_alpha_view_manifest.py

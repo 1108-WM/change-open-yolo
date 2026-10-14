@@ -1,0 +1,142 @@
+{
+  "GT_posthoc_only": true,
+  "complete": true,
+  "counts": {
+    "main_safe": 2294,
+    "main_safe_points_region_sum": 26459,
+    "raw_safe": 25762,
+    "raw_safe_points_region_sum": 109082
+  },
+  "coverage": {
+    "geometry192": {
+      "covered_pollution": 30859,
+      "covered_target": 1252610,
+      "covered_unique_points": 1724068,
+      "covered_unknown": 12099
+    },
+    "geometry48": {
+      "covered_pollution": 22169,
+      "covered_target": 829696,
+      "covered_unique_points": 1109710,
+      "covered_unknown": 8504
+    },
+    "geometry96": {
+      "covered_pollution": 27219,
+      "covered_target": 1077631,
+      "covered_unique_points": 1458382,
+      "covered_unknown": 10376
+    },
+    "geometry_raw": {
+      "covered_pollution": 32620,
+      "covered_target": 1354521,
+      "covered_unique_points": 1895908,
+      "covered_unknown": 13270
+    }
+  },
+  "family_counts_overlap": true,
+  "family_memberships_main": [
+    {
+      "regions": 34702,
+      "safe": 849,
+      "safe256": 0,
+      "safe64": 0
+    },
+    {
+      "regions": 32858,
+      "safe": 787,
+      "safe256": 0,
+      "safe64": 0
+    },
+    {
+      "regions": 29256,
+      "safe": 657,
+      "safe256": 0,
+      "safe64": 1
+    },
+    {
+      "regions": 31222,
+      "safe": 644,
+      "safe256": 0,
+      "safe64": 0
+    },
+    {
+      "regions": 21550,
+      "safe": 511,
+      "safe256": 0,
+      "safe64": 23
+    },
+    {
+      "regions": 24373,
+      "safe": 535,
+      "safe256": 0,
+      "safe64": 30
+    }
+  ],
+  "family_memberships_raw": [
+    {
+      "regions": 637748,
+      "safe": 11617,
+      "safe256": 0,
+      "safe64": 0
+    },
+    {
+      "regions": 645691,
+      "safe": 11805,
+      "safe256": 0,
+      "safe64": 0
+    },
+    {
+      "regions": 181728,
+      "safe": 3734,
+      "safe256": 0,
+      "safe64": 1
+    },
+    {
+      "regions": 193745,
+      "safe": 4012,
+      "safe256": 0,
+      "safe64": 0
+    },
+    {
+      "regions": 60172,
+      "safe": 1447,
+      "safe256": 0,
+      "safe64": 37
+    },
+    {
+      "regions": 71132,
+      "safe": 1588,
+      "safe256": 0,
+      "safe64": 42
+    }
+  ],
+  "new_training": false,
+  "primary_extra_raw_targets": 0,
+  "primary_missed_raw_targets": 37,
+  "reporting_code": {
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/summarize_fi1_local_region_supply.py": "455aa4d85d43390d8db868f1f3df7d7aa5e7cb85cf70cabd50b28d0ed6aea57b"
+  },
+  "source": {
+    "native": {
+      "main_mixed": 1111,
+      "main_regions": 64448,
+      "main_safe": 1014,
+      "main_safe_parents": 136,
+      "main_unknown": 10738,
+      "parents": 800,
+      "raw_regions": 855747,
+      "raw_safe": 14586
+    },
+    "track": {
+      "main_mixed": 762,
+      "main_regions": 61114,
+      "main_safe": 1280,
+      "main_safe_parents": 121,
+      "main_unknown": 19214,
+      "parents": 799,
+      "raw_regions": 652982,
+      "raw_safe": 11176
+    }
+  },
+  "unique_scene_parent_scope": true
+}

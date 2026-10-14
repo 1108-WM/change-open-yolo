@@ -1,0 +1,55 @@
+{
+  "ap_computed": false,
+  "authorization": "docs/DM_SMS1_V22_FULL7006_NOGT_AUTHORIZATION_20260823.md",
+  "authorization_sha256": "5be68aed2150b4ffea222ede062145b99a720ce02c073ce90aeec5eb84c99aa8",
+  "candidate_mutation": false,
+  "date": "2026-08-23",
+  "dataset": "NCS-train100",
+  "estimated_runtime": "20-28 hours; actual completion depends on rewrite frequency and the 894 frozen invalid upstream records that use immediate safe fallback",
+  "expected_task_count": 7006,
+  "fi1_foundation": "FI1-Legacy",
+  "geometry_mutation": false,
+  "gpu": {
+    "device": "NVIDIA GeForce RTX 4090 D",
+    "initial_compute_pid": 790232,
+    "initial_model_memory_mib": 18284,
+    "other_compute_process_conflict": false
+  },
+  "ground_truth_read": false,
+  "implementation_hashes": {
+    "auditor_sha256": "fd55f37ac2cd9c1aaca3069293880ee08f03afedb7f8dd8019bc142b797e6b31",
+    "runner_sha256": "3be62f9962a4e175fb9604a5f34baba4465ad2a2d4c031af3f644897521a81da",
+    "test_sha256": "a2e6521da8cf1d95d394c1e34b5177125a7da723adeb22a2b3fd2a5ad85ce97c",
+    "tmux_wrapper_sha256": "18663f7df64059272a8050ab8776aef1ecd5257147ed75afb8e15fd662b99d9e"
+  },
+  "log_path": "docs/diagnostics/dm_sms1_v22_vlm_full7006_train100_20260823.run.log",
+  "mask_mutation": false,
+  "model": {
+    "id": "Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5"
+  },
+  "output_root": "docs/diagnostics/dm_sms1_v22_vlm_full7006_train100_20260823",
+  "preflight": {
+    "code_tests": "39 passed",
+    "manifest_audit_error_count": 0,
+    "manifest_audit_valid": true,
+    "manifest_row_count": 7006,
+    "output_root_absent_before_start": true,
+    "smoke_advancement_eligible": true,
+    "smoke_audit_error_count": 0,
+    "smoke_audit_valid": true,
+    "smoke_strict_valid_count": 7,
+    "smoke_total_count": 8
+  },
+  "proposal_deletion": false,
+  "run_contract_sha256": "2715ffe20936737bc2a82b9a35682260f8fb316a8cfdc7b33aba3bace6a75a8a",
+  "safe_decision_contract": "safe_decisions.jsonl must contain exactly one frozen-control-safe decision for every processed task, including invalid upstream or invalid new Qwen evidence",
+  "score_mutation": false,
+  "selection_sha256": "336d8a7750cd279ee23359d6dbc92cae8152e765782be115f07051b77cd28ec2",
+  "start_time_local": "2026-08-23 11:43:27 Asia/Shanghai",
+  "status": "running",
+  "tmux_session": "dm_sms1_v22_full7006",
+  "validation60_read": false,
+  "val312_read": false,
+  "version": "dm_sms1_v22_full7006_start_provenance_v1"
+}

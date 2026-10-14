@@ -1,0 +1,44 @@
+{
+  "GT_read": false,
+  "complete": true,
+  "decision": "no_generation_improvement_inspect_prior_and_target_condition",
+  "disk_reserve_GiB": 50,
+  "experiment_finished": true,
+  "handoff_sha256": "f6b0804c318b5cd0b7357417322fe48de92118a2ed4652b6c8f977f1115f1841",
+  "independent_counts": {
+    "CPU_model_replays": 16,
+    "actual_pointsets": 5116,
+    "calibration_rules_replayed": 10,
+    "full_NT_targets": 15344,
+    "mask_interface_invariance_scenes": 160,
+    "original_index_maps": 24768561,
+    "supervision_point_checks": 3910810
+  },
+  "new_predictions": false,
+  "new_rules": false,
+  "new_training": false,
+  "next_experiment_started": false,
+  "reporting_sources": {
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/finalize_fi1_mask3d_feature_ab_delivery.py": {
+      "sha256": "df1db4bfbcd6b0d0d3e6fbc77e4a50a8fc7700a4f9408b701239d545c6f54250",
+      "snapshot": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_mask3d_feature_ab_internal_20261013_v1/handoff_final_20261013/tools/finalize_fi1_mask3d_feature_ab_delivery.py"
+    },
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/report_fi1_mask3d_feature_ab.py": {
+      "sha256": "9861e26c6740ca5df4800fc9583a06676e942fff611a8fb12b4f5d943938c3cc",
+      "snapshot": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_mask3d_feature_ab_internal_20261013_v1/handoff_final_20261013/tools/report_fi1_mask3d_feature_ab.py"
+    }
+  },
+  "stage_artifacts_checked": {
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_mask3d_feature_ab_internal_20261013_v1/evaluation_frozen.json": "ed23342c543c563700a1916cd638dafa47986fb1d497f8d5598bc4227d33b09c",
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_mask3d_feature_ab_internal_20261013_v1/instance_features_frozen.json": "bded5c64ce6a29e60275b2a36a5f58c207d5e613b874a22b678c2f13a01b5461",
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_mask3d_feature_ab_internal_20261013_v1/models_frozen.json": "d6653b22f79a15c2f1fa696262bf2a06130171c0936b4d700e93fc01dc3b3653",
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_mask3d_feature_ab_internal_20261013_v1/predictions_frozen.json": "3c046d886fa2d633d917886074352fe5c77085dd3d8d3fd7893607ff7e37b632",
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_mask3d_feature_ab_internal_20261013_v1/probabilities_frozen.json": "592f5f190f54a179addbf8ec50468a2f5918ecfae203fddf6c6f8159003d1ec7"
+  },
+  "unit_tests": {
+    "command": "OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1 .venvs/yoloe_gpu/bin/python -m pytest -q tests/test_fi1_mask3d_feature_ab.py",
+    "passed": 8,
+    "previously_run": true,
+    "test_source_sha256": "12f2bdcb9f5b95584951c5684bef7ab867b2daf3d1582672b09f28a021a1cb69"
+  }
+}

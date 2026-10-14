@@ -1,0 +1,17 @@
+{
+  "version": "fi1_scoring_sample_diagnostic_contract_v1",
+  "population_summary_sha256": "635b37f6f3e6b4d0854b7574e45f3dc69ef2671808d907865d745574ffc7c39e",
+  "sample_sha256": "9a40eb4a18f3a2235b6b56ff21a57e4b4e36f2ed97341fe989a2122a4ba75570",
+  "scope": "only official100 scenes in frozen representative requests, after population and sample audit",
+  "min_gt_points": 100,
+  "semantic_check": "existing own B1 class hypotheses only; report no_hypotheses separately for new masks, do not inherit parent class",
+  "geometry_change_check": "all selected non-noop temporary aliases; parent best valid GT by IoU, intersection, ID; compare child against same target",
+  "geometry_change_tolerance": 1e-12,
+  "semantic_iou_threshold": 0.5,
+  "threshold_comparison": "strict greater than",
+  "sample_modification_after_gt": false,
+  "training": false,
+  "ap": false,
+  "model_inference": false,
+  "purpose": "validate sample coverage and report missing strata; never select model or parameters"
+}

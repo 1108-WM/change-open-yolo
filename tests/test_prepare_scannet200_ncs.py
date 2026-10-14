@@ -1,0 +1,1 @@
+../full_bundle/code/tests/test_prepare_scannet200_ncs.py

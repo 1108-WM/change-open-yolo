@@ -1,0 +1,328 @@
+{
+  "scene_name": "scene0027_01",
+  "valid_gt_class_count": 9,
+  "evidence_available": {
+    "alpha": 69,
+    "label_map": 69,
+    "bbox": 69
+  },
+  "alpha_views_selected": 1257,
+  "alpha_views_valid": 1254,
+  "invalid_alpha_reasons": {
+    "empty_sam_mask": 1,
+    "empty_preprocessed_mask": 2
+  },
+  "inserted_columns_B": 10,
+  "displaced_columns_B": [
+    {
+      "geometry_key": "scene0027_01:geometry:120a17d185e3c4d0f5c77368c87b4f90e4043757264789a142dd95c0849b780d",
+      "class_index": 5,
+      "class_name": "shelf",
+      "score": 0.6001205593347549,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:120a17d185e3c4d0f5c77368c87b4f90e4043757264789a142dd95c0849b780d",
+      "class_index": 184,
+      "class_name": "structure",
+      "score": 0.6001152098178864,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:27c666f638e724b767639f554444dc3663875a4f8d3b0e67bd8db847797631a0",
+      "class_index": 62,
+      "class_name": "sofa chair",
+      "score": 0.6000741347670555,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:2e6a1978326588f65a26654106044a2bbcfbe39d35e368220a0b76c2fb75af8c",
+      "class_index": 93,
+      "class_name": "seat",
+      "score": 0.6000598967075348,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:50b33105b1833f8d8e9f8aea8afc0dfe13d09df9ba0f993d05388b085289105a",
+      "class_index": 123,
+      "class_name": "water cooler",
+      "score": 0.6000909209251404,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:50b33105b1833f8d8e9f8aea8afc0dfe13d09df9ba0f993d05388b085289105a",
+      "class_index": 190,
+      "class_name": "folded chair",
+      "score": 0.6000799313187599,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:6518e48e7728d4ddda8ea3056a98169dbc94d36a7ac6ad4d87a989cf158030fc",
+      "class_index": 106,
+      "class_name": "machine",
+      "score": 0.6000783815979958,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:c92993a3b194d559adafec8786f5466f5772bc594a983c56b3b24c37fc1b029c",
+      "class_index": 106,
+      "class_name": "machine",
+      "score": 0.600083164870739,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:e22bda808981362369c108211d778c0f1693c48ad10158218530d47f9a0149c9",
+      "class_index": 24,
+      "class_name": "towel",
+      "score": 0.6001126766204834,
+      "class_has_valid_gt": false
+    },
+    {
+      "geometry_key": "scene0027_01:geometry:f719639e2004adaf9b3bdd30e8080a31b23813714c78d4a9916151c14cf92704",
+      "class_index": 111,
+      "class_name": "bulletin board",
+      "score": 0.600104346871376,
+      "class_has_valid_gt": false
+    }
+  ],
+  "mask_substitutions_C": 7,
+  "same_target_geometries": [
+    {
+      "alpha_rank": {
+        "best_rank": 1,
+        "value": 0.24659591913223267,
+        "worst_rank": 1
+      },
+      "bbox_rank": {
+        "best_rank": 1,
+        "value": 0.4524282960665336,
+        "worst_rank": 1
+      },
+      "class_index": 43,
+      "class_name": "whiteboard",
+      "geometry_key": "scene0027_01:geometry:b48e656fce17b411587b4c8df06b3b60e3653ec0b39f0b04023336ddc358f9bb",
+      "gt_instance_id": 52012,
+      "iou": 0.8429882874327319,
+      "label_map_rank": {
+        "best_rank": 1,
+        "value": 1.0,
+        "worst_rank": 1
+      },
+      "sources": [
+        "pair_union"
+      ],
+      "selected_predictions": {
+        "A_existing_alpha": [
+          {
+            "column_index": 1,
+            "score": 0.6232979595661163
+          }
+        ],
+        "B_expanded_alpha": [
+          {
+            "column_index": 1,
+            "score": 0.6232979595661163
+          }
+        ],
+        "C_fixed_semantics_mask_swap": []
+      }
+    },
+    {
+      "alpha_rank": {
+        "best_rank": 1,
+        "value": 0.24624218046665192,
+        "worst_rank": 1
+      },
+      "bbox_rank": {
+        "best_rank": 2,
+        "value": 0.4115872703675541,
+        "worst_rank": 2
+      },
+      "class_index": 43,
+      "class_name": "whiteboard",
+      "geometry_key": "scene0027_01:geometry:b7b4825358d7397bc44d2ca2b8bfed32cb62e35c5504de36fcd7d7522964b547",
+      "gt_instance_id": 52012,
+      "iou": 0.9676339285714286,
+      "label_map_rank": {
+        "best_rank": 1,
+        "value": 1.0,
+        "worst_rank": 1
+      },
+      "sources": [
+        "native"
+      ],
+      "selected_predictions": {
+        "A_existing_alpha": [
+          {
+            "column_index": 2,
+            "score": 0.623121090233326
+          }
+        ],
+        "B_expanded_alpha": [
+          {
+            "column_index": 2,
+            "score": 0.623121090233326
+          }
+        ],
+        "C_fixed_semantics_mask_swap": [
+          {
+            "column_index": 2,
+            "score": 0.623121090233326
+          }
+        ]
+      }
+    },
+    {
+      "alpha_rank": {
+        "best_rank": 1,
+        "value": 0.2466348558664322,
+        "worst_rank": 1
+      },
+      "bbox_rank": {
+        "best_rank": 2,
+        "value": 0.4245481322860451,
+        "worst_rank": 2
+      },
+      "class_index": 43,
+      "class_name": "whiteboard",
+      "geometry_key": "scene0027_01:geometry:ce1651e79483213b32f6b0dc50bab869fb4c0b3454d6ad3724622ffaf839122e",
+      "gt_instance_id": 52012,
+      "iou": 0.9243070362473348,
+      "label_map_rank": {
+        "best_rank": 1,
+        "value": 1.0,
+        "worst_rank": 1
+      },
+      "sources": [
+        "track"
+      ],
+      "selected_predictions": {
+        "A_existing_alpha": [
+          {
+            "column_index": 0,
+            "score": 0.6233174279332161
+          }
+        ],
+        "B_expanded_alpha": [
+          {
+            "column_index": 0,
+            "score": 0.6233174279332161
+          }
+        ],
+        "C_fixed_semantics_mask_swap": [
+          {
+            "column_index": 0,
+            "score": 0.6233174279332161
+          }
+        ]
+      }
+    },
+    {
+      "alpha_rank": {
+        "best_rank": 1,
+        "value": 0.24474529922008514,
+        "worst_rank": 1
+      },
+      "bbox_rank": {
+        "best_rank": 1,
+        "value": 0.5785692917875944,
+        "worst_rank": 1
+      },
+      "class_index": 43,
+      "class_name": "whiteboard",
+      "geometry_key": "scene0027_01:geometry:f88a4346009d3986e497c7b95af9f012965e7e1c3bac32f581a20fb3c5d1b7b6",
+      "gt_instance_id": 52012,
+      "iou": 0.35802469135802467,
+      "label_map_rank": {
+        "best_rank": 1,
+        "value": 1.0,
+        "worst_rank": 1
+      },
+      "sources": [
+        "refined_union"
+      ],
+      "selected_predictions": {
+        "A_existing_alpha": [],
+        "B_expanded_alpha": [
+          {
+            "column_index": 3,
+            "score": 0.6223726496100426
+          }
+        ],
+        "C_fixed_semantics_mask_swap": [
+          {
+            "column_index": 1,
+            "score": 0.6232979595661163
+          }
+        ]
+      }
+    }
+  ],
+  "refined_fi1_source_scores": [
+    0.0
+  ],
+  "shared_view_identity_counts": {
+    "same_bbox": 5,
+    "same_sam_mask": 5,
+    "same_crop_boxes": 5,
+    "same_alpha_crops": 5,
+    "same_rgb_crops": 5,
+    "same_features": 5
+  },
+  "geometry_target_coverage_diagnostic_not_ap": {
+    "0.25": {
+      "geometry_target_pairs": 33,
+      "unique_geometries": 32,
+      "unique_targets": 13,
+      "alpha_rank": {
+        "strict_rank1": 16,
+        "best_rank_at_most5": 33
+      },
+      "label_map_rank": {
+        "strict_rank1": 20,
+        "best_rank_at_most5": 28
+      },
+      "bbox_rank": {
+        "strict_rank1": 20,
+        "best_rank_at_most5": 29
+      }
+    },
+    "0.5": {
+      "geometry_target_pairs": 26,
+      "unique_geometries": 26,
+      "unique_targets": 13,
+      "alpha_rank": {
+        "strict_rank1": 15,
+        "best_rank_at_most5": 26
+      },
+      "label_map_rank": {
+        "strict_rank1": 17,
+        "best_rank_at_most5": 22
+      },
+      "bbox_rank": {
+        "strict_rank1": 15,
+        "best_rank_at_most5": 22
+      }
+    },
+    "0.75": {
+      "geometry_target_pairs": 19,
+      "unique_geometries": 19,
+      "unique_targets": 12,
+      "alpha_rank": {
+        "strict_rank1": 13,
+        "best_rank_at_most5": 19
+      },
+      "label_map_rank": {
+        "strict_rank1": 13,
+        "best_rank_at_most5": 17
+      },
+      "bbox_rank": {
+        "strict_rank1": 11,
+        "best_rank_at_most5": 17
+      }
+    }
+  },
+  "ground_truth_reread": false,
+  "predictions_changed": false,
+  "parameter_search": false
+}

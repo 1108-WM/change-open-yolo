@@ -1,0 +1,23 @@
+{
+  "alpha_clip_base": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/pretrained/alpha_clip/checkpoints/ViT-L-14.pt",
+  "alpha_clip_base_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+  "alpha_clip_checkpoint": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/pretrained/alpha_clip/checkpoints/clip_l14_grit20m_fultune_2xe.pth",
+  "alpha_clip_checkpoint_sha256": "42c621bb5bac89a511ab625a878f026c11de4de8cf7abf52db5dfd11862bdb8e",
+  "alpha_clip_source": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/_external/AlphaCLIP/AlphaCLIP-main",
+  "alpha_clip_source_commit": "299482c81e154189524ff1fa3b4af28028b04fb5",
+  "class_count": 198,
+  "cuda_version": "11.3",
+  "feature_dim": 768,
+  "gpu_name": "NVIDIA GeForce RTX 4090 D",
+  "input_resolution": 224,
+  "parameters_frozen": true,
+  "prompt_template": "a blurry photo of {CLASS_NAME} in a room.",
+  "sam_checkpoint": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/pretrained/checkpoints/sam_vit_b_01ec64.pth",
+  "sam_checkpoint_sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912",
+  "sam_model_type": "vit_b",
+  "sam_source": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/_external/segment-anything/segment-anything-main",
+  "sam_source_commit": "299482c81e154189524ff1fa3b4af28028b04fb5",
+  "text_features_sha256": "b7e8cc3f40ac7bf39196c8b9ccaa842e3106e0ddc4e222d57e0a48334de8cfdd",
+  "text_prompts_sha256": "65a05d49428e40d320ecf9b43d62dfe3df8e332936edca9ba916549d64754bcd",
+  "torch_version": "1.12.1+cu113"
+}

@@ -1,0 +1,4607 @@
+[
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 1,
+    "end_line": 2,
+    "heading": "# 新开对话阅读内容：项目最新交接",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 3,
+    "end_line": 3,
+    "heading": "<!-- FI1_RISK_OBJECTIVE_CODE_REVIEW_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 4,
+    "end_line": 16,
+    "heading": "## 2026-10-09 最新交接：按真实成员输出重新审查风险目标，先独立判断下一步",
+    "references": [
+      ".local/fi1_risk_objective_code_review_20261009/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 17,
+    "end_line": 17,
+    "heading": "<!-- FI1_REPLACEMENT_SUPERVISION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 18,
+    "end_line": 46,
+    "heading": "## 2026-10-09 删除动作监督重建已完成：语义检查通过，尚未训练风险模块",
+    "references": [
+      ".local/fi1_replacement_risk_supervision_development200_20261009_v1/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 47,
+    "end_line": 47,
+    "heading": "<!-- FI1_UPRIME_PARENT_SELECTION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 48,
+    "end_line": 77,
+    "heading": "## 2026-10-09 U′替代父T已完成：小幅缓解追加损失，但未超过NT／C",
+    "references": [
+      ".local/fi1_uprime_parent_selection_development200_20261009_v2/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 78,
+    "end_line": 78,
+    "heading": "<!-- FI1_NTU_PRIME_REOPEN_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 79,
+    "end_line": 87,
+    "heading": "## 2026-10-09 最新路线修正：重新研究N/T/U′，先检验U′替代父T",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 88,
+    "end_line": 88,
+    "heading": "<!-- FI1_NT_DIRECT_QUALITY_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 89,
+    "end_line": 116,
+    "heading": "## 2026-10-09 E单行直接质量差已完成但未通过：保留C，转向污染与替代风险证据",
+    "references": [
+      ".local/fi1_nt_direct_quality_development200_20261009_v1/",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_direct_quality.py",
+      "tools/fi1_nt_direct_quality.py",
+      "tools/report_fi1_nt_direct_quality_review.py",
+      "tools/run_fi1_nt_direct_quality_development200.py",
+      "tools/verify_fi1_nt_direct_quality_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 117,
+    "end_line": 117,
+    "heading": "<!-- FI1_NT_QUALITY_MECHANISM_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 118,
+    "end_line": 124,
+    "heading": "## 2026-10-09 最新深入审查：质量表示存在可隔离的容量负担，E待实施",
+    "references": [
+      ".local/fi1_nt_quality_mechanism_review_20261009_v1/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 125,
+    "end_line": 125,
+    "heading": "<!-- FI1_NT_QUALITY_ABLATION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 126,
+    "end_line": 155,
+    "heading": "## 2026-10-09 质量符号消融与失覆盖溯源已完成：先修质量头，不先降T门槛",
+    "references": [
+      ".local/fi1_nt_quality_ablation_development200_20261009_v2/",
+      "diagnostics/lost_targets_unique.json",
+      "diagnostics/quality_removed_pairs.json",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_quality_ablation.py",
+      "tools/fi1_nt_quality_ablation.py",
+      "tools/report_fi1_nt_quality_ablation_review.py",
+      "tools/run_fi1_nt_quality_ablation_development200.py",
+      "tools/verify_fi1_nt_quality_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 156,
+    "end_line": 159,
+    "heading": "<!-- FI1_NT_RELATION_REVIEW_NEXT_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 160,
+    "end_line": 160,
+    "heading": "<!-- FI1_NT_RELATION_SELECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 161,
+    "end_line": 185,
+    "heading": "## 2026-10-09 可弃权N/T关系选择已完成：超过双控制，但双向可靠选择未解决",
+    "references": [
+      ".local/fi1_nt_relation_selection_development200_20261009_v2/",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_relation_selection.py",
+      "tools/fi1_nt_relation_selection.py",
+      "tools/review_fi1_nt_relation_selection_development200.py",
+      "tools/run_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_frontiers_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 186,
+    "end_line": 186,
+    "heading": "<!-- FI1_NT_NMS_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 187,
+    "end_line": 199,
+    "heading": "## 2026-10-09 最新交接：NT两臂已完成，下一步研究可靠代表与互补保留",
+    "references": [
+      ".local/fi1_nt_selection_control_development200_20261009_v1/",
+      "complete / verified_and_reported / resume_required=false",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 200,
+    "end_line": 200,
+    "heading": "<!-- FI1_NT_REDUNDANCY_DIRECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 201,
+    "end_line": 209,
+    "heading": "## 2026-10-09 最新方向讨论：优先验证N＋T冗余消解",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 210,
+    "end_line": 210,
+    "heading": "<!-- FI1_SELECTION_EXECUTION_HANDOFF_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 211,
+    "end_line": 223,
+    "heading": "## 2026-10-09 最新任务：第一点必须证明相对N＋T的收益",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 224,
+    "end_line": 224,
+    "heading": "<!-- A100_FROZEN_FULL800_SUPPLEMENT_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 225,
+    "end_line": 233,
+    "heading": "## 最新交接：A100复现阻塞与补充包",
+    "references": [
+      "outputs/github_frozen_full800_20261008/",
+      "reproduction/A100_READINESS_FIX.md"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 234,
+    "end_line": 234,
+    "heading": "<!-- GITHUB_FROZEN_FULL800_RELEASE_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 235,
+    "end_line": 243,
+    "heading": "## 2026-10-08 最新交接：GitHub冻结Full800复现包已上传",
+    "references": [
+      "outputs/github_frozen_full800_20261008/",
+      "python tools/run_frozen_full800.py inspect --root <已有G10缓存目录>",
+      "releases/official100-gd10-b26-k800-20261008",
+      "reproduction/README.md"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 244,
+    "end_line": 244,
+    "heading": "<!-- FI1_PAPER_REAL_FIGURE_ASSETS_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 245,
+    "end_line": 274,
+    "heading": "## 2026-10-08 最新交接：论文真实图例已导出",
+    "references": [
+      ".local/fi1_core_ablation_val312_20261006_v1/scenes/<scene>/full_selected.json",
+      "01_rgbd_sequence/",
+      "02_scene_pointcloud/",
+      "03_gdsam_observations/",
+      "03_gdsam_observations/observation_sources.csv",
+      "04_track_proposals_T/",
+      "05_mask3d_proposals_N/",
+      "06_candidate_pool_G/",
+      "06_candidate_pool_G/displayed_candidates.csv",
+      "07_competition/",
+      "07_competition/competition_members.csv",
+      "08_final_predictions/",
+      "08_final_predictions/displayed_members.csv",
+      "combined/",
+      "g00010/g00011",
+      "g00012/g00038",
+      "g00032/g00028",
+      "g00040/g00041",
+      "independent/",
+      "outputs/paper_furniture_focused_render_20261008/reviewed/",
+      "outputs/paper_real_figure_assets_20261008/",
+      "outputs/paper_real_figure_assets_20261008/README.md",
+      "outputs/paper_scene_render_validation_20261008/reviewed/",
+      "paper_real_figure_assets_20261008/",
+      "preview/assets_small_size.jpg",
+      "reviewed/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 275,
+    "end_line": 304,
+    "heading": "<!-- FI1_NEXT_PLAN_20261008 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "complete / verified_and_reported / resume_required=false",
+      "evaluation/summary.json",
+      "资料/代码文件索引与当前主线地图.md",
+      "资料/当前基线修改方向.md"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 305,
+    "end_line": 325,
+    "heading": "<!-- FI1_UNION_REFINEMENT_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_refinement_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 326,
+    "end_line": 344,
+    "heading": "<!-- FI1_SCREENED_FACTORIAL_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_screened_factorial_ap_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "tools/verify_fi1_union_screened_factorial_ap_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 345,
+    "end_line": 358,
+    "heading": "<!-- FI1_UNION_MEMBERS_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_members_development200_20261007_v1/",
+      "tools/diagnose_fi1_union_members_development200.py",
+      "tools/verify_fi1_union_members_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 359,
+    "end_line": 378,
+    "heading": "<!-- FI1_UNION_CLASSIFIER_RESERVE100_20261007 -->",
+    "references": [
+      ".local/fi1_union_classifier_reserve100_20261007_v1/",
+      "reserve/evaluation/summary.json",
+      "tests/test_fi1_union_classifier_reserve100.py",
+      "tools/run_fi1_union_classifier_reserve100.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 379,
+    "end_line": 397,
+    "heading": "<!-- FI1_UNION_CLASSIFIER_EXECUTION_20261007 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/fi1_union_classifier.py",
+      "tools/review_fi1_union_classifier_receipts.py",
+      "tools/run_fi1_union_classifier_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 398,
+    "end_line": 406,
+    "heading": "<!-- FI1_UNION_GENERATION_OBJECTIVE_DIAGNOSTIC_20261007 -->",
+    "references": [
+      ".local/fi1_union_generation_objective_development200_20261007_v1/",
+      "tests/test_fi1_union_generation_objective.py",
+      "tools/diagnose_fi1_union_generation_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 407,
+    "end_line": 432,
+    "heading": "<!-- FI1_UNION_ADMISSION_EXECUTION_20261007 -->",
+    "references": [
+      ".local/fi1_union_admission_development200_20261007_v2/",
+      "evaluation/summary.json",
+      "tools/fi1_union_admission_learning.py",
+      "tools/run_fi1_union_admission_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 433,
+    "end_line": 440,
+    "heading": "<!-- FI1_UNION_ADMISSION_DESIGN_REVIEW_20261007 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 441,
+    "end_line": 496,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_development_replay.py",
+      "tools/fi1_union_development_replay.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_development200.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 497,
+    "end_line": 522,
+    "heading": "<!-- FI1_UNION_REPRESENTATIVE_TRAIN300_20261007 -->",
+    "references": [
+      ".local/fi1_union_representative_train300_20261007_v2/",
+      "tools/prepare_fi1_union_representative_training.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 523,
+    "end_line": 557,
+    "heading": "<!-- FI1_UNION_BUDGET_SENSITIVITY_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_budget_sensitivity_train90_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_budget_sensitivity_train90.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 558,
+    "end_line": 583,
+    "heading": "<!-- FI1_UNION_MEMBER_ADMISSION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_member_admission_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 584,
+    "end_line": 619,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_train90_20261007_v1/",
+      "evaluation/<scene>/diagnosis.json",
+      "evaluation/summary.json",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_train90.py",
+      "tools/verify_fi1_union_loss_attribution.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 620,
+    "end_line": 633,
+    "heading": "<!-- FI1_NT_MODULE_SCOPE_DISCUSSION_20261007 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/{contract.json,evaluation/summary.json,selection_mechanism_summary.json}"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 634,
+    "end_line": 656,
+    "heading": "<!-- FI1_REFINEMENT_RECONSTRUCTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/",
+      "diagnosis_inst198/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 657,
+    "end_line": 670,
+    "heading": "<!-- FI1_ZERO_OVERLAP_REVISION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_zero_overlap_revision_train90_20261007_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 671,
+    "end_line": 684,
+    "heading": "<!-- FI1_RELATION_B26_EVIDENCE_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_relation_B26_evidence_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 685,
+    "end_line": 692,
+    "heading": "<!-- FI1_NT_SCORE_ABLATION_VAL312_20261007 -->",
+    "references": [
+      ".local/fi1_nt_score_ablation_val312_20261007_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 693,
+    "end_line": 734,
+    "heading": "<!-- FI1_GRAPH_AB_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/",
+      "evaluation/summary.json",
+      "tests/test_fi1_graph_ab_ablation_v2.py",
+      "tools/fi1_graph_ab_ablation_v2.py",
+      "tools/run_fi1_graph_ab_ablation_val312_v2.py"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 735,
+    "end_line": 748,
+    "heading": "<!-- FI1_ABLATION_CONCLUSION_SYNC_20261006 -->",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 749,
+    "end_line": 759,
+    "heading": "<!-- FI1_CLASS_AGNOSTIC_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_class_agnostic_ablation_val312_20261006_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 760,
+    "end_line": 767,
+    "heading": "<!-- FI1_NTU_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_ntu_ablation_val312_20261006_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 768,
+    "end_line": 773,
+    "heading": "<!-- FI1_CORE_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_core_ablation_val312_20261006_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 774,
+    "end_line": 781,
+    "heading": "<!-- FI1_CORE_ABLATION_TRAIN90_20261006 -->",
+    "references": [
+      ".local/fi1_core_ablation_train90_20261006_v2/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 782,
+    "end_line": 803,
+    "heading": "<!-- FI1_GDSAM_CANDIDATE_SUPPORT_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_candidate_support_train12_20261003_v1/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 804,
+    "end_line": 829,
+    "heading": "<!-- FI1_GDSAM_MULTIMASK_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_multimask_train12_20261003_v1/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 830,
+    "end_line": 873,
+    "heading": "<!-- FI1_GDSAM_LOCAL_STABILITY_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_best_chain_mechanism_audit90_20261002_v2/",
+      ".local/fi1_gdsam_full_trace_train12_20261003_v1/",
+      ".local/fi1_gdsam_local_stability_train12_20261003_v1/",
+      ".local/fi1_geometry_own_ap_train6_20261001_v1/",
+      ".local/fi1_mv3dis_train12_20261002_v1/",
+      ".local/fi1_point_evidence_consensus90_20261002_v2/",
+      "analysis/stage_diagnosis.json",
+      "figures/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 874,
+    "end_line": 886,
+    "heading": "## 1. 新对话必须先读什么",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 887,
+    "end_line": 922,
+    "heading": "## 2. 最新闭环状态与恢复边界",
+    "references": [
+      ".local/fi1_completion_fragment_train3_20261001_v1/",
+      ".local/fi1_completion_ownership_train6_20261001_v1/",
+      ".local/fi1_current_failure_attribution90_20261001_v1/",
+      ".local/fi1_g10_full597_closure_20260921_v1/",
+      ".local/fi1_merge_preservation_evidence90_20261002_v1/",
+      ".local/fi1_newdv3_g10_closure_20260924_v1/",
+      ".local/fi1_relation_split_dev_gate_20260930_v1/",
+      ".local/fi1_sgs_geo_singleview_train3_20261001_v1/",
+      ".local/fi1_split_grow_code_audit_20261001_v1/",
+      ".local/fi1_split_grow_smoke_20261001_v1/",
+      ".local/fi1_split_grow_train10_20261001_v1/",
+      ".local/fi1_split_grow_v2_audit_20261001_v1/{review,completion_verified}.json",
+      ".local/fi1_split_grow_v2_train10_20261001_v1/",
+      ".local/tmux_runtime/usr/bin/tmux",
+      "/home/jia/Wm/wm_open-yolo/OpenYOLO3D",
+      "bash tools/local_tmux.sh …",
+      "evaluation/",
+      "pipeline_stages/"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 923,
+    "end_line": 940,
+    "heading": "## 3. 完整架构：哪部分训练、哪部分推理",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 941,
+    "end_line": 950,
+    "heading": "## 4. 数据划分与既有最佳结果",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 951,
+    "end_line": 958,
+    "heading": "## 5. 本轮几何研究已经做过什么",
+    "references": []
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 959,
+    "end_line": 977,
+    "heading": "## 6. 关键代码、资产和结果路径",
+    "references": [
+      ".venvs/yoloe_gpu/bin/python",
+      "/home/jia/Wm/Dataset/scannet200/",
+      "/home/jia/Wm/wm_open-yolo/OpenYOLO3D",
+      "/media/jia/软件1",
+      "/media/jia/软件1/scannet_additional_train_stream/",
+      "/media/jia/软件1/scannet_additional_train_stream/prepared/",
+      "/media/jia/软件1/scannet_train_stream/{prepared,records,prepared_ncs,records_ncs}/",
+      "/media/jia/软件1/scannet_validation_stream/",
+      "/media/jia/软件1/scannet_validation_stream/environments/fi1_d_v3_infer_py310_sklearn130_20260902/bin/python",
+      "fi1_G10_closure_20260921/",
+      "learning/models/B.joblib",
+      "related papers/",
+      "tools/local_tmux.sh",
+      "资料/scannet_new397_20260914_manifest.json",
+      "资料/训练597场景清单_20260917.json"
+    ]
+  },
+  {
+    "original": "新开对话阅读内容.md",
+    "archived": "docs/state_archive/20261009_before_compaction/新开对话阅读内容.md",
+    "start_line": 978,
+    "end_line": 985,
+    "heading": "## 7. 继续协作约定",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1,
+    "end_line": 2,
+    "heading": "# 当前实验状态",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 3,
+    "end_line": 3,
+    "heading": "<!-- FI1_RISK_OBJECTIVE_CODE_REVIEW_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 4,
+    "end_line": 22,
+    "heading": "## 2026-10-09 最新：代码与实际输出审查完成，风险头尚未训练",
+    "references": [
+      ".local/fi1_risk_objective_code_review_20261009/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 23,
+    "end_line": 23,
+    "heading": "<!-- FI1_REPLACEMENT_SUPERVISION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 24,
+    "end_line": 52,
+    "heading": "## 2026-10-09 删除动作监督重建已完成：语义检查通过，尚未训练风险模块",
+    "references": [
+      ".local/fi1_replacement_risk_supervision_development200_20261009_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 53,
+    "end_line": 53,
+    "heading": "<!-- FI1_UPRIME_PARENT_SELECTION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 54,
+    "end_line": 83,
+    "heading": "## 2026-10-09 U′替代父T已完成：小幅缓解追加损失，但未超过NT／C",
+    "references": [
+      ".local/fi1_uprime_parent_selection_development200_20261009_v2/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 84,
+    "end_line": 84,
+    "heading": "<!-- FI1_NTU_PRIME_REOPEN_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 85,
+    "end_line": 91,
+    "heading": "## 2026-10-09 研究范围修正：NTU′父T替代待测，无新结果",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 92,
+    "end_line": 92,
+    "heading": "<!-- FI1_NT_DIRECT_QUALITY_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 93,
+    "end_line": 120,
+    "heading": "## 2026-10-09 E单行直接质量差已完成但未通过：保留C，转向污染与替代风险证据",
+    "references": [
+      ".local/fi1_nt_direct_quality_development200_20261009_v1/",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_direct_quality.py",
+      "tools/fi1_nt_direct_quality.py",
+      "tools/report_fi1_nt_direct_quality_review.py",
+      "tools/run_fi1_nt_direct_quality_development200.py",
+      "tools/verify_fi1_nt_direct_quality_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 121,
+    "end_line": 121,
+    "heading": "<!-- FI1_NT_QUALITY_MECHANISM_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 122,
+    "end_line": 128,
+    "heading": "## 2026-10-09 质量头冻结机制审查完成，无新模型或AP",
+    "references": [
+      ".local/fi1_nt_quality_mechanism_review_20261009_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 129,
+    "end_line": 129,
+    "heading": "<!-- FI1_NT_QUALITY_ABLATION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 130,
+    "end_line": 159,
+    "heading": "## 2026-10-09 质量符号消融与失覆盖溯源已完成：先修质量头，不先降T门槛",
+    "references": [
+      ".local/fi1_nt_quality_ablation_development200_20261009_v2/",
+      "diagnostics/lost_targets_unique.json",
+      "diagnostics/quality_removed_pairs.json",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_quality_ablation.py",
+      "tools/fi1_nt_quality_ablation.py",
+      "tools/report_fi1_nt_quality_ablation_review.py",
+      "tools/run_fi1_nt_quality_ablation_development200.py",
+      "tools/verify_fi1_nt_quality_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 160,
+    "end_line": 163,
+    "heading": "<!-- FI1_NT_RELATION_REVIEW_NEXT_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 164,
+    "end_line": 164,
+    "heading": "<!-- FI1_NT_RELATION_SELECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 165,
+    "end_line": 189,
+    "heading": "## 2026-10-09 可弃权N/T关系选择已完成：超过双控制，但双向可靠选择未解决",
+    "references": [
+      ".local/fi1_nt_relation_selection_development200_20261009_v2/",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_relation_selection.py",
+      "tools/fi1_nt_relation_selection.py",
+      "tools/review_fi1_nt_relation_selection_development200.py",
+      "tools/run_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_frontiers_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 190,
+    "end_line": 190,
+    "heading": "<!-- FI1_NT_NMS_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 191,
+    "end_line": 210,
+    "heading": "## 2026-10-09 NT两臂选择对照已完成：标准NMS小幅正收益，生产未改",
+    "references": [
+      ".local/fi1_nt_selection_control_development200_20261009_v1/",
+      "complete / verified_and_reported / resume_required=false",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 211,
+    "end_line": 211,
+    "heading": "<!-- FI1_NT_REDUNDANCY_DIRECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 212,
+    "end_line": 220,
+    "heading": "## 2026-10-09 后续方向修订：NT冗余消解两臂待实施",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 221,
+    "end_line": 221,
+    "heading": "<!-- FI1_SELECTION_EXECUTION_HANDOFF_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 222,
+    "end_line": 238,
+    "heading": "## 2026-10-09 当前主任务恢复为第一点改进；下一轮选择对照待实施",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 239,
+    "end_line": 239,
+    "heading": "<!-- A100_FROZEN_FULL800_SUPPLEMENT_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 240,
+    "end_line": 250,
+    "heading": "## 最新交接：A100接入排查及两场景补充包已发布",
+    "references": [
+      "outputs/github_frozen_full800_20261008/a100_supplement_20261008/",
+      "reproduction/A100_READINESS_FIX.md"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 251,
+    "end_line": 251,
+    "heading": "<!-- GITHUB_FROZEN_FULL800_RELEASE_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 252,
+    "end_line": 262,
+    "heading": "## 2026-10-08 最新交接：冻结Full800复现包已发布到GitHub",
+    "references": [
+      "outputs/github_frozen_full800_20261008/full800_reproduction_20261008.zip",
+      "releases/official100-gd10-b26-k800-20261008",
+      "reproduction/README.md",
+      "tools/run_frozen_full800.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 263,
+    "end_line": 263,
+    "heading": "<!-- FI1_PAPER_REAL_FIGURE_ASSETS_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 264,
+    "end_line": 293,
+    "heading": "## 2026-10-08 最新交接：论文真实图例已导出",
+    "references": [
+      ".local/fi1_core_ablation_val312_20261006_v1/scenes/<scene>/full_selected.json",
+      "01_rgbd_sequence/",
+      "02_scene_pointcloud/",
+      "03_gdsam_observations/",
+      "03_gdsam_observations/observation_sources.csv",
+      "04_track_proposals_T/",
+      "05_mask3d_proposals_N/",
+      "06_candidate_pool_G/",
+      "06_candidate_pool_G/displayed_candidates.csv",
+      "07_competition/",
+      "07_competition/competition_members.csv",
+      "08_final_predictions/",
+      "08_final_predictions/displayed_members.csv",
+      "combined/",
+      "g00010/g00011",
+      "g00012/g00038",
+      "g00032/g00028",
+      "g00040/g00041",
+      "independent/",
+      "outputs/paper_furniture_focused_render_20261008/reviewed/",
+      "outputs/paper_real_figure_assets_20261008/",
+      "outputs/paper_real_figure_assets_20261008/README.md",
+      "outputs/paper_scene_render_validation_20261008/reviewed/",
+      "paper_real_figure_assets_20261008/",
+      "preview/assets_small_size.jpg",
+      "reviewed/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 294,
+    "end_line": 323,
+    "heading": "<!-- FI1_NEXT_PLAN_20261008 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "complete / verified_and_reported / resume_required=false",
+      "evaluation/summary.json",
+      "资料/代码文件索引与当前主线地图.md",
+      "资料/当前基线修改方向.md"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 324,
+    "end_line": 344,
+    "heading": "<!-- FI1_UNION_REFINEMENT_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_refinement_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 345,
+    "end_line": 363,
+    "heading": "<!-- FI1_SCREENED_FACTORIAL_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_screened_factorial_ap_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "tools/verify_fi1_union_screened_factorial_ap_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 364,
+    "end_line": 377,
+    "heading": "<!-- FI1_UNION_MEMBERS_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_members_development200_20261007_v1/",
+      "tools/diagnose_fi1_union_members_development200.py",
+      "tools/verify_fi1_union_members_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 378,
+    "end_line": 397,
+    "heading": "<!-- FI1_UNION_CLASSIFIER_RESERVE100_20261007 -->",
+    "references": [
+      ".local/fi1_union_classifier_reserve100_20261007_v1/",
+      "reserve/evaluation/summary.json",
+      "tests/test_fi1_union_classifier_reserve100.py",
+      "tools/run_fi1_union_classifier_reserve100.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 398,
+    "end_line": 416,
+    "heading": "<!-- FI1_UNION_CLASSIFIER_EXECUTION_20261007 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/fi1_union_classifier.py",
+      "tools/review_fi1_union_classifier_receipts.py",
+      "tools/run_fi1_union_classifier_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 417,
+    "end_line": 442,
+    "heading": "<!-- FI1_UNION_ADMISSION_EXECUTION_20261007 -->",
+    "references": [
+      ".local/fi1_union_admission_development200_20261007_v2/",
+      "evaluation/summary.json",
+      "tools/fi1_union_admission_learning.py",
+      "tools/run_fi1_union_admission_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 443,
+    "end_line": 452,
+    "heading": "<!-- FI1_UNION_ADMISSION_DESIGN_REVIEW_20261007 -->",
+    "references": [
+      "tools/run_frozen_safety60_champion_pair_union_ap.py::_union_rows_for_scene"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 453,
+    "end_line": 508,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_development_replay.py",
+      "tools/fi1_union_development_replay.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_development200.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 509,
+    "end_line": 534,
+    "heading": "<!-- FI1_UNION_REPRESENTATIVE_TRAIN300_20261007 -->",
+    "references": [
+      ".local/fi1_union_representative_train300_20261007_v2/",
+      "tools/prepare_fi1_union_representative_training.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 535,
+    "end_line": 569,
+    "heading": "<!-- FI1_UNION_BUDGET_SENSITIVITY_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_budget_sensitivity_train90_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_budget_sensitivity_train90.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 570,
+    "end_line": 595,
+    "heading": "<!-- FI1_UNION_MEMBER_ADMISSION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_member_admission_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 596,
+    "end_line": 631,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_train90_20261007_v1/",
+      "evaluation/<scene>/diagnosis.json",
+      "evaluation/summary.json",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_train90.py",
+      "tools/verify_fi1_union_loss_attribution.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 632,
+    "end_line": 645,
+    "heading": "<!-- FI1_NT_MODULE_SCOPE_DISCUSSION_20261007 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/{contract.json,evaluation/summary.json,selection_mechanism_summary.json}"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 646,
+    "end_line": 668,
+    "heading": "<!-- FI1_REFINEMENT_RECONSTRUCTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/",
+      "diagnosis_inst198/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 669,
+    "end_line": 682,
+    "heading": "<!-- FI1_ZERO_OVERLAP_REVISION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_zero_overlap_revision_train90_20261007_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 683,
+    "end_line": 696,
+    "heading": "<!-- FI1_RELATION_B26_EVIDENCE_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_relation_B26_evidence_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 697,
+    "end_line": 704,
+    "heading": "<!-- FI1_NT_SCORE_ABLATION_VAL312_20261007 -->",
+    "references": [
+      ".local/fi1_nt_score_ablation_val312_20261007_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 705,
+    "end_line": 746,
+    "heading": "<!-- FI1_GRAPH_AB_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/",
+      "evaluation/summary.json",
+      "tests/test_fi1_graph_ab_ablation_v2.py",
+      "tools/fi1_graph_ab_ablation_v2.py",
+      "tools/run_fi1_graph_ab_ablation_val312_v2.py"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 747,
+    "end_line": 768,
+    "heading": "<!-- FI1_ABLATION_CONCLUSION_SYNC_20261006 -->",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 769,
+    "end_line": 779,
+    "heading": "<!-- FI1_CLASS_AGNOSTIC_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_class_agnostic_ablation_val312_20261006_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 780,
+    "end_line": 787,
+    "heading": "<!-- FI1_NTU_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_ntu_ablation_val312_20261006_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 788,
+    "end_line": 801,
+    "heading": "<!-- FI1_CORE_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_core_ablation_val312_20261006_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 802,
+    "end_line": 817,
+    "heading": "<!-- FI1_CORE_ABLATION_TRAIN90_20261006 -->",
+    "references": [
+      ".local/fi1_core_ablation_train90_20261006_v2/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 818,
+    "end_line": 839,
+    "heading": "<!-- FI1_GDSAM_CANDIDATE_SUPPORT_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_candidate_support_train12_20261003_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 840,
+    "end_line": 865,
+    "heading": "<!-- FI1_GDSAM_MULTIMASK_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_multimask_train12_20261003_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 866,
+    "end_line": 887,
+    "heading": "<!-- FI1_GDSAM_LOCAL_STABILITY_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_local_stability_train12_20261003_v1/",
+      "figures/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 888,
+    "end_line": 897,
+    "heading": "<!-- FI1_GDSAM_FULL_TRACE_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_full_trace_train12_20261003_v1/",
+      "figures/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 898,
+    "end_line": 908,
+    "heading": "<!-- FI1_MV3DIS_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_mv3dis_train12_20261002_v1/",
+      "analysis/projection_correction.json",
+      "analysis/stage_diagnosis.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 909,
+    "end_line": 940,
+    "heading": "## 当前控制与完成状态",
+    "references": [
+      ".local/fi1_best_chain_mechanism_audit90_20261002_v2/",
+      ".local/fi1_completion_fragment_train3_20261001_v1/",
+      ".local/fi1_completion_ownership_train6_20261001_v1/",
+      ".local/fi1_geometry_own_ap_train6_20261001_v1/",
+      ".local/fi1_merge_preservation_evidence90_20261002_v1/",
+      ".local/fi1_point_evidence_consensus90_20261002_v2/",
+      ".local/fi1_sgs_geo_singleview_train3_20261001_v1/",
+      ".local/fi1_split_grow_code_audit_20261001_v1/",
+      ".local/fi1_split_grow_v2_audit_20261001_v1/",
+      ".local/fi1_split_grow_v2_train10_20261001_v1/{execution,completion_verified,control_audit,generation_audit}.json",
+      "/tmp/fi1_g10_budget_k_confirm_val312_20260929/summary.json",
+      "evaluation/",
+      "scenes/*/actions.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 941,
+    "end_line": 979,
+    "heading": "## 最近研究结论与回执",
+    "references": [
+      "*_20260921_v*/",
+      ".local/fi1_best_chain_mechanism_audit90_20261002_v2/{summary,mechanism_review,supplementary_mechanism_review,consensus_vote_replay,final_verification}.json",
+      ".local/fi1_bonly_view_cross_features_20260929_v1/{outputs,compact_outputs}/summary.json",
+      ".local/fi1_completion_fragment_train3_20261001_v1/{contract,evaluation_summary,mechanism_summary,action_audit,final_verification}.json",
+      ".local/fi1_completion_ownership_train6_20261001_v1/{contract,evaluation_summary,guard_audit,final_verification}.json",
+      ".local/fi1_current_failure_attribution90_20261001_v1/{summary,mechanism_review,candidate_scope_review,final_verification}.json",
+      ".local/fi1_dv3_g10_train597_20260924_v1/full_execution.json",
+      ".local/fi1_g10_*_20260920_v*/",
+      ".local/fi1_g10_full597_closure_20260921_v1/summary.json",
+      ".local/fi1_g10_full597_frontend_resume_20260920_v1/execution.json",
+      ".local/fi1_geometry_own_ap_train6_20261001_v1/{execution,completion_verified,final_verification,semantic_budget_attribution,rank_audit}.json",
+      ".local/fi1_geometry_review_audit_20260930_v1/summary.json",
+      ".local/fi1_merge_preservation_evidence90_20261002_v1/{paired_review,evidence_frozen,completion_verified,final_verification}.json",
+      ".local/fi1_mv_consensus_audit_dev55_20260929_v1/summary.json",
+      ".local/fi1_newdv3_g10_closure_20260924_v1/summary.json",
+      ".local/fi1_point_evidence_consensus90_20261002_v2/{acceptance,evaluation_summary,mechanism_analysis,grouping_attribution,candidate_stage_effect,final_verification}.json",
+      ".local/fi1_relation_split_dev_gate_20260930_v1/{completion_verified,b26_ap_summary}.json",
+      ".local/fi1_relation_split_pilot30_20260930_v1/",
+      ".local/fi1_sgs_geo_singleview_train3_20261001_v1/{paper_method_audit,evaluation_summary,mechanism_analysis,final_verification}.json",
+      ".local/fi1_split_family_pilot30_20260930_v1/",
+      ".local/fi1_split_grow_code_audit_20261001_v1/{replay_summary,corrected_growth,family_subset_probe,review}.json",
+      ".local/fi1_split_grow_smoke_20261001_v1/{execution,completion_verified,control_replay}.json",
+      ".local/fi1_split_grow_train10_20261001_v1/{execution,contract,control_audit}.json",
+      ".local/fi1_split_grow_v2_audit_20261001_v1/{review,completion_verified,matching_summary,relations_and_sampling,outside_lineage}.json",
+      ".local/fi1_split_grow_v2_train10_20261001_v1/{contract,completion_verified,control_audit,generation_audit}.json",
+      "evaluation/summary.json",
+      "evaluation/{summary,overlap_and_budget,growth_anchor_audit}.json",
+      "evaluation/{summary,pool_and_budget}.json",
+      "fi1_R3b_train597_20260917/models/R3b_full597.joblib",
+      "scenes/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 980,
+    "end_line": 985,
+    "heading": "## 当前边界",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 986,
+    "end_line": 994,
+    "heading": "## 重要实验历史：结论、机制与复现入口",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 995,
+    "end_line": 996,
+    "heading": "### 一、2026-09-19—10-01：第一点几何研究",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 997,
+    "end_line": 1012,
+    "heading": "#### 1.0 训练6自身语义AP：几何收益进入输出，但全部追加未通过",
+    "references": [
+      ".local/fi1_geometry_own_ap_train6_20261001_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1013,
+    "end_line": 1050,
+    "heading": "#### 1.1 关系分裂：从训练域池覆盖到5场景AP门控",
+    "references": [
+      ".local/fi1_relation_split_dev_gate_20260930_v1/{completion_verified,b26_ap_summary,geometry_summary}.json",
+      ".local/fi1_relation_split_pilot30_20260930_v1/",
+      ".local/fi1_split_family_pilot30_20260930_v1/",
+      "/media/jia/软件1/scannet_additional_train_stream/fi1_R3b_train597_20260917/models/R3b_full597.joblib",
+      "exclusive_alpha_completed/summary.json",
+      "exclusive_b26_diagnostic/summary.json",
+      "exclusive_binding/",
+      "family_alpha_completed/summary.json",
+      "family_b26_diagnostic/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1051,
+    "end_line": 1060,
+    "heading": "#### 1.2 评审式审计：输入、关联、共识与合并各有不同问题",
+    "references": [
+      ".local/fi1_geometry_review_audit_20260930_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1061,
+    "end_line": 1084,
+    "heading": "#### 1.3 帧内层次、扣除、叶节点与条件父提升",
+    "references": [
+      ".local/fi1_g10_hierarchy30_20260920_v1/",
+      ".local/fi1_g10_parent_substitution30_20260920_v1/",
+      ".local/fi1_g10_parent_substitution60train_20260920_v1/",
+      ".local/fi1_g10_safe_subtract30_20260920_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1085,
+    "end_line": 1092,
+    "heading": "#### 1.4 多视角关联：减少身份混杂仍可能增加碎片",
+    "references": [
+      ".local/fi1_g10_association30_20260920_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1093,
+    "end_line": 1112,
+    "heading": "#### 1.5 合并与删点归因：不是单一“跨物体误合并”",
+    "references": [
+      ".local/fi1_g10_deletion_evidence90_20260920_v1/",
+      ".local/fi1_g10_local_support90_20260920_v2/",
+      ".local/fi1_g10_merge_attribution90_20260920_v2/",
+      ".local/fi1_g10_merge_recheck90_20260920_v1/",
+      ".local/fi1_g10_parent_replace90_20260920_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1113,
+    "end_line": 1131,
+    "heading": "#### 1.6 生成漏斗、输入阈值与弱观测补充",
+    "references": [
+      ".local/fi1_g10_generation_diagnostic90_20260921_v1/",
+      ".local/fi1_g10_input_filter4_20260921_v1/",
+      ".local/fi1_g10_seed_support4_20260921_v1/",
+      "input_funnel/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1132,
+    "end_line": 1141,
+    "heading": "#### 1.7 来源删除诊断与AP bootstrap纠错",
+    "references": [
+      ".local/fi1_g10_stage_diagnostic30_20260920_v1/",
+      ".local/fi1_g10_stage_replication48_20260920_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1142,
+    "end_line": 1143,
+    "heading": "### 二、2026-09-18—09-30：GD10闭环、B-only与输出预算",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1144,
+    "end_line": 1153,
+    "heading": "#### 2.1 前端比较与采样步长的选择依据",
+    "references": [
+      ".local/fi1_val48_ad_full597_q_20260918_v3/",
+      ".local/fi1_val48_bc_full597_q_20260918_v1/",
+      ".local/fi1_val48_evaluation_20260916/",
+      ".local/fi1_val48_grounded_stride10_full597_q_20260919_v2/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1154,
+    "end_line": 1170,
+    "heading": "#### 2.2 G10训练30五折：曾未过门槛，后经授权才探索全597",
+    "references": [
+      ".local/fi1_g10_matched_oof_20260919_v1/{summary,audit_summary}.json",
+      ".local/fi1_g10_matched_pilot30_20260919_v1/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1171,
+    "end_line": 1184,
+    "heading": "#### 2.3 固定D-v3与新597 D-v3闭环均已完成",
+    "references": [
+      ".local/fi1_dv3_g10_train597_20260924_v1/full_execution.json",
+      ".local/fi1_g10_full597_closure_20260921_v1/{execution,summary}.json",
+      ".local/fi1_newdv3_g10_closure_20260924_v1/{execution,summary}.json",
+      "/media/jia/软件1/scannet_additional_train_stream/fi1_G10_closure_20260921/learning/models/B.joblib",
+      "fi1_Dv3_G10_train597_20260924/full/",
+      "fi1_NewDv3_G10_closure_20260924/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1185,
+    "end_line": 1208,
+    "heading": "#### 2.4 K800与跨类别／多视角特征的已知边界",
+    "references": [
+      ".local/fi1_bonly_view_cross_features_20260929_v1/{outputs,compact_outputs}/summary.json",
+      ".local/fi1_mv_consensus_audit_dev55_20260929_v1/",
+      ".local/fi1_vala_fosk_visibility_audit_dev55_20260929_v1/",
+      "/tmp"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1209,
+    "end_line": 1210,
+    "heading": "### 三、2026-09-09—09-18：第二点监督、竞争与训练扩量",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1211,
+    "end_line": 1220,
+    "heading": "#### 3.1 R0—R4：真正支持B26的对照",
+    "references": [
+      "docs/FI1_C0_MEMBER_CONTROL_RESULTS_20260913.md",
+      "docs/FI1_R2_RESULTS_20260913.md",
+      "docs/FI1_R3B_FULL_MEMBER_CONTROL_20260915.md",
+      "docs/FI1_R3C_RESULTS_20260914.md",
+      "docs/FI1_R3_RESULTS_20260913.md",
+      "docs/FI1_R4_QWEN_RESULTS_20260914.md"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1221,
+    "end_line": 1232,
+    "heading": "#### 3.2 P/Q与200→597：模型身份不能混用",
+    "references": [
+      ".local/fi1_full597_Q_20260918/summary.json",
+      ".local/fi1_full597_val312_20260918/summary.json",
+      ".local/fi1_geometry_feature_ablation_20260914/summary.json",
+      "资料/训练597场景清单_20260917.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1233,
+    "end_line": 1242,
+    "heading": "#### 3.3 直接竞争／ΔAP学习为何未采用",
+    "references": [
+      ".local/fi1_full597_q_bottleneck_ceilings_20260918_v1/",
+      ".local/fi1_pairwise_code_audit_20260918/",
+      ".local/fi1_pairwise_component_delta_20260918_v4/",
+      ".local/fi1_pairwise_slot_small_20260918_v2/",
+      ".local/fi1_pairwise_small_20260918_v5/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1243,
+    "end_line": 1256,
+    "heading": "#### 3.4 更早的统一质量评分、增益归因与动作学习",
+    "references": [
+      ".local/fi1_action_labels_20260911/",
+      ".local/fi1_action_policy_20260911/",
+      ".local/fi1_end_to_end_audit_20260911/verified/",
+      ".local/fi1_fixed_member_scoring_20260910/analysis_v2.json",
+      ".local/fi1_gain_attribution_20260910/run_v2/",
+      ".local/fi1_margin_repair_20260911/{existing_final,new_final}/",
+      ".local/fi1_scene_reference_20260911/",
+      "docs/FI1_SEMANTIC_PAIR_GUARD_RESULTS_20260910.md"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1257,
+    "end_line": 1258,
+    "heading": "### 四、2026-08—09：历史语义对照及非HGB方法",
+    "references": []
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1259,
+    "end_line": 1274,
+    "heading": "#### 4.1 旧YOLO-only／Alpha-only不能替代当前配置消融",
+    "references": [
+      "/media/jia/软件1/scannet_train_stream/dm_sms1_ncs_train100_20260817/stage_e_train100_evaluation/summary.json",
+      "docs/diagnostics/dm_sms1_full_arbitration_train100_ap_20260820/",
+      "docs/diagnostics/dm_sms1_full_arbitration_validation60_ap_20260822/",
+      "docs/diagnostics/z3_alphaclip_fusion_control_group_official100_20260811_v1/summary.json",
+      "docs/diagnostics/z3_control_group_audit_official100_20260811/summary.json",
+      "docs/diagnostics/z3_yoloworld_control_group_official100_20260811_v1/summary.json"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1275,
+    "end_line": 1291,
+    "heading": "#### 4.2 NCS系列：确实试过神经网络，也观察到动作精度与宏AP风险",
+    "references": [
+      "docs/",
+      "docs/diagnostics/",
+      "docs/diagnostics/ncs1_score_swap_plan_train100_20260814/",
+      "ncs2_residual_hurdle_oof_train100_20260814/",
+      "ncs3_deepsets_listwise_oof_train100_20260814/",
+      "ncs4_siglip_proposal_audit_gt_train100_20260815/",
+      "ncs5_proxyclip_proposal_audit_gt_train100_20260815/",
+      "ncs6_source_complementarity_oracle_gt_train100_20260816/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1292,
+    "end_line": 1297,
+    "heading": "#### 4.3 Z3—Z6：重复重评分、宏AP与迁移边界",
+    "references": [
+      "docs/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1298,
+    "end_line": 1314,
+    "heading": "### 五、第一点模型版本与独立类别无关评测",
+    "references": [
+      ".local/mask3d_native_val312_20260912/",
+      "docs/MASK3D_NATIVE_VAL312_20260912.md",
+      "docs/OFFICIAL100_FI1_D_V3_MIGRATION_PREREGISTRATION_20260822.md",
+      "docs/diagnostics/safety60_champion_pair_union_combined_class_agnostic_ap_20260811_v2_prior_corrected/summary.json",
+      "output/train_candidate_champion_pair_union_combined_full_official100_v2_prior_corrected/"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1315,
+    "end_line": 1327,
+    "heading": "### 六、必须保留的工程、评测与数据恢复经验",
+    "references": [
+      ".local/fi1_r3b_val312_execution_20260914/continued_after_alpha_key_fix/",
+      ".local/old260_sens_audit_20260916/deletion_verified.json",
+      ".local/scannet_remaining198_preprocess_20260917/completion_verified.json",
+      ".venvs/qwen25vl_py311",
+      "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25",
+      "docs/DM_SMS1_VLM_STRICT_CODE_AUDIT_PROVENANCE_20260819.json",
+      "docs/FI1_DEV55_VAL312_GAP_ANALYSIS_20260914.md",
+      "docs/FI1_R3B_VAL312_ALPHA_KEY_FIX_20260914.md",
+      "docs/FI1_VAL48_BACKEND_INTEGRATION_20260914.md",
+      "output/scannet200_first_innovation/eval_native_cache",
+      "output/scannet200_first_innovation/frozen_champion/native_cache_mask3d_yoloworld"
+    ]
+  },
+  {
+    "original": "CURRENT_EXPERIMENT_STATUS.md",
+    "archived": "docs/state_archive/20261009_before_compaction/CURRENT_EXPERIMENT_STATUS.md",
+    "start_line": 1328,
+    "end_line": 1334,
+    "heading": "<!-- FI1_UNION_GENERATION_OBJECTIVE_DIAGNOSTIC_20261007 -->",
+    "references": [
+      ".local/fi1_union_generation_objective_development200_20261007_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1,
+    "end_line": 2,
+    "heading": "# 当前基线修改方向",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 3,
+    "end_line": 4,
+    "heading": "<!-- FI1_RISK_OBJECTIVE_CODE_REVIEW_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 5,
+    "end_line": 8,
+    "heading": "## 2026-10-09 最新分析与下一步建议：先处理类别资格与删除决策层级",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 9,
+    "end_line": 19,
+    "heading": "### 1. 实际检查与证据",
+    "references": [
+      "../.local/fi1_risk_objective_code_review_20261009/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 20,
+    "end_line": 35,
+    "heading": "### 2. 新监督适用层级与真实删除不一致",
+    "references": [
+      "member_audit.json/examples/harm_but_FP",
+      "tools/fi1_nt_relation_selection.py:select",
+      "tools/fi1_replacement_risk_supervision.py:classify_action"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 36,
+    "end_line": 51,
+    "heading": "### 3. 来源相关类别资格是独立且较大的现有瓶颈",
+    "references": [
+      "tools/fi1_r0_r1_protocol.py:build_pair"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 52,
+    "end_line": 64,
+    "heading": "### 4. 建议的下一项：来源对称资格固定对照，先独立复核再决定实施",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 65,
+    "end_line": 73,
+    "heading": "### 5. 风险模块若继续，应改变实际动作的监督层级",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 74,
+    "end_line": 74,
+    "heading": "<!-- FI1_REPLACEMENT_SUPERVISION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 75,
+    "end_line": 103,
+    "heading": "## 2026-10-09 删除动作监督重建已完成：语义检查通过，尚未训练风险模块",
+    "references": [
+      ".local/fi1_replacement_risk_supervision_development200_20261009_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 104,
+    "end_line": 104,
+    "heading": "<!-- FI1_UPRIME_PARENT_SELECTION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 105,
+    "end_line": 134,
+    "heading": "## 2026-10-09 U′替代父T已完成：小幅缓解追加损失，但未超过NT／C",
+    "references": [
+      ".local/fi1_uprime_parent_selection_development200_20261009_v2/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 135,
+    "end_line": 136,
+    "heading": "<!-- FI1_NTU_PRIME_REOPEN_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 137,
+    "end_line": 142,
+    "heading": "## 2026-10-09 用户追问后的路线修正：重新纳入N/T/U′，先测替代父T",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 143,
+    "end_line": 148,
+    "heading": "### 已测过与未测过",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 149,
+    "end_line": 157,
+    "heading": "### 本轮检索的论文及适用边界",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 158,
+    "end_line": 175,
+    "heading": "### 下一轮第一批：现有U′的替代机制对照，不训练",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 176,
+    "end_line": 186,
+    "heading": "### 如进入学习：改变监督问题，不只换回归损失",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 187,
+    "end_line": 187,
+    "heading": "<!-- FI1_NT_DIRECT_QUALITY_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 188,
+    "end_line": 215,
+    "heading": "## 2026-10-09 E单行直接质量差已完成但未通过：保留C，转向污染与替代风险证据",
+    "references": [
+      ".local/fi1_nt_direct_quality_development200_20261009_v1/",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_direct_quality.py",
+      "tools/fi1_nt_direct_quality.py",
+      "tools/report_fi1_nt_direct_quality_review.py",
+      "tools/run_fi1_nt_direct_quality_development200.py",
+      "tools/verify_fi1_nt_direct_quality_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 216,
+    "end_line": 217,
+    "heading": "<!-- FI1_NT_QUALITY_MECHANISM_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 218,
+    "end_line": 232,
+    "heading": "## 2026-10-09 深入代码审查：下一版只改质量头的方向表示",
+    "references": [
+      ".local/fi1_nt_quality_mechanism_review_20261009_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 233,
+    "end_line": 233,
+    "heading": "<!-- FI1_NT_QUALITY_ABLATION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 234,
+    "end_line": 263,
+    "heading": "## 2026-10-09 质量符号消融与失覆盖溯源已完成：先修质量头，不先降T门槛",
+    "references": [
+      ".local/fi1_nt_quality_ablation_development200_20261009_v2/",
+      "diagnostics/lost_targets_unique.json",
+      "diagnostics/quality_removed_pairs.json",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_quality_ablation.py",
+      "tools/fi1_nt_quality_ablation.py",
+      "tools/report_fi1_nt_quality_ablation_review.py",
+      "tools/run_fi1_nt_quality_ablation_development200.py",
+      "tools/verify_fi1_nt_quality_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 264,
+    "end_line": 264,
+    "heading": "<!-- FI1_NT_RELATION_SELECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 265,
+    "end_line": 293,
+    "heading": "## 2026-10-09 可弃权N/T关系选择已完成：超过双控制，但双向可靠选择未解决",
+    "references": [
+      ".local/fi1_nt_relation_selection_development200_20261009_v2/",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_relation_selection.py",
+      "tools/fi1_nt_relation_selection.py",
+      "tools/review_fi1_nt_relation_selection_development200.py",
+      "tools/run_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_frontiers_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 294,
+    "end_line": 294,
+    "heading": "<!-- FI1_NT_NMS_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 295,
+    "end_line": 312,
+    "heading": "## 2026-10-09 两臂完成后的研究判断：保留NMS参考，针对剩余跨源竞争设计方法",
+    "references": [
+      ".local/fi1_nt_selection_control_development200_20261009_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 313,
+    "end_line": 314,
+    "heading": "<!-- FI1_NT_REDUNDANCY_DIRECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 315,
+    "end_line": 325,
+    "heading": "## 2026-10-09 后续讨论：允许以N＋T冗余消解为第一点主方向",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 326,
+    "end_line": 333,
+    "heading": "### 下一对话先做的两组实验",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 334,
+    "end_line": 342,
+    "heading": "### 值得研究的方法与公平比较",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 343,
+    "end_line": 344,
+    "heading": "<!-- FI1_SELECTION_EXECUTION_HANDOFF_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 345,
+    "end_line": 348,
+    "heading": "## 2026-10-09 下一对话执行计划：先检验融合输出的净价值",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 349,
+    "end_line": 355,
+    "heading": "### 1．已经确定的问题与尚未确定的原因",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 356,
+    "end_line": 379,
+    "heading": "### 2．第一轮只实现一个固定选择对照",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 380,
+    "end_line": 396,
+    "heading": "### 3．数据、实施入口与验收",
+    "references": [
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "execution/contract/predictions_frozen/evaluation/selection_review/final_verification/acceptance/report",
+      "tools/fi1_class_agnostic_ablation.py",
+      "tools/fi1_core_ablation.py",
+      "tools/fi1_r3b_delta_diagnostic_core.py::rank",
+      "tools/fi1_same_class_mask_nms.py",
+      "tools/fi1_union_development_replay.py",
+      "tools/run_fi1_selection_control_development200.py",
+      "tools/run_fi1_union_refinement_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 397,
+    "end_line": 405,
+    "heading": "### 4．预先固定结果解释及下一分支",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 406,
+    "end_line": 416,
+    "heading": "### 5．下一项生成修改：先拆开U′的连通性硬删除",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 417,
+    "end_line": 417,
+    "heading": "<!-- FI1_PAPER_REAL_FIGURE_ASSETS_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 418,
+    "end_line": 426,
+    "heading": "## 2026-10-08 当前任务切换：正式论文图例已完成",
+    "references": [
+      "outputs/paper_real_figure_assets_20261008/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 427,
+    "end_line": 456,
+    "heading": "<!-- FI1_NEXT_PLAN_20261008 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "complete / verified_and_reported / resume_required=false",
+      "evaluation/summary.json",
+      "资料/代码文件索引与当前主线地图.md",
+      "资料/当前基线修改方向.md"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 457,
+    "end_line": 460,
+    "heading": "## 2026-10-08 下一步详细研究计划（待实施）",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 461,
+    "end_line": 468,
+    "heading": "### A．固定现有点集，优先研究N/T/U/U′相对输出选择",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 469,
+    "end_line": 478,
+    "heading": "### B．U′生成：优先审查连通性删错，随后才改准入",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 479,
+    "end_line": 492,
+    "heading": "### C．生成与选择的交叉验证及停止条件",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 493,
+    "end_line": 513,
+    "heading": "<!-- FI1_UNION_REFINEMENT_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_refinement_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 514,
+    "end_line": 532,
+    "heading": "<!-- FI1_SCREENED_FACTORIAL_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_screened_factorial_ap_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "tools/verify_fi1_union_screened_factorial_ap_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 533,
+    "end_line": 546,
+    "heading": "<!-- FI1_UNION_MEMBERS_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_members_development200_20261007_v1/",
+      "tools/diagnose_fi1_union_members_development200.py",
+      "tools/verify_fi1_union_members_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 547,
+    "end_line": 566,
+    "heading": "<!-- FI1_UNION_CLASSIFIER_RESERVE100_20261007 -->",
+    "references": [
+      ".local/fi1_union_classifier_reserve100_20261007_v1/",
+      "reserve/evaluation/summary.json",
+      "tests/test_fi1_union_classifier_reserve100.py",
+      "tools/run_fi1_union_classifier_reserve100.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 567,
+    "end_line": 585,
+    "heading": "<!-- FI1_UNION_CLASSIFIER_EXECUTION_20261007 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/fi1_union_classifier.py",
+      "tools/review_fi1_union_classifier_receipts.py",
+      "tools/run_fi1_union_classifier_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 586,
+    "end_line": 594,
+    "heading": "<!-- FI1_UNION_GENERATION_OBJECTIVE_DIAGNOSTIC_20261007 -->",
+    "references": [
+      ".local/fi1_union_generation_objective_development200_20261007_v1/",
+      "tests/test_fi1_union_generation_objective.py",
+      "tools/diagnose_fi1_union_generation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 595,
+    "end_line": 621,
+    "heading": "<!-- FI1_UNION_ADMISSION_EXECUTION_20261007 -->",
+    "references": [
+      ".local/fi1_union_admission_development200_20261007_v2/",
+      "evaluation/summary.json",
+      "tools/fi1_union_admission_learning.py",
+      "tools/run_fi1_union_admission_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 622,
+    "end_line": 649,
+    "heading": "<!-- FI1_UNION_ADMISSION_DESIGN_REVIEW_20261007 -->",
+    "references": [
+      "tools/train_fi1_action_contribution.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 650,
+    "end_line": 705,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_development_replay.py",
+      "tools/fi1_union_development_replay.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_development200.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 706,
+    "end_line": 731,
+    "heading": "<!-- FI1_UNION_REPRESENTATIVE_TRAIN300_20261007 -->",
+    "references": [
+      ".local/fi1_union_representative_train300_20261007_v2/",
+      "tools/prepare_fi1_union_representative_training.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 732,
+    "end_line": 766,
+    "heading": "<!-- FI1_UNION_BUDGET_SENSITIVITY_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_budget_sensitivity_train90_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_budget_sensitivity_train90.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 767,
+    "end_line": 792,
+    "heading": "<!-- FI1_UNION_MEMBER_ADMISSION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_member_admission_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 793,
+    "end_line": 828,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_train90_20261007_v1/",
+      "evaluation/<scene>/diagnosis.json",
+      "evaluation/summary.json",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_train90.py",
+      "tools/verify_fi1_union_loss_attribution.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 829,
+    "end_line": 844,
+    "heading": "<!-- FI1_NT_MODULE_SCOPE_DISCUSSION_20261007 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/{contract.json,evaluation/summary.json,selection_mechanism_summary.json}"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 845,
+    "end_line": 869,
+    "heading": "<!-- FI1_REFINEMENT_RECONSTRUCTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/",
+      "diagnosis_inst198/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 870,
+    "end_line": 885,
+    "heading": "<!-- FI1_ZERO_OVERLAP_REVISION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_zero_overlap_revision_train90_20261007_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 886,
+    "end_line": 901,
+    "heading": "<!-- FI1_RELATION_B26_EVIDENCE_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_relation_B26_evidence_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 902,
+    "end_line": 911,
+    "heading": "<!-- FI1_NT_SCORE_ABLATION_VAL312_20261007 -->",
+    "references": [
+      ".local/fi1_nt_score_ablation_val312_20261007_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 912,
+    "end_line": 953,
+    "heading": "<!-- FI1_GRAPH_AB_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/",
+      "evaluation/summary.json",
+      "tests/test_fi1_graph_ab_ablation_v2.py",
+      "tools/fi1_graph_ab_ablation_v2.py",
+      "tools/run_fi1_graph_ab_ablation_val312_v2.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 954,
+    "end_line": 967,
+    "heading": "<!-- FI1_ABLATION_CONCLUSION_SYNC_20261006 -->",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 968,
+    "end_line": 980,
+    "heading": "<!-- FI1_CLASS_AGNOSTIC_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_class_agnostic_ablation_val312_20261006_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 981,
+    "end_line": 990,
+    "heading": "<!-- FI1_NTU_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_ntu_ablation_val312_20261006_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 991,
+    "end_line": 998,
+    "heading": "<!-- FI1_CORE_ABLATION_TRAIN90_20261006 -->",
+    "references": [
+      ".local/fi1_core_ablation_train90_20261006_v2/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 999,
+    "end_line": 1020,
+    "heading": "<!-- FI1_GDSAM_CANDIDATE_SUPPORT_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_candidate_support_train12_20261003_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1021,
+    "end_line": 1046,
+    "heading": "<!-- FI1_GDSAM_MULTIMASK_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_multimask_train12_20261003_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1047,
+    "end_line": 1070,
+    "heading": "<!-- FI1_GDSAM_LOCAL_STABILITY_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_local_stability_train12_20261003_v1/",
+      "figures/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1071,
+    "end_line": 1088,
+    "heading": "## 10-03官方MV3DIS同输入对照完成：不整套替换，下一步分离输入作用",
+    "references": [
+      ".local/fi1_gdsam_full_trace_train12_20261003_v1/acceptance.json",
+      ".local/fi1_mv3dis_train12_20261002_v1/completion_verified.json"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1089,
+    "end_line": 1098,
+    "heading": "## 10-02原共识合并证据审查完成：尚无可冻结的条件规则",
+    "references": [
+      ".local/fi1_merge_preservation_evidence90_20261002_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1099,
+    "end_line": 1110,
+    "heading": "## 10-02局部点证据共识对照完成：统一替代未通过",
+    "references": [
+      ".local/fi1_point_evidence_consensus90_20261002_v2/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1111,
+    "end_line": 1126,
+    "heading": "## 10-02机制审查后的首项设计记录（对照已完成）",
+    "references": [
+      ".local/fi1_best_chain_mechanism_audit90_20261002_v2/",
+      ".local/fi1_geometry_own_ap_train6_20261001_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1127,
+    "end_line": 1130,
+    "heading": "## 目标与固定控制",
+    "references": []
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1131,
+    "end_line": 1164,
+    "heading": "## 当前研究：FI1 split-grow family（v2三组消融已实现）",
+    "references": [
+      ".local/fi1_split_grow_train10_20261001_v1/",
+      ".local/fi1_split_grow_v2_train10_20261001_v1/contract.json",
+      "tools/run_fi1_split_grow_pipeline.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1165,
+    "end_line": 1182,
+    "heading": "## v2审计及真实失败归因：下一步修改依据",
+    "references": [
+      ".local/fi1_current_failure_attribution90_20261001_v1/",
+      ".local/fi1_split_grow_v2_audit_20261001_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1183,
+    "end_line": 1190,
+    "heading": "## SGS／Geo机制复核与单视角探针：最新修改依据",
+    "references": [
+      ".local/fi1_sgs_geo_singleview_train3_20261001_v1/"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1191,
+    "end_line": 1198,
+    "heading": "## 补全／碎片归并首版已完成：后续修改依据",
+    "references": [
+      ".local/fi1_completion_fragment_train3_20261001_v1/",
+      "tools/fi1_completion_fragment_core.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1199,
+    "end_line": 1214,
+    "heading": "## 跨来源竞争／局部检查已完成：硬拒绝未通过",
+    "references": [
+      ".local/fi1_completion_ownership_train6_20261001_v1/",
+      "tools/fi1_completion_ownership_core.py"
+    ]
+  },
+  {
+    "original": "资料/当前基线修改方向.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/当前基线修改方向.md",
+    "start_line": 1215,
+    "end_line": 1220,
+    "heading": "## 验证顺序与停止条件",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 1,
+    "end_line": 2,
+    "heading": "# 代码文件索引与当前主线地图",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 3,
+    "end_line": 3,
+    "heading": "<!-- FI1_RISK_OBJECTIVE_CODE_REVIEW_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 4,
+    "end_line": 22,
+    "heading": "## 2026-10-09 最新代码审查入口：几何标签、类别成员执行与来源资格",
+    "references": [
+      ".local/fi1_risk_objective_code_review_20261009/audit.py",
+      "evaluate/scannet200/eval_semantic_instance.py:evaluate_matches",
+      "tools/fi1_core_ablation.py:source_pool / features_and_members",
+      "tools/fi1_nt_relation_selection.py:select",
+      "tools/fi1_r0_r1_protocol.py:build_pair",
+      "tools/fi1_replacement_risk_supervision.py:classify_action"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 23,
+    "end_line": 23,
+    "heading": "<!-- FI1_REPLACEMENT_SUPERVISION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 24,
+    "end_line": 52,
+    "heading": "## 2026-10-09 删除动作监督重建已完成：语义检查通过，尚未训练风险模块",
+    "references": [
+      ".local/fi1_replacement_risk_supervision_development200_20261009_v1/"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 53,
+    "end_line": 53,
+    "heading": "<!-- FI1_UPRIME_PARENT_SELECTION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 54,
+    "end_line": 83,
+    "heading": "## 2026-10-09 U′替代父T已完成：小幅缓解追加损失，但未超过NT／C",
+    "references": [
+      ".local/fi1_uprime_parent_selection_development200_20261009_v2/"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 84,
+    "end_line": 84,
+    "heading": "<!-- FI1_NTU_PRIME_REOPEN_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 85,
+    "end_line": 95,
+    "heading": "## 2026-10-09 最新入口：既有U′替代父T的固定对照",
+    "references": [
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "tools/fi1_core_ablation.py::source_pool",
+      "tools/fi1_nt_relation_selection.py::select",
+      "tools/run_fi1_union_refinement_ablation_development200.py::candidate_pool / refinement_links"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 96,
+    "end_line": 96,
+    "heading": "<!-- FI1_NT_DIRECT_QUALITY_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 97,
+    "end_line": 124,
+    "heading": "## 2026-10-09 E单行直接质量差已完成但未通过：保留C，转向污染与替代风险证据",
+    "references": [
+      ".local/fi1_nt_direct_quality_development200_20261009_v1/",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_direct_quality.py",
+      "tools/fi1_nt_direct_quality.py",
+      "tools/report_fi1_nt_direct_quality_review.py",
+      "tools/run_fi1_nt_direct_quality_development200.py",
+      "tools/verify_fi1_nt_direct_quality_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 125,
+    "end_line": 125,
+    "heading": "<!-- FI1_NT_QUALITY_MECHANISM_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 126,
+    "end_line": 137,
+    "heading": "## 2026-10-09 质量表示审查及下一版E入口",
+    "references": [
+      ".local/fi1_nt_quality_ablation_development200_20261009_v2/diagnostics/lost_targets.json",
+      ".local/fi1_nt_quality_mechanism_review_20261009_v1/audit.py",
+      "tools/fi1_nt_relation_selection.py::supervision / decisions / select",
+      "tools/run_fi1_nt_relation_selection_development200.py::directed_x / arrays / fit_models / predict_models"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 138,
+    "end_line": 138,
+    "heading": "<!-- FI1_NT_QUALITY_ABLATION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 139,
+    "end_line": 168,
+    "heading": "## 2026-10-09 质量符号消融与失覆盖溯源已完成：先修质量头，不先降T门槛",
+    "references": [
+      ".local/fi1_nt_quality_ablation_development200_20261009_v2/",
+      "diagnostics/lost_targets_unique.json",
+      "diagnostics/quality_removed_pairs.json",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_quality_ablation.py",
+      "tools/fi1_nt_quality_ablation.py",
+      "tools/report_fi1_nt_quality_ablation_review.py",
+      "tools/run_fi1_nt_quality_ablation_development200.py",
+      "tools/verify_fi1_nt_quality_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 169,
+    "end_line": 169,
+    "heading": "<!-- FI1_NT_RELATION_SELECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 170,
+    "end_line": 194,
+    "heading": "## 2026-10-09 可弃权N/T关系选择已完成：超过双控制，但双向可靠选择未解决",
+    "references": [
+      ".local/fi1_nt_relation_selection_development200_20261009_v2/",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_relation_selection.py",
+      "tools/fi1_nt_relation_selection.py",
+      "tools/review_fi1_nt_relation_selection_development200.py",
+      "tools/run_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_frontiers_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 195,
+    "end_line": 195,
+    "heading": "<!-- FI1_NT_NMS_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 196,
+    "end_line": 213,
+    "heading": "## 2026-10-09 NT两臂已实现并完成：固定选择参考与复用入口",
+    "references": [
+      ".local/fi1_nt_selection_control_development200_20261009_v1/",
+      ".local/fi1_union_loss_attribution_development200_20261007_v1/scenes/<scene>/nt_{geometry,members,features,scores}",
+      "evaluation/summary.json",
+      "tests/test_fi1_same_class_mask_nms.py",
+      "tools/fi1_same_class_mask_nms.py::select",
+      "tools/review_fi1_nt_selection_control_development200.py",
+      "tools/run_fi1_nt_selection_control_development200.sh",
+      "tools/run_fi1_selection_control_development200.py",
+      "tools/verify_fi1_selection_control_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 214,
+    "end_line": 214,
+    "heading": "<!-- FI1_NT_REDUNDANCY_DIRECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 215,
+    "end_line": 219,
+    "heading": "## 2026-10-09 后续优先级：先做NT两臂",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 220,
+    "end_line": 220,
+    "heading": "<!-- FI1_SELECTION_EXECUTION_HANDOFF_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 221,
+    "end_line": 232,
+    "heading": "## 2026-10-09 当前入口：第一点固定选择对照待实施",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/",
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      ".local/fi1_union_screened_factorial_ap_development200_20261007_v1/",
+      "tools/fi1_class_agnostic_ablation.py",
+      "tools/fi1_core_ablation.py",
+      "tools/fi1_r3b_delta_diagnostic_core.py::rank",
+      "tools/fi1_same_class_mask_nms.py",
+      "tools/fi1_union_development_replay.py",
+      "tools/run_fi1_selection_control_development200.py",
+      "tools/run_fi1_union_refinement_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 233,
+    "end_line": 233,
+    "heading": "<!-- FI1_PAPER_REAL_FIGURE_ASSETS_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 234,
+    "end_line": 250,
+    "heading": "## 2026-10-08 只读论文图例代码与正式交付",
+    "references": [
+      "08_final_predictions/displayed_members.csv",
+      "combined/",
+      "independent/",
+      "outputs/paper_furniture_focused_render_20261008/{render_furniture_readonly.py,render_reviewed.py,finalize_reviewed_layout.py}",
+      "outputs/paper_real_figure_assets_20261008/",
+      "outputs/paper_real_figure_assets_20261008/export_readonly.py",
+      "outputs/paper_scene_render_validation_20261008/reviewed/{render_readonly_snapshot.py,refine_review_layout.py}"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 251,
+    "end_line": 280,
+    "heading": "<!-- FI1_NEXT_PLAN_20261008 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "complete / verified_and_reported / resume_required=false",
+      "evaluation/summary.json",
+      "资料/代码文件索引与当前主线地图.md",
+      "资料/当前基线修改方向.md"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 281,
+    "end_line": 299,
+    "heading": "## 2026-10-08 下一步复用入口",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/",
+      ".local/fi1_union_admission_development200_20261007_v2/features/<scene>/records.json",
+      ".local/fi1_union_classifier_development200_20261007_v1/oof/<scene>/classifier_nested.json",
+      ".local/fi1_union_members_development200_20261007_v1/evidence/<scene>/",
+      ".venvs/yoloe_gpu/bin/python",
+      "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py::conservative_kept_indexes",
+      "bash tools/local_tmux.sh",
+      "tools/fi1_class_agnostic_ablation.py",
+      "tools/fi1_core_ablation.py::source_pool/features_and_members/learned_selection",
+      "tools/fi1_refinement_reconstruction.py::SOURCE_SELECTION/build_namespace",
+      "tools/fi1_union_admission_learning.py::admitted_pool",
+      "tools/fi1_union_classifier.py::classification_keys",
+      "tools/fi1_union_development_replay.py::Guard/project_multiclass",
+      "tools/fi1_union_member_admission.py",
+      "tools/review_fi1_union_refinement_ablation_development200.py",
+      "tools/run_fi1_refinement_reconstruction_train90.py",
+      "tools/run_fi1_union_refinement_ablation_development200.py::candidate_pool/refinement_links",
+      "tools/verify_fi1_union_refinement_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 300,
+    "end_line": 320,
+    "heading": "<!-- FI1_UNION_REFINEMENT_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_refinement_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 321,
+    "end_line": 339,
+    "heading": "<!-- FI1_SCREENED_FACTORIAL_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_screened_factorial_ap_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "tools/verify_fi1_union_screened_factorial_ap_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 340,
+    "end_line": 353,
+    "heading": "<!-- FI1_UNION_MEMBERS_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_members_development200_20261007_v1/",
+      "tools/diagnose_fi1_union_members_development200.py",
+      "tools/verify_fi1_union_members_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 354,
+    "end_line": 373,
+    "heading": "<!-- FI1_UNION_CLASSIFIER_RESERVE100_20261007 -->",
+    "references": [
+      ".local/fi1_union_classifier_reserve100_20261007_v1/",
+      "reserve/evaluation/summary.json",
+      "tests/test_fi1_union_classifier_reserve100.py",
+      "tools/run_fi1_union_classifier_reserve100.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 374,
+    "end_line": 392,
+    "heading": "<!-- FI1_UNION_CLASSIFIER_EXECUTION_20261007 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tools/fi1_union_classifier.py",
+      "tools/review_fi1_union_classifier_receipts.py",
+      "tools/run_fi1_union_classifier_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 393,
+    "end_line": 401,
+    "heading": "<!-- FI1_UNION_GENERATION_OBJECTIVE_DIAGNOSTIC_20261007 -->",
+    "references": [
+      ".local/fi1_union_generation_objective_development200_20261007_v1/",
+      "tests/test_fi1_union_generation_objective.py",
+      "tools/diagnose_fi1_union_generation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 402,
+    "end_line": 427,
+    "heading": "<!-- FI1_UNION_ADMISSION_EXECUTION_20261007 -->",
+    "references": [
+      ".local/fi1_union_admission_development200_20261007_v2/",
+      "evaluation/summary.json",
+      "tools/fi1_union_admission_learning.py",
+      "tools/run_fi1_union_admission_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 428,
+    "end_line": 483,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_development_replay.py",
+      "tools/fi1_union_development_replay.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_development200.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 484,
+    "end_line": 509,
+    "heading": "<!-- FI1_UNION_REPRESENTATIVE_TRAIN300_20261007 -->",
+    "references": [
+      ".local/fi1_union_representative_train300_20261007_v2/",
+      "tools/prepare_fi1_union_representative_training.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 510,
+    "end_line": 544,
+    "heading": "<!-- FI1_UNION_BUDGET_SENSITIVITY_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_budget_sensitivity_train90_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_budget_sensitivity_train90.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 545,
+    "end_line": 570,
+    "heading": "<!-- FI1_UNION_MEMBER_ADMISSION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_member_admission_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 571,
+    "end_line": 606,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_train90_20261007_v1/",
+      "evaluation/<scene>/diagnosis.json",
+      "evaluation/summary.json",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_train90.py",
+      "tools/verify_fi1_union_loss_attribution.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 607,
+    "end_line": 622,
+    "heading": "<!-- FI1_NT_MODULE_SCOPE_DISCUSSION_20261007 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/{contract.json,evaluation/summary.json,selection_mechanism_summary.json}",
+      "tools/build_track_native_mutual_duplicate_plan.py:is_strict_mutual_duplicate",
+      "tools/fi1_core_ablation.py:source_pool",
+      "tools/fi1_graph_ab_ablation_v2.py:restore_raw_pool",
+      "tools/fi1_r2_core.py:FEATURES",
+      "资料/流程讲稿.docx"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 623,
+    "end_line": 647,
+    "heading": "<!-- FI1_REFINEMENT_RECONSTRUCTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/",
+      "diagnosis_inst198/",
+      "tests/test_fi1_refinement_diagnostic_classes.py",
+      "tests/test_fi1_refinement_reconstruction.py",
+      "tools/diagnose_fi1_refinement_reconstruction_v3.py",
+      "tools/fi1_refinement_reconstruction.py",
+      "tools/review_fi1_refinement_reconstruction.py",
+      "tools/run_fi1_refinement_reconstruction_train90.py",
+      "tools/verify_fi1_refinement_reconstruction_v2.py",
+      "tools/verify_fi1_refinement_review.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 648,
+    "end_line": 663,
+    "heading": "<!-- FI1_ZERO_OVERLAP_REVISION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_zero_overlap_revision_train90_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_zero_overlap_revision.py",
+      "tools/audit_fi1_zero_overlap_dependencies.py",
+      "tools/fi1_zero_overlap_revision.py",
+      "tools/run_fi1_zero_overlap_revision_train90.py",
+      "tools/verify_fi1_zero_overlap_revision.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 664,
+    "end_line": 679,
+    "heading": "<!-- FI1_RELATION_B26_EVIDENCE_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_relation_B26_evidence_train90_20261007_v1/",
+      "tests/test_fi1_relation_b26_evidence.py",
+      "tools/build_ncs_fi1_stage_b_relation_rerank_plan.py:94",
+      "tools/fi1_relation_b26_evidence.py",
+      "tools/run_fi1_relation_b26_evidence_train90.py",
+      "tools/verify_fi1_relation_b26_evidence.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 680,
+    "end_line": 689,
+    "heading": "<!-- FI1_NT_SCORE_ABLATION_VAL312_20261007 -->",
+    "references": [
+      ".local/fi1_nt_score_ablation_val312_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_nt_score_ablation.py",
+      "tools/fi1_nt_score_ablation.py",
+      "tools/run_fi1_nt_score_ablation_val312.py",
+      "tools/verify_fi1_nt_score_ablation.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 690,
+    "end_line": 731,
+    "heading": "<!-- FI1_GRAPH_AB_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/",
+      "evaluation/summary.json",
+      "tests/test_fi1_graph_ab_ablation_v2.py",
+      "tools/fi1_graph_ab_ablation_v2.py",
+      "tools/run_fi1_graph_ab_ablation_val312_v2.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 732,
+    "end_line": 745,
+    "heading": "<!-- FI1_ABLATION_CONCLUSION_SYNC_20261006 -->",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 746,
+    "end_line": 758,
+    "heading": "<!-- FI1_CLASS_AGNOSTIC_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_class_agnostic_ablation_val312_20261006_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_class_agnostic_ablation.py",
+      "tools/fi1_class_agnostic_ablation.py",
+      "tools/run_fi1_class_agnostic_ablation_val312.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 759,
+    "end_line": 768,
+    "heading": "<!-- FI1_NTU_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_ntu_ablation_val312_20261006_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_ntu_ablation.py",
+      "tools/run_fi1_ntu_ablation_val312.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 769,
+    "end_line": 774,
+    "heading": "<!-- FI1_CORE_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_core_ablation_val312_20261006_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_val312_ablation.py",
+      "tools/fi1_core_ablation.py",
+      "tools/run_fi1_core_ablation_val312.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 775,
+    "end_line": 780,
+    "heading": "<!-- FI1_CORE_ABLATION_TRAIN90_20261006 -->",
+    "references": [
+      ".local/fi1_core_ablation_train90_20261006_v2/",
+      "code_snapshot/",
+      "evaluation/summary.json",
+      "scenes/",
+      "tests/test_fi1_core_ablation.py",
+      "tools/fi1_core_ablation.py",
+      "tools/run_fi1_core_ablation_train90.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 781,
+    "end_line": 804,
+    "heading": "<!-- FI1_GDSAM_CANDIDATE_SUPPORT_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_candidate_support_train12_20261003_v1/"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 805,
+    "end_line": 831,
+    "heading": "<!-- FI1_GDSAM_MULTIMASK_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_multimask_train12_20261003_v1/"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 832,
+    "end_line": 860,
+    "heading": "<!-- FI1_GDSAM_LOCAL_STABILITY_TRAIN12_20261003 -->",
+    "references": [
+      ".local/fi1_gdsam_full_trace_train12_20261003_v1/",
+      ".local/fi1_gdsam_local_stability_train12_20261003_v1/",
+      "figures/",
+      "tools/run_fi1_frontend_comparison.py"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 861,
+    "end_line": 873,
+    "heading": "## 当前主线",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 874,
+    "end_line": 897,
+    "heading": "## 当前代码入口",
+    "references": [
+      "evaluate/scannet200/eval_semantic_instance.py",
+      "models/Mask3D/mask3d/",
+      "tools/bind_fi1_r0_r1_alpha_cache.py",
+      "tools/build_details_frame_siou_tracks.py",
+      "tools/build_details_iterative_proposal_merges.py",
+      "tools/complete_fi1_r0_r1_alpha.py",
+      "tools/evaluate_fi1_frontend_comparison.py",
+      "tools/export_fi1_r0_r1_yolo_views.py",
+      "tools/fi1_g10_closure_selection.py",
+      "tools/fi1_geometry_feature_ablation.py",
+      "tools/fi1_r0_r1_protocol.py",
+      "tools/fi1_r2_core.py",
+      "tools/fi1_r3_core.py",
+      "tools/refine_details_automatic_tracks_consensus.py",
+      "tools/run_fi1_g10_closure.py",
+      "tools/run_fi1_g10_closure_assets.py",
+      "tools/run_fi1_g10_closure_holdout.py",
+      "tools/run_fi1_g10_closure_learning.py",
+      "tools/run_fi1_train597.py",
+      "tools/run_scannet200_train_scene_track_pipeline.py",
+      "utils/"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 898,
+    "end_line": 913,
+    "heading": "## 模型与数据资产",
+    "references": [
+      ".local/fi1_full597_Q_20260918/models/Q_full597.joblib",
+      ".local/fi1_unified_evidence_20260910/workspace/",
+      "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/pretrained/fi1_d_v3_official100_full_models_20260822/",
+      "/media/jia/软件1/scannet_additional_train_stream/fi1_Dv3_G10_train597_20260924/full/",
+      "/media/jia/软件1/scannet_additional_train_stream/fi1_G10_closure_20260921/learning/models/{B,Q}.joblib",
+      "/media/jia/软件1/scannet_additional_train_stream/fi1_G10_full597_20260919/frontend/",
+      "/media/jia/软件1/scannet_additional_train_stream/fi1_NewDv3_G10_closure_20260924/",
+      "/media/jia/软件1/scannet_additional_train_stream/fi1_R3b_train597_20260917/models/R3b_full597.joblib",
+      "dev/",
+      "pilot_models/",
+      "train/",
+      "val/",
+      "资料/scannet_new397_20260914_manifest.json",
+      "资料/训练597场景清单_20260917.json"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 914,
+    "end_line": 962,
+    "heading": "## 隔离研究与历史接口",
+    "references": [
+      ".local/fi1_best_chain_mechanism_audit90_20261002_v2/run.py",
+      ".local/fi1_completion_fragment_train3_20261001_v1/{run,verify,audit}.py",
+      ".local/fi1_completion_ownership_train6_20261001_v1/{run,verify,audit}.py",
+      ".local/fi1_current_failure_attribution90_20261001_v1/{run,review,scope_review,verify}.py",
+      ".local/fi1_geometry_own_ap_train6_20261001_v1/",
+      ".local/fi1_merge_preservation_evidence90_20261002_v1/{run,core,analyze,verify}.py",
+      ".local/fi1_mv3dis_train12_20261002_v1/",
+      ".local/fi1_point_evidence_consensus90_20261002_v2/{run,core,verify}.py",
+      ".local/fi1_relation_split_dev_gate_20260930_v1/generate.py",
+      ".local/fi1_relation_split_pilot30_20260930_v1/run.py",
+      ".local/fi1_sgs_geo_singleview_train3_20261001_v1/{run,analyze,verify}.py",
+      ".local/fi1_split_grow_code_audit_20261001_v1/replay.py",
+      ".local/fi1_split_grow_smoke_20261001_v1/",
+      ".local/fi1_split_grow_train10_20261001_v1/run.py",
+      ".local/fi1_split_grow_v2_audit_20261001_v1/audit_observations.py",
+      ".local/fi1_split_grow_v2_train10_20261001_v1/run.py",
+      ".venvs/yoloe_gpu/bin/python",
+      "/home/jia/anaconda3/envs/openyolo3d/bin/python",
+      "analysis/accept.py",
+      "analysis/diagnose.py",
+      "analysis/grouping.py",
+      "analysis/projection_check.py",
+      "analysis/review.py",
+      "analysis/stage_diagnosis.py",
+      "analysis/supplement_v2.py",
+      "analysis/verify_complete.py",
+      "deps/",
+      "evaluation/summary.json",
+      "tests/test_fi1_completion_fragment.py",
+      "tests/test_fi1_completion_ownership.py",
+      "tests/test_fi1_failure_attribution_core.py",
+      "tests/test_fi1_geometry_pool_selection.py",
+      "tests/test_fi1_single_view_mechanism.py",
+      "tests/test_fi1_single_view_projection.py",
+      "tests/test_fi1_split_grow.py",
+      "tests/test_fi1_split_grow_v2.py",
+      "tools/evaluate_fi1_split_grow_batch.py",
+      "tools/evaluate_fi1_val48_complete.py",
+      "tools/export_fi1_superpoint_features.py",
+      "tools/fi1_action_*",
+      "tools/fi1_completion_fragment_core.py",
+      "tools/fi1_completion_ownership_core.py",
+      "tools/fi1_failure_attribution_core.py",
+      "tools/fi1_fixed_member_scoring*",
+      "tools/fi1_geometry_pool_selection.py",
+      "tools/fi1_semantic_pair_guard*",
+      "tools/fi1_single_view_mechanism_core.py",
+      "tools/fi1_split_grow_core.py",
+      "tools/fi1_split_grow_selection.py",
+      "tools/fi1_split_grow_v2_core.py",
+      "tools/run_fi1_gain_attribution.py",
+      "tools/run_fi1_geometry_ap_train6.py",
+      "tools/run_fi1_r3b_delta_diagnostic.py",
+      "tools/run_fi1_r3b_member_control.py",
+      "tools/run_fi1_split_grow.py",
+      "tools/run_fi1_split_grow_backend.py",
+      "tools/run_fi1_split_grow_pipeline.py",
+      "upstream/"
+    ]
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 963,
+    "end_line": 963,
+    "heading": "# 核查生成的pipeline_contract.json后，在宿主用tools/local_tmux.sh托管同命令去掉--prepare-only。",
+    "references": []
+  },
+  {
+    "original": "资料/代码文件索引与当前主线地图.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/代码文件索引与当前主线地图.md",
+    "start_line": 964,
+    "end_line": 967,
+    "heading": "# --gt <同扫描的已认证GT.txt>仅作为预测冻结后的最后诊断阶段；不自动评测。",
+    "references": [
+      "related papers/"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 1,
+    "end_line": 2,
+    "heading": "# 主要 AP 结果",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 3,
+    "end_line": 3,
+    "heading": "<!-- FI1_RISK_OBJECTIVE_CODE_REVIEW_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 4,
+    "end_line": 8,
+    "heading": "## 2026-10-09 代码／逐输出审查更新：无新AP",
+    "references": [
+      ".local/fi1_risk_objective_code_review_20261009/verified.json"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 9,
+    "end_line": 9,
+    "heading": "<!-- FI1_REPLACEMENT_SUPERVISION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 10,
+    "end_line": 38,
+    "heading": "## 2026-10-09 删除动作监督重建已完成：语义检查通过，尚未训练风险模块",
+    "references": [
+      ".local/fi1_replacement_risk_supervision_development200_20261009_v1/"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 39,
+    "end_line": 39,
+    "heading": "<!-- FI1_UPRIME_PARENT_SELECTION_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 40,
+    "end_line": 69,
+    "heading": "## 2026-10-09 U′替代父T已完成：小幅缓解追加损失，但未超过NT／C",
+    "references": [
+      ".local/fi1_uprime_parent_selection_development200_20261009_v2/"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 70,
+    "end_line": 70,
+    "heading": "<!-- FI1_NT_DIRECT_QUALITY_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 71,
+    "end_line": 98,
+    "heading": "## 2026-10-09 E单行直接质量差已完成但未通过：保留C，转向污染与替代风险证据",
+    "references": [
+      ".local/fi1_nt_direct_quality_development200_20261009_v1/",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_direct_quality.py",
+      "tools/fi1_nt_direct_quality.py",
+      "tools/report_fi1_nt_direct_quality_review.py",
+      "tools/run_fi1_nt_direct_quality_development200.py",
+      "tools/verify_fi1_nt_direct_quality_development200.py"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 99,
+    "end_line": 99,
+    "heading": "<!-- FI1_NT_QUALITY_ABLATION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 100,
+    "end_line": 129,
+    "heading": "## 2026-10-09 质量符号消融与失覆盖溯源已完成：先修质量头，不先降T门槛",
+    "references": [
+      ".local/fi1_nt_quality_ablation_development200_20261009_v2/",
+      "diagnostics/lost_targets_unique.json",
+      "diagnostics/quality_removed_pairs.json",
+      "diagnostics/summary.json",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_quality_ablation.py",
+      "tools/fi1_nt_quality_ablation.py",
+      "tools/report_fi1_nt_quality_ablation_review.py",
+      "tools/run_fi1_nt_quality_ablation_development200.py",
+      "tools/verify_fi1_nt_quality_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 130,
+    "end_line": 130,
+    "heading": "<!-- FI1_NT_RELATION_SELECTION_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 131,
+    "end_line": 155,
+    "heading": "## 2026-10-09 可弃权N/T关系选择已完成：超过双控制，但双向可靠选择未解决",
+    "references": [
+      ".local/fi1_nt_relation_selection_development200_20261009_v2/",
+      "evaluation/summary.json",
+      "execution.json=complete / verified_and_reported / resume_required=false",
+      "tests/test_fi1_nt_relation_selection.py",
+      "tools/fi1_nt_relation_selection.py",
+      "tools/review_fi1_nt_relation_selection_development200.py",
+      "tools/run_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_development200.py",
+      "tools/verify_fi1_nt_relation_selection_frontiers_development200.py"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 156,
+    "end_line": 159,
+    "heading": "<!-- FI1_NT_NMS_COMPLETE_20261009 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 160,
+    "end_line": 160,
+    "heading": "<!-- FI1_PAPER_REAL_FIGURE_ASSETS_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 161,
+    "end_line": 169,
+    "heading": "## 2026-10-08 论文图例导出交接（无新AP）",
+    "references": [
+      "07_competition/",
+      "08_final_predictions/displayed_members.csv",
+      "outputs/paper_real_figure_assets_20261008/",
+      "preview/assets_small_size.jpg"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 170,
+    "end_line": 173,
+    "heading": "<!-- FI1_NEXT_PLAN_20261008 -->",
+    "references": [
+      "资料/当前基线修改方向.md#fi1-next-plan-20261008"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 174,
+    "end_line": 209,
+    "heading": "<!-- FI1_UNION_REFINEMENT_AP200_20261007 -->",
+    "references": [
+      ".local/fi1_union_members_development200_20261007_v1/report.md",
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      ".local/fi1_union_screened_factorial_ap_development200_20261007_v1/report.md",
+      "evaluation/summary.json",
+      "tools/run_fi1_union_refinement_ablation_development200.py"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 210,
+    "end_line": 214,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_development200_20261007_v1/"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 215,
+    "end_line": 221,
+    "heading": "<!-- FI1_UNION_REPRESENTATIVE_TRAIN300_20261007 -->",
+    "references": [
+      ".local/fi1_union_representative_train300_20261007_v2/{manifest.json,coverage_summary.json,report.md,acceptance.json}"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 222,
+    "end_line": 225,
+    "heading": "<!-- FI1_UNION_MEMBER_ADMISSION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_member_admission_train90_20261007_v1/report.md"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 226,
+    "end_line": 229,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_TRAIN90_20261007 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 230,
+    "end_line": 233,
+    "heading": "<!-- FI1_NT_MODULE_SCOPE_DISCUSSION_20261007 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 234,
+    "end_line": 237,
+    "heading": "<!-- FI1_REFINEMENT_RECONSTRUCTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/diagnosis_summary_inst198.json"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 238,
+    "end_line": 241,
+    "heading": "<!-- FI1_ZERO_OVERLAP_REVISION_TRAIN90_20261007 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 242,
+    "end_line": 245,
+    "heading": "<!-- FI1_NT_SCORE_ABLATION_VAL312_20261007 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 246,
+    "end_line": 249,
+    "heading": "<!-- FI1_GRAPH_AB_ABLATION_VAL312_20261006 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 250,
+    "end_line": 253,
+    "heading": "<!-- FI1_ABLATION_CONCLUSION_SYNC_20261006 -->",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 254,
+    "end_line": 266,
+    "heading": "## 1. 当前选择：固定 D-v3＋匹配 GD10 的597训练 B26，K=800",
+    "references": [
+      ".local/fi1_g10_full597_closure_20260921_v1/summary.json",
+      ".local/state_document_cleanup_20261001/before.json",
+      "/tmp/fi1_g10_budget_k_confirm_val312_20260929/summary.json"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 267,
+    "end_line": 283,
+    "heading": "## 2. 匹配 GD10 训练与 D-v3 重训对照（K=600）",
+    "references": [
+      ".local/fi1_g10_full597_closure_20260921_v1/summary.json",
+      ".local/fi1_newdv3_g10_closure_20260924_v1/summary.json"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 284,
+    "end_line": 300,
+    "heading": "## 3. 历史200→597与B/Q对照（旧前端，K=600）",
+    "references": [
+      ".local/fi1_full597_Q_20260918/summary.json",
+      ".local/fi1_full597_val312_20260918/summary.json",
+      ".local/fi1_geometry_feature_ablation_20260914/summary.json"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 301,
+    "end_line": 318,
+    "heading": "## 4. 第二点核心消融（开发55，历史200训练，K=600）",
+    "references": [
+      "docs/FI1_C0_MEMBER_CONTROL_RESULTS_20260913.md",
+      "docs/FI1_R2_RESULTS_20260913.md",
+      "docs/FI1_R3B_FULL_MEMBER_CONTROL_20260915.md",
+      "docs/FI1_R3C_RESULTS_20260914.md",
+      "docs/FI1_R3_RESULTS_20260913.md",
+      "docs/FI1_R4_QWEN_RESULTS_20260914.md"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 319,
+    "end_line": 334,
+    "heading": "## 5. 最近B-only语义／竞争特征对照（开发55，K=800）",
+    "references": [
+      ".local/fi1_bonly_view_cross_features_20260929_v1/outputs/summary.json",
+      ".local/fi1_mv_consensus_audit_dev55_20260929_v1/summary.json",
+      "compact_outputs/summary.json"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 335,
+    "end_line": 352,
+    "heading": "## 6. 历史val48完整前端对照（旧full597 B/Q，K=600）",
+    "references": [
+      ".local/fi1_val48_ad_full597_q_20260918_v3/summary.json",
+      ".local/fi1_val48_bc_full597_q_20260918_v1/summary.json",
+      ".local/fi1_val48_grounded_stride10_full597_q_20260919_v2/summary.json",
+      "20260919_v1/summary.json"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 353,
+    "end_line": 354,
+    "heading": "## 7. 第一点评估：类别无关 AP",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 355,
+    "end_line": 375,
+    "heading": "### 完整val312基线与历史控制",
+    "references": [
+      ".local/mask3d_native_val312_20260912/",
+      "docs/MASK3D_NATIVE_VAL312_20260912.md"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 376,
+    "end_line": 383,
+    "heading": "### NCS-train100",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 384,
+    "end_line": 394,
+    "heading": "### official100",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 395,
+    "end_line": 396,
+    "heading": "## 8. 早期开放词汇AP与主要语义对照",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 397,
+    "end_line": 415,
+    "heading": "### 完整val312：论文基线、历史多语义与DM-SMS-1",
+    "references": [
+      "/media/jia/软件1/scannet_validation_stream/fi1_d_v3_dm_sms1_val312_local_20260902/dm_sms1_4090_repro_20260902/",
+      "19_open_vocab_ap_minus1_boundary_recovery_20260908/",
+      "20_open_vocab_ap_minus1_boundary_recovery_audit_20260908/"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 416,
+    "end_line": 427,
+    "heading": "### official100：B0/B1/B2",
+    "references": [
+      "/media/jia/软件1/scannet_train_stream/fi1_geometry_semantic_official100_20260908/"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 428,
+    "end_line": 438,
+    "heading": "### official100：历史统一逐类质量评分负对照",
+    "references": [
+      "docs/FI1_FIXED_MEMBER_SCORING_RESULTS_20260910.md"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 439,
+    "end_line": 452,
+    "heading": "## 9. 当前最佳组合的三组训练域预检（训练90，K800；非正式验证集消融）",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 453,
+    "end_line": 468,
+    "heading": "## 10. 正式核心三组消融（完整ScanNet200验证312，K800）",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 469,
+    "end_line": 484,
+    "heading": "## 11. 并集与合格细化来源分解（完整ScanNet200验证312，K800）",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 485,
+    "end_line": 512,
+    "heading": "## 12. 同集合类别无关AP补充（完整ScanNet200验证312）",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 513,
+    "end_line": 556,
+    "heading": "## 13. 图A原始双源→图B双源→完整图B边界消融（完整ScanNet200验证312）",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/",
+      "evaluation/summary.json",
+      "tests/test_fi1_graph_ab_ablation_v2.py",
+      "tools/fi1_graph_ab_ablation_v2.py",
+      "tools/run_fi1_graph_ab_ablation_val312_v2.py"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 557,
+    "end_line": 577,
+    "heading": "## 14. 固定N/T点集的几何评分分解（完整ScanNet200验证312）",
+    "references": [
+      ".local/fi1_nt_score_ablation_val312_20261007_v1/{contract.json,predictions_frozen.json,evaluation/summary.json,completion_verified.json,final_verification.json,acceptance.json}"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 578,
+    "end_line": 599,
+    "heading": "## 15. 零共享点原生冲突上限修订（训练90，非正式验证集）",
+    "references": [
+      ".local/fi1_zero_overlap_revision_train90_20261007_v1/{contract.json,model_dependencies.json,predictions_frozen.json,evaluation/summary.json,Full_dependency_inventory.json,completion_verified.json,final_verification.json,acceptance.json}"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 600,
+    "end_line": 664,
+    "heading": "## 16. U新增成员竞争与原成员重评分归因（训练90，非正式验证集）",
+    "references": [
+      ".local/fi1_union_loss_attribution_train90_20261007_v1/",
+      "evaluation/<scene>/diagnosis.json",
+      "evaluation/summary.json",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_train90.py",
+      "tools/verify_fi1_union_loss_attribution.py"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 665,
+    "end_line": 666,
+    "heading": "## 17. 四组K600／K800预算敏感性（训练90，非正式验证集）",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 667,
+    "end_line": 713,
+    "heading": "<!-- FI1_UNION_BUDGET_SENSITIVITY_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_budget_sensitivity_train90_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_budget_sensitivity_train90.py"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 714,
+    "end_line": 777,
+    "heading": "## 18. 扩大代表性后的四组U归因（开发200，训练诊断）",
+    "references": [
+      ".local/fi1_union_loss_attribution_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_development_replay.py",
+      "tools/fi1_union_development_replay.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_development200.py"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 778,
+    "end_line": 796,
+    "heading": "## 19. U准入首轮五组（开发200，训练侧折外诊断）",
+    "references": []
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 797,
+    "end_line": 813,
+    "heading": "## 20. 分类式并集准入 development200（2026-10-07）",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/{evaluation/summary.json,final_verification.json,acceptance.json,report.md}"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 814,
+    "end_line": 828,
+    "heading": "## 21. 分类式并集准入：全开发训练后保留100验收（2026-10-07）",
+    "references": [
+      ".local/fi1_union_classifier_reserve100_20261007_v1/{reserve/evaluation/summary.json,model_frozen.json,final_verification.json,acceptance.json,report.md}"
+    ]
+  },
+  {
+    "original": "资料/结果.md",
+    "archived": "docs/state_archive/20261009_before_compaction/资料/结果.md",
+    "start_line": 829,
+    "end_line": 848,
+    "heading": "## 22. NT固定同类点mask NMS两臂（开发200，2026-10-09）",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 1,
+    "end_line": 2,
+    "heading": "# Codex最新交接",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 3,
+    "end_line": 3,
+    "heading": "<!-- FI1_PAPER_REAL_FIGURE_ASSETS_20261008 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 4,
+    "end_line": 33,
+    "heading": "## 2026-10-08 最新交接：论文真实图例已导出",
+    "references": [
+      ".local/fi1_core_ablation_val312_20261006_v1/scenes/<scene>/full_selected.json",
+      "01_rgbd_sequence/",
+      "02_scene_pointcloud/",
+      "03_gdsam_observations/",
+      "03_gdsam_observations/observation_sources.csv",
+      "04_track_proposals_T/",
+      "05_mask3d_proposals_N/",
+      "06_candidate_pool_G/",
+      "06_candidate_pool_G/displayed_candidates.csv",
+      "07_competition/",
+      "07_competition/competition_members.csv",
+      "08_final_predictions/",
+      "08_final_predictions/displayed_members.csv",
+      "combined/",
+      "g00010/g00011",
+      "g00012/g00038",
+      "g00032/g00028",
+      "g00040/g00041",
+      "independent/",
+      "outputs/paper_furniture_focused_render_20261008/reviewed/",
+      "outputs/paper_real_figure_assets_20261008/",
+      "outputs/paper_real_figure_assets_20261008/README.md",
+      "outputs/paper_scene_render_validation_20261008/reviewed/",
+      "paper_real_figure_assets_20261008/",
+      "preview/assets_small_size.jpg",
+      "reviewed/"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 34,
+    "end_line": 64,
+    "heading": "<!-- FI1_NEXT_PLAN_20261008 -->",
+    "references": [
+      ".local/fi1_union_classifier_development200_20261007_v1/",
+      ".local/fi1_union_refinement_ablation_development200_20261007_v1/",
+      "complete / verified_and_reported / resume_required=false",
+      "evaluation/summary.json",
+      "资料/代码文件索引与当前主线地图.md",
+      "资料/代码文件索引与当前主线地图.md#fi1-reuse-map-20261008",
+      "资料/当前基线修改方向.md",
+      "资料/当前基线修改方向.md#fi1-next-plan-20261008"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 65,
+    "end_line": 68,
+    "heading": "## 以下为历史交接记录（状态已被顶部更新覆盖）",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 69,
+    "end_line": 123,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_DEVELOPMENT200_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_development200_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_development_replay.py",
+      "tools/fi1_union_development_replay.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_development200.py"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 124,
+    "end_line": 148,
+    "heading": "<!-- FI1_UNION_REPRESENTATIVE_TRAIN300_20261007 -->",
+    "references": [
+      ".local/fi1_union_representative_train300_20261007_v2/",
+      "tools/prepare_fi1_union_representative_training.py"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 149,
+    "end_line": 182,
+    "heading": "<!-- FI1_UNION_BUDGET_SENSITIVITY_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_budget_sensitivity_train90_20261007_v1/",
+      "evaluation/summary.json",
+      "tests/test_fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_budget_sensitivity.py",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_budget_sensitivity_train90.py"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 183,
+    "end_line": 208,
+    "heading": "<!-- FI1_UNION_MEMBER_ADMISSION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_member_admission_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 209,
+    "end_line": 244,
+    "heading": "<!-- FI1_UNION_LOSS_ATTRIBUTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_union_loss_attribution_train90_20261007_v1/",
+      "evaluation/<scene>/diagnosis.json",
+      "evaluation/summary.json",
+      "tools/fi1_union_loss_attribution.py",
+      "tools/run_fi1_union_loss_attribution_train90.py",
+      "tools/verify_fi1_union_loss_attribution.py"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 245,
+    "end_line": 258,
+    "heading": "<!-- FI1_NT_MODULE_SCOPE_DISCUSSION_20261007 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/{contract.json,evaluation/summary.json,selection_mechanism_summary.json}"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 259,
+    "end_line": 281,
+    "heading": "<!-- FI1_REFINEMENT_RECONSTRUCTION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_refinement_reconstruction_train90_20261007_v1/",
+      "diagnosis_inst198/"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 282,
+    "end_line": 295,
+    "heading": "<!-- FI1_ZERO_OVERLAP_REVISION_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_zero_overlap_revision_train90_20261007_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 296,
+    "end_line": 309,
+    "heading": "<!-- FI1_RELATION_B26_EVIDENCE_TRAIN90_20261007 -->",
+    "references": [
+      ".local/fi1_relation_B26_evidence_train90_20261007_v1/"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 310,
+    "end_line": 317,
+    "heading": "<!-- FI1_NT_SCORE_ABLATION_VAL312_20261007 -->",
+    "references": [
+      ".local/fi1_nt_score_ablation_val312_20261007_v1/",
+      "evaluation/summary.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 318,
+    "end_line": 359,
+    "heading": "<!-- FI1_GRAPH_AB_ABLATION_VAL312_20261006 -->",
+    "references": [
+      ".local/fi1_graph_ab_ablation_val312_20261006_v2/",
+      "evaluation/summary.json",
+      "tests/test_fi1_graph_ab_ablation_v2.py",
+      "tools/fi1_graph_ab_ablation_v2.py",
+      "tools/run_fi1_graph_ab_ablation_val312_v2.py"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 360,
+    "end_line": 385,
+    "heading": "<!-- FI1_ABLATION_CONCLUSION_SYNC_20261006 -->",
+    "references": [
+      ".local/fi1_mv3dis_train12_20261002_v1/{execution,completion_verified,evaluation_summary}.json",
+      "analysis/stage_diagnosis.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 386,
+    "end_line": 388,
+    "heading": "<!-- FI1_FULL597_Q_COMPLETED_20260918 -->",
+    "references": [
+      ".local/fi1_full597_Q_20260918/summary.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 389,
+    "end_line": 391,
+    "heading": "<!-- FI1_FULL597_Q_STARTED_20260918 -->",
+    "references": [
+      ".local/fi1_full597_Q_20260918/execution.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 392,
+    "end_line": 394,
+    "heading": "<!-- FI1_FULL597_VAL312_COMPLETED_20260918 -->",
+    "references": [
+      ".local/fi1_full597_val312_20260918/summary.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 395,
+    "end_line": 397,
+    "heading": "<!-- FI1_FULL597_VAL312_STARTED_20260918 -->",
+    "references": [
+      ".local/fi1_full597_val312_20260918/execution.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 398,
+    "end_line": 400,
+    "heading": "<!-- FI1_TRAIN597_COMPLETED_20260918 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 401,
+    "end_line": 403,
+    "heading": "<!-- FI1_TRAIN597_20260917 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 404,
+    "end_line": 406,
+    "heading": "<!-- ADDITIONAL397_PREPROCESS_COMPLETE_20260917 -->",
+    "references": [
+      ".local/fi1_additional199_A_20260917/execution.json",
+      ".local/scannet_remaining198_preprocess_20260917/completion_verified.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 407,
+    "end_line": 409,
+    "heading": "<!-- ADDITIONAL199_A_PILOT_PASSED_20260917 -->",
+    "references": [
+      ".local/fi1_additional199_A_20260917/execution.json",
+      "资料/新增前199_A配置资产生成_20260917.md"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 410,
+    "end_line": 412,
+    "heading": "<!-- ADDITIONAL199_A_ASSETS_STARTED_20260917 -->",
+    "references": [
+      ".local/fi1_additional199_A_20260917/execution.json",
+      "fi1_A_first199_20260917/",
+      "资料/新增前199_A配置资产生成_20260917.md"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 413,
+    "end_line": 415,
+    "heading": "<!-- ADDITIONAL198_QUEUE_RECOVERY_20260917 -->",
+    "references": [
+      ".local/scannet_remaining198_preprocess_20260917/execution.json",
+      "资料/新增397处理与清理进展_20260917.md"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 416,
+    "end_line": 418,
+    "heading": "<!-- ADDITIONAL397_NEXT_STAGE_20260917 -->",
+    "references": [
+      "资料/新增397处理与清理进展_20260917.md"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 419,
+    "end_line": 421,
+    "heading": "<!-- OLD260_SENS_DELETED_20260916 -->",
+    "references": [
+      ".local/old260_sens_audit_20260916/deletion_verified.json",
+      "/media/jia/软件1/scannet_train_stream/scans/scene*/scene*.sens"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 422,
+    "end_line": 424,
+    "heading": "<!-- ADDITIONAL_FIRST199_PREPROCESS_20260916 -->",
+    "references": [
+      ".local/scannet_first199_preprocess_20260916/execution.json",
+      "/media/jia/软件1/scannet_additional_train_stream/prepared/",
+      "资料/新增397前199预处理计划与状态_20260916.md"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 425,
+    "end_line": 427,
+    "heading": "<!-- BATCH04_COMPLETED_20260916 -->",
+    "references": [
+      ".local/scannet_batch04_download_20260916/completion_verified.json",
+      "/media/jia/软件1/scannet_additional_train_stream/scans/"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 428,
+    "end_line": 430,
+    "heading": "<!-- STORAGE_DEEP_CLEANUP_COMPLETED_20260916 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 431,
+    "end_line": 433,
+    "heading": "<!-- STORAGE_CLEANUP_COMPLETED_20260916 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 434,
+    "end_line": 436,
+    "heading": "<!-- VAL48_FULL_EVALUATION_COMPLETED_20260916 -->",
+    "references": [
+      ".local/fi1_val48_evaluation_20260916/"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 437,
+    "end_line": 444,
+    "heading": "<!-- FI1_VAL48_HOST_VERIFIED_LATEST -->",
+    "references": [
+      "bash tools/local_tmux.sh -V",
+      "bash tools/local_tmux.sh attach -t fi1_val48_monitor",
+      "full_batches/execution.json",
+      "handoff/runtime_correction_20260914.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 445,
+    "end_line": 450,
+    "heading": "<!-- FI1_VAL48_HANDOFF_LATEST_20260914 -->",
+    "references": [
+      "F/full_batches/execution.json",
+      "F=.local/fi1_val48_frontend_full_pipeline_20260914/"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 451,
+    "end_line": 453,
+    "heading": "<!-- FI1_VAL48_BACKEND_INTEGRATION_20260914 -->",
+    "references": [
+      "full_batches/execution.json"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 454,
+    "end_line": 456,
+    "heading": "<!-- FI1_VAL48_IN_PLACE_REUSE_20260914 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 457,
+    "end_line": 459,
+    "heading": "<!-- FI1_VAL48_SELECTION_20260914 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 460,
+    "end_line": 462,
+    "heading": "<!-- FI1_GEOMETRY_FEATURE_ABLATION_RESULTS_20260914 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 463,
+    "end_line": 465,
+    "heading": "<!-- FI1_DEV55_VAL312_DIAGNOSTICS_20260914 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 466,
+    "end_line": 468,
+    "heading": "<!-- FI1_VAL312_RESULTS_20260914 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 469,
+    "end_line": 471,
+    "heading": "<!-- FI1_VAL312_ALPHA_KEY_FIX_20260914 -->",
+    "references": [
+      ".local/fi1_r3b_val312_execution_20260914/continued_after_alpha_key_fix/"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 472,
+    "end_line": 474,
+    "heading": "<!-- FI1_VAL312_EXECUTION_20260914 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 475,
+    "end_line": 477,
+    "heading": "<!-- FI1_VAL312_PREPARATION_20260914 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 478,
+    "end_line": 481,
+    "heading": "<!-- FI1_R3C_20260914_START -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 482,
+    "end_line": 484,
+    "heading": "<!-- FI1_IN_PLACE_FIX_20260914 -->",
+    "references": []
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 485,
+    "end_line": 488,
+    "heading": "<!-- FI1_20260914_STATUS_START -->",
+    "references": [
+      "docs/FI1_R3_STRATIFIED_ANALYSIS_20260914.md",
+      "docs/FI1_R4_QWEN_RESULTS_20260914.md"
+    ]
+  },
+  {
+    "original": "docs/CODEX_HANDOFF.md",
+    "archived": "docs/state_archive/20261009_before_compaction/docs/CODEX_HANDOFF.md",
+    "start_line": 489,
+    "end_line": 532,
+    "heading": "# Codex Handoff",
+    "references": [
+      ".local/fi1_g10_full597_frontend_resume_20260920_v1/execution.json",
+      ".local/mask3d_native_val312_20260912/{completion,audit}.json",
+      "docs/DEPENDENCY_AUDIT_20260911.md",
+      "r3_v1/execution.json",
+      "tools/run_fi1_g10_full597_tmux.sh status|capture|attach",
+      "资料/代码文件索引与当前主线地图.md",
+      "资料/当前基线修改方向.md",
+      "资料/论文阅读记录.md"
+    ]
+  }
+]

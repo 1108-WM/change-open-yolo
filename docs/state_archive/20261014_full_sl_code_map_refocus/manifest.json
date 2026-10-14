@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-14",
+  "scope": "Full + effective SL code/data/model map only; old research map archived; no asset/source/test/model deletion or experiments",
+  "before": {
+    "新开对话阅读内容.md": "d829c04f70f9b87473dfc7041f9157d1d752905226bef9c8e49f3727a42b8223",
+    "资料/代码文件索引与当前主线地图.md": "709111fc93287d254bd190a35c66636d5a4ded6961b63c06477c2b38e009bf9a"
+  },
+  "after": {
+    "资料/代码文件索引与当前主线地图.md": "7ca5bbe7d2e5fd80449788802cc5cf8be4c6b175d144c1bdd996ad421ba39546",
+    "新开对话阅读内容.md": "901946c83def6666438a92c3022a03d55db1a882bea3a49b16aee0a08abfe419",
+    "docs/cleanup/full_sl_asset_map_20261014/README.md": "7b67755a55bbf22ec5fda1b829498a4e9c1db3d5f17d37d2887185d3c06066b2",
+    "docs/state_archive/20261014_full_sl_code_map_refocus/README.md": "c02c5305c2cb9967ed417dc9da8b60a4368cf654d6a7024037f72b87233b19ce",
+    "docs/cleanup/full_sl_asset_map_20261014/current_code_import_edges.json": "2af749a0981f464443e9fb98f0d1335c3c7157b7019afbf34b9038a9e47c5558",
+    "docs/cleanup/full_sl_asset_map_20261014/current_code_import_index.csv": "62b4b615af3ba8ec47e97bdaa8343d2b4793ac7ac45d37e850e2585ca9d94f82",
+    "docs/cleanup/full_sl_asset_map_20261014/full_external_component_file_index.csv": "14a5d68e1f4618384165eed449a48d9759fc2554fc0fd47af125f1ec5fcc3d16",
+    "docs/cleanup/full_sl_asset_map_20261014/full_release_file_index.csv": "2a2b4ac970f87881d20dbab369e8a7e661876c69a7508cb103f25a9acb39a972",
+    "docs/cleanup/full_sl_asset_map_20261014/full_release_manifest.json": "214d084a099209a61bcbbe8d6e36f16886df039e33885636a8038148a30e3629",
+    "docs/cleanup/full_sl_asset_map_20261014/full_release_source_provenance.json": "d2da3ae3cad90a0c5a5f1a1df33f142bf81d1f490f7b11997e6d45fd76aca580",
+    "docs/cleanup/full_sl_asset_map_20261014/key_model_identity_verified.json": "7249e7096c068808dbf6b4c7925f0fc7f00b319f3459450008dbfdfe31c61c79",
+    "docs/cleanup/full_sl_asset_map_20261014/scene_asset_existence_verified.json": "b2c5d492f38ce427ade06ff3a0b1ad199c5aea258b251390dbcccce77f2b9865",
+    "docs/cleanup/full_sl_asset_map_20261014/scene_asset_routes.csv": "47e0446f7f4d072d8538e20a57399c1fccb156d592942b776ff1e2096bd6e76a"
+  },
+  "checks": {
+    "local_markdown_file_links": "passed",
+    "explicit_code_paths_except_documented_zip_only_entry": "passed",
+    "scene_routes": 964,
+    "train": 597,
+    "dev": 55,
+    "val": 312,
+    "path_existence_checks": 17352,
+    "missing_after_actual_receipt_routing": 0,
+    "val48_stale_inventory_front_override": 48,
+    "key_model_contract_hashes_matched": 10,
+    "current_import_reachable_files": 182,
+    "release_manifest_entries": 925,
+    "release_helper_source_provenance_entries": 97,
+    "external_source_component_files": 175,
+    "tests": "not run: documentation and derived read-only indexes only",
+    "GPU_inference_AP_training": "not run"
+  }
+}

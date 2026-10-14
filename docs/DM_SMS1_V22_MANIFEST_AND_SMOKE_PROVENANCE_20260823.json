@@ -1,0 +1,108 @@
+{
+  "ap_computed": false,
+  "candidate_mutation": false,
+  "date": "2026-08-23",
+  "dataset": "NCS-train100",
+  "fi1_foundation": "FI1-Legacy",
+  "full7006_authorized": false,
+  "geometry_mutation": false,
+  "gpu": {
+    "device": "NVIDIA GeForce RTX 4090 D",
+    "gpu_used": true,
+    "scope": "one authorized fixed-eight no-GT Qwen smoke only"
+  },
+  "ground_truth_read": false,
+  "implementation_hashes": {
+    "manifest_auditor_sha256": "535973707cb1f54ca5136d04810142eb8f8164a6b8ad6dada9b16cb11bc22001",
+    "manifest_builder_sha256": "336b4dede0e9ae835f895f2d30de10e5a808f98b1804a628e5b61d2e9a917d3f",
+    "manifest_test_sha256": "9cf425c8fe9f129260872849206746c3e10932e28d60118fbc28a9780493177b",
+    "smoke_addendum_sha256": "af9c3507e6b713763478833288d143494ef6c48ac0e14cafd7971819d5de9a11",
+    "smoke_auditor_sha256": "9233d6d88b1823d2260be312d30b4b219558f486ede96a33897c4ad6ecc3a9b1",
+    "smoke_runner_sha256": "be6c6eca6e705ae72f6aed696406eade14dcf12ba7829a16ee5140c7b8133ef0",
+    "smoke_test_sha256": "dce2311f7eacfcae6cf876459d583677258d5eb37b596947036625be515142be"
+  },
+  "input_manifest": {
+    "audit": {
+      "audit_valid": true,
+      "error_count": 0,
+      "row_count": 7006
+    },
+    "audit_summary_sha256": "cf70f6fc1dace5612c5bdf6031c37ac960f9e834d3ce67b75777b02c375c7a52",
+    "cross_view_direct_evidence_possible_count": 7006,
+    "manifest_sha256": "5cd13e61351e348c97de3cc55e7bcdc61e6c86e344f91c77fd88507257f4e557",
+    "output_root": "docs/diagnostics/dm_sms1_v22_evidence_manifest_train100_20260823",
+    "scene_count": 100,
+    "summary_sha256": "0551d32f6c910ac3b7a087104849d617169179573b233a7627f52b89d3b666be",
+    "two_candidate_count": 7006,
+    "view_count_distribution": {
+      "1": 0,
+      "2": 10,
+      "3": 6996
+    }
+  },
+  "input_sources": {
+    "attribute_manifest": "docs/diagnostics/dm_sms1_attribute_extraction_manifest_train100_20260818/attribute_extraction_manifest.jsonl",
+    "attribute_manifest_sha256": "b047155cdf0854664b086bcc8f61c995dd46ee8b1d30adf982b4cb7d9154ffd2",
+    "candidate_manifest": "docs/diagnostics/dm_sms1_candidate_evidence_manifest_train100_20260818/candidate_evidence_manifest.jsonl",
+    "candidate_manifest_sha256": "1d702a929c1d3b520558044903f9d31cc24679493ddef004c0afe6db30cd01fd",
+    "frozen_attribute_outputs": "docs/diagnostics/dm_sms1_vlm_strict_full7006_train100_20260819/batch_outputs.jsonl",
+    "frozen_attribute_outputs_sha256": "e32b3e87c9b0fcdc29aadd5efbd5e9cc11593d5172a1741a2d2d5cfef0052ef7"
+  },
+  "mask_mutation": false,
+  "model": {
+    "id": "Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5"
+  },
+  "no_gt_followup_diagnostic": {
+    "conclusion": "The only smoke invalidity used the generic candidate name object inside an observation. Exact object candidates occur in 49 of 7006 tasks, so this strict leakage rule is a bounded fallback risk rather than evidence of the removed v2.1 state inconsistency.",
+    "object_candidate_fraction": 0.006994005138452755,
+    "object_candidate_rows": 49,
+    "object_candidate_scenes": 36,
+    "scope": "manifest-only class-name frequency diagnostic; no images, GT or AP"
+  },
+  "preregistration": "docs/DM_SMS1_V22_SINGLE_AUTHORITY_EVIDENCE_PREREGISTRATION_20260823.md",
+  "proposal_deletion": false,
+  "scope": "authorized v2.2 no-GT input manifest, independent audit, fixed-eight Qwen smoke and independent output replay; not accuracy or AP evidence",
+  "score_mutation": false,
+  "smoke": {
+    "advancement_eligible": true,
+    "audit_error_count": 0,
+    "audit_summary_sha256": "6dec494b725d20f5a8e7eb3daa2339d55201116140709ea0d09b6ae43880e280",
+    "audit_valid": true,
+    "batch_outputs_sha256": "75d0bb9a48355a7ec0436bdb01996988956f787c5cba8d3ee5bf56486da1baca",
+    "change_reason_counts": {
+      "alternative_missing_dual_direct_support_keep_frozen_control": 4,
+      "incumbent_missing_dual_direct_strong_counterevidence_keep_frozen_control": 3
+    },
+    "class_change_count": 0,
+    "comparison_status_counts": {
+      "evaluable": 14
+    },
+    "error_signature_counts": {
+      "support_observations[0].observation leaks candidate names: ['object']": 1
+    },
+    "evidence_state_counts": {
+      "direct_support": 14,
+      "unknown": 14
+    },
+    "invalid_count": 1,
+    "json_retry_count": 4,
+    "maximum_same_error_count": 1,
+    "old_v21_candidate_set_inconsistency_absent": true,
+    "output_root": "docs/diagnostics/dm_sms1_v22_vlm_smoke8_train100_20260823",
+    "processed_count": 8,
+    "run_contract_sha256": "8b3f98e9c90568eab141d6e7c758416a59c8df934d1f462fe464f0a6cabff245",
+    "selection_sha256": "869dd385ecdd625e68e680c180f44f6e53fa47631ea1d1a29644374b5b82d292",
+    "strict_valid_count": 7,
+    "summary_sha256": "5d7c5d277ee1521549925d97da2cd8e5ad843cf1e217eb138b92f138070e8a69",
+    "valid_decisions_sha256": "96db33a2acb89ee946f104a2cc4adc854354036133b9abe60252a92ea54bf14b"
+  },
+  "test_run": {
+    "command": "/home/jia/anaconda3/bin/python -m pytest -q tests/test_dm_sms1_v21_evidence_core.py tests/test_build_dm_sms1_v21_evidence_manifest.py tests/test_apply_dm_sms1_v2_dual_counterevidence_arbitration.py tests/test_audit_dm_sms1_v2_dual_counterevidence_decisions.py tests/test_dm_sms1_v22_evidence_core.py tests/test_apply_and_audit_dm_sms1_v22.py tests/test_build_and_audit_dm_sms1_v22_evidence_manifest.py tests/test_run_dm_sms1_v22_vlm_smoke.py",
+    "failed": 0,
+    "passed": 37
+  },
+  "validation60_read": false,
+  "val312_read": false,
+  "version": "dm_sms1_v22_manifest_and_smoke_provenance_v1"
+}

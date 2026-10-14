@@ -1,0 +1,30 @@
+{
+  "version": "dm_sms1_candidate_evidence_provenance_v1",
+  "stage": "finite_candidate_positive_counterevidence_input_manifest",
+  "date": "2026-08-18",
+  "output_root": "docs/diagnostics/dm_sms1_candidate_evidence_manifest_train100_20260818",
+  "manifest_file": "candidate_evidence_manifest.jsonl",
+  "manifest_sha256": "1d702a929c1d3b520558044903f9d31cc24679493ddef004c0afe6db30cd01fd",
+  "summary_sha256": "5304f767f86abf90f01927a8ce4f4a2b3ed13595c641fcc22da9ffecdca0e65c",
+  "audit_summary_sha256": "f32bca1743a0eb471b40b3a5a5f69e3579d2de7ea81e40de2ee444566f624734",
+  "scene_count": 100,
+  "geometry_count": 10169,
+  "candidate_pair_count": 7006,
+  "single_candidate_count": 3163,
+  "candidate_contract": "frozen control and Alpha-CLIP top class only; at most two candidates",
+  "order_contract": "two-candidate tasks are evaluated in both exact reverse orders",
+  "decision_contract": "only an alternative supported in both orders may be considered; otherwise keep frozen control",
+  "class_decision_made": false,
+  "selected_class_count": 0,
+  "mutation_contract": {
+    "candidate_mutation": false,
+    "geometry_mutation": false,
+    "score_mutation": false,
+    "proposal_deletion": false
+  },
+  "ground_truth_read": false,
+  "ap_computed": false,
+  "audit_valid": true,
+  "attribute_manifest_sha256": "b047155cdf0854664b086bcc8f61c995dd46ee8b1d30adf982b4cb7d9154ffd2",
+  "semantic_manifest_sha256": "9168bdfe54cf636a3898fb4092ef0810687f3af46dae2106baffdd0fdbc7efb8"
+}

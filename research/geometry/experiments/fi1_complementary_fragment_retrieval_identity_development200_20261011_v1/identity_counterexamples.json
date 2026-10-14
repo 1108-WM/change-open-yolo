@@ -1,0 +1,1527 @@
+{
+  "accepted_geometry_pairs": 13,
+  "all_folds_below_preregistered_10_pair_gate": true,
+  "class_pair_counts": {
+    "bed / pillow": 7,
+    "box / box": 1,
+    "couch / pillow": 1,
+    "door / doorframe": 3,
+    "fan / window": 1
+  },
+  "complete": true,
+  "fold_reliable_counts": {
+    "fold0": 3,
+    "fold1": 7,
+    "fold2": 4,
+    "fold3": 2,
+    "fold4": 7
+  },
+  "not_method_inputs": true,
+  "post_GT_explanation_only": true,
+  "rows": [
+    {
+      "boundary": {
+        "color_difference": 0.04159359633922577,
+        "contacts05": 146,
+        "contacts10": 335,
+        "distance_min": 0.005388075361017023,
+        "normal_difference": 0.4403969347476959,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "pillow",
+      "left_geometry": "scene0051_00:geometry:23bc4c0477e39ff01d4cb0f3f6d450712155fdf5835bac29dc82dea5344867b2",
+      "left_gt": 13017,
+      "left_purity": 1.0,
+      "right_class": "bed",
+      "right_geometry": "scene0051_00:geometry:c5d35e884b13ad5fba0415c4482b1989308e1644fd18129d4fc880c788fe1add",
+      "right_gt": 11001,
+      "right_purity": 0.9812098436174082,
+      "scene": "scene0051_00",
+      "views": {
+        "compact_groups": [
+          14,
+          19,
+          53
+        ],
+        "depth_groups": [
+          14,
+          18,
+          19,
+          48,
+          53,
+          94
+        ],
+        "eligible_groups": [
+          14,
+          18,
+          19,
+          48,
+          53,
+          94
+        ],
+        "joint_and_compact_depth_groups": [
+          14,
+          19,
+          53
+        ],
+        "joint_groups": [
+          14,
+          19,
+          53
+        ],
+        "projection_groups": [
+          14,
+          18,
+          19,
+          48,
+          53,
+          94
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 190,
+            "group": 14,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 172,
+            "visible_b": 2398
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 240,
+            "group": 19,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 595,
+            "visible_b": 3556
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 590,
+            "group": 18,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 290,
+            "visible_b": 3541
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 640,
+            "group": 48,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 545,
+            "visible_b": 1592
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 700,
+            "group": 53,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 438,
+            "visible_b": 2356
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1380,
+            "group": 94,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 599,
+            "visible_b": 3713
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.034337058663368225,
+        "contacts05": 157,
+        "contacts10": 353,
+        "distance_min": 0.005388075361017023,
+        "normal_difference": 0.40381669998168945,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "pillow",
+      "left_geometry": "scene0051_00:geometry:a2eb1f25b5aab22f8acdbee74ecc4c7f5d093c7df07d90cb0316a0c3442bb361",
+      "left_gt": 13017,
+      "left_purity": 0.9671302149178256,
+      "right_class": "bed",
+      "right_geometry": "scene0051_00:geometry:c5d35e884b13ad5fba0415c4482b1989308e1644fd18129d4fc880c788fe1add",
+      "right_gt": 11001,
+      "right_purity": 0.9812098436174082,
+      "scene": "scene0051_00",
+      "views": {
+        "compact_groups": [
+          14,
+          19,
+          53
+        ],
+        "depth_groups": [
+          14,
+          18,
+          19,
+          48,
+          53,
+          94
+        ],
+        "eligible_groups": [
+          14,
+          18,
+          19,
+          48,
+          53,
+          94
+        ],
+        "joint_and_compact_depth_groups": [
+          14,
+          19,
+          53
+        ],
+        "joint_groups": [
+          14,
+          19,
+          53
+        ],
+        "projection_groups": [
+          14,
+          18,
+          19,
+          48,
+          53,
+          94
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 190,
+            "group": 14,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 172,
+            "visible_b": 2398
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 240,
+            "group": 19,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 595,
+            "visible_b": 3556
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 590,
+            "group": 18,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 290,
+            "visible_b": 3541
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 640,
+            "group": 48,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 547,
+            "visible_b": 1592
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 700,
+            "group": 53,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 438,
+            "visible_b": 2356
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1380,
+            "group": 94,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 618,
+            "visible_b": 3713
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.005062723066657782,
+        "contacts05": 639,
+        "contacts10": 1432,
+        "distance_min": 0.004546510622803647,
+        "normal_difference": 0.37814104557037354,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "window",
+      "left_geometry": "scene0051_00:geometry:bf47e62f9e9261e71631a36d23e00fdcc7c88110bf7e85737175130790e94b5e",
+      "left_gt": 16024,
+      "left_purity": 0.969418651594671,
+      "right_class": "fan",
+      "right_geometry": "scene0051_00:geometry:fd53a663b4ba8bdeb277f58c2a3788a5af75f78468328799417cf447e5b4ca3f",
+      "right_gt": 76025,
+      "right_purity": 1.0,
+      "scene": "scene0051_00",
+      "views": {
+        "compact_groups": [
+          5,
+          99,
+          103
+        ],
+        "depth_groups": [
+          5,
+          33,
+          99,
+          103
+        ],
+        "eligible_groups": [
+          5,
+          33,
+          99,
+          103
+        ],
+        "joint_and_compact_depth_groups": [
+          5,
+          99,
+          103
+        ],
+        "joint_groups": [
+          5,
+          99,
+          103
+        ],
+        "projection_groups": [
+          5,
+          33,
+          99,
+          103
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 90,
+            "group": 5,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 4153,
+            "visible_b": 1203
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 440,
+            "group": 33,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 1965,
+            "visible_b": 667
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1440,
+            "group": 99,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 3984,
+            "visible_b": 1052
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1490,
+            "group": 103,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 1624,
+            "visible_b": 629
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.0417482852935791,
+        "contacts05": 267,
+        "contacts10": 515,
+        "distance_min": 0.005050765714730436,
+        "normal_difference": 0.04666304588317871,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "door",
+      "left_geometry": "scene0122_00:geometry:4df7204cb2fec697d03d9197b140a94e486d2cd241f8c1e93aa3930685e698e3",
+      "left_gt": 5007,
+      "left_purity": 0.8780546238620028,
+      "right_class": "doorframe",
+      "right_geometry": "scene0122_00:geometry:a9ecbeae47c19f9460dedd809bd402b61c3545ce8a7a95732a0bd66f3d02c4a9",
+      "right_gt": 161009,
+      "right_purity": 1.0,
+      "scene": "scene0122_00",
+      "views": {
+        "compact_groups": [
+          19,
+          20
+        ],
+        "depth_groups": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "eligible_groups": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "joint_and_compact_depth_groups": [
+          19,
+          20
+        ],
+        "joint_groups": [
+          19,
+          20
+        ],
+        "projection_groups": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 380,
+            "group": 16,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2333,
+            "visible_b": 155
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 410,
+            "group": 17,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2886,
+            "visible_b": 423
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 440,
+            "group": 18,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 3502,
+            "visible_b": 510
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 480,
+            "group": 19,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 3081,
+            "visible_b": 550
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 510,
+            "group": 20,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 1072,
+            "visible_b": 538
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.009602132253348827,
+        "contacts05": 98,
+        "contacts10": 171,
+        "distance_min": 0.007169777004857939,
+        "normal_difference": 0.3147100806236267,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "bed",
+      "left_geometry": "scene0137_00:geometry:5104c011c5ed36e4a5391494962ab827c5c7892a3e26e55719322844d10ad614",
+      "left_gt": 11001,
+      "left_purity": 0.8825378859334717,
+      "right_class": "pillow",
+      "right_geometry": "scene0137_00:geometry:8530c4559094bea03e9340d73e2c718fb10cfc4e7344554a691a150afd1e7dbc",
+      "right_gt": 13009,
+      "right_purity": 1.0,
+      "scene": "scene0137_00",
+      "views": {
+        "compact_groups": [
+          47,
+          56
+        ],
+        "depth_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "eligible_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "joint_and_compact_depth_groups": [
+          47,
+          56
+        ],
+        "joint_groups": [
+          47,
+          56
+        ],
+        "projection_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 770,
+            "group": 47,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 6423,
+            "visible_b": 253
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 830,
+            "group": 49,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 7638,
+            "visible_b": 244
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 890,
+            "group": 53,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 8180,
+            "visible_b": 228
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 970,
+            "group": 56,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 6444,
+            "visible_b": 241
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.018253907561302185,
+        "contacts05": 406,
+        "contacts10": 661,
+        "distance_min": 0.0054544197564181645,
+        "normal_difference": 0.23373937606811523,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "bed",
+      "left_geometry": "scene0137_00:geometry:5104c011c5ed36e4a5391494962ab827c5c7892a3e26e55719322844d10ad614",
+      "left_gt": 11001,
+      "left_purity": 0.8825378859334717,
+      "right_class": "pillow",
+      "right_geometry": "scene0137_00:geometry:a7e3ef3c9f37d549cf268ab04d15ef7f74071b02ab1f40a03f0e8dd81bee14fb",
+      "right_gt": 13009,
+      "right_purity": 1.0,
+      "scene": "scene0137_00",
+      "views": {
+        "compact_groups": [
+          47,
+          56
+        ],
+        "depth_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "eligible_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "joint_and_compact_depth_groups": [
+          47,
+          56
+        ],
+        "joint_groups": [
+          47,
+          56
+        ],
+        "projection_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 770,
+            "group": 47,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 6423,
+            "visible_b": 665
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 830,
+            "group": 49,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 7638,
+            "visible_b": 627
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 890,
+            "group": 53,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 8180,
+            "visible_b": 602
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 970,
+            "group": 56,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 6444,
+            "visible_b": 671
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.005304329097270966,
+        "contacts05": 166,
+        "contacts10": 303,
+        "distance_min": 0.007169777004857939,
+        "normal_difference": 0.2561657130718231,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "bed",
+      "left_geometry": "scene0137_00:geometry:5104c011c5ed36e4a5391494962ab827c5c7892a3e26e55719322844d10ad614",
+      "left_gt": 11001,
+      "left_purity": 0.8825378859334717,
+      "right_class": "pillow",
+      "right_geometry": "scene0137_00:geometry:aa01399a42448ec8926e6fee9e40de54af1ddc066e250fc50123d7d53d966718",
+      "right_gt": 13009,
+      "right_purity": 1.0,
+      "scene": "scene0137_00",
+      "views": {
+        "compact_groups": [
+          47,
+          56
+        ],
+        "depth_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "eligible_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "joint_and_compact_depth_groups": [
+          47,
+          56
+        ],
+        "joint_groups": [
+          47,
+          56
+        ],
+        "projection_groups": [
+          47,
+          49,
+          53,
+          56
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 770,
+            "group": 47,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 6423,
+            "visible_b": 366
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 830,
+            "group": 49,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 7638,
+            "visible_b": 330
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 890,
+            "group": 53,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 8180,
+            "visible_b": 325
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 970,
+            "group": 56,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 6444,
+            "visible_b": 343
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.05834226310253143,
+        "contacts05": 77,
+        "contacts10": 108,
+        "distance_min": 0.010651846975752862,
+        "normal_difference": 0.17961090803146362,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "box",
+      "left_geometry": "scene0280_01:geometry:da843aceebb59f34a460d76fde0e3ae28ccade5c3e5080482e8afa842df157af",
+      "left_gt": 26031,
+      "left_purity": 0.9578163771712159,
+      "right_class": "box",
+      "right_geometry": "scene0280_01:geometry:e51063383133de9383913fc6d43cfbb8909508cef8c8a642c6f8f13d8a1eb679",
+      "right_gt": 26033,
+      "right_purity": 1.0,
+      "scene": "scene0280_01",
+      "views": {
+        "compact_groups": [
+          36,
+          83
+        ],
+        "depth_groups": [
+          10,
+          36,
+          83,
+          109,
+          122
+        ],
+        "eligible_groups": [
+          10,
+          36,
+          83,
+          109,
+          122
+        ],
+        "joint_and_compact_depth_groups": [
+          36,
+          83
+        ],
+        "joint_groups": [
+          36,
+          83,
+          122
+        ],
+        "projection_groups": [
+          10,
+          36,
+          83,
+          109,
+          122
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 130,
+            "group": 10,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 615,
+            "visible_b": 122
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 500,
+            "group": 36,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 610,
+            "visible_b": 119
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1110,
+            "group": 83,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 554,
+            "visible_b": 116
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1420,
+            "group": 109,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 297,
+            "visible_b": 74
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1670,
+            "group": 122,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 108,
+            "visible_b": 100
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.056783802807331085,
+        "contacts05": 65,
+        "contacts10": 80,
+        "distance_min": 0.006077207621728952,
+        "normal_difference": 0.4310964345932007,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "pillow",
+      "left_geometry": "scene0301_02:geometry:5b3c72aaae9abc19f31f4ed188cfc8a33c09d99c1767f5f2df3f385b74228676",
+      "left_gt": 13026,
+      "left_purity": 0.8706896551724138,
+      "right_class": "couch",
+      "right_geometry": "scene0301_02:geometry:b311561376d09ac4c9ea0bbfa7e2f16f1cf03308b62632b01d5ec2132b22a9df",
+      "right_gt": 6009,
+      "right_purity": 1.0,
+      "scene": "scene0301_02",
+      "views": {
+        "compact_groups": [
+          15,
+          16
+        ],
+        "depth_groups": [
+          13,
+          15,
+          16,
+          68
+        ],
+        "eligible_groups": [
+          13,
+          15,
+          16,
+          68
+        ],
+        "joint_and_compact_depth_groups": [
+          15,
+          16
+        ],
+        "joint_groups": [
+          15,
+          16
+        ],
+        "projection_groups": [
+          13,
+          15,
+          16,
+          68
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 270,
+            "group": 13,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 560,
+            "visible_b": 76
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 310,
+            "group": 15,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 649,
+            "visible_b": 59
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 350,
+            "group": 16,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 647,
+            "visible_b": 14
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1110,
+            "group": 68,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 532,
+            "visible_b": 29
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.025715447962284088,
+        "contacts05": 269,
+        "contacts10": 509,
+        "distance_min": 0.004303077500535661,
+        "normal_difference": 0.04182779788970947,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "door",
+      "left_geometry": "scene0332_01:geometry:cc9d13165d3edb1dbef6e10457df5f154c88cee2f4989f91ee95def43de5a27c",
+      "left_gt": 5004,
+      "left_purity": 0.9818321392016377,
+      "right_class": "doorframe",
+      "right_geometry": "scene0332_01:geometry:f4bc8a68035d4dd9b44823e981991bd45117b3080480e8bf3ec0d91e6cc18881",
+      "right_gt": 161013,
+      "right_purity": 0.7628415300546448,
+      "scene": "scene0332_01",
+      "views": {
+        "compact_groups": [
+          3,
+          5,
+          6
+        ],
+        "depth_groups": [
+          3,
+          5,
+          6,
+          40,
+          42,
+          44
+        ],
+        "eligible_groups": [
+          3,
+          5,
+          6,
+          40,
+          42,
+          44
+        ],
+        "joint_and_compact_depth_groups": [
+          3,
+          5,
+          6
+        ],
+        "joint_groups": [
+          3,
+          5,
+          6
+        ],
+        "projection_groups": [
+          3,
+          5,
+          6,
+          40,
+          42,
+          44
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 110,
+            "group": 3,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 1910,
+            "visible_b": 299
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 140,
+            "group": 5,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2039,
+            "visible_b": 317
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 190,
+            "group": 6,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 1058,
+            "visible_b": 311
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 830,
+            "group": 40,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2646,
+            "visible_b": 929
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 860,
+            "group": 42,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2531,
+            "visible_b": 752
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 900,
+            "group": 44,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2088,
+            "visible_b": 704
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.04075413569808006,
+        "contacts05": 165,
+        "contacts10": 346,
+        "distance_min": 0.003850556276804979,
+        "normal_difference": 0.2167840600013733,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "pillow",
+      "left_geometry": "scene0418_00:geometry:5479413f0e8636e5b0f5d03fdab5b3b5b94e4eec22362d2c93f28b8db1a17943",
+      "left_gt": 13008,
+      "left_purity": 1.0,
+      "right_class": "bed",
+      "right_geometry": "scene0418_00:geometry:b1c04ce24c8b92810c56565b9794be33ed32fffe007d2d1ea9fe8bf90719681a",
+      "right_gt": 11020,
+      "right_purity": 0.8513318191203799,
+      "scene": "scene0418_00",
+      "views": {
+        "compact_groups": [
+          78,
+          185
+        ],
+        "depth_groups": [
+          2,
+          78,
+          83,
+          185,
+          198
+        ],
+        "eligible_groups": [
+          2,
+          78,
+          83,
+          185,
+          198
+        ],
+        "joint_and_compact_depth_groups": [
+          78,
+          185
+        ],
+        "joint_groups": [
+          78,
+          185
+        ],
+        "projection_groups": [
+          2,
+          78,
+          83,
+          185,
+          198
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 110,
+            "group": 2,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 39,
+            "visible_b": 2355
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1390,
+            "group": 78,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 122,
+            "visible_b": 2683
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1500,
+            "group": 83,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 77,
+            "visible_b": 2387
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 3110,
+            "group": 185,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 66,
+            "visible_b": 1293
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 3350,
+            "group": 198,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 57,
+            "visible_b": 3487
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.023638097569346428,
+        "contacts05": 29,
+        "contacts10": 77,
+        "distance_min": 0.0093339437650624,
+        "normal_difference": 0.44248348474502563,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "bed",
+      "left_geometry": "scene0418_00:geometry:b1c04ce24c8b92810c56565b9794be33ed32fffe007d2d1ea9fe8bf90719681a",
+      "left_gt": 11020,
+      "left_purity": 1.0,
+      "right_class": "pillow",
+      "right_geometry": "scene0418_00:geometry:db50f2209d88564757047e638a74deeb4fecf65b6aaff83ec4caa0a765450939",
+      "right_gt": 13008,
+      "right_purity": 1.0,
+      "scene": "scene0418_00",
+      "views": {
+        "compact_groups": [
+          78,
+          185
+        ],
+        "depth_groups": [
+          2,
+          78,
+          83,
+          185,
+          198
+        ],
+        "eligible_groups": [
+          2,
+          78,
+          83,
+          185,
+          198
+        ],
+        "joint_and_compact_depth_groups": [
+          78,
+          185
+        ],
+        "joint_groups": [
+          78,
+          185
+        ],
+        "projection_groups": [
+          2,
+          78,
+          83,
+          185,
+          198
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 110,
+            "group": 2,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2099,
+            "visible_b": 39
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1390,
+            "group": 78,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2232,
+            "visible_b": 122
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1500,
+            "group": 83,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 1917,
+            "visible_b": 77
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 3110,
+            "group": 185,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 967,
+            "visible_b": 66
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 3350,
+            "group": 198,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 2883,
+            "visible_b": 57
+          }
+        ]
+      }
+    },
+    {
+      "boundary": {
+        "color_difference": 0.050677839666604996,
+        "contacts05": 382,
+        "contacts10": 768,
+        "distance_min": 0.004235172245153453,
+        "normal_difference": 0.18830165266990662,
+        "normal_valid_fraction": 1.0
+      },
+      "left_class": "doorframe",
+      "left_geometry": "scene0516_01:geometry:3b4f3e0835d4d96914e31e445cd3246216e451340dda6ec714b0d79fe95db1e9",
+      "left_gt": 161025,
+      "left_purity": 1.0,
+      "right_class": "door",
+      "right_geometry": "scene0516_01:geometry:50607924f756316a8868e70c42b5c0fef078de2c8c909ffa4f49865fbf2c0afa",
+      "right_gt": 5013,
+      "right_purity": 1.0,
+      "scene": "scene0516_01",
+      "views": {
+        "compact_groups": [
+          0,
+          93
+        ],
+        "depth_groups": [
+          0,
+          2,
+          31,
+          93
+        ],
+        "eligible_groups": [
+          0,
+          2,
+          31,
+          93
+        ],
+        "joint_and_compact_depth_groups": [
+          0,
+          93
+        ],
+        "joint_groups": [
+          0,
+          2,
+          93
+        ],
+        "projection_groups": [
+          0,
+          2,
+          31,
+          93
+        ],
+        "separated_groups": [],
+        "unknown_identity": false,
+        "witnesses": [
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 0,
+            "group": 0,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 368,
+            "visible_b": 3017
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 60,
+            "group": 2,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 149,
+            "visible_b": 1384
+          },
+          {
+            "compact": false,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 510,
+            "group": 31,
+            "joint": false,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 125,
+            "visible_b": 1477
+          },
+          {
+            "compact": true,
+            "depth_continuous": true,
+            "depth_known": true,
+            "frame": 1450,
+            "group": 93,
+            "joint": true,
+            "projection_bbox_gap": 0.0,
+            "separated": false,
+            "visible_a": 299,
+            "visible_b": 2765
+          }
+        ]
+      }
+    }
+  ],
+  "unique_scene_GT_pairs": 9
+}

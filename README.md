@@ -1,144 +1,61 @@
- <div align="center">
- 
-## Open-YOLO 3D: Towards Fast and Accurate Open-Vocabulary 3D Instance Segmentation
-## ICLR 2025 (Oral 📢) 
-<div align="center">
-    <img src="./docs/pipeline.png" width="100%">
-</div>
+# change-open-yolo：当前Full、SL与几何研究
 
-## This research fork
+本仓库是 OpenYOLO3D 的研究分支。**当前状态以默认分支 `main` 为准**；本次源码同步日期为2026-10-14。旧实验与发布分支保留历史，不代表当前主线。
 
-This repository is the working research fork at
-`1108-WM/change-open-yolo`.  It keeps the original Open-YOLO 3D backbone and
-adds the current multi-view proposal, risk-aware geometry completion, and
-open-vocabulary semantic calibration experiments.
+本次发布包含本机当前Full、SL及几何研究源码、测试、配置、必要第三方实现和阅读材料。**不包含任何模型权重、数据集、处理后数据、逐点预测或特征缓存**。这是可阅读的源码快照；运行仍需独立准备指定版本的权重、数据和环境。
 
-- Current frozen conclusions and metrics: [`CURRENT_EXPERIMENT_STATUS.md`](CURRENT_EXPERIMENT_STATUS.md)
-- Current pipeline and experimental contracts: [`资料/当前基线修改方向.md`](资料/当前基线修改方向.md)
-- New-session recovery entry: [`新开对话阅读内容.md`](新开对话阅读内容.md)
-- Remote-server setup and checkout verification: [`docs/REMOTE_SERVER_SETUP.md`](docs/REMOTE_SERVER_SETUP.md)
-- GitHub upload boundary: [`docs/GITHUB_UPLOAD_SCOPE.md`](docs/GITHUB_UPLOAD_SCOPE.md)
+## 阅读入口
 
-Clone this fork with its pinned third-party submodules:
+| 目的 | 入口 |
+|---|---|
+| 了解总体架构与源码职责 | [代码地图](资料/代码文件索引与当前主线地图.md) |
+| 了解当前实验状态 | [当前状态](CURRENT_EXPERIMENT_STATUS.md)与[结果](资料/结果.md) |
+| 继续当前几何研究 | [新开对话阅读内容](新开对话阅读内容.md)，按其中最小路线阅读 |
+| 理解生产Full | [Full目录](full_bundle/README.md) |
+| 理解有效SL | [SL目录](sl_bundle/README.md) |
+| 查看研究源码与关键报告 | [几何目录](research/geometry/README.md) |
+| 理解上传边界、路径与外部依赖 | [发布说明](docs/GITHUB_CURRENT_SOURCE.md)与[外部资产](docs/EXTERNAL_ASSETS.md) |
+
+## 当前架构与状态
+
+生产Full固定为 **GD10＋official100冻结D-v3七模型＋GD10匹配597训练B26＋N/T/U/U′＋K800**。K800是全场景最多800个点集—类别成员。Full流程包括原生候选、GD-SAM多视图轨迹、几何候选构造、自身YOLO/Alpha语义和B26排序。历史validation312类别AP/AP50/AP25为29.230610%/39.901908%/45.578362%，并非本次重新评测。
+
+有效SL单独保存；S对N/T实施对称类别资格，L学习评分残差。当前几何研究固定SL作为评分基线，优先研究几何增删；语义和选择暂缓，不代表已经解决。
+
+最新冻结Mask3D逐点特征A/B已结束。B补点更干净、好父损害更少，但没有达到预定完整NT池收益，校准后弃权；两组均无留出删除动作。当前模型尚未显式选定实例query/软mask作为父目标条件，失败主因仍待诊断。研究模型未替换生产Full，没有待恢复旧训练。
+
+## 源码组织
+
+```text
+full_bundle/
+  cli/                 Full统一入口
+  code/                当前Full/597/Replica源码、公共模块与测试
+  runtime/             历史冻结Full运行实现（权重另备）
+  vendor/              所需第三方源码及许可证
+  code_sources/        保留的冻结自身语义helper
+  models/              配置与模型身份说明，不含权重
+  metadata/            场景身份及本机路由溯源
+sl_bundle/
+  cli/、code/          有效SL推理、训练、诊断与测试
+  experiments/         精选报告与小型摘要
+research/geometry/
+  code/                当前局部几何实现、核验与测试
+  experiments/         当前实验及独立审计的可读报告
+  assets/_external/    SAM2源码，仅保留路线，未启动新推理
+```
+
+根目录 `tools/`、`tests/`、`utils/`、`models/` 及部分 `_external/`、`pretrained/` 为仓库内相对兼容链接，Git检出时会保留；真实源码在上表目录。所需Mask3D第三方源码已纳入，不需依赖原目录中的Git子模块数据库。原路径、合同和失败记录保留；本机路由元数据不是跨机器可用的数据索引。
+
+## 下载与源码核验
 
 ```bash
-git clone --recurse-submodules https://github.com/1108-WM/change-open-yolo.git
+git clone --depth 1 https://github.com/1108-WM/change-open-yolo.git
 cd change-open-yolo
-python3 tools/verify_repository_checkout.py
+python3 scripts/verify_source_snapshot.py
 ```
 
-</div>
+核验仅用Python标准库，检查发布文件、仓库内链接和核心代码地图；不下载权重、不读取GT、不启动训练。原Full运行包的 `verify` 会要求被冻结的权重及资产，本次不能以该命令替代源码核验。
 
-<div align="center">
-<a href="">Mohamed El Amine Boudjoghra</a><sup>1</sup>, <a href="">Angela Dai</a><sup>2</sup>, <a href=""> Jean Lahoud</a><sup>1</sup>, <a href="">Hisham Cholakkal</a><sup>1</sup>, <a href="">Rao Muhammad Anwer</a><sup>1,3</sup>,  <a href="">Salman Khan</a><sup>1,4</sup>, <a href="">Fahad Khan</a><sup>1,5</sup>
+[安装说明](docs/Installation.md)、[Full运行说明](full_bundle/runtime/reproduction/README.md)与环境文件保留作为依赖依据。历史运行说明中的分支名、工作机路径及权重包含描述仅适用于当次交付；本次边界以发布说明为准。D-v3几何环境使用sklearn1.3.0，B26评分使用sklearn1.3.2，依赖环境需要分开准备。
 
-<sup>1</sup>Mohamed Bin Zayed University of Artificial Intelligence (MBZUAI) <sup>2</sup>Technical University of Munich (TUM) <sup>3</sup>Aalto University <sup>4</sup>Australian National University <sup>5</sup>Linköping University
-</div>
-
-
-<div align="center">
- 
-<a href='https://arxiv.org/abs/2406.02548' target="_blank">![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)</a> 
-
-
- </div>
-
-
-
-### News
-
-* **30 May 2024**: [Open-YOLO 3D](https://arxiv.org/abs/2406.02548) released on arXiv. 📝
-* **30 May 2024**: Code released. 💻
-
-### Abstract
-
- Recent works on open-vocabulary 3D instance segmentation show strong promise, but at the cost of slow inference speed and high computation requirements. This high computation cost is typically due to their heavy reliance on 3D clip features, which require computationally expensive 2D foundation models like Segment Anything (SAM) and CLIP for multi-view aggregation into 3D. As a consequence, this hampers their applicability in many real-world applications that require both fast and accurate predictions. To this end, we propose a fast yet accurate open-vocabulary 3D instance segmentation approach, named Open-YOLO 3D, that effectively leverages only 2D object detection from multi-view RGB images for open-vocabulary 3D instance segmentation. 
- We address this task by generating class-agnostic 3D masks for objects in the scene and associating them with text prompts.
- We observe that the projection of class-agnostic 3D point cloud instances already holds instance information; thus, using SAM might only result in redundancy that unnecessarily increases the inference time.
-We empirically find that a better performance of matching text prompts to 3D masks can be achieved in a faster fashion with a 2D object detector.  We validate our Open-YOLO 3D on two benchmarks, ScanNet200 and Replica, 
- under two scenarios: (i) with ground truth masks, where labels are required for given object proposals, and (ii) with class-agnostic 3D proposals generated from a 3D proposal network. Our Open-YOLO 3D achieves state-of-the-art performance on both datasets while obtaining up to 16x speedup compared to the best existing method in literature. On ScanNet200 val. set, our Open-YOLO 3D achieves mean average precision (mAP) of 24.7% while operating at 22 seconds per scene.
-
-### Qualitative results
-<br>
-
-<div align="center">
-    <img src="./docs/qualitatives.png" width="100%">
-</div>
-
-
-## Installation guide
-
-Kindly check [Installation guide](./docs/Installation.md) on how to setup the Conda environment and to download the checkpoints, the pre-computed class agnostic masks, and the ground truth masks.
-
-## Data Preparation
-
-Kindly check [Data Preparation guide](./docs/Data_prep.md) on how to prepare ScanNet200 and Replica datasets.
-
-## Results reproducibility
-
-Kindly use the pre-computed class agnostic masks we shared to reproduce the exact numbers we reported in the paper.
-
-**Reproduce the results of ScanNet200 with precomputed-masks (using Mask3D)**
-```
-python run_evaluation.py --dataset_name scannet200 --path_to_3d_masks "./output/scannet200/scannet200_masks"
-```
-**Reproduce the results of ScanNet200 with oracle 3D masks (ground truth 3D masks)**
-```
-python run_evaluation.py --dataset_name scannet200 --path_to_3d_masks "./output/scannet200/scannet200_ground_truth_masks" --is_gt
-```
-**Reproduce the results of Replica with precomputed-masks (using Mask3D)**
-```
-python run_evaluation.py --dataset_name replica --path_to_3d_masks "./output/replica/replica_masks"
-```
-**Reproduce the results of Replica with oracle 3D masks (ground truth 3D masks)**
-```
-python run_evaluation.py --dataset_name replica --path_to_3d_masks "./output/replica/replica_ground_truth_masks" --is_gt
-```
-
-You can evaluate without our 3D class-agnostic masks, but this may lead to variability in results due to elements like furthest point sampling that cause randomness in predictions from Mask3D. For consistent results with the ones we report in the paper, we recommend using our pre-computed masks. 
-
-**Reproduce the results of Replica or ScanNet200 without using our pre-computed masks**
-```
-python run_evaluation.py --dataset_name $DATASET_NAME
-```
-
-## Single scene inference
-
-```
-from utils import OpenYolo3D
-import os
-import pyviz3d.visualizer as viz
-from models.Mask3D.mask3d import load_mesh_or_pc
-import numpy as np
-
-# Prediction step
-openyolo3d = OpenYolo3D(f"{os.getcwd()}/pretrained/config.yaml")
-prediction = openyolo3d.predict(path_2_scene_data=f"{os.getcwd()}/data/replica/office0", depth_scale=6553.5, text = ["chair"]) 
-openyolo3d.save_output_as_ply(f"{os.getcwd()}/output.ply") 
-
-# Visualization step
-pc = load_mesh_or_pc(f"{os.getcwd()}/output.ply", datatype="point cloud")
-point_size = 35.0
-v = viz.Visualizer(position=[5, 5, 1])
-v.add_points('Prediction', np.asarray(pc.points), np.asarray(pc.colors)*255.0, point_size=point_size, visible=True)
-
-blender_args = {'output_prefix': './',
-                  'executable_path': '/Applications/Blender.app/Contents/MacOS/Blender'}
-v.save('example_meshes', blender_args=blender_args)
-```
-
-## Acknoledgments
-We would like to thank the authors of <a href="https://github.com/cvg/Mask3D">Mask3D</a> and <a href="https://github.com/AILab-CVC/YOLO-World">YoloWorld</a> for their works which were used for our model.
-</div>
-
-## BibTeX :pray:
-```
-@inproceedings{
-boudjoghra2025openyolo,
-title={Open-{YOLO} 3D: Towards Fast and Accurate Open-Vocabulary 3D Instance Segmentation},
-author={Mohamed El Amine Boudjoghra and Angela Dai and Jean Lahoud and Hisham Cholakkal and Rao Muhammad Anwer and Salman Khan and Fahad Shahbaz Khan},
-booktitle={The Thirteenth International Conference on Learning Representations},
-year={2025}
-}
-}
-```
+原论文：[Open-YOLO 3D](https://arxiv.org/abs/2406.02548)，上游：[aminebdj/OpenYOLO3D](https://github.com/aminebdj/OpenYOLO3D)。第三方许可证保留于各源码目录。

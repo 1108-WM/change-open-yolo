@@ -1,0 +1,919 @@
+{
+  "posthoc_only": true,
+  "hashes": {
+    "code": 27,
+    "SL": 11,
+    "amendment": 3,
+    "labels": 400,
+    "generators": 2050,
+    "training_blocks": 10,
+    "verifiers": 20,
+    "predictions": 400,
+    "evaluation": 5
+  },
+  "folds": {
+    "0": {
+      "train": 160,
+      "heldout": 40
+    },
+    "1": {
+      "train": 160,
+      "heldout": 40
+    },
+    "2": {
+      "train": 160,
+      "heldout": 40
+    },
+    "3": {
+      "train": 160,
+      "heldout": 40
+    },
+    "4": {
+      "train": 160,
+      "heldout": 40
+    }
+  },
+  "training": {
+    "0": {
+      "blocks": 24,
+      "parents": 6,
+      "scenes": 6,
+      "size": {
+        "n": 24,
+        "sum": 92.0,
+        "q": [
+          1.0,
+          2.0,
+          6.799999999999997,
+          24.39999999999999,
+          29.0
+        ]
+      },
+      "positive_size": {
+        "n": 3,
+        "sum": 31.0,
+        "q": [
+          1.0,
+          1.0,
+          23.400000000000002,
+          28.439999999999998,
+          29.0
+        ]
+      },
+      "unknown_parent_blocks": 1,
+      "true_delta": {
+        "n": 23,
+        "sum": -0.032090615651386774,
+        "q": [
+          -0.005904059040590326,
+          -0.001203369434416346,
+          8.401018843569435e-06,
+          0.0010427914735704137,
+          0.0012978541603828608
+        ]
+      },
+      "positive_delta": {
+        "n": 3,
+        "sum": 0.0014810256758770457,
+        "q": [
+          4.469320425881662e-05,
+          0.00013847831123536825,
+          0.0010659789905533624,
+          0.0012746666433999109,
+          0.0012978541603828608
+        ]
+      },
+      "models": {
+        "summary": {
+          "params": 134149,
+          "positive_cost": 2.0,
+          "loss_first": 1.203043818473816,
+          "loss_last": 0.01814647763967514,
+          "optimizer_steps": 40
+        },
+        "relation": {
+          "params": 46469,
+          "positive_cost": 2.0,
+          "loss_first": 1.206851840019226,
+          "loss_last": 0.1423702836036682,
+          "optimizer_steps": 40
+        }
+      }
+    },
+    "1": {
+      "blocks": 51,
+      "parents": 18,
+      "scenes": 16,
+      "size": {
+        "n": 51,
+        "sum": 89.0,
+        "q": [
+          1.0,
+          1.0,
+          3.0,
+          8.5,
+          11.0
+        ]
+      },
+      "positive_size": {
+        "n": 17,
+        "sum": 27.0,
+        "q": [
+          1.0,
+          1.0,
+          2.8000000000000007,
+          5.68,
+          6.0
+        ]
+      },
+      "unknown_parent_blocks": 6,
+      "true_delta": {
+        "n": 45,
+        "sum": -0.011219114257841972,
+        "q": [
+          -0.0037453183520599342,
+          6.55612101366776e-05,
+          0.0005318607491856531,
+          0.0012675752881943544,
+          0.001419965576592075
+        ]
+      },
+      "positive_delta": {
+        "n": 17,
+        "sum": 0.004502913965758776,
+        "q": [
+          1.742854051758891e-05,
+          0.00014534811695099403,
+          0.0006439832008175108,
+          0.0013645509262656308,
+          0.001419965576592075
+        ]
+      },
+      "models": {
+        "summary": {
+          "params": 134149,
+          "positive_cost": 1.641509515976434,
+          "loss_first": 1.189475417137146,
+          "loss_last": 0.1519269198179245,
+          "optimizer_steps": 40
+        },
+        "relation": {
+          "params": 46469,
+          "positive_cost": 1.641509515976434,
+          "loss_first": 1.1871107816696167,
+          "loss_last": 0.27564090490341187,
+          "optimizer_steps": 40
+        }
+      }
+    },
+    "2": {
+      "blocks": 127,
+      "parents": 37,
+      "scenes": 29,
+      "size": {
+        "n": 127,
+        "sum": 661.0,
+        "q": [
+          1.0,
+          2.0,
+          12.800000000000011,
+          56.89999999999982,
+          109.0
+        ]
+      },
+      "positive_size": {
+        "n": 29,
+        "sum": 94.0,
+        "q": [
+          1.0,
+          2.0,
+          4.399999999999999,
+          21.919999999999987,
+          25.0
+        ]
+      },
+      "unknown_parent_blocks": 9,
+      "true_delta": {
+        "n": 118,
+        "sum": -0.14621824759388619,
+        "q": [
+          -0.03078358208955223,
+          -0.0003937783028155062,
+          0.0006247531943332495,
+          0.003796635979101146,
+          0.0054633242939348126
+        ]
+      },
+      "positive_delta": {
+        "n": 29,
+        "sum": 0.02073584621205607,
+        "q": [
+          3.8017366822018506e-05,
+          0.00038806853685002807,
+          0.0017056569283296235,
+          0.003641942180154543,
+          0.004035708213836808
+        ]
+      },
+      "models": {
+        "summary": {
+          "params": 134149,
+          "positive_cost": 1.8954038684948986,
+          "loss_first": 1.1882981061935425,
+          "loss_last": 0.14498700201511383,
+          "optimizer_steps": 40
+        },
+        "relation": {
+          "params": 46469,
+          "positive_cost": 1.8954038684948986,
+          "loss_first": 1.1893144845962524,
+          "loss_last": 0.8261460661888123,
+          "optimizer_steps": 40
+        }
+      }
+    },
+    "3": {
+      "blocks": 32,
+      "parents": 6,
+      "scenes": 5,
+      "size": {
+        "n": 32,
+        "sum": 46.0,
+        "q": [
+          1.0,
+          1.0,
+          2.0,
+          4.0,
+          4.0
+        ]
+      },
+      "positive_size": {
+        "n": 19,
+        "sum": 31.0,
+        "q": [
+          1.0,
+          1.0,
+          3.1999999999999993,
+          4.0,
+          4.0
+        ]
+      },
+      "unknown_parent_blocks": 0,
+      "true_delta": {
+        "n": 32,
+        "sum": -0.0005337217676205097,
+        "q": [
+          -0.0008752735229758946,
+          4.469320425881662e-05,
+          0.00017518875193078828,
+          0.00037264783057455194,
+          0.00041561288827207665
+        ]
+      },
+      "positive_delta": {
+        "n": 19,
+        "sum": 0.0023099259370775727,
+        "q": [
+          4.012108878326259e-05,
+          8.939071629621154e-05,
+          0.00019844211855049026,
+          0.00039066543541544936,
+          0.00041561288827207665
+        ]
+      },
+      "models": {
+        "summary": {
+          "params": 134149,
+          "positive_cost": 1.9629633521510346,
+          "loss_first": 1.1981775760650635,
+          "loss_last": 0.09226453304290771,
+          "optimizer_steps": 40
+        },
+        "relation": {
+          "params": 46469,
+          "positive_cost": 1.9629633521510346,
+          "loss_first": 1.181995153427124,
+          "loss_last": 0.23684430122375488,
+          "optimizer_steps": 40
+        }
+      }
+    },
+    "4": {
+      "blocks": 81,
+      "parents": 24,
+      "scenes": 19,
+      "size": {
+        "n": 81,
+        "sum": 462.0,
+        "q": [
+          1.0,
+          2.0,
+          12.0,
+          57.000000000000384,
+          165.0
+        ]
+      },
+      "positive_size": {
+        "n": 23,
+        "sum": 86.0,
+        "q": [
+          1.0,
+          2.0,
+          11.8,
+          14.0,
+          14.0
+        ]
+      },
+      "unknown_parent_blocks": 5,
+      "true_delta": {
+        "n": 76,
+        "sum": -0.07070266511812753,
+        "q": [
+          -0.017510347023240946,
+          -0.00023406599697101127,
+          0.0005376192819947501,
+          0.0034517701903813425,
+          0.005168183432024298
+        ]
+      },
+      "positive_delta": {
+        "n": 23,
+        "sum": 0.011456946078619329,
+        "q": [
+          3.8017366822018506e-05,
+          0.0002251833436001105,
+          0.0010980234161871438,
+          0.0025024577314627103,
+          0.002879632443167024
+        ]
+      },
+      "models": {
+        "summary": {
+          "params": 134149,
+          "positive_cost": 2.682641800836039,
+          "loss_first": 1.2120866775512695,
+          "loss_last": 0.11396325379610062,
+          "optimizer_steps": 40
+        },
+        "relation": {
+          "params": 46469,
+          "positive_cost": 2.682641800836039,
+          "loss_first": 1.1921024322509766,
+          "loss_last": 0.4895590841770172,
+          "optimizer_steps": 40
+        }
+      }
+    }
+  },
+  "blocks": {
+    "B": {
+      "size": {
+        "n": 13669,
+        "sum": 92845.0,
+        "q": [
+          1.0,
+          1.0,
+          8.0,
+          89.0,
+          4575.0
+        ]
+      },
+      "stable_size": {
+        "n": 10352,
+        "sum": 60766.0,
+        "q": [
+          1.0,
+          1.0,
+          8.0,
+          79.48999999999978,
+          1930.0
+        ]
+      },
+      "pure_size": {
+        "n": 976,
+        "sum": 5085.0,
+        "q": [
+          1.0,
+          1.0,
+          8.5,
+          67.25,
+          278.0
+        ]
+      },
+      "kinds": {
+        "summary": {
+          "selected": 3633,
+          "selected_stable": 2625,
+          "selected_unstable": 1008,
+          "stable_safe": 222,
+          "stable_other": 1309,
+          "stable_target": 9025,
+          "stable_unknown": 319,
+          "delta_MAE": 0.006358085432048237,
+          "zero_baseline_delta_MAE": 0.0010224236998661977,
+          "selected_predicted_negative_delta": 715,
+          "selected_actual_negative_delta": 2341,
+          "probability_bins": {
+            "0": {
+              "blocks": 4093,
+              "stable": 3256,
+              "safe": 400,
+              "target": 18792,
+              "other": 3291
+            },
+            "0.1": {
+              "blocks": 2919,
+              "stable": 2233,
+              "safe": 211,
+              "target": 11432,
+              "other": 1763
+            },
+            "0.5": {
+              "blocks": 3024,
+              "stable": 2238,
+              "safe": 143,
+              "target": 12011,
+              "other": 1050
+            },
+            "0.9": {
+              "blocks": 2196,
+              "stable": 1616,
+              "safe": 142,
+              "target": 6278,
+              "other": 1078
+            },
+            "0.99": {
+              "blocks": 1437,
+              "stable": 1009,
+              "safe": 80,
+              "target": 2747,
+              "other": 231
+            }
+          }
+        },
+        "relation": {
+          "selected": 3143,
+          "selected_stable": 2230,
+          "selected_unstable": 913,
+          "stable_safe": 176,
+          "stable_other": 1851,
+          "stable_target": 9170,
+          "stable_unknown": 188,
+          "delta_MAE": 0.00927166534036963,
+          "zero_baseline_delta_MAE": 0.0010224236998661977,
+          "selected_predicted_negative_delta": 2948,
+          "selected_actual_negative_delta": 1988,
+          "probability_bins": {
+            "0": {
+              "blocks": 5412,
+              "stable": 4330,
+              "safe": 366,
+              "target": 26728,
+              "other": 3313
+            },
+            "0.1": {
+              "blocks": 2452,
+              "stable": 1872,
+              "safe": 208,
+              "target": 6989,
+              "other": 1145
+            },
+            "0.5": {
+              "blocks": 2662,
+              "stable": 1920,
+              "safe": 226,
+              "target": 8373,
+              "other": 1104
+            },
+            "0.9": {
+              "blocks": 1603,
+              "stable": 1179,
+              "safe": 109,
+              "target": 4048,
+              "other": 1278
+            },
+            "0.99": {
+              "blocks": 1540,
+              "stable": 1051,
+              "safe": 67,
+              "target": 5122,
+              "other": 573
+            }
+          }
+        }
+      }
+    },
+    "G": {
+      "size": {
+        "n": 157,
+        "sum": 764.0,
+        "q": [
+          1.0,
+          2.0,
+          9.400000000000006,
+          51.95999999999998,
+          74.0
+        ]
+      },
+      "stable_size": {
+        "n": 145,
+        "sum": 730.0,
+        "q": [
+          1.0,
+          2.0,
+          9.599999999999994,
+          53.04000000000002,
+          74.0
+        ]
+      },
+      "pure_size": {
+        "n": 56,
+        "sum": 256.0,
+        "q": [
+          1.0,
+          2.0,
+          6.0,
+          59.700000000000074,
+          74.0
+        ]
+      },
+      "kinds": {
+        "summary": {
+          "selected": 33,
+          "selected_stable": 28,
+          "selected_unstable": 5,
+          "stable_safe": 11,
+          "stable_other": 18,
+          "stable_target": 115,
+          "stable_unknown": 6,
+          "delta_MAE": 0.007732688290103125,
+          "zero_baseline_delta_MAE": 0.0013236417917930861,
+          "selected_predicted_negative_delta": 4,
+          "selected_actual_negative_delta": 13,
+          "probability_bins": {
+            "0": {
+              "blocks": 62,
+              "stable": 57,
+              "safe": 21,
+              "target": 143,
+              "other": 116
+            },
+            "0.1": {
+              "blocks": 37,
+              "stable": 36,
+              "safe": 14,
+              "target": 94,
+              "other": 102
+            },
+            "0.5": {
+              "blocks": 25,
+              "stable": 24,
+              "safe": 10,
+              "target": 86,
+              "other": 24
+            },
+            "0.9": {
+              "blocks": 23,
+              "stable": 19,
+              "safe": 6,
+              "target": 108,
+              "other": 11
+            },
+            "0.99": {
+              "blocks": 10,
+              "stable": 9,
+              "safe": 5,
+              "target": 7,
+              "other": 7
+            }
+          }
+        },
+        "relation": {
+          "selected": 45,
+          "selected_stable": 41,
+          "selected_unstable": 4,
+          "stable_safe": 24,
+          "stable_other": 97,
+          "stable_target": 24,
+          "stable_unknown": 7,
+          "delta_MAE": 0.011308423270439455,
+          "zero_baseline_delta_MAE": 0.0013236417917930861,
+          "selected_predicted_negative_delta": 45,
+          "selected_actual_negative_delta": 12,
+          "probability_bins": {
+            "0": {
+              "blocks": 79,
+              "stable": 75,
+              "safe": 18,
+              "target": 371,
+              "other": 125
+            },
+            "0.1": {
+              "blocks": 18,
+              "stable": 16,
+              "safe": 5,
+              "target": 24,
+              "other": 20
+            },
+            "0.5": {
+              "blocks": 15,
+              "stable": 13,
+              "safe": 9,
+              "target": 19,
+              "other": 18
+            },
+            "0.9": {
+              "blocks": 24,
+              "stable": 21,
+              "safe": 16,
+              "target": 8,
+              "other": 85
+            },
+            "0.99": {
+              "blocks": 21,
+              "stable": 20,
+              "safe": 8,
+              "target": 16,
+              "other": 12
+            }
+          }
+        }
+      }
+    }
+  },
+  "replay": {
+    "counts": {
+      "B_fp16_threshold_extra": 308,
+      "B_fp16_threshold_extra_stable_target": 182,
+      "proposal_membership_replays": 3198,
+      "action_rule_replays": 9594,
+      "B_visible_pollution": 32620,
+      "B_visible_pollution_above08": 7395,
+      "B_visible_target": 1354521,
+      "B_visible_target_above08": 51078,
+      "G_fp16_threshold_extra": 7,
+      "G_fp16_threshold_extra_stable_target": 2,
+      "G_visible_pollution": 32620,
+      "G_visible_pollution_above08": 257,
+      "G_visible_target": 1354521,
+      "G_visible_target_above08": 436,
+      "pointsets": 11193,
+      "parents": 1599,
+      "pool_targets": 32823
+    },
+    "totals": {
+      "B_raw": {
+        "deleted_target": 53315,
+        "deleted_other": 25328
+      },
+      "C_gate": {
+        "deleted_target": 3581,
+        "deleted_other": 1685
+      },
+      "G_raw": {
+        "deleted_target": 438,
+        "deleted_other": 261
+      },
+      "B_summary": {
+        "deleted_target": 9418,
+        "deleted_other": 8139
+      },
+      "B_relation": {
+        "deleted_target": 9504,
+        "deleted_other": 10031
+      },
+      "G_summary": {
+        "deleted_target": 115,
+        "deleted_other": 18
+      },
+      "G_relation": {
+        "deleted_target": 24,
+        "deleted_other": 97
+      }
+    },
+    "pool_gain02": {
+      "B_raw": 0,
+      "C_gate": 0,
+      "G_raw": 0,
+      "B_summary": 0,
+      "B_relation": 0,
+      "G_summary": 0,
+      "G_relation": 0
+    },
+    "stable_known_other_posthoc_oracles": {
+      "visible_known_other": 70,
+      "B_proposed_known_other": 8,
+      "G_proposed_known_other": 0,
+      "B_pure_blocks": 4,
+      "G_pure_blocks": 0
+    }
+  },
+  "point_scores": {
+    "B_visible_pollution": {
+      "n": 32620,
+      "sum": 15213.551935195923,
+      "q": [
+        0.0038394927978515625,
+        0.44140625,
+        0.912109375,
+        0.9833984375,
+        0.99951171875
+      ]
+    },
+    "B_visible_target": {
+      "n": 135993,
+      "sum": 30825.32260608673,
+      "q": [
+        0.0007114410400390625,
+        0.12255859375,
+        0.62548828125,
+        0.91650390625,
+        0.99609375
+      ]
+    },
+    "G_visible_pollution": {
+      "n": 32620,
+      "sum": 3098.3874473571777,
+      "q": [
+        0.003025054931640625,
+        0.0351409912109375,
+        0.2447509765625,
+        0.7743212890625006,
+        0.93994140625
+      ]
+    },
+    "G_visible_target": {
+      "n": 135993,
+      "sum": 3827.3719305992126,
+      "q": [
+        0.0002460479736328125,
+        0.0171051025390625,
+        0.054718017578125,
+        0.18030761718749844,
+        0.9462890625
+      ]
+    }
+  },
+  "witness": [
+    {
+      "scene": "scene0051_00",
+      "candidate": "c003",
+      "source": "B",
+      "blocks": 86,
+      "points": 1041,
+      "pure_blocks": 5,
+      "pure_points": 288,
+      "other_score": {
+        "n": 372,
+        "sum": 310.30322265625,
+        "q": [
+          0.66845703125,
+          0.844482421875,
+          0.893017578125,
+          0.91748046875,
+          0.9267578125
+        ]
+      }
+    },
+    {
+      "scene": "scene0051_00",
+      "candidate": "c003",
+      "source": "G",
+      "blocks": 0,
+      "points": 0,
+      "pure_blocks": 0,
+      "pure_points": 0,
+      "other_score": {
+        "n": 372,
+        "sum": 20.3145751953125,
+        "q": [
+          0.041290283203125,
+          0.0513763427734375,
+          0.06704711914062501,
+          0.1009619140625,
+          0.133056640625
+        ]
+      }
+    },
+    {
+      "scene": "scene0101_00",
+      "candidate": "c005",
+      "source": "B",
+      "blocks": 23,
+      "points": 70,
+      "pure_blocks": 11,
+      "pure_points": 37,
+      "other_score": {
+        "n": 134,
+        "sum": 86.30108642578125,
+        "q": [
+          0.09423828125,
+          0.6298828125,
+          0.911669921875,
+          0.97900390625,
+          0.98193359375
+        ]
+      }
+    },
+    {
+      "scene": "scene0101_00",
+      "candidate": "c005",
+      "source": "G",
+      "blocks": 0,
+      "points": 0,
+      "pure_blocks": 0,
+      "pure_points": 0,
+      "other_score": {
+        "n": 134,
+        "sum": 12.005889892578125,
+        "q": [
+          0.034149169921875,
+          0.085540771484375,
+          0.1401611328125,
+          0.22217773437499966,
+          0.2344970703125
+        ]
+      }
+    },
+    {
+      "scene": "scene0214_00",
+      "candidate": "c001",
+      "source": "B",
+      "blocks": 36,
+      "points": 334,
+      "pure_blocks": 8,
+      "pure_points": 125,
+      "other_score": {
+        "n": 448,
+        "sum": 322.119140625,
+        "q": [
+          0.40673828125,
+          0.716552734375,
+          0.919677734375,
+          0.9689843749999998,
+          0.986328125
+        ]
+      }
+    },
+    {
+      "scene": "scene0214_00",
+      "candidate": "c001",
+      "source": "G",
+      "blocks": 0,
+      "points": 0,
+      "pure_blocks": 0,
+      "pure_points": 0,
+      "other_score": {
+        "n": 448,
+        "sum": 53.93328857421875,
+        "q": [
+          0.0743408203125,
+          0.11309814453125,
+          0.15655517578125,
+          0.2470812988281245,
+          0.303955078125
+        ]
+      }
+    },
+    {
+      "scene": "scene0332_01",
+      "candidate": "c000",
+      "source": "B",
+      "blocks": 27,
+      "points": 190,
+      "pure_blocks": 17,
+      "pure_points": 53,
+      "other_score": {
+        "n": 265,
+        "sum": 149.9415283203125,
+        "q": [
+          0.10198974609375,
+          0.5673828125,
+          0.90166015625,
+          0.9591601562500001,
+          0.97900390625
+        ]
+      }
+    },
+    {
+      "scene": "scene0332_01",
+      "candidate": "c000",
+      "source": "G",
+      "blocks": 0,
+      "points": 0,
+      "pure_blocks": 0,
+      "pure_points": 0,
+      "other_score": {
+        "n": 265,
+        "sum": 26.785354614257812,
+        "q": [
+          0.0197296142578125,
+          0.034820556640625,
+          0.3625,
+          0.6181640625000003,
+          0.68212890625
+        ]
+      }
+    }
+  ]
+}

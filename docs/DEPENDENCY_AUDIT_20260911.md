@@ -1,0 +1,299 @@
+# 本地脚本依赖审计（2026-09-11）
+
+扫描 tools/tests/docs/资料 及仓库根目录中的文本引用；仅作归档前筛选，不作为删除依据。
+
+## tools
+
+- 文件数：446
+- 未发现文本引用：181
+
+### 未发现文本引用的 tools（候选）
+
+- `analyze_backprojection_candidates.py`
+- `analyze_custom_superpoints_v0.py`
+- `apply_z3_full_semantic_reliability.py`
+- `audit_c1d_native_geometry_folding.py`
+- `audit_dm_sms1_attribute_extraction_manifest.py`
+- `audit_dm_sms1_v21_evidence_manifest.py`
+- `audit_dm_sms1_v21_vlm_outputs.py`
+- `audit_dm_sms1_v22_decisions.py`
+- `audit_dm_sms1_v22_evidence_manifest.py`
+- `audit_dm_sms1_v22_full7006.py`
+- `audit_dm_sms1_v22_vlm_smoke.py`
+- `audit_dm_sms1_v2_dual_counterevidence_decisions.py`
+- `audit_ncs5_proxyclip_proposals_gt.py`
+- `audit_ncs6_source_complementarity_oracle_gt.py`
+- `audit_ncs_openyolo3d_native_only_class_agnostic_ap.py`
+- `audit_official_scannet_v2.py`
+- `audit_sam2_fusion_contract.py`
+- `audit_scannet200_ncs_native_assets.py`
+- `audit_train_candidate_quality_dataset.py`
+- `audit_train_candidate_quality_oof_spearman.py`
+- `audit_z2_native_union_alphaclip_semantics.py`
+- `audit_z3_control_group_results.py`
+- `audit_z4_fold_distribution_shift.py`
+- `audit_z6c_nested_abstain_gate_transitions.py`
+- `build_c1_gvc_relative_competition_ledger.py`
+- `build_c1c_component_action_ledger.py`
+- `build_c1c_component_action_margin_ledger_gt.py`
+- `build_c1d_expanded_competition_action_ledger.py`
+- `build_d2b_merge_family_split_action_ledger.py`
+- `build_d2b_native_competition_component_ledger.py`
+- `build_dm_sms1_validation60_prediction_cache.py`
+- `build_frozen_structured_soft_suppression_plan.py`
+- `build_frozen_track_harm_score_plan.py`
+- `build_n2_medoid_candidate_quality_competition_ledger.py`
+- `build_n2_medoid_conservative_ranking_abstention_plan.py`
+- `build_n2_medoid_d2b_competition_ledger.py`
+- `build_n2_medoid_d2b_competition_plan.py`
+- `build_n2_medoid_dinov2_appearance_ledger.py`
+- `build_n2_sampro3d_family_formation_variant_ledger.py`
+- `build_ncs1_node_pairwise_dataset_gt.py`
+- `build_ncs1_scene_folds.py`
+- `build_ncs1_score_swap_plan.py`
+- `build_ncs2_residual_inversion_dataset_gt.py`
+- `build_ncs3_set_level_dataset_gt.py`
+- `build_ncs5_proxyclip_view_manifest.py`
+- `build_ncs6_source_candidate_inventory.py`
+- `build_official_train100_manifest.py`
+- `build_safety60_structured_action_plan.py`
+- `build_train_candidate_component_action_utility_ledger.py`
+- `build_train_candidate_component_union_feature_ledger.py`
+- `build_train_candidate_component_union_residual_feature_ledger.py`
+- `build_train_candidate_pair_ledger_v2.py`
+- `build_train_candidate_pair_union_utility_ledger.py`
+- `build_train_candidate_track_marginal_harm_ledger.py`
+- `build_z4_category_competition_plan.py`
+- `build_z4_exact_geometry_topm_plan.py`
+- `build_z6f_safety60_input_adapter.py`
+- `build_z6f_vlm_selector_eval_input.py`
+- `compare_eval_csv.py`
+- `compare_z2_alphaclip_with_z1_yoloworld.py`
+- `construct_c1c_global_feasible_ap_oracle_gt.py`
+- `construct_c1d_attribution_oracle_gt.py`
+- `construct_c1d_global_feasible_replacement_oracle_gt.py`
+- `diagnose_alphaclip_semantic_selector_gt.py`
+- `diagnose_baseline_sam2_complementarity_gt.py`
+- `diagnose_c1_gvc_action_separability_gt.py`
+- `diagnose_c1_gvc_relative_action_separability_gt.py`
+- `diagnose_candidate_component_geometry_ceiling_gt.py`
+- `diagnose_candidate_component_track_only_oof.py`
+- `diagnose_candidate_component_union_multitask_residual_oof.py`
+- `diagnose_candidate_component_union_track_only_keep_oof.py`
+- `diagnose_candidate_pair_union_threshold_cross_oof.py`
+- `diagnose_candidate_three_stage_selective_oof.py`
+- `diagnose_candidate_track_marginal_harm_oof.py`
+- `diagnose_candidate_two_stage_cascade_oof.py`
+- `diagnose_d2b_merge_family_split_oracle_gt.py`
+- `diagnose_d2b_native_component_competition_oracle_gt.py`
+- `diagnose_d2b_native_track_filter_oracle_gt.py`
+- `diagnose_d2b_native_track_ranking_oracle_gt.py`
+- `diagnose_details_paired_completion_class_agnostic_ap.py`
+- `diagnose_final_score_oracle_gt.py`
+- `diagnose_final_semantic_oracle_gt.py`
+- `diagnose_final_strong_baseline_errors_gt.py`
+- `diagnose_final_strong_baseline_problem_matrix_gt.py`
+- `diagnose_multiview_residual_coverage_gt.py`
+- `diagnose_mv3dis_fixed_mask_ranking_ceiling_gt.py`
+- `diagnose_n2_medoid_candidate_oracle_gt.py`
+- `diagnose_n2_medoid_class_agnostic_ap.py`
+- `diagnose_n2_medoid_conservative_ranking_plan_gt.py`
+- `diagnose_n2_medoid_feature_cross_scene_gt.py`
+- `diagnose_n2_sampro3d_family_formation_variants_gt.py`
+- `diagnose_official100_component_reranking_oracle_gt.py`
+- `diagnose_residual_observation_features_gt.py`
+- `diagnose_residual_track_feature_separability_gt.py`
+- `diagnose_residual_track_source_attribution_gt.py`
+- `diagnose_sam2_candidate_semantics_gt.py`
+- `diagnose_sam2_fusion_ledger_gt.py`
+- `diagnose_sam2_refined_instances_gt.py`
+- `diagnose_sam2_seed_coverage_gt.py`
+- `diagnose_strong_baseline_sam2_complementarity_gt.py`
+- `diagnose_superpoint_pipeline_gt.py`
+- `diagnose_superpoint_refinement_coverage_gt.py`
+- `diagnose_train_candidate_pair_oof_scores.py`
+- `diagnose_train_candidate_relation_features.py`
+- `diagnose_unreliable_superpoints_gt.py`
+- `diagnose_z0_open_vocab_oracle_gt.py`
+- `dm_sms1_v21_evidence_core.py`
+- `dm_sms1_v22_evidence_core.py`
+- `evaluate_c1dr_aligned_gvc_coverage_crossval_gt.py`
+- `evaluate_c1dr_gvc_replacement_crossval_gt.py`
+- `evaluate_candidate_component_union_residual_applicability_mixture_oof.py`
+- `evaluate_frozen_alphaclip_semantic_adapter.py`
+- `evaluate_frozen_safety60_structured_action_plan_ap.py`
+- `evaluate_frozen_structured_soft_suppression_ap.py`
+- `evaluate_frozen_track_harm_score_plan_ap.py`
+- `evaluate_ncs_openyolo3d_native_only_class_agnostic_ap_gt.py`
+- `evaluate_official100_geometry_group_ranking_oof_ap.py`
+- `evaluate_official100_structured_soft_suppression_oof_ap.py`
+- `evaluate_safety60_track_quality_with_geometry_groups_ap.py`
+- `evaluate_track_augmented_open_vocab_ap.py`
+- `evaluate_z3_alphaclip_fusion_control_group_gt.py`
+- `evaluate_z3_semantic_reliability_oof_gt.py`
+- `evaluate_z3_yoloworld_control_group_gt.py`
+- `evaluate_z4_category_competition_gt.py`
+- `evaluate_z4_mixed_competition_oof_gt.py`
+- `evaluate_z6c_candidate_selector_system_gt.py`
+- `export_refined_dense_candidates.py`
+- `export_sam2_refined_backprojection_candidates.py`
+- `export_scannet200_train_scene_native_cache.py`
+- `filter_backprojection_candidates_by_class.py`
+- `fit_candidate_component_action_head_structured_full.py`
+- `fit_candidate_component_list_calibration_head_full.py`
+- `fit_candidate_component_union_list_head_full.py`
+- `fit_z3_full_semantic_reliability.py`
+- `fit_z6f_full_inference_bundle.py`
+- `materialize_n2_medoid_coexist_candidate_cache.py`
+- `materialize_ncs_validation60_ground_truth_once.py`
+- `merge_dm_sms1_vlm_batch_outputs.py`
+- `merge_z6c_nested_abstain_gate_folds.py`
+- `ncs5_proxyclip_core.py`
+- `oracle_candidate_diagnostics.py`
+- `prepare_scannet200_train_scene.py`
+- `prototype_evidence_tree_v0.py`
+- `replace_dm_sms1_invalid_batch_records.py`
+- `run_dm_sms1_v22_vlm_smoke.py`
+- `run_frozen_safety60_champion_pair_union_ap.py`
+- `run_gemini_backprojection_verifier.py`
+- `run_n1_sampro3d_prompt_safety60.py`
+- `run_t1_track_family_action_oracle_safety60.py`
+- `run_z6f_full_bundle_inference.py`
+- `smoke_test_ncs5_proxyclip_offline.py`
+- `summarize_c1_official_ap_thresholds.py`
+- `summarize_c1c_global_feasible_ap_stability_gt.py`
+- `summarize_c1d_attribution_stability_gt.py`
+- `summarize_dm_sms1_v2_train100_no_gt.py`
+- `summarize_groundingdino_independent_coverage_gt.py`
+- `summarize_mv3dis_boundary_action_feature_cross_scene_gt.py`
+- `summarize_mv3dis_fixed_mask_ranking_ceiling_gt.py`
+- `summarize_mv3dis_global_feasible_action_oracle_ap.py`
+- `summarize_z6d_improvement_gate_ap.py`
+- `summarize_z6f_vlm_selector_ap.py`
+- `sweep_sam_fused_ablation.py`
+- `test_vlm_api_vision.py`
+- `train_candidate_component_action_head_nested_oof.py`
+- `train_candidate_component_action_head_oof.py`
+- `train_candidate_component_action_head_structured_oof.py`
+- `train_candidate_component_list_calibration_head_oof.py`
+- `train_candidate_component_union_list_head_oof.py`
+- `train_candidate_component_union_residual_expert_head_oof.py`
+- `train_candidate_official_relevance_gap_rank_oof.py`
+- `train_candidate_relation_reliability_oof.py`
+- `train_candidate_relative_margin_oof.py`
+- `train_candidate_relative_quality_multitask_oof.py`
+- `train_candidate_relative_quality_nested_q_oof.py`
+- `train_candidate_relative_quality_oof.py`
+- `train_candidate_target_consistency_oof.py`
+- `train_candidate_union_ap25_protected_head_oof.py`
+- `train_ncs1_node_pairwise_verifier_oof.py`
+- `train_ncs2_residual_hurdle_oof.py`
+- `train_ncs3_deepsets_listwise_oof.py`
+- `train_z3_semantic_reliability_oof.py`
+## tests
+
+- 文件数：248
+- 未发现文本引用：239
+
+## 被引用较多的脚本
+
+- `export_sam_fused_proposals.py`：8 个引用
+- `run_dm_sms1_vlm_batch_smoke.py`：7 个引用
+- `evaluate_multiview_object_clip_correction.py`：7 个引用
+- `generate_geometric_superpoints.py`：6 个引用
+- `apply_dm_sms1_semantic_arbitration.py`：6 个引用
+- `fi1_gain_attribution_core.py`：5 个引用
+- `export_dense_frame_instance_observations.py`：5 个引用
+- `evaluate_dm_sms1_stage_e_gt.py`：5 个引用
+- `audit_dm_sms1_unique_geometry_ledger.py`：5 个引用
+- `fi1_fixed_member_scoring_core.py`：4 个引用
+- `fi1_semantic_pair_guard.py`：4 个引用
+- `build_dm_sms1_alpha_view_manifest.py`：4 个引用
+- `run_fi1_gain_attribution.py`：4 个引用
+- `run_fi1_fixed_member_scoring.py`：4 个引用
+- `build_dm_sms1_semantic_arbitration_manifest.py`：4 个引用
+- `run_dm_sms1_single_scene_vlm_smoke.py`：4 个引用
+- `verify_repository_checkout.py`：4 个引用
+- `build_ncs5_proxyclip_embedding_ledger.py`：3 个引用
+- `export_backprojection_candidates.py`：3 个引用
+- `audit_dm_sms1_stage_e_results.py`：3 个引用
+- `build_dm_sms1_alpha_embedding_ledger.py`：3 个引用
+- `annotate_automatic_mask_tracks_yoloworld.py`：3 个引用
+- `export_sam_automatic_observations.py`：3 个引用
+- `run_fi1_semantic_pair_guard.py`：3 个引用
+- `audit_fi1_gain_attribution.py`：3 个引用
+- `audit_fi1_fixed_member_scoring.py`：3 个引用
+- `build_dm_sms1_candidate_evidence_manifest.py`：3 个引用
+- `build_dm_sms1_full_safe_decision_ledger.py`：3 个引用
+- `export_multiview_object_clip_features.py`：3 个引用
+- `dm_sms_core.py`：3 个引用
+- `export_details_core_prompt_sam_observations.py`：2 个引用
+- `diagnose_t1_track_family_action_oracle_gt.py`：2 个引用
+- `diagnose_yoloe_independent_coverage_gt.py`：2 个引用
+- `build_details_same_frame_hierarchy_preprocessor.py`：2 个引用
+- `build_details_iterative_proposal_merges.py`：2 个引用
+- `build_details_frame_siou_tracks.py`：2 个引用
+- `refine_details_automatic_tracks_consensus.py`：2 个引用
+- `lift_sam2_tracks_to_superpoints.py`：2 个引用
+- `annotate_dense_sam_residuals.py`：2 个引用
+- `build_ncs4_siglip_embedding_ledger.py`：2 个引用
+- `run_dm_sms1_v21_vlm_batch.py`：2 个引用
+- `build_residual_evidence_graph.py`：2 个引用
+- `export_scannet200_ncs_native_assets.py`：2 个引用
+- `export_native_baseline_cache_no_gt.py`：2 个引用
+- `build_automatic_mask_tracks.py`：2 个引用
+- `export_gvc_append_only_candidates.py`：2 个引用
+- `build_track_gvc_feature_ledger.py`：2 个引用
+- `export_mask_graph_proposals.py`：2 个引用
+- `audit_dm_sms1_alpha_view_manifest.py`：2 个引用
+- `build_single_track_native_competition_ledger.py`：2 个引用
+- `build_single_track_native_mutual_duplicate_plan.py`：2 个引用
+- `materialize_track_native_mutual_duplicate_filter.py`：2 个引用
+- `run_scannet200_train_scene_track_pipeline.py`：2 个引用
+- `prepare_scannet200_ncs.py`：2 个引用
+- `build_automatic_sam_variant_competition_ledger.py`：2 个引用
+- `build_automatic_sam_variant_semantic_ledger.py`：2 个引用
+- `export_automatic_sam_pareto_candidates.py`：2 个引用
+- `build_automatic_sam_variant_quality_ledger.py`：2 个引用
+- `build_automatic_sam_evidence_graph.py`：2 个引用
+- `build_automatic_sam_variant_pareto_ledger.py`：2 个引用
+- `build_automatic_sam_track_growth_ledger.py`：2 个引用
+- `build_automatic_sam_growth_variant_plan.py`：2 个引用
+- `build_z2_unified_semantic_node_ledger.py`：2 个引用
+- `build_z6b_dinov2_object_appearance_ledger.py`：2 个引用
+- `train_z6c_candidate_selector_oof.py`：2 个引用
+- `train_z6d_nested_improvement_gate_oof.py`：2 个引用
+- `build_z6b_object_view_manifest_official100.py`：2 个引用
+- `train_z6c_nested_abstain_gate_oof.py`：2 个引用
+- `train_semantic_fusion_head.py`：2 个引用
+- `build_dm_sms1_safe_decision_ledger.py`：2 个引用
+- `repair_fi1_qwen_serialization.py`：2 个引用
+- `audit_fi1_semantic_pair_guard.py`：2 个引用
+- `audit_dm_sms1_attribute_evidence_output.py`：2 个引用
+- `build_n1_sampro3d_prompt_plan.py`：1 个引用
+- `diagnose_residual_tracks_gt.py`：1 个引用
+- `reconstruct_z0_track_semantics_stdout.py`：1 个引用
+- `diagnose_yoloworld_mask3d_missed_coverage_gt.py`：1 个引用
+- `diagnose_mask3d_sam2_local_correction_gt.py`：1 个引用
+- `postprocess_sam2_superpoint_instances.py`：1 个引用
+- `select_uncovered_any3dis_superpoints.py`：1 个引用
+- `filter_sam2_refined_instances_gtfree.py`：1 个引用
+- `export_any3dis_sam2_tracks.py`：1 个引用
+- `merge_any3dis_rounds.py`：1 个引用
+- `export_sam2_refined_mvpdist_candidates.py`：1 个引用
+- `export_z2_native_union_alphaclip_semantics.py`：1 个引用
+- `verify_residual_observation_entry.py`：1 个引用
+- `refine_backprojection_candidates_sam_multiview.py`：1 个引用
+- `run_dm_sms1_v22_full7006.py`：1 个引用
+- `generate_mask3d_sam2_refinement_variants.py`：1 个引用
+- `verify_native_experiment_entry.py`：1 个引用
+- `verify_residual_evidence_graph_entry.py`：1 个引用
+- `audit_dm_sms1_alpha_embedding_ledger.py`：1 个引用
+- `verify_gvc_append_only_entry.py`：1 个引用
+- `build_dm_sms1_frozen_champion_plan.py`：1 个引用
+- `build_dm_sms1_no_gt_relation_ledger.py`：1 个引用
+- `build_dm_sms1_ncs_stream_adapters.py`：1 个引用
+- `build_c1_gvc_paper_reference_quality_ledger.py`：1 个引用
+- `build_z1_yoloworld_multiview_distribution_ledger.py`：1 个引用
+- `verify_automatic_sam_pareto_candidate_entry.py`：1 个引用
+- `summarize_yoloe_independent_coverage_gt.py`：1 个引用

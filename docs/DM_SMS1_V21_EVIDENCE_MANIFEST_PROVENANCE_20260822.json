@@ -1,0 +1,50 @@
+{
+  "version": "dm_sms1_v21_evidence_manifest_provenance_v1",
+  "date": "2026-08-22",
+  "dataset": "NCS-train100",
+  "fi1_foundation": "FI1-Legacy",
+  "branch": "dm-sms1-v2-1-evidence-contract-20260822",
+  "preregistration": "docs/DM_SMS1_V21_FOUR_STATE_EVIDENCE_PREREGISTRATION_20260822.md",
+  "output_root": "docs/diagnostics/dm_sms1_v21_evidence_manifest_train100_20260822",
+  "input_sources": {
+    "candidate_manifest": "docs/diagnostics/dm_sms1_candidate_evidence_manifest_train100_20260818/candidate_evidence_manifest.jsonl",
+    "candidate_manifest_sha256": "1d702a929c1d3b520558044903f9d31cc24679493ddef004c0afe6db30cd01fd",
+    "attribute_manifest": "docs/diagnostics/dm_sms1_attribute_extraction_manifest_train100_20260818/attribute_extraction_manifest.jsonl",
+    "attribute_manifest_sha256": "b047155cdf0854664b086bcc8f61c995dd46ee8b1d30adf982b4cb7d9154ffd2"
+  },
+  "implementation_hashes": {
+    "preregistration_sha256": "e896e65b35e43f5585e828536ef7e69d6c6fe1be5c585ffc5ea4198e63bef5fa",
+    "core_sha256": "22cb3a2405176266afb8eab581a4c57e98dd9076483a11e7d64ba98906517380",
+    "manifest_builder_sha256": "dbc3a0c830ff52b7dd0e8ac9b560a35cf6594d93fa43020fdf33221cffbe7b14",
+    "manifest_auditor_sha256": "1eba680585a43e6f80faa4d862a1450051f2a97dc2c75b4dcac38fac76940f2c",
+    "core_test_sha256": "7896a870d05e0d58ad75ad744e6fe4f6732d7d61aa6fe70978f59f78dd9694d3",
+    "builder_test_sha256": "747ea93aa076e62630535574e1d608fb725c9f3a43ad845bad537568276491b0"
+  },
+  "output_hashes": {
+    "v21_evidence_manifest_sha256": "c34654c7bb4b5d7d065538b8641133eff02decd286e09ca0c8e0aa7afaa73b63",
+    "summary_sha256": "7438d05dc16d8cc2f73316adb172ba79aed8e9844832634511e8774be229c056",
+    "audit_summary_sha256": "94f25e215955f9f7b7655f1cb217e139cf798166e3ed3d28c1c65705f9398b03"
+  },
+  "counts": {
+    "scene_count": 100,
+    "two_candidate_count": 7006,
+    "view_count_distribution": {"1": 0, "2": 10, "3": 6996},
+    "cross_view_direct_evidence_possible_count": 7006
+  },
+  "audit": {
+    "audit_valid": true,
+    "error_count": 0,
+    "row_count": 7006
+  },
+  "model_inference_started": false,
+  "gpu_used": false,
+  "ground_truth_read": false,
+  "ap_computed": false,
+  "validation60_reopened": false,
+  "val312_read": false,
+  "candidate_mutation": false,
+  "geometry_mutation": false,
+  "score_mutation": false,
+  "proposal_deletion": false,
+  "scope": "frozen v2.1 no-GT input manifest and independent audit; no Qwen inference and not accuracy/AP evidence"
+}

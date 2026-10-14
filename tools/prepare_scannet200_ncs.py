@@ -1,0 +1,1 @@
+../full_bundle/code/tools/prepare_scannet200_ncs.py

@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-14",
+  "current_core_code_hashes_match_local_index": true,
+  "critical_reading_links_valid": true,
+  "all_published_symlinks_relative_and_resolve_inside_snapshot": true,
+  "credential_pattern_scan_matches": 0,
+  "cpu_tests": {
+    "command": "PYTHONPATH=. PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=4 python -m pytest -q tests --disable-warnings",
+    "passed": 480,
+    "subtests_passed": 4,
+    "environment": {
+      "python": "3.11.11",
+      "pytest": "9.1.1",
+      "torch": "2.1.2+cu118"
+    },
+    "canonical_collection_path": "tests (root compatibility aliases); some historical tests use __file__ relative to that path"
+  },
+  "frozen_runtime_without_assets": {
+    "passed": 4,
+    "deselected": 6,
+    "command": "cd full_bundle/runtime && python -m pytest -q tests/test_frozen_full800_release.py -k \"repository_local or changed_pointset or another_scene or final_test\"",
+    "asset_dependent_tests_unavailable": true,
+    "asset_limitation": "Two additional attempted checks require omitted alpha_text/text_features.npy; excluded vectors and weights were not added to make these tests run."
+  },
+  "full_cli_help": true,
+  "sl_cli_help": true,
+  "training_run": false,
+  "gpu_inference_run": false,
+  "new_AP_evaluation": false,
+  "initial_missing_split_manifest": "Resolved by copying original 7.6KiB scene split metadata with one relative compatibility alias; no source change or new split."
+}

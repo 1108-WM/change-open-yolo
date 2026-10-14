@@ -1,0 +1,1239 @@
+{
+  "cached_label_access_rejections": 15,
+  "calibration_rejections": {
+    "precision": 16,
+    "support": 12,
+    "target_loss": 4,
+    "unknown": 4
+  },
+  "complete": true,
+  "metric_checks": 30,
+  "new_rules_searched": false,
+  "old_A_unchanged": true,
+  "parameters": {
+    "parent": 60965,
+    "relations": 67011
+  },
+  "raw_input_hashes": 960,
+  "relation_breakdown": {
+    "calibration": {
+      "all": {
+        "MAE": 0.20420613884925842,
+        "classes": {
+          "different": {
+            "PR_average_precision": 0.6722615119120033,
+            "high_confidence": 12549,
+            "parents": 149,
+            "precision": 0.6959120248625389,
+            "scenes": 24,
+            "soft_GT_agreement": 0.77442866563797
+          },
+          "same": {
+            "PR_average_precision": 0.8067517974857179,
+            "high_confidence": 26423,
+            "parents": 189,
+            "precision": 0.8024069939068236,
+            "scenes": 24,
+            "soft_GT_agreement": 0.8734172582626343
+          },
+          "unknown": {
+            "PR_average_precision": 0.09180555833654146,
+            "high_confidence": 2281,
+            "parents": 92,
+            "precision": 0.10214818062253397,
+            "scenes": 22,
+            "soft_GT_agreement": 0.12337755411863327
+          }
+        },
+        "constant_MAE": 0.34557342529296875,
+        "constant_cross_entropy": 0.9076082706451416,
+        "cross_entropy": 1.1156493425369263,
+        "pairs": 72276
+      },
+      "parent_scope": {
+        "ambiguous": {
+          "MAE": 0.24363678693771362,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.658142752318817,
+              "high_confidence": 1054,
+              "parents": 9,
+              "precision": 0.681214421252372,
+              "scenes": 7,
+              "soft_GT_agreement": 0.7686700820922852
+            },
+            "same": {
+              "PR_average_precision": 0.6451240835570289,
+              "high_confidence": 1029,
+              "parents": 10,
+              "precision": 0.6326530612244898,
+              "scenes": 8,
+              "soft_GT_agreement": 0.7903118133544922
+            },
+            "unknown": {
+              "PR_average_precision": 0.08105156707471561,
+              "high_confidence": 172,
+              "parents": 6,
+              "precision": 0.03488372093023256,
+              "scenes": 5,
+              "soft_GT_agreement": 0.044709887355566025
+            }
+          },
+          "constant_MAE": 0.34484004974365234,
+          "constant_cross_entropy": 1.0529483556747437,
+          "cross_entropy": 1.4560542106628418,
+          "pairs": 4647
+        },
+        "out_of_scope": {
+          "MAE": 0.20074254274368286,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.730477240864218,
+              "high_confidence": 1838,
+              "parents": 14,
+              "precision": 0.7247007616974973,
+              "scenes": 13,
+              "soft_GT_agreement": 0.795827329158783
+            },
+            "same": {
+              "PR_average_precision": 0.8967821225405935,
+              "high_confidence": 2423,
+              "parents": 20,
+              "precision": 0.928188196450681,
+              "scenes": 15,
+              "soft_GT_agreement": 0.9695693850517273
+            },
+            "unknown": {
+              "PR_average_precision": 0.009522738525987595,
+              "high_confidence": 492,
+              "parents": 12,
+              "precision": 0.0,
+              "scenes": 9,
+              "soft_GT_agreement": 0.012133529409766197
+            }
+          },
+          "constant_MAE": 0.34171241521835327,
+          "constant_cross_entropy": 0.8443997502326965,
+          "cross_entropy": 1.1058498620986938,
+          "pairs": 7958
+        },
+        "stable": {
+          "MAE": 0.17916420102119446,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.6785680107370992,
+              "high_confidence": 9450,
+              "parents": 117,
+              "precision": 0.7070899470899471,
+              "scenes": 24,
+              "soft_GT_agreement": 0.786950409412384
+            },
+            "same": {
+              "PR_average_precision": 0.8559287593565439,
+              "high_confidence": 21436,
+              "parents": 146,
+              "precision": 0.8519779809665983,
+              "scenes": 24,
+              "soft_GT_agreement": 0.9270080327987671
+            },
+            "unknown": {
+              "PR_average_precision": 0.028263101179160467,
+              "high_confidence": 1391,
+              "parents": 64,
+              "precision": 0.018691588785046728,
+              "scenes": 21,
+              "soft_GT_agreement": 0.04258117452263832
+            }
+          },
+          "constant_MAE": 0.332302451133728,
+          "constant_cross_entropy": 0.8398792147636414,
+          "cross_entropy": 0.8913154006004333,
+          "pairs": 55876
+        },
+        "unannotated": {
+          "MAE": 0.531893253326416,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.004731800030972101,
+              "high_confidence": 207,
+              "parents": 9,
+              "precision": 0.004830917874396135,
+              "scenes": 7,
+              "soft_GT_agreement": 0.042105525732040405
+            },
+            "same": {
+              "PR_average_precision": 0.02985666251042248,
+              "high_confidence": 1535,
+              "parents": 13,
+              "precision": 0.025407166123778503,
+              "scenes": 9,
+              "soft_GT_agreement": 0.028965264558792114
+            },
+            "unknown": {
+              "PR_average_precision": 0.8828917477108937,
+              "high_confidence": 226,
+              "parents": 10,
+              "precision": 0.8893805309734514,
+              "scenes": 7,
+              "soft_GT_agreement": 0.9227167963981628
+            }
+          },
+          "constant_MAE": 0.5499643087387085,
+          "constant_cross_entropy": 1.859400749206543,
+          "cross_entropy": 4.0223708152771,
+          "pairs": 3795
+        }
+      },
+      "reference": {
+        "competitor0": {
+          "MAE": 0.2355024218559265,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.5727814348818543,
+              "high_confidence": 2720,
+              "parents": 103,
+              "precision": 0.5897058823529412,
+              "scenes": 24,
+              "soft_GT_agreement": 0.7219279408454895
+            },
+            "same": {
+              "PR_average_precision": 0.775209395997855,
+              "high_confidence": 4147,
+              "parents": 130,
+              "precision": 0.7856281649385097,
+              "scenes": 24,
+              "soft_GT_agreement": 0.8579494953155518
+            },
+            "unknown": {
+              "PR_average_precision": 0.1068809495761518,
+              "high_confidence": 472,
+              "parents": 56,
+              "precision": 0.163135593220339,
+              "scenes": 19,
+              "soft_GT_agreement": 0.18640166521072388
+            }
+          },
+          "constant_MAE": 0.34704703092575073,
+          "constant_cross_entropy": 0.9496859908103943,
+          "cross_entropy": 1.2911380529403687,
+          "pairs": 14257
+        },
+        "competitor1": {
+          "MAE": 0.2744884788990021,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.6906930746069886,
+              "high_confidence": 3786,
+              "parents": 119,
+              "precision": 0.6951928156365558,
+              "scenes": 24,
+              "soft_GT_agreement": 0.7563362717628479
+            },
+            "same": {
+              "PR_average_precision": 0.5827372180789228,
+              "high_confidence": 1484,
+              "parents": 90,
+              "precision": 0.7021563342318059,
+              "scenes": 23,
+              "soft_GT_agreement": 0.7320197820663452
+            },
+            "unknown": {
+              "PR_average_precision": 0.10728995617713474,
+              "high_confidence": 457,
+              "parents": 48,
+              "precision": 0.1137855579868709,
+              "scenes": 19,
+              "soft_GT_agreement": 0.1280336081981659
+            }
+          },
+          "constant_MAE": 0.40094175934791565,
+          "constant_cross_entropy": 1.0751255750656128,
+          "cross_entropy": 1.4421221017837524,
+          "pairs": 12007
+        },
+        "competitor2": {
+          "MAE": 0.25129464268684387,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.7775793843725193,
+              "high_confidence": 3358,
+              "parents": 88,
+              "precision": 0.7516378796902918,
+              "scenes": 21,
+              "soft_GT_agreement": 0.8070108294487
+            },
+            "same": {
+              "PR_average_precision": 0.5924784427443965,
+              "high_confidence": 813,
+              "parents": 49,
+              "precision": 0.7146371463714637,
+              "scenes": 18,
+              "soft_GT_agreement": 0.7260733246803284
+            },
+            "unknown": {
+              "PR_average_precision": 0.11392561366024016,
+              "high_confidence": 309,
+              "parents": 37,
+              "precision": 0.1262135922330097,
+              "scenes": 14,
+              "soft_GT_agreement": 0.1444135457277298
+            }
+          },
+          "constant_MAE": 0.4051421880722046,
+          "constant_cross_entropy": 1.084490180015564,
+          "cross_entropy": 1.2618190050125122,
+          "pairs": 8572
+        },
+        "competitor3": {
+          "MAE": 0.24272169172763824,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.7235765836946771,
+              "high_confidence": 2675,
+              "parents": 65,
+              "precision": 0.7375700934579439,
+              "scenes": 21,
+              "soft_GT_agreement": 0.8150442838668823
+            },
+            "same": {
+              "PR_average_precision": 0.5075302494777032,
+              "high_confidence": 526,
+              "parents": 34,
+              "precision": 0.6863117870722434,
+              "scenes": 16,
+              "soft_GT_agreement": 0.7571380138397217
+            },
+            "unknown": {
+              "PR_average_precision": 0.05955913937793965,
+              "high_confidence": 235,
+              "parents": 30,
+              "precision": 0.04680851063829787,
+              "scenes": 14,
+              "soft_GT_agreement": 0.08355004340410233
+            }
+          },
+          "constant_MAE": 0.4008907675743103,
+          "constant_cross_entropy": 1.117520809173584,
+          "cross_entropy": 1.3756301403045654,
+          "pairs": 6481
+        },
+        "retained_boundary": {
+          "MAE": 0.12292885035276413,
+          "classes": {
+            "different": {
+              "PR_average_precision": null,
+              "high_confidence": 5,
+              "parents": 4,
+              "precision": 0.0,
+              "scenes": 3,
+              "soft_GT_agreement": 0.0
+            },
+            "same": {
+              "PR_average_precision": 0.9052281276128129,
+              "high_confidence": 11456,
+              "parents": 189,
+              "precision": 0.8818959497206704,
+              "scenes": 24,
+              "soft_GT_agreement": 0.9118460416793823
+            },
+            "unknown": {
+              "PR_average_precision": 0.0849596065813423,
+              "high_confidence": 518,
+              "parents": 72,
+              "precision": 0.07528957528957529,
+              "scenes": 22,
+              "soft_GT_agreement": 0.09298202395439148
+            }
+          },
+          "constant_MAE": 0.30859172344207764,
+          "constant_cross_entropy": 0.7015947103500366,
+          "cross_entropy": 0.7551148533821106,
+          "pairs": 15473
+        },
+        "retained_parent": {
+          "MAE": 0.15992560982704163,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.0019759500353725987,
+              "high_confidence": 5,
+              "parents": 4,
+              "precision": 0.0,
+              "scenes": 4,
+              "soft_GT_agreement": 0.1974637806415558
+            },
+            "same": {
+              "PR_average_precision": 0.7620586650651924,
+              "high_confidence": 7997,
+              "parents": 175,
+              "precision": 0.7323996498687008,
+              "scenes": 24,
+              "soft_GT_agreement": 0.8752543330192566
+            },
+            "unknown": {
+              "PR_average_precision": 0.08001199496200379,
+              "high_confidence": 290,
+              "parents": 27,
+              "precision": 0.05172413793103448,
+              "scenes": 15,
+              "soft_GT_agreement": 0.07761558890342712
+            }
+          },
+          "constant_MAE": 0.28211402893066406,
+          "constant_cross_entropy": 0.7590674161911011,
+          "cross_entropy": 0.8714768290519714,
+          "pairs": 15486
+        }
+      }
+    },
+    "holdout": {
+      "all": {
+        "MAE": 0.18313966691493988,
+        "classes": {
+          "different": {
+            "PR_average_precision": 0.6869854500324462,
+            "high_confidence": 11277,
+            "parents": 150,
+            "precision": 0.7203156867961337,
+            "scenes": 24,
+            "soft_GT_agreement": 0.8046339154243469
+          },
+          "same": {
+            "PR_average_precision": 0.8193309848988206,
+            "high_confidence": 25841,
+            "parents": 186,
+            "precision": 0.8261290197747765,
+            "scenes": 24,
+            "soft_GT_agreement": 0.9005332589149475
+          },
+          "unknown": {
+            "PR_average_precision": 0.12636962989586822,
+            "high_confidence": 2399,
+            "parents": 90,
+            "precision": 0.22217590662776157,
+            "scenes": 23,
+            "soft_GT_agreement": 0.2503781318664551
+          }
+        },
+        "constant_MAE": 0.3402160406112671,
+        "constant_cross_entropy": 0.8795042634010315,
+        "cross_entropy": 0.9842260479927063,
+        "pairs": 67090
+      },
+      "parent_scope": {
+        "ambiguous": {
+          "MAE": 0.25686097145080566,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.5992329559930625,
+              "high_confidence": 658,
+              "parents": 8,
+              "precision": 0.662613981762918,
+              "scenes": 7,
+              "soft_GT_agreement": 0.7560715079307556
+            },
+            "same": {
+              "PR_average_precision": 0.4031514993279242,
+              "high_confidence": 1211,
+              "parents": 8,
+              "precision": 0.3914120561519405,
+              "scenes": 7,
+              "soft_GT_agreement": 0.6135393977165222
+            },
+            "unknown": {
+              "PR_average_precision": 0.2564588369487641,
+              "high_confidence": 183,
+              "parents": 4,
+              "precision": 0.4207650273224044,
+              "scenes": 4,
+              "soft_GT_agreement": 0.4339708387851715
+            }
+          },
+          "constant_MAE": 0.34425002336502075,
+          "constant_cross_entropy": 1.1149685382843018,
+          "cross_entropy": 1.8783841133117676,
+          "pairs": 3675
+        },
+        "out_of_scope": {
+          "MAE": 0.15389496088027954,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.7610679930742904,
+              "high_confidence": 2070,
+              "parents": 17,
+              "precision": 0.7275362318840579,
+              "scenes": 12,
+              "soft_GT_agreement": 0.8372483253479004
+            },
+            "same": {
+              "PR_average_precision": 0.8750105141117464,
+              "high_confidence": 2583,
+              "parents": 21,
+              "precision": 0.8695315524583818,
+              "scenes": 13,
+              "soft_GT_agreement": 0.9466608762741089
+            },
+            "unknown": {
+              "PR_average_precision": 0.03828716935195259,
+              "high_confidence": 50,
+              "parents": 9,
+              "precision": 0.0,
+              "scenes": 7,
+              "soft_GT_agreement": 0.0798974335193634
+            }
+          },
+          "constant_MAE": 0.339307576417923,
+          "constant_cross_entropy": 0.8888474702835083,
+          "cross_entropy": 0.6919130682945251,
+          "pairs": 8320
+        },
+        "stable": {
+          "MAE": 0.1730373501777649,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.6847066339534486,
+              "high_confidence": 8488,
+              "parents": 120,
+              "precision": 0.7282045240339302,
+              "scenes": 24,
+              "soft_GT_agreement": 0.8062272667884827
+            },
+            "same": {
+              "PR_average_precision": 0.8628253961935494,
+              "high_confidence": 21378,
+              "parents": 148,
+              "precision": 0.868182243427823,
+              "scenes": 24,
+              "soft_GT_agreement": 0.9346910715103149
+            },
+            "unknown": {
+              "PR_average_precision": 0.060775311199733714,
+              "high_confidence": 1898,
+              "parents": 73,
+              "precision": 0.09905163329820864,
+              "scenes": 22,
+              "soft_GT_agreement": 0.13132013380527496
+            }
+          },
+          "constant_MAE": 0.33281639218330383,
+          "constant_cross_entropy": 0.8277825117111206,
+          "cross_entropy": 0.8994460701942444,
+          "pairs": 53208
+        },
+        "unannotated": {
+          "MAE": 0.4533630609512329,
+          "classes": {
+            "different": {
+              "PR_average_precision": null,
+              "high_confidence": 61,
+              "parents": 5,
+              "precision": 0.0,
+              "scenes": 3,
+              "soft_GT_agreement": 0.0
+            },
+            "same": {
+              "PR_average_precision": 0.31920527669574383,
+              "high_confidence": 669,
+              "parents": 9,
+              "precision": 0.10164424514200299,
+              "scenes": 7,
+              "soft_GT_agreement": 0.15042032301425934
+            },
+            "unknown": {
+              "PR_average_precision": 0.9845576431740273,
+              "high_confidence": 268,
+              "parents": 4,
+              "precision": 1.0,
+              "scenes": 4,
+              "soft_GT_agreement": 1.0
+            }
+          },
+          "constant_MAE": 0.5450156331062317,
+          "constant_cross_entropy": 1.8381386995315552,
+          "cross_entropy": 2.9222159385681152,
+          "pairs": 1887
+        }
+      },
+      "reference": {
+        "competitor0": {
+          "MAE": 0.21064692735671997,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.7065827671283771,
+              "high_confidence": 3124,
+              "parents": 108,
+              "precision": 0.7170294494238156,
+              "scenes": 24,
+              "soft_GT_agreement": 0.8191834688186646
+            },
+            "same": {
+              "PR_average_precision": 0.7605745881425969,
+              "high_confidence": 3963,
+              "parents": 129,
+              "precision": 0.7976280595508454,
+              "scenes": 24,
+              "soft_GT_agreement": 0.8778355717658997
+            },
+            "unknown": {
+              "PR_average_precision": 0.1318697132741881,
+              "high_confidence": 527,
+              "parents": 50,
+              "precision": 0.2239089184060721,
+              "scenes": 19,
+              "soft_GT_agreement": 0.26225757598876953
+            }
+          },
+          "constant_MAE": 0.35640576481819153,
+          "constant_cross_entropy": 0.9444090723991394,
+          "cross_entropy": 1.0995562076568604,
+          "pairs": 13924
+        },
+        "competitor1": {
+          "MAE": 0.24964085221290588,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.6966462993518391,
+              "high_confidence": 2967,
+              "parents": 100,
+              "precision": 0.7232895180316818,
+              "scenes": 24,
+              "soft_GT_agreement": 0.8218796849250793
+            },
+            "same": {
+              "PR_average_precision": 0.5671055844139339,
+              "high_confidence": 1805,
+              "parents": 72,
+              "precision": 0.6398891966759003,
+              "scenes": 22,
+              "soft_GT_agreement": 0.7352170944213867
+            },
+            "unknown": {
+              "PR_average_precision": 0.15444264558569107,
+              "high_confidence": 446,
+              "parents": 42,
+              "precision": 0.273542600896861,
+              "scenes": 16,
+              "soft_GT_agreement": 0.31749463081359863
+            }
+          },
+          "constant_MAE": 0.38061532378196716,
+          "constant_cross_entropy": 1.0480949878692627,
+          "cross_entropy": 1.3740499019622803,
+          "pairs": 10425
+        },
+        "competitor2": {
+          "MAE": 0.23768439888954163,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.7374335842628852,
+              "high_confidence": 3015,
+              "parents": 76,
+              "precision": 0.7469320066334991,
+              "scenes": 23,
+              "soft_GT_agreement": 0.7948329448699951
+            },
+            "same": {
+              "PR_average_precision": 0.4514053736095651,
+              "high_confidence": 783,
+              "parents": 39,
+              "precision": 0.5925925925925926,
+              "scenes": 17,
+              "soft_GT_agreement": 0.6978422999382019
+            },
+            "unknown": {
+              "PR_average_precision": 0.20508061363240507,
+              "high_confidence": 366,
+              "parents": 27,
+              "precision": 0.3251366120218579,
+              "scenes": 13,
+              "soft_GT_agreement": 0.34870147705078125
+            }
+          },
+          "constant_MAE": 0.4086143374443054,
+          "constant_cross_entropy": 1.117624044418335,
+          "cross_entropy": 1.4759358167648315,
+          "pairs": 7526
+        },
+        "competitor3": {
+          "MAE": 0.25027287006378174,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.6954079310663672,
+              "high_confidence": 2150,
+              "parents": 52,
+              "precision": 0.6906976744186046,
+              "scenes": 22,
+              "soft_GT_agreement": 0.7809869050979614
+            },
+            "same": {
+              "PR_average_precision": 0.44207955257175013,
+              "high_confidence": 428,
+              "parents": 27,
+              "precision": 0.5397196261682243,
+              "scenes": 17,
+              "soft_GT_agreement": 0.5879331231117249
+            },
+            "unknown": {
+              "PR_average_precision": 0.1711329930237079,
+              "high_confidence": 232,
+              "parents": 20,
+              "precision": 0.2025862068965517,
+              "scenes": 12,
+              "soft_GT_agreement": 0.2455187737941742
+            }
+          },
+          "constant_MAE": 0.40617451071739197,
+          "constant_cross_entropy": 1.1393787860870361,
+          "cross_entropy": 1.3296124935150146,
+          "pairs": 5290
+        },
+        "retained_boundary": {
+          "MAE": 0.09604799747467041,
+          "classes": {
+            "different": {
+              "PR_average_precision": null,
+              "high_confidence": 2,
+              "parents": 2,
+              "precision": 0.0,
+              "scenes": 2,
+              "soft_GT_agreement": 0.0
+            },
+            "same": {
+              "PR_average_precision": 0.9365754457180866,
+              "high_confidence": 11403,
+              "parents": 186,
+              "precision": 0.9210734017363852,
+              "scenes": 24,
+              "soft_GT_agreement": 0.9520460367202759
+            },
+            "unknown": {
+              "PR_average_precision": 0.08867424255429437,
+              "high_confidence": 458,
+              "parents": 58,
+              "precision": 0.13100436681222707,
+              "scenes": 21,
+              "soft_GT_agreement": 0.13850365579128265
+            }
+          },
+          "constant_MAE": 0.30013158917427063,
+          "constant_cross_entropy": 0.65928715467453,
+          "cross_entropy": 0.5088785886764526,
+          "pairs": 14956
+        },
+        "retained_parent": {
+          "MAE": 0.14710630476474762,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.004872151791466772,
+              "high_confidence": 19,
+              "parents": 8,
+              "precision": 0.0,
+              "scenes": 7,
+              "soft_GT_agreement": 0.035087715834379196
+            },
+            "same": {
+              "PR_average_precision": 0.7739965812702612,
+              "high_confidence": 7459,
+              "parents": 166,
+              "precision": 0.7821423783348974,
+              "scenes": 24,
+              "soft_GT_agreement": 0.913061261177063
+            },
+            "unknown": {
+              "PR_average_precision": 0.09162365115430811,
+              "high_confidence": 370,
+              "parents": 21,
+              "precision": 0.1810810810810811,
+              "scenes": 11,
+              "soft_GT_agreement": 0.19682441651821136
+            }
+          },
+          "constant_MAE": 0.2793724238872528,
+          "constant_cross_entropy": 0.7101844549179077,
+          "cross_entropy": 0.7111168503761292,
+          "pairs": 14969
+        }
+      }
+    },
+    "train": {
+      "all": {
+        "MAE": 0.050407782196998596,
+        "classes": {
+          "different": {
+            "PR_average_precision": 0.9712253766510374,
+            "high_confidence": 71951,
+            "parents": 596,
+            "precision": 0.9434615224249837,
+            "scenes": 111,
+            "soft_GT_agreement": 0.9852327704429626
+          },
+          "same": {
+            "PR_average_precision": 0.9684178059032027,
+            "high_confidence": 133557,
+            "parents": 817,
+            "precision": 0.9454090762745494,
+            "scenes": 112,
+            "soft_GT_agreement": 0.9904353618621826
+          },
+          "unknown": {
+            "PR_average_precision": 0.9887632722495632,
+            "high_confidence": 37706,
+            "parents": 303,
+            "precision": 0.9725242666949557,
+            "scenes": 100,
+            "soft_GT_agreement": 0.9909111857414246
+          }
+        },
+        "constant_MAE": 0.35678884387016296,
+        "constant_cross_entropy": 0.9660354852676392,
+        "cross_entropy": 0.19364534318447113,
+        "pairs": 337674
+      },
+      "parent_scope": {
+        "ambiguous": {
+          "MAE": 0.0790519118309021,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.928520728829733,
+              "high_confidence": 3597,
+              "parents": 36,
+              "precision": 0.9124270225187656,
+              "scenes": 30,
+              "soft_GT_agreement": 0.9777272343635559
+            },
+            "same": {
+              "PR_average_precision": 0.894675628556969,
+              "high_confidence": 2912,
+              "parents": 45,
+              "precision": 0.9285714285714286,
+              "scenes": 37,
+              "soft_GT_agreement": 0.9815233945846558
+            },
+            "unknown": {
+              "PR_average_precision": 0.9611237191513329,
+              "high_confidence": 2653,
+              "parents": 26,
+              "precision": 0.9261213720316622,
+              "scenes": 24,
+              "soft_GT_agreement": 0.9761306047439575
+            }
+          },
+          "constant_MAE": 0.3496915400028229,
+          "constant_cross_entropy": 1.127122163772583,
+          "cross_entropy": 0.38631728291511536,
+          "pairs": 18758
+        },
+        "out_of_scope": {
+          "MAE": 0.043125562369823456,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.9804823712609423,
+              "high_confidence": 10547,
+              "parents": 67,
+              "precision": 0.9518346449227268,
+              "scenes": 51,
+              "soft_GT_agreement": 0.9877719879150391
+            },
+            "same": {
+              "PR_average_precision": 0.9779522140464283,
+              "high_confidence": 15394,
+              "parents": 93,
+              "precision": 0.9555021436923476,
+              "scenes": 64,
+              "soft_GT_agreement": 0.9931424856185913
+            },
+            "unknown": {
+              "PR_average_precision": 0.95691842942917,
+              "high_confidence": 1562,
+              "parents": 23,
+              "precision": 0.941101152368758,
+              "scenes": 20,
+              "soft_GT_agreement": 0.9773846864700317
+            }
+          },
+          "constant_MAE": 0.3523292541503906,
+          "constant_cross_entropy": 0.909716010093689,
+          "cross_entropy": 0.16705329716205597,
+          "pairs": 36343
+        },
+        "stable": {
+          "MAE": 0.0534454882144928,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.9720873556109483,
+              "high_confidence": 57628,
+              "parents": 480,
+              "precision": 0.9441417366557924,
+              "scenes": 110,
+              "soft_GT_agreement": 0.9853544235229492
+            },
+            "same": {
+              "PR_average_precision": 0.969139899613754,
+              "high_confidence": 114686,
+              "parents": 658,
+              "precision": 0.944596550581588,
+              "scenes": 112,
+              "soft_GT_agreement": 0.9903620481491089
+            },
+            "unknown": {
+              "PR_average_precision": 0.9133554955635617,
+              "high_confidence": 5692,
+              "parents": 158,
+              "precision": 0.9144413211524948,
+              "scenes": 86,
+              "soft_GT_agreement": 0.96954745054245
+            }
+          },
+          "constant_MAE": 0.3342149257659912,
+          "constant_cross_entropy": 0.8516674637794495,
+          "cross_entropy": 0.1990668922662735,
+          "pairs": 251481
+        },
+        "unannotated": {
+          "MAE": 0.017068862915039062,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.8072102819872159,
+              "high_confidence": 179,
+              "parents": 13,
+              "precision": 0.8547486033519553,
+              "scenes": 13,
+              "soft_GT_agreement": 0.9473282694816589
+            },
+            "same": {
+              "PR_average_precision": 0.9020823264082581,
+              "high_confidence": 565,
+              "parents": 21,
+              "precision": 0.9221238938053097,
+              "scenes": 20,
+              "soft_GT_agreement": 0.9775059819221497
+            },
+            "unknown": {
+              "PR_average_precision": 0.9985183199590613,
+              "high_confidence": 27799,
+              "parents": 96,
+              "precision": 0.9906111730637793,
+              "scenes": 53,
+              "soft_GT_agreement": 0.9974562525749207
+            }
+          },
+          "constant_MAE": 0.5488682389259338,
+          "constant_cross_entropy": 1.8597255945205688,
+          "cross_entropy": 0.06463727355003357,
+          "pairs": 31092
+        }
+      },
+      "reference": {
+        "competitor0": {
+          "MAE": 0.06350933760404587,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.9582246448027641,
+              "high_confidence": 17508,
+              "parents": 404,
+              "precision": 0.9268905643134567,
+              "scenes": 110,
+              "soft_GT_agreement": 0.9808129072189331
+            },
+            "same": {
+              "PR_average_precision": 0.9616984393434446,
+              "high_confidence": 21008,
+              "parents": 483,
+              "precision": 0.959920030464585,
+              "scenes": 112,
+              "soft_GT_agreement": 0.9910374283790588
+            },
+            "unknown": {
+              "PR_average_precision": 0.9896460136722071,
+              "high_confidence": 7260,
+              "parents": 201,
+              "precision": 0.9724517906336089,
+              "scenes": 86,
+              "soft_GT_agreement": 0.9909417629241943
+            }
+          },
+          "constant_MAE": 0.36684972047805786,
+          "constant_cross_entropy": 1.003631591796875,
+          "cross_entropy": 0.2261829376220703,
+          "pairs": 67894
+        },
+        "competitor1": {
+          "MAE": 0.05735797435045242,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.9726244246097963,
+              "high_confidence": 21838,
+              "parents": 423,
+              "precision": 0.9443630369081417,
+              "scenes": 108,
+              "soft_GT_agreement": 0.9854307174682617
+            },
+            "same": {
+              "PR_average_precision": 0.9620998172627699,
+              "high_confidence": 11006,
+              "parents": 269,
+              "precision": 0.9701980737779393,
+              "scenes": 103,
+              "soft_GT_agreement": 0.9931970834732056
+            },
+            "unknown": {
+              "PR_average_precision": 0.9880400877563682,
+              "high_confidence": 7260,
+              "parents": 184,
+              "precision": 0.9692837465564739,
+              "scenes": 83,
+              "soft_GT_agreement": 0.990928053855896
+            }
+          },
+          "constant_MAE": 0.40075695514678955,
+          "constant_cross_entropy": 1.1268376111984253,
+          "cross_entropy": 0.20735545456409454,
+          "pairs": 56829
+        },
+        "competitor2": {
+          "MAE": 0.05499906465411186,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.9763036138924999,
+              "high_confidence": 18752,
+              "parents": 340,
+              "precision": 0.9472589590443686,
+              "scenes": 107,
+              "soft_GT_agreement": 0.9860233664512634
+            },
+            "same": {
+              "PR_average_precision": 0.9549540529349709,
+              "high_confidence": 6710,
+              "parents": 163,
+              "precision": 0.9692995529061103,
+              "scenes": 84,
+              "soft_GT_agreement": 0.9934996962547302
+            },
+            "unknown": {
+              "PR_average_precision": 0.9899474004197301,
+              "high_confidence": 5598,
+              "parents": 144,
+              "precision": 0.9787424080028582,
+              "scenes": 72,
+              "soft_GT_agreement": 0.9937453269958496
+            }
+          },
+          "constant_MAE": 0.415060430765152,
+          "constant_cross_entropy": 1.161557912826538,
+          "cross_entropy": 0.19077438116073608,
+          "pairs": 42525
+        },
+        "competitor3": {
+          "MAE": 0.055378735065460205,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.9843622850686913,
+              "high_confidence": 13787,
+              "parents": 237,
+              "precision": 0.9622833103648364,
+              "scenes": 95,
+              "soft_GT_agreement": 0.9905263185501099
+            },
+            "same": {
+              "PR_average_precision": 0.9457152254827368,
+              "high_confidence": 3849,
+              "parents": 98,
+              "precision": 0.970381917381138,
+              "scenes": 65,
+              "soft_GT_agreement": 0.992795467376709
+            },
+            "unknown": {
+              "PR_average_precision": 0.9858109807134395,
+              "high_confidence": 3902,
+              "parents": 103,
+              "precision": 0.9679651460789339,
+              "scenes": 64,
+              "soft_GT_agreement": 0.9918949604034424
+            }
+          },
+          "constant_MAE": 0.41809844970703125,
+          "constant_cross_entropy": 1.1779165267944336,
+          "cross_entropy": 0.19157056510448456,
+          "pairs": 29945
+        },
+        "retained_boundary": {
+          "MAE": 0.03503681346774101,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.08344985628835547,
+              "high_confidence": 6,
+              "parents": 6,
+              "precision": 0.16666666666666666,
+              "scenes": 6,
+              "soft_GT_agreement": 0.44062498211860657
+            },
+            "same": {
+              "PR_average_precision": 0.9928175403163033,
+              "high_confidence": 51969,
+              "parents": 816,
+              "precision": 0.9822009274759953,
+              "scenes": 112,
+              "soft_GT_agreement": 0.9956225156784058
+            },
+            "unknown": {
+              "PR_average_precision": 0.9875279991934229,
+              "high_confidence": 6815,
+              "parents": 232,
+              "precision": 0.9685986793837124,
+              "scenes": 88,
+              "soft_GT_agreement": 0.9844281673431396
+            }
+          },
+          "constant_MAE": 0.3165685534477234,
+          "constant_cross_entropy": 0.7459256052970886,
+          "cross_entropy": 0.10311320424079895,
+          "pairs": 70198
+        },
+        "retained_parent": {
+          "MAE": 0.042588312178850174,
+          "classes": {
+            "different": {
+              "PR_average_precision": 0.015648705621950705,
+              "high_confidence": 60,
+              "parents": 24,
+              "precision": 0.016666666666666666,
+              "scenes": 23,
+              "soft_GT_agreement": 0.7939964532852173
+            },
+            "same": {
+              "PR_average_precision": 0.9505272799031155,
+              "high_confidence": 39015,
+              "parents": 700,
+              "precision": 0.8750224272715622,
+              "scenes": 112,
+              "soft_GT_agreement": 0.9816631078720093
+            },
+            "unknown": {
+              "PR_average_precision": 0.9906486468960003,
+              "high_confidence": 6871,
+              "parents": 172,
+              "precision": 0.9774414204628147,
+              "scenes": 76,
+              "soft_GT_agreement": 0.9944238662719727
+            }
+          },
+          "constant_MAE": 0.2903110086917877,
+          "constant_cross_entropy": 0.8109650611877441,
+          "cross_entropy": 0.2441718876361847,
+          "pairs": 70283
+        }
+      }
+    }
+  },
+  "stage_times": {
+    "completion_verified": 1791887085.6530218,
+    "contexts_frozen": 1791886808.762948,
+    "evaluation_frozen": 1791886955.4376128,
+    "labels_train_frozen": 1791886837.1072772,
+    "models_frozen": 1791886899.8479927,
+    "predictions_frozen": 1791886918.123198,
+    "probabilities_frozen": 1791886906.819071,
+    "rules_frozen": 1791886913.578147
+  },
+  "supported_calibration": [
+    {
+      "metrics": {
+        "action_scenes": 5,
+        "actions": 6,
+        "deleted": 226,
+        "drift": 0,
+        "good_degraded": 1,
+        "good_parents": 60,
+        "good_rate": 0.016666666666666666,
+        "other": 10,
+        "parent_target": 10678,
+        "precision": 0.04424778761061947,
+        "target": 186,
+        "target_loss": 0.0174189923206593,
+        "unknown": 30,
+        "unknown_fraction": 0.13274336283185842,
+        "unknown_identity_actions": 1
+      },
+      "qualified": false,
+      "rule": {
+        "abstain": false,
+        "edit": 0.5,
+        "relation": 0.7
+      }
+    },
+    {
+      "metrics": {
+        "action_scenes": 5,
+        "actions": 6,
+        "deleted": 226,
+        "drift": 0,
+        "good_degraded": 1,
+        "good_parents": 60,
+        "good_rate": 0.016666666666666666,
+        "other": 10,
+        "parent_target": 10678,
+        "precision": 0.04424778761061947,
+        "target": 186,
+        "target_loss": 0.0174189923206593,
+        "unknown": 30,
+        "unknown_fraction": 0.13274336283185842,
+        "unknown_identity_actions": 1
+      },
+      "qualified": false,
+      "rule": {
+        "abstain": false,
+        "edit": 0.7,
+        "relation": 0.7
+      }
+    },
+    {
+      "metrics": {
+        "action_scenes": 3,
+        "actions": 4,
+        "deleted": 208,
+        "drift": 0,
+        "good_degraded": 1,
+        "good_parents": 60,
+        "good_rate": 0.016666666666666666,
+        "other": 10,
+        "parent_target": 8429,
+        "precision": 0.04807692307692308,
+        "target": 168,
+        "target_loss": 0.019931189939494602,
+        "unknown": 30,
+        "unknown_fraction": 0.14423076923076922,
+        "unknown_identity_actions": 1
+      },
+      "qualified": false,
+      "rule": {
+        "abstain": false,
+        "edit": 0.9,
+        "relation": 0.7
+      }
+    },
+    {
+      "metrics": {
+        "action_scenes": 3,
+        "actions": 4,
+        "deleted": 208,
+        "drift": 0,
+        "good_degraded": 1,
+        "good_parents": 60,
+        "good_rate": 0.016666666666666666,
+        "other": 10,
+        "parent_target": 8429,
+        "precision": 0.04807692307692308,
+        "target": 168,
+        "target_loss": 0.019931189939494602,
+        "unknown": 30,
+        "unknown_fraction": 0.14423076923076922,
+        "unknown_identity_actions": 1
+      },
+      "qualified": false,
+      "rule": {
+        "abstain": false,
+        "edit": 0.95,
+        "relation": 0.7
+      }
+    }
+  ]
+}

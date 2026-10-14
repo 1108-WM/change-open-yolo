@@ -1,0 +1,5517 @@
+{
+  "schema": "scannet_additional_download_selection_v1",
+  "created_utc": "2026-09-14T13:40:20.959965+00:00",
+  "role": "download_plan_only_not_training_activation",
+  "source_official_train_count": 1201,
+  "existing_train_scans": 200,
+  "existing_train_main_scenes": 139,
+  "historical_additional_scans": 941,
+  "eligible_scans_on_completely_new_mains": 821,
+  "selected_scans": 397,
+  "selected_main_scenes": 397,
+  "batch_sizes": [
+    100,
+    100,
+    100,
+    97
+  ],
+  "main_order_rule": "sort (sha256(UTF8(main_seed + sceneXXXX)), sceneXXXX)",
+  "main_seed": "scannet-additional-new-main-order-v1|",
+  "representative_rule": "within each main select min (sha256(UTF8(scan_seed + sceneXXXX_XX)), sceneXXXX_XX)",
+  "scan_seed": "scannet-additional-scan-representative-v1|",
+  "selection_uses_AP": false,
+  "selection_uses_GT_or_class_counts": false,
+  "selection_uses_file_sizes": false,
+  "class_coverage_audited": false,
+  "guarantees_all_classes": false,
+  "recommended_destination": "/media/jia/软件1/scannet_additional_train_stream",
+  "download_started": false,
+  "exact_download_size_queried": false,
+  "full_training_expansion_protocol_changed": false,
+  "source_lists": {
+    "official_train": {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/models/Mask3D/third_party/ScanNet/Tasks/Benchmark/scannetv2_train.txt",
+      "sha256": "96acca299b7855f02824c496b19077904d80996e7ced1bb9f0dac98f7dd4d0c8",
+      "scans": 1201
+    },
+    "official_val312": {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/models/Mask3D/third_party/ScanNet/Tasks/Benchmark/scannetv2_val.txt",
+      "sha256": "d75d4971c3fa7128c643695840e279042c212ef904fe933bd00cf9918c61b083",
+      "scans": 312
+    },
+    "existing_official100": {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/scannet200/scene_splits/official_train100_20260808/official_train100.txt",
+      "sha256": "dfa9017e206190eb2973b247c78e4bf1b2d9c01bb8468a15775c30335e44fb68",
+      "scans": 100
+    },
+    "existing_ncs_train100": {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/scannet200/scene_splits/ncs_independent_20260813/ncs_train100.txt",
+      "sha256": "ecebf3a682a02665a9770c2fa0ef83cc61c0c4ec2f185820aa44d667c8c4cd40",
+      "scans": 100
+    },
+    "development_and_diagnostic60": {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/output/scannet200/scene_splits/ncs_independent_20260813/ncs_validation60.txt",
+      "sha256": "9046668d8bc0987e06bb63603302434b34787b34a9082a9b988846de5a5b9ca2",
+      "scans": 60
+    },
+    "historical_additional941": {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_dev55_val312_diagnostics_20260914/additional_training_eligible.txt",
+      "sha256": "638d1cb0e520f26155500ab3101c1623c35ea599abe8d3f4f83546c097aedd03",
+      "scans": 941
+    }
+  },
+  "local_scene_inventory": {
+    "/media/jia/软件1/scannet_train_stream/scans": [
+      "scene0001_00",
+      "scene0001_01",
+      "scene0004_00",
+      "scene0005_00",
+      "scene0005_01",
+      "scene0007_00",
+      "scene0018_00",
+      "scene0027_01",
+      "scene0028_00",
+      "scene0032_00",
+      "scene0035_00",
+      "scene0035_01",
+      "scene0038_00",
+      "scene0038_02",
+      "scene0039_00",
+      "scene0042_02",
+      "scene0043_00",
+      "scene0043_01",
+      "scene0048_00",
+      "scene0053_00",
+      "scene0054_00",
+      "scene0055_00",
+      "scene0059_00",
+      "scene0059_01",
+      "scene0059_02",
+      "scene0065_01",
+      "scene0066_00",
+      "scene0067_00",
+      "scene0067_01",
+      "scene0067_02",
+      "scene0070_00",
+      "scene0079_00",
+      "scene0090_00",
+      "scene0092_00",
+      "scene0093_00",
+      "scene0099_01",
+      "scene0103_00",
+      "scene0103_01",
+      "scene0109_00",
+      "scene0109_01",
+      "scene0114_00",
+      "scene0115_00",
+      "scene0115_01",
+      "scene0115_02",
+      "scene0116_01",
+      "scene0121_00",
+      "scene0123_00",
+      "scene0123_01",
+      "scene0123_02",
+      "scene0124_01",
+      "scene0127_00",
+      "scene0132_00",
+      "scene0132_01",
+      "scene0132_02",
+      "scene0135_00",
+      "scene0141_00",
+      "scene0142_00",
+      "scene0142_01",
+      "scene0147_00",
+      "scene0147_01",
+      "scene0148_00",
+      "scene0150_00",
+      "scene0150_01",
+      "scene0150_02",
+      "scene0151_00",
+      "scene0152_01",
+      "scene0157_00",
+      "scene0157_01",
+      "scene0162_00",
+      "scene0166_02",
+      "scene0167_00",
+      "scene0171_00",
+      "scene0185_00",
+      "scene0191_00",
+      "scene0191_01",
+      "scene0191_02",
+      "scene0192_00",
+      "scene0197_00",
+      "scene0197_01",
+      "scene0197_02",
+      "scene0199_00",
+      "scene0204_00",
+      "scene0205_02",
+      "scene0209_00",
+      "scene0209_01",
+      "scene0209_02",
+      "scene0215_00",
+      "scene0215_01",
+      "scene0218_00",
+      "scene0223_00",
+      "scene0223_01",
+      "scene0223_02",
+      "scene0226_00",
+      "scene0226_01",
+      "scene0227_00",
+      "scene0228_00",
+      "scene0229_01",
+      "scene0236_01",
+      "scene0238_00",
+      "scene0238_01",
+      "scene0242_00",
+      "scene0242_01",
+      "scene0242_02",
+      "scene0248_02",
+      "scene0250_02",
+      "scene0255_00",
+      "scene0255_01",
+      "scene0255_02",
+      "scene0261_02",
+      "scene0266_00",
+      "scene0266_01",
+      "scene0270_01",
+      "scene0272_01",
+      "scene0274_01",
+      "scene0276_00",
+      "scene0276_01",
+      "scene0281_00",
+      "scene0282_00",
+      "scene0282_01",
+      "scene0282_02",
+      "scene0285_00",
+      "scene0292_00",
+      "scene0292_01",
+      "scene0302_00",
+      "scene0303_01",
+      "scene0305_00",
+      "scene0305_01",
+      "scene0306_01",
+      "scene0309_00",
+      "scene0309_01",
+      "scene0313_00",
+      "scene0313_01",
+      "scene0313_02",
+      "scene0317_00",
+      "scene0317_01",
+      "scene0319_00",
+      "scene0321_00",
+      "scene0336_00",
+      "scene0336_01",
+      "scene0337_01",
+      "scene0348_00",
+      "scene0348_01",
+      "scene0348_02",
+      "scene0352_00",
+      "scene0352_01",
+      "scene0352_02",
+      "scene0358_00",
+      "scene0358_01",
+      "scene0358_02",
+      "scene0359_01",
+      "scene0361_00",
+      "scene0361_01",
+      "scene0361_02",
+      "scene0364_00",
+      "scene0364_01",
+      "scene0368_00",
+      "scene0368_01",
+      "scene0374_00",
+      "scene0381_02",
+      "scene0385_00",
+      "scene0390_00",
+      "scene0393_01",
+      "scene0394_01",
+      "scene0398_00",
+      "scene0398_01",
+      "scene0400_00",
+      "scene0400_01",
+      "scene0401_00",
+      "scene0405_00",
+      "scene0408_00",
+      "scene0408_01",
+      "scene0411_01",
+      "scene0416_00",
+      "scene0416_01",
+      "scene0416_02",
+      "scene0416_03",
+      "scene0416_04",
+      "scene0419_02",
+      "scene0420_01",
+      "scene0421_01",
+      "scene0422_00",
+      "scene0434_00",
+      "scene0434_01",
+      "scene0434_02",
+      "scene0445_00",
+      "scene0452_00",
+      "scene0452_01",
+      "scene0452_02",
+      "scene0453_00",
+      "scene0456_01",
+      "scene0463_00",
+      "scene0465_00",
+      "scene0465_01",
+      "scene0468_00",
+      "scene0468_01",
+      "scene0468_02",
+      "scene0478_00",
+      "scene0478_01",
+      "scene0479_01",
+      "scene0482_01",
+      "scene0492_00",
+      "scene0492_01",
+      "scene0495_00",
+      "scene0499_00",
+      "scene0508_01",
+      "scene0509_02",
+      "scene0510_00",
+      "scene0516_01",
+      "scene0517_00",
+      "scene0517_01",
+      "scene0517_02",
+      "scene0519_00",
+      "scene0523_02",
+      "scene0524_00",
+      "scene0529_01",
+      "scene0531_00",
+      "scene0532_00",
+      "scene0532_01",
+      "scene0536_02",
+      "scene0537_00",
+      "scene0538_00",
+      "scene0541_00",
+      "scene0541_02",
+      "scene0545_00",
+      "scene0545_01",
+      "scene0545_02",
+      "scene0563_00",
+      "scene0564_00",
+      "scene0570_02",
+      "scene0576_01",
+      "scene0577_00",
+      "scene0582_00",
+      "scene0582_01",
+      "scene0582_02",
+      "scene0585_00",
+      "scene0585_01",
+      "scene0586_01",
+      "scene0587_00",
+      "scene0587_03",
+      "scene0590_00",
+      "scene0590_01",
+      "scene0612_00",
+      "scene0612_01",
+      "scene0624_00",
+      "scene0628_00",
+      "scene0628_01",
+      "scene0628_02",
+      "scene0639_00",
+      "scene0641_00",
+      "scene0649_00",
+      "scene0662_00",
+      "scene0673_04",
+      "scene0673_05",
+      "scene0676_01",
+      "scene0682_00",
+      "scene0692_00",
+      "scene0692_01",
+      "scene0692_03",
+      "scene0694_00",
+      "scene0694_01"
+    ],
+    "/media/jia/软件1/scannet_train_stream/prepared": [
+      "scene0001_01",
+      "scene0007_00",
+      "scene0018_00",
+      "scene0027_01",
+      "scene0028_00",
+      "scene0032_00",
+      "scene0038_00",
+      "scene0038_02",
+      "scene0039_00",
+      "scene0042_02",
+      "scene0048_00",
+      "scene0054_00",
+      "scene0055_00",
+      "scene0065_01",
+      "scene0079_00",
+      "scene0090_00",
+      "scene0092_00",
+      "scene0093_00",
+      "scene0099_01",
+      "scene0114_00",
+      "scene0116_01",
+      "scene0121_00",
+      "scene0124_01",
+      "scene0127_00",
+      "scene0132_02",
+      "scene0135_00",
+      "scene0141_00",
+      "scene0148_00",
+      "scene0150_01",
+      "scene0151_00",
+      "scene0152_01",
+      "scene0157_01",
+      "scene0166_02",
+      "scene0171_00",
+      "scene0192_00",
+      "scene0204_00",
+      "scene0205_02",
+      "scene0218_00",
+      "scene0229_01",
+      "scene0236_01",
+      "scene0248_02",
+      "scene0250_02",
+      "scene0261_02",
+      "scene0270_01",
+      "scene0272_01",
+      "scene0274_01",
+      "scene0276_01",
+      "scene0302_00",
+      "scene0303_01",
+      "scene0306_01",
+      "scene0313_02",
+      "scene0317_00",
+      "scene0317_01",
+      "scene0337_01",
+      "scene0358_00",
+      "scene0359_01",
+      "scene0381_02",
+      "scene0385_00",
+      "scene0393_01",
+      "scene0394_01",
+      "scene0398_00",
+      "scene0401_00",
+      "scene0408_01",
+      "scene0411_01",
+      "scene0416_02",
+      "scene0419_02",
+      "scene0420_01",
+      "scene0421_01",
+      "scene0445_00",
+      "scene0453_00",
+      "scene0456_01",
+      "scene0463_00",
+      "scene0479_01",
+      "scene0482_01",
+      "scene0508_01",
+      "scene0509_02",
+      "scene0510_00",
+      "scene0516_01",
+      "scene0523_02",
+      "scene0524_00",
+      "scene0529_01",
+      "scene0532_01",
+      "scene0536_02",
+      "scene0541_00",
+      "scene0541_02",
+      "scene0570_02",
+      "scene0576_01",
+      "scene0586_01",
+      "scene0587_00",
+      "scene0587_03",
+      "scene0639_00",
+      "scene0649_00",
+      "scene0662_00",
+      "scene0673_04",
+      "scene0673_05",
+      "scene0676_01",
+      "scene0682_00",
+      "scene0692_00",
+      "scene0692_01",
+      "scene0692_03"
+    ],
+    "/media/jia/软件1/scannet_train_stream/records": [
+      "scene0001_01",
+      "scene0007_00",
+      "scene0018_00",
+      "scene0027_01",
+      "scene0028_00",
+      "scene0032_00",
+      "scene0038_00",
+      "scene0038_02",
+      "scene0039_00",
+      "scene0042_02",
+      "scene0048_00",
+      "scene0054_00",
+      "scene0055_00",
+      "scene0065_01",
+      "scene0079_00",
+      "scene0090_00",
+      "scene0092_00",
+      "scene0093_00",
+      "scene0099_01",
+      "scene0114_00",
+      "scene0116_01",
+      "scene0121_00",
+      "scene0124_01",
+      "scene0127_00",
+      "scene0132_02",
+      "scene0135_00",
+      "scene0141_00",
+      "scene0148_00",
+      "scene0150_01",
+      "scene0151_00",
+      "scene0152_01",
+      "scene0157_01",
+      "scene0166_02",
+      "scene0171_00",
+      "scene0192_00",
+      "scene0204_00",
+      "scene0205_02",
+      "scene0218_00",
+      "scene0229_01",
+      "scene0236_01",
+      "scene0248_02",
+      "scene0250_02",
+      "scene0261_02",
+      "scene0270_01",
+      "scene0272_01",
+      "scene0274_01",
+      "scene0276_01",
+      "scene0302_00",
+      "scene0303_01",
+      "scene0306_01",
+      "scene0313_02",
+      "scene0317_00",
+      "scene0317_01",
+      "scene0337_01",
+      "scene0358_00",
+      "scene0359_01",
+      "scene0381_02",
+      "scene0385_00",
+      "scene0393_01",
+      "scene0394_01",
+      "scene0398_00",
+      "scene0401_00",
+      "scene0408_01",
+      "scene0411_01",
+      "scene0416_02",
+      "scene0419_02",
+      "scene0420_01",
+      "scene0421_01",
+      "scene0445_00",
+      "scene0453_00",
+      "scene0456_01",
+      "scene0463_00",
+      "scene0479_01",
+      "scene0482_01",
+      "scene0508_01",
+      "scene0509_02",
+      "scene0510_00",
+      "scene0516_01",
+      "scene0523_02",
+      "scene0524_00",
+      "scene0529_01",
+      "scene0532_01",
+      "scene0536_02",
+      "scene0541_00",
+      "scene0541_02",
+      "scene0570_02",
+      "scene0576_01",
+      "scene0586_01",
+      "scene0587_00",
+      "scene0587_03",
+      "scene0639_00",
+      "scene0649_00",
+      "scene0662_00",
+      "scene0673_04",
+      "scene0673_05",
+      "scene0676_01",
+      "scene0682_00",
+      "scene0692_00",
+      "scene0692_01",
+      "scene0692_03"
+    ],
+    "/media/jia/软件1/scannet_train_stream/prepared_ncs": [
+      "scene0001_00",
+      "scene0004_00",
+      "scene0005_00",
+      "scene0005_01",
+      "scene0035_00",
+      "scene0035_01",
+      "scene0043_00",
+      "scene0043_01",
+      "scene0053_00",
+      "scene0059_00",
+      "scene0059_01",
+      "scene0059_02",
+      "scene0066_00",
+      "scene0067_00",
+      "scene0067_01",
+      "scene0067_02",
+      "scene0070_00",
+      "scene0103_00",
+      "scene0103_01",
+      "scene0109_00",
+      "scene0109_01",
+      "scene0115_00",
+      "scene0115_01",
+      "scene0115_02",
+      "scene0123_00",
+      "scene0123_01",
+      "scene0123_02",
+      "scene0132_00",
+      "scene0132_01",
+      "scene0142_00",
+      "scene0142_01",
+      "scene0147_00",
+      "scene0147_01",
+      "scene0150_00",
+      "scene0150_02",
+      "scene0157_00",
+      "scene0162_00",
+      "scene0167_00",
+      "scene0185_00",
+      "scene0191_00",
+      "scene0191_01",
+      "scene0191_02",
+      "scene0197_00",
+      "scene0197_01",
+      "scene0197_02",
+      "scene0199_00",
+      "scene0209_00",
+      "scene0209_01",
+      "scene0209_02",
+      "scene0215_00",
+      "scene0215_01",
+      "scene0223_00",
+      "scene0223_01",
+      "scene0223_02",
+      "scene0226_00",
+      "scene0226_01",
+      "scene0227_00",
+      "scene0228_00",
+      "scene0238_00",
+      "scene0238_01",
+      "scene0242_00",
+      "scene0242_01",
+      "scene0242_02",
+      "scene0255_00",
+      "scene0255_01",
+      "scene0255_02",
+      "scene0266_00",
+      "scene0266_01",
+      "scene0276_00",
+      "scene0281_00",
+      "scene0282_00",
+      "scene0282_01",
+      "scene0282_02",
+      "scene0285_00",
+      "scene0292_00",
+      "scene0292_01",
+      "scene0305_00",
+      "scene0305_01",
+      "scene0309_00",
+      "scene0309_01",
+      "scene0313_00",
+      "scene0313_01",
+      "scene0319_00",
+      "scene0321_00",
+      "scene0336_00",
+      "scene0336_01",
+      "scene0348_00",
+      "scene0348_01",
+      "scene0348_02",
+      "scene0352_00",
+      "scene0352_01",
+      "scene0352_02",
+      "scene0358_01",
+      "scene0358_02",
+      "scene0361_00",
+      "scene0361_01",
+      "scene0361_02",
+      "scene0364_00",
+      "scene0364_01",
+      "scene0368_00",
+      "scene0368_01",
+      "scene0374_00",
+      "scene0390_00",
+      "scene0398_01",
+      "scene0400_00",
+      "scene0400_01",
+      "scene0405_00",
+      "scene0408_00",
+      "scene0416_00",
+      "scene0416_01",
+      "scene0416_03",
+      "scene0416_04",
+      "scene0422_00",
+      "scene0434_00",
+      "scene0434_01",
+      "scene0434_02",
+      "scene0452_00",
+      "scene0452_01",
+      "scene0452_02",
+      "scene0465_00",
+      "scene0465_01",
+      "scene0468_00",
+      "scene0468_01",
+      "scene0468_02",
+      "scene0478_00",
+      "scene0478_01",
+      "scene0492_00",
+      "scene0492_01",
+      "scene0495_00",
+      "scene0499_00",
+      "scene0517_00",
+      "scene0517_01",
+      "scene0517_02",
+      "scene0519_00",
+      "scene0531_00",
+      "scene0532_00",
+      "scene0537_00",
+      "scene0538_00",
+      "scene0545_00",
+      "scene0545_01",
+      "scene0545_02",
+      "scene0563_00",
+      "scene0564_00",
+      "scene0577_00",
+      "scene0582_00",
+      "scene0582_01",
+      "scene0582_02",
+      "scene0585_00",
+      "scene0585_01",
+      "scene0590_00",
+      "scene0590_01",
+      "scene0612_00",
+      "scene0612_01",
+      "scene0624_00",
+      "scene0628_00",
+      "scene0628_01",
+      "scene0628_02",
+      "scene0641_00",
+      "scene0694_00",
+      "scene0694_01"
+    ],
+    "/media/jia/软件1/scannet_train_stream/records_ncs": [
+      "scene0001_00",
+      "scene0004_00",
+      "scene0005_00",
+      "scene0005_01",
+      "scene0035_00",
+      "scene0035_01",
+      "scene0043_00",
+      "scene0043_01",
+      "scene0053_00",
+      "scene0059_00",
+      "scene0059_01",
+      "scene0059_02",
+      "scene0066_00",
+      "scene0067_00",
+      "scene0067_01",
+      "scene0067_02",
+      "scene0070_00",
+      "scene0103_00",
+      "scene0103_01",
+      "scene0109_00",
+      "scene0109_01",
+      "scene0115_00",
+      "scene0115_01",
+      "scene0115_02",
+      "scene0123_00",
+      "scene0123_01",
+      "scene0123_02",
+      "scene0132_00",
+      "scene0132_01",
+      "scene0142_00",
+      "scene0142_01",
+      "scene0147_00",
+      "scene0147_01",
+      "scene0150_00",
+      "scene0150_02",
+      "scene0157_00",
+      "scene0162_00",
+      "scene0167_00",
+      "scene0185_00",
+      "scene0191_00",
+      "scene0191_01",
+      "scene0191_02",
+      "scene0197_00",
+      "scene0197_01",
+      "scene0197_02",
+      "scene0199_00",
+      "scene0209_00",
+      "scene0209_01",
+      "scene0209_02",
+      "scene0215_00",
+      "scene0215_01",
+      "scene0223_00",
+      "scene0223_01",
+      "scene0223_02",
+      "scene0226_00",
+      "scene0226_01",
+      "scene0227_00",
+      "scene0228_00",
+      "scene0238_00",
+      "scene0238_01",
+      "scene0242_00",
+      "scene0242_01",
+      "scene0242_02",
+      "scene0255_00",
+      "scene0255_01",
+      "scene0255_02",
+      "scene0266_00",
+      "scene0266_01",
+      "scene0276_00",
+      "scene0281_00",
+      "scene0282_00",
+      "scene0282_01",
+      "scene0282_02",
+      "scene0285_00",
+      "scene0292_00",
+      "scene0292_01",
+      "scene0305_00",
+      "scene0305_01",
+      "scene0309_00",
+      "scene0309_01",
+      "scene0313_00",
+      "scene0313_01",
+      "scene0319_00",
+      "scene0321_00",
+      "scene0336_00",
+      "scene0336_01",
+      "scene0348_00",
+      "scene0348_01",
+      "scene0348_02",
+      "scene0352_00",
+      "scene0352_01",
+      "scene0352_02",
+      "scene0358_01",
+      "scene0358_02",
+      "scene0361_00",
+      "scene0361_01",
+      "scene0361_02",
+      "scene0364_00",
+      "scene0364_01",
+      "scene0368_00",
+      "scene0368_01",
+      "scene0374_00",
+      "scene0390_00",
+      "scene0398_01",
+      "scene0400_00",
+      "scene0400_01",
+      "scene0405_00",
+      "scene0408_00",
+      "scene0416_00",
+      "scene0416_01",
+      "scene0416_03",
+      "scene0416_04",
+      "scene0422_00",
+      "scene0434_00",
+      "scene0434_01",
+      "scene0434_02",
+      "scene0452_00",
+      "scene0452_01",
+      "scene0452_02",
+      "scene0465_00",
+      "scene0465_01",
+      "scene0468_00",
+      "scene0468_01",
+      "scene0468_02",
+      "scene0478_00",
+      "scene0478_01",
+      "scene0492_00",
+      "scene0492_01",
+      "scene0495_00",
+      "scene0499_00",
+      "scene0517_00",
+      "scene0517_01",
+      "scene0517_02",
+      "scene0519_00",
+      "scene0531_00",
+      "scene0532_00",
+      "scene0537_00",
+      "scene0538_00",
+      "scene0545_00",
+      "scene0545_01",
+      "scene0545_02",
+      "scene0563_00",
+      "scene0564_00",
+      "scene0577_00",
+      "scene0582_00",
+      "scene0582_01",
+      "scene0582_02",
+      "scene0585_00",
+      "scene0585_01",
+      "scene0590_00",
+      "scene0590_01",
+      "scene0612_00",
+      "scene0612_01",
+      "scene0624_00",
+      "scene0628_00",
+      "scene0628_01",
+      "scene0628_02",
+      "scene0641_00",
+      "scene0694_00",
+      "scene0694_01"
+    ],
+    "/home/jia/Wm/Dataset/scannet200": [
+      "scene0011_00",
+      "scene0011_01",
+      "scene0015_00",
+      "scene0019_00",
+      "scene0019_01",
+      "scene0025_00",
+      "scene0025_01",
+      "scene0025_02",
+      "scene0030_00",
+      "scene0030_01",
+      "scene0030_02",
+      "scene0046_00",
+      "scene0046_01",
+      "scene0046_02",
+      "scene0050_00",
+      "scene0050_01",
+      "scene0050_02",
+      "scene0063_00",
+      "scene0064_00",
+      "scene0064_01",
+      "scene0077_00",
+      "scene0077_01",
+      "scene0081_00",
+      "scene0081_01",
+      "scene0081_02",
+      "scene0084_00",
+      "scene0084_01",
+      "scene0084_02",
+      "scene0086_00",
+      "scene0086_01",
+      "scene0086_02",
+      "scene0088_00",
+      "scene0088_01",
+      "scene0088_02",
+      "scene0088_03",
+      "scene0095_00",
+      "scene0095_01",
+      "scene0100_00",
+      "scene0100_01",
+      "scene0100_02",
+      "scene0131_00",
+      "scene0131_01",
+      "scene0131_02",
+      "scene0139_00",
+      "scene0144_00",
+      "scene0144_01",
+      "scene0146_00",
+      "scene0146_01",
+      "scene0146_02",
+      "scene0149_00",
+      "scene0153_00",
+      "scene0153_01",
+      "scene0164_00",
+      "scene0164_01",
+      "scene0164_02",
+      "scene0164_03",
+      "scene0169_00",
+      "scene0169_01",
+      "scene0187_00",
+      "scene0187_01",
+      "scene0193_00",
+      "scene0193_01",
+      "scene0196_00",
+      "scene0203_00",
+      "scene0203_01",
+      "scene0203_02",
+      "scene0207_00",
+      "scene0207_01",
+      "scene0207_02",
+      "scene0208_00",
+      "scene0217_00",
+      "scene0221_00",
+      "scene0221_01",
+      "scene0222_00",
+      "scene0222_01",
+      "scene0231_00",
+      "scene0231_01",
+      "scene0231_02",
+      "scene0246_00",
+      "scene0249_00",
+      "scene0251_00",
+      "scene0256_00",
+      "scene0256_01",
+      "scene0256_02",
+      "scene0257_00",
+      "scene0277_00",
+      "scene0277_01",
+      "scene0277_02",
+      "scene0278_00",
+      "scene0278_01",
+      "scene0300_00",
+      "scene0300_01",
+      "scene0304_00",
+      "scene0307_00",
+      "scene0307_01",
+      "scene0307_02",
+      "scene0314_00",
+      "scene0316_00",
+      "scene0328_00",
+      "scene0329_00",
+      "scene0329_01",
+      "scene0329_02",
+      "scene0334_00",
+      "scene0334_01",
+      "scene0334_02",
+      "scene0338_00",
+      "scene0338_01",
+      "scene0338_02",
+      "scene0342_00",
+      "scene0343_00",
+      "scene0351_00",
+      "scene0351_01",
+      "scene0353_00",
+      "scene0353_01",
+      "scene0353_02",
+      "scene0354_00",
+      "scene0355_00",
+      "scene0355_01",
+      "scene0356_00",
+      "scene0356_01",
+      "scene0356_02",
+      "scene0357_00",
+      "scene0357_01",
+      "scene0377_00",
+      "scene0377_01",
+      "scene0377_02",
+      "scene0378_00",
+      "scene0378_01",
+      "scene0378_02",
+      "scene0382_00",
+      "scene0382_01",
+      "scene0389_00",
+      "scene0406_00",
+      "scene0406_01",
+      "scene0406_02",
+      "scene0412_00",
+      "scene0412_01",
+      "scene0414_00",
+      "scene0423_00",
+      "scene0423_01",
+      "scene0423_02",
+      "scene0426_00",
+      "scene0426_01",
+      "scene0426_02",
+      "scene0426_03",
+      "scene0427_00",
+      "scene0430_00",
+      "scene0430_01",
+      "scene0432_00",
+      "scene0432_01",
+      "scene0435_00",
+      "scene0435_01",
+      "scene0435_02",
+      "scene0435_03",
+      "scene0441_00",
+      "scene0458_00",
+      "scene0458_01",
+      "scene0461_00",
+      "scene0462_00",
+      "scene0474_00",
+      "scene0474_01",
+      "scene0474_02",
+      "scene0474_03",
+      "scene0474_04",
+      "scene0474_05",
+      "scene0488_00",
+      "scene0488_01",
+      "scene0490_00",
+      "scene0494_00",
+      "scene0496_00",
+      "scene0500_00",
+      "scene0500_01",
+      "scene0518_00",
+      "scene0527_00",
+      "scene0535_00",
+      "scene0549_00",
+      "scene0549_01",
+      "scene0550_00",
+      "scene0552_00",
+      "scene0552_01",
+      "scene0553_00",
+      "scene0553_01",
+      "scene0553_02",
+      "scene0558_00",
+      "scene0558_01",
+      "scene0558_02",
+      "scene0559_00",
+      "scene0559_01",
+      "scene0559_02",
+      "scene0565_00",
+      "scene0568_00",
+      "scene0568_01",
+      "scene0568_02",
+      "scene0574_00",
+      "scene0574_01",
+      "scene0574_02",
+      "scene0575_00",
+      "scene0575_01",
+      "scene0575_02",
+      "scene0578_00",
+      "scene0578_01",
+      "scene0578_02",
+      "scene0580_00",
+      "scene0580_01",
+      "scene0583_00",
+      "scene0583_01",
+      "scene0583_02",
+      "scene0591_00",
+      "scene0591_01",
+      "scene0591_02",
+      "scene0593_00",
+      "scene0593_01",
+      "scene0595_00",
+      "scene0598_00",
+      "scene0598_01",
+      "scene0598_02",
+      "scene0599_00",
+      "scene0599_01",
+      "scene0599_02",
+      "scene0606_00",
+      "scene0606_01",
+      "scene0606_02",
+      "scene0607_00",
+      "scene0607_01",
+      "scene0608_00",
+      "scene0608_01",
+      "scene0608_02",
+      "scene0609_00",
+      "scene0609_01",
+      "scene0609_02",
+      "scene0609_03",
+      "scene0616_00",
+      "scene0616_01",
+      "scene0618_00",
+      "scene0621_00",
+      "scene0629_00",
+      "scene0629_01",
+      "scene0629_02",
+      "scene0633_00",
+      "scene0633_01",
+      "scene0643_00",
+      "scene0644_00",
+      "scene0645_00",
+      "scene0645_01",
+      "scene0645_02",
+      "scene0647_00",
+      "scene0647_01",
+      "scene0648_00",
+      "scene0648_01",
+      "scene0651_00",
+      "scene0651_01",
+      "scene0651_02",
+      "scene0652_00",
+      "scene0653_00",
+      "scene0653_01",
+      "scene0655_00",
+      "scene0655_01",
+      "scene0655_02",
+      "scene0658_00",
+      "scene0660_00",
+      "scene0663_00",
+      "scene0663_01",
+      "scene0663_02",
+      "scene0664_00",
+      "scene0664_01",
+      "scene0664_02",
+      "scene0665_00",
+      "scene0665_01",
+      "scene0670_00",
+      "scene0670_01",
+      "scene0671_00",
+      "scene0671_01",
+      "scene0678_00",
+      "scene0678_01",
+      "scene0678_02",
+      "scene0684_00",
+      "scene0684_01",
+      "scene0685_00",
+      "scene0685_01",
+      "scene0685_02",
+      "scene0686_00",
+      "scene0686_01",
+      "scene0686_02",
+      "scene0689_00",
+      "scene0690_00",
+      "scene0690_01",
+      "scene0693_00",
+      "scene0693_01",
+      "scene0693_02",
+      "scene0695_00",
+      "scene0695_01",
+      "scene0695_02",
+      "scene0695_03",
+      "scene0696_00",
+      "scene0696_01",
+      "scene0696_02",
+      "scene0697_00",
+      "scene0697_01",
+      "scene0697_02",
+      "scene0697_03",
+      "scene0699_00",
+      "scene0700_00",
+      "scene0700_01",
+      "scene0700_02",
+      "scene0701_00",
+      "scene0701_01",
+      "scene0701_02",
+      "scene0702_00",
+      "scene0702_01",
+      "scene0702_02",
+      "scene0704_00",
+      "scene0704_01"
+    ],
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/data/scannet_v2_raw/scans": [],
+    "/home/jia/Wm/Dataset/scannet_v2_official_audit_3scenes/scans": [
+      "scene0019_01",
+      "scene0084_01",
+      "scene0084_02"
+    ]
+  },
+  "excluded_main_scenes": [
+    "scene0001",
+    "scene0004",
+    "scene0005",
+    "scene0007",
+    "scene0011",
+    "scene0015",
+    "scene0018",
+    "scene0019",
+    "scene0025",
+    "scene0027",
+    "scene0028",
+    "scene0030",
+    "scene0032",
+    "scene0035",
+    "scene0038",
+    "scene0039",
+    "scene0042",
+    "scene0043",
+    "scene0046",
+    "scene0048",
+    "scene0050",
+    "scene0053",
+    "scene0054",
+    "scene0055",
+    "scene0059",
+    "scene0063",
+    "scene0064",
+    "scene0065",
+    "scene0066",
+    "scene0067",
+    "scene0070",
+    "scene0077",
+    "scene0079",
+    "scene0081",
+    "scene0084",
+    "scene0086",
+    "scene0088",
+    "scene0090",
+    "scene0092",
+    "scene0093",
+    "scene0095",
+    "scene0099",
+    "scene0100",
+    "scene0103",
+    "scene0109",
+    "scene0114",
+    "scene0115",
+    "scene0116",
+    "scene0121",
+    "scene0123",
+    "scene0124",
+    "scene0127",
+    "scene0131",
+    "scene0132",
+    "scene0135",
+    "scene0139",
+    "scene0141",
+    "scene0142",
+    "scene0144",
+    "scene0146",
+    "scene0147",
+    "scene0148",
+    "scene0149",
+    "scene0150",
+    "scene0151",
+    "scene0152",
+    "scene0153",
+    "scene0157",
+    "scene0162",
+    "scene0164",
+    "scene0166",
+    "scene0167",
+    "scene0169",
+    "scene0171",
+    "scene0185",
+    "scene0187",
+    "scene0191",
+    "scene0192",
+    "scene0193",
+    "scene0196",
+    "scene0197",
+    "scene0199",
+    "scene0203",
+    "scene0204",
+    "scene0205",
+    "scene0207",
+    "scene0208",
+    "scene0209",
+    "scene0215",
+    "scene0217",
+    "scene0218",
+    "scene0221",
+    "scene0222",
+    "scene0223",
+    "scene0226",
+    "scene0227",
+    "scene0228",
+    "scene0229",
+    "scene0231",
+    "scene0236",
+    "scene0238",
+    "scene0242",
+    "scene0246",
+    "scene0248",
+    "scene0249",
+    "scene0250",
+    "scene0251",
+    "scene0255",
+    "scene0256",
+    "scene0257",
+    "scene0261",
+    "scene0266",
+    "scene0270",
+    "scene0272",
+    "scene0274",
+    "scene0276",
+    "scene0277",
+    "scene0278",
+    "scene0281",
+    "scene0282",
+    "scene0285",
+    "scene0292",
+    "scene0300",
+    "scene0302",
+    "scene0303",
+    "scene0304",
+    "scene0305",
+    "scene0306",
+    "scene0307",
+    "scene0309",
+    "scene0313",
+    "scene0314",
+    "scene0316",
+    "scene0317",
+    "scene0319",
+    "scene0321",
+    "scene0328",
+    "scene0329",
+    "scene0334",
+    "scene0336",
+    "scene0337",
+    "scene0338",
+    "scene0342",
+    "scene0343",
+    "scene0348",
+    "scene0351",
+    "scene0352",
+    "scene0353",
+    "scene0354",
+    "scene0355",
+    "scene0356",
+    "scene0357",
+    "scene0358",
+    "scene0359",
+    "scene0361",
+    "scene0364",
+    "scene0368",
+    "scene0374",
+    "scene0377",
+    "scene0378",
+    "scene0381",
+    "scene0382",
+    "scene0385",
+    "scene0389",
+    "scene0390",
+    "scene0393",
+    "scene0394",
+    "scene0398",
+    "scene0400",
+    "scene0401",
+    "scene0405",
+    "scene0406",
+    "scene0408",
+    "scene0411",
+    "scene0412",
+    "scene0414",
+    "scene0416",
+    "scene0419",
+    "scene0420",
+    "scene0421",
+    "scene0422",
+    "scene0423",
+    "scene0426",
+    "scene0427",
+    "scene0430",
+    "scene0432",
+    "scene0434",
+    "scene0435",
+    "scene0441",
+    "scene0445",
+    "scene0452",
+    "scene0453",
+    "scene0456",
+    "scene0458",
+    "scene0461",
+    "scene0462",
+    "scene0463",
+    "scene0465",
+    "scene0468",
+    "scene0474",
+    "scene0478",
+    "scene0479",
+    "scene0482",
+    "scene0488",
+    "scene0490",
+    "scene0492",
+    "scene0494",
+    "scene0495",
+    "scene0496",
+    "scene0499",
+    "scene0500",
+    "scene0508",
+    "scene0509",
+    "scene0510",
+    "scene0516",
+    "scene0517",
+    "scene0518",
+    "scene0519",
+    "scene0523",
+    "scene0524",
+    "scene0527",
+    "scene0529",
+    "scene0531",
+    "scene0532",
+    "scene0535",
+    "scene0536",
+    "scene0537",
+    "scene0538",
+    "scene0541",
+    "scene0545",
+    "scene0549",
+    "scene0550",
+    "scene0552",
+    "scene0553",
+    "scene0558",
+    "scene0559",
+    "scene0563",
+    "scene0564",
+    "scene0565",
+    "scene0568",
+    "scene0570",
+    "scene0574",
+    "scene0575",
+    "scene0576",
+    "scene0577",
+    "scene0578",
+    "scene0580",
+    "scene0582",
+    "scene0583",
+    "scene0585",
+    "scene0586",
+    "scene0587",
+    "scene0590",
+    "scene0591",
+    "scene0593",
+    "scene0595",
+    "scene0598",
+    "scene0599",
+    "scene0606",
+    "scene0607",
+    "scene0608",
+    "scene0609",
+    "scene0612",
+    "scene0616",
+    "scene0618",
+    "scene0621",
+    "scene0624",
+    "scene0628",
+    "scene0629",
+    "scene0633",
+    "scene0639",
+    "scene0641",
+    "scene0643",
+    "scene0644",
+    "scene0645",
+    "scene0647",
+    "scene0648",
+    "scene0649",
+    "scene0651",
+    "scene0652",
+    "scene0653",
+    "scene0655",
+    "scene0658",
+    "scene0660",
+    "scene0662",
+    "scene0663",
+    "scene0664",
+    "scene0665",
+    "scene0670",
+    "scene0671",
+    "scene0673",
+    "scene0676",
+    "scene0678",
+    "scene0682",
+    "scene0684",
+    "scene0685",
+    "scene0686",
+    "scene0689",
+    "scene0690",
+    "scene0692",
+    "scene0693",
+    "scene0694",
+    "scene0695",
+    "scene0696",
+    "scene0697",
+    "scene0699",
+    "scene0700",
+    "scene0701",
+    "scene0702",
+    "scene0704"
+  ],
+  "checks": {
+    "official_train_membership": true,
+    "one_scan_per_main": true,
+    "disjoint_existing_train_main_scenes": true,
+    "disjoint_dev55_diagnostic5_val312_main_scenes": true,
+    "disjoint_inspected_local_main_scenes": true,
+    "no_batch_overlap": true,
+    "batch_concatenation_equals_master": true
+  },
+  "files": {
+    "scannet_new397_20260914_master397.txt": {
+      "sha256": "2184236c43a29351838b95dc64e16861bfd3f04badbd35c25cff8b49fe7d4518",
+      "scans": 397
+    },
+    "scannet_new397_20260914_batch01_100.txt": {
+      "sha256": "abf3d27b325cbc871e63f884c522514b94ecbfab9853bafbb5934204dfb548e1",
+      "scans": 100
+    },
+    "scannet_new397_20260914_batch02_100.txt": {
+      "sha256": "adb08ee7064e1e4ed7e3acd343c5b2e7199ab450da74ba422d6fab5399b926f0",
+      "scans": 100
+    },
+    "scannet_new397_20260914_batch03_100.txt": {
+      "sha256": "50d7dfc0d49f698c92d8c783c80240873368f42970403d0a8bf87697b1b9df2b",
+      "scans": 100
+    },
+    "scannet_new397_20260914_batch04_097.txt": {
+      "sha256": "c4c7a041d98c9598806415e70e9e690ad26dccb9c97fcad780181ccb9d321d10",
+      "scans": 97
+    }
+  },
+  "selected_records": [
+    {
+      "rank": 1,
+      "batch": 1,
+      "main_scene": "scene0225",
+      "scan": "scene0225_00",
+      "eligible_scans_in_this_main": [
+        "scene0225_00"
+      ]
+    },
+    {
+      "rank": 2,
+      "batch": 1,
+      "main_scene": "scene0280",
+      "scan": "scene0280_01",
+      "eligible_scans_in_this_main": [
+        "scene0280_00",
+        "scene0280_01",
+        "scene0280_02"
+      ]
+    },
+    {
+      "rank": 3,
+      "batch": 1,
+      "main_scene": "scene0301",
+      "scan": "scene0301_02",
+      "eligible_scans_in_this_main": [
+        "scene0301_00",
+        "scene0301_01",
+        "scene0301_02"
+      ]
+    },
+    {
+      "rank": 4,
+      "batch": 1,
+      "main_scene": "scene0134",
+      "scan": "scene0134_01",
+      "eligible_scans_in_this_main": [
+        "scene0134_00",
+        "scene0134_01",
+        "scene0134_02"
+      ]
+    },
+    {
+      "rank": 5,
+      "batch": 1,
+      "main_scene": "scene0533",
+      "scan": "scene0533_01",
+      "eligible_scans_in_this_main": [
+        "scene0533_00",
+        "scene0533_01"
+      ]
+    },
+    {
+      "rank": 6,
+      "batch": 1,
+      "main_scene": "scene0324",
+      "scan": "scene0324_01",
+      "eligible_scans_in_this_main": [
+        "scene0324_00",
+        "scene0324_01"
+      ]
+    },
+    {
+      "rank": 7,
+      "batch": 1,
+      "main_scene": "scene0182",
+      "scan": "scene0182_02",
+      "eligible_scans_in_this_main": [
+        "scene0182_00",
+        "scene0182_01",
+        "scene0182_02"
+      ]
+    },
+    {
+      "rank": 8,
+      "batch": 1,
+      "main_scene": "scene0219",
+      "scan": "scene0219_00",
+      "eligible_scans_in_this_main": [
+        "scene0219_00"
+      ]
+    },
+    {
+      "rank": 9,
+      "batch": 1,
+      "main_scene": "scene0615",
+      "scan": "scene0615_01",
+      "eligible_scans_in_this_main": [
+        "scene0615_00",
+        "scene0615_01"
+      ]
+    },
+    {
+      "rank": 10,
+      "batch": 1,
+      "main_scene": "scene0635",
+      "scan": "scene0635_01",
+      "eligible_scans_in_this_main": [
+        "scene0635_00",
+        "scene0635_01"
+      ]
+    },
+    {
+      "rank": 11,
+      "batch": 1,
+      "main_scene": "scene0369",
+      "scan": "scene0369_00",
+      "eligible_scans_in_this_main": [
+        "scene0369_00",
+        "scene0369_01",
+        "scene0369_02"
+      ]
+    },
+    {
+      "rank": 12,
+      "batch": 1,
+      "main_scene": "scene0548",
+      "scan": "scene0548_00",
+      "eligible_scans_in_this_main": [
+        "scene0548_00",
+        "scene0548_01",
+        "scene0548_02"
+      ]
+    },
+    {
+      "rank": 13,
+      "batch": 1,
+      "main_scene": "scene0062",
+      "scan": "scene0062_01",
+      "eligible_scans_in_this_main": [
+        "scene0062_00",
+        "scene0062_01",
+        "scene0062_02"
+      ]
+    },
+    {
+      "rank": 14,
+      "batch": 1,
+      "main_scene": "scene0082",
+      "scan": "scene0082_00",
+      "eligible_scans_in_this_main": [
+        "scene0082_00"
+      ]
+    },
+    {
+      "rank": 15,
+      "batch": 1,
+      "main_scene": "scene0555",
+      "scan": "scene0555_00",
+      "eligible_scans_in_this_main": [
+        "scene0555_00"
+      ]
+    },
+    {
+      "rank": 16,
+      "batch": 1,
+      "main_scene": "scene0472",
+      "scan": "scene0472_00",
+      "eligible_scans_in_this_main": [
+        "scene0472_00",
+        "scene0472_01",
+        "scene0472_02"
+      ]
+    },
+    {
+      "rank": 17,
+      "batch": 1,
+      "main_scene": "scene0026",
+      "scan": "scene0026_00",
+      "eligible_scans_in_this_main": [
+        "scene0026_00"
+      ]
+    },
+    {
+      "rank": 18,
+      "batch": 1,
+      "main_scene": "scene0232",
+      "scan": "scene0232_02",
+      "eligible_scans_in_this_main": [
+        "scene0232_00",
+        "scene0232_01",
+        "scene0232_02"
+      ]
+    },
+    {
+      "rank": 19,
+      "batch": 1,
+      "main_scene": "scene0224",
+      "scan": "scene0224_00",
+      "eligible_scans_in_this_main": [
+        "scene0224_00"
+      ]
+    },
+    {
+      "rank": 20,
+      "batch": 1,
+      "main_scene": "scene0403",
+      "scan": "scene0403_00",
+      "eligible_scans_in_this_main": [
+        "scene0403_00",
+        "scene0403_01"
+      ]
+    },
+    {
+      "rank": 21,
+      "batch": 1,
+      "main_scene": "scene0592",
+      "scan": "scene0592_01",
+      "eligible_scans_in_this_main": [
+        "scene0592_00",
+        "scene0592_01"
+      ]
+    },
+    {
+      "rank": 22,
+      "batch": 1,
+      "main_scene": "scene0340",
+      "scan": "scene0340_00",
+      "eligible_scans_in_this_main": [
+        "scene0340_00",
+        "scene0340_01",
+        "scene0340_02"
+      ]
+    },
+    {
+      "rank": 23,
+      "batch": 1,
+      "main_scene": "scene0299",
+      "scan": "scene0299_00",
+      "eligible_scans_in_this_main": [
+        "scene0299_00",
+        "scene0299_01"
+      ]
+    },
+    {
+      "rank": 24,
+      "batch": 1,
+      "main_scene": "scene0133",
+      "scan": "scene0133_00",
+      "eligible_scans_in_this_main": [
+        "scene0133_00"
+      ]
+    },
+    {
+      "rank": 25,
+      "batch": 1,
+      "main_scene": "scene0230",
+      "scan": "scene0230_00",
+      "eligible_scans_in_this_main": [
+        "scene0230_00"
+      ]
+    },
+    {
+      "rank": 26,
+      "batch": 1,
+      "main_scene": "scene0501",
+      "scan": "scene0501_02",
+      "eligible_scans_in_this_main": [
+        "scene0501_00",
+        "scene0501_01",
+        "scene0501_02"
+      ]
+    },
+    {
+      "rank": 27,
+      "batch": 1,
+      "main_scene": "scene0504",
+      "scan": "scene0504_00",
+      "eligible_scans_in_this_main": [
+        "scene0504_00"
+      ]
+    },
+    {
+      "rank": 28,
+      "batch": 1,
+      "main_scene": "scene0154",
+      "scan": "scene0154_00",
+      "eligible_scans_in_this_main": [
+        "scene0154_00"
+      ]
+    },
+    {
+      "rank": 29,
+      "batch": 1,
+      "main_scene": "scene0679",
+      "scan": "scene0679_01",
+      "eligible_scans_in_this_main": [
+        "scene0679_00",
+        "scene0679_01"
+      ]
+    },
+    {
+      "rank": 30,
+      "batch": 1,
+      "main_scene": "scene0265",
+      "scan": "scene0265_00",
+      "eligible_scans_in_this_main": [
+        "scene0265_00",
+        "scene0265_01",
+        "scene0265_02"
+      ]
+    },
+    {
+      "rank": 31,
+      "batch": 1,
+      "main_scene": "scene0573",
+      "scan": "scene0573_00",
+      "eligible_scans_in_this_main": [
+        "scene0573_00",
+        "scene0573_01"
+      ]
+    },
+    {
+      "rank": 32,
+      "batch": 1,
+      "main_scene": "scene0560",
+      "scan": "scene0560_00",
+      "eligible_scans_in_this_main": [
+        "scene0560_00"
+      ]
+    },
+    {
+      "rank": 33,
+      "batch": 1,
+      "main_scene": "scene0669",
+      "scan": "scene0669_00",
+      "eligible_scans_in_this_main": [
+        "scene0669_00",
+        "scene0669_01"
+      ]
+    },
+    {
+      "rank": 34,
+      "batch": 1,
+      "main_scene": "scene0391",
+      "scan": "scene0391_00",
+      "eligible_scans_in_this_main": [
+        "scene0391_00"
+      ]
+    },
+    {
+      "rank": 35,
+      "batch": 1,
+      "main_scene": "scene0572",
+      "scan": "scene0572_02",
+      "eligible_scans_in_this_main": [
+        "scene0572_00",
+        "scene0572_01",
+        "scene0572_02"
+      ]
+    },
+    {
+      "rank": 36,
+      "batch": 1,
+      "main_scene": "scene0178",
+      "scan": "scene0178_00",
+      "eligible_scans_in_this_main": [
+        "scene0178_00"
+      ]
+    },
+    {
+      "rank": 37,
+      "batch": 1,
+      "main_scene": "scene0031",
+      "scan": "scene0031_01",
+      "eligible_scans_in_this_main": [
+        "scene0031_00",
+        "scene0031_01",
+        "scene0031_02"
+      ]
+    },
+    {
+      "rank": 38,
+      "batch": 1,
+      "main_scene": "scene0091",
+      "scan": "scene0091_00",
+      "eligible_scans_in_this_main": [
+        "scene0091_00"
+      ]
+    },
+    {
+      "rank": 39,
+      "batch": 1,
+      "main_scene": "scene0581",
+      "scan": "scene0581_00",
+      "eligible_scans_in_this_main": [
+        "scene0581_00",
+        "scene0581_01",
+        "scene0581_02"
+      ]
+    },
+    {
+      "rank": 40,
+      "batch": 1,
+      "main_scene": "scene0507",
+      "scan": "scene0507_00",
+      "eligible_scans_in_this_main": [
+        "scene0507_00"
+      ]
+    },
+    {
+      "rank": 41,
+      "batch": 1,
+      "main_scene": "scene0680",
+      "scan": "scene0680_01",
+      "eligible_scans_in_this_main": [
+        "scene0680_00",
+        "scene0680_01"
+      ]
+    },
+    {
+      "rank": 42,
+      "batch": 1,
+      "main_scene": "scene0497",
+      "scan": "scene0497_00",
+      "eligible_scans_in_this_main": [
+        "scene0497_00"
+      ]
+    },
+    {
+      "rank": 43,
+      "batch": 1,
+      "main_scene": "scene0335",
+      "scan": "scene0335_01",
+      "eligible_scans_in_this_main": [
+        "scene0335_00",
+        "scene0335_01",
+        "scene0335_02"
+      ]
+    },
+    {
+      "rank": 44,
+      "batch": 1,
+      "main_scene": "scene0345",
+      "scan": "scene0345_00",
+      "eligible_scans_in_this_main": [
+        "scene0345_00",
+        "scene0345_01"
+      ]
+    },
+    {
+      "rank": 45,
+      "batch": 1,
+      "main_scene": "scene0034",
+      "scan": "scene0034_02",
+      "eligible_scans_in_this_main": [
+        "scene0034_00",
+        "scene0034_01",
+        "scene0034_02"
+      ]
+    },
+    {
+      "rank": 46,
+      "batch": 1,
+      "main_scene": "scene0176",
+      "scan": "scene0176_00",
+      "eligible_scans_in_this_main": [
+        "scene0176_00"
+      ]
+    },
+    {
+      "rank": 47,
+      "batch": 1,
+      "main_scene": "scene0057",
+      "scan": "scene0057_00",
+      "eligible_scans_in_this_main": [
+        "scene0057_00",
+        "scene0057_01"
+      ]
+    },
+    {
+      "rank": 48,
+      "batch": 1,
+      "main_scene": "scene0186",
+      "scan": "scene0186_00",
+      "eligible_scans_in_this_main": [
+        "scene0186_00",
+        "scene0186_01"
+      ]
+    },
+    {
+      "rank": 49,
+      "batch": 1,
+      "main_scene": "scene0642",
+      "scan": "scene0642_01",
+      "eligible_scans_in_this_main": [
+        "scene0642_00",
+        "scene0642_01",
+        "scene0642_02",
+        "scene0642_03"
+      ]
+    },
+    {
+      "rank": 50,
+      "batch": 1,
+      "main_scene": "scene0505",
+      "scan": "scene0505_00",
+      "eligible_scans_in_this_main": [
+        "scene0505_00",
+        "scene0505_01",
+        "scene0505_02",
+        "scene0505_03",
+        "scene0505_04"
+      ]
+    },
+    {
+      "rank": 51,
+      "batch": 1,
+      "main_scene": "scene0705",
+      "scan": "scene0705_02",
+      "eligible_scans_in_this_main": [
+        "scene0705_00",
+        "scene0705_01",
+        "scene0705_02"
+      ]
+    },
+    {
+      "rank": 52,
+      "batch": 1,
+      "main_scene": "scene0159",
+      "scan": "scene0159_00",
+      "eligible_scans_in_this_main": [
+        "scene0159_00"
+      ]
+    },
+    {
+      "rank": 53,
+      "batch": 1,
+      "main_scene": "scene0526",
+      "scan": "scene0526_01",
+      "eligible_scans_in_this_main": [
+        "scene0526_00",
+        "scene0526_01"
+      ]
+    },
+    {
+      "rank": 54,
+      "batch": 1,
+      "main_scene": "scene0601",
+      "scan": "scene0601_00",
+      "eligible_scans_in_this_main": [
+        "scene0601_00",
+        "scene0601_01"
+      ]
+    },
+    {
+      "rank": 55,
+      "batch": 1,
+      "main_scene": "scene0233",
+      "scan": "scene0233_01",
+      "eligible_scans_in_this_main": [
+        "scene0233_00",
+        "scene0233_01"
+      ]
+    },
+    {
+      "rank": 56,
+      "batch": 1,
+      "main_scene": "scene0451",
+      "scan": "scene0451_05",
+      "eligible_scans_in_this_main": [
+        "scene0451_00",
+        "scene0451_01",
+        "scene0451_02",
+        "scene0451_03",
+        "scene0451_04",
+        "scene0451_05"
+      ]
+    },
+    {
+      "rank": 57,
+      "batch": 1,
+      "main_scene": "scene0173",
+      "scan": "scene0173_01",
+      "eligible_scans_in_this_main": [
+        "scene0173_00",
+        "scene0173_01",
+        "scene0173_02"
+      ]
+    },
+    {
+      "rank": 58,
+      "batch": 1,
+      "main_scene": "scene0240",
+      "scan": "scene0240_00",
+      "eligible_scans_in_this_main": [
+        "scene0240_00"
+      ]
+    },
+    {
+      "rank": 59,
+      "batch": 1,
+      "main_scene": "scene0632",
+      "scan": "scene0632_00",
+      "eligible_scans_in_this_main": [
+        "scene0632_00"
+      ]
+    },
+    {
+      "rank": 60,
+      "batch": 1,
+      "main_scene": "scene0480",
+      "scan": "scene0480_00",
+      "eligible_scans_in_this_main": [
+        "scene0480_00",
+        "scene0480_01"
+      ]
+    },
+    {
+      "rank": 61,
+      "batch": 1,
+      "main_scene": "scene0021",
+      "scan": "scene0021_00",
+      "eligible_scans_in_this_main": [
+        "scene0021_00"
+      ]
+    },
+    {
+      "rank": 62,
+      "batch": 1,
+      "main_scene": "scene0074",
+      "scan": "scene0074_02",
+      "eligible_scans_in_this_main": [
+        "scene0074_00",
+        "scene0074_01",
+        "scene0074_02"
+      ]
+    },
+    {
+      "rank": 63,
+      "batch": 1,
+      "main_scene": "scene0522",
+      "scan": "scene0522_00",
+      "eligible_scans_in_this_main": [
+        "scene0522_00"
+      ]
+    },
+    {
+      "rank": 64,
+      "batch": 1,
+      "main_scene": "scene0534",
+      "scan": "scene0534_01",
+      "eligible_scans_in_this_main": [
+        "scene0534_00",
+        "scene0534_01"
+      ]
+    },
+    {
+      "rank": 65,
+      "batch": 1,
+      "main_scene": "scene0271",
+      "scan": "scene0271_00",
+      "eligible_scans_in_this_main": [
+        "scene0271_00",
+        "scene0271_01"
+      ]
+    },
+    {
+      "rank": 66,
+      "batch": 1,
+      "main_scene": "scene0006",
+      "scan": "scene0006_00",
+      "eligible_scans_in_this_main": [
+        "scene0006_00",
+        "scene0006_01",
+        "scene0006_02"
+      ]
+    },
+    {
+      "rank": 67,
+      "batch": 1,
+      "main_scene": "scene0298",
+      "scan": "scene0298_00",
+      "eligible_scans_in_this_main": [
+        "scene0298_00"
+      ]
+    },
+    {
+      "rank": 68,
+      "batch": 1,
+      "main_scene": "scene0485",
+      "scan": "scene0485_00",
+      "eligible_scans_in_this_main": [
+        "scene0485_00"
+      ]
+    },
+    {
+      "rank": 69,
+      "batch": 1,
+      "main_scene": "scene0437",
+      "scan": "scene0437_00",
+      "eligible_scans_in_this_main": [
+        "scene0437_00",
+        "scene0437_01"
+      ]
+    },
+    {
+      "rank": 70,
+      "batch": 1,
+      "main_scene": "scene0020",
+      "scan": "scene0020_01",
+      "eligible_scans_in_this_main": [
+        "scene0020_00",
+        "scene0020_01"
+      ]
+    },
+    {
+      "rank": 71,
+      "batch": 1,
+      "main_scene": "scene0060",
+      "scan": "scene0060_00",
+      "eligible_scans_in_this_main": [
+        "scene0060_00",
+        "scene0060_01"
+      ]
+    },
+    {
+      "rank": 72,
+      "batch": 1,
+      "main_scene": "scene0386",
+      "scan": "scene0386_00",
+      "eligible_scans_in_this_main": [
+        "scene0386_00"
+      ]
+    },
+    {
+      "rank": 73,
+      "batch": 1,
+      "main_scene": "scene0000",
+      "scan": "scene0000_01",
+      "eligible_scans_in_this_main": [
+        "scene0000_00",
+        "scene0000_01",
+        "scene0000_02"
+      ]
+    },
+    {
+      "rank": 74,
+      "batch": 1,
+      "main_scene": "scene0239",
+      "scan": "scene0239_02",
+      "eligible_scans_in_this_main": [
+        "scene0239_00",
+        "scene0239_01",
+        "scene0239_02"
+      ]
+    },
+    {
+      "rank": 75,
+      "batch": 1,
+      "main_scene": "scene0318",
+      "scan": "scene0318_00",
+      "eligible_scans_in_this_main": [
+        "scene0318_00"
+      ]
+    },
+    {
+      "rank": 76,
+      "batch": 1,
+      "main_scene": "scene0323",
+      "scan": "scene0323_01",
+      "eligible_scans_in_this_main": [
+        "scene0323_00",
+        "scene0323_01"
+      ]
+    },
+    {
+      "rank": 77,
+      "batch": 1,
+      "main_scene": "scene0096",
+      "scan": "scene0096_01",
+      "eligible_scans_in_this_main": [
+        "scene0096_00",
+        "scene0096_01",
+        "scene0096_02"
+      ]
+    },
+    {
+      "rank": 78,
+      "batch": 1,
+      "main_scene": "scene0075",
+      "scan": "scene0075_00",
+      "eligible_scans_in_this_main": [
+        "scene0075_00"
+      ]
+    },
+    {
+      "rank": 79,
+      "batch": 1,
+      "main_scene": "scene0002",
+      "scan": "scene0002_00",
+      "eligible_scans_in_this_main": [
+        "scene0002_00",
+        "scene0002_01"
+      ]
+    },
+    {
+      "rank": 80,
+      "batch": 1,
+      "main_scene": "scene0013",
+      "scan": "scene0013_00",
+      "eligible_scans_in_this_main": [
+        "scene0013_00",
+        "scene0013_01",
+        "scene0013_02"
+      ]
+    },
+    {
+      "rank": 81,
+      "batch": 1,
+      "main_scene": "scene0630",
+      "scan": "scene0630_05",
+      "eligible_scans_in_this_main": [
+        "scene0630_00",
+        "scene0630_01",
+        "scene0630_02",
+        "scene0630_03",
+        "scene0630_04",
+        "scene0630_05",
+        "scene0630_06"
+      ]
+    },
+    {
+      "rank": 82,
+      "batch": 1,
+      "main_scene": "scene0349",
+      "scan": "scene0349_00",
+      "eligible_scans_in_this_main": [
+        "scene0349_00",
+        "scene0349_01"
+      ]
+    },
+    {
+      "rank": 83,
+      "batch": 1,
+      "main_scene": "scene0339",
+      "scan": "scene0339_00",
+      "eligible_scans_in_this_main": [
+        "scene0339_00"
+      ]
+    },
+    {
+      "rank": 84,
+      "batch": 1,
+      "main_scene": "scene0045",
+      "scan": "scene0045_00",
+      "eligible_scans_in_this_main": [
+        "scene0045_00",
+        "scene0045_01"
+      ]
+    },
+    {
+      "rank": 85,
+      "batch": 1,
+      "main_scene": "scene0530",
+      "scan": "scene0530_00",
+      "eligible_scans_in_this_main": [
+        "scene0530_00"
+      ]
+    },
+    {
+      "rank": 86,
+      "batch": 1,
+      "main_scene": "scene0380",
+      "scan": "scene0380_02",
+      "eligible_scans_in_this_main": [
+        "scene0380_00",
+        "scene0380_01",
+        "scene0380_02"
+      ]
+    },
+    {
+      "rank": 87,
+      "batch": 1,
+      "main_scene": "scene0008",
+      "scan": "scene0008_00",
+      "eligible_scans_in_this_main": [
+        "scene0008_00"
+      ]
+    },
+    {
+      "rank": 88,
+      "batch": 1,
+      "main_scene": "scene0350",
+      "scan": "scene0350_01",
+      "eligible_scans_in_this_main": [
+        "scene0350_00",
+        "scene0350_01",
+        "scene0350_02"
+      ]
+    },
+    {
+      "rank": 89,
+      "batch": 1,
+      "main_scene": "scene0674",
+      "scan": "scene0674_00",
+      "eligible_scans_in_this_main": [
+        "scene0674_00",
+        "scene0674_01"
+      ]
+    },
+    {
+      "rank": 90,
+      "batch": 1,
+      "main_scene": "scene0047",
+      "scan": "scene0047_00",
+      "eligible_scans_in_this_main": [
+        "scene0047_00"
+      ]
+    },
+    {
+      "rank": 91,
+      "batch": 1,
+      "main_scene": "scene0372",
+      "scan": "scene0372_00",
+      "eligible_scans_in_this_main": [
+        "scene0372_00"
+      ]
+    },
+    {
+      "rank": 92,
+      "batch": 1,
+      "main_scene": "scene0362",
+      "scan": "scene0362_03",
+      "eligible_scans_in_this_main": [
+        "scene0362_00",
+        "scene0362_01",
+        "scene0362_02",
+        "scene0362_03"
+      ]
+    },
+    {
+      "rank": 93,
+      "batch": 1,
+      "main_scene": "scene0325",
+      "scan": "scene0325_00",
+      "eligible_scans_in_this_main": [
+        "scene0325_00",
+        "scene0325_01"
+      ]
+    },
+    {
+      "rank": 94,
+      "batch": 1,
+      "main_scene": "scene0366",
+      "scan": "scene0366_00",
+      "eligible_scans_in_this_main": [
+        "scene0366_00"
+      ]
+    },
+    {
+      "rank": 95,
+      "batch": 1,
+      "main_scene": "scene0110",
+      "scan": "scene0110_02",
+      "eligible_scans_in_this_main": [
+        "scene0110_00",
+        "scene0110_01",
+        "scene0110_02"
+      ]
+    },
+    {
+      "rank": 96,
+      "batch": 1,
+      "main_scene": "scene0347",
+      "scan": "scene0347_00",
+      "eligible_scans_in_this_main": [
+        "scene0347_00",
+        "scene0347_01",
+        "scene0347_02"
+      ]
+    },
+    {
+      "rank": 97,
+      "batch": 1,
+      "main_scene": "scene0118",
+      "scan": "scene0118_00",
+      "eligible_scans_in_this_main": [
+        "scene0118_00",
+        "scene0118_01",
+        "scene0118_02"
+      ]
+    },
+    {
+      "rank": 98,
+      "batch": 1,
+      "main_scene": "scene0444",
+      "scan": "scene0444_00",
+      "eligible_scans_in_this_main": [
+        "scene0444_00",
+        "scene0444_01"
+      ]
+    },
+    {
+      "rank": 99,
+      "batch": 1,
+      "main_scene": "scene0198",
+      "scan": "scene0198_00",
+      "eligible_scans_in_this_main": [
+        "scene0198_00"
+      ]
+    },
+    {
+      "rank": 100,
+      "batch": 1,
+      "main_scene": "scene0029",
+      "scan": "scene0029_02",
+      "eligible_scans_in_this_main": [
+        "scene0029_00",
+        "scene0029_01",
+        "scene0029_02"
+      ]
+    },
+    {
+      "rank": 101,
+      "batch": 2,
+      "main_scene": "scene0312",
+      "scan": "scene0312_02",
+      "eligible_scans_in_this_main": [
+        "scene0312_00",
+        "scene0312_01",
+        "scene0312_02"
+      ]
+    },
+    {
+      "rank": 102,
+      "batch": 2,
+      "main_scene": "scene0425",
+      "scan": "scene0425_01",
+      "eligible_scans_in_this_main": [
+        "scene0425_00",
+        "scene0425_01"
+      ]
+    },
+    {
+      "rank": 103,
+      "batch": 2,
+      "main_scene": "scene0428",
+      "scan": "scene0428_01",
+      "eligible_scans_in_this_main": [
+        "scene0428_00",
+        "scene0428_01"
+      ]
+    },
+    {
+      "rank": 104,
+      "batch": 2,
+      "main_scene": "scene0104",
+      "scan": "scene0104_00",
+      "eligible_scans_in_this_main": [
+        "scene0104_00"
+      ]
+    },
+    {
+      "rank": 105,
+      "batch": 2,
+      "main_scene": "scene0183",
+      "scan": "scene0183_00",
+      "eligible_scans_in_this_main": [
+        "scene0183_00"
+      ]
+    },
+    {
+      "rank": 106,
+      "batch": 2,
+      "main_scene": "scene0145",
+      "scan": "scene0145_00",
+      "eligible_scans_in_this_main": [
+        "scene0145_00"
+      ]
+    },
+    {
+      "rank": 107,
+      "batch": 2,
+      "main_scene": "scene0436",
+      "scan": "scene0436_00",
+      "eligible_scans_in_this_main": [
+        "scene0436_00"
+      ]
+    },
+    {
+      "rank": 108,
+      "batch": 2,
+      "main_scene": "scene0310",
+      "scan": "scene0310_00",
+      "eligible_scans_in_this_main": [
+        "scene0310_00",
+        "scene0310_01",
+        "scene0310_02"
+      ]
+    },
+    {
+      "rank": 109,
+      "batch": 2,
+      "main_scene": "scene0613",
+      "scan": "scene0613_02",
+      "eligible_scans_in_this_main": [
+        "scene0613_00",
+        "scene0613_01",
+        "scene0613_02"
+      ]
+    },
+    {
+      "rank": 110,
+      "batch": 2,
+      "main_scene": "scene0073",
+      "scan": "scene0073_01",
+      "eligible_scans_in_this_main": [
+        "scene0073_00",
+        "scene0073_01",
+        "scene0073_02",
+        "scene0073_03"
+      ]
+    },
+    {
+      "rank": 111,
+      "batch": 2,
+      "main_scene": "scene0287",
+      "scan": "scene0287_00",
+      "eligible_scans_in_this_main": [
+        "scene0287_00"
+      ]
+    },
+    {
+      "rank": 112,
+      "batch": 2,
+      "main_scene": "scene0083",
+      "scan": "scene0083_01",
+      "eligible_scans_in_this_main": [
+        "scene0083_00",
+        "scene0083_01"
+      ]
+    },
+    {
+      "rank": 113,
+      "batch": 2,
+      "main_scene": "scene0330",
+      "scan": "scene0330_00",
+      "eligible_scans_in_this_main": [
+        "scene0330_00"
+      ]
+    },
+    {
+      "rank": 114,
+      "batch": 2,
+      "main_scene": "scene0603",
+      "scan": "scene0603_00",
+      "eligible_scans_in_this_main": [
+        "scene0603_00",
+        "scene0603_01"
+      ]
+    },
+    {
+      "rank": 115,
+      "batch": 2,
+      "main_scene": "scene0180",
+      "scan": "scene0180_00",
+      "eligible_scans_in_this_main": [
+        "scene0180_00"
+      ]
+    },
+    {
+      "rank": 116,
+      "batch": 2,
+      "main_scene": "scene0638",
+      "scan": "scene0638_00",
+      "eligible_scans_in_this_main": [
+        "scene0638_00"
+      ]
+    },
+    {
+      "rank": 117,
+      "batch": 2,
+      "main_scene": "scene0125",
+      "scan": "scene0125_00",
+      "eligible_scans_in_this_main": [
+        "scene0125_00"
+      ]
+    },
+    {
+      "rank": 118,
+      "batch": 2,
+      "main_scene": "scene0672",
+      "scan": "scene0672_01",
+      "eligible_scans_in_this_main": [
+        "scene0672_00",
+        "scene0672_01"
+      ]
+    },
+    {
+      "rank": 119,
+      "batch": 2,
+      "main_scene": "scene0245",
+      "scan": "scene0245_00",
+      "eligible_scans_in_this_main": [
+        "scene0245_00"
+      ]
+    },
+    {
+      "rank": 120,
+      "batch": 2,
+      "main_scene": "scene0459",
+      "scan": "scene0459_00",
+      "eligible_scans_in_this_main": [
+        "scene0459_00",
+        "scene0459_01"
+      ]
+    },
+    {
+      "rank": 121,
+      "batch": 2,
+      "main_scene": "scene0003",
+      "scan": "scene0003_00",
+      "eligible_scans_in_this_main": [
+        "scene0003_00",
+        "scene0003_01",
+        "scene0003_02"
+      ]
+    },
+    {
+      "rank": 122,
+      "batch": 2,
+      "main_scene": "scene0543",
+      "scan": "scene0543_01",
+      "eligible_scans_in_this_main": [
+        "scene0543_00",
+        "scene0543_01",
+        "scene0543_02"
+      ]
+    },
+    {
+      "rank": 123,
+      "batch": 2,
+      "main_scene": "scene0584",
+      "scan": "scene0584_02",
+      "eligible_scans_in_this_main": [
+        "scene0584_00",
+        "scene0584_01",
+        "scene0584_02"
+      ]
+    },
+    {
+      "rank": 124,
+      "batch": 2,
+      "main_scene": "scene0431",
+      "scan": "scene0431_00",
+      "eligible_scans_in_this_main": [
+        "scene0431_00"
+      ]
+    },
+    {
+      "rank": 125,
+      "batch": 2,
+      "main_scene": "scene0614",
+      "scan": "scene0614_01",
+      "eligible_scans_in_this_main": [
+        "scene0614_00",
+        "scene0614_01",
+        "scene0614_02"
+      ]
+    },
+    {
+      "rank": 126,
+      "batch": 2,
+      "main_scene": "scene0388",
+      "scan": "scene0388_00",
+      "eligible_scans_in_this_main": [
+        "scene0388_00",
+        "scene0388_01"
+      ]
+    },
+    {
+      "rank": 127,
+      "batch": 2,
+      "main_scene": "scene0627",
+      "scan": "scene0627_01",
+      "eligible_scans_in_this_main": [
+        "scene0627_00",
+        "scene0627_01"
+      ]
+    },
+    {
+      "rank": 128,
+      "batch": 2,
+      "main_scene": "scene0384",
+      "scan": "scene0384_00",
+      "eligible_scans_in_this_main": [
+        "scene0384_00"
+      ]
+    },
+    {
+      "rank": 129,
+      "batch": 2,
+      "main_scene": "scene0260",
+      "scan": "scene0260_02",
+      "eligible_scans_in_this_main": [
+        "scene0260_00",
+        "scene0260_01",
+        "scene0260_02"
+      ]
+    },
+    {
+      "rank": 130,
+      "batch": 2,
+      "main_scene": "scene0188",
+      "scan": "scene0188_00",
+      "eligible_scans_in_this_main": [
+        "scene0188_00"
+      ]
+    },
+    {
+      "rank": 131,
+      "batch": 2,
+      "main_scene": "scene0344",
+      "scan": "scene0344_01",
+      "eligible_scans_in_this_main": [
+        "scene0344_00",
+        "scene0344_01"
+      ]
+    },
+    {
+      "rank": 132,
+      "batch": 2,
+      "main_scene": "scene0404",
+      "scan": "scene0404_00",
+      "eligible_scans_in_this_main": [
+        "scene0404_00",
+        "scene0404_01",
+        "scene0404_02"
+      ]
+    },
+    {
+      "rank": 133,
+      "batch": 2,
+      "main_scene": "scene0375",
+      "scan": "scene0375_02",
+      "eligible_scans_in_this_main": [
+        "scene0375_00",
+        "scene0375_01",
+        "scene0375_02"
+      ]
+    },
+    {
+      "rank": 134,
+      "batch": 2,
+      "main_scene": "scene0189",
+      "scan": "scene0189_00",
+      "eligible_scans_in_this_main": [
+        "scene0189_00"
+      ]
+    },
+    {
+      "rank": 135,
+      "batch": 2,
+      "main_scene": "scene0514",
+      "scan": "scene0514_00",
+      "eligible_scans_in_this_main": [
+        "scene0514_00",
+        "scene0514_01"
+      ]
+    },
+    {
+      "rank": 136,
+      "batch": 2,
+      "main_scene": "scene0040",
+      "scan": "scene0040_00",
+      "eligible_scans_in_this_main": [
+        "scene0040_00",
+        "scene0040_01"
+      ]
+    },
+    {
+      "rank": 137,
+      "batch": 2,
+      "main_scene": "scene0327",
+      "scan": "scene0327_00",
+      "eligible_scans_in_this_main": [
+        "scene0327_00"
+      ]
+    },
+    {
+      "rank": 138,
+      "batch": 2,
+      "main_scene": "scene0554",
+      "scan": "scene0554_00",
+      "eligible_scans_in_this_main": [
+        "scene0554_00",
+        "scene0554_01"
+      ]
+    },
+    {
+      "rank": 139,
+      "batch": 2,
+      "main_scene": "scene0650",
+      "scan": "scene0650_00",
+      "eligible_scans_in_this_main": [
+        "scene0650_00"
+      ]
+    },
+    {
+      "rank": 140,
+      "batch": 2,
+      "main_scene": "scene0201",
+      "scan": "scene0201_00",
+      "eligible_scans_in_this_main": [
+        "scene0201_00",
+        "scene0201_01",
+        "scene0201_02"
+      ]
+    },
+    {
+      "rank": 141,
+      "batch": 2,
+      "main_scene": "scene0068",
+      "scan": "scene0068_01",
+      "eligible_scans_in_this_main": [
+        "scene0068_00",
+        "scene0068_01"
+      ]
+    },
+    {
+      "rank": 142,
+      "batch": 2,
+      "main_scene": "scene0636",
+      "scan": "scene0636_00",
+      "eligible_scans_in_this_main": [
+        "scene0636_00"
+      ]
+    },
+    {
+      "rank": 143,
+      "batch": 2,
+      "main_scene": "scene0234",
+      "scan": "scene0234_00",
+      "eligible_scans_in_this_main": [
+        "scene0234_00"
+      ]
+    },
+    {
+      "rank": 144,
+      "batch": 2,
+      "main_scene": "scene0688",
+      "scan": "scene0688_00",
+      "eligible_scans_in_this_main": [
+        "scene0688_00"
+      ]
+    },
+    {
+      "rank": 145,
+      "batch": 2,
+      "main_scene": "scene0241",
+      "scan": "scene0241_02",
+      "eligible_scans_in_this_main": [
+        "scene0241_00",
+        "scene0241_01",
+        "scene0241_02"
+      ]
+    },
+    {
+      "rank": 146,
+      "batch": 2,
+      "main_scene": "scene0290",
+      "scan": "scene0290_00",
+      "eligible_scans_in_this_main": [
+        "scene0290_00"
+      ]
+    },
+    {
+      "rank": 147,
+      "batch": 2,
+      "main_scene": "scene0661",
+      "scan": "scene0661_00",
+      "eligible_scans_in_this_main": [
+        "scene0661_00"
+      ]
+    },
+    {
+      "rank": 148,
+      "batch": 2,
+      "main_scene": "scene0407",
+      "scan": "scene0407_00",
+      "eligible_scans_in_this_main": [
+        "scene0407_00",
+        "scene0407_01"
+      ]
+    },
+    {
+      "rank": 149,
+      "batch": 2,
+      "main_scene": "scene0080",
+      "scan": "scene0080_00",
+      "eligible_scans_in_this_main": [
+        "scene0080_00",
+        "scene0080_01",
+        "scene0080_02"
+      ]
+    },
+    {
+      "rank": 150,
+      "batch": 2,
+      "main_scene": "scene0119",
+      "scan": "scene0119_00",
+      "eligible_scans_in_this_main": [
+        "scene0119_00"
+      ]
+    },
+    {
+      "rank": 151,
+      "batch": 2,
+      "main_scene": "scene0024",
+      "scan": "scene0024_02",
+      "eligible_scans_in_this_main": [
+        "scene0024_00",
+        "scene0024_01",
+        "scene0024_02"
+      ]
+    },
+    {
+      "rank": 152,
+      "batch": 2,
+      "main_scene": "scene0117",
+      "scan": "scene0117_00",
+      "eligible_scans_in_this_main": [
+        "scene0117_00"
+      ]
+    },
+    {
+      "rank": 153,
+      "batch": 2,
+      "main_scene": "scene0619",
+      "scan": "scene0619_00",
+      "eligible_scans_in_this_main": [
+        "scene0619_00"
+      ]
+    },
+    {
+      "rank": 154,
+      "batch": 2,
+      "main_scene": "scene0551",
+      "scan": "scene0551_00",
+      "eligible_scans_in_this_main": [
+        "scene0551_00"
+      ]
+    },
+    {
+      "rank": 155,
+      "batch": 2,
+      "main_scene": "scene0402",
+      "scan": "scene0402_00",
+      "eligible_scans_in_this_main": [
+        "scene0402_00"
+      ]
+    },
+    {
+      "rank": 156,
+      "batch": 2,
+      "main_scene": "scene0512",
+      "scan": "scene0512_00",
+      "eligible_scans_in_this_main": [
+        "scene0512_00"
+      ]
+    },
+    {
+      "rank": 157,
+      "batch": 2,
+      "main_scene": "scene0687",
+      "scan": "scene0687_00",
+      "eligible_scans_in_this_main": [
+        "scene0687_00"
+      ]
+    },
+    {
+      "rank": 158,
+      "batch": 2,
+      "main_scene": "scene0620",
+      "scan": "scene0620_01",
+      "eligible_scans_in_this_main": [
+        "scene0620_00",
+        "scene0620_01"
+      ]
+    },
+    {
+      "rank": 159,
+      "batch": 2,
+      "main_scene": "scene0623",
+      "scan": "scene0623_01",
+      "eligible_scans_in_this_main": [
+        "scene0623_00",
+        "scene0623_01"
+      ]
+    },
+    {
+      "rank": 160,
+      "batch": 2,
+      "main_scene": "scene0466",
+      "scan": "scene0466_00",
+      "eligible_scans_in_this_main": [
+        "scene0466_00",
+        "scene0466_01"
+      ]
+    },
+    {
+      "rank": 161,
+      "batch": 2,
+      "main_scene": "scene0213",
+      "scan": "scene0213_00",
+      "eligible_scans_in_this_main": [
+        "scene0213_00"
+      ]
+    },
+    {
+      "rank": 162,
+      "batch": 2,
+      "main_scene": "scene0023",
+      "scan": "scene0023_00",
+      "eligible_scans_in_this_main": [
+        "scene0023_00"
+      ]
+    },
+    {
+      "rank": 163,
+      "batch": 2,
+      "main_scene": "scene0311",
+      "scan": "scene0311_00",
+      "eligible_scans_in_this_main": [
+        "scene0311_00"
+      ]
+    },
+    {
+      "rank": 164,
+      "batch": 2,
+      "main_scene": "scene0493",
+      "scan": "scene0493_01",
+      "eligible_scans_in_this_main": [
+        "scene0493_00",
+        "scene0493_01"
+      ]
+    },
+    {
+      "rank": 165,
+      "batch": 2,
+      "main_scene": "scene0540",
+      "scan": "scene0540_00",
+      "eligible_scans_in_this_main": [
+        "scene0540_00",
+        "scene0540_01",
+        "scene0540_02"
+      ]
+    },
+    {
+      "rank": 166,
+      "batch": 2,
+      "main_scene": "scene0237",
+      "scan": "scene0237_00",
+      "eligible_scans_in_this_main": [
+        "scene0237_00",
+        "scene0237_01"
+      ]
+    },
+    {
+      "rank": 167,
+      "batch": 2,
+      "main_scene": "scene0155",
+      "scan": "scene0155_00",
+      "eligible_scans_in_this_main": [
+        "scene0155_00",
+        "scene0155_01",
+        "scene0155_02"
+      ]
+    },
+    {
+      "rank": 168,
+      "batch": 2,
+      "main_scene": "scene0289",
+      "scan": "scene0289_00",
+      "eligible_scans_in_this_main": [
+        "scene0289_00",
+        "scene0289_01"
+      ]
+    },
+    {
+      "rank": 169,
+      "batch": 2,
+      "main_scene": "scene0460",
+      "scan": "scene0460_00",
+      "eligible_scans_in_this_main": [
+        "scene0460_00"
+      ]
+    },
+    {
+      "rank": 170,
+      "batch": 2,
+      "main_scene": "scene0525",
+      "scan": "scene0525_00",
+      "eligible_scans_in_this_main": [
+        "scene0525_00",
+        "scene0525_01",
+        "scene0525_02"
+      ]
+    },
+    {
+      "rank": 171,
+      "batch": 2,
+      "main_scene": "scene0210",
+      "scan": "scene0210_00",
+      "eligible_scans_in_this_main": [
+        "scene0210_00",
+        "scene0210_01"
+      ]
+    },
+    {
+      "rank": 172,
+      "batch": 2,
+      "main_scene": "scene0275",
+      "scan": "scene0275_00",
+      "eligible_scans_in_this_main": [
+        "scene0275_00"
+      ]
+    },
+    {
+      "rank": 173,
+      "batch": 2,
+      "main_scene": "scene0371",
+      "scan": "scene0371_01",
+      "eligible_scans_in_this_main": [
+        "scene0371_00",
+        "scene0371_01"
+      ]
+    },
+    {
+      "rank": 174,
+      "batch": 2,
+      "main_scene": "scene0268",
+      "scan": "scene0268_01",
+      "eligible_scans_in_this_main": [
+        "scene0268_00",
+        "scene0268_01",
+        "scene0268_02"
+      ]
+    },
+    {
+      "rank": 175,
+      "batch": 2,
+      "main_scene": "scene0206",
+      "scan": "scene0206_02",
+      "eligible_scans_in_this_main": [
+        "scene0206_00",
+        "scene0206_01",
+        "scene0206_02"
+      ]
+    },
+    {
+      "rank": 176,
+      "batch": 2,
+      "main_scene": "scene0617",
+      "scan": "scene0617_00",
+      "eligible_scans_in_this_main": [
+        "scene0617_00"
+      ]
+    },
+    {
+      "rank": 177,
+      "batch": 2,
+      "main_scene": "scene0220",
+      "scan": "scene0220_00",
+      "eligible_scans_in_this_main": [
+        "scene0220_00",
+        "scene0220_01",
+        "scene0220_02"
+      ]
+    },
+    {
+      "rank": 178,
+      "batch": 2,
+      "main_scene": "scene0454",
+      "scan": "scene0454_00",
+      "eligible_scans_in_this_main": [
+        "scene0454_00"
+      ]
+    },
+    {
+      "rank": 179,
+      "batch": 2,
+      "main_scene": "scene0033",
+      "scan": "scene0033_00",
+      "eligible_scans_in_this_main": [
+        "scene0033_00"
+      ]
+    },
+    {
+      "rank": 180,
+      "batch": 2,
+      "main_scene": "scene0631",
+      "scan": "scene0631_00",
+      "eligible_scans_in_this_main": [
+        "scene0631_00",
+        "scene0631_01",
+        "scene0631_02"
+      ]
+    },
+    {
+      "rank": 181,
+      "batch": 2,
+      "main_scene": "scene0056",
+      "scan": "scene0056_01",
+      "eligible_scans_in_this_main": [
+        "scene0056_00",
+        "scene0056_01"
+      ]
+    },
+    {
+      "rank": 182,
+      "batch": 2,
+      "main_scene": "scene0491",
+      "scan": "scene0491_00",
+      "eligible_scans_in_this_main": [
+        "scene0491_00"
+      ]
+    },
+    {
+      "rank": 183,
+      "batch": 2,
+      "main_scene": "scene0014",
+      "scan": "scene0014_00",
+      "eligible_scans_in_this_main": [
+        "scene0014_00"
+      ]
+    },
+    {
+      "rank": 184,
+      "batch": 2,
+      "main_scene": "scene0594",
+      "scan": "scene0594_00",
+      "eligible_scans_in_this_main": [
+        "scene0594_00"
+      ]
+    },
+    {
+      "rank": 185,
+      "batch": 2,
+      "main_scene": "scene0168",
+      "scan": "scene0168_01",
+      "eligible_scans_in_this_main": [
+        "scene0168_00",
+        "scene0168_01",
+        "scene0168_02"
+      ]
+    },
+    {
+      "rank": 186,
+      "batch": 2,
+      "main_scene": "scene0113",
+      "scan": "scene0113_01",
+      "eligible_scans_in_this_main": [
+        "scene0113_00",
+        "scene0113_01"
+      ]
+    },
+    {
+      "rank": 187,
+      "batch": 2,
+      "main_scene": "scene0703",
+      "scan": "scene0703_00",
+      "eligible_scans_in_this_main": [
+        "scene0703_00",
+        "scene0703_01"
+      ]
+    },
+    {
+      "rank": 188,
+      "batch": 2,
+      "main_scene": "scene0396",
+      "scan": "scene0396_02",
+      "eligible_scans_in_this_main": [
+        "scene0396_00",
+        "scene0396_01",
+        "scene0396_02"
+      ]
+    },
+    {
+      "rank": 189,
+      "batch": 2,
+      "main_scene": "scene0264",
+      "scan": "scene0264_02",
+      "eligible_scans_in_this_main": [
+        "scene0264_00",
+        "scene0264_01",
+        "scene0264_02"
+      ]
+    },
+    {
+      "rank": 190,
+      "batch": 2,
+      "main_scene": "scene0016",
+      "scan": "scene0016_02",
+      "eligible_scans_in_this_main": [
+        "scene0016_00",
+        "scene0016_01",
+        "scene0016_02"
+      ]
+    },
+    {
+      "rank": 191,
+      "batch": 2,
+      "main_scene": "scene0392",
+      "scan": "scene0392_00",
+      "eligible_scans_in_this_main": [
+        "scene0392_00",
+        "scene0392_01",
+        "scene0392_02"
+      ]
+    },
+    {
+      "rank": 192,
+      "batch": 2,
+      "main_scene": "scene0562",
+      "scan": "scene0562_00",
+      "eligible_scans_in_this_main": [
+        "scene0562_00"
+      ]
+    },
+    {
+      "rank": 193,
+      "batch": 2,
+      "main_scene": "scene0681",
+      "scan": "scene0681_00",
+      "eligible_scans_in_this_main": [
+        "scene0681_00"
+      ]
+    },
+    {
+      "rank": 194,
+      "batch": 2,
+      "main_scene": "scene0202",
+      "scan": "scene0202_00",
+      "eligible_scans_in_this_main": [
+        "scene0202_00"
+      ]
+    },
+    {
+      "rank": 195,
+      "batch": 2,
+      "main_scene": "scene0163",
+      "scan": "scene0163_00",
+      "eligible_scans_in_this_main": [
+        "scene0163_00",
+        "scene0163_01"
+      ]
+    },
+    {
+      "rank": 196,
+      "batch": 2,
+      "main_scene": "scene0547",
+      "scan": "scene0547_02",
+      "eligible_scans_in_this_main": [
+        "scene0547_00",
+        "scene0547_01",
+        "scene0547_02"
+      ]
+    },
+    {
+      "rank": 197,
+      "batch": 2,
+      "main_scene": "scene0596",
+      "scan": "scene0596_02",
+      "eligible_scans_in_this_main": [
+        "scene0596_00",
+        "scene0596_01",
+        "scene0596_02"
+      ]
+    },
+    {
+      "rank": 198,
+      "batch": 2,
+      "main_scene": "scene0143",
+      "scan": "scene0143_02",
+      "eligible_scans_in_this_main": [
+        "scene0143_00",
+        "scene0143_01",
+        "scene0143_02"
+      ]
+    },
+    {
+      "rank": 199,
+      "batch": 2,
+      "main_scene": "scene0455",
+      "scan": "scene0455_00",
+      "eligible_scans_in_this_main": [
+        "scene0455_00"
+      ]
+    },
+    {
+      "rank": 200,
+      "batch": 2,
+      "main_scene": "scene0158",
+      "scan": "scene0158_00",
+      "eligible_scans_in_this_main": [
+        "scene0158_00",
+        "scene0158_01",
+        "scene0158_02"
+      ]
+    },
+    {
+      "rank": 201,
+      "batch": 3,
+      "main_scene": "scene0184",
+      "scan": "scene0184_00",
+      "eligible_scans_in_this_main": [
+        "scene0184_00"
+      ]
+    },
+    {
+      "rank": 202,
+      "batch": 3,
+      "main_scene": "scene0567",
+      "scan": "scene0567_01",
+      "eligible_scans_in_this_main": [
+        "scene0567_00",
+        "scene0567_01"
+      ]
+    },
+    {
+      "rank": 203,
+      "batch": 3,
+      "main_scene": "scene0447",
+      "scan": "scene0447_02",
+      "eligible_scans_in_this_main": [
+        "scene0447_00",
+        "scene0447_01",
+        "scene0447_02"
+      ]
+    },
+    {
+      "rank": 204,
+      "batch": 3,
+      "main_scene": "scene0137",
+      "scan": "scene0137_00",
+      "eligible_scans_in_this_main": [
+        "scene0137_00",
+        "scene0137_01",
+        "scene0137_02"
+      ]
+    },
+    {
+      "rank": 205,
+      "batch": 3,
+      "main_scene": "scene0322",
+      "scan": "scene0322_00",
+      "eligible_scans_in_this_main": [
+        "scene0322_00"
+      ]
+    },
+    {
+      "rank": 206,
+      "batch": 3,
+      "main_scene": "scene0611",
+      "scan": "scene0611_00",
+      "eligible_scans_in_this_main": [
+        "scene0611_00",
+        "scene0611_01"
+      ]
+    },
+    {
+      "rank": 207,
+      "batch": 3,
+      "main_scene": "scene0464",
+      "scan": "scene0464_00",
+      "eligible_scans_in_this_main": [
+        "scene0464_00"
+      ]
+    },
+    {
+      "rank": 208,
+      "batch": 3,
+      "main_scene": "scene0657",
+      "scan": "scene0657_00",
+      "eligible_scans_in_this_main": [
+        "scene0657_00"
+      ]
+    },
+    {
+      "rank": 209,
+      "batch": 3,
+      "main_scene": "scene0450",
+      "scan": "scene0450_00",
+      "eligible_scans_in_this_main": [
+        "scene0450_00"
+      ]
+    },
+    {
+      "rank": 210,
+      "batch": 3,
+      "main_scene": "scene0443",
+      "scan": "scene0443_00",
+      "eligible_scans_in_this_main": [
+        "scene0443_00"
+      ]
+    },
+    {
+      "rank": 211,
+      "batch": 3,
+      "main_scene": "scene0259",
+      "scan": "scene0259_01",
+      "eligible_scans_in_this_main": [
+        "scene0259_00",
+        "scene0259_01"
+      ]
+    },
+    {
+      "rank": 212,
+      "batch": 3,
+      "main_scene": "scene0556",
+      "scan": "scene0556_01",
+      "eligible_scans_in_this_main": [
+        "scene0556_00",
+        "scene0556_01"
+      ]
+    },
+    {
+      "rank": 213,
+      "batch": 3,
+      "main_scene": "scene0691",
+      "scan": "scene0691_01",
+      "eligible_scans_in_this_main": [
+        "scene0691_00",
+        "scene0691_01"
+      ]
+    },
+    {
+      "rank": 214,
+      "batch": 3,
+      "main_scene": "scene0296",
+      "scan": "scene0296_01",
+      "eligible_scans_in_this_main": [
+        "scene0296_00",
+        "scene0296_01"
+      ]
+    },
+    {
+      "rank": 215,
+      "batch": 3,
+      "main_scene": "scene0273",
+      "scan": "scene0273_00",
+      "eligible_scans_in_this_main": [
+        "scene0273_00",
+        "scene0273_01"
+      ]
+    },
+    {
+      "rank": 216,
+      "batch": 3,
+      "main_scene": "scene0200",
+      "scan": "scene0200_01",
+      "eligible_scans_in_this_main": [
+        "scene0200_00",
+        "scene0200_01",
+        "scene0200_02"
+      ]
+    },
+    {
+      "rank": 217,
+      "batch": 3,
+      "main_scene": "scene0165",
+      "scan": "scene0165_01",
+      "eligible_scans_in_this_main": [
+        "scene0165_00",
+        "scene0165_01",
+        "scene0165_02"
+      ]
+    },
+    {
+      "rank": 218,
+      "batch": 3,
+      "main_scene": "scene0291",
+      "scan": "scene0291_00",
+      "eligible_scans_in_this_main": [
+        "scene0291_00",
+        "scene0291_01",
+        "scene0291_02"
+      ]
+    },
+    {
+      "rank": 219,
+      "batch": 3,
+      "main_scene": "scene0457",
+      "scan": "scene0457_01",
+      "eligible_scans_in_this_main": [
+        "scene0457_00",
+        "scene0457_01",
+        "scene0457_02"
+      ]
+    },
+    {
+      "rank": 220,
+      "batch": 3,
+      "main_scene": "scene0698",
+      "scan": "scene0698_00",
+      "eligible_scans_in_this_main": [
+        "scene0698_00",
+        "scene0698_01"
+      ]
+    },
+    {
+      "rank": 221,
+      "batch": 3,
+      "main_scene": "scene0440",
+      "scan": "scene0440_00",
+      "eligible_scans_in_this_main": [
+        "scene0440_00",
+        "scene0440_01",
+        "scene0440_02"
+      ]
+    },
+    {
+      "rank": 222,
+      "batch": 3,
+      "main_scene": "scene0107",
+      "scan": "scene0107_00",
+      "eligible_scans_in_this_main": [
+        "scene0107_00"
+      ]
+    },
+    {
+      "rank": 223,
+      "batch": 3,
+      "main_scene": "scene0546",
+      "scan": "scene0546_00",
+      "eligible_scans_in_this_main": [
+        "scene0546_00"
+      ]
+    },
+    {
+      "rank": 224,
+      "batch": 3,
+      "main_scene": "scene0097",
+      "scan": "scene0097_00",
+      "eligible_scans_in_this_main": [
+        "scene0097_00"
+      ]
+    },
+    {
+      "rank": 225,
+      "batch": 3,
+      "main_scene": "scene0126",
+      "scan": "scene0126_02",
+      "eligible_scans_in_this_main": [
+        "scene0126_00",
+        "scene0126_01",
+        "scene0126_02"
+      ]
+    },
+    {
+      "rank": 226,
+      "batch": 3,
+      "main_scene": "scene0094",
+      "scan": "scene0094_00",
+      "eligible_scans_in_this_main": [
+        "scene0094_00"
+      ]
+    },
+    {
+      "rank": 227,
+      "batch": 3,
+      "main_scene": "scene0085",
+      "scan": "scene0085_00",
+      "eligible_scans_in_this_main": [
+        "scene0085_00",
+        "scene0085_01"
+      ]
+    },
+    {
+      "rank": 228,
+      "batch": 3,
+      "main_scene": "scene0295",
+      "scan": "scene0295_00",
+      "eligible_scans_in_this_main": [
+        "scene0295_00",
+        "scene0295_01"
+      ]
+    },
+    {
+      "rank": 229,
+      "batch": 3,
+      "main_scene": "scene0467",
+      "scan": "scene0467_00",
+      "eligible_scans_in_this_main": [
+        "scene0467_00"
+      ]
+    },
+    {
+      "rank": 230,
+      "batch": 3,
+      "main_scene": "scene0395",
+      "scan": "scene0395_01",
+      "eligible_scans_in_this_main": [
+        "scene0395_00",
+        "scene0395_01",
+        "scene0395_02"
+      ]
+    },
+    {
+      "rank": 231,
+      "batch": 3,
+      "main_scene": "scene0247",
+      "scan": "scene0247_00",
+      "eligible_scans_in_this_main": [
+        "scene0247_00",
+        "scene0247_01"
+      ]
+    },
+    {
+      "rank": 232,
+      "batch": 3,
+      "main_scene": "scene0475",
+      "scan": "scene0475_01",
+      "eligible_scans_in_this_main": [
+        "scene0475_00",
+        "scene0475_01",
+        "scene0475_02"
+      ]
+    },
+    {
+      "rank": 233,
+      "batch": 3,
+      "main_scene": "scene0258",
+      "scan": "scene0258_00",
+      "eligible_scans_in_this_main": [
+        "scene0258_00"
+      ]
+    },
+    {
+      "rank": 234,
+      "batch": 3,
+      "main_scene": "scene0666",
+      "scan": "scene0666_00",
+      "eligible_scans_in_this_main": [
+        "scene0666_00",
+        "scene0666_01",
+        "scene0666_02"
+      ]
+    },
+    {
+      "rank": 235,
+      "batch": 3,
+      "main_scene": "scene0675",
+      "scan": "scene0675_01",
+      "eligible_scans_in_this_main": [
+        "scene0675_00",
+        "scene0675_01"
+      ]
+    },
+    {
+      "rank": 236,
+      "batch": 3,
+      "main_scene": "scene0283",
+      "scan": "scene0283_00",
+      "eligible_scans_in_this_main": [
+        "scene0283_00"
+      ]
+    },
+    {
+      "rank": 237,
+      "batch": 3,
+      "main_scene": "scene0009",
+      "scan": "scene0009_00",
+      "eligible_scans_in_this_main": [
+        "scene0009_00",
+        "scene0009_01",
+        "scene0009_02"
+      ]
+    },
+    {
+      "rank": 238,
+      "batch": 3,
+      "main_scene": "scene0569",
+      "scan": "scene0569_01",
+      "eligible_scans_in_this_main": [
+        "scene0569_00",
+        "scene0569_01"
+      ]
+    },
+    {
+      "rank": 239,
+      "batch": 3,
+      "main_scene": "scene0379",
+      "scan": "scene0379_00",
+      "eligible_scans_in_this_main": [
+        "scene0379_00"
+      ]
+    },
+    {
+      "rank": 240,
+      "batch": 3,
+      "main_scene": "scene0102",
+      "scan": "scene0102_00",
+      "eligible_scans_in_this_main": [
+        "scene0102_00",
+        "scene0102_01"
+      ]
+    },
+    {
+      "rank": 241,
+      "batch": 3,
+      "main_scene": "scene0654",
+      "scan": "scene0654_00",
+      "eligible_scans_in_this_main": [
+        "scene0654_00",
+        "scene0654_01"
+      ]
+    },
+    {
+      "rank": 242,
+      "batch": 3,
+      "main_scene": "scene0098",
+      "scan": "scene0098_01",
+      "eligible_scans_in_this_main": [
+        "scene0098_00",
+        "scene0098_01"
+      ]
+    },
+    {
+      "rank": 243,
+      "batch": 3,
+      "main_scene": "scene0308",
+      "scan": "scene0308_00",
+      "eligible_scans_in_this_main": [
+        "scene0308_00"
+      ]
+    },
+    {
+      "rank": 244,
+      "batch": 3,
+      "main_scene": "scene0012",
+      "scan": "scene0012_00",
+      "eligible_scans_in_this_main": [
+        "scene0012_00",
+        "scene0012_01",
+        "scene0012_02"
+      ]
+    },
+    {
+      "rank": 245,
+      "batch": 3,
+      "main_scene": "scene0179",
+      "scan": "scene0179_00",
+      "eligible_scans_in_this_main": [
+        "scene0179_00"
+      ]
+    },
+    {
+      "rank": 246,
+      "batch": 3,
+      "main_scene": "scene0087",
+      "scan": "scene0087_00",
+      "eligible_scans_in_this_main": [
+        "scene0087_00",
+        "scene0087_01",
+        "scene0087_02"
+      ]
+    },
+    {
+      "rank": 247,
+      "batch": 3,
+      "main_scene": "scene0120",
+      "scan": "scene0120_01",
+      "eligible_scans_in_this_main": [
+        "scene0120_00",
+        "scene0120_01"
+      ]
+    },
+    {
+      "rank": 248,
+      "batch": 3,
+      "main_scene": "scene0561",
+      "scan": "scene0561_00",
+      "eligible_scans_in_this_main": [
+        "scene0561_00",
+        "scene0561_01"
+      ]
+    },
+    {
+      "rank": 249,
+      "batch": 3,
+      "main_scene": "scene0410",
+      "scan": "scene0410_01",
+      "eligible_scans_in_this_main": [
+        "scene0410_00",
+        "scene0410_01"
+      ]
+    },
+    {
+      "rank": 250,
+      "batch": 3,
+      "main_scene": "scene0211",
+      "scan": "scene0211_00",
+      "eligible_scans_in_this_main": [
+        "scene0211_00",
+        "scene0211_01",
+        "scene0211_02",
+        "scene0211_03"
+      ]
+    },
+    {
+      "rank": 251,
+      "batch": 3,
+      "main_scene": "scene0108",
+      "scan": "scene0108_00",
+      "eligible_scans_in_this_main": [
+        "scene0108_00"
+      ]
+    },
+    {
+      "rank": 252,
+      "batch": 3,
+      "main_scene": "scene0542",
+      "scan": "scene0542_00",
+      "eligible_scans_in_this_main": [
+        "scene0542_00"
+      ]
+    },
+    {
+      "rank": 253,
+      "batch": 3,
+      "main_scene": "scene0637",
+      "scan": "scene0637_00",
+      "eligible_scans_in_this_main": [
+        "scene0637_00"
+      ]
+    },
+    {
+      "rank": 254,
+      "batch": 3,
+      "main_scene": "scene0483",
+      "scan": "scene0483_00",
+      "eligible_scans_in_this_main": [
+        "scene0483_00"
+      ]
+    },
+    {
+      "rank": 255,
+      "batch": 3,
+      "main_scene": "scene0138",
+      "scan": "scene0138_00",
+      "eligible_scans_in_this_main": [
+        "scene0138_00"
+      ]
+    },
+    {
+      "rank": 256,
+      "batch": 3,
+      "main_scene": "scene0634",
+      "scan": "scene0634_00",
+      "eligible_scans_in_this_main": [
+        "scene0634_00"
+      ]
+    },
+    {
+      "rank": 257,
+      "batch": 3,
+      "main_scene": "scene0190",
+      "scan": "scene0190_00",
+      "eligible_scans_in_this_main": [
+        "scene0190_00"
+      ]
+    },
+    {
+      "rank": 258,
+      "batch": 3,
+      "main_scene": "scene0470",
+      "scan": "scene0470_01",
+      "eligible_scans_in_this_main": [
+        "scene0470_00",
+        "scene0470_01"
+      ]
+    },
+    {
+      "rank": 259,
+      "batch": 3,
+      "main_scene": "scene0520",
+      "scan": "scene0520_01",
+      "eligible_scans_in_this_main": [
+        "scene0520_00",
+        "scene0520_01"
+      ]
+    },
+    {
+      "rank": 260,
+      "batch": 3,
+      "main_scene": "scene0471",
+      "scan": "scene0471_02",
+      "eligible_scans_in_this_main": [
+        "scene0471_00",
+        "scene0471_01",
+        "scene0471_02"
+      ]
+    },
+    {
+      "rank": 261,
+      "batch": 3,
+      "main_scene": "scene0473",
+      "scan": "scene0473_00",
+      "eligible_scans_in_this_main": [
+        "scene0473_00",
+        "scene0473_01"
+      ]
+    },
+    {
+      "rank": 262,
+      "batch": 3,
+      "main_scene": "scene0212",
+      "scan": "scene0212_01",
+      "eligible_scans_in_this_main": [
+        "scene0212_00",
+        "scene0212_01",
+        "scene0212_02"
+      ]
+    },
+    {
+      "rank": 263,
+      "batch": 3,
+      "main_scene": "scene0360",
+      "scan": "scene0360_00",
+      "eligible_scans_in_this_main": [
+        "scene0360_00"
+      ]
+    },
+    {
+      "rank": 264,
+      "batch": 3,
+      "main_scene": "scene0175",
+      "scan": "scene0175_00",
+      "eligible_scans_in_this_main": [
+        "scene0175_00"
+      ]
+    },
+    {
+      "rank": 265,
+      "batch": 3,
+      "main_scene": "scene0286",
+      "scan": "scene0286_00",
+      "eligible_scans_in_this_main": [
+        "scene0286_00",
+        "scene0286_01",
+        "scene0286_02",
+        "scene0286_03"
+      ]
+    },
+    {
+      "rank": 266,
+      "batch": 3,
+      "main_scene": "scene0481",
+      "scan": "scene0481_01",
+      "eligible_scans_in_this_main": [
+        "scene0481_00",
+        "scene0481_01"
+      ]
+    },
+    {
+      "rank": 267,
+      "batch": 3,
+      "main_scene": "scene0332",
+      "scan": "scene0332_01",
+      "eligible_scans_in_this_main": [
+        "scene0332_00",
+        "scene0332_01",
+        "scene0332_02"
+      ]
+    },
+    {
+      "rank": 268,
+      "batch": 3,
+      "main_scene": "scene0589",
+      "scan": "scene0589_01",
+      "eligible_scans_in_this_main": [
+        "scene0589_00",
+        "scene0589_01",
+        "scene0589_02"
+      ]
+    },
+    {
+      "rank": 269,
+      "batch": 3,
+      "main_scene": "scene0129",
+      "scan": "scene0129_00",
+      "eligible_scans_in_this_main": [
+        "scene0129_00"
+      ]
+    },
+    {
+      "rank": 270,
+      "batch": 3,
+      "main_scene": "scene0566",
+      "scan": "scene0566_00",
+      "eligible_scans_in_this_main": [
+        "scene0566_00"
+      ]
+    },
+    {
+      "rank": 271,
+      "batch": 3,
+      "main_scene": "scene0484",
+      "scan": "scene0484_00",
+      "eligible_scans_in_this_main": [
+        "scene0484_00",
+        "scene0484_01"
+      ]
+    },
+    {
+      "rank": 272,
+      "batch": 3,
+      "main_scene": "scene0498",
+      "scan": "scene0498_00",
+      "eligible_scans_in_this_main": [
+        "scene0498_00",
+        "scene0498_01",
+        "scene0498_02"
+      ]
+    },
+    {
+      "rank": 273,
+      "batch": 3,
+      "main_scene": "scene0089",
+      "scan": "scene0089_01",
+      "eligible_scans_in_this_main": [
+        "scene0089_00",
+        "scene0089_01",
+        "scene0089_02"
+      ]
+    },
+    {
+      "rank": 274,
+      "batch": 3,
+      "main_scene": "scene0140",
+      "scan": "scene0140_01",
+      "eligible_scans_in_this_main": [
+        "scene0140_00",
+        "scene0140_01"
+      ]
+    },
+    {
+      "rank": 275,
+      "batch": 3,
+      "main_scene": "scene0181",
+      "scan": "scene0181_00",
+      "eligible_scans_in_this_main": [
+        "scene0181_00",
+        "scene0181_01",
+        "scene0181_02",
+        "scene0181_03"
+      ]
+    },
+    {
+      "rank": 276,
+      "batch": 3,
+      "main_scene": "scene0252",
+      "scan": "scene0252_00",
+      "eligible_scans_in_this_main": [
+        "scene0252_00"
+      ]
+    },
+    {
+      "rank": 277,
+      "batch": 3,
+      "main_scene": "scene0017",
+      "scan": "scene0017_02",
+      "eligible_scans_in_this_main": [
+        "scene0017_00",
+        "scene0017_01",
+        "scene0017_02"
+      ]
+    },
+    {
+      "rank": 278,
+      "batch": 3,
+      "main_scene": "scene0177",
+      "scan": "scene0177_01",
+      "eligible_scans_in_this_main": [
+        "scene0177_00",
+        "scene0177_01",
+        "scene0177_02"
+      ]
+    },
+    {
+      "rank": 279,
+      "batch": 3,
+      "main_scene": "scene0136",
+      "scan": "scene0136_02",
+      "eligible_scans_in_this_main": [
+        "scene0136_00",
+        "scene0136_01",
+        "scene0136_02"
+      ]
+    },
+    {
+      "rank": 280,
+      "batch": 3,
+      "main_scene": "scene0235",
+      "scan": "scene0235_00",
+      "eligible_scans_in_this_main": [
+        "scene0235_00"
+      ]
+    },
+    {
+      "rank": 281,
+      "batch": 3,
+      "main_scene": "scene0476",
+      "scan": "scene0476_01",
+      "eligible_scans_in_this_main": [
+        "scene0476_00",
+        "scene0476_01",
+        "scene0476_02"
+      ]
+    },
+    {
+      "rank": 282,
+      "batch": 3,
+      "main_scene": "scene0506",
+      "scan": "scene0506_00",
+      "eligible_scans_in_this_main": [
+        "scene0506_00"
+      ]
+    },
+    {
+      "rank": 283,
+      "batch": 3,
+      "main_scene": "scene0446",
+      "scan": "scene0446_00",
+      "eligible_scans_in_this_main": [
+        "scene0446_00",
+        "scene0446_01"
+      ]
+    },
+    {
+      "rank": 284,
+      "batch": 3,
+      "main_scene": "scene0605",
+      "scan": "scene0605_01",
+      "eligible_scans_in_this_main": [
+        "scene0605_00",
+        "scene0605_01"
+      ]
+    },
+    {
+      "rank": 285,
+      "batch": 3,
+      "main_scene": "scene0010",
+      "scan": "scene0010_00",
+      "eligible_scans_in_this_main": [
+        "scene0010_00",
+        "scene0010_01"
+      ]
+    },
+    {
+      "rank": 286,
+      "batch": 3,
+      "main_scene": "scene0387",
+      "scan": "scene0387_00",
+      "eligible_scans_in_this_main": [
+        "scene0387_00",
+        "scene0387_01",
+        "scene0387_02"
+      ]
+    },
+    {
+      "rank": 287,
+      "batch": 3,
+      "main_scene": "scene0515",
+      "scan": "scene0515_00",
+      "eligible_scans_in_this_main": [
+        "scene0515_00",
+        "scene0515_01",
+        "scene0515_02"
+      ]
+    },
+    {
+      "rank": 288,
+      "batch": 3,
+      "main_scene": "scene0409",
+      "scan": "scene0409_01",
+      "eligible_scans_in_this_main": [
+        "scene0409_00",
+        "scene0409_01"
+      ]
+    },
+    {
+      "rank": 289,
+      "batch": 3,
+      "main_scene": "scene0243",
+      "scan": "scene0243_00",
+      "eligible_scans_in_this_main": [
+        "scene0243_00"
+      ]
+    },
+    {
+      "rank": 290,
+      "batch": 3,
+      "main_scene": "scene0106",
+      "scan": "scene0106_00",
+      "eligible_scans_in_this_main": [
+        "scene0106_00",
+        "scene0106_01",
+        "scene0106_02"
+      ]
+    },
+    {
+      "rank": 291,
+      "batch": 3,
+      "main_scene": "scene0415",
+      "scan": "scene0415_00",
+      "eligible_scans_in_this_main": [
+        "scene0415_00",
+        "scene0415_01",
+        "scene0415_02"
+      ]
+    },
+    {
+      "rank": 292,
+      "batch": 3,
+      "main_scene": "scene0214",
+      "scan": "scene0214_00",
+      "eligible_scans_in_this_main": [
+        "scene0214_00",
+        "scene0214_01",
+        "scene0214_02"
+      ]
+    },
+    {
+      "rank": 293,
+      "batch": 3,
+      "main_scene": "scene0320",
+      "scan": "scene0320_00",
+      "eligible_scans_in_this_main": [
+        "scene0320_00",
+        "scene0320_01",
+        "scene0320_02",
+        "scene0320_03"
+      ]
+    },
+    {
+      "rank": 294,
+      "batch": 3,
+      "main_scene": "scene0172",
+      "scan": "scene0172_01",
+      "eligible_scans_in_this_main": [
+        "scene0172_00",
+        "scene0172_01"
+      ]
+    },
+    {
+      "rank": 295,
+      "batch": 3,
+      "main_scene": "scene0161",
+      "scan": "scene0161_00",
+      "eligible_scans_in_this_main": [
+        "scene0161_00",
+        "scene0161_01",
+        "scene0161_02"
+      ]
+    },
+    {
+      "rank": 296,
+      "batch": 3,
+      "main_scene": "scene0626",
+      "scan": "scene0626_01",
+      "eligible_scans_in_this_main": [
+        "scene0626_00",
+        "scene0626_01",
+        "scene0626_02"
+      ]
+    },
+    {
+      "rank": 297,
+      "batch": 3,
+      "main_scene": "scene0604",
+      "scan": "scene0604_00",
+      "eligible_scans_in_this_main": [
+        "scene0604_00",
+        "scene0604_01",
+        "scene0604_02"
+      ]
+    },
+    {
+      "rank": 298,
+      "batch": 3,
+      "main_scene": "scene0469",
+      "scan": "scene0469_00",
+      "eligible_scans_in_this_main": [
+        "scene0469_00",
+        "scene0469_01",
+        "scene0469_02"
+      ]
+    },
+    {
+      "rank": 299,
+      "batch": 3,
+      "main_scene": "scene0579",
+      "scan": "scene0579_00",
+      "eligible_scans_in_this_main": [
+        "scene0579_00",
+        "scene0579_01",
+        "scene0579_02"
+      ]
+    },
+    {
+      "rank": 300,
+      "batch": 3,
+      "main_scene": "scene0244",
+      "scan": "scene0244_01",
+      "eligible_scans_in_this_main": [
+        "scene0244_00",
+        "scene0244_01"
+      ]
+    },
+    {
+      "rank": 301,
+      "batch": 4,
+      "main_scene": "scene0044",
+      "scan": "scene0044_00",
+      "eligible_scans_in_this_main": [
+        "scene0044_00",
+        "scene0044_01",
+        "scene0044_02"
+      ]
+    },
+    {
+      "rank": 302,
+      "batch": 4,
+      "main_scene": "scene0521",
+      "scan": "scene0521_00",
+      "eligible_scans_in_this_main": [
+        "scene0521_00"
+      ]
+    },
+    {
+      "rank": 303,
+      "batch": 4,
+      "main_scene": "scene0341",
+      "scan": "scene0341_00",
+      "eligible_scans_in_this_main": [
+        "scene0341_00",
+        "scene0341_01"
+      ]
+    },
+    {
+      "rank": 304,
+      "batch": 4,
+      "main_scene": "scene0376",
+      "scan": "scene0376_00",
+      "eligible_scans_in_this_main": [
+        "scene0376_00",
+        "scene0376_01",
+        "scene0376_02"
+      ]
+    },
+    {
+      "rank": 305,
+      "batch": 4,
+      "main_scene": "scene0383",
+      "scan": "scene0383_00",
+      "eligible_scans_in_this_main": [
+        "scene0383_00",
+        "scene0383_01",
+        "scene0383_02"
+      ]
+    },
+    {
+      "rank": 306,
+      "batch": 4,
+      "main_scene": "scene0397",
+      "scan": "scene0397_00",
+      "eligible_scans_in_this_main": [
+        "scene0397_00",
+        "scene0397_01"
+      ]
+    },
+    {
+      "rank": 307,
+      "batch": 4,
+      "main_scene": "scene0346",
+      "scan": "scene0346_00",
+      "eligible_scans_in_this_main": [
+        "scene0346_00",
+        "scene0346_01"
+      ]
+    },
+    {
+      "rank": 308,
+      "batch": 4,
+      "main_scene": "scene0262",
+      "scan": "scene0262_00",
+      "eligible_scans_in_this_main": [
+        "scene0262_00",
+        "scene0262_01"
+      ]
+    },
+    {
+      "rank": 309,
+      "batch": 4,
+      "main_scene": "scene0677",
+      "scan": "scene0677_01",
+      "eligible_scans_in_this_main": [
+        "scene0677_00",
+        "scene0677_01",
+        "scene0677_02"
+      ]
+    },
+    {
+      "rank": 310,
+      "batch": 4,
+      "main_scene": "scene0194",
+      "scan": "scene0194_00",
+      "eligible_scans_in_this_main": [
+        "scene0194_00"
+      ]
+    },
+    {
+      "rank": 311,
+      "batch": 4,
+      "main_scene": "scene0424",
+      "scan": "scene0424_02",
+      "eligible_scans_in_this_main": [
+        "scene0424_00",
+        "scene0424_01",
+        "scene0424_02"
+      ]
+    },
+    {
+      "rank": 312,
+      "batch": 4,
+      "main_scene": "scene0646",
+      "scan": "scene0646_00",
+      "eligible_scans_in_this_main": [
+        "scene0646_00",
+        "scene0646_01",
+        "scene0646_02"
+      ]
+    },
+    {
+      "rank": 313,
+      "batch": 4,
+      "main_scene": "scene0597",
+      "scan": "scene0597_01",
+      "eligible_scans_in_this_main": [
+        "scene0597_00",
+        "scene0597_01",
+        "scene0597_02"
+      ]
+    },
+    {
+      "rank": 314,
+      "batch": 4,
+      "main_scene": "scene0061",
+      "scan": "scene0061_00",
+      "eligible_scans_in_this_main": [
+        "scene0061_00",
+        "scene0061_01"
+      ]
+    },
+    {
+      "rank": 315,
+      "batch": 4,
+      "main_scene": "scene0267",
+      "scan": "scene0267_00",
+      "eligible_scans_in_this_main": [
+        "scene0267_00"
+      ]
+    },
+    {
+      "rank": 316,
+      "batch": 4,
+      "main_scene": "scene0101",
+      "scan": "scene0101_00",
+      "eligible_scans_in_this_main": [
+        "scene0101_00",
+        "scene0101_01",
+        "scene0101_02",
+        "scene0101_03",
+        "scene0101_04",
+        "scene0101_05"
+      ]
+    },
+    {
+      "rank": 317,
+      "batch": 4,
+      "main_scene": "scene0254",
+      "scan": "scene0254_00",
+      "eligible_scans_in_this_main": [
+        "scene0254_00",
+        "scene0254_01"
+      ]
+    },
+    {
+      "rank": 318,
+      "batch": 4,
+      "main_scene": "scene0195",
+      "scan": "scene0195_01",
+      "eligible_scans_in_this_main": [
+        "scene0195_00",
+        "scene0195_01",
+        "scene0195_02"
+      ]
+    },
+    {
+      "rank": 319,
+      "batch": 4,
+      "main_scene": "scene0297",
+      "scan": "scene0297_01",
+      "eligible_scans_in_this_main": [
+        "scene0297_00",
+        "scene0297_01",
+        "scene0297_02"
+      ]
+    },
+    {
+      "rank": 320,
+      "batch": 4,
+      "main_scene": "scene0502",
+      "scan": "scene0502_01",
+      "eligible_scans_in_this_main": [
+        "scene0502_00",
+        "scene0502_01",
+        "scene0502_02"
+      ]
+    },
+    {
+      "rank": 321,
+      "batch": 4,
+      "main_scene": "scene0331",
+      "scan": "scene0331_00",
+      "eligible_scans_in_this_main": [
+        "scene0331_00",
+        "scene0331_01"
+      ]
+    },
+    {
+      "rank": 322,
+      "batch": 4,
+      "main_scene": "scene0438",
+      "scan": "scene0438_00",
+      "eligible_scans_in_this_main": [
+        "scene0438_00"
+      ]
+    },
+    {
+      "rank": 323,
+      "batch": 4,
+      "main_scene": "scene0487",
+      "scan": "scene0487_00",
+      "eligible_scans_in_this_main": [
+        "scene0487_00",
+        "scene0487_01"
+      ]
+    },
+    {
+      "rank": 324,
+      "batch": 4,
+      "main_scene": "scene0041",
+      "scan": "scene0041_00",
+      "eligible_scans_in_this_main": [
+        "scene0041_00",
+        "scene0041_01"
+      ]
+    },
+    {
+      "rank": 325,
+      "batch": 4,
+      "main_scene": "scene0365",
+      "scan": "scene0365_01",
+      "eligible_scans_in_this_main": [
+        "scene0365_00",
+        "scene0365_01",
+        "scene0365_02"
+      ]
+    },
+    {
+      "rank": 326,
+      "batch": 4,
+      "main_scene": "scene0600",
+      "scan": "scene0600_02",
+      "eligible_scans_in_this_main": [
+        "scene0600_00",
+        "scene0600_01",
+        "scene0600_02"
+      ]
+    },
+    {
+      "rank": 327,
+      "batch": 4,
+      "main_scene": "scene0315",
+      "scan": "scene0315_00",
+      "eligible_scans_in_this_main": [
+        "scene0315_00"
+      ]
+    },
+    {
+      "rank": 328,
+      "batch": 4,
+      "main_scene": "scene0640",
+      "scan": "scene0640_01",
+      "eligible_scans_in_this_main": [
+        "scene0640_00",
+        "scene0640_01",
+        "scene0640_02"
+      ]
+    },
+    {
+      "rank": 329,
+      "batch": 4,
+      "main_scene": "scene0625",
+      "scan": "scene0625_01",
+      "eligible_scans_in_this_main": [
+        "scene0625_00",
+        "scene0625_01"
+      ]
+    },
+    {
+      "rank": 330,
+      "batch": 4,
+      "main_scene": "scene0477",
+      "scan": "scene0477_00",
+      "eligible_scans_in_this_main": [
+        "scene0477_00",
+        "scene0477_01"
+      ]
+    },
+    {
+      "rank": 331,
+      "batch": 4,
+      "main_scene": "scene0602",
+      "scan": "scene0602_00",
+      "eligible_scans_in_this_main": [
+        "scene0602_00"
+      ]
+    },
+    {
+      "rank": 332,
+      "batch": 4,
+      "main_scene": "scene0418",
+      "scan": "scene0418_00",
+      "eligible_scans_in_this_main": [
+        "scene0418_00",
+        "scene0418_01",
+        "scene0418_02"
+      ]
+    },
+    {
+      "rank": 333,
+      "batch": 4,
+      "main_scene": "scene0326",
+      "scan": "scene0326_00",
+      "eligible_scans_in_this_main": [
+        "scene0326_00"
+      ]
+    },
+    {
+      "rank": 334,
+      "batch": 4,
+      "main_scene": "scene0503",
+      "scan": "scene0503_00",
+      "eligible_scans_in_this_main": [
+        "scene0503_00"
+      ]
+    },
+    {
+      "rank": 335,
+      "batch": 4,
+      "main_scene": "scene0253",
+      "scan": "scene0253_00",
+      "eligible_scans_in_this_main": [
+        "scene0253_00"
+      ]
+    },
+    {
+      "rank": 336,
+      "batch": 4,
+      "main_scene": "scene0130",
+      "scan": "scene0130_00",
+      "eligible_scans_in_this_main": [
+        "scene0130_00"
+      ]
+    },
+    {
+      "rank": 337,
+      "batch": 4,
+      "main_scene": "scene0037",
+      "scan": "scene0037_00",
+      "eligible_scans_in_this_main": [
+        "scene0037_00"
+      ]
+    },
+    {
+      "rank": 338,
+      "batch": 4,
+      "main_scene": "scene0052",
+      "scan": "scene0052_01",
+      "eligible_scans_in_this_main": [
+        "scene0052_00",
+        "scene0052_01",
+        "scene0052_02"
+      ]
+    },
+    {
+      "rank": 339,
+      "batch": 4,
+      "main_scene": "scene0170",
+      "scan": "scene0170_00",
+      "eligible_scans_in_this_main": [
+        "scene0170_00",
+        "scene0170_01",
+        "scene0170_02"
+      ]
+    },
+    {
+      "rank": 340,
+      "batch": 4,
+      "main_scene": "scene0659",
+      "scan": "scene0659_00",
+      "eligible_scans_in_this_main": [
+        "scene0659_00",
+        "scene0659_01"
+      ]
+    },
+    {
+      "rank": 341,
+      "batch": 4,
+      "main_scene": "scene0706",
+      "scan": "scene0706_00",
+      "eligible_scans_in_this_main": [
+        "scene0706_00"
+      ]
+    },
+    {
+      "rank": 342,
+      "batch": 4,
+      "main_scene": "scene0293",
+      "scan": "scene0293_00",
+      "eligible_scans_in_this_main": [
+        "scene0293_00",
+        "scene0293_01"
+      ]
+    },
+    {
+      "rank": 343,
+      "batch": 4,
+      "main_scene": "scene0656",
+      "scan": "scene0656_03",
+      "eligible_scans_in_this_main": [
+        "scene0656_00",
+        "scene0656_01",
+        "scene0656_02",
+        "scene0656_03"
+      ]
+    },
+    {
+      "rank": 344,
+      "batch": 4,
+      "main_scene": "scene0105",
+      "scan": "scene0105_02",
+      "eligible_scans_in_this_main": [
+        "scene0105_00",
+        "scene0105_01",
+        "scene0105_02"
+      ]
+    },
+    {
+      "rank": 345,
+      "batch": 4,
+      "main_scene": "scene0544",
+      "scan": "scene0544_00",
+      "eligible_scans_in_this_main": [
+        "scene0544_00"
+      ]
+    },
+    {
+      "rank": 346,
+      "batch": 4,
+      "main_scene": "scene0269",
+      "scan": "scene0269_00",
+      "eligible_scans_in_this_main": [
+        "scene0269_00",
+        "scene0269_01",
+        "scene0269_02"
+      ]
+    },
+    {
+      "rank": 347,
+      "batch": 4,
+      "main_scene": "scene0367",
+      "scan": "scene0367_00",
+      "eligible_scans_in_this_main": [
+        "scene0367_00",
+        "scene0367_01"
+      ]
+    },
+    {
+      "rank": 348,
+      "batch": 4,
+      "main_scene": "scene0069",
+      "scan": "scene0069_00",
+      "eligible_scans_in_this_main": [
+        "scene0069_00"
+      ]
+    },
+    {
+      "rank": 349,
+      "batch": 4,
+      "main_scene": "scene0112",
+      "scan": "scene0112_01",
+      "eligible_scans_in_this_main": [
+        "scene0112_00",
+        "scene0112_01",
+        "scene0112_02"
+      ]
+    },
+    {
+      "rank": 350,
+      "batch": 4,
+      "main_scene": "scene0263",
+      "scan": "scene0263_00",
+      "eligible_scans_in_this_main": [
+        "scene0263_00",
+        "scene0263_01"
+      ]
+    },
+    {
+      "rank": 351,
+      "batch": 4,
+      "main_scene": "scene0513",
+      "scan": "scene0513_00",
+      "eligible_scans_in_this_main": [
+        "scene0513_00"
+      ]
+    },
+    {
+      "rank": 352,
+      "batch": 4,
+      "main_scene": "scene0294",
+      "scan": "scene0294_02",
+      "eligible_scans_in_this_main": [
+        "scene0294_00",
+        "scene0294_01",
+        "scene0294_02"
+      ]
+    },
+    {
+      "rank": 353,
+      "batch": 4,
+      "main_scene": "scene0216",
+      "scan": "scene0216_00",
+      "eligible_scans_in_this_main": [
+        "scene0216_00"
+      ]
+    },
+    {
+      "rank": 354,
+      "batch": 4,
+      "main_scene": "scene0279",
+      "scan": "scene0279_01",
+      "eligible_scans_in_this_main": [
+        "scene0279_00",
+        "scene0279_01",
+        "scene0279_02"
+      ]
+    },
+    {
+      "rank": 355,
+      "batch": 4,
+      "main_scene": "scene0668",
+      "scan": "scene0668_00",
+      "eligible_scans_in_this_main": [
+        "scene0668_00"
+      ]
+    },
+    {
+      "rank": 356,
+      "batch": 4,
+      "main_scene": "scene0076",
+      "scan": "scene0076_00",
+      "eligible_scans_in_this_main": [
+        "scene0076_00"
+      ]
+    },
+    {
+      "rank": 357,
+      "batch": 4,
+      "main_scene": "scene0111",
+      "scan": "scene0111_01",
+      "eligible_scans_in_this_main": [
+        "scene0111_00",
+        "scene0111_01",
+        "scene0111_02"
+      ]
+    },
+    {
+      "rank": 358,
+      "batch": 4,
+      "main_scene": "scene0399",
+      "scan": "scene0399_00",
+      "eligible_scans_in_this_main": [
+        "scene0399_00",
+        "scene0399_01"
+      ]
+    },
+    {
+      "rank": 359,
+      "batch": 4,
+      "main_scene": "scene0049",
+      "scan": "scene0049_00",
+      "eligible_scans_in_this_main": [
+        "scene0049_00"
+      ]
+    },
+    {
+      "rank": 360,
+      "batch": 4,
+      "main_scene": "scene0489",
+      "scan": "scene0489_02",
+      "eligible_scans_in_this_main": [
+        "scene0489_00",
+        "scene0489_01",
+        "scene0489_02"
+      ]
+    },
+    {
+      "rank": 361,
+      "batch": 4,
+      "main_scene": "scene0122",
+      "scan": "scene0122_00",
+      "eligible_scans_in_this_main": [
+        "scene0122_00",
+        "scene0122_01"
+      ]
+    },
+    {
+      "rank": 362,
+      "batch": 4,
+      "main_scene": "scene0160",
+      "scan": "scene0160_00",
+      "eligible_scans_in_this_main": [
+        "scene0160_00",
+        "scene0160_01",
+        "scene0160_02",
+        "scene0160_03",
+        "scene0160_04"
+      ]
+    },
+    {
+      "rank": 363,
+      "batch": 4,
+      "main_scene": "scene0528",
+      "scan": "scene0528_01",
+      "eligible_scans_in_this_main": [
+        "scene0528_00",
+        "scene0528_01"
+      ]
+    },
+    {
+      "rank": 364,
+      "batch": 4,
+      "main_scene": "scene0622",
+      "scan": "scene0622_00",
+      "eligible_scans_in_this_main": [
+        "scene0622_00",
+        "scene0622_01"
+      ]
+    },
+    {
+      "rank": 365,
+      "batch": 4,
+      "main_scene": "scene0413",
+      "scan": "scene0413_00",
+      "eligible_scans_in_this_main": [
+        "scene0413_00"
+      ]
+    },
+    {
+      "rank": 366,
+      "batch": 4,
+      "main_scene": "scene0363",
+      "scan": "scene0363_00",
+      "eligible_scans_in_this_main": [
+        "scene0363_00"
+      ]
+    },
+    {
+      "rank": 367,
+      "batch": 4,
+      "main_scene": "scene0174",
+      "scan": "scene0174_00",
+      "eligible_scans_in_this_main": [
+        "scene0174_00",
+        "scene0174_01"
+      ]
+    },
+    {
+      "rank": 368,
+      "batch": 4,
+      "main_scene": "scene0588",
+      "scan": "scene0588_00",
+      "eligible_scans_in_this_main": [
+        "scene0588_00",
+        "scene0588_01",
+        "scene0588_02",
+        "scene0588_03"
+      ]
+    },
+    {
+      "rank": 369,
+      "batch": 4,
+      "main_scene": "scene0058",
+      "scan": "scene0058_01",
+      "eligible_scans_in_this_main": [
+        "scene0058_00",
+        "scene0058_01"
+      ]
+    },
+    {
+      "rank": 370,
+      "batch": 4,
+      "main_scene": "scene0072",
+      "scan": "scene0072_02",
+      "eligible_scans_in_this_main": [
+        "scene0072_00",
+        "scene0072_01",
+        "scene0072_02"
+      ]
+    },
+    {
+      "rank": 371,
+      "batch": 4,
+      "main_scene": "scene0022",
+      "scan": "scene0022_01",
+      "eligible_scans_in_this_main": [
+        "scene0022_00",
+        "scene0022_01"
+      ]
+    },
+    {
+      "rank": 372,
+      "batch": 4,
+      "main_scene": "scene0429",
+      "scan": "scene0429_00",
+      "eligible_scans_in_this_main": [
+        "scene0429_00"
+      ]
+    },
+    {
+      "rank": 373,
+      "batch": 4,
+      "main_scene": "scene0449",
+      "scan": "scene0449_02",
+      "eligible_scans_in_this_main": [
+        "scene0449_00",
+        "scene0449_01",
+        "scene0449_02"
+      ]
+    },
+    {
+      "rank": 374,
+      "batch": 4,
+      "main_scene": "scene0071",
+      "scan": "scene0071_00",
+      "eligible_scans_in_this_main": [
+        "scene0071_00"
+      ]
+    },
+    {
+      "rank": 375,
+      "batch": 4,
+      "main_scene": "scene0051",
+      "scan": "scene0051_00",
+      "eligible_scans_in_this_main": [
+        "scene0051_00",
+        "scene0051_01",
+        "scene0051_02",
+        "scene0051_03"
+      ]
+    },
+    {
+      "rank": 376,
+      "batch": 4,
+      "main_scene": "scene0571",
+      "scan": "scene0571_01",
+      "eligible_scans_in_this_main": [
+        "scene0571_00",
+        "scene0571_01"
+      ]
+    },
+    {
+      "rank": 377,
+      "batch": 4,
+      "main_scene": "scene0439",
+      "scan": "scene0439_01",
+      "eligible_scans_in_this_main": [
+        "scene0439_00",
+        "scene0439_01"
+      ]
+    },
+    {
+      "rank": 378,
+      "batch": 4,
+      "main_scene": "scene0448",
+      "scan": "scene0448_00",
+      "eligible_scans_in_this_main": [
+        "scene0448_00",
+        "scene0448_01",
+        "scene0448_02"
+      ]
+    },
+    {
+      "rank": 379,
+      "batch": 4,
+      "main_scene": "scene0486",
+      "scan": "scene0486_00",
+      "eligible_scans_in_this_main": [
+        "scene0486_00"
+      ]
+    },
+    {
+      "rank": 380,
+      "batch": 4,
+      "main_scene": "scene0284",
+      "scan": "scene0284_00",
+      "eligible_scans_in_this_main": [
+        "scene0284_00"
+      ]
+    },
+    {
+      "rank": 381,
+      "batch": 4,
+      "main_scene": "scene0078",
+      "scan": "scene0078_00",
+      "eligible_scans_in_this_main": [
+        "scene0078_00",
+        "scene0078_01",
+        "scene0078_02"
+      ]
+    },
+    {
+      "rank": 382,
+      "batch": 4,
+      "main_scene": "scene0417",
+      "scan": "scene0417_00",
+      "eligible_scans_in_this_main": [
+        "scene0417_00"
+      ]
+    },
+    {
+      "rank": 383,
+      "batch": 4,
+      "main_scene": "scene0667",
+      "scan": "scene0667_00",
+      "eligible_scans_in_this_main": [
+        "scene0667_00",
+        "scene0667_01",
+        "scene0667_02"
+      ]
+    },
+    {
+      "rank": 384,
+      "batch": 4,
+      "main_scene": "scene0442",
+      "scan": "scene0442_00",
+      "eligible_scans_in_this_main": [
+        "scene0442_00"
+      ]
+    },
+    {
+      "rank": 385,
+      "batch": 4,
+      "main_scene": "scene0370",
+      "scan": "scene0370_00",
+      "eligible_scans_in_this_main": [
+        "scene0370_00",
+        "scene0370_01",
+        "scene0370_02"
+      ]
+    },
+    {
+      "rank": 386,
+      "batch": 4,
+      "main_scene": "scene0539",
+      "scan": "scene0539_01",
+      "eligible_scans_in_this_main": [
+        "scene0539_00",
+        "scene0539_01",
+        "scene0539_02"
+      ]
+    },
+    {
+      "rank": 387,
+      "batch": 4,
+      "main_scene": "scene0557",
+      "scan": "scene0557_00",
+      "eligible_scans_in_this_main": [
+        "scene0557_00",
+        "scene0557_01",
+        "scene0557_02"
+      ]
+    },
+    {
+      "rank": 388,
+      "batch": 4,
+      "main_scene": "scene0288",
+      "scan": "scene0288_00",
+      "eligible_scans_in_this_main": [
+        "scene0288_00",
+        "scene0288_01",
+        "scene0288_02"
+      ]
+    },
+    {
+      "rank": 389,
+      "batch": 4,
+      "main_scene": "scene0511",
+      "scan": "scene0511_01",
+      "eligible_scans_in_this_main": [
+        "scene0511_00",
+        "scene0511_01"
+      ]
+    },
+    {
+      "rank": 390,
+      "batch": 4,
+      "main_scene": "scene0433",
+      "scan": "scene0433_00",
+      "eligible_scans_in_this_main": [
+        "scene0433_00"
+      ]
+    },
+    {
+      "rank": 391,
+      "batch": 4,
+      "main_scene": "scene0128",
+      "scan": "scene0128_00",
+      "eligible_scans_in_this_main": [
+        "scene0128_00"
+      ]
+    },
+    {
+      "rank": 392,
+      "batch": 4,
+      "main_scene": "scene0683",
+      "scan": "scene0683_00",
+      "eligible_scans_in_this_main": [
+        "scene0683_00"
+      ]
+    },
+    {
+      "rank": 393,
+      "batch": 4,
+      "main_scene": "scene0036",
+      "scan": "scene0036_01",
+      "eligible_scans_in_this_main": [
+        "scene0036_00",
+        "scene0036_01"
+      ]
+    },
+    {
+      "rank": 394,
+      "batch": 4,
+      "main_scene": "scene0373",
+      "scan": "scene0373_00",
+      "eligible_scans_in_this_main": [
+        "scene0373_00",
+        "scene0373_01"
+      ]
+    },
+    {
+      "rank": 395,
+      "batch": 4,
+      "main_scene": "scene0333",
+      "scan": "scene0333_00",
+      "eligible_scans_in_this_main": [
+        "scene0333_00"
+      ]
+    },
+    {
+      "rank": 396,
+      "batch": 4,
+      "main_scene": "scene0610",
+      "scan": "scene0610_01",
+      "eligible_scans_in_this_main": [
+        "scene0610_00",
+        "scene0610_01",
+        "scene0610_02"
+      ]
+    },
+    {
+      "rank": 397,
+      "batch": 4,
+      "main_scene": "scene0156",
+      "scan": "scene0156_00",
+      "eligible_scans_in_this_main": [
+        "scene0156_00"
+      ]
+    }
+  ]
+}

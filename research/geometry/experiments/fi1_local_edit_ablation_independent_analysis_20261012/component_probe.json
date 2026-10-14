@@ -1,0 +1,33 @@
+{
+  "scope": "Posthoc diagnostic; raw proposals use frozen probabilities p(other)>=.8, >=2 groups and existing undirected 8-NN graph. C candidate gate disabled; components form before minimum-mask gate, final output below100 reverts to parent. GT accepts zero-target components, additionally excluding unknown-labeled points in known_other_only arm. Not an optimal upper bound, learned output, or deployment rule.",
+  "results": {
+    "B::zero_target": {
+      "proposed_components": 12310,
+      "accepted_oracle_components": 2742,
+      "accepted_points": 20949,
+      "gain02": 7,
+      "value": 9
+    },
+    "B::known_other_only": {
+      "proposed_components": 12310,
+      "accepted_oracle_components": 2195,
+      "accepted_points": 17387,
+      "gain02": 4,
+      "value": 5
+    },
+    "C::zero_target": {
+      "proposed_components": 9323,
+      "accepted_oracle_components": 2156,
+      "accepted_points": 22080,
+      "gain02": 3,
+      "value": 5
+    },
+    "C::known_other_only": {
+      "proposed_components": 9323,
+      "accepted_oracle_components": 1738,
+      "accepted_points": 17612,
+      "gain02": 2,
+      "value": 3
+    }
+  }
+}

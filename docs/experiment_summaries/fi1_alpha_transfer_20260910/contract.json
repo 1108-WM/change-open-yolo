@@ -1,0 +1,42 @@
+{
+  "version": "fi1_alpha_transfer_smoke_contract_v1",
+  "scene_names": [
+    "scene0027_01"
+  ],
+  "selection": "reuse previously frozen integration scene; not an independent benchmark",
+  "geometry_scope": "all B1 unique geometries plus all FI1 refined aliases in the selected scene",
+  "alpha": {
+    "max_views": 20,
+    "scales": [
+      0,
+      0.2,
+      0.4
+    ],
+    "sam": "vit_b best predicted IoU bbox prompt",
+    "prompt": "a blurry photo of {CLASS_NAME} in a room.",
+    "aggregation": "L2Norm(sum visibility*normalized feature)",
+    "sms": false
+  },
+  "diagnostic_comparisons": [
+    "all-geometry semantic evidence integrity",
+    "same-target parent/refined IoU with parent class fixed",
+    "same-target parent/refined class rank and same-frame/crop/mask identity",
+    "existing B1 geometry vs expanded FI1 geometry using identical full-Alpha semantics and output rules"
+  ],
+  "prediction_protocol": {
+    "class_count": 198,
+    "per_geometry_top1": false,
+    "scene_prediction_budget": 600,
+    "score": "(raw Alpha cosine + 1)/2",
+    "tie_break": "score descending, geometry key ascending, class index ascending",
+    "missing_alpha": "exclude from Alpha-only experiment and report explicitly; never inherit parent silently",
+    "min_prediction_points": 100
+  },
+  "ranking_diagnostic": "FI1 control/challenger ranks reported separately; no geometry-score multiplication or learned calibration",
+  "gt_scope": "only selected official100 scene after evidence/plan freeze; no validation60 or val312",
+  "no_training": true,
+  "no_parameter_search": true,
+  "no_qwen": true,
+  "no_global_gain_claim": true,
+  "historical_b1_audit": "v1 hash-bound source audit plus 20260910 independent real-point/B1 replay audit; not claimed as v2 or OOF model audit"
+}

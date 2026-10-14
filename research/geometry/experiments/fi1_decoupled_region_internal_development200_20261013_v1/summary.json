@@ -1,0 +1,581 @@
+{
+  "AP_run": false,
+  "C_enabled": false,
+  "SL_modified": false,
+  "complete": true,
+  "formal_OOF": false,
+  "old_A_recalibrated": false,
+  "splits": {
+    "calibration": {
+      "arms": {
+        "A_sealed": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 60,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 191,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 474,
+          "unannotated_deleted": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        },
+        "D_decoupled": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 60,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 191,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 474,
+          "unannotated_deleted": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        }
+      },
+      "oracle": {
+        "GT_pure_union_gain02": 2
+      },
+      "parent": {
+        "accuracy": 0.5078534031413613,
+        "confusion": [
+          [
+            10,
+            18,
+            2,
+            2,
+            2
+          ],
+          [
+            18,
+            75,
+            9,
+            8,
+            3
+          ],
+          [
+            2,
+            7,
+            9,
+            1,
+            2
+          ],
+          [
+            1,
+            10,
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            3,
+            2,
+            3,
+            1
+          ]
+        ],
+        "edit_PR_average_precision": 0.2713682078390403,
+        "edit_prior": 0.17801047120418848,
+        "high_confidence_edit_precision": 0.2,
+        "high_confidence_edit_predictions": 15,
+        "macro_F1": 0.32687878278925114,
+        "parents": 191,
+        "states": [
+          "edit",
+          "keep",
+          "out_of_scope",
+          "unannotated",
+          "ambiguous"
+        ],
+        "truth_counts": {
+          "0": 34,
+          "1": 113,
+          "2": 21,
+          "3": 13,
+          "4": 10
+        }
+      },
+      "relations": {
+        "MAE": 0.20420615375041962,
+        "classes": {
+          "different": {
+            "PR_average_precision": 0.6722615119120033,
+            "expected_GT_agreement": 0.77442866563797,
+            "high_precision_passed": false,
+            "parents": 149,
+            "predicted_high_confidence": 12549,
+            "prevalence": 0.24247329680668547,
+            "pure_correct_high_confidence": 8733,
+            "pure_pairs": 17525,
+            "pure_precision": 0.6959120248625389,
+            "scenes": 24
+          },
+          "same": {
+            "PR_average_precision": 0.8067517974857179,
+            "expected_GT_agreement": 0.8734172582626343,
+            "high_precision_passed": false,
+            "parents": 189,
+            "predicted_high_confidence": 26423,
+            "prevalence": 0.5154961536332946,
+            "pure_correct_high_confidence": 21202,
+            "pure_pairs": 37258,
+            "pure_precision": 0.8024069939068236,
+            "scenes": 24
+          },
+          "unknown": {
+            "PR_average_precision": 0.09180555833654146,
+            "expected_GT_agreement": 0.12337755411863327,
+            "high_precision_passed": false,
+            "parents": 92,
+            "predicted_high_confidence": 2281,
+            "prevalence": 0.0737174165698157,
+            "pure_correct_high_confidence": 233,
+            "pure_pairs": 5328,
+            "pure_precision": 0.10214818062253397,
+            "scenes": 22
+          }
+        },
+        "constant_MAE": 0.34557345509529114,
+        "constant_cross_entropy": 0.9076082706451416,
+        "cross_entropy": 1.1156493425369263,
+        "high_precision_instance_relation": false,
+        "valid_pairs": 72276
+      },
+      "scenes": 24
+    },
+    "holdout": {
+      "arms": {
+        "A_sealed": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 67,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 192,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 551,
+          "unannotated_deleted": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        },
+        "D_decoupled": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 67,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 192,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 551,
+          "unannotated_deleted": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        }
+      },
+      "oracle": {
+        "GT_pure_union_gain02": 3
+      },
+      "parent": {
+        "accuracy": 0.578125,
+        "confusion": [
+          [
+            7,
+            10,
+            3,
+            2,
+            2
+          ],
+          [
+            18,
+            91,
+            8,
+            10,
+            2
+          ],
+          [
+            1,
+            9,
+            10,
+            0,
+            1
+          ],
+          [
+            1,
+            6,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            5,
+            1,
+            2,
+            0
+          ]
+        ],
+        "edit_PR_average_precision": 0.31134844721784843,
+        "edit_prior": 0.125,
+        "high_confidence_edit_precision": 0.3333333333333333,
+        "high_confidence_edit_predictions": 12,
+        "macro_F1": 0.3379696610427117,
+        "parents": 192,
+        "states": [
+          "edit",
+          "keep",
+          "out_of_scope",
+          "unannotated",
+          "ambiguous"
+        ],
+        "truth_counts": {
+          "0": 24,
+          "1": 129,
+          "2": 21,
+          "3": 10,
+          "4": 8
+        }
+      },
+      "relations": {
+        "MAE": 0.1831396371126175,
+        "classes": {
+          "different": {
+            "PR_average_precision": 0.6869854500324462,
+            "expected_GT_agreement": 0.8046339154243469,
+            "high_precision_passed": false,
+            "parents": 150,
+            "predicted_high_confidence": 11277,
+            "prevalence": 0.24055746012818602,
+            "pure_correct_high_confidence": 8123,
+            "pure_pairs": 16139,
+            "pure_precision": 0.7203156867961337,
+            "scenes": 24
+          },
+          "same": {
+            "PR_average_precision": 0.8193309848988206,
+            "expected_GT_agreement": 0.9005332589149475,
+            "high_precision_passed": false,
+            "parents": 186,
+            "predicted_high_confidence": 25841,
+            "prevalence": 0.5434043821732002,
+            "pure_correct_high_confidence": 21348,
+            "pure_pairs": 36457,
+            "pure_precision": 0.8261290197747765,
+            "scenes": 24
+          },
+          "unknown": {
+            "PR_average_precision": 0.12636962989586822,
+            "expected_GT_agreement": 0.2503781318664551,
+            "high_precision_passed": false,
+            "parents": 90,
+            "predicted_high_confidence": 2399,
+            "prevalence": 0.04812937844686242,
+            "pure_correct_high_confidence": 533,
+            "pure_pairs": 3229,
+            "pure_precision": 0.22217590662776157,
+            "scenes": 23
+          }
+        },
+        "constant_MAE": 0.3402160704135895,
+        "constant_cross_entropy": 0.8795042634010315,
+        "cross_entropy": 0.9842260479927063,
+        "high_precision_instance_relation": false,
+        "valid_pairs": 67090
+      },
+      "scenes": 24
+    },
+    "train": {
+      "arms": {
+        "A_sealed": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 249,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 896,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 2811,
+          "unannotated_deleted": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        },
+        "D_decoupled": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 249,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 896,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 2811,
+          "unannotated_deleted": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        }
+      },
+      "oracle": {
+        "GT_pure_union_gain02": 19
+      },
+      "parent": {
+        "accuracy": 0.9977678571428571,
+        "confusion": [
+          [
+            174,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            484,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            94,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            97,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            45
+          ]
+        ],
+        "edit_PR_average_precision": 0.9997802197802198,
+        "edit_prior": 0.1953125,
+        "high_confidence_edit_precision": 1.0,
+        "high_confidence_edit_predictions": 173,
+        "macro_F1": 0.9979889219377597,
+        "parents": 896,
+        "states": [
+          "edit",
+          "keep",
+          "out_of_scope",
+          "unannotated",
+          "ambiguous"
+        ],
+        "truth_counts": {
+          "0": 175,
+          "1": 485,
+          "2": 94,
+          "3": 97,
+          "4": 45
+        }
+      },
+      "relations": {
+        "MAE": 0.05040780082345009,
+        "classes": {
+          "different": {
+            "PR_average_precision": 0.9712253766510374,
+            "expected_GT_agreement": 0.9852327704429626,
+            "high_precision_passed": false,
+            "parents": 596,
+            "predicted_high_confidence": 71951,
+            "prevalence": 0.23617157376641376,
+            "pure_correct_high_confidence": 67883,
+            "pure_pairs": 79749,
+            "pure_precision": 0.9434615224249837,
+            "scenes": 111
+          },
+          "same": {
+            "PR_average_precision": 0.9684178059032027,
+            "expected_GT_agreement": 0.9904353618621826,
+            "high_precision_passed": false,
+            "parents": 817,
+            "predicted_high_confidence": 133557,
+            "prevalence": 0.4689019586938882,
+            "pure_correct_high_confidence": 126266,
+            "pure_pairs": 158336,
+            "pure_precision": 0.9454090762745494,
+            "scenes": 112
+          },
+          "unknown": {
+            "PR_average_precision": 0.9887632722495632,
+            "expected_GT_agreement": 0.9909111857414246,
+            "high_precision_passed": true,
+            "parents": 303,
+            "predicted_high_confidence": 37706,
+            "prevalence": 0.1185462902088997,
+            "pure_correct_high_confidence": 36670,
+            "pure_pairs": 40030,
+            "pure_precision": 0.9725242666949557,
+            "scenes": 100
+          }
+        },
+        "constant_MAE": 0.35678884387016296,
+        "constant_cross_entropy": 0.9660354852676392,
+        "cross_entropy": 0.19364534318447113,
+        "high_precision_instance_relation": false,
+        "valid_pairs": 337674
+      },
+      "scenes": 112
+    }
+  },
+  "stop_from_scratch_recipe": true
+}

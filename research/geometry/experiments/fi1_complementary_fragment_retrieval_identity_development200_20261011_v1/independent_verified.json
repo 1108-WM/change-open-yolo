@@ -1,0 +1,25 @@
+{
+  "GT_read_only_post_seal": true,
+  "checks": {
+    "NT_domain_pairs": 668199,
+    "all_pair_labels": 662156,
+    "bound_file_hashes": 58660,
+    "geometry_coverage_checks": 1800,
+    "group_coverage_aggregates": 72,
+    "hypothesis_geometries": 204,
+    "oracle_pairs": 60,
+    "physical_pair_replays": 105
+  },
+  "complete": true,
+  "evidence_diagnostics": {
+    "compact_two_groups": 47,
+    "joint_two_groups": 152,
+    "no_joint_no_separation": 30771,
+    "retrieved_pairs": 40313,
+    "separation_counterevidence": 8928
+  },
+  "gate_rebuilt": false,
+  "limitations": "Identity precision is conditional on reliable diagnostic subset. Physical replay covers all compact accepted and oracle pairs plus deterministic controls, not all retrieved edges. Depth is derived from visible3D contact points; not independent identity proof. No blind test.",
+  "own_semantic_or_AP_performed": false,
+  "source_sha256": "d33ce169d27021e19b038b8d3aee9c87ca347c2a9d0b35fe24ed9e55cfcfd644"
+}

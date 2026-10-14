@@ -1,0 +1,88 @@
+{
+  "version": "dm_sms1_v21_vlm_smoke_failure_provenance_v1",
+  "date": "2026-08-22",
+  "dataset": "NCS-train100",
+  "fi1_foundation": "FI1-Legacy",
+  "branch": "dm-sms1-v2-1-evidence-contract-20260822",
+  "model_id": "Qwen2.5-VL-7B-Instruct",
+  "model_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "preregistration": "docs/DM_SMS1_V21_FOUR_STATE_EVIDENCE_PREREGISTRATION_20260822.md",
+  "formal_full7006_started": false,
+  "formal_full7006_start_refused_by_gate": true,
+  "initial_time_estimate_before_smoke": "20-28 hours based on the historical full7006 run and reuse of frozen attribute evidence",
+  "current_time_estimate": null,
+  "current_time_estimate_reason": "No full run was started because both preregistered smoke attempts had 0/2 strict-valid outputs.",
+  "smoke_attempts": [
+    {
+      "prompt_contract_version": "dm_sms1_v21_candidate_prompt_v1",
+      "manifest_root": "docs/diagnostics/dm_sms1_v21_evidence_manifest_train100_20260822",
+      "manifest_sha256": "c34654c7bb4b5d7d065538b8641133eff02decd286e09ca0c8e0aa7afaa73b63",
+      "batch_root": "docs/diagnostics/dm_sms1_v21_vlm_smoke2_train100_20260822",
+      "batch_outputs_sha256": "e5afc3755ba67f58567eb5c760bb2d94a40df15aa0a996ebf3342018e9601a95",
+      "audit_root": "docs/diagnostics/dm_sms1_v21_vlm_smoke2_train100_audit_20260822",
+      "audit_summary_sha256": "4705a2ea3024b6ca1ece66b4c4a1932ad088eb914db71f995b7c934e6b0af8dd",
+      "selected_count": 2,
+      "strict_valid_count": 0,
+      "invalid_count": 2,
+      "json_retry_count": 2,
+      "audit_valid": true,
+      "audit_error_count": 0,
+      "failure_summary": {
+        "observation_array_element_was_string_instead_of_view_object": 1,
+        "candidate_set_flag_and_candidate_states_inconsistent": 1
+      }
+    },
+    {
+      "prompt_contract_version": "dm_sms1_v21_candidate_prompt_v2_explicit_examples",
+      "template_correction_scope": "Only explicit JSON observation-object and candidate-set-insufficient examples were added; evidence semantics and decision gates were unchanged.",
+      "manifest_root": "docs/diagnostics/dm_sms1_v21_evidence_manifest_v2_train100_20260822",
+      "manifest_sha256": "cf7c3fac812fb264ec02ea72bfaf5c8b4dd68b0c7c980befcf70b9779aeaee4e",
+      "manifest_summary_sha256": "329c65299f5c23e4f03dd01654c9478f6bb6da11631040787face2c88ca89046",
+      "manifest_audit_sha256": "94f25e215955f9f7b7655f1cb217e139cf798166e3ed3d28c1c65705f9398b03",
+      "batch_root": "docs/diagnostics/dm_sms1_v21_vlm_smoke2_v2_train100_20260822",
+      "batch_outputs_sha256": "e1ec0789c02eea4f8cc2a841e56fb4de1e840ba2d432297cfb9f606b0d2c5bcc",
+      "audit_root": "docs/diagnostics/dm_sms1_v21_vlm_smoke2_v2_train100_audit_20260822",
+      "audit_summary_sha256": "ec56e1a7c67dd0eab3510e5c398db0c14c14b49fcdb41071d4a55d6bf330b2ff",
+      "selected_count": 2,
+      "strict_valid_count": 0,
+      "invalid_count": 2,
+      "json_retry_count": 2,
+      "audit_valid": true,
+      "audit_error_count": 0,
+      "failure_summary": {
+        "candidate_set_flag_true_but_both_candidate_states_remained_unknown": 2
+      }
+    }
+  ],
+  "implementation_hashes": {
+    "preregistration_sha256": "8b7a032ee0e315863efa8c90d6fb5bff9575c8ad17b466d034b937ce04b3f0ca",
+    "evidence_core_sha256": "22cb3a2405176266afb8eab581a4c57e98dd9076483a11e7d64ba98906517380",
+    "manifest_builder_sha256": "b738f10515b3e617df92e004186094f83369dfddd9377e2083313b6d11dd4da0",
+    "manifest_auditor_sha256": "1eba680585a43e6f80faa4d862a1450051f2a97dc2c75b4dcac38fac76940f2c",
+    "vlm_runner_sha256": "34b83bb16549878085e0adee8cb7ad549b44a94d4f2e4ab1c361bd1de5e0e3f3",
+    "vlm_output_auditor_sha256": "8a6a59a1ec185e37d77ebfb946e11655769ff214a840c93bd30cdf7d86802e85",
+    "full_run_wrapper_sha256": "2c856f02540e32f0ebd852f380097ce230fce253ce4d9e068c21fecd978df8b5"
+  },
+  "gate_conclusion": "The formal 7006-task Qwen ledger must not start. After the single preregistered template correction, Qwen still failed to produce any strict-valid record and repeated the same candidate-set state inconsistency after one rewrite.",
+  "prohibited_followup_without_new_preregistration": [
+    "relaxing the parser to reinterpret unknown as candidate_set_insufficient_or_unclear",
+    "adding more retries",
+    "changing the four evidence states",
+    "weakening the two-view requirement",
+    "starting the full7006 run despite the failed smoke gate",
+    "running AP",
+    "reopening validation60",
+    "reading val312"
+  ],
+  "gpu_used": true,
+  "gpu_scope": "two fixed two-record smoke attempts only",
+  "ground_truth_read": false,
+  "ap_computed": false,
+  "validation60_reopened": false,
+  "val312_read": false,
+  "candidate_mutation": false,
+  "geometry_mutation": false,
+  "score_mutation": false,
+  "proposal_deletion": false,
+  "scope": "formal preflight failure evidence; not accuracy or AP evidence"
+}

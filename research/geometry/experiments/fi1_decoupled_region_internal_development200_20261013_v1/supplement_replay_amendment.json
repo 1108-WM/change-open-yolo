@@ -1,0 +1,8 @@
+{
+  "report_only": true,
+  "reason": "CSV dataframe columns are Fortran-contiguous; original float32 identity-mean uses C-contiguous rows. Match original dtype and reduction layout instead of loosening tolerance. Difference was at most 1.50e-5 in constant cross entropy, no changes to models/probabilities/rules/pointsets or conclusions.",
+  "failed_versions_retained": [
+    1,
+    2
+  ]
+}

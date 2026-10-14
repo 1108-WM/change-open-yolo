@@ -1,0 +1,127 @@
+{
+  "all_geometry_overlap_rows": 33,
+  "all_input_hashes_verified_after_evaluation": true,
+  "ap": {
+    "A_existing_alpha": {
+      "ap": 0.5854703895213155,
+      "ap25": 0.6531746031746031,
+      "ap50": 0.6354552469135802,
+      "common_ap": 0.0,
+      "head_ap": 0.6098905008131198,
+      "tail_ap": 1.0
+    },
+    "B_expanded_alpha": {
+      "ap": 0.5854703895213155,
+      "ap25": 0.6531746031746031,
+      "ap50": 0.6354552469135802,
+      "common_ap": 0.0,
+      "head_ap": 0.6098905008131198,
+      "tail_ap": 1.0
+    },
+    "C_fixed_semantics_mask_swap": {
+      "ap": 0.5854703895213155,
+      "ap25": 0.6531746031746031,
+      "ap50": 0.6354552469135802,
+      "common_ap": 0.0,
+      "head_ap": 0.6098905008131198,
+      "tail_ap": 1.0
+    }
+  },
+  "ap_computed": true,
+  "csv_macro_recomputed": {
+    "A_existing_alpha": {
+      "ap": 0.5854703895213154,
+      "ap25": 0.6531746031746031,
+      "ap50": 0.6354552469135802
+    },
+    "B_expanded_alpha": {
+      "ap": 0.5854703895213154,
+      "ap25": 0.6531746031746031,
+      "ap50": 0.6354552469135802
+    },
+    "C_fixed_semantics_mask_swap": {
+      "ap": 0.5854703895213154,
+      "ap25": 0.6531746031746031,
+      "ap50": 0.6354552469135802
+    }
+  },
+  "fi1_rank_changes_not_applied": {
+    "down": 29,
+    "same": 5,
+    "up": 34
+  },
+  "generalization_claim": false,
+  "ground_truth_read": true,
+  "gt_files": {
+    "/media/jia/\u8f6f\u4ef61/scannet_train_stream/prepared/ground_truth/scene0027_01.txt": "a6faef3a45478a4d87be4be713b1e0addb5883df9eadd6796384298677b17ac2"
+  },
+  "hashes": {
+    "A_existing_alpha.csv": "feb1bdd0942babaf605eef27ea5a1c010e3ef7ec906815d56b36f7634d2cea53",
+    "B_expanded_alpha.csv": "feb1bdd0942babaf605eef27ea5a1c010e3ef7ec906815d56b36f7634d2cea53",
+    "C_fixed_semantics_mask_swap.csv": "feb1bdd0942babaf605eef27ea5a1c010e3ef7ec906815d56b36f7634d2cea53",
+    "all_geometry_gt_diagnostic.jsonl": "49f09b41c7013bda0c7a630323d0a576b9a8b321ecee1bc905ef85ceabd99205",
+    "paired_gt_diagnostic.jsonl": "dc0dfe668d03ced9436e81be55662a75f6f79f22864b731fb824c90637ef686f"
+  },
+  "input_provenance": {
+    "comparison_summary": "377b85ba1f7cb2ad2672d010674470ca951b19d6dd5c15e802e5d3c906fd86da",
+    "diagnostic": "37cb5ca01a99c7a7bccd1552544c93ef9def421960145a65558b2c48ca674fc1",
+    "evaluator": "3051635f4fe58ce55de77bba9bd7a410bf87d029cc072554c3537d8ee1fb6994",
+    "official_scene_list": "dfa9017e206190eb2973b247c78e4bf1b2d9c01bb8468a15775c30335e44fb68"
+  },
+  "official_iou_thresholds": [
+    0.5,
+    0.55,
+    0.6000000000000001,
+    0.6500000000000001,
+    0.7000000000000002,
+    0.7500000000000002,
+    0.8000000000000003,
+    0.8500000000000003,
+    0.9000000000000004,
+    0.25
+  ],
+  "pair_count": 1,
+  "pair_summaries": [
+    {
+      "class_index": 43,
+      "class_name": "whiteboard",
+      "fixed_parent_class_matches": {
+        "0.25": {
+          "after": true,
+          "before": true
+        },
+        "0.5": {
+          "after": false,
+          "before": true
+        },
+        "0.75": {
+          "after": false,
+          "before": true
+        }
+      },
+      "gt_instance_id": 52012,
+      "iou_delta": -0.48496359607470724,
+      "parent_alpha_rank": {
+        "best_rank": 1,
+        "value": 0.24659591913223267,
+        "worst_rank": 1
+      },
+      "parent_iou": 0.8429882874327319,
+      "parent_top1_correct": true,
+      "refined_alpha_rank": {
+        "best_rank": 1,
+        "value": 0.24474529922008514,
+        "worst_rank": 1
+      },
+      "refined_iou": 0.35802469135802467,
+      "refined_top1_correct": true
+    }
+  ],
+  "prediction_files_modified": false,
+  "production_ready": false,
+  "scene_names": [
+    "scene0027_01"
+  ],
+  "single_scene_diagnostic_only": true,
+  "version": "fi1_alpha_transfer_smoke_gt_v1"
+}

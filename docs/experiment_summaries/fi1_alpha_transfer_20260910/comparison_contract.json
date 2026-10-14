@@ -1,0 +1,20 @@
+{
+  "version": "fi1_alpha_transfer_comparison_contract_v1",
+  "base_contract_sha256": "c38c56a8c3ed6380a163ea9dc051c17167dd083834a889f7ced3c007c2fd4f5c",
+  "systems": {
+    "A_existing_alpha": "B1 unique existing geometries, full Alpha, global top600",
+    "B_expanded_alpha": "all existing plus FI1 new geometries, own full Alpha, identical global top600",
+    "C_fixed_semantics_mask_swap": "start from A selected columns; replace paired parent geometry with refined geometry; keep every class/score/order; diagnostic substitution, not append-only deployment"
+  },
+  "ab_attribution": "candidate geometry set and fixed-budget competition combined; not a pure boundary-only effect",
+  "ac_attribution": "geometry replacement with identical selected semantic columns and scores",
+  "target_attribution": "report every GT instance overlapping parent or refined; summary target is parent maximum IoU, intersection then ID tie-break; refined maximum recorded separately",
+  "local_thresholds": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "official_ap": "unchanged repository evaluator; selected scene only; macro over its valid GT classes",
+  "upstream_scores": "report original FI1 control/challenger ranks only; do not inject in any AP system",
+  "timing": "frozen before reading this run GT; smoke evidence export already running; no partial prediction inspected to choose these rules"
+}

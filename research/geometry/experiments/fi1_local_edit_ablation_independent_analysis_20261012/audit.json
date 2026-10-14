@@ -1,0 +1,1360 @@
+{
+  "checks": {
+    "code_hashes": 20,
+    "frozen_SL_models_hashes": 11,
+    "GT_inputs_hashes": 200,
+    "models_hashes": 30,
+    "pilot_hashes": 20,
+    "predictions_hashes": 400,
+    "conditions_hashes": 400,
+    "labels_hashes": 400,
+    "point_replays": 6396,
+    "parent_iou_replays": 5252,
+    "A_reuse": 1599,
+    "pool_replays": 56268
+  },
+  "metrics": {
+    "A": {
+      "actions": 434,
+      "added": 89646,
+      "deleted": 7029,
+      "correct_add": 75364,
+      "wrong_add": 5530,
+      "correct_delete": 2809,
+      "wrong_delete": 138,
+      "parent_gain02": 234,
+      "parent_loss02": 17,
+      "good_loss02": 9,
+      "good_loss10": 4,
+      "unknown_identity_edits": 10870
+    },
+    "A0": {
+      "actions": 380,
+      "added": 78879,
+      "deleted": 117,
+      "correct_add": 71711,
+      "wrong_add": 2612,
+      "correct_delete": 109,
+      "wrong_delete": 8,
+      "parent_gain02": 211,
+      "parent_loss02": 14,
+      "good_loss02": 9,
+      "good_loss10": 1,
+      "unknown_identity_edits": 3674
+    },
+    "B": {
+      "actions": 1149,
+      "added": 125362,
+      "deleted": 92537,
+      "correct_add": 96599,
+      "wrong_add": 16288,
+      "correct_delete": 25266,
+      "wrong_delete": 53124,
+      "parent_gain02": 300,
+      "parent_loss02": 158,
+      "good_loss02": 90,
+      "good_loss10": 16,
+      "unknown_identity_edits": 20010
+    },
+    "C": {
+      "actions": 309,
+      "added": 89572,
+      "deleted": 6444,
+      "correct_add": 77970,
+      "wrong_add": 6163,
+      "correct_delete": 1685,
+      "wrong_delete": 3581,
+      "parent_gain02": 205,
+      "parent_loss02": 25,
+      "good_loss02": 14,
+      "good_loss10": 7,
+      "unknown_identity_edits": 4366
+    },
+    "C_ungated": {
+      "actions": 1174,
+      "added": 128373,
+      "deleted": 86179,
+      "correct_add": 97332,
+      "wrong_add": 16217,
+      "correct_delete": 23624,
+      "wrong_delete": 50785,
+      "parent_gain02": 301,
+      "parent_loss02": 175,
+      "good_loss02": 93,
+      "good_loss10": 28,
+      "unknown_identity_edits": 18548
+    }
+  },
+  "pools": {
+    "A::full": {
+      "gain02": 5,
+      "value": 6,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 1
+    },
+    "A::add_only": {
+      "gain02": 5,
+      "value": 6,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 1
+    },
+    "A::delete_only": {
+      "gain02": 0,
+      "value": 0,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 0,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 0
+    },
+    "A0::full": {
+      "gain02": 2,
+      "value": 3,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 1
+    },
+    "A0::add_only": {
+      "gain02": 2,
+      "value": 3,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 1
+    },
+    "A0::delete_only": {
+      "gain02": 0,
+      "value": 0,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 0,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 0
+    },
+    "B::full": {
+      "gain02": 5,
+      "value": 6,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 1,
+      "new_cross_0.95": 1
+    },
+    "B::add_only": {
+      "gain02": 5,
+      "value": 7,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 2,
+      "new_cross_0.95": 1
+    },
+    "B::delete_only": {
+      "gain02": 0,
+      "value": 0,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 0,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 0
+    },
+    "B::oracle_censor_delete": {
+      "gain02": 9,
+      "value": 10,
+      "new_cross_0.5": 1,
+      "new_cross_0.75": 2,
+      "new_cross_0.9": 3,
+      "new_cross_0.95": 0
+    },
+    "B::oracle_censor_both": {
+      "gain02": 19,
+      "value": 22,
+      "new_cross_0.5": 1,
+      "new_cross_0.75": 2,
+      "new_cross_0.9": 7,
+      "new_cross_0.95": 3
+    },
+    "C::full": {
+      "gain02": 4,
+      "value": 4,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 0
+    },
+    "C::add_only": {
+      "gain02": 4,
+      "value": 4,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 0
+    },
+    "C::delete_only": {
+      "gain02": 0,
+      "value": 0,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 0,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 0
+    },
+    "C_ungated::full": {
+      "gain02": 7,
+      "value": 8,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 1,
+      "new_cross_0.95": 0
+    },
+    "C_ungated::add_only": {
+      "gain02": 8,
+      "value": 11,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 1,
+      "new_cross_0.95": 2
+    },
+    "C_ungated::delete_only": {
+      "gain02": 0,
+      "value": 0,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 0,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 0
+    },
+    "C_ungated::oracle_censor_delete": {
+      "gain02": 7,
+      "value": 10,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 2,
+      "new_cross_0.9": 3,
+      "new_cross_0.95": 1
+    },
+    "C_ungated::oracle_censor_both": {
+      "gain02": 20,
+      "value": 25,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 3,
+      "new_cross_0.9": 4,
+      "new_cross_0.95": 4
+    },
+    "C_oracle_scope::full": {
+      "gain02": 7,
+      "value": 8,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 1,
+      "new_cross_0.9": 1,
+      "new_cross_0.95": 0
+    },
+    "C_oracle_scope::delete_only": {
+      "gain02": 0,
+      "value": 0,
+      "new_cross_0.5": 0,
+      "new_cross_0.75": 0,
+      "new_cross_0.9": 0,
+      "new_cross_0.95": 0
+    }
+  },
+  "pool_targets": {
+    "B::add_only": [
+      {
+        "scene": "scene0002_00",
+        "target": 13028,
+        "before": 0.8963911525029103,
+        "after": 0.9132712456344587
+      },
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9601018675721562
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8546137339055794
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.9409067753438615
+      },
+      {
+        "scene": "scene0104_00",
+        "target": 26004,
+        "before": 0.8797862867319679,
+        "after": 0.9011576135351737
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.4123573682932751
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7892781316348195
+      }
+    ],
+    "B::oracle_censor_both": [
+      {
+        "scene": "scene0002_00",
+        "target": 13028,
+        "before": 0.8963911525029103,
+        "after": 0.9132712456344587
+      },
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9601018675721562
+      },
+      {
+        "scene": "scene0049_00",
+        "target": 15019,
+        "before": 0.9584026622296173,
+        "after": 0.9826388888888888
+      },
+      {
+        "scene": "scene0051_00",
+        "target": 78011,
+        "before": 0.8884663148090655,
+        "after": 0.9090259585615623
+      },
+      {
+        "scene": "scene0085_00",
+        "target": 13030,
+        "before": 0.6550985432733505,
+        "after": 0.6801421590404265
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8704918032786885
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 14088,
+        "before": 0.7409931840311588,
+        "after": 0.7686868686868686
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 38035,
+        "before": 0.8954974986103391,
+        "after": 0.9010067114093959
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 342079,
+        "before": 0.8137108792846498,
+        "after": 0.9299552906110283
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.9675222629649031
+      },
+      {
+        "scene": "scene0104_00",
+        "target": 26004,
+        "before": 0.8797862867319679,
+        "after": 0.9011576135351737
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.4173218673218673
+      },
+      {
+        "scene": "scene0122_00",
+        "target": 52016,
+        "before": 0.8872384937238493,
+        "after": 0.9171422948238536
+      },
+      {
+        "scene": "scene0186_00",
+        "target": 75047,
+        "before": 0.685823754789272,
+        "after": 0.7203065134099617
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7892781316348195
+      },
+      {
+        "scene": "scene0273_00",
+        "target": 15016,
+        "before": 0.9274286815728604,
+        "after": 0.9502443792766373
+      },
+      {
+        "scene": "scene0276_01",
+        "target": 5014,
+        "before": 0.7572246547659145,
+        "after": 0.7799241117626767
+      },
+      {
+        "scene": "scene0332_01",
+        "target": 161013,
+        "before": 0.7628415300546448,
+        "after": 0.7855936972425436
+      },
+      {
+        "scene": "scene0390_00",
+        "target": 161034,
+        "before": 0.771219512195122,
+        "after": 0.7949874686716792
+      },
+      {
+        "scene": "scene0453_00",
+        "target": 18009,
+        "before": 0.4838170191834727,
+        "after": 0.5100601534951255
+      },
+      {
+        "scene": "scene0466_00",
+        "target": 2004,
+        "before": 0.4511400651465798,
+        "after": 0.47447756080849607
+      },
+      {
+        "scene": "scene0561_00",
+        "target": 5009,
+        "before": 0.888007614213198,
+        "after": 0.9133883248730964
+      }
+    ],
+    "C_ungated::full": [
+      {
+        "scene": "scene0002_00",
+        "target": 13028,
+        "before": 0.8963911525029103,
+        "after": 0.9086146682188592
+      },
+      {
+        "scene": "scene0016_02",
+        "target": 221051,
+        "before": 0.6934357541899442,
+        "after": 0.7283519553072626
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8605150214592274
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.9364191251271617
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.4239815712900097
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7807855626326964
+      },
+      {
+        "scene": "scene0225_00",
+        "target": 10021,
+        "before": 0.17481731309724563,
+        "after": 0.20798201236649802
+      },
+      {
+        "scene": "scene0495_00",
+        "target": 16026,
+        "before": 0.7851342910680824,
+        "after": 0.8165422885572139
+      }
+    ],
+    "C_ungated::add_only": [
+      {
+        "scene": "scene0002_00",
+        "target": 13028,
+        "before": 0.8963911525029103,
+        "after": 0.909778812572759
+      },
+      {
+        "scene": "scene0016_02",
+        "target": 221051,
+        "before": 0.6934357541899442,
+        "after": 0.7283519553072626
+      },
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9575551782682513
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8605150214592274
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.939471007121058
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.4242607852641784
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7807855626326964
+      },
+      {
+        "scene": "scene0225_00",
+        "target": 10021,
+        "before": 0.17481731309724563,
+        "after": 0.20798201236649802
+      },
+      {
+        "scene": "scene0341_00",
+        "target": 56058,
+        "before": 0.8264462809917356,
+        "after": 0.8479338842975207
+      },
+      {
+        "scene": "scene0495_00",
+        "target": 16026,
+        "before": 0.7851342910680824,
+        "after": 0.8233830845771144
+      },
+      {
+        "scene": "scene0649_00",
+        "target": 29009,
+        "before": 0.9423968757627532,
+        "after": 0.9531364412985112
+      }
+    ],
+    "C_ungated::oracle_censor_both": [
+      {
+        "scene": "scene0002_00",
+        "target": 13028,
+        "before": 0.8963911525029103,
+        "after": 0.909778812572759
+      },
+      {
+        "scene": "scene0016_02",
+        "target": 221051,
+        "before": 0.6934357541899442,
+        "after": 0.7283519553072626
+      },
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9575551782682513
+      },
+      {
+        "scene": "scene0049_00",
+        "target": 15019,
+        "before": 0.9584026622296173,
+        "after": 0.9826388888888888
+      },
+      {
+        "scene": "scene0051_00",
+        "target": 78011,
+        "before": 0.8884663148090655,
+        "after": 0.9105104629042485
+      },
+      {
+        "scene": "scene0073_01",
+        "target": 1182001,
+        "before": 0.8631402183039463,
+        "after": 0.8962510897994769
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8765027322404372
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 14088,
+        "before": 0.7409931840311588,
+        "after": 0.8002103049421662
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 38035,
+        "before": 0.8954974986103391,
+        "after": 0.9070945945945946
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.9675222629649031
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.4300982800982801
+      },
+      {
+        "scene": "scene0186_00",
+        "target": 75047,
+        "before": 0.685823754789272,
+        "after": 0.7203065134099617
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7807855626326964
+      },
+      {
+        "scene": "scene0225_00",
+        "target": 10021,
+        "before": 0.17481731309724563,
+        "after": 0.20798201236649802
+      },
+      {
+        "scene": "scene0276_01",
+        "target": 5014,
+        "before": 0.7572246547659145,
+        "after": 0.7804760262159365
+      },
+      {
+        "scene": "scene0280_01",
+        "target": 1163023,
+        "before": 0.3924050632911392,
+        "after": 0.4472573839662447
+      },
+      {
+        "scene": "scene0332_01",
+        "target": 161013,
+        "before": 0.7628415300546448,
+        "after": 0.7968036529680366
+      },
+      {
+        "scene": "scene0341_00",
+        "target": 56058,
+        "before": 0.8264462809917356,
+        "after": 0.8479338842975207
+      },
+      {
+        "scene": "scene0390_00",
+        "target": 161034,
+        "before": 0.771219512195122,
+        "after": 0.7912912912912913
+      },
+      {
+        "scene": "scene0466_00",
+        "target": 2004,
+        "before": 0.4511400651465798,
+        "after": 0.47660013764624914
+      },
+      {
+        "scene": "scene0495_00",
+        "target": 16026,
+        "before": 0.7851342910680824,
+        "after": 0.8269831355402874
+      },
+      {
+        "scene": "scene0508_01",
+        "target": 2024,
+        "before": 0.9419711390850476,
+        "after": 0.9513178294573643
+      },
+      {
+        "scene": "scene0525_00",
+        "target": 86016,
+        "before": 0.8821400878780047,
+        "after": 0.9157392686804452
+      },
+      {
+        "scene": "scene0596_02",
+        "target": 540014,
+        "before": 0.7435339618080735,
+        "after": 0.8068648779308678
+      },
+      {
+        "scene": "scene0649_00",
+        "target": 29009,
+        "before": 0.9423968757627532,
+        "after": 0.9531364412985112
+      }
+    ],
+    "C_oracle_scope::full": [
+      {
+        "scene": "scene0002_00",
+        "target": 13028,
+        "before": 0.8963911525029103,
+        "after": 0.9086146682188592
+      },
+      {
+        "scene": "scene0016_02",
+        "target": 221051,
+        "before": 0.6934357541899442,
+        "after": 0.7283519553072626
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8605150214592274
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.9364191251271617
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.4239815712900097
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7807855626326964
+      },
+      {
+        "scene": "scene0225_00",
+        "target": 10021,
+        "before": 0.17481731309724563,
+        "after": 0.20798201236649802
+      },
+      {
+        "scene": "scene0495_00",
+        "target": 16026,
+        "before": 0.7851342910680824,
+        "after": 0.8165422885572139
+      }
+    ],
+    "A::full": [
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9592529711375212
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8615879828326181
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.41750921850838585
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7664543524416136
+      },
+      {
+        "scene": "scene0280_01",
+        "target": 1163023,
+        "before": 0.3924050632911392,
+        "after": 0.4755877034358047
+      },
+      {
+        "scene": "scene0341_00",
+        "target": 56058,
+        "before": 0.8264462809917356,
+        "after": 0.856198347107438
+      }
+    ],
+    "A::add_only": [
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9592529711375212
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8615879828326181
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.41750921850838585
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7664543524416136
+      },
+      {
+        "scene": "scene0280_01",
+        "target": 1163023,
+        "before": 0.3924050632911392,
+        "after": 0.4755877034358047
+      },
+      {
+        "scene": "scene0341_00",
+        "target": 56058,
+        "before": 0.8264462809917356,
+        "after": 0.856198347107438
+      }
+    ],
+    "A0::full": [
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9516129032258065
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8519125683060109
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7770700636942676
+      }
+    ],
+    "A0::add_only": [
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9516129032258065
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8519125683060109
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7770700636942676
+      }
+    ],
+    "B::full": [
+      {
+        "scene": "scene0045_00",
+        "target": 4007,
+        "before": 0.9499151103565365,
+        "after": 0.9584040747028862
+      },
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8546137339055794
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.9409067753438615
+      },
+      {
+        "scene": "scene0104_00",
+        "target": 26004,
+        "before": 0.8797862867319679,
+        "after": 0.9011576135351737
+      },
+      {
+        "scene": "scene0106_00",
+        "target": 4002,
+        "before": 0.3866093366093366,
+        "after": 0.41384784466967883
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7866242038216561
+      }
+    ],
+    "B::oracle_censor_delete": [
+      {
+        "scene": "scene0051_00",
+        "target": 78011,
+        "before": 0.8884663148090655,
+        "after": 0.9087084226403112
+      },
+      {
+        "scene": "scene0085_00",
+        "target": 13030,
+        "before": 0.6550985432733505,
+        "after": 0.679253665037761
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 14088,
+        "before": 0.7409931840311588,
+        "after": 0.7686868686868686
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 38035,
+        "before": 0.8954974986103391,
+        "after": 0.9010067114093959
+      },
+      {
+        "scene": "scene0122_00",
+        "target": 52016,
+        "before": 0.8872384937238493,
+        "after": 0.9171422948238536
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7664768104149715
+      },
+      {
+        "scene": "scene0332_01",
+        "target": 161013,
+        "before": 0.7628415300546448,
+        "after": 0.7855936972425436
+      },
+      {
+        "scene": "scene0390_00",
+        "target": 161034,
+        "before": 0.771219512195122,
+        "after": 0.7924812030075188
+      },
+      {
+        "scene": "scene0453_00",
+        "target": 18009,
+        "before": 0.4838170191834727,
+        "after": 0.5100601534951255
+      },
+      {
+        "scene": "scene0466_00",
+        "target": 2004,
+        "before": 0.4511400651465798,
+        "after": 0.47447756080849607
+      }
+    ],
+    "C_ungated::oracle_censor_delete": [
+      {
+        "scene": "scene0051_00",
+        "target": 78011,
+        "before": 0.8884663148090655,
+        "after": 0.9073398858592264
+      },
+      {
+        "scene": "scene0073_01",
+        "target": 1182001,
+        "before": 0.8631402183039463,
+        "after": 0.8962510897994769
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 14088,
+        "before": 0.7409931840311588,
+        "after": 0.8002103049421662
+      },
+      {
+        "scene": "scene0101_00",
+        "target": 38035,
+        "before": 0.8954974986103391,
+        "after": 0.9070945945945946
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7658536585365854
+      },
+      {
+        "scene": "scene0332_01",
+        "target": 161013,
+        "before": 0.7628415300546448,
+        "after": 0.7968036529680366
+      },
+      {
+        "scene": "scene0390_00",
+        "target": 161034,
+        "before": 0.771219512195122,
+        "after": 0.7912912912912913
+      },
+      {
+        "scene": "scene0466_00",
+        "target": 2004,
+        "before": 0.4511400651465798,
+        "after": 0.47660013764624914
+      },
+      {
+        "scene": "scene0508_01",
+        "target": 2024,
+        "before": 0.9419711390850476,
+        "after": 0.9513178294573643
+      },
+      {
+        "scene": "scene0525_00",
+        "target": 86016,
+        "before": 0.8821400878780047,
+        "after": 0.9043455219925808
+      }
+    ],
+    "C::full": [
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8605150214592274
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.9364191251271617
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7807855626326964
+      },
+      {
+        "scene": "scene0495_00",
+        "target": 16026,
+        "before": 0.7851342910680824,
+        "after": 0.8165422885572139
+      }
+    ],
+    "C::add_only": [
+      {
+        "scene": "scene0098_01",
+        "target": 1163035,
+        "before": 0.8229070837166513,
+        "after": 0.8605150214592274
+      },
+      {
+        "scene": "scene0102_00",
+        "target": 250030,
+        "before": 0.9004714510214772,
+        "after": 0.939471007121058
+      },
+      {
+        "scene": "scene0214_00",
+        "target": 29010,
+        "before": 0.7257318952234206,
+        "after": 0.7807855626326964
+      },
+      {
+        "scene": "scene0495_00",
+        "target": 16026,
+        "before": 0.7851342910680824,
+        "after": 0.8233830845771144
+      }
+    ]
+  },
+  "gate": {
+    "allowed": 312,
+    "rejected": 1287,
+    "true_edit_allowed": 272,
+    "true_keep_allowed": 19,
+    "rejected_positive_parent": 96,
+    "rejected_negative_parent": 150,
+    "allowed_positive_parent": 205,
+    "allowed_negative_parent": 25
+  },
+  "scope_stats": {
+    "A::edit": {
+      "actions": 353,
+      "correct_delete": 82,
+      "wrong_delete": 49,
+      "correct_add": 74344,
+      "wrong_add": 3276
+    },
+    "A0::edit": {
+      "actions": 316,
+      "correct_delete": 0,
+      "wrong_delete": 8,
+      "correct_add": 71270,
+      "wrong_add": 1836
+    },
+    "B::edit": {
+      "actions": 662,
+      "correct_delete": 7301,
+      "wrong_delete": 33629,
+      "correct_add": 93783,
+      "wrong_add": 9170
+    },
+    "C::edit": {
+      "actions": 269,
+      "correct_delete": 1450,
+      "wrong_delete": 3080,
+      "correct_add": 76600,
+      "wrong_add": 3806
+    },
+    "C_ungated::edit": {
+      "actions": 677,
+      "correct_delete": 6331,
+      "wrong_delete": 29113,
+      "correct_add": 93540,
+      "wrong_add": 8803
+    },
+    "A::keep": {
+      "actions": 25,
+      "correct_delete": 0,
+      "wrong_delete": 88,
+      "correct_add": 117,
+      "wrong_add": 2024
+    },
+    "A0::keep": {
+      "actions": 25,
+      "correct_delete": 0,
+      "wrong_delete": 0,
+      "correct_add": 11,
+      "wrong_add": 719
+    },
+    "B::keep": {
+      "actions": 230,
+      "correct_delete": 94,
+      "wrong_delete": 17449,
+      "correct_add": 164,
+      "wrong_add": 4900
+    },
+    "C::keep": {
+      "actions": 19,
+      "correct_delete": 15,
+      "wrong_delete": 496,
+      "correct_add": 3,
+      "wrong_add": 2018
+    },
+    "C_ungated::keep": {
+      "actions": 261,
+      "correct_delete": 100,
+      "wrong_delete": 18661,
+      "correct_add": 199,
+      "wrong_add": 4519
+    },
+    "A::ambiguous": {
+      "actions": 11,
+      "correct_delete": 14,
+      "wrong_delete": 1,
+      "correct_add": 792,
+      "wrong_add": 210
+    },
+    "A0::ambiguous": {
+      "actions": 5,
+      "correct_delete": 0,
+      "wrong_delete": 0,
+      "correct_add": 430,
+      "wrong_add": 37
+    },
+    "B::ambiguous": {
+      "actions": 54,
+      "correct_delete": 11129,
+      "wrong_delete": 1626,
+      "correct_add": 1984,
+      "wrong_add": 1501
+    },
+    "C::ambiguous": {
+      "actions": 5,
+      "correct_delete": 220,
+      "wrong_delete": 5,
+      "correct_add": 428,
+      "wrong_add": 179
+    },
+    "C_ungated::ambiguous": {
+      "actions": 52,
+      "correct_delete": 7234,
+      "wrong_delete": 2077,
+      "correct_add": 2263,
+      "wrong_add": 2293
+    },
+    "A::outside_scope": {
+      "actions": 4,
+      "correct_delete": 2713,
+      "wrong_delete": 0,
+      "correct_add": 6,
+      "wrong_add": 0
+    },
+    "A0::outside_scope": {
+      "actions": 2,
+      "correct_delete": 109,
+      "wrong_delete": 0,
+      "correct_add": 0,
+      "wrong_add": 12
+    },
+    "B::outside_scope": {
+      "actions": 28,
+      "correct_delete": 6686,
+      "wrong_delete": 340,
+      "correct_add": 262,
+      "wrong_add": 576
+    },
+    "C::outside_scope": {
+      "actions": 1,
+      "correct_delete": 0,
+      "wrong_delete": 0,
+      "correct_add": 0,
+      "wrong_add": 5
+    },
+    "C_ungated::outside_scope": {
+      "actions": 24,
+      "correct_delete": 9876,
+      "wrong_delete": 594,
+      "correct_add": 254,
+      "wrong_add": 335
+    },
+    "A::unannotated": {
+      "actions": 4,
+      "correct_delete": 0,
+      "wrong_delete": 0,
+      "correct_add": 105,
+      "wrong_add": 20
+    },
+    "A0::unannotated": {
+      "actions": 1,
+      "correct_delete": 0,
+      "wrong_delete": 0,
+      "correct_add": 0,
+      "wrong_add": 8
+    },
+    "B::unannotated": {
+      "actions": 13,
+      "correct_delete": 56,
+      "wrong_delete": 80,
+      "correct_add": 406,
+      "wrong_add": 141
+    },
+    "C::unannotated": {
+      "actions": 1,
+      "correct_delete": 0,
+      "wrong_delete": 0,
+      "correct_add": 939,
+      "wrong_add": 155
+    },
+    "C_ungated::unannotated": {
+      "actions": 12,
+      "correct_delete": 83,
+      "wrong_delete": 340,
+      "correct_add": 1076,
+      "wrong_add": 267
+    }
+  },
+  "pilot": [
+    {
+      "arm": "B",
+      "fold": 0,
+      "delete_recall": 0.9760869565217392,
+      "known_delete_precision": 0.5842550422901757,
+      "wrong_delete": 639
+    },
+    {
+      "arm": "B",
+      "fold": 1,
+      "delete_recall": 0.9629232747535362,
+      "known_delete_precision": 0.8734447900466563,
+      "wrong_delete": 651
+    },
+    {
+      "arm": "B",
+      "fold": 2,
+      "delete_recall": 0.9713219406796307,
+      "known_delete_precision": 0.8671635247698378,
+      "wrong_delete": 1515
+    },
+    {
+      "arm": "B",
+      "fold": 3,
+      "delete_recall": 0.9602763385146805,
+      "known_delete_precision": 0.7436469014712439,
+      "wrong_delete": 575
+    },
+    {
+      "arm": "B",
+      "fold": 4,
+      "delete_recall": 0.9713888888888889,
+      "known_delete_precision": 0.9977175463623396,
+      "wrong_delete": 8
+    },
+    {
+      "arm": "C",
+      "fold": 0,
+      "delete_recall": 0.7228260869565217,
+      "known_delete_precision": 0.7074468085106383,
+      "wrong_delete": 275
+    },
+    {
+      "arm": "C",
+      "fold": 1,
+      "delete_recall": 0.1836690955850836,
+      "known_delete_precision": 0.9146211312700107,
+      "wrong_delete": 80
+    },
+    {
+      "arm": "C",
+      "fold": 2,
+      "delete_recall": 0.08603417796110784,
+      "known_delete_precision": 0.5296251511487303,
+      "wrong_delete": 778
+    },
+    {
+      "arm": "C",
+      "fold": 3,
+      "delete_recall": 0.9706390328151986,
+      "known_delete_precision": 0.7823665893271462,
+      "wrong_delete": 469
+    },
+    {
+      "arm": "C",
+      "fold": 4,
+      "delete_recall": 0.022222222222222223,
+      "known_delete_precision": 0.9302325581395349,
+      "wrong_delete": 6
+    }
+  ],
+  "strata_summary": {
+    "delete_candidates": 395,
+    "inflation_quantiles": [
+      0.5563008742839917,
+      5.4489754295037915,
+      15.39814814814815,
+      59.62971175166298,
+      4354.000000000001
+    ],
+    "delete_points_le10": 57,
+    "max_expected_repeat": 1365.3333333333333
+  },
+  "scope": "Posthoc audit only; original predictions/gates unchanged; C ungated/oracle masks are diagnostics, not deployment outputs."
+}

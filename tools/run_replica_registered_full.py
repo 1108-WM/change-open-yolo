@@ -1,0 +1,1 @@
+../full_bundle/code/tools/run_replica_registered_full.py

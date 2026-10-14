@@ -1,0 +1,44 @@
+{
+  "version": "dm_sms1_full_arbitration_train100_ap_provenance_v1",
+  "date": "2026-08-20",
+  "dataset": "NCS-train100",
+  "scene_count": 100,
+  "geometry_count": 10169,
+  "evaluation_root": "docs/diagnostics/dm_sms1_full_arbitration_train100_ap_20260820",
+  "evaluation_summary_sha256": "ef754e0ae2980052932813a74384f3b198c018024f90d3ea678396415deaa974",
+  "score_contract": "frozen_geometry_score",
+  "control": {
+    "name": "frozen_semantic_control",
+    "ap": 0.2928652285656521,
+    "ap50": 0.34821372337415735,
+    "ap25": 0.3682581522709735
+  },
+  "dm_sms1_full_arbitration": {
+    "name": "dm_sms1_full_arbitration",
+    "ap": 0.3474908261018349,
+    "ap50": 0.4178449229598177,
+    "ap25": 0.4362004618100933
+  },
+  "delta_arbitration_vs_control": {
+    "ap": 0.05462559753618279,
+    "ap50": 0.06963119958566033,
+    "ap25": 0.06794230953911978
+  },
+  "fold_ap_deltas": [0.02605673587399876, 0.05707875889022995, 0.021151505834585138, 0.07633625516351522, 0.05846858935837934],
+  "folds_nonnegative": 5,
+  "gate_results": {
+    "ap_delta_strictly_positive": true,
+    "ap50_delta_strictly_positive": true,
+    "ap25_delta_strictly_positive": true,
+    "at_least_four_of_five_fold_ap_deltas_nonnegative": true
+  },
+  "validation60_evaluation_authorized": true,
+  "validation60_ground_truth_read": false,
+  "val312_read": false,
+  "candidate_mutation": false,
+  "geometry_mutation": false,
+  "score_mutation": false,
+  "proposal_deletion": false,
+  "ground_truth_usage": "frozen train100 diagnostic AP only; no train100 result was used to alter the contract after evaluation",
+  "scope": "frozen-contract train100 diagnostic; not final generalization evidence"
+}

@@ -1,0 +1,25 @@
+﻿path,bytes,decision,reason,hash_recomputed
+pretrained/alpha_clip/checkpoints/ViT-L-14.pt,932768134,KEEP_FULL,AlphaCLIP当前自身语义base/微调权重,False
+pretrained/alpha_clip/checkpoints/clip_l14_grit20m_fultune_2xe.pth,1216766197,KEEP_FULL,AlphaCLIP当前自身语义base/微调权重,False
+pretrained/bert-base-uncased/model.safetensors,440449768,KEEP_FULL,GroundingDINO文本编码，配置/词表/双格式权重合同,False
+pretrained/bert-base-uncased/pytorch_model.bin,440473133,KEEP_FULL,GroundingDINO文本编码，配置/词表/双格式权重合同,False
+pretrained/checkpoints/Qwen2.5-VL-7B-Instruct/model-00001-of-00005.safetensors,3900233256,KEEP_USER_PREFERENCE,用户此前明确保留Qwen；非Full，未被本轮问题撤销,False
+pretrained/checkpoints/Qwen2.5-VL-7B-Instruct/model-00002-of-00005.safetensors,3864726320,KEEP_USER_PREFERENCE,用户此前明确保留Qwen；非Full，未被本轮问题撤销,False
+pretrained/checkpoints/Qwen2.5-VL-7B-Instruct/model-00003-of-00005.safetensors,3864726424,KEEP_USER_PREFERENCE,用户此前明确保留Qwen；非Full，未被本轮问题撤销,False
+pretrained/checkpoints/Qwen2.5-VL-7B-Instruct/model-00004-of-00005.safetensors,3864733680,KEEP_USER_PREFERENCE,用户此前明确保留Qwen；非Full，未被本轮问题撤销,False
+pretrained/checkpoints/Qwen2.5-VL-7B-Instruct/model-00005-of-00005.safetensors,1089994880,KEEP_USER_PREFERENCE,用户此前明确保留Qwen；非Full，未被本轮问题撤销,False
+pretrained/checkpoints/ViT-B-16.pt,350837078,RETIRE_MODEL_FAMILY_CANDIDATE,旧ProxyCLIP图像编码权重；当前几何只复用该helper里的DINO loader，该函数不读CLIP或ProxyCLIP；退出旧ProxyCLIP重算后可删除,False
+pretrained/checkpoints/dinov2_vits14_pretrain.pth,88283115,KEEP_GEOMETRY_RESEARCH,局部修复/归属视觉特征仍复用,False
+pretrained/checkpoints/sam_vit_b_01ec64.pth,375042383,KEEP_FULL,GD框提示SAM、YOLO-SAM验证掩码、Alpha区域；停用autoSAM不取消这些用途,False
+pretrained/checkpoints/scannet200_val.ckpt,952326680,KEEP_FULL,Mask3D原生候选与当前实例先验,False
+pretrained/checkpoints/yolo_world_v2_x_obj365v1_goldg_cc3mlite_pretrain_1280ft-14996a36.pth,545783892,KEEP_FULL,冻结YOLO-World；不同于YOLOE,False
+pretrained/clip-vit-base-patch32/pytorch_model.bin,605247071,KEEP_FULL,当前YOLO-World配置第33行使用，不能按旧CLIP模型删除,False
+pretrained/groundingdino/groundingdino_swint_ogc.pth,693997677,KEEP_FULL,GD10框检测,False
+pretrained/sam2/sam2.1_hiera_small.pt,184416285,KEEP_RESEARCH_OPTION,最新next_route_readiness明确列作可能获取新边界的后续先验；未运行，不属于Full,False
+pretrained/yoloe/mobileclip_blt.pt,599214572,RETIRE_MODEL_FAMILY_CANDIDATE,不属于当前Full/SL或已登记几何路线；停用YOLOE后可删除，失去YOLOE文本/框/掩码重算能力,False
+pretrained/yoloe/yoloe-v8l-seg.pt,107405586,RETIRE_MODEL_FAMILY_CANDIDATE,不属于当前Full/SL或已登记几何路线；停用YOLOE后可删除，失去YOLOE文本/框/掩码重算能力,False
+pretrained/yoloe/yoloe-v8m-seg.pt,65800690,RETIRE_MODEL_FAMILY_CANDIDATE,不属于当前Full/SL或已登记几何路线；停用YOLOE后可删除，失去YOLOE文本/框/掩码重算能力,False
+pretrained/yoloe/yoloe-v8s-seg.pt,31135890,RETIRE_MODEL_FAMILY_CANDIDATE,不属于当前Full/SL或已登记几何路线；停用YOLOE后可删除，失去YOLOE文本/框/掩码重算能力,False
+pretrained/z3_full_semantic_reliability_official100_20260812/c_joint_yolo_alpha.joblib,151680,ARCHIVE_SMALL_LEGACY_MODEL,旧语义头，非当前Full/SL；先将模型与元数据放历史压缩包,False
+pretrained/z6f_full_inference_bundle_official100_20260812/binary_improvement_gate.joblib,114856,ARCHIVE_SMALL_LEGACY_MODEL,旧选择/门控包，非当前B26/SL；体积很小，保留压缩归档,False
+pretrained/z6f_full_inference_bundle_official100_20260812/semantic_only_selector.joblib,139080,ARCHIVE_SMALL_LEGACY_MODEL,旧选择/门控包，非当前B26/SL；体积很小，保留压缩归档,False

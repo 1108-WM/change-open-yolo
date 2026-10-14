@@ -1,81 +1,55 @@
-# Python caches and local environments
+# Local assets and generated state never belong in the source publication.
+.git/
+.local/*
+!.local/fi1_g10_matched_pilot30_20260919_v1/
+.local/fi1_g10_matched_pilot30_20260919_v1/*
+!.local/fi1_g10_matched_pilot30_20260919_v1/selection
+.agents/
+.codex/
+.aws/
+.venvs/
+.venv/
 __pycache__/
 *.py[cod]
-*.egg-info/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-.ipynb_checkpoints/
-.venv/
-.venvs/
-venv/
-env/
-
-# Build artifacts and compiled extensions
+node_modules/
 build/
 dist/
-*.so
-*.o
-*.egg
-.ninja_*
-
-# Datasets and experiment outputs
-data/
-OpenYOLO3D/
-output/
-outputs/
-runs/
-wandb/
-work_dirs/
-**/work_dirs/
-_backups/
-
-# Pretrained weights and downloaded model assets
-pretrained/checkpoints/
-pretrained/alpha_clip/
-pretrained/clip-vit-base-patch32/
-pretrained/yoloe/
-*.pt
-*.pth
-*.ckpt
-*.bin
-*.onnx
-*.safetensors
-
-# External downloaded repositories and local agent state
-_external/
-.agents/
-.codex/
-skills-lock.json
-
-# Local notes/assets not required for running the project
-related papers/
-e9014c6c-9d5b-4206-a46b-285e4b72d826.png
-cushion
-
-# Generated visual reviews are retained locally, while compact reports remain versioned.
-docs/visual_checks/
-docs/diagnostics/**/visuals/
-picture/
-
-# Generated experiment ledgers can be hundreds of MB per run.  Compact,
-# explicitly selected summaries are force-added when a frozen result is
-# published; raw JSONL/NPZ/CSV ledgers stay local or in external storage.
-docs/diagnostics/
-
-# Local model mirrors.  The small frozen project-specific model bundles are
-# explicitly force-added; third-party model repositories and weights are not.
-pretrained/bert-base-uncased/
-pretrained/clip-vit-base-patch32/
-pretrained/groundingdino/
-pretrained/sam2/
-pretrained/z3_full_semantic_reliability_official100_20260812/
-pretrained/z6f_full_inference_bundle_official100_20260812/
-
-# Unreferenced local research-note image; source documentation is versioned.
-资料/scannet数据集.png
-
-# Secrets and machine-local overrides.
+*.egg-info/
 .env
 .env.*
 !.env.example
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+*.joblib
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.ply
+*.sens
+*.pcd
+*.so
+*.a
+*.o
+*.log
+*.jsonl
+*.zip
+*.tar
+*.gz
+/data/
+/output/
+/outputs/
+/archive/
+full_bundle/datasets/
+full_bundle/artifacts/
+full_bundle/training/
+full_bundle/results/
+full_bundle/protected_sources/
+sl_bundle/protected_sources/

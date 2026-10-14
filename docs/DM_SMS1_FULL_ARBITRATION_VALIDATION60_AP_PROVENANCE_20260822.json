@@ -1,0 +1,67 @@
+{
+  "version": "dm_sms1_full_arbitration_validation60_ap_provenance_v1",
+  "date": "2026-08-22",
+  "evaluation_completed_at": "2026-08-22T07:53:33+08:00",
+  "dataset": "NCS-validation60",
+  "scene_count": 60,
+  "geometry_count": 5887,
+  "two_candidate_count": 4046,
+  "single_candidate_count": 1841,
+  "strict_valid_count": 3474,
+  "invalid_evidence_fallback_count": 572,
+  "class_change_count": 993,
+  "model_id": "Qwen2.5-VL-7B-Instruct",
+  "model_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "systems": {
+    "frozen_semantic_control": {
+      "ap": 0.27338662061940117,
+      "ap50": 0.32026067625049043,
+      "ap25": 0.34414895249604577
+    },
+    "dm_sms1_full_arbitration": {
+      "ap": 0.3226627282894543,
+      "ap50": 0.37797090759743973,
+      "ap25": 0.41298864452543926
+    },
+    "delta": {
+      "ap": 0.04927610767005314,
+      "ap50": 0.0577102313469493,
+      "ap25": 0.0688396920293935,
+      "head_ap": 0.029499121344110313,
+      "common_ap": 0.046916561029604564,
+      "tail_ap": 0.10354491888582798
+    }
+  },
+  "output_root": "docs/diagnostics/dm_sms1_full_arbitration_validation60_ap_20260822",
+  "batch_root": "docs/diagnostics/dm_sms1_vlm_strict_full4046_validation60_20260821",
+  "batch_audit_root": "docs/diagnostics/dm_sms1_vlm_strict_full4046_validation60_audit_20260822",
+  "pair_safe_decision_root": "docs/diagnostics/dm_sms1_safe_decisions_strict_full4046_validation60_20260822",
+  "full_safe_decision_root": "docs/diagnostics/dm_sms1_full_safe_decisions_validation60_20260822",
+  "hashes": {
+    "batch_summary_sha256": "04e818cf1148d968eb56e6f6a35bd7d8cedc8e478528638cd6f8e96c3c4d572f",
+    "batch_outputs_sha256": "52690ce05f2472d48bd3a8a6cc71a690288efd7865648bf243c71edd2f44b1a7",
+    "batch_audit_sha256": "7012145ae5bc014012a75b09b452079d96bdde72910027925069422f4435a89c",
+    "pair_safe_summary_sha256": "b9b7156082d24f8a71ecdc7f477dd81f585cde211520656a6c768e3c057911f5",
+    "pair_safe_audit_sha256": "aa216720aa2ebae0a04e6b806c4ab8f33903dd492f454a83609eb6c59a4b9f6a",
+    "full_safe_summary_sha256": "19fadcffcceb0d6ad46e371628eba1096a351a7051a5162763f16bc28546ef46",
+    "full_safe_audit_sha256": "0dbd5bc39b6be270e19229ea93ba7aaf1f6d9305dc75f40b82042d36000e619f",
+    "full_safe_decisions_sha256": "9b629e5ed0f7e7c6b1124b3aee6550cfc582f541d24fb0c2cf80c7fa75a8129d",
+    "prediction_cache_summary_sha256": "1b60f3d7cc727801b6e89fa8f7dd89e6cad6ea841fe6173f05d8c6570c8f847d",
+    "ground_truth_summary_sha256": "eafc318672b9428de343ab139c3556ef6b2bfe7158f591a6cae84cc80c2ba24a",
+    "frozen_control_csv_sha256": "fe556edab7591ff1969a701c25da3c31918d25e361d6d48fae87dc0510de4b3b",
+    "full_arbitration_csv_sha256": "3f0a85352a1d63846bd61984692bcb43048a927e28ab476c698fb0d097640083",
+    "evaluation_summary_sha256": "2ae06fe96ec1585410b145b2d7abd94cf72b089196fa53c04a370fc657f8610f",
+    "evaluation_audit_sha256": "c120d8407ee70ea7b475698dfd6aa84a38e1c3388df45ac813fd9d989854208d"
+  },
+  "batch_audit_valid": true,
+  "pair_safe_audit_valid": true,
+  "full_safe_audit_valid": true,
+  "evaluation_structure_audit_valid": true,
+  "all_audit_error_counts_zero": true,
+  "candidate_mutation": false,
+  "geometry_mutation": false,
+  "score_mutation": false,
+  "proposal_deletion": false,
+  "val312_read": false,
+  "scope": "single preregistered frozen NCS-validation60 transfer evaluation; no post-result tuning permitted"
+}

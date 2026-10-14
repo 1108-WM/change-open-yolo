@@ -1,0 +1,23 @@
+{
+  "version": "dm_sms1_semantic_arbitration_provenance_v1",
+  "stage": "no_gt_input_manifest",
+  "date": "2026-08-18",
+  "output_root": "docs/diagnostics/dm_sms1_semantic_arbitration_manifest_train100_20260818",
+  "manifest_file": "semantic_arbitration_manifest.jsonl",
+  "manifest_sha256": "9168bdfe54cf636a3898fb4092ef0810687f3af46dae2106baffdd0fdbc7efb8",
+  "summary_sha256": "9135b6a07cbcd76aeae8ef8c61cc06269a0b343cfddc43586abca7c42bc74dd0",
+  "audit_summary_sha256": "08e2f322e8695e8fc086fcc1453e7f58f8e27f18827274163e9f75c0350c10d4",
+  "scene_count": 100,
+  "geometry_count": 10169,
+  "selected_view_count": 30485,
+  "view_target_shortfall_geometry_count": 18,
+  "candidate_hypothesis_count": 17175,
+  "view_contract": "up to 20 existing valid Stage D views; first highest visible ratio, then farthest camera centre; target 3",
+  "class_contract": "finite hypotheses are frozen control class and Alpha-CLIP top class; no class is selected",
+  "frozen_fields": ["geometry", "mask evidence", "candidate membership", "frozen geometry score", "canonical class", "Alpha-CLIP evidence"],
+  "mutation_contract": {"candidate_mutation": false, "geometry_mutation": false, "score_mutation": false, "proposal_deletion": false, "class_decision_made": false},
+  "ground_truth_read": false,
+  "ap_computed": false,
+  "audit_valid": true,
+  "input_stage_d_summary_sha256": "8d25e0dc36ad607b55c63c021959c36fe6c8cbeb42b4fe634da7fd317856b783"
+}

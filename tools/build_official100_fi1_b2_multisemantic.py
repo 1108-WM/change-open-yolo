@@ -1,0 +1,1 @@
+../full_bundle/code/tools/build_official100_fi1_b2_multisemantic.py

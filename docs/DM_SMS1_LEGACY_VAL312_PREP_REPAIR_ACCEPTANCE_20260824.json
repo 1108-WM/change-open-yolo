@@ -1,0 +1,181 @@
+{
+  "version": "dm_sms1_legacy_val312_prep_repair_acceptance_v1",
+  "date": "2026-08-24",
+  "status": "accepted_for_preregistration_only_not_authorized_to_start_val312",
+  "branch": "dm-sms1-legacy-val312-prep-20260824",
+  "branch_start_commit": "a1d207ebeb96b96ce57164c2aa6df1bd74d6ce9d",
+  "contracts": [
+    "docs/DM_SMS1_LEGACY_VAL312_READINESS_AUDIT_20260824.md",
+    "docs/DM_SMS1_LEGACY_VAL312_PREP_REPAIR_PREREGISTRATION_20260824.md",
+    "docs/DM_SMS1_LEGACY_VAL312_PREP_REPAIR_ADDENDUM_20260824.md",
+    "docs/DM_SMS1_LEGACY_VAL312_PREP_REPLAY_ADDENDUM_20260824.md"
+  ],
+  "method_boundary": {
+    "fi1_foundation": "FI1-Legacy",
+    "fi1_legacy_modified": false,
+    "fi1_d_v3_runtime_assets_read_or_integrated": false,
+    "generic_modules_recovered_from_registered_deployment_commit": true,
+    "legacy_decision_rule_modified": false,
+    "model_prompt_view_or_generation_contract_modified": false,
+    "frozen_train100_or_validation60_outputs_overwritten": false
+  },
+  "repair_scope": {
+    "restored_deployment_modules": [
+      {
+        "path": "tools/dm_sms_core.py",
+        "sha256": "3e3b14dc8dfe723667aab189d877b65bed6b54b20829a6cc47ebf0ccc9fc9a64",
+        "registered_source_commit": "064ad00204f46b455024fa47fcb0ac6261b765a6",
+        "content_matches_registered_source": true
+      },
+      {
+        "path": "tools/audit_dm_sms1_unique_geometry_ledger.py",
+        "sha256": "f9c8f360c61517a0907817a30302907a21ccf50ea5d4a2d1a7ba420aa717baa4",
+        "registered_source_commit": "064ad00204f46b455024fa47fcb0ac6261b765a6",
+        "content_matches_registered_source": true
+      }
+    ],
+    "structural_safety_changes": [
+      "supported=true requires non-empty support_evidence",
+      "strong_counterevidence=true requires non-empty counterevidence",
+      "candidate evidence joins use the complete identity (scene_name, geometry_hash)",
+      "empty, duplicate, missing, extra and scene-mismatched identities are rejected",
+      "full-ledger scope text is dataset-independent"
+    ],
+    "changed_production_file_hashes": {
+      "tools/run_dm_sms1_single_scene_vlm_smoke.py": "f0d7c6d7459309a46987dd96b7cadcde60852f5afa96b94f7f163dc8087cc0ae",
+      "tools/apply_dm_sms1_semantic_arbitration.py": "c764cf0be88c39eff8e993ae2c1140230e70878f098d5df77d0ff4d0d4564a65",
+      "tools/build_dm_sms1_candidate_evidence_manifest.py": "9cb3e065bb275d397ca43ba5b55806e69b07a00fc263646bb8b9f6c8eff77bbf",
+      "tools/build_dm_sms1_full_safe_decision_ledger.py": "0ab03986f98e4fd4ca9edbe200ef0dab8988bc2dc8ceb789d72e118aa1fcd806"
+    }
+  },
+  "verification": {
+    "focused_tests": {
+      "result": "17 passed",
+      "rerun_date": "2026-08-24",
+      "python_environment": "/home/jia/anaconda3/envs/bienet",
+      "pythonpath_project_root_added": true
+    },
+    "expanded_no_gt_legacy_tests": {
+      "result": "52 passed, 1 warning",
+      "rerun_date": "2026-08-24",
+      "warning": "The selected environment reported an unused torchvision image-extension binary mismatch; no image I/O test or production inference was run."
+    },
+    "earlier_expanded_collection": {
+      "result": "54 passed, 1 failed",
+      "only_failure": "tests/test_build_dm_sms1_ncs_stream_adapters.py uses an old fixture without the later-required ncs_split argument",
+      "val312_path_relevance": false,
+      "changed_under_this_repair": false
+    },
+    "evaluation_imports": {
+      "result": "passed",
+      "imports": [
+        "tools.evaluate_dm_sms1_stage_e_gt",
+        "tools.audit_dm_sms1_stage_e_results"
+      ],
+      "python_environment": "/home/jia/anaconda3/envs/openyolo3d"
+    },
+    "syntax_check": {
+      "result": "passed",
+      "checked_production_files": 6
+    }
+  },
+  "candidate_manifest_identity_rebuild": {
+    "train100": {
+      "scene_count": 100,
+      "geometry_count": 10169,
+      "two_candidate_count": 7006,
+      "single_candidate_count": 3163,
+      "manifest_sha256": "1d702a929c1d3b520558044903f9d31cc24679493ddef004c0afe6db30cd01fd",
+      "matches_frozen_registered_manifest": true,
+      "audit_valid": true,
+      "audit_error_count": 0,
+      "root": "docs/diagnostics/dm_sms1_legacy_prep_candidate_manifest_rebuild_train100_20260824"
+    },
+    "validation60": {
+      "scene_count": 60,
+      "geometry_count": 5887,
+      "two_candidate_count": 4046,
+      "single_candidate_count": 1841,
+      "manifest_sha256": "4d338fe218d65d479b14ceaa69e6cd0768fdc1b9f92a599917d549de494b54cd",
+      "matches_frozen_manifest": true,
+      "audit_valid": true,
+      "audit_error_count": 0,
+      "root": "docs/diagnostics/dm_sms1_legacy_prep_candidate_manifest_rebuild_validation60_20260824"
+    }
+  },
+  "strict_historical_raw_output_review": {
+    "historical_files_modified": false,
+    "train100": {
+      "processed_record_count": 7006,
+      "strict_valid_count": 6110,
+      "newly_rejected_historical_valid_count": 2,
+      "newly_rejected_task_ids": [
+        "e2a8ca09fdd026314f9c150c76ca5ff5c56a34460c38474dd0017da01a6a2f77",
+        "1333675edfa87f1bf9c5230abc5a7365a99405af369e7ab489327b56e20bf51f"
+      ],
+      "matches_preregistered_expected_set": true,
+      "root": "docs/diagnostics/dm_sms1_legacy_prep_strict_raw_audit_train100_20260824"
+    },
+    "validation60": {
+      "processed_record_count": 4046,
+      "strict_valid_count": 3473,
+      "newly_rejected_historical_valid_count": 1,
+      "newly_rejected_task_ids": [
+        "8864e8a5b7de7a0a34ae73df40c02c36a95365f906da2dd5f1a1ee5b60631a80"
+      ],
+      "matches_preregistered_expected_set": true,
+      "root": "docs/diagnostics/dm_sms1_legacy_prep_strict_raw_audit_validation60_20260824"
+    },
+    "interpretation": "The historical valid=true fields remain immutable. These expected findings are accepted only through the separately generated safe replay ledgers below."
+  },
+  "safe_no_gt_replay": {
+    "train100": {
+      "two_candidate_count": 7006,
+      "strict_valid_count": 6110,
+      "safe_fallback_count": 896,
+      "class_change_count": 1825,
+      "class_change_delta_from_frozen_history": -2,
+      "only_preregistered_two_tasks_changed_class": true,
+      "complete_geometry_count": 10169,
+      "pair_ledger_sha256": "660d1aebb70237861a507cd96cb8d640083b7baac1c378e11758289625294562",
+      "full_ledger_sha256": "8f60650a0a7f97532ab8d4d00879aa787f538f2ec5310c4d79d3b43c0215a027",
+      "pair_audit_valid": true,
+      "pair_audit_error_count": 0,
+      "full_audit_valid": true,
+      "full_audit_error_count": 0
+    },
+    "validation60": {
+      "two_candidate_count": 4046,
+      "strict_valid_count": 3473,
+      "safe_fallback_count": 573,
+      "class_change_count": 993,
+      "class_change_delta_from_frozen_history": 0,
+      "only_preregistered_one_record_changed_evidence_validity": true,
+      "complete_geometry_count": 5887,
+      "all_final_class_indices_match_frozen_history": true,
+      "pair_ledger_sha256": "0910545d235007a1af1bba6c861e56c2915f314721eab6178d20e8ef29d56b1e",
+      "full_ledger_sha256": "f18acf5a455043ac6388d85a7a74ce0e9a7cf1ad02f95a6b5798e9fb5a17c456",
+      "pair_audit_valid": true,
+      "pair_audit_error_count": 0,
+      "full_audit_valid": true,
+      "full_audit_error_count": 0
+    }
+  },
+  "execution_flags": {
+    "ground_truth_read": false,
+    "ap_computed": false,
+    "qwen_run": false,
+    "gpu_inference_run": false,
+    "val312_read": false,
+    "val312_scanned": false,
+    "validation60_reopened": false,
+    "train100_or_validation60_ap_rerun": false
+  },
+  "acceptance_decision": {
+    "prep_repair_accepted": true,
+    "legacy_results_replaced": false,
+    "val312_preregistration_may_be_written": true,
+    "val312_execution_authorized": false,
+    "next_required_authority": "A new explicit user authorization is required before any val312 asset scan, manifest generation, Qwen inference, ground-truth access or AP evaluation."
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "version": "dm_sms1_v2_dual_counterevidence_train100_provenance_v1",
+  "date": "2026-08-22",
+  "dataset": "NCS-train100",
+  "fi1_foundation": "FI1-Legacy",
+  "branch": "dm-sms1-v2-dual-counterevidence-20260822",
+  "preregistration": "docs/DM_SMS1_V2_DUAL_COUNTEREVIDENCE_PREREGISTRATION_20260822.md",
+  "output_root": "docs/diagnostics/dm_sms1_v2_dual_counterevidence_decisions_train100_20260822",
+  "inputs": {
+    "candidate_manifest": "docs/diagnostics/dm_sms1_candidate_evidence_manifest_train100_20260818/candidate_evidence_manifest.jsonl",
+    "candidate_manifest_sha256": "1d702a929c1d3b520558044903f9d31cc24679493ddef004c0afe6db30cd01fd",
+    "evidence_ledger": "docs/diagnostics/dm_sms1_vlm_strict_full7006_train100_20260819/batch_outputs.jsonl",
+    "evidence_ledger_sha256": "e32b3e87c9b0fcdc29aadd5efbd5e9cc11593d5172a1741a2d2d5cfef0052ef7",
+    "fold_manifest": "output/scannet200/scene_splits/ncs_independent_20260813/ncs_train100_folds_v1.json",
+    "fold_manifest_sha256": "e51f6aad4dcc20b758dc7cdde73ff9047c2a495da85ce3e1587a21290a2374e5"
+  },
+  "implementation_hashes": {
+    "preregistration_sha256": "ffa44d91738d7d816ff1217b02c9fd9c91e4d0c95181e8e7c6402608adba4440",
+    "decision_tool_sha256": "1e448b2549867eb76d18b329c5f8cfea88f5c39f470b8c30aff4a1f333868df6",
+    "audit_tool_sha256": "35adcb8d567095209a901995fd6a0ac8b5ebc01f2524239aa94a5302c4a21890",
+    "analysis_tool_sha256": "ffe8348e30ba43138c5993c1e690b2cb8ab04d68181f27219bed3a878feb7840"
+  },
+  "output_hashes": {
+    "v2_safe_decisions_sha256": "f5ba326c479f2fe919953c610cfddb2d97ba1f8c372bb45e6e9af57c4cd6a3b9",
+    "summary_sha256": "b9c93865cab0e60d1bc37622dfb42f22c221846773c14b8dbc95b677b301c813",
+    "audit_summary_sha256": "3438e8d822e5513c4f395905266121a1c8d40c17769be5ac728a4599bcf39f94",
+    "no_gt_analysis_sha256": "c2c32e5d50e615bacf302f205d3455fce69b116b06c4fa14968890a1c5b95dcf"
+  },
+  "counts": {
+    "two_candidate_count": 7006,
+    "strict_valid_count": 6112,
+    "invalid_evidence_fallback_count": 894,
+    "original_dm_sms1_change_count": 1827,
+    "v2_change_count": 0,
+    "suppressed_original_change_count": 1827,
+    "suppressed_original_change_fraction": 1.0,
+    "v2_change_subset_violation_count": 0
+  },
+  "change_reason_counts": {
+    "alternative_missing_dual_support_keep_frozen_control": 4285,
+    "incumbent_missing_dual_strong_counterevidence_keep_frozen_control": 1827,
+    "invalid_evidence_keep_frozen_control": 894
+  },
+  "incumbent_strong_counterevidence_state_counts": {
+    "ab_false_ba_false": 6112
+  },
+  "all_candidate_order_strong_counterevidence_counts": {
+    "false": 24447,
+    "true": 1
+  },
+  "fold_original_change_and_suppression_counts": {
+    "0": {"original_change_count": 420, "suppressed_count": 420, "v2_change_count": 0},
+    "1": {"original_change_count": 328, "suppressed_count": 328, "v2_change_count": 0},
+    "2": {"original_change_count": 337, "suppressed_count": 337, "v2_change_count": 0},
+    "3": {"original_change_count": 362, "suppressed_count": 362, "v2_change_count": 0},
+    "4": {"original_change_count": 380, "suppressed_count": 380, "v2_change_count": 0}
+  },
+  "audit": {
+    "audit_valid": true,
+    "error_count": 0,
+    "row_count": 7006,
+    "v2_change_is_subset_of_original": true
+  },
+  "structural_conclusion": "The frozen Qwen evidence contract never marks the incumbent class as strong_counterevidence=true in either AB or BA for any of the 6112 strictly valid rows. Therefore the preregistered post-hoc v2 rule is a deterministic no-op on NCS-train100 and suppresses all 1827 original DM-SMS-1 changes.",
+  "ap_evaluation_authorized": false,
+  "ap_evaluation_reason": "The v2 ledger is exactly identical to the frozen incumbent-class control at every geometry, so AP would be a redundant control reproduction rather than evidence for the v2 rule.",
+  "validation60_reopened": false,
+  "val312_read": false,
+  "gpu_used": false,
+  "candidate_mutation": false,
+  "geometry_mutation": false,
+  "score_mutation": false,
+  "proposal_deletion": false,
+  "ground_truth_read": false,
+  "ap_computed": false,
+  "scope": "complete preregistered NCS-train100 no-GT decision ledger and independent structural audit; not accuracy or AP evidence"
+}

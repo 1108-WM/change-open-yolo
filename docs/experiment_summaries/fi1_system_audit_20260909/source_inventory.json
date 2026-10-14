@@ -1,0 +1,1444 @@
+{
+  "date": "2026-09-09",
+  "scope": "source snapshot and static parse only; no GPU, dataset ground truth, training or AP",
+  "worktree": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25",
+  "files": [
+    {
+      "group": "baseline",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/utils/__init__.py",
+      "sha256": "d9a7a67d8130880fa6d291a6dad6ab568e4a2e51773a253c15ac008c770578c7",
+      "line_count": 673,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "load_mesh_or_pc",
+          "line": 29
+        },
+        {
+          "name": "get_iou",
+          "line": 41
+        },
+        {
+          "name": "apply_nms",
+          "line": 63
+        },
+        {
+          "name": "generate_vibrant_colors",
+          "line": 89
+        },
+        {
+          "name": "get_visibility_mat",
+          "line": 102
+        },
+        {
+          "name": "compute_iou",
+          "line": 117
+        },
+        {
+          "name": "OpenYolo3D",
+          "line": 133
+        },
+        {
+          "name": "WORLD_2_CAM",
+          "line": 507
+        }
+      ]
+    },
+    {
+      "group": "baseline",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/pretrained/config_scannet200.yaml",
+      "sha256": "a8fd4b96a832e2d42b2035011e094c6a656986d37126dca7a866da049874c21f",
+      "line_count": 21,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit"
+    },
+    {
+      "group": "baseline",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/evaluate/scannet200/eval_semantic_instance.py",
+      "sha256": "3051635f4fe58ce55de77bba9bd7a410bf87d029cc072554c3537d8ee1fb6994",
+      "line_count": 1028,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "evaluate_matches",
+          "line": 90
+        },
+        {
+          "name": "compute_averages",
+          "line": 323
+        },
+        {
+          "name": "compute_averages_ar",
+          "line": 392
+        },
+        {
+          "name": "compute_averages_rc",
+          "line": 441
+        },
+        {
+          "name": "compute_averages_pcdc",
+          "line": 488
+        },
+        {
+          "name": "make_pred_info",
+          "line": 502
+        },
+        {
+          "name": "assign_instances_for_scan",
+          "line": 516
+        },
+        {
+          "name": "print_results",
+          "line": 588
+        },
+        {
+          "name": "print_results_pcdc",
+          "line": 639
+        },
+        {
+          "name": "print_results_ap_ar_rc_pcdc",
+          "line": 667
+        },
+        {
+          "name": "write_result_file",
+          "line": 823
+        },
+        {
+          "name": "evaluate",
+          "line": 836
+        },
+        {
+          "name": "main",
+          "line": 1009
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/dm_sms_core.py",
+      "sha256": "3e3b14dc8dfe723667aab189d877b65bed6b54b20829a6cc47ebf0ccc9fc9a64",
+      "line_count": 129,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "SMSResult",
+          "line": 16
+        },
+        {
+          "name": "geometry_hash",
+          "line": 24
+        },
+        {
+          "name": "exact_geometry_groups",
+          "line": 30
+        },
+        {
+          "name": "canonical_member",
+          "line": 42
+        },
+        {
+          "name": "visible_ratio_multiscale_feature",
+          "line": 76
+        },
+        {
+          "name": "compute_sms",
+          "line": 95
+        },
+        {
+          "name": "sms_keep_mask",
+          "line": 127
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_dm_sms1_unique_geometry_ledger.py",
+      "sha256": "6774d5fa4ef59054b33be58aeab2850f0547912939606dca2075146bb267a301",
+      "line_count": 554,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 43
+        },
+        {
+          "name": "_sha256",
+          "line": 47
+        },
+        {
+          "name": "_read_scenes",
+          "line": 55
+        },
+        {
+          "name": "_read_jsonl",
+          "line": 62
+        },
+        {
+          "name": "_scene_plan_rows",
+          "line": 77
+        },
+        {
+          "name": "_normalized_source",
+          "line": 86
+        },
+        {
+          "name": "_score_index",
+          "line": 93
+        },
+        {
+          "name": "_load_points",
+          "line": 114
+        },
+        {
+          "name": "_track_semantics",
+          "line": 126
+        },
+        {
+          "name": "_member",
+          "line": 142
+        },
+        {
+          "name": "_register_geometry",
+          "line": 162
+        },
+        {
+          "name": "_scene_ledger",
+          "line": 177
+        },
+        {
+          "name": "run",
+          "line": 420
+        },
+        {
+          "name": "main",
+          "line": 517
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "sha256": "c1feac17617a76f4973f540a9c337ac0de752a311b2d1806bc94d79c8472cc9c",
+      "line_count": 654,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_read_scenes",
+          "line": 51
+        },
+        {
+          "name": "_write_jsonl",
+          "line": 58
+        },
+        {
+          "name": "_load_models",
+          "line": 62
+        },
+        {
+          "name": "_predict",
+          "line": 79
+        },
+        {
+          "name": "_members",
+          "line": 101
+        },
+        {
+          "name": "_stage_a",
+          "line": 112
+        },
+        {
+          "name": "_stage_b",
+          "line": 186
+        },
+        {
+          "name": "_quality_features",
+          "line": 227
+        },
+        {
+          "name": "_stage_c",
+          "line": 274
+        },
+        {
+          "name": "_stage_d_and_complete_plan",
+          "line": 420
+        },
+        {
+          "name": "run",
+          "line": 574
+        },
+        {
+          "name": "main",
+          "line": 632
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v3_complete_oof_plan.py",
+      "sha256": "530e2246d8acf9085542eac7fe596e2d356e82e57d69fd3e4095b76f67d86ed1",
+      "line_count": 153,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "run",
+          "line": 23
+        },
+        {
+          "name": "main",
+          "line": 139
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_dm_sms1_fi1_d_v3_prediction_cache.py",
+      "sha256": "a82b2a355189fca4d7cb04ca6e19ccef1d7aa192efd7d84ee5c04b685c3f36b0",
+      "line_count": 200,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 26
+        },
+        {
+          "name": "_sha256",
+          "line": 30
+        },
+        {
+          "name": "_rows",
+          "line": 38
+        },
+        {
+          "name": "_scenes",
+          "line": 42
+        },
+        {
+          "name": "_prepared_point_count",
+          "line": 49
+        },
+        {
+          "name": "run",
+          "line": 55
+        },
+        {
+          "name": "main",
+          "line": 187
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_dm_sms1_alpha_view_manifest.py",
+      "sha256": "5ceea81cd6465c8a250495a6fb39b60867f14225599a3605dd60ef29f0c1866d",
+      "line_count": 358,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 29
+        },
+        {
+          "name": "_sha256",
+          "line": 33
+        },
+        {
+          "name": "_scenes",
+          "line": 41
+        },
+        {
+          "name": "_read_jsonl",
+          "line": 48
+        },
+        {
+          "name": "select_top_visible_views",
+          "line": 52
+        },
+        {
+          "name": "square_crop_box",
+          "line": 67
+        },
+        {
+          "name": "_asset",
+          "line": 103
+        },
+        {
+          "name": "_scene_rows",
+          "line": 109
+        },
+        {
+          "name": "run",
+          "line": 223
+        },
+        {
+          "name": "main",
+          "line": 333
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_dm_sms1_alpha_embedding_ledger.py",
+      "sha256": "deec247989a2370f278803ff0d04adc9e406562be97c1550445a2181f321b006",
+      "line_count": 663,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 36
+        },
+        {
+          "name": "_sha256",
+          "line": 40
+        },
+        {
+          "name": "_array_sha256",
+          "line": 48
+        },
+        {
+          "name": "_mask_sha256",
+          "line": 57
+        },
+        {
+          "name": "_read_jsonl",
+          "line": 65
+        },
+        {
+          "name": "_scenes",
+          "line": 69
+        },
+        {
+          "name": "_ensure_loralib_stub",
+          "line": 76
+        },
+        {
+          "name": "_load_alpha_clip",
+          "line": 90
+        },
+        {
+          "name": "_load_sam",
+          "line": 126
+        },
+        {
+          "name": "_encode_alpha_batch",
+          "line": 138
+        },
+        {
+          "name": "finalize_scene_semantics",
+          "line": 154
+        },
+        {
+          "name": "_scene_complete",
+          "line": 238
+        },
+        {
+          "name": "_process_scene",
+          "line": 256
+        },
+        {
+          "name": "_validate_assets",
+          "line": 457
+        },
+        {
+          "name": "run",
+          "line": 470
+        },
+        {
+          "name": "main",
+          "line": 623
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_dm_sms1_semantic_arbitration_manifest.py",
+      "sha256": "34c92ad4d3ab7a71a81980944e2d246315f23dda088b83f6fcbe6eac55078619",
+      "line_count": 373,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 33
+        },
+        {
+          "name": "_sha256",
+          "line": 37
+        },
+        {
+          "name": "_finite",
+          "line": 45
+        },
+        {
+          "name": "camera_center",
+          "line": 53
+        },
+        {
+          "name": "_view_key",
+          "line": 61
+        },
+        {
+          "name": "select_complementary_views",
+          "line": 69
+        },
+        {
+          "name": "finite_candidate_classes",
+          "line": 121
+        },
+        {
+          "name": "_asset",
+          "line": 146
+        },
+        {
+          "name": "_read_records",
+          "line": 153
+        },
+        {
+          "name": "_view_paths",
+          "line": 163
+        },
+        {
+          "name": "build_rows",
+          "line": 174
+        },
+        {
+          "name": "run",
+          "line": 288
+        },
+        {
+          "name": "main",
+          "line": 359
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/run_dm_sms1_single_scene_vlm_smoke.py",
+      "sha256": "f0d7c6d7459309a46987dd96b7cadcde60852f5afa96b94f7f163dc8087cc0ae",
+      "line_count": 235,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_read_rows",
+          "line": 15
+        },
+        {
+          "name": "_json_object",
+          "line": 19
+        },
+        {
+          "name": "_attribute_prompt",
+          "line": 31
+        },
+        {
+          "name": "_candidate_prompt",
+          "line": 52
+        },
+        {
+          "name": "_target_images",
+          "line": 77
+        },
+        {
+          "name": "_validate_candidate_output",
+          "line": 108
+        },
+        {
+          "name": "run",
+          "line": 139
+        },
+        {
+          "name": "main",
+          "line": 222
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/run_dm_sms1_vlm_batch_smoke.py",
+      "sha256": "f2a6191999aa3a82775c5b82754cb5eb149ac999ba9231b4b848bb56054b0976",
+      "line_count": 834,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "JsonSyntaxFailure",
+          "line": 50
+        },
+        {
+          "name": "InferenceValidationFailure",
+          "line": 54
+        },
+        {
+          "name": "_unique_rows_by_task",
+          "line": 65
+        },
+        {
+          "name": "_verify_model_revision",
+          "line": 74
+        },
+        {
+          "name": "_sha256",
+          "line": 87
+        },
+        {
+          "name": "select_batch",
+          "line": 95
+        },
+        {
+          "name": "_validate_qwen_selection",
+          "line": 120
+        },
+        {
+          "name": "_string_values",
+          "line": 130
+        },
+        {
+          "name": "_term_present",
+          "line": 141
+        },
+        {
+          "name": "_term_is_target_guess",
+          "line": 160
+        },
+        {
+          "name": "_contains_cjk",
+          "line": 185
+        },
+        {
+          "name": "normalize_attribute_view_ranks",
+          "line": 189
+        },
+        {
+          "name": "validate_attribute_structure",
+          "line": 240
+        },
+        {
+          "name": "attribute_term_findings",
+          "line": 281
+        },
+        {
+          "name": "validate_attribute_output",
+          "line": 310
+        },
+        {
+          "name": "outside_candidate_class_terms",
+          "line": 317
+        },
+        {
+          "name": "candidate_set_insufficient_or_unclear",
+          "line": 335
+        },
+        {
+          "name": "validate_completed_model_record",
+          "line": 349
+        },
+        {
+          "name": "_selection_records",
+          "line": 409
+        },
+        {
+          "name": "summarize_batch_records",
+          "line": 419
+        },
+        {
+          "name": "run",
+          "line": 473
+        },
+        {
+          "name": "main",
+          "line": 812
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/apply_dm_sms1_semantic_arbitration.py",
+      "sha256": "a1adb8e23346a6bdf5acd5155802fb656d7a1df2823f5e8478da51b4835991fd",
+      "line_count": 158,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_result_map",
+          "line": 12
+        },
+        {
+          "name": "_unique_rows_by_task",
+          "line": 16
+        },
+        {
+          "name": "validate_evidence_row",
+          "line": 25
+        },
+        {
+          "name": "decide_row",
+          "line": 67
+        },
+        {
+          "name": "run",
+          "line": 116
+        },
+        {
+          "name": "main",
+          "line": 148
+        }
+      ]
+    },
+    {
+      "group": "fi1_and_old_semantics",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/run_dm_sms1_fi1_d_v3_val312_pipeline.py",
+      "sha256": "df0f84ffea5bb1766b7a48c90e5a4a7dae5468fedfa23dfd1d3b45078986cbe0",
+      "line_count": 290,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 21
+        },
+        {
+          "name": "_load_config",
+          "line": 26
+        },
+        {
+          "name": "_outputs",
+          "line": 42
+        },
+        {
+          "name": "_tool",
+          "line": 69
+        },
+        {
+          "name": "_commands",
+          "line": 73
+        },
+        {
+          "name": "main",
+          "line": 269
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_z1_yoloworld_multiview_distribution_ledger.py",
+      "sha256": "33c86fbf95f4cda0c08a8f4c9d701a77cca8dbbb671c9ce928fc454907229f5a",
+      "line_count": 577,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 33
+        },
+        {
+          "name": "_read_scenes",
+          "line": 37
+        },
+        {
+          "name": "_as_numpy",
+          "line": 44
+        },
+        {
+          "name": "_load_yoloworld_cache",
+          "line": 48
+        },
+        {
+          "name": "_points",
+          "line": 61
+        },
+        {
+          "name": "_geometry_hash",
+          "line": 69
+        },
+        {
+          "name": "_distribution_stats",
+          "line": 73
+        },
+        {
+          "name": "_frame_evidence",
+          "line": 105
+        },
+        {
+          "name": "_candidate_distribution",
+          "line": 153
+        },
+        {
+          "name": "_frozen_support_vote",
+          "line": 248
+        },
+        {
+          "name": "_load_native",
+          "line": 295
+        },
+        {
+          "name": "_load_tracks",
+          "line": 305
+        },
+        {
+          "name": "_load_union_rows",
+          "line": 310
+        },
+        {
+          "name": "_scene_records",
+          "line": 322
+        },
+        {
+          "name": "run",
+          "line": 490
+        },
+        {
+          "name": "main",
+          "line": 548
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_z2_unified_semantic_node_ledger.py",
+      "sha256": "0c61a01ab38c5ef8ffc0454d5db391a99bdca3e279a5e1f909fd599f090c0f1f",
+      "line_count": 285,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 21
+        },
+        {
+          "name": "_read_jsonl",
+          "line": 25
+        },
+        {
+          "name": "_read_scenes",
+          "line": 29
+        },
+        {
+          "name": "_dense",
+          "line": 36
+        },
+        {
+          "name": "_softmax",
+          "line": 47
+        },
+        {
+          "name": "_alpha_distribution",
+          "line": 56
+        },
+        {
+          "name": "_entropy",
+          "line": 65
+        },
+        {
+          "name": "_js",
+          "line": 72
+        },
+        {
+          "name": "_summary",
+          "line": 80
+        },
+        {
+          "name": "run",
+          "line": 90
+        },
+        {
+          "name": "main",
+          "line": 268
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_z2_native_union_alphaclip_semantics.py",
+      "sha256": "3e980a6c923be2e6ac4429dcd7b54141ef5abddca29a6a0ebd24090490940cb3",
+      "line_count": 353,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 42
+        },
+        {
+          "name": "_read_scenes",
+          "line": 46
+        },
+        {
+          "name": "_geometry_hash",
+          "line": 53
+        },
+        {
+          "name": "_points",
+          "line": 57
+        },
+        {
+          "name": "_load_z1",
+          "line": 65
+        },
+        {
+          "name": "_load_union_rows",
+          "line": 93
+        },
+        {
+          "name": "_native_masks",
+          "line": 109
+        },
+        {
+          "name": "_scene_specs",
+          "line": 118
+        },
+        {
+          "name": "_scene_records",
+          "line": 177
+        },
+        {
+          "name": "main",
+          "line": 264
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_automatic_track_alphaclip_semantics.py",
+      "sha256": "f969641fffedc51401c4152987daf11ad7003dd86b39390e8768f8713da67319",
+      "line_count": 264,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 33
+        },
+        {
+          "name": "_read_scenes",
+          "line": 38
+        },
+        {
+          "name": "_select_track_views",
+          "line": 42
+        },
+        {
+          "name": "_flush",
+          "line": 83
+        },
+        {
+          "name": "_finalize_record",
+          "line": 98
+        },
+        {
+          "name": "_scene_records",
+          "line": 123
+        },
+        {
+          "name": "main",
+          "line": 200
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_z3_semantic_reliability_dataset_gt.py",
+      "sha256": "42c19436df52cb107f87bcebca0f93ecb01bfa3e0bafc76eb67fdedb084fe6ae",
+      "line_count": 351,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 33
+        },
+        {
+          "name": "_read_jsonl",
+          "line": 37
+        },
+        {
+          "name": "_read_scenes",
+          "line": 41
+        },
+        {
+          "name": "_entropy",
+          "line": 48
+        },
+        {
+          "name": "_js",
+          "line": 53
+        },
+        {
+          "name": "_stats",
+          "line": 63
+        },
+        {
+          "name": "_points",
+          "line": 71
+        },
+        {
+          "name": "_feature_names",
+          "line": 79
+        },
+        {
+          "name": "_feature_row",
+          "line": 99
+        },
+        {
+          "name": "run",
+          "line": 140
+        },
+        {
+          "name": "main",
+          "line": 325
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_z3_semantic_reliability_oof.py",
+      "sha256": "386544f5c8ff6019132d2c2af1eaef15dad14b09b25eb1560d611275cf968e73",
+      "line_count": 226,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 32
+        },
+        {
+          "name": "_read_jsonl",
+          "line": 36
+        },
+        {
+          "name": "_metrics",
+          "line": 40
+        },
+        {
+          "name": "_grouped_metrics",
+          "line": 52
+        },
+        {
+          "name": "_class_balanced_fit_weights",
+          "line": 60
+        },
+        {
+          "name": "run",
+          "line": 83
+        },
+        {
+          "name": "main",
+          "line": 200
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_geometry_semantic_separation_ledgers.py",
+      "sha256": "c2058b639f018a739f4764e20fb7d5f8b699bcf46fd1c99a82ecd557913bb03c",
+      "line_count": 369,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 33
+        },
+        {
+          "name": "_scenes",
+          "line": 37
+        },
+        {
+          "name": "_safe_summary",
+          "line": 46
+        },
+        {
+          "name": "_validate_expected",
+          "line": 56
+        },
+        {
+          "name": "build_records",
+          "line": 61
+        },
+        {
+          "name": "run",
+          "line": 250
+        },
+        {
+          "name": "_optional_int",
+          "line": 342
+        },
+        {
+          "name": "main",
+          "line": 346
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b0_control.py",
+      "sha256": "bd18a636e6a55b79e76599c3631aa532bad73ec52fc9c265eb55513d91d695f8",
+      "line_count": 240,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_safe_summary",
+          "line": 35
+        },
+        {
+          "name": "_fixed_class",
+          "line": 50
+        },
+        {
+          "name": "run",
+          "line": 60
+        },
+        {
+          "name": "main",
+          "line": 226
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b1_b2_manifests.py",
+      "sha256": "587e9d2ccbee843cdbf59858a86e5a0383ec1ec2b5f7547c326aa911584e4e2b",
+      "line_count": 212,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_require_bound_audit",
+          "line": 32
+        },
+        {
+          "name": "run",
+          "line": 41
+        },
+        {
+          "name": "main",
+          "line": 196
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "sha256": "766f61a051dbcebb86ab8dd6618d44a6d1c72a6b5b158b1013b308f41dcae666",
+      "line_count": 380,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "resolve_points",
+          "line": 30
+        },
+        {
+          "name": "verified_geometry",
+          "line": 45
+        },
+        {
+          "name": "resolve_b1_points",
+          "line": 53
+        },
+        {
+          "name": "validate_parameters",
+          "line": 70
+        },
+        {
+          "name": "prepare_requests",
+          "line": 96
+        },
+        {
+          "name": "attach_quality",
+          "line": 169
+        },
+        {
+          "name": "load_scene_context",
+          "line": 192
+        },
+        {
+          "name": "export_scene",
+          "line": 230
+        },
+        {
+          "name": "run",
+          "line": 305
+        },
+        {
+          "name": "main",
+          "line": 356
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_geometry_change_evidence.py",
+      "sha256": "2dce86f9227ad2441549bc5bb5200dc7876d58f1e295f80c957bceadc296be35",
+      "line_count": 270,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "paired_delta",
+          "line": 27
+        },
+        {
+          "name": "export_region",
+          "line": 46
+        },
+        {
+          "name": "export_change",
+          "line": 122
+        },
+        {
+          "name": "run",
+          "line": 157
+        },
+        {
+          "name": "main",
+          "line": 247
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_all_class_features.py",
+      "sha256": "94a30b490511b926fca1f3ea135d015e6549ffa4a0909a12bac0834d9155b686",
+      "line_count": 70,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "run",
+          "line": 18
+        },
+        {
+          "name": "main",
+          "line": 62
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b2_multisemantic.py",
+      "sha256": "e123f41f9d2a00067f68b8e222807be5065ac129dcd2aebaa7b2c0db0fac7524",
+      "line_count": 318,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "sha256_file",
+          "line": 27
+        },
+        {
+          "name": "digest_record",
+          "line": 35
+        },
+        {
+          "name": "read_jsonl",
+          "line": 39
+        },
+        {
+          "name": "write_json",
+          "line": 46
+        },
+        {
+          "name": "write_jsonl",
+          "line": 50
+        },
+        {
+          "name": "output_directory",
+          "line": 55
+        },
+        {
+          "name": "unit_score",
+          "line": 73
+        },
+        {
+          "name": "distribution",
+          "line": 82
+        },
+        {
+          "name": "validate_b1",
+          "line": 99
+        },
+        {
+          "name": "require_audit",
+          "line": 133
+        },
+        {
+          "name": "validate_evidence",
+          "line": 142
+        },
+        {
+          "name": "build_refined_columns",
+          "line": 171
+        },
+        {
+          "name": "append_calibrated",
+          "line": 207
+        },
+        {
+          "name": "audit_prefix",
+          "line": 239
+        },
+        {
+          "name": "run",
+          "line": 257
+        },
+        {
+          "name": "main",
+          "line": 306
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/evaluate_official100_fi1_b0_b1_b2_gt.py",
+      "sha256": "f3f9ba7c878b4ec5c3720463965ff181bd9fa1b71c3bffb560dba2573e4c4790",
+      "line_count": 182,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_prediction",
+          "line": 26
+        },
+        {
+          "name": "_delta",
+          "line": 53
+        },
+        {
+          "name": "_require_bound_audit",
+          "line": 57
+        },
+        {
+          "name": "run",
+          "line": 66
+        },
+        {
+          "name": "main",
+          "line": 163
+        }
+      ]
+    },
+    {
+      "group": "current_evidence_and_scoring",
+      "path": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/evaluate_z3_yoloworld_control_group_gt.py",
+      "sha256": "d76e9962a5806d7c946eec82f1afa08a46044d4252b198bc33b85d5c36bb59b0",
+      "line_count": 342,
+      "inspection_scope": "critical functions and call-chain; not a full runtime audit",
+      "top_level_functions": [
+        {
+          "name": "_resolve",
+          "line": 43
+        },
+        {
+          "name": "_read_scenes",
+          "line": 47
+        },
+        {
+          "name": "_load_native",
+          "line": 54
+        },
+        {
+          "name": "_valid_class",
+          "line": 64
+        },
+        {
+          "name": "_load_z1",
+          "line": 68
+        },
+        {
+          "name": "_load_tracks",
+          "line": 99
+        },
+        {
+          "name": "_load_union_rows",
+          "line": 104
+        },
+        {
+          "name": "_load_track_overrides",
+          "line": 116
+        },
+        {
+          "name": "_points",
+          "line": 128
+        },
+        {
+          "name": "_role_distribution",
+          "line": 136
+        },
+        {
+          "name": "_variant_semantics",
+          "line": 140
+        },
+        {
+          "name": "_scene_prediction",
+          "line": 170
+        },
+        {
+          "name": "_Predictions",
+          "line": 243
+        },
+        {
+          "name": "_evaluate",
+          "line": 262
+        },
+        {
+          "name": "run",
+          "line": 275
+        },
+        {
+          "name": "main",
+          "line": 317
+        }
+      ]
+    },
+    {
+      "group": "main_historical_and_documents",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms1_v22_evidence_core.py",
+      "sha256": "c50a24d78771b586f931acd3346eb2a1f92c05a1818a8881f0dfa471b5a9613f",
+      "line_count": 459
+    },
+    {
+      "group": "main_historical_and_documents",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_dm_sms1_stage_e_gt.py",
+      "sha256": "2afd2902505f61bbe69e57e5535286baa8e21fc0b1e21b43e68651e7c89242b8",
+      "line_count": 553
+    },
+    {
+      "group": "main_historical_and_documents",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/docs/DM_SMS1_V22_TERMINATION_PROVENANCE_20260824.md",
+      "sha256": "a393c75ebcf1ff57df1b6359ee7db6ce9d814224f0ae4d96f98418a6d1fce33e",
+      "line_count": 102
+    },
+    {
+      "group": "main_historical_and_documents",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/docs/DM_SMS1_V21_TERMINATION_PROVENANCE_20260823.md",
+      "sha256": "dcca6c324f3b5018667176c9b782efd4e79ef3db2e1223f1bbb3d9265b1c0a6e",
+      "line_count": 66
+    },
+    {
+      "group": "main_historical_and_documents",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/release_assets/z3_semantic_reliability/summary.json",
+      "sha256": "e12eb058ea020ed0a4ce2bc296d2d1a9e232d1e839518e7c899b151cf120d0b5",
+      "line_count": 105
+    },
+    {
+      "group": "main_historical_and_documents",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/资料/论文阅读记录.md",
+      "sha256": "1b2f4464221d2b8286c93048e59c7759b246acf3f06b1d0d52ad6c3df3f8e0bd",
+      "line_count": 218
+    },
+    {
+      "group": "main_historical_and_documents",
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/资料/第二创新点精读论文.md",
+      "sha256": "54d275df101415c4d9121d02e0de16076465256f279460c40a3c98679f307a23",
+      "line_count": 1015
+    }
+  ],
+  "paper_snapshots": [
+    {
+      "file": "fi1_details_matter_2507.23134v1.html",
+      "sha256": "505ecebea0f9f596779e3d2eb4c27eaf6d19aa6d3c1ed7dc04b9ea0b2843d9cd"
+    },
+    {
+      "file": "fi1_details_matter_2507.23134v1.txt",
+      "sha256": "cda9764f1498b837619a4a9a8a90b43cde9f58c7d2c1bef1990c1e25307e2d5f"
+    },
+    {
+      "file": "fi1_opentrack3d.html",
+      "sha256": "3c30a2736fe85fb212fd41ad9a1edddf6741dc503e9b2ea36a2369f4b01716e8"
+    },
+    {
+      "file": "fi1_opentrack3d.txt",
+      "sha256": "56c93783268e64e52e5471fa3694434ca9098549438541ddebfd83847ff80a6b"
+    },
+    {
+      "file": "fi1_ov3dcg_cvf.html",
+      "sha256": "f394b5a56c6aef6e28a22449e64996b0dbf5791d2f8a0766ce3d372754e327df"
+    },
+    {
+      "file": "fi1_ov3dcg_project.html",
+      "sha256": "2f4ce00a542223951af5835d57a5df70192fdb0909c9b77f1dbde866358a1ce9"
+    }
+  ],
+  "paper_limitations": "OV3D-CG official abstract and project page verified; PDF download incomplete; notes table values not reverified"
+}

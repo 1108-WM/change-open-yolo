@@ -1,0 +1,1124 @@
+{
+  "AP_run": false,
+  "SL_modified": false,
+  "complete": true,
+  "formal_OOF": false,
+  "holdout_used_for_calibration": false,
+  "original_outer_fold": 0,
+  "splits": {
+    "calibration": {
+      "arms": {
+        "A": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_best_identity_changed": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "breakdown": {
+            "ambiguous": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 10,
+              "unknown": 0
+            },
+            "native": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 96,
+              "unknown": 0
+            },
+            "out_of_scope": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 21,
+              "unknown": 0
+            },
+            "stable": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 147,
+              "unknown": 0
+            },
+            "track": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 95,
+              "unknown": 0
+            },
+            "unannotated": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 13,
+              "unknown": 0
+            }
+          },
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "duplicate_original": 0,
+          "duplicate_repair": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 60,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 191,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 474,
+          "targets_known": 147,
+          "unannotated_deleted": 0,
+          "unique_new": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        },
+        "C": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_best_identity_changed": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "breakdown": {
+            "ambiguous": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 10,
+              "unknown": 0
+            },
+            "native": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 96,
+              "unknown": 0
+            },
+            "out_of_scope": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 21,
+              "unknown": 0
+            },
+            "stable": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 147,
+              "unknown": 0
+            },
+            "track": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 95,
+              "unknown": 0
+            },
+            "unannotated": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 13,
+              "unknown": 0
+            }
+          },
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "duplicate_original": 0,
+          "duplicate_repair": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 60,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 191,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 474,
+          "targets_known": 147,
+          "unannotated_deleted": 0,
+          "unique_new": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        }
+      },
+      "baseline_coverage": {
+        "0.5": 439,
+        "0.75": 388,
+        "0.78": 373,
+        "0.9": 285,
+        "0.95": 205,
+        "0.98": 159
+      },
+      "classification": {
+        "A": {
+          "categories": {
+            "0": {
+              "fraction_MAE": 0.11603066325187683,
+              "mean_probability": [
+                0.8259594440460205,
+                0.028350401669740677,
+                0.14569415152072906,
+                0.014016966335475445
+              ],
+              "regions": 11133
+            },
+            "1": {
+              "fraction_MAE": 0.5558709502220154,
+              "mean_probability": [
+                0.4486353099346161,
+                0.16619367897510529,
+                0.3851710259914398,
+                0.14922544360160828
+              ],
+              "regions": 321
+            },
+            "2": {
+              "fraction_MAE": 0.3444174528121948,
+              "mean_probability": [
+                0.679270327091217,
+                0.042053692042827606,
+                0.27867591381073,
+                0.0014106036396697164
+              ],
+              "regions": 232
+            },
+            "3": {
+              "fraction_MAE": 0.3437788486480713,
+              "mean_probability": [
+                0.7848073244094849,
+                0.03305518627166748,
+                0.18213754892349243,
+                0.016290301457047462
+              ],
+              "regions": 348
+            },
+            "4": {
+              "fraction_MAE": 0.3767963945865631,
+              "mean_probability": [
+                0.5283911228179932,
+                0.0368037112057209,
+                0.4348050653934479,
+                0.028201458975672722
+              ],
+              "regions": 3454
+            }
+          },
+          "constant_fraction_MAE": 0.27337655425071716,
+          "constant_fraction_cross_entropy": 0.6691603064537048,
+          "constant_safe_BCE": 0.1009010598063469,
+          "fraction_MAE": 0.19183875620365143,
+          "fraction_cross_entropy": 1.894866704940796,
+          "regions": 15488,
+          "safe_BCE": 0.2873044013977051,
+          "safe_ROC_AUC": 0.7001151458723204,
+          "safe_average_precision": 0.10214734784925822,
+          "safe_prevalence": 0.02072572335600853,
+          "safe_regions": 321
+        },
+        "C": {
+          "categories": {
+            "0": {
+              "fraction_MAE": 0.1486142873764038,
+              "mean_probability": [
+                0.7770813703536987,
+                0.023553572595119476,
+                0.19936655461788177,
+                0.009968802332878113
+              ],
+              "regions": 11133
+            },
+            "1": {
+              "fraction_MAE": 0.5937422513961792,
+              "mean_probability": [
+                0.43084293603897095,
+                0.1093866229057312,
+                0.45977041125297546,
+                0.08739859610795975
+              ],
+              "regions": 321
+            },
+            "2": {
+              "fraction_MAE": 0.3639419674873352,
+              "mean_probability": [
+                0.6618974804878235,
+                0.05553845316171646,
+                0.2825639545917511,
+                0.006041261367499828
+              ],
+              "regions": 232
+            },
+            "3": {
+              "fraction_MAE": 0.33597859740257263,
+              "mean_probability": [
+                0.7351082563400269,
+                0.04478207230567932,
+                0.2201094627380371,
+                0.015355377458035946
+              ],
+              "regions": 348
+            },
+            "4": {
+              "fraction_MAE": 0.30982455611228943,
+              "mean_probability": [
+                0.4341440498828888,
+                0.030592776834964752,
+                0.5352640151977539,
+                0.015359870158135891
+              ],
+              "regions": 3454
+            }
+          },
+          "constant_fraction_MAE": 0.27337655425071716,
+          "constant_fraction_cross_entropy": 0.6691603064537048,
+          "constant_safe_BCE": 0.1009010598063469,
+          "fraction_MAE": 0.20122697949409485,
+          "fraction_cross_entropy": 2.0564303398132324,
+          "regions": 15488,
+          "safe_BCE": 0.2788997292518616,
+          "safe_ROC_AUC": 0.6511731178959403,
+          "safe_average_precision": 0.05879459139828283,
+          "safe_prevalence": 0.02072572335600853,
+          "safe_regions": 321
+        }
+      },
+      "oracle": {
+        "GT_pure_union_gain02": 2,
+        "targets": 474
+      },
+      "scenes": 24
+    },
+    "holdout": {
+      "arms": {
+        "A": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_best_identity_changed": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "breakdown": {
+            "ambiguous": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 8,
+              "unknown": 0
+            },
+            "native": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 96,
+              "unknown": 0
+            },
+            "out_of_scope": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 21,
+              "unknown": 0
+            },
+            "stable": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 153,
+              "unknown": 0
+            },
+            "track": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 96,
+              "unknown": 0
+            },
+            "unannotated": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 10,
+              "unknown": 0
+            }
+          },
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "duplicate_original": 0,
+          "duplicate_repair": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 67,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 192,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 551,
+          "targets_known": 153,
+          "unannotated_deleted": 0,
+          "unique_new": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        },
+        "C": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_best_identity_changed": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "breakdown": {
+            "ambiguous": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 8,
+              "unknown": 0
+            },
+            "native": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 96,
+              "unknown": 0
+            },
+            "out_of_scope": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 21,
+              "unknown": 0
+            },
+            "stable": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 153,
+              "unknown": 0
+            },
+            "track": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 96,
+              "unknown": 0
+            },
+            "unannotated": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 10,
+              "unknown": 0
+            }
+          },
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "duplicate_original": 0,
+          "duplicate_repair": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 67,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 192,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 551,
+          "targets_known": 153,
+          "unannotated_deleted": 0,
+          "unique_new": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        }
+      },
+      "baseline_coverage": {
+        "0.5": 515,
+        "0.75": 459,
+        "0.78": 435,
+        "0.9": 339,
+        "0.95": 264,
+        "0.98": 188
+      },
+      "classification": {
+        "A": {
+          "categories": {
+            "0": {
+              "fraction_MAE": 0.09959949553012848,
+              "mean_probability": [
+                0.8506089448928833,
+                0.024587025865912437,
+                0.12481067329645157,
+                0.014803685247898102
+              ],
+              "regions": 11389
+            },
+            "1": {
+              "fraction_MAE": 0.5617268681526184,
+              "mean_probability": [
+                0.6060160398483276,
+                0.15740959346294403,
+                0.2365744262933731,
+                0.12415292859077454
+              ],
+              "regions": 199
+            },
+            "2": {
+              "fraction_MAE": 0.29528194665908813,
+              "mean_probability": [
+                0.7936979532241821,
+                0.10549847781658173,
+                0.1008034199476242,
+                0.011500979773700237
+              ],
+              "regions": 126
+            },
+            "3": {
+              "fraction_MAE": 0.30209991335868835,
+              "mean_probability": [
+                0.6579349040985107,
+                0.09309045970439911,
+                0.24897445738315582,
+                0.04808879271149635
+              ],
+              "regions": 242
+            },
+            "4": {
+              "fraction_MAE": 0.44847726821899414,
+              "mean_probability": [
+                0.6462663412094116,
+                0.02644893154501915,
+                0.327284038066864,
+                0.014693984761834145
+              ],
+              "regions": 3013
+            }
+          },
+          "constant_fraction_MAE": 0.26062631607055664,
+          "constant_fraction_cross_entropy": 0.6065495610237122,
+          "constant_safe_BCE": 0.07171697914600372,
+          "fraction_MAE": 0.18088704347610474,
+          "fraction_cross_entropy": 1.6769192218780518,
+          "regions": 14969,
+          "safe_BCE": 0.16762252151966095,
+          "safe_ROC_AUC": 0.8066081933023275,
+          "safe_average_precision": 0.06326995112395574,
+          "safe_prevalence": 0.013294140808284283,
+          "safe_regions": 199
+        },
+        "C": {
+          "categories": {
+            "0": {
+              "fraction_MAE": 0.1474488377571106,
+              "mean_probability": [
+                0.7788325548171997,
+                0.01895252987742424,
+                0.20221875607967377,
+                0.00909669604152441
+              ],
+              "regions": 11389
+            },
+            "1": {
+              "fraction_MAE": 0.5347460508346558,
+              "mean_probability": [
+                0.6020994782447815,
+                0.1978810429573059,
+                0.20001961290836334,
+                0.15834523737430573
+              ],
+              "regions": 199
+            },
+            "2": {
+              "fraction_MAE": 0.2861466407775879,
+              "mean_probability": [
+                0.7768368124961853,
+                0.11099037528038025,
+                0.11217272281646729,
+                0.03473925217986107
+              ],
+              "regions": 126
+            },
+            "3": {
+              "fraction_MAE": 0.28245219588279724,
+              "mean_probability": [
+                0.602975070476532,
+                0.01591690257191658,
+                0.38110804557800293,
+                0.0009334461065009236
+              ],
+              "regions": 242
+            },
+            "4": {
+              "fraction_MAE": 0.38738110661506653,
+              "mean_probability": [
+                0.560495138168335,
+                0.02057594060897827,
+                0.4189282953739166,
+                0.008088654838502407
+              ],
+              "regions": 3013
+            }
+          },
+          "constant_fraction_MAE": 0.26062631607055664,
+          "constant_fraction_cross_entropy": 0.6065495610237122,
+          "constant_safe_BCE": 0.07171697914600372,
+          "fraction_MAE": 0.20424184203147888,
+          "fraction_cross_entropy": 2.005984306335449,
+          "regions": 14969,
+          "safe_BCE": 0.1364576816558838,
+          "safe_ROC_AUC": 0.8031031936935863,
+          "safe_average_precision": 0.11384884481333117,
+          "safe_prevalence": 0.013294140808284283,
+          "safe_regions": 199
+        }
+      },
+      "oracle": {
+        "GT_pure_union_gain02": 3,
+        "targets": 551
+      },
+      "scenes": 24
+    },
+    "train": {
+      "arms": {
+        "A": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_best_identity_changed": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "breakdown": {
+            "ambiguous": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 45,
+              "unknown": 0
+            },
+            "native": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 448,
+              "unknown": 0
+            },
+            "out_of_scope": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 94,
+              "unknown": 0
+            },
+            "stable": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 660,
+              "unknown": 0
+            },
+            "track": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 448,
+              "unknown": 0
+            },
+            "unannotated": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 97,
+              "unknown": 0
+            }
+          },
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "duplicate_original": 0,
+          "duplicate_repair": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 249,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 896,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 2811,
+          "targets_known": 660,
+          "unannotated_deleted": 0,
+          "unique_new": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        },
+        "C": {
+          "action_scenes": 0,
+          "actions": 0,
+          "added": 0,
+          "ambiguous_best_identity_changed": 0,
+          "ambiguous_deleted": 0,
+          "annotation_unknown_deleted": 0,
+          "breakdown": {
+            "ambiguous": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 45,
+              "unknown": 0
+            },
+            "native": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 448,
+              "unknown": 0
+            },
+            "out_of_scope": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 94,
+              "unknown": 0
+            },
+            "stable": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 660,
+              "unknown": 0
+            },
+            "track": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 448,
+              "unknown": 0
+            },
+            "unannotated": {
+              "actions": 0,
+              "deleted": 0,
+              "deleted_other": 0,
+              "deleted_target": 0,
+              "drift": 0,
+              "parent_degraded02": 0,
+              "parent_improved02": 0,
+              "parents": 97,
+              "unknown": 0
+            }
+          },
+          "changed_parent_target": 0,
+          "conservative_delete_precision": null,
+          "deleted": 0,
+          "deleted_other": 0,
+          "deleted_target": 0,
+          "drift": 0,
+          "duplicate_original": 0,
+          "duplicate_repair": 0,
+          "good_degradation_rate": 0.0,
+          "good_degraded02": 0,
+          "good_degraded10": 0,
+          "good_degraded25": 0,
+          "good_parents": 249,
+          "identity_unknown_actions": 0,
+          "identity_unknown_deleted": 0,
+          "known_delete_precision": null,
+          "new_cross_0.5": 0,
+          "new_cross_0.75": 0,
+          "new_cross_0.78": 0,
+          "new_cross_0.9": 0,
+          "new_cross_0.95": 0,
+          "new_cross_0.98": 0,
+          "out_of_scope_deleted": 0,
+          "parent_degraded02": 0,
+          "parent_improved02": 0,
+          "parents": 896,
+          "pool_gain02": 0,
+          "safe_joint_value": false,
+          "target_loss": 0.0,
+          "targets": 2811,
+          "targets_known": 660,
+          "unannotated_deleted": 0,
+          "unique_new": 0,
+          "unknown_deleted": 0,
+          "unknown_fraction": null
+        }
+      },
+      "baseline_coverage": {
+        "0.5": 2627,
+        "0.75": 2295,
+        "0.78": 2201,
+        "0.9": 1619,
+        "0.95": 1193,
+        "0.98": 854
+      },
+      "classification": {
+        "A": {
+          "categories": {
+            "0": {
+              "fraction_MAE": 0.009525112807750702,
+              "mean_probability": [
+                0.9857757687568665,
+                0.0075099836103618145,
+                0.0067770215682685375,
+                0.0019769591744989157
+              ],
+              "regions": 48668
+            },
+            "1": {
+              "fraction_MAE": 0.0037660719826817513,
+              "mean_probability": [
+                0.005330109037458897,
+                0.9943527579307556,
+                0.0003189979470334947,
+                0.9855166077613831
+              ],
+              "regions": 1358
+            },
+            "2": {
+              "fraction_MAE": 0.08722551167011261,
+              "mean_probability": [
+                0.5765036940574646,
+                0.41766417026519775,
+                0.005832158029079437,
+                0.056849099695682526
+              ],
+              "regions": 1200
+            },
+            "3": {
+              "fraction_MAE": 0.08112344890832901,
+              "mean_probability": [
+                0.4920096695423126,
+                0.019038936123251915,
+                0.4889516234397888,
+                0.007026939652860165
+              ],
+              "regions": 1374
+            },
+            "4": {
+              "fraction_MAE": 0.010018023662269115,
+              "mean_probability": [
+                0.014678440988063812,
+                0.00034841205342672765,
+                0.9849910140037537,
+                0.0005496140802279115
+              ],
+              "regions": 17685
+            }
+          },
+          "constant_fraction_MAE": 0.2804860770702362,
+          "constant_fraction_cross_entropy": 0.6896187663078308,
+          "constant_safe_BCE": 0.09538598358631134,
+          "fraction_MAE": 0.012264144606888294,
+          "fraction_cross_entropy": 0.03783182427287102,
+          "regions": 70285,
+          "safe_BCE": 0.005296159069985151,
+          "safe_ROC_AUC": 0.9999268184801093,
+          "safe_average_precision": 0.9964058901080945,
+          "safe_prevalence": 0.01932133547961712,
+          "safe_regions": 1358
+        },
+        "C": {
+          "categories": {
+            "0": {
+              "fraction_MAE": 0.01575389690697193,
+              "mean_probability": [
+                0.976437509059906,
+                0.008220846764743328,
+                0.015409069135785103,
+                0.0017529054312035441
+              ],
+              "regions": 48668
+            },
+            "1": {
+              "fraction_MAE": 0.027480578050017357,
+              "mean_probability": [
+                0.030685586854815483,
+                0.9587801694869995,
+                0.01053527556359768,
+                0.9266562461853027
+              ],
+              "regions": 1358
+            },
+            "2": {
+              "fraction_MAE": 0.09263600409030914,
+              "mean_probability": [
+                0.6268779635429382,
+                0.3601767122745514,
+                0.012945203110575676,
+                0.02670028991997242
+              ],
+              "regions": 1200
+            },
+            "3": {
+              "fraction_MAE": 0.07100309431552887,
+              "mean_probability": [
+                0.43414345383644104,
+                0.01282474398612976,
+                0.553032636642456,
+                0.004017275292426348
+              ],
+              "regions": 1374
+            },
+            "4": {
+              "fraction_MAE": 0.0019842619076371193,
+              "mean_probability": [
+                0.0028923735953867435,
+                8.39734566397965e-05,
+                0.9970382452011108,
+                6.935323472134769e-05
+              ],
+              "regions": 17685
+            }
+          },
+          "constant_fraction_MAE": 0.2804860770702362,
+          "constant_fraction_cross_entropy": 0.6896187663078308,
+          "constant_safe_BCE": 0.09538598358631134,
+          "fraction_MAE": 0.014908475801348686,
+          "fraction_cross_entropy": 0.04537729173898697,
+          "regions": 70285,
+          "safe_BCE": 0.005182456690818071,
+          "safe_ROC_AUC": 0.9996993681796025,
+          "safe_average_precision": 0.9896841807670886,
+          "safe_prevalence": 0.01932133547961712,
+          "safe_regions": 1358
+        }
+      },
+      "oracle": {
+        "GT_pure_union_gain02": 19,
+        "targets": 2811
+      },
+      "scenes": 112
+    }
+  },
+  "training_regions_same_source": true
+}

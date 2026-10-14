@@ -1,0 +1,1 @@
+../sl_bundle/code/tools/fi1_s_member_quality_competition.py

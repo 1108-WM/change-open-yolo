@@ -1,0 +1,4077 @@
+{
+  "method": "AST explicit project imports plus registered dynamic backend modules; import reachability is not proof of executed functions; third-party packages covered separately by release inventory; not a deletion whitelist",
+  "missing_explicit_entries": [],
+  "edges": [
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_scannet200_ncs.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_scannet200_train_scene.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_scannet200_train_scene_native_cache.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 104
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_scannet200_ncs_native_assets.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 172
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_native_baseline_cache_no_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_native_baseline_cache_no_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/backprojection_fusion.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_full597_frontend.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_full597_frontend.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/resume_fi1_g10_full597_frontend.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/resume_fi1_g10_full597_frontend.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_full597_frontend.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_assets.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 15
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_assets.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_assets.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_assets.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_pilot.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_assets.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 144
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_assets.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 193
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_holdout.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_holdout.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_holdout.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_assets.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_assets.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_dataset.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_closure_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 278
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 296
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_sam_automatic_observations.py",
+      "line": 307
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 451
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 451
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 452
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_frame_siou_tracks.py",
+      "line": 452
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 453
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/refine_details_automatic_tracks_consensus.py",
+      "line": 453
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 454
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_iterative_proposal_merges.py",
+      "line": 454
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_groundingdino_f30_boxes.py",
+      "line": 267
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_groundingdino_f30_boxes.py",
+      "line": 209
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_sam_automatic_observations.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 126
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_dense_frame_instance_observations.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 268
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_dense_frame_instance_observations.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_frame_siou_tracks.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 215
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/refine_details_automatic_tracks_consensus.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 255
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_iterative_proposal_merges.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/refine_details_automatic_tracks_consensus.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_iterative_proposal_merges.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 414
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 83
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 140
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "line": 141
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 142
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 143
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 144
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_geometry.py",
+      "line": 365
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 366
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "line": 367
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 368
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 462
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 463
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 552
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 553
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 626
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 627
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 628
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 629
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 876
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/annotate_automatic_mask_tracks_yoloworld.py",
+      "line": 877
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 1001
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 1001
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/scannet_constants.py",
+      "line": 1002
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_fi1_r0_r1_yolo_views.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_fi1_r0_r1_yolo_views.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_fi1_r0_r1_yolo_views.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 47
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_fi1_r0_r1_yolo_views.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "line": 51
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_fi1_r0_r1_yolo_views.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "line": 52
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_fi1_r0_r1_yolo_views.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "line": 53
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_fi1_r0_r1_yolo_views.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_z1_yoloworld_multiview_distribution_ledger.py",
+      "line": 56
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_fi1_r0_r1_yolo_views.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 57
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/bind_fi1_r0_r1_alpha_cache.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/bind_fi1_r0_r1_alpha_cache.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/bind_fi1_r0_r1_alpha_cache.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 99
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_embedding_ledger.py",
+      "line": 102
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_failure_attribution_core.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/annotate_automatic_mask_tracks_yoloworld.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 71
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_c1_gvc_paper_reference_quality_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 186
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_no_gt_relation_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_automatic_sam_track_growth_ledger.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_no_gt_relation_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_c1_gvc_paper_reference_quality_ledger.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_no_gt_relation_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_no_gt_relation_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_relation_feature_ledger.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_no_gt_relation_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_no_gt_relation_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 52
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_frozen_champion_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_frozen_champion_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_frozen_champion_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_frozen_champion_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_dm_sms1_unique_geometry_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_automatic_sam_track_growth_ledger.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_b_relation_rerank_plan.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "line": 39
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v3_full_rank_marginal_dataset_gt.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_fi1_d_v3_frozen_inference_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 280
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_view_manifest.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b2_multisemantic.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_embedding_ledger.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b2_multisemantic.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 156
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 181
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_z1_yoloworld_multiview_distribution_ledger.py",
+      "line": 182
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b2_multisemantic.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 196
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 234
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_z1_yoloworld_multiview_distribution_ledger.py",
+      "line": 235
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_automatic_track_alphaclip_semantics.py",
+      "line": 236
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "line": 237
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "line": 329
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/utils_2d.py",
+      "line": 4
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/utils_3d.py",
+      "line": 274
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_dataset.py",
+      "line": 34
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_scannet200_train_scene.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "line": 37
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 38
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 38
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 5
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_pilot.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_pilot.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_pilot.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 230
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_geometry.py",
+      "line": 275
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "line": 41
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 44
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_scannet200_train_scene.py",
+      "line": 45
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_train597.py",
+      "line": 46
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 55
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_g10_matched_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 55
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "line": 262
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 263
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_geometry_feature_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 263
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_predictions.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_dataset.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/extract_fi1_val312_yolo.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "line": 176
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 177
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 177
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_analysis_core.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r4_qwen.py",
+      "line": 62
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/scannet_constants.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util.py",
+      "line": 41
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util_3d.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 1
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "line": 2
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_geometry.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_ncs1_scene_folds.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_z1_yoloworld_multiview_distribution_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 323
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_embedding_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_automatic_sam_track_growth_ledger.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_c1_gvc_paper_reference_quality_ledger.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 37
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_relation_feature_ledger.py",
+      "line": 41
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "line": 54
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 62
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 240
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_relation_feature_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_relation_feature_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_automatic_sam_track_growth_ledger.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_relation_feature_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_c1_gvc_paper_reference_quality_ledger.py",
+      "line": 39
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_relation_feature_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 814
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_candidate_pair_union_oof_plan.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_frozen_track_harm_score_plan.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 54
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 55
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 60
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "line": 66
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "line": 67
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "line": 70
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "line": 71
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_union_feature_ledger.py",
+      "line": 72
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "line": 73
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_frozen_safety60_champion_pair_union_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_union_list_head_oof.py",
+      "line": 77
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/construct_c1c_global_feasible_ap_oracle_gt.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_d2b_native_track_ranking_oracle_gt.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 45
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 51
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "line": 56
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_scene_candidate_quality_ledger.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_b_relation_rerank_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_automatic_sam_track_growth_ledger.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_scene_candidate_quality_ledger.py",
+      "line": 37
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_scene_candidate_quality_ledger.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_mv3dis_relative_depth_observations.py",
+      "line": 34
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 306
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_scene_candidate_quality_ledger.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_scene_candidate_quality_ledger.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v3_full_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v3_full_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v3_full_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_marginal_gain_dataset_gt.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v3_full_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v2_rank_marginal_dataset_gt.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_d_v3_full_rank_marginal_dataset_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_scene_candidate_quality_ledger.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_automatic_sam_track_growth_ledger.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_member_dataset_gt.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_c_v2_member_dataset_gt.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_scene_candidate_quality_ledger.py",
+      "line": 34
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_c_v2_refinement_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_a_quality_oof.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_view_manifest.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_dm_sms1_unique_geometry_ledger.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_view_manifest.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_view_manifest.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 113
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_automatic_track_alphaclip_semantics.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 124
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/backprojection_fusion.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_training.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "line": 276
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_scannet200_train_scene.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_scannet200_train_scene.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 92
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 92
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/scannet_constants.py",
+      "line": 106
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_predictions.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/extract_fi1_val312_yolo.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/extract_fi1_val312_yolo.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/utils_2d.py",
+      "line": 112
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/extract_fi1_val312_yolo.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 188
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_analysis_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r4_qwen.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r4_qwen.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r4_qwen_core.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util_3d.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/util.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/util_3d_original.py",
+      "line": 50
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 37
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "line": 44
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 54
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_nested_q_oof.py",
+      "line": 58
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_oof.py",
+      "line": 62
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_official_relevance_gap_rank_oof.py",
+      "line": 65
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_multitask_oof.py",
+      "line": 69
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_target_consistency_oof.py",
+      "line": 74
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_candidate_pair_union_oof_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_candidate_pair_union_oof_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_union_feature_ledger.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_candidate_pair_union_oof_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_candidate_pair_union_oof_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_candidate_pair_union_oof_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fit_candidate_pair_union_threshold_cross_full.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_candidate_pair_union_oof_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 34
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_frozen_track_harm_score_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_frozen_track_harm_score_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_safety60_structured_action_plan.py",
+      "line": 37
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_frozen_track_harm_score_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 41
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_frozen_track_harm_score_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_frozen_track_harm_score_plan.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "line": 45
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_union_feature_ledger.py",
+      "line": 34
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_component_geometry_ceiling_gt.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 39
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_pair_union_utility_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_frozen_track_harm_score_plan.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 38
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 39
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 44
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "line": 52
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_frozen_track_harm_score_plan_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 55
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_official100_geometry_group_ranking_oof_ap.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_union_feature_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_union_feature_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 48
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 55
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 60
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "line": 61
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "line": 65
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 68
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_union_list_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_union_list_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 34
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_union_list_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "line": 39
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_union_list_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_union_list_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_union_list_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 55
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_union_list_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "line": 59
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_mv3dis_relative_depth_observations.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_mv3dis_relative_depth_observations.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 146
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/train_ncs_fi1_stage_a_quality_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_ncs_fi1_stage_a_quality_dataset_gt.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_dm_sms1_unique_geometry_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_training.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_training.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_training.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/util_3d_original.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/util.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_d2b_native_track_ranking_oracle_gt.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 47
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 52
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_nested_q_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_nested_q_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_train_candidate_relation_features.py",
+      "line": 45
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_nested_q_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_nested_q_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_oof.py",
+      "line": 59
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_nested_q_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_target_consistency_oof.py",
+      "line": 64
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_relation_feature_ledger.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_train_candidate_relation_features.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_target_consistency_oof.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_official_relevance_gap_rank_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 39
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_official_relevance_gap_rank_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_train_candidate_relation_features.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_official_relevance_gap_rank_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_oof.py",
+      "line": 44
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_official_relevance_gap_rank_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_target_consistency_oof.py",
+      "line": 47
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_multitask_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_multitask_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_train_candidate_relation_features.py",
+      "line": 36
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_multitask_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_official_relevance_gap_rank_oof.py",
+      "line": 40
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_relative_quality_multitask_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_target_consistency_oof.py",
+      "line": 48
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_target_consistency_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 45
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_target_consistency_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_relation_feature_ledger.py",
+      "line": 46
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_target_consistency_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_train_candidate_relation_features.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fit_candidate_pair_union_threshold_cross_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fit_candidate_pair_union_threshold_cross_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_pair_union_threshold_cross_oof.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fit_candidate_pair_union_threshold_cross_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_component_geometry_ceiling_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_component_geometry_ceiling_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_component_geometry_ceiling_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_union_feature_ledger.py",
+      "line": 39
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_component_geometry_ceiling_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_candidate_component_geometry_ceiling_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 37
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_train_candidate_component_action_utility_ledger.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_gvc_class_agnostic_ap.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_candidate_quality_reranking_class_agnostic_ap.py",
+      "line": 54
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_oof.py",
+      "line": 55
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_action_head_structured_oof.py",
+      "line": 59
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_component_list_calibration_head_oof.py",
+      "line": 62
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_union_ap25_protected_head_oof.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_candidate_quality_head_oof.py",
+      "line": 67
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/diagnose_train_candidate_relation_features.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_train_candidate_quality_dataset.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 105
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_registered_full.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 99
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 111
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 112
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 154
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_registered_full.py",
+      "line": 154
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 157
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_official_masks_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_agnostic_supplement.py",
+      "line": 157
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_registered_full.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_groundingdino_f30_boxes.py",
+      "line": 43
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 44
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_dense_frame_instance_observations.py",
+      "line": 45
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_dense_frame_instance_observations.py",
+      "line": 46
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 47
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_sam_fused_proposals.py",
+      "line": 47
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "line": 95
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 96
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_geometry.py",
+      "line": 154
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "line": 102
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 71
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 71
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_full_backend_chain.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_registered_full.py",
+      "line": 6
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_full_backend_chain.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_registered_full.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 15
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 15
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 15
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/bind_fi1_r0_r1_alpha_cache.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_embedding_ledger.py",
+      "line": 34
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 70
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 71
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/__init__.py",
+      "line": 128
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "line": 128
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_replica_registered_full.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_full_adapter.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_replica_member_scoring.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/__init__.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_registered_full.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_agnostic_supplement.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/__init__.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_replica_agnostic_supplement.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/utils_2d.py",
+      "line": 4
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/utils_3d.py",
+      "line": 274
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_geometry.py",
+      "line": 275
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 278
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 296
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_sam_automatic_observations.py",
+      "line": 307
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 451
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 451
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 452
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_frame_siou_tracks.py",
+      "line": 452
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 453
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/refine_details_automatic_tracks_consensus.py",
+      "line": 453
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 454
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_iterative_proposal_merges.py",
+      "line": 454
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_groundingdino_f30_boxes.py",
+      "line": 267
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_groundingdino_f30_boxes.py",
+      "line": 209
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_dense_frame_instance_observations.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 268
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_dense_frame_instance_observations.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_sam_fused_proposals.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_sam_fused_proposals.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 83
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 140
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "line": 141
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 142
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 143
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 144
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_geometry.py",
+      "line": 365
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 366
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "line": 367
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 368
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 462
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 463
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 552
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 553
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 626
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 627
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "line": 628
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 629
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 876
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/annotate_automatic_mask_tracks_yoloworld.py",
+      "line": 877
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 1001
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 1001
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_frontend_comparison.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/scannet_constants.py",
+      "line": 1002
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_geometry.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b2_multisemantic.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 196
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 234
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_z1_yoloworld_multiview_distribution_ledger.py",
+      "line": 235
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_automatic_track_alphaclip_semantics.py",
+      "line": 236
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "line": 237
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/export_fi1_refined_semantic_evidence.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "line": 329
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b2_multisemantic.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 156
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 181
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_z1_yoloworld_multiview_distribution_ledger.py",
+      "line": 182
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_view_manifest.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/build_official100_fi1_b2_multisemantic.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_unified_evidence_core.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25/tools/fi1_full_alpha_adapter.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_embedding_ledger.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/bind_fi1_r0_r1_alpha_cache.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 99
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/complete_fi1_r0_r1_alpha.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_embedding_ledger.py",
+      "line": 102
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/bind_fi1_r0_r1_alpha_cache.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/bind_fi1_r0_r1_alpha_cache.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_embedding_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/util.py",
+      "line": 49
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/util_3d_original.py",
+      "line": 50
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_ncs1_scene_folds.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_sam_automatic_observations.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 126
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_frame_siou_tracks.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 215
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/refine_details_automatic_tracks_consensus.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 255
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_iterative_proposal_merges.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/refine_details_automatic_tracks_consensus.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_iterative_proposal_merges.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 414
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 1
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/eval_semantic_instance.py",
+      "line": 2
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 5
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_g10_closure_selection.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_frontend_comparison.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r3b_val312.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_predictions.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_dataset.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/extract_fi1_val312_yolo.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "line": 176
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 177
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r3b_val312.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 177
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/annotate_automatic_mask_tracks_yoloworld.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 71
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/scannet_constants.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util.py",
+      "line": 41
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util_3d.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_z1_yoloworld_multiview_distribution_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 323
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_automatic_track_alphaclip_semantics.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 124
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/__init__.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/export_multiview_object_clip_features.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/backprojection_fusion.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_view_manifest.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_dm_sms1_unique_geometry_ledger.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_view_manifest.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_dm_sms1_alpha_view_manifest.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 113
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/util_3d_original.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/replica/util.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r0_r1_predictions.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_fi1_r2_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/extract_fi1_val312_yolo.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/extract_fi1_val312_yolo.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/utils_2d.py",
+      "line": 112
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/extract_fi1_val312_yolo.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/utils/__init__.py",
+      "line": 188
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_analysis_core.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/analyze_fi1_r3.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r4_qwen.py",
+      "line": 62
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util_3d.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/audit_dm_sms1_unique_geometry_ledger.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/dm_sms_core.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_scannet200_train_scene.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_analysis_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r4_qwen.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_r4_qwen.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r4_qwen_core.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_fi1_r0_r1_inputs.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/prepare_scannet200_train_scene.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 92
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 92
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/evaluate_fi1_r0_r1_gt.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/scannet_constants.py",
+      "line": 106
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sl_inference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sl_inference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sl_inference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sl_inference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_s_semantic_rank_residual.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sl_inference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 33
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 34
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_development_replay.py",
+      "line": 35
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_s_semantic_rank_residual.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_score_factorization_development200.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_s_semantic_rank_residual_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_s_semantic_rank_residual_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_s_semantic_rank_residual_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_cross_control_development200.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_score_factorization_development200.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sr_cross_control.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_s_fixed_L_rescore_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_single200_dev55.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_single200_dev55.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_single200_dev55.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_single200_dev55.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sl_inference.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_single200_dev55.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55_v2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55_v2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_single200_dev55.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55_v2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55_v2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55_v2.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sl_inference.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_semantic_rank_residual_development200.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_fixed_L_rescore_development200.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_replay_stability_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/report_fi1_sl_stability_details.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/report_fi1_sl_stability_details.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_replay_stability_development200.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/report_fi1_sl_stability_details.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_same_class_mask_nms.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_failure_attribution_core.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_development_replay.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_class_agnostic_ablation.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_selection_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 8
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 7
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_development_replay.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "line": 3
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_development_replay.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_class_agnostic_ablation.py",
+      "line": 4
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_development_replay.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_loss_attribution.py",
+      "line": 5
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_score_factorization_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_score_factorization_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_cross_control_development200.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_score_factorization_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sr_score_factorization.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_score_factorization_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_cross_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_cross_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_member_quality_competition_development200.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_cross_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_sr_cross_control.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sr_cross_control_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 15
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_sl_single200_dev55.py",
+      "line": 9
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/verify_fi1_sl_single200_dev55.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_admission_learning.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_development_replay.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_class_agnostic_ablation.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_refinement_ablation_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_loss_attribution.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_budget_sensitivity.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_development_replay.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_same_class_mask_nms.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_same_class_mask_nms.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_class_agnostic_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 5
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_class_agnostic_ablation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 6
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_loss_attribution.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_loss_attribution_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_loss_attribution.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 5
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_member_quality_competition_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_member_quality_competition_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_native_symmetric_eligibility_development200.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_member_quality_competition_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_member_quality_competition_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_s_member_quality_competition.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_member_quality_competition_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_member_quality_competition_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_s_member_quality_competition_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/__init__.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "line": 20
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_class_agnostic_ablation.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_development_replay.py",
+      "line": 22
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_loss_attribution.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_budget_sensitivity.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_union_screened_factorial_ap_development200.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_admission_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_admission_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_split_grow_core.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_admission_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_admission_learning.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_fi1_action_contribution.py",
+      "line": 15
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_budget_sensitivity.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_union_loss_attribution.py",
+      "line": 3
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_core_ablation.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r0_r1_protocol.py",
+      "line": 27
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r2_core.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3_core.py",
+      "line": 29
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_r3b_delta_diagnostic_core.py",
+      "line": 30
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_failure_attribution_core.py",
+      "line": 31
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_split_grow_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_details_same_frame_hierarchy_preprocessor.py",
+      "line": 217
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_fi1_action_contribution.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_action_training_data.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_fi1_action_contribution.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_fi1_action_contribution.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/train_fi1_action_contribution.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "line": 26
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_action_training_data.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_prepared_margin_dataset.py",
+      "line": 10
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_action_training_data.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "line": 11
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_action_training_data.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "line": 12
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_action_training_data.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_margin_preparation.py",
+      "line": 13
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_action_training_data.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 202
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 202
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 271
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 271
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 74
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/scannet_constants.py",
+      "line": 74
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_ncs1_scene_folds.py",
+      "line": 23
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "line": 24
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "line": 28
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/__init__.py",
+      "line": 283
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "line": 283
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_prepared_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_scene_margin_dataset.py",
+      "line": 14
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_prepared_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "line": 15
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_prepared_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_prepared_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_margin_preparation.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_prepared_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_margin_preparation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_margin_dataset.py",
+      "line": 15
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_margin_preparation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_margin_preparation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_margin_preparation.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/scannet_constants.py",
+      "line": 32
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util.py",
+      "line": 41
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/eval_semantic_instance.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util_3d.py",
+      "line": 42
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_scene_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_margin_dataset.py",
+      "line": 16
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_scene_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "line": 17
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_scene_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "line": 18
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_scene_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_scene_reference.py",
+      "line": 19
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_evaluator_delta_core.py",
+      "line": 21
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/build_fi1_margin_dataset.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_gain_attribution_core.py",
+      "line": 25
+    },
+    {
+      "from": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util_3d.py",
+      "to": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/evaluate/scannet200/util.py",
+      "line": 17
+    }
+  ],
+  "resolution_order": [
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D",
+    "/home/jia/Wm/wm_open-yolo/worktrees/OpenYOLO3D-geometry-semantic-56b2c25",
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_unified_evidence_20260910/workspace"
+  ],
+  "resolution_limit": "Existing source paths estimated with current workspace, geometry worktree, then evidence snapshot fallback. Runtime sys.path/tools.__path__ and stage snapshot arguments may choose another existing version; consult original stage code bindings. Alternative candidates recorded in CSV."
+}

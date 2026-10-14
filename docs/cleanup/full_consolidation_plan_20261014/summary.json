@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-14",
+  "deletion_executed": false,
+  "migration_executed": false,
+  "contracts_read": [
+    {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_mask3d_feature_ab_internal_20261013_v1/contract.json",
+      "sha256": "c65e240cfa02ddc58cc694216dff28aee541e90b402586a94198501af2826930"
+    },
+    {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_decoupled_region_internal_development200_20261013_v1/contract.json",
+      "sha256": "df560fea0168692082fd51bd94919e5d2ec244deb74e1e2c2c25f50e1784deae"
+    },
+    {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_region_affiliation_internal_development200_20261013_v1/contract.json",
+      "sha256": "dfd8c19f742654992ab1c87b83b7ceb31927948550ad873d24b98ba8e20f98cd"
+    },
+    {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_local_region_supply_development200_20261013_v1/contract.json",
+      "sha256": "137af5d6a172d1a777d4bf7a3ac7eca387001d6594bd079b716fe96277fe282f"
+    },
+    {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_deletion_blocks_development200_20261013_v1/contract.json",
+      "sha256": "1ff40652858067ec3f859910327306397330e4c3c5eea3967f971a3fed2c3227"
+    },
+    {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_local_edit_ablation_development200_20261012_v1/contract.json",
+      "sha256": "448033df574d1fd6d5d1f60ad409eed213667d356814759e49a7b4ea6e4633cd"
+    },
+    {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_candidate_local_repair_learning_development200_20261012_v1/contract.json",
+      "sha256": "d3ff6960a074475219533d95f231908f34a8f5846985d3413e820eafb872f5c1"
+    },
+    {
+      "path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.local/fi1_fragment_affiliation_learnability_development200_20261011_v1/contract.json",
+      "sha256": "d8a9fcae030dffb5e50b0ba9b7ba7797de7b362dc3f88bee81939a00b3ef72ab"
+    }
+  ],
+  "current_import_files": 182,
+  "geometry_import_files": 188,
+  "code_partition_counts": {
+    "ARCHIVE_LEGACY_CODE_CANDIDATE": 913,
+    "KEEP_GEOMETRY_RESEARCH": 151,
+    "KEEP_CURRENT_TEST_OR_WRAPPER": 40,
+    "KEEP_CURRENT_IMPORT_DEPENDENCY": 157
+  },
+  "autoSAM_code_counts": {
+    "ARCHIVE_LEGACY_CODE_CANDIDATE": 48,
+    "KEEP_CURRENT_TEST_OR_WRAPPER": 1,
+    "KEEP_GEOMETRY_RESEARCH": 1,
+    "KEEP_CURRENT_IMPORT_DEPENDENCY": 7
+  },
+  "model_candidates": 27,
+  "weights": 24,
+  "val48_branch_candidates": 52,
+  "common_frame_contracts": 972,
+  "mobileclip": {
+    "path": "pretrained/yoloe/mobileclip_blt.pt",
+    "bytes": 599214572,
+    "Full_SL_used": false,
+    "YOLOE_text_encoder_used": true,
+    "decision": "delete candidate when retiring YOLOE; preserve or redownload to rerun YOLOE"
+  },
+  "static_analysis_limit": "Full/SL closure inherited from prior audit; research closure from current contracts/archived map. No executing GPU imports; unreachable is not proof of no future use. Historical paths/seals must retain original identities or an explicit relocation layer.",
+  "migration_plan_rows": 8100,
+  "retired_model_comparison_roots": 14,
+  "val48_branch_allocated_bytes_by_arm": {
+    "A": 2727428096,
+    "B": 16771538944,
+    "C": 1649696768,
+    "D": 4949925888
+  },
+  "analysis_stages": "audit_plan.py produces baseline classification; migration routes, raw/training preservation and val48 receipt-resolved routing were added in subsequent read-only/documentation steps. Rerunning baseline alone does not regenerate every final plan addition.",
+  "Full_weight_table_correction": "YOLO-World configured local pretrained/clip-vit-base-patch32 text model was omitted in previous table; added in current map."
+}

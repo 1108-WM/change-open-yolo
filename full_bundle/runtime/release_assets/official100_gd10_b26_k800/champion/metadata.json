@@ -1,0 +1,58 @@
+{
+  "candidate_geometry_contract": {
+    "existing_candidates_modified": false,
+    "pair_union_append_only": true
+  },
+  "component_packages": {
+    "pair_union_append": {
+      "model_sha256": "6b964e98fd69c11622d8a16589a9da0e4ec94801c6e88e744b0d5fdaffbe1285",
+      "version": "official100_pair_union_threshold_cross_full_v2_prior_corrected"
+    },
+    "track_suppression": {
+      "model_sha256": "a85a23b3f1244adb783437d7e4b49d07013b2e80604c6bbd7f1b9c3e4b1033f2",
+      "version": "official100_component_union_track_harm_full_v1"
+    }
+  },
+  "even48_read": false,
+  "frozen_policy": "champion_track_suppression_plus_pair_union_append",
+  "input_provenance": {
+    "champion_metadata_sha256": "f3669e375659b5bcb44a339d99a1186b374ec783b2ad31ff612791b353c71b9c",
+    "combined_oof_summary_sha256": "e0043f65c9d065a333bd112a0da32182a474465abb0ea1367b09ee30bfe578d8",
+    "pair_union_metadata_sha256": "e1265bc1c1294b1056691c8743cdb167f2ca1a2f598cd1bceacdb1ad2d88aabb"
+  },
+  "model_package_sha256": "b5f91148eb9cf310bee25d1ee6237699965cd368b04a3bb3a3d143aa395652a8",
+  "official100_main_ap_positive_fold_count_vs_previous_champion": 5,
+  "official100_oof_delta_vs_previous_champion": {
+    "ap": 0.0010728750056783198,
+    "ap25": 0.00013759438225302567,
+    "ap50": 0.0002554427524046332
+  },
+  "official100_oof_metrics": {
+    "ap": 0.6768351733792439,
+    "ap25": 0.8795907511062646,
+    "ap50": 0.832354216587369
+  },
+  "safety60_read": false,
+  "safety_evaluation_run": false,
+  "score_contract": {
+    "cross_module_weight": null,
+    "existing_candidates": {
+      "candidate_removed": false,
+      "continuous_weight_scan": false,
+      "native_score": "bit-for-bit frozen",
+      "threshold": null,
+      "track_score": "full_quality_q * (1 - (1 - P(keep))**3)"
+    },
+    "pair_union_candidates": {
+      "append_score": "base_quality * (1 - (1 - P(threshold_cross))**3)",
+      "base_quality": "minimum of track quality q and native exact-group median quality q",
+      "duplicate_proposal_geometry_aggregation": "highest OOF threshold-cross probability",
+      "probability": "50/50 balanced-fit predict_proba corrected to the full official100 component-balanced natural positive rate",
+      "threshold": null,
+      "weight_or_exponent_scan": false
+    },
+    "threshold_scan": false
+  },
+  "test60_read": false,
+  "version": "official100_champion_pair_union_combined_full_v2_prior_corrected"
+}

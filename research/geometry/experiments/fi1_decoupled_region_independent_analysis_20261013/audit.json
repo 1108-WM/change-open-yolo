@@ -1,0 +1,235 @@
+{
+  "posthoc_only": true,
+  "splits": {
+    "train": {
+      "parent_reference_pure_different": 100,
+      "parent_reference_high_different": 60,
+      "parent_reference_high_different_correct": 1,
+      "safe_regions": 1358,
+      "safe_pred_score_max": 0.9782654047012329,
+      "threshold_counts": {
+        "0.7": {
+          "safe_model_pass": 213,
+          "safe_exact_relation_pass": 733
+        },
+        "0.8": {
+          "safe_model_pass": 91,
+          "safe_exact_relation_pass": 402
+        },
+        "0.9": {
+          "safe_model_pass": 22,
+          "safe_exact_relation_pass": 82
+        },
+        "0.95": {
+          "safe_model_pass": 5,
+          "safe_exact_relation_pass": 27
+        }
+      },
+      "high_confidence_agreement": {
+        "same": {
+          "count": 133557,
+          "pure_precision": 0.9454090762745494,
+          "mean_point_pair_agreement": 0.9904353618621826,
+          "truth_under_half": 111
+        },
+        "different": {
+          "count": 71951,
+          "pure_precision": 0.9434615224249837,
+          "mean_point_pair_agreement": 0.9852327704429626,
+          "truth_under_half": 291
+        }
+      }
+    },
+    "calibration": {
+      "parent_reference_pure_different": 26,
+      "parent_reference_high_different": 5,
+      "parent_reference_high_different_correct": 0,
+      "safe_regions": 321,
+      "safe_pred_score_max": 0.7098220586776733,
+      "threshold_counts": {
+        "0.7": {
+          "safe_model_pass": 1,
+          "safe_exact_relation_pass": 117
+        },
+        "0.8": {
+          "safe_model_pass": 0,
+          "safe_exact_relation_pass": 58
+        },
+        "0.9": {
+          "safe_model_pass": 0,
+          "safe_exact_relation_pass": 14
+        },
+        "0.95": {
+          "safe_model_pass": 0,
+          "safe_exact_relation_pass": 7
+        }
+      },
+      "high_confidence_agreement": {
+        "same": {
+          "count": 26423,
+          "pure_precision": 0.8024069939068236,
+          "mean_point_pair_agreement": 0.8734172582626343,
+          "truth_under_half": 2925
+        },
+        "different": {
+          "count": 12549,
+          "pure_precision": 0.6959120248625389,
+          "mean_point_pair_agreement": 0.77442866563797,
+          "truth_under_half": 2530
+        }
+      }
+    },
+    "holdout": {
+      "parent_reference_pure_different": 26,
+      "parent_reference_high_different": 19,
+      "parent_reference_high_different_correct": 0,
+      "safe_regions": 199,
+      "safe_pred_score_max": 0.5689181089401245,
+      "threshold_counts": {
+        "0.7": {
+          "safe_model_pass": 0,
+          "safe_exact_relation_pass": 130
+        },
+        "0.8": {
+          "safe_model_pass": 0,
+          "safe_exact_relation_pass": 100
+        },
+        "0.9": {
+          "safe_model_pass": 0,
+          "safe_exact_relation_pass": 34
+        },
+        "0.95": {
+          "safe_model_pass": 0,
+          "safe_exact_relation_pass": 9
+        }
+      },
+      "high_confidence_agreement": {
+        "same": {
+          "count": 25841,
+          "pure_precision": 0.8261290197747765,
+          "mean_point_pair_agreement": 0.9005332589149475,
+          "truth_under_half": 2153
+        },
+        "different": {
+          "count": 11277,
+          "pure_precision": 0.7203156867961337,
+          "mean_point_pair_agreement": 0.8046339154243469,
+          "truth_under_half": 1966
+        }
+      }
+    }
+  },
+  "calibration": {
+    "rules": 16,
+    "with_actions": [
+      {
+        "metrics": {
+          "action_scenes": 5,
+          "actions": 6,
+          "deleted": 226,
+          "drift": 0,
+          "good_degraded": 1,
+          "good_parents": 60,
+          "good_rate": 0.016666666666666666,
+          "other": 10,
+          "parent_target": 10678,
+          "precision": 0.04424778761061947,
+          "target": 186,
+          "target_loss": 0.0174189923206593,
+          "unknown": 30,
+          "unknown_fraction": 0.13274336283185842,
+          "unknown_identity_actions": 1
+        },
+        "qualified": false,
+        "rule": {
+          "abstain": false,
+          "edit": 0.5,
+          "relation": 0.7
+        }
+      },
+      {
+        "metrics": {
+          "action_scenes": 5,
+          "actions": 6,
+          "deleted": 226,
+          "drift": 0,
+          "good_degraded": 1,
+          "good_parents": 60,
+          "good_rate": 0.016666666666666666,
+          "other": 10,
+          "parent_target": 10678,
+          "precision": 0.04424778761061947,
+          "target": 186,
+          "target_loss": 0.0174189923206593,
+          "unknown": 30,
+          "unknown_fraction": 0.13274336283185842,
+          "unknown_identity_actions": 1
+        },
+        "qualified": false,
+        "rule": {
+          "abstain": false,
+          "edit": 0.7,
+          "relation": 0.7
+        }
+      },
+      {
+        "metrics": {
+          "action_scenes": 3,
+          "actions": 4,
+          "deleted": 208,
+          "drift": 0,
+          "good_degraded": 1,
+          "good_parents": 60,
+          "good_rate": 0.016666666666666666,
+          "other": 10,
+          "parent_target": 8429,
+          "precision": 0.04807692307692308,
+          "target": 168,
+          "target_loss": 0.019931189939494602,
+          "unknown": 30,
+          "unknown_fraction": 0.14423076923076922,
+          "unknown_identity_actions": 1
+        },
+        "qualified": false,
+        "rule": {
+          "abstain": false,
+          "edit": 0.9,
+          "relation": 0.7
+        }
+      },
+      {
+        "metrics": {
+          "action_scenes": 3,
+          "actions": 4,
+          "deleted": 208,
+          "drift": 0,
+          "good_degraded": 1,
+          "good_parents": 60,
+          "good_rate": 0.016666666666666666,
+          "other": 10,
+          "parent_target": 8429,
+          "precision": 0.04807692307692308,
+          "target": 168,
+          "target_loss": 0.019931189939494602,
+          "unknown": 30,
+          "unknown_fraction": 0.14423076923076922,
+          "unknown_identity_actions": 1
+        },
+        "qualified": false,
+        "rule": {
+          "abstain": false,
+          "edit": 0.95,
+          "relation": 0.7
+        }
+      }
+    ],
+    "without_actions": 12
+  },
+  "source_contract_snapshot_verified": [
+    "fi1_decoupled_region_core.py",
+    "run_fi1_decoupled_region.py",
+    "evaluate_fi1_decoupled_region.py"
+  ],
+  "no_new_training": true,
+  "no_new_rules": true
+}

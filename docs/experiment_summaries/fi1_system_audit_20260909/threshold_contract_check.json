@@ -1,0 +1,50 @@
+{
+  "scope": "static threshold expressions and synthetic scalar IoUs only; no dataset access or AP",
+  "evaluator_source_sha256": "3051635f4fe58ce55de77bba9bd7a410bf87d029cc072554c3537d8ee1fb6994",
+  "z3_source_sha256": "42c19436df52cb107f87bcebca0f93ecb01bfa3e0bafc76eb67fdedb084fe6ae",
+  "evaluator_ap_thresholds": [
+    0.5,
+    0.55,
+    0.6000000000000001,
+    0.6500000000000001,
+    0.7000000000000002,
+    0.7500000000000002,
+    0.8000000000000003,
+    0.8500000000000003,
+    0.9000000000000004
+  ],
+  "z3_thresholds": [
+    0.5,
+    0.550000011920929,
+    0.6000000238418579,
+    0.6500000357627869,
+    0.7000000476837158,
+    0.7500000596046448,
+    0.8000000715255737,
+    0.8500000834465027,
+    0.9000000953674316,
+    0.9500001072883606
+  ],
+  "examples": [
+    {
+      "synthetic_iou": 0.5,
+      "evaluator_strict_threshold_fraction_proxy": 0.0,
+      "z3_inclusive_threshold_fraction_proxy": 0.1
+    },
+    {
+      "synthetic_iou": 0.75,
+      "evaluator_strict_threshold_fraction_proxy": 0.5555555555555556,
+      "z3_inclusive_threshold_fraction_proxy": 0.5
+    },
+    {
+      "synthetic_iou": 0.92,
+      "evaluator_strict_threshold_fraction_proxy": 1.0,
+      "z3_inclusive_threshold_fraction_proxy": 0.9
+    },
+    {
+      "synthetic_iou": 0.96,
+      "evaluator_strict_threshold_fraction_proxy": 1.0,
+      "z3_inclusive_threshold_fraction_proxy": 1.0
+    }
+  ]
+}
