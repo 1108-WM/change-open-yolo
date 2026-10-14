@@ -1,0 +1,12 @@
+verified scene0006_00 882 2128
+verified scene0008_00 1607 3568
+verified scene0018_00 1914 4384
+verified scene0029_02 2518 5714
+Traceback (most recent call last):
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/verify_fi1_local_edit_evidence_counts.py", line 79, in <module>
+    print('verified',s,n,targets,flush=True)
+                    ^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/verify_fi1_local_edit_evidence_counts.py", line 74, in verify
+    mode=f'{family}/{source}/{action}/{screen}/union';best.setdefault(mode,baseline.copy());best[mode]=np.maximum(best[mode],after)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

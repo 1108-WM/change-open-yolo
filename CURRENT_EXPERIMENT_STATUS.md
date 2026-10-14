@@ -1,5 +1,11 @@
 # 当前实验状态
 
+## 2026-10-14 最新完成：局部编辑证据诊断
+
+[报告](research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/report.md)／[判定](research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/decision.json)／[全量核验](research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/verification_counts.json)。已按用户要求无GT生成补删提案与证据，封存后GT诊断：fit12/exposed16共28场景、224原父，15,434提案（整区1,991/细分13,443）。6项测试及15,434提案/41,238池记录独立复算通过；原N/T与SL未改，无训练。
+
+T整区补点query有较强区分，方向bin保留1/2池目标；fit的唯一补块含67/639未知点，exposed两目标有严格正确证据但仅属已暴露分析。N补竞争bin无有效修复，删除没有可靠跨批次池增益，竞争AND多帧各整区组池皆0。**统一安全N/T补删路线尚未成立。** 只支持另行设计窄T补规则、冻结后在其他未暴露隔离场景验收；本次未实现规则、部署、继续A/B或AP。223父有非空提案，另1父仍保留于完整名单。旧合同/失败及seal不追改，补充v2为最终有效后置诊断。交接快照见[本次交接](docs/state_archive/20261014_local_edit_evidence_diagnostic/README.md)。以下为此前完成时点记录。
+
 更新：2026-10-14。此文件维护“现在是什么状态”；数值与历史实验见[结果](资料/结果.md)，原因及下一步见[修改方向](资料/当前基线修改方向.md)，资产见[代码地图](资料/代码文件索引与当前主线地图.md)。
 
 ## 2026-10-14 最新完成：现有A/B固定跨场景评估，暂停当前修复器扩训

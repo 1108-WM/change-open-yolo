@@ -1,0 +1,12 @@
+verified scene0006_00 882 2128
+verified scene0008_00 1607 3568
+verified scene0018_00 1914 4384
+verified scene0029_02 2518 5714
+Traceback (most recent call last):
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/verify_fi1_local_edit_evidence_counts.py", line 82, in <module>
+    if __name__=='__main__':verify()
+                            ^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/verify_fi1_local_edit_evidence_counts.py", line 77, in verify
+    r=pl[s,mode,int(g)];assert abs(float(r['baseline'])-baseline[i])<1e-12 and abs(float(r['expanded'])-v[i])<1e-12
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

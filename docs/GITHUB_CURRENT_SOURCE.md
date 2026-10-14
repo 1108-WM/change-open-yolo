@@ -25,3 +25,7 @@ Full/SL/几何目录README中的“模型已集中”“资产已迁入”等描
 ## 本次会话追加：三轮实验、独立审计与固定跨场景结果
 
 后续实验现已提交，最新状态见[会话总览](SESSION_EXPERIMENTS_20261014.md)。实验文本、源码快照、结果CSV、合同、训练历史与审计公开；权重/数据/NPZ未上传。旧发布核验记录保留当时时点，本次核验见[session validation](publication/geometry_session_20261014/validation.json)，当前发布manifest覆盖追加后的实际内容。原实验seal及状态快照保留原身份，绝对路径只用于本机溯源。
+
+## 最新追加：局部编辑证据诊断
+
+本轮源码、逐提案证据、后置GT、分层及全池结果、失败日志和核验已发布，详见[会话总览](SESSION_EXPERIMENTS_20261014.md)。新增[二进制身份](publication/local_edit_evidence_20261014/excluded_binary_assets.json)与[本机复制清单](publication/local_edit_evidence_20261014/local_source_manifest.json)单列。原实验seal不追改，当前发布manifest仅维护GitHub实际文件。

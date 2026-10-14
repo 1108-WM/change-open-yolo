@@ -1,5 +1,9 @@
 # 当前几何研究独立保存
 
+最新[局部编辑证据诊断](experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/report.md)已完成，无训练。28场景224父、15,434提案，先无GT封存后GT；T整区补点存在区分及少量池价值，N补竞争/删除/多帧AND未形成统一安全方案。已暴露16场景不用于独立验收。6测试及全部点集/池记录核验通过，旧seal/模型不改，正式N/T不改。
+
+源码：`code/tools/fi1_local_edit_evidence_core.py`、`run_fi1_local_edit_evidence.py`；最终全量独立回放`verify_fi1_local_edit_evidence_counts.py`，后置补充`supplement_fi1_local_edit_evidence.py`（supplement_v2有效）。原集合verifier部分日志保留；不声称其完成。下一步只建议冻结窄T补规则后另场景验证，尚未执行。
+
 2026-10-14 整理只改变组织与路径适配，不启动新实验。
 
 - `code/`：保留当前局部修复、观察补核、删除块、区域供给、归属、关系解耦和Mask3D实例特征A/B的实现、核验、测试；历史 `tools/tests` 为兼容链接。
@@ -8,7 +12,7 @@
 
 最新[N/T区域身份诊断](experiments/fi1_nt_region_identity_diagnostic_20261014_v1/report.md)阶段0—4已执行：fit96抽12场景/96父，区域图、P0/P1配对先验、无GT关联及四探针完成，必要测试与独立复算通过。先验有局部身份信息，但直接mask伤害好父、整区限制机会；后续同父query小样本已执行，未支持扩大训练。前序Mask3D特征A/B失败结论保留。保持原父、邻域、六帧和物理划分，不追加阈值/新观测或扩大五折；Full/SL保持原身份。
 
-后续以用户修订的[同一父目标query A/B](../../docs/FI1_QUERY_SAME_PARENT_AB_NEXT_STEP_20261014.md)为准：A/B同target/监督/忽略点/损失/预算，B只加非GTquery概率；先小样本及置零/打乱，通过后才内部场景隔离评估，混合父拆分另立任务。原诊断报告/decision里的“监督跟随query身份”后续建议已修订，原封存不改；16父/64轮小样本已执行：[报告](experiments/fi1_query_same_parent_pilot_20261014_v1/report.md)。B无A之外的有效收益，query置零/打乱未降低改善；停止扩大，未开展场景隔离评估。
+后续以用户修订的[同一父目标query A/B](../../docs/FI1_QUERY_SAME_PARENT_AB_NEXT_STEP_20261014.md)为准：A/B同target/监督/忽略点/损失/预算，B只加非GTquery概率；先小样本及置零/打乱，通过后才内部场景隔离评估，混合父拆分另立任务。原诊断报告/decision里的“监督跟随query身份”后续建议已修订，原封存不改；16父/64轮小样本已执行：[报告](experiments/fi1_query_same_parent_pilot_20261014_v1/report.md)。B无A之外的有效收益，query置零/打乱未降低改善；当时停止扩大；后续已按用户授权固定跨场景评估并失败，见下。
 
 最新[固定跨场景评估](experiments/fi1_query_transfer_eval_20261014_v1/report.md)只评原selection16、128原父，现有epoch64模型/归一化/.8锁定；A/B均伤害好父、B无池增量，暂停当前修复器扩训。2测试、896点集/9480池记录及768模型回放通过。原pilot/审计/旧诊断封存不变，无新训练、最终holdout或SL/AP。
 
@@ -38,4 +42,4 @@
 
 ## GitHub阅读边界
 
-本仓库包含当前研究源码、文本证据与审计，不含本机模型/先验/输入缓存。原合同绝对路径及hash作为溯源保留；实验seal不能仅靠GitHub文本快照完整回放。最新源码与结果发布清单见[本次会话总览](../../docs/SESSION_EXPERIMENTS_20261014.md)。
+只发布源码、文本证据、CSV/JSON及审计记录，不含本机大点集/权重/输入先验。原seal与绝对路径只用于溯源；完整资产回放需要本机环境。最新发布见[会话总览](../../docs/SESSION_EXPERIMENTS_20261014.md)。

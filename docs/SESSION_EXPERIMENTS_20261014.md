@@ -1,5 +1,11 @@
 # 2026-10-14会话实验与最新状态
 
+**最新追加：局部编辑证据诊断已完成。** [报告](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/report.md)／[判定](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/decision.json)／[核验](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/verification_counts.json)。28场景224父、15,434提案，先无GT证据封存再GT；不训练/改正式N+T。T整区补点有较强区分与少量池价值，N补竞争和删除未形成统一安全方案。6测试、全量点集/41,238池记录复算通过。fit关键补块有67/639未知，exposed16两目标有严格证据但已暴露；独立规则验收未开展。
+
+直接证据：[GT-free逐场景证据](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/proposals)、[N/T补删证据比较](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/analysis/feature_comparison.csv)、[描述bin负结果](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/analysis/evidence_bins.csv)、[有效后置补充v2](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/supplement_v2)、[池证据追踪](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/supplement_v2/pool_witnesses.csv)、[完整分母池统计](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/supplement_v2/complete_pool_summary.csv)。v1补充与失败日志作为历史保留，原合同/提案/评测seal未改；最新源码见[研究目录](../research/geometry/README.md)。
+
+以下三轮模型实验与审计保留为前序状态：
+
 给GitHub/GPT页面的阅读入口。**最新判断：暂停现有A/B修复器扩训及部署。** 同父训练任务能拟合，但固定未训练场景评估出现高置信错误编辑和明显好父损害，尚无安全跨场景完整NT新增价值。没有新AP、生产替换、混合父拆分或实例树实验。
 
 ## 按这个顺序阅读
@@ -16,7 +22,7 @@
 |同一父目标query小样本A/B|16父/64轮；两臂同目标/监督/损失/初始化/预算，B仅增加query概率；训练内无有效增量，原判定停止扩量|[报告](../research/geometry/experiments/fi1_query_same_parent_pilot_20261014_v1/report.md)、[合同](../research/geometry/experiments/fi1_query_same_parent_pilot_20261014_v1/contract.json)、[判定](../research/geometry/experiments/fi1_query_same_parent_pilot_20261014_v1/decision.json)|
 |训练饱和独立审计|发现A接近固定编辑域上限，即使宽松完美预测平均也只能领先A .007451，小于原.01继续门；不改旧失败，但不能据此否定query方向|[审计](../research/geometry/experiments/fi1_query_same_parent_pilot_audit_20261014_v1/report.md)、[结果](../research/geometry/experiments/fi1_query_same_parent_pilot_audit_20261014_v1/audit_results.json)|
 |现有模型固定跨场景评估|selection16与本次训练物理隔离；原NT、A、B、B_zero、三次shuffle及区域平均，先封存再GT；训练拟合未转为安全修复|[合同](../research/geometry/experiments/fi1_query_transfer_eval_20261014_v1/contract.json)、[汇总](../research/geometry/experiments/fi1_query_transfer_eval_20261014_v1/evaluation/summary.json)、[判定](../research/geometry/experiments/fi1_query_transfer_eval_20261014_v1/decision.json)|
-|跨场景独立审计|复核896点集/9480池记录/原点映射及机会；区域平均有3场景池证据但不能直接部署；建议局部编辑提案可行性研究，尚未执行|[审计](../research/geometry/experiments/fi1_query_transfer_audit_20261014_v1/report.md)、[结果](../research/geometry/experiments/fi1_query_transfer_audit_20261014_v1/audit_results.json)|
+|跨场景独立审计|复核896点集/9480池记录/原点映射及机会；区域平均有3场景池证据但不能直接部署；当时建议局部编辑提案研究；后续已执行，见页首|[审计](../research/geometry/experiments/fi1_query_transfer_audit_20261014_v1/report.md)、[结果](../research/geometry/experiments/fi1_query_transfer_audit_20261014_v1/audit_results.json)|
 
 ## 最新评估的结果与实现
 

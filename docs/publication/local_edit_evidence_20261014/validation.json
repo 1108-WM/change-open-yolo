@@ -1,0 +1,22 @@
+{
+  "complete": true,
+  "date": "2026-10-14",
+  "purpose": "Text/source publication; no training or GPU rerun",
+  "previous_main": "4727628fca034cd966342a8972077ecdc740da69",
+  "related_tests_passed": 6,
+  "test_command": "OPENBLAS_NUM_THREADS=1 .venvs/yoloe_gpu/bin/python -m unittest discover -s research/geometry/code/tests -p test_fi1_local_edit_evidence*.py -v",
+  "full_local_independent_replay_proposals": 15434,
+  "full_local_independent_replay_pool_rows": 41238,
+  "reading_links_checked": 332,
+  "original_text_evidence_preserved": 198,
+  "changed_files_scanned": 215,
+  "credential_patterns_absent": true,
+  "no_weight_data_cache_uploaded": true,
+  "old_experiment_seals_unchanged": true,
+  "production_modified": false,
+  "source_snapshot_verification": "Run after updating manifest; source_check.log",
+  "source_snapshot_verified": true,
+  "published_source_tests_rerun": true,
+  "python_for_validation": "project yoloe_gpu Python (supports Python>=3.11 syntax); system Python3.8 failure retained",
+  "whitespace": "CSV original CRLF and sealed snapshots preserved; not rewritten for git diff warnings"
+}
