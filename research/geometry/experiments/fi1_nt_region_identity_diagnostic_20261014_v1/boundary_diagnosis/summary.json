@@ -1,0 +1,70 @@
+{
+  "common_mask_edges": 708,
+  "complete": true,
+  "distinct_mask_edges": 128,
+  "inference_unchanged": true,
+  "mechanism_counts": {
+    "P0": {
+      "GT_raw_oracle": {
+        "mixed_instance_voxel_points": 5371,
+        "mixed_voxel_add_opportunity": 193,
+        "mixed_voxel_delete_opportunity": 115,
+        "neighbor_false_add": 2476,
+        "pollution_delete_opportunity": 2779,
+        "pollution_delete_recovered": 993,
+        "target_add_opportunity": 10818,
+        "target_add_recovered": 9469,
+        "target_in_parent_visible": 96595,
+        "target_parent_false_delete": 2642,
+        "unknown_edit": 414
+      },
+      "top1": {
+        "mixed_instance_voxel_points": 5371,
+        "mixed_voxel_add_opportunity": 193,
+        "mixed_voxel_delete_opportunity": 115,
+        "neighbor_false_add": 2422,
+        "pollution_delete_opportunity": 2779,
+        "pollution_delete_recovered": 872,
+        "target_add_opportunity": 10818,
+        "target_add_recovered": 7208,
+        "target_in_parent_visible": 96595,
+        "target_parent_false_delete": 3027,
+        "unknown_edit": 343
+      }
+    },
+    "P1": {
+      "GT_raw_oracle": {
+        "mixed_instance_voxel_points": 5371,
+        "mixed_voxel_add_opportunity": 193,
+        "mixed_voxel_delete_opportunity": 115,
+        "neighbor_false_add": 2267,
+        "pollution_delete_opportunity": 2779,
+        "pollution_delete_recovered": 1010,
+        "target_add_opportunity": 10818,
+        "target_add_recovered": 9646,
+        "target_in_parent_visible": 96595,
+        "target_parent_false_delete": 2656,
+        "unknown_edit": 396
+      },
+      "top1": {
+        "mixed_instance_voxel_points": 5371,
+        "mixed_voxel_add_opportunity": 193,
+        "mixed_voxel_delete_opportunity": 115,
+        "neighbor_false_add": 2309,
+        "pollution_delete_opportunity": 2779,
+        "pollution_delete_recovered": 920,
+        "target_add_opportunity": 10818,
+        "target_add_recovered": 7024,
+        "target_in_parent_visible": 96595,
+        "target_parent_false_delete": 2986,
+        "unknown_edit": 323
+      }
+    }
+  },
+  "mixed_identity_rows": 50,
+  "no_mask_evidence_edges": 643,
+  "old96_common_domain_mixed_regions": 209,
+  "old96_common_domain_pure_regions": 6551,
+  "old96_common_domain_regions": 7553,
+  "posthoc_only": true
+}

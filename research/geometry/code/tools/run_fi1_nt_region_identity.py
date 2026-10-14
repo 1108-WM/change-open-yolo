@@ -129,7 +129,7 @@ def prepare():
 
 
 def structures():
-    c=read(OUT/'contract.json'); guard(); verify(c['inputs']); reserve(); outputs=[]
+    c=read(OUT/'contract.json'); guard(); verify(c['code']); verify(c['inputs']); reserve(); outputs=[]
     for s in c['scenes']:
         dest=OUT/'structure'/s; dest.mkdir(parents=True,exist_ok=True)
         if (dest/'receipt.json').exists(): verify(read(dest/'receipt.json')['outputs']);outputs+=list(dest.glob('*'));continue
@@ -222,7 +222,7 @@ def export():
     import albumentations as A
     sys.path.append(str(ROOT/'models/Mask3D'))
     from models.Mask3D.mask3d import get_model
-    c=read(OUT/'contract.json');guard();reserve();verify(read(OUT/'structure_frozen.json')['outputs'])
+    c=read(OUT/'contract.json');guard();reserve();verify(c['code']);verify(read(OUT/'structure_frozen.json')['outputs'])
     assert torch.cuda.is_available();torch.set_num_threads(4)
     assert sha(c['checkpoint'])==c['checkpoint_sha256']
     torch.manual_seed(core.PARAMETERS['seed']);net=get_model(c['checkpoint']).cuda().eval()
@@ -259,7 +259,10 @@ def export():
         audits={};previous={};captured={};embeds=[]
         def head_hook(module,args,value):captured['head']=(value.C.detach().cpu().numpy(),value.F.detach().cpu().numpy())
         def embedding_hook(module,args,value):embeds.append(value.detach().cpu().numpy())
-        hooks=[net.model.mask_features_head.register_forward_hook(head_hook),net.model.mask_embed_head.register_forward_hook(embedding_hook)]
+        def backbone_rows_hook(module,args,value):
+            assert np.array_equal(value[1][-1].C.detach().cpu().numpy(),sparse_coords), 'raw XYZ rows differ from positional-coordinate map'
+        hooks=[net.model.mask_features_head.register_forward_hook(head_hook),net.model.mask_embed_head.register_forward_hook(embedding_hook),
+               net.model.backbone.register_forward_hook(backbone_rows_hook)]
         try:
             for mode,position in [('P0',rgb),('P1',raw_xyz)]:
                 captured.clear();embeds.clear();torch.set_rng_state(rng);torch.cuda.set_rng_state_all(cuda_rng);np.random.set_state(numpy_rng)
@@ -308,7 +311,7 @@ def export():
 
 
 def associate():
-    c=read(OUT/'contract.json');guard();verify(read(OUT/'priors_frozen.json')['outputs']);files=[]
+    c=read(OUT/'contract.json');guard();verify(c['code']);verify(read(OUT/'priors_frozen.json')['outputs']);files=[]
     for s in c['scenes']:
         d=OUT/'associations'/s;d.mkdir(parents=True,exist_ok=True);rows=[];scores=[];arrays={}
         with np.load(OUT/'structure'/s/'data.npz') as z,np.load(OUT/'priors'/s/'data.npz') as prior:

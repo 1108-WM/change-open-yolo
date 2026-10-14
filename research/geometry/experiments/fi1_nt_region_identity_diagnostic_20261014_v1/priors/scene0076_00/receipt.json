@@ -1,0 +1,43 @@
+{
+  "GT_read": false,
+  "color_features_and_XYZ_position_separate": true,
+  "complete": true,
+  "outputs": {
+    "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/experiments/fi1_nt_region_identity_diagnostic_20261014_v1/priors/scene0076_00/data.npz": "a2dcfafee782b6c73de7b0a5b3e910c83876bd7867460595175e591f83e9020c"
+  },
+  "paired": {
+    "P0": {
+      "GT_read": false,
+      "backbone_sha256": "4f45a4090fcd39ec65f185d3ee9d9e3fb4c99364a5b6cc486b96f1d0a89da67e",
+      "finite": true,
+      "full_point_count": 246901,
+      "head_sha256": "b9e9f193f66e2f38c6fe01733403642e51bc3ac8315da10a66ecbdb7aaa54073",
+      "queries": 150,
+      "roi_points": 37661,
+      "seconds": 0.4390997886657715,
+      "voxel_count": 165192
+    },
+    "P1": {
+      "GT_read": false,
+      "backbone_sha256": "4f45a4090fcd39ec65f185d3ee9d9e3fb4c99364a5b6cc486b96f1d0a89da67e",
+      "finite": true,
+      "full_point_count": 246901,
+      "head_sha256": "b9e9f193f66e2f38c6fe01733403642e51bc3ac8315da10a66ecbdb7aaa54073",
+      "queries": 150,
+      "roi_points": 37661,
+      "seconds": 0.44650936126708984,
+      "voxel_count": 165192
+    },
+    "paired": {
+      "ROI_mean_probability_absolute_change": 0.04411640390753746,
+      "backbone_bitwise_identical": true,
+      "backbone_coordinate_identical": true,
+      "class_logits_mean_absolute_change": 5.643582820892334,
+      "head_bitwise_identical": true,
+      "head_coordinate_identical": true,
+      "query_index_comparison_is_not_identity_matching": true
+    }
+  },
+  "safe_columns_poison_test": true,
+  "sparse_original_mapping_exact": true
+}

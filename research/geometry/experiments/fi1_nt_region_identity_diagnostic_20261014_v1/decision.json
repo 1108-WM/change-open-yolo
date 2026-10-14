@@ -1,0 +1,53 @@
+{
+  "answers": {
+    "association": "Stable-parent top1 selects same local main identity72/72; residual query omissions exist but even all-query oracle point probes give only2 pool targets.",
+    "prior": "P1 contains local identity evidence; XYZ correction alone does not materially solve safety or pool value.",
+    "region": "Complete halo coverage and nontrivial feasible value, but coarse mixed regions lose opportunities; keep point refinement."
+  },
+  "boundary_diagnosis": "boundary_diagnosis/summary.json",
+  "caveats": [
+    "fit96 training diagnostic only; no blind generalization evidence",
+    "raw local query IoU differs from full-scene IoU and keep/fallback probe IoU",
+    "unknown edits neither confirmed mistakes nor confirmed correct edits",
+    "all GT query choices remain posthoc references",
+    "originalNT retention does not protect laterK800"
+  ],
+  "complete": true,
+  "diagnostic_only": true,
+  "evidence": {
+    "P1_point_pool_value": 1,
+    "P1_point_target_deletions": 2868,
+    "P1_region_pool_value": 4,
+    "P1_region_unknown_fraction": 0.6029348706465292,
+    "raw_prior": {
+      "mean_oracle_IoU": 0.895729921500056,
+      "mean_set_IoU": 0.890704019397316,
+      "mean_top1_IoU": 0.8237113351143679,
+      "oracle_IoU_ge50": 70,
+      "oracle_IoU_ge75": 63,
+      "probe_oracle_min100_fallback": 4,
+      "raw_set_loss_ge02": 2,
+      "raw_top1_loss_ge02": 12,
+      "stable_parents": 72,
+      "top1_IoU_ge50": 63,
+      "top1_IoU_ge75": 58,
+      "top1_min100_fallback": 1,
+      "top1_same_instance": 72
+    },
+    "structure_point_value": 12,
+    "structure_region_value": 8
+  },
+  "next_experiment_started": false,
+  "next_strategy": "Independent original-parent conditioning versus explicit GT-free query/soft-mask conditioning in original-point local resegmentation; region graph as context only.",
+  "original_stage_summary": "summary.json",
+  "raw_query_supplement": "supplement/summary.json",
+  "report": "report.md",
+  "stages_completed": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "train_authorized_by_this_task": false
+}

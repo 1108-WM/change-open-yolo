@@ -1,0 +1,69 @@
+stage3_GT_free_associations {'scene': 'scene0006_00'}
+stage3_GT_free_associations {'scene': 'scene0018_00'}
+stage3_GT_free_associations {'scene': 'scene0102_00'}
+stage3_GT_free_associations {'scene': 'scene0108_00'}
+stage3_GT_free_associations {'scene': 'scene0113_01'}
+stage3_GT_free_associations {'scene': 'scene0122_00'}
+stage3_GT_free_associations {'scene': 'scene0137_00'}
+stage3_GT_free_associations {'scene': 'scene0138_00'}
+stage3_GT_free_associations {'scene': 'scene0140_01'}
+stage3_GT_free_associations {'scene': 'scene0224_00'}
+stage3_GT_free_associations {'scene': 'scene0301_02'}
+stage3_GT_free_associations {'scene': 'scene0340_00'}
+stage3_GT_free_associations {'scene': 'scene0369_00'}
+stage3_GT_free_associations {'scene': 'scene0390_00'}
+stage3_GT_free_associations {'scene': 'scene0440_00'}
+stage3_GT_free_associations {'scene': 'scene0634_00'}
+/home/jia/anaconda3/envs/myenv/lib/python3.11/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+prediction {'scene': 'scene0006_00'}
+prediction {'scene': 'scene0018_00'}
+prediction {'scene': 'scene0102_00'}
+prediction {'scene': 'scene0108_00'}
+prediction {'scene': 'scene0113_01'}
+prediction {'scene': 'scene0122_00'}
+prediction {'scene': 'scene0137_00'}
+prediction {'scene': 'scene0138_00'}
+prediction {'scene': 'scene0140_01'}
+prediction {'scene': 'scene0224_00'}
+prediction {'scene': 'scene0301_02'}
+prediction {'scene': 'scene0340_00'}
+prediction {'scene': 'scene0369_00'}
+prediction {'scene': 'scene0390_00'}
+prediction {'scene': 'scene0440_00'}
+prediction {'scene': 'scene0634_00'}
+postseal_evaluation {'scene': 'scene0006_00'}
+postseal_evaluation {'scene': 'scene0018_00'}
+postseal_evaluation {'scene': 'scene0102_00'}
+postseal_evaluation {'scene': 'scene0108_00'}
+postseal_evaluation {'scene': 'scene0113_01'}
+postseal_evaluation {'scene': 'scene0122_00'}
+postseal_evaluation {'scene': 'scene0137_00'}
+postseal_evaluation {'scene': 'scene0138_00'}
+postseal_evaluation {'scene': 'scene0140_01'}
+postseal_evaluation {'scene': 'scene0224_00'}
+postseal_evaluation {'scene': 'scene0301_02'}
+postseal_evaluation {'scene': 'scene0340_00'}
+postseal_evaluation {'scene': 'scene0369_00'}
+postseal_evaluation {'scene': 'scene0390_00'}
+postseal_evaluation {'scene': 'scene0440_00'}
+postseal_evaluation {'scene': 'scene0634_00'}
+evaluation_complete {'decision': {'action': 'pause_current_repairer_expansion', 'protection': {'A': {'passed': False, 'checks': {'add_precision': False, 'delete_precision': False, 'target_loss': True, 'unknown': False, 'good_rate': False, 'good_tail': False, 'drift': True, 'source_means': False}}, 'B': {'passed': False, 'checks': {'add_precision': False, 'delete_precision': False, 'target_loss': True, 'unknown': False, 'good_rate': False, 'good_tail': False, 'drift': True, 'source_means': False}}}, 'multi_scene_safe_pool_evidence': {'A': False, 'B': False}, 'B_exclusive_gain02': [], 'B_exclusive_scenes': 0, 'pool': {'A': {'targets': 395, 'pool_gain02': 1, 'pool_value_targets': 1, 'pool_value_scenes': 1, 'pool_delta_sum': 0.0504844467108618, 'new_cross_0.5': 0, 'new_cross_0.75': 0, 'new_cross_0.9': 0, 'new_cross_0.95': 0, 'baseline_coverage_0.5': 372, 'baseline_coverage_0.75': 340, 'baseline_coverage_0.9': 231, 'baseline_coverage_0.95': 174, 'expanded_coverage_0.5': 372, 'expanded_coverage_0.75': 340, 'expanded_coverage_0.9': 231, 'expanded_coverage_0.95': 174}, 'B': {'targets': 395, 'pool_gain02': 0, 'pool_value_targets': 0, 'pool_value_scenes': 0, 'pool_delta_sum': 0.01687656635300877, 'new_cross_0.5': 0, 'new_cross_0.75': 0, 'new_cross_0.9': 0, 'new_cross_0.95': 0, 'baseline_coverage_0.5': 372, 'baseline_coverage_0.75': 340, 'baseline_coverage_0.9': 231, 'baseline_coverage_0.95': 174, 'expanded_coverage_0.5': 372, 'expanded_coverage_0.75': 340, 'expanded_coverage_0.9': 231, 'expanded_coverage_0.95': 174}, 'B_zero': {'targets': 395, 'pool_gain02': 0, 'pool_value_targets': 0, 'pool_value_scenes': 0, 'pool_delta_sum': 0.008629565814107135, 'new_cross_0.5': 0, 'new_cross_0.75': 0, 'new_cross_0.9': 0, 'new_cross_0.95': 0, 'baseline_coverage_0.5': 372, 'baseline_coverage_0.75': 340, 'baseline_coverage_0.9': 231, 'baseline_coverage_0.95': 174, 'expanded_coverage_0.5': 372, 'expanded_coverage_0.75': 340, 'expanded_coverage_0.9': 231, 'expanded_coverage_0.95': 174}, 'B_shuffle_0': {'targets': 395, 'pool_gain02': 0, 'pool_value_targets': 0, 'pool_value_scenes': 0, 'pool_delta_sum': 0.010694531878813696, 'new_cross_0.5': 0, 'new_cross_0.75': 0, 'new_cross_0.9': 0, 'new_cross_0.95': 0, 'baseline_coverage_0.5': 372, 'baseline_coverage_0.75': 340, 'baseline_coverage_0.9': 231, 'baseline_coverage_0.95': 174, 'expanded_coverage_0.5': 372, 'expanded_coverage_0.75': 340, 'expanded_coverage_0.9': 231, 'expanded_coverage_0.95': 174}, 'B_shuffle_1': {'targets': 395, 'pool_gain02': 0, 'pool_value_targets': 0, 'pool_value_scenes': 0, 'pool_delta_sum': 0.008669046404895464, 'new_cross_0.5': 0, 'new_cross_0.75': 0, 'new_cross_0.9': 0, 'new_cross_0.95': 0, 'baseline_coverage_0.5': 372, 'baseline_coverage_0.75': 340, 'baseline_coverage_0.9': 231, 'baseline_coverage_0.95': 174, 'expanded_coverage_0.5': 372, 'expanded_coverage_0.75': 340, 'expanded_coverage_0.9': 231, 'expanded_coverage_0.95': 174}, 'B_shuffle_2': {'targets': 395, 'pool_gain02': 0, 'pool_value_targets': 0, 'pool_value_scenes': 0, 'pool_delta_sum': 0.009800441835239038, 'new_cross_0.5': 0, 'new_cross_0.75': 0, 'new_cross_0.9': 0, 'new_cross_0.95': 0, 'baseline_coverage_0.5': 372, 'baseline_coverage_0.75': 340, 'baseline_coverage_0.9': 231, 'baseline_coverage_0.95': 174, 'expanded_coverage_0.5': 372, 'expanded_coverage_0.75': 340, 'expanded_coverage_0.9': 231, 'expanded_coverage_0.95': 174}, 'region_average': {'targets': 395, 'pool_gain02': 3, 'pool_value_targets': 3, 'pool_value_scenes': 3, 'pool_delta_sum': 0.4307942412812604, 'new_cross_0.5': 0, 'new_cross_0.75': 0, 'new_cross_0.9': 1, 'new_cross_0.95': 2, 'baseline_coverage_0.5': 372, 'baseline_coverage_0.75': 340, 'baseline_coverage_0.9': 231, 'baseline_coverage_0.95': 174, 'expanded_coverage_0.5': 372, 'expanded_coverage_0.75': 340, 'expanded_coverage_0.9': 232, 'expanded_coverage_0.95': 176}}, 'training': False, 'threshold_changed': False, 'model_selected': False}}
+/home/jia/anaconda3/envs/myenv/lib/python3.11/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+verified scene0006_00 56 912 48
+verified scene0018_00 112 1320 96
+verified scene0102_00 168 2040 144
+verified scene0108_00 224 2688 192
+verified scene0113_01 280 2832 240
+verified scene0122_00 336 3072 288
+verified scene0137_00 392 3720 336
+verified scene0138_00 448 4848 384
+verified scene0140_01 504 5688 432
+verified scene0224_00 560 5928 480
+verified scene0301_02 616 6432 528
+verified scene0340_00 672 7200 576
+verified scene0369_00 728 7824 624
+verified scene0390_00 784 8472 672
+verified scene0440_00 840 8928 720
+verified scene0634_00 896 9480 768

@@ -1,0 +1,141 @@
+{
+  "complete": true,
+  "verification": {
+    "probes": 384,
+    "pool_targets": 1152,
+    "mapped_points": 2179520
+  },
+  "receipt_outputs_hashed": 189,
+  "code_snapshots_hashed": 12,
+  "scope_mislabels_in_this_sample": [],
+  "P1_region_gain_witnesses": [
+    {
+      "scene": "scene0126_02",
+      "target": 8016,
+      "baseline": 0.9164119137042537,
+      "expanded": 0.9454100794829243,
+      "candidate": "c003",
+      "source": "native",
+      "scope": "stable"
+    },
+    {
+      "scene": "scene0057_00",
+      "target": 98013,
+      "baseline": 0.04635576654565764,
+      "expanded": 0.2050438596491228,
+      "candidate": "c005",
+      "source": "track",
+      "scope": "stable"
+    },
+    {
+      "scene": "scene0313_02",
+      "target": 120008,
+      "baseline": 0.683898761443188,
+      "expanded": 0.7039473684210527,
+      "candidate": "c007",
+      "source": "track",
+      "scope": "stable"
+    },
+    {
+      "scene": "scene0160_00",
+      "target": 44002,
+      "baseline": 0.5888252148997135,
+      "expanded": 0.6358641358641358,
+      "candidate": "c007",
+      "source": "track",
+      "scope": "stable"
+    }
+  ],
+  "edit_counts_by_source": {
+    "P0_point:native": {
+      "added": 3409,
+      "deleted": 3549,
+      "unknown_edits": 2115,
+      "added_target": 443,
+      "added_other": 1894,
+      "deleted_target": 2215,
+      "deleted_other": 291
+    },
+    "P0_region:native": {
+      "added": 1525,
+      "deleted": 360,
+      "unknown_edits": 718,
+      "added_target": 135,
+      "added_other": 961,
+      "deleted_target": 65,
+      "deleted_other": 6
+    },
+    "P1_point:native": {
+      "added": 3081,
+      "deleted": 4154,
+      "unknown_edits": 2376,
+      "added_target": 624,
+      "added_other": 1779,
+      "deleted_target": 2153,
+      "deleted_other": 303
+    },
+    "P1_region:native": {
+      "added": 752,
+      "deleted": 1297,
+      "unknown_edits": 1291,
+      "added_target": 345,
+      "added_other": 399,
+      "deleted_target": 8,
+      "deleted_other": 6
+    },
+    "P0_point:track": {
+      "added": 10049,
+      "deleted": 7978,
+      "unknown_edits": 9474,
+      "added_target": 6758,
+      "added_other": 528,
+      "deleted_target": 686,
+      "deleted_other": 581
+    },
+    "P0_region:track": {
+      "added": 10082,
+      "deleted": 9647,
+      "unknown_edits": 11570,
+      "added_target": 7342,
+      "added_other": 94,
+      "deleted_target": 120,
+      "deleted_other": 603
+    },
+    "P1_point:track": {
+      "added": 9341,
+      "deleted": 9984,
+      "unknown_edits": 11080,
+      "added_target": 6383,
+      "added_other": 530,
+      "deleted_target": 715,
+      "deleted_other": 617
+    },
+    "P1_region:track": {
+      "added": 9251,
+      "deleted": 9689,
+      "unknown_edits": 11364,
+      "added_target": 6676,
+      "added_other": 94,
+      "deleted_target": 203,
+      "deleted_other": 603
+    }
+  },
+  "posthoc_edit_direction_ablations": {
+    "region_add_only": {
+      "value_targets": 2,
+      "gain02": 2,
+      "delta_sum": 0.21944794659652533
+    },
+    "region_delete_only": {
+      "value_targets": 1,
+      "gain02": 1,
+      "delta_sum": 0.042921450833410035
+    }
+  },
+  "limitations": [
+    "No GPU/model re-export or training rerun.",
+    "NT source loader reused; pointset readout, GT identity, counts and IoU independently implemented.",
+    "Posthoc direction ablations are diagnostic, not a selected deployment policy.",
+    "Original diagnostic artifacts were not modified."
+  ]
+}

@@ -2,11 +2,33 @@
 
 更新：2026-10-14。此文件维护“现在是什么状态”；数值与历史实验见[结果](资料/结果.md)，原因及下一步见[修改方向](资料/当前基线修改方向.md)，资产见[代码地图](资料/代码文件索引与当前主线地图.md)。
 
-## 2026-10-14 当前接续：清理完成，回到几何研究
+## 2026-10-14 最新完成：现有A/B固定跨场景评估，暂停当前修复器扩训
 
-**当前接续任务已由用户明确为：聚焦几何源码与实验，寻找现有问题、实现漏洞、失败机制及下一步可归因的修改方向。** 清理已完成，没有待恢复的旧训练或总控。上次对话完成了状态阅读与有限哈希核对，尚未完成系统几何问题分析；新的先验信息诊断与下一实验均未实施。本次只调整阅读路线与状态，不新增实验结论。
+[报告](research/geometry/experiments/fi1_query_transfer_eval_20261014_v1/report.md)／[判定](research/geometry/experiments/fi1_query_transfer_eval_20261014_v1/decision.json)／[核验](research/geometry/experiments/fi1_query_transfer_eval_20261014_v1/verification.json)。按用户最新授权，只在原selection16评估现有epoch64 A/B，原16训练父归一化与.8门固定，比较原NT、A、B、B_zero、原三次shuffle及已有区域平均.5。16物理场景与pilot训练隔离，128原父全部保留，原完整NT395目标作池基线；这是开发评估，未用最终holdout，不是全项目盲测。
 
-最新研究仍是10月13日冻结Mask3D特征A/B：B改善补点纯度和好父保护，但未兑现预定完整NT池收益；A接收无池价值，B校准弃权。源码已确认其只加入逐点特征，父条件仍聚合整个父点集，没有显式选定实例query或软mask。该设计是否构成失败主因仍需检验，不把历史建议直接当成结论，也不把研究局限于这一条假设。
+97稳定父平均IoU增量A−.016189/B−.014050；41好父损失>.02为10/9，最坏.457803/.438995。A仅1场景新增1个NT≥.02目标，B与B_zero均0，所有网络输出无固定档位覆盖新增。B减轻部分错误但自身仍不安全，不进入“选更简单A”或“继续query”分支。高置信误补/误删、机会余量及输入分布记录在报告；暂停当前配方扩训，不改阈值、不加网络或训练轮数。
+
+2项测试、896点集/9480全池记录独立复算、768模型概率回放和2743805原点映射通过。模型/归一化/旧封存/SL保留，没有新训练、校准、AP或生产替换。文档前后快照见[本次交接](docs/state_archive/20261014_query_transfer_eval/README.md)。
+
+以下为此前完成时点记录；原训练内失败不追改。
+
+## 2026-10-14 最新完成：同一父目标query小样本A/B未通过，停止扩量
+
+[报告](research/geometry/experiments/fi1_query_same_parent_pilot_20261014_v1/report.md)／[判定](research/geometry/experiments/fi1_query_same_parent_pilot_20261014_v1/decision.json)／[独立核验](research/geometry/experiments/fi1_query_same_parent_pilot_20261014_v1/verification.json)。fit96内固定16父、10物理场景，N/T各2好父、3删、3补；A/B同父GT/标签/损失/初始化/批次/64轮，B仅加P1无GTtop1 query概率。两臂均学会训练内补删，但B−A平均父IoU−.000128；置零下降仅.0000258，三次打乱均值反而提高.000725。共同3个完整NT池新增目标，B无A之外的新目标。未通过训练前冻结继续条件，未开展场景隔离扩量。
+
+4项测试、112点集/1912池记录独立复算、96最终模型概率回放通过，query实际进入forward。监督/输入/旧SL保留；不调阈值、不选更好轮、不混入多实例拆分。后续仅可另立监督/损失/条件融合机制对照，当前不继续扩大同一拼接训练；没有SL/AP或生产NT替换。原诊断阶段0—4和前序失败资产不改。文档前后快照见[本次交接](docs/state_archive/20261014_query_same_parent_pilot/README.md)。
+
+以下为此前完成时点的历史状态，其中“未训练”仅对应当时。
+
+## 2026-10-14 当前接续：N/T区域身份诊断阶段0—4完成
+
+**已按用户指令执行[方案](docs/FI1_NT_REGION_IDENTITY_NEXT_STEP_20261014.md)阶段0—4。** [报告](research/geometry/experiments/fi1_nt_region_identity_diagnostic_20261014_v1/report.md)／[汇总](research/geometry/experiments/fi1_nt_region_identity_diagnostic_20261014_v1/summary.json)。仅fit96哈希抽样12物理场景、96原父；完成N/T成员区域图、P0/RGB与P1/XYZ配对Mask3D、GT-free父/区域top2关联、四种固定.5探针与两阶段封存后GT诊断，没有新训练、校准或SL/AP。
+
+最新诊断表明：新区域保留部分机会但完整纯区补删只保留逐点可行构造8/12池价值目标；P1骨干/head与P0逐值相同，先验有局部身份信息，稳定父top1同身份72/72，但直接原点mask改写伤害好父。P1区域/原点探针池价值4/1，区域未知编辑约60.29%，不是安全修复。完整数值及证据边界见报告。
+
+**后续方案已按用户建议修订为[同一父目标query A/B](docs/FI1_QUERY_SAME_PARENT_AB_NEXT_STEP_20261014.md)。** A/B同父目标、同标签/忽略掩码/损失/预算，B仅增加无GT query逐点软概率；原“监督跟随query身份”不用于本轮。先做补点/删除/好父小样本学习与query置零/打乱，未通过则停止扩量；通过后才考虑场景隔离内部评估，比较原NT、已有区域平均、A、B。混合父拆分另立任务，小样本contract/名单和训练尚未启动。
+
+6项本项测试、384探针/1152池目标独立集合复算与2179520原点映射通过；补充核验覆盖区域连通性、480可行点集/1440池目标及28800原始query读出。原父/halo/六帧可见性、旧特征/模型/SL身份保留。新产物独立位于项目research目录，GPU宿主local_tmux串行任务已退出0，不恢复旧总控；各阶段封存和交付入口见报告。
 
 **阅读方式以[几何问题分析入口](新开对话阅读内容.md)为准。** 先看最新有效报告/协议和相关源码，再按具体疑点追历史审计；不通读本文件的全部历史、Full/597/Replica/清理/交付材料，不例行复核全部seal/hash。分析需区分已确认漏洞、设计局限与原因假设，提出具体修改及最小验证对照。下文保留历史状态供按需检索，旧“先核对全部回执”等表述不作为新对话的默认阅读要求。
 
@@ -24,7 +46,7 @@
 
 > **语义与选择仍有提升空间；SL也不是已经达到上限。当前先做几何提升，固定SL作为评分基线。语义、成员选择与重复处理暂缓，不能写成已解决。**
 
-**2026-10-14 状态复核：** 已对照最新Mask3D特征A/B的completion_verified、interpretation和execution回执，确认本轮训练、预测、校准、点集评测及独立核验已完成并封存。当前停在实验结论与后续问题界定：B减少误补和好候选损害，但未达到预定完整NT池收益；A接收无池价值，B校准弃权。下一步先检查实例先验与父目标条件是否提供有效身份信息，尤其混合父如何指向明确目标；该检查及下一项实验尚未启动。本次仅更新状态，不恢复已完成总控，不追加CliqueNet、质量头、选帧改动或新阈值；生产Full与冻结SL保持原身份。
+**2026-10-14前序状态复核（诊断执行前）：** 已确认Mask3D特征A/B完成，A接收无池价值、B校准弃权。当时的先验身份信息检查建议已由本页最新N/T诊断执行；A/B原模型、规则、数值和回执不改，生产Full与冻结SL保持原身份。新query条件训练仍未启动。
 
 此前清理交接曾同步新对话入口、修改方向、结果、代码地图及docs/CODEX_HANDOFF；该时点文档快照和哈希见[清理后几何交接](docs/state_archive/20261014_post_cleanup_geometry_handoff/README.md)；[此前研究交接](docs/state_archive/20261014_mask3d_feature_ab_handoff/README.md)保留为历史时点。10月13日交付回执中的文档哈希仍对应当时快照，原实验模型、预测、规则和回执保留。
 
@@ -134,7 +156,7 @@ B增强删除召回但大量误删目标，C相对B降低风险却丢失补点�
 
 ## Replica生产Full迁移评测：完成
 
-2026-10-12复现资产已就位：`docs/experiment_summaries/replica_official_input/replica_masks/`包含office0—office4、room0—room2的8个官方候选文件，逐文件SHA256与作者发布包核验记录一致。[复现入口](docs/experiment_summaries/replica_official_input/README.md)／[安装清单](docs/experiment_summaries/replica_official_input/official_replica_masks_manifest.json)；原隔离资产与封存合同保留，本次没有新评测。
+2026-10-12复现资产已就位：`output/replica/replica_masks/`包含office0—office4、room0—room2的8个官方候选文件，逐文件SHA256与作者发布包核验记录一致。[复现入口](docs/experiment_summaries/replica_official_input/README.md)／[安装清单](docs/experiment_summaries/replica_official_input/official_replica_masks_manifest.json)；原隔离资产与封存合同保留，本次没有新评测。
 
 官方掩码重新评测已完成：[报告](docs/experiment_summaries/replica_official_masks_full_20261011_v1/report.md)／[结果](docs/experiment_summaries/replica_official_masks_full_20261011_v1/evaluation/results.json)。基线类别AP/AP50/AP25＝23.658381／28.570491／34.810598%，按论文一位小数复现23.7／28.6／34.8；登记GD10＋official100 D-v3＋匹配597 B26／Full／K800＝24.567057／32.026546／40.887651%。实际输出去类AP基线27.639376%、Full26.193269%；类别AP＋0.908676pp、去类−1.446107pp，没有双口径改善，不替换生产或SL。
 

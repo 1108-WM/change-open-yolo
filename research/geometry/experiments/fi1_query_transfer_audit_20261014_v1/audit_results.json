@@ -1,0 +1,451 @@
+{
+  "complete": true,
+  "physical_scene_isolation": true,
+  "hash_checks": 564,
+  "counts": {
+    "pointsets": 896,
+    "pool_rows": 9480,
+    "mapping_points": 2743805,
+    "parents": 128,
+    "stable": 97,
+    "opportunities": 97
+  },
+  "metrics": {
+    "A": {
+      "stable": 97,
+      "delta_sum": -1.5703138033946575,
+      "good": 41,
+      "good_loss02": 10,
+      "worst_good_loss": 0.4578034682080925,
+      "added_target": 2496,
+      "added_other": 4491,
+      "deleted_target": 752,
+      "deleted_other": 81,
+      "unknown_edits": 3918,
+      "edits": 11738,
+      "pool_gain02": 1,
+      "pool_delta_sum": 0.0504844467108618,
+      "pool_targets": [
+        [
+          "scene0301_02",
+          44014
+        ]
+      ],
+      "negative_scenes": [
+        "scene0018_00",
+        "scene0102_00",
+        "scene0108_00",
+        "scene0113_01",
+        "scene0122_00",
+        "scene0137_00",
+        "scene0140_01",
+        "scene0340_00",
+        "scene0369_00",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "good_loss_scenes": [
+        "scene0006_00",
+        "scene0108_00",
+        "scene0140_01",
+        "scene0301_02",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "mean_delta": -0.01618880209685214
+    },
+    "B": {
+      "stable": 97,
+      "delta_sum": -1.3628218390693947,
+      "good": 41,
+      "good_loss02": 9,
+      "worst_good_loss": 0.4389952153110048,
+      "added_target": 2563,
+      "added_other": 3518,
+      "deleted_target": 802,
+      "deleted_other": 157,
+      "unknown_edits": 3893,
+      "edits": 10933,
+      "pool_gain02": 0,
+      "pool_delta_sum": 0.01687656635300877,
+      "pool_targets": [],
+      "negative_scenes": [
+        "scene0018_00",
+        "scene0102_00",
+        "scene0108_00",
+        "scene0122_00",
+        "scene0137_00",
+        "scene0140_01",
+        "scene0301_02",
+        "scene0369_00",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "good_loss_scenes": [
+        "scene0006_00",
+        "scene0108_00",
+        "scene0140_01",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "mean_delta": -0.01404970968112778
+    },
+    "B_zero": {
+      "stable": 97,
+      "delta_sum": -1.628330838315098,
+      "good": 41,
+      "good_loss02": 9,
+      "worst_good_loss": 0.46153846153846156,
+      "added_target": 2092,
+      "added_other": 3730,
+      "deleted_target": 865,
+      "deleted_other": 162,
+      "unknown_edits": 3795,
+      "edits": 10644,
+      "pool_gain02": 0,
+      "pool_delta_sum": 0.008629565814107135,
+      "pool_targets": [],
+      "negative_scenes": [
+        "scene0018_00",
+        "scene0102_00",
+        "scene0108_00",
+        "scene0113_01",
+        "scene0122_00",
+        "scene0137_00",
+        "scene0140_01",
+        "scene0301_02",
+        "scene0340_00",
+        "scene0369_00",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "good_loss_scenes": [
+        "scene0006_00",
+        "scene0108_00",
+        "scene0140_01",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "mean_delta": -0.016786915858918536
+    },
+    "B_shuffle_0": {
+      "stable": 97,
+      "delta_sum": -1.7031314249152922,
+      "good": 41,
+      "good_loss02": 11,
+      "worst_good_loss": 0.4627720504009164,
+      "added_target": 2605,
+      "added_other": 4351,
+      "deleted_target": 801,
+      "deleted_other": 147,
+      "unknown_edits": 4168,
+      "edits": 12072,
+      "pool_gain02": 0,
+      "pool_delta_sum": 0.010694531878813696,
+      "pool_targets": [],
+      "negative_scenes": [
+        "scene0018_00",
+        "scene0102_00",
+        "scene0108_00",
+        "scene0122_00",
+        "scene0137_00",
+        "scene0140_01",
+        "scene0301_02",
+        "scene0340_00",
+        "scene0369_00",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "good_loss_scenes": [
+        "scene0006_00",
+        "scene0108_00",
+        "scene0140_01",
+        "scene0301_02",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "mean_delta": -0.017558055926961774
+    },
+    "B_shuffle_1": {
+      "stable": 97,
+      "delta_sum": -1.7197182087301066,
+      "good": 41,
+      "good_loss02": 10,
+      "worst_good_loss": 0.4633867276887872,
+      "added_target": 2583,
+      "added_other": 4370,
+      "deleted_target": 796,
+      "deleted_other": 143,
+      "unknown_edits": 4177,
+      "edits": 12069,
+      "pool_gain02": 0,
+      "pool_delta_sum": 0.008669046404895464,
+      "pool_targets": [],
+      "negative_scenes": [
+        "scene0018_00",
+        "scene0102_00",
+        "scene0108_00",
+        "scene0122_00",
+        "scene0137_00",
+        "scene0140_01",
+        "scene0301_02",
+        "scene0340_00",
+        "scene0369_00",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "good_loss_scenes": [
+        "scene0006_00",
+        "scene0108_00",
+        "scene0140_01",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "mean_delta": -0.017729053698248523
+    },
+    "B_shuffle_2": {
+      "stable": 97,
+      "delta_sum": -1.724808709642399,
+      "good": 41,
+      "good_loss02": 10,
+      "worst_good_loss": 0.4627720504009164,
+      "added_target": 2588,
+      "added_other": 4375,
+      "deleted_target": 796,
+      "deleted_other": 146,
+      "unknown_edits": 4214,
+      "edits": 12119,
+      "pool_gain02": 0,
+      "pool_delta_sum": 0.009800441835239038,
+      "pool_targets": [],
+      "negative_scenes": [
+        "scene0018_00",
+        "scene0102_00",
+        "scene0108_00",
+        "scene0113_01",
+        "scene0122_00",
+        "scene0137_00",
+        "scene0140_01",
+        "scene0301_02",
+        "scene0340_00",
+        "scene0369_00",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "good_loss_scenes": [
+        "scene0006_00",
+        "scene0108_00",
+        "scene0140_01",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "mean_delta": -0.017781533089096895
+    },
+    "region_average": {
+      "stable": 97,
+      "delta_sum": 1.9488663986723105,
+      "good": 41,
+      "good_loss02": 0,
+      "worst_good_loss": 0.009053790165098441,
+      "added_target": 7772,
+      "added_other": 110,
+      "deleted_target": 510,
+      "deleted_other": 1118,
+      "unknown_edits": 31666,
+      "edits": 41176,
+      "pool_gain02": 3,
+      "pool_delta_sum": 0.4307942412812604,
+      "pool_targets": [
+        [
+          "scene0301_02",
+          44014
+        ],
+        [
+          "scene0369_00",
+          5008
+        ],
+        [
+          "scene0440_00",
+          36017
+        ]
+      ],
+      "negative_scenes": [
+        "scene0340_00"
+      ],
+      "good_loss_scenes": [],
+      "mean_delta": 0.02009140617187949
+    },
+    "B_add_only": {
+      "stable": 97,
+      "delta_sum": -1.192753989424348,
+      "good": 41,
+      "good_loss02": 8,
+      "worst_good_loss": 0.4389952153110048,
+      "added_target": 2563,
+      "added_other": 3518,
+      "deleted_target": 0,
+      "deleted_other": 0,
+      "unknown_edits": 3150,
+      "edits": 9231,
+      "pool_gain02": 0,
+      "pool_delta_sum": 0.015714525010930347,
+      "pool_targets": [],
+      "negative_scenes": [
+        "scene0018_00",
+        "scene0102_00",
+        "scene0108_00",
+        "scene0122_00",
+        "scene0137_00",
+        "scene0140_01",
+        "scene0369_00",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "good_loss_scenes": [
+        "scene0006_00",
+        "scene0108_00",
+        "scene0140_01",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "mean_delta": -0.01229643288066338
+    },
+    "B_delete_only": {
+      "stable": 97,
+      "delta_sum": -0.16966044973640193,
+      "good": 41,
+      "good_loss02": 1,
+      "worst_good_loss": 0.062001318529345206,
+      "added_target": 0,
+      "added_other": 0,
+      "deleted_target": 802,
+      "deleted_other": 157,
+      "unknown_edits": 743,
+      "edits": 1702,
+      "pool_gain02": 0,
+      "pool_delta_sum": 0.0047493424275121265,
+      "pool_targets": [],
+      "negative_scenes": [
+        "scene0102_00",
+        "scene0108_00",
+        "scene0113_01",
+        "scene0122_00",
+        "scene0140_01",
+        "scene0301_02",
+        "scene0369_00",
+        "scene0390_00"
+      ],
+      "good_loss_scenes": [
+        "scene0140_01"
+      ],
+      "mean_delta": -0.0017490768014062055
+    },
+    "B_query_agreement_05": {
+      "stable": 97,
+      "delta_sum": 0.5113312992394141,
+      "good": 41,
+      "good_loss02": 1,
+      "worst_good_loss": 0.030011000549005074,
+      "added_target": 2121,
+      "added_other": 421,
+      "deleted_target": 147,
+      "deleted_other": 91,
+      "unknown_edits": 1335,
+      "edits": 4115,
+      "pool_gain02": 0,
+      "pool_delta_sum": 0.01095515473301717,
+      "pool_targets": [],
+      "negative_scenes": [
+        "scene0102_00",
+        "scene0390_00",
+        "scene0440_00",
+        "scene0634_00"
+      ],
+      "good_loss_scenes": [
+        "scene0108_00"
+      ],
+      "mean_delta": 0.005271456693189836
+    }
+  },
+  "opportunities": {
+    "addition": 11032,
+    "deletion": 2745,
+    "known_delta_sum": 3.93415433081786
+  },
+  "B_confident_errors": {
+    "wrong_add_total": 3518,
+    "wrong_add_ge95": 2423,
+    "wrong_add_query_lt05": 3097,
+    "wrong_delete_total": 802,
+    "wrong_delete_ge95": 209,
+    "wrong_delete_query_ge05": 655
+  },
+  "region_gain_witnesses": [
+    {
+      "scene": "scene0301_02",
+      "candidate": "c004",
+      "source": "track",
+      "stable": true,
+      "scope": "stable",
+      "target": 44014,
+      "baseline": 0.09994900560938297,
+      "after": 0.2947686116700201
+    },
+    {
+      "scene": "scene0301_02",
+      "candidate": "c007",
+      "source": "track",
+      "stable": true,
+      "scope": "stable",
+      "target": 44014,
+      "baseline": 0.09994900560938297,
+      "after": 0.37359836901121307
+    },
+    {
+      "scene": "scene0369_00",
+      "candidate": "c006",
+      "source": "track",
+      "stable": true,
+      "scope": "stable",
+      "target": 5008,
+      "baseline": 0.8600529639437767,
+      "after": 0.9704106280193237
+    },
+    {
+      "scene": "scene0440_00",
+      "candidate": "c001",
+      "source": "native",
+      "stable": true,
+      "scope": "stable",
+      "target": 36017,
+      "baseline": 0.931554524361949,
+      "after": 0.9709794437726723
+    }
+  ],
+  "scope_mislabels": [],
+  "posthoc_rules": [
+    "B_add_only",
+    "B_delete_only",
+    "B_query_agreement_05"
+  ],
+  "limitations": [
+    "No GPU or model re-export/replay in this audit; original replay receipt is checked, not rerun.",
+    "Shared NT input loader only; readout, GT identity and IoU independently implemented.",
+    "Extra rules are posthoc sensitivity diagnostics on already inspected data, not new validation or deployable decisions.",
+    "No training, production changes, original seal changes, or threshold selection."
+  ]
+}

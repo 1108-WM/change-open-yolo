@@ -1,0 +1,176 @@
+{
+  "checks": {
+    "addition_learned": true,
+    "both_sources": false,
+    "deletion_learned": true,
+    "good_not_worse_than_A": true,
+    "good_preservation": true,
+    "mean_advantage": false,
+    "multi_parent_advantage": false,
+    "no_drift": true,
+    "safe_add": true,
+    "safe_delete": true,
+    "shuffle_dependency": false,
+    "target_preservation": true,
+    "unknown": true,
+    "zero_dependency": false
+  },
+  "continue_scene_isolated": false,
+  "failed": [
+    "mean_advantage",
+    "multi_parent_advantage",
+    "both_sources",
+    "zero_dependency",
+    "shuffle_dependency"
+  ],
+  "mean_advantage": -0.00012784018591206064,
+  "mean_shuffle_drop": -0.0007249479800775782,
+  "mean_zero_drop": 2.5781108395558916e-05,
+  "paired": [
+    {
+      "advantage": 0.0,
+      "candidate_id": "c000",
+      "category": "good",
+      "scene": "scene0536_02",
+      "shuffle_drop": 0.0,
+      "source": "native",
+      "zero_drop": 0.0
+    },
+    {
+      "advantage": 0.0,
+      "candidate_id": "c001",
+      "category": "good",
+      "scene": "scene0051_00",
+      "shuffle_drop": 0.0,
+      "source": "native",
+      "zero_drop": 0.0
+    },
+    {
+      "advantage": -0.0017318409828249726,
+      "candidate_id": "c002",
+      "category": "deletion",
+      "scene": "scene0627_01",
+      "shuffle_drop": -0.00018799876103781088,
+      "source": "native",
+      "zero_drop": -0.0006052459419568779
+    },
+    {
+      "advantage": -0.000203110422530961,
+      "candidate_id": "c000",
+      "category": "deletion",
+      "scene": "scene0057_00",
+      "shuffle_drop": -6.770347417695e-05,
+      "source": "native",
+      "zero_drop": -0.000203110422530961
+    },
+    {
+      "advantage": -0.0021095902787188203,
+      "candidate_id": "c000",
+      "category": "deletion",
+      "scene": "scene0051_00",
+      "shuffle_drop": -0.00260047281323883,
+      "source": "native",
+      "zero_drop": 0.0
+    },
+    {
+      "advantage": 0.003727485159417454,
+      "candidate_id": "c003",
+      "category": "addition",
+      "scene": "scene0057_00",
+      "shuffle_drop": 0.00010534404959317012,
+      "source": "native",
+      "zero_drop": -0.0006166975449396483
+    },
+    {
+      "advantage": 0.0,
+      "candidate_id": "c001",
+      "category": "addition",
+      "scene": "scene0627_01",
+      "shuffle_drop": -0.0031953522149600344,
+      "source": "native",
+      "zero_drop": 0.0
+    },
+    {
+      "advantage": 0.0,
+      "candidate_id": "c000",
+      "category": "addition",
+      "scene": "scene0313_02",
+      "shuffle_drop": -0.0003361062095622591,
+      "source": "native",
+      "zero_drop": 0.0
+    },
+    {
+      "advantage": 0.0,
+      "candidate_id": "c005",
+      "category": "good",
+      "scene": "scene0419_02",
+      "shuffle_drop": 0.0,
+      "source": "track",
+      "zero_drop": 0.0
+    },
+    {
+      "advantage": 0.0,
+      "candidate_id": "c005",
+      "category": "good",
+      "scene": "scene0160_00",
+      "shuffle_drop": 0.0,
+      "source": "track",
+      "zero_drop": 0.0004046944556860277
+    },
+    {
+      "advantage": -0.0008022462896110083,
+      "candidate_id": "c005",
+      "category": "deletion",
+      "scene": "scene0076_00",
+      "shuffle_drop": -0.0013370771493516065,
+      "source": "track",
+      "zero_drop": -0.00040112314480555966
+    },
+    {
+      "advantage": 0.00010434051317786963,
+      "candidate_id": "c005",
+      "category": "deletion",
+      "scene": "scene0313_02",
+      "shuffle_drop": -0.00015618497715708113,
+      "source": "track",
+      "zero_drop": -0.0007300357905350996
+    },
+    {
+      "advantage": 4.486864987152117e-05,
+      "candidate_id": "c005",
+      "category": "deletion",
+      "scene": "scene0627_01",
+      "shuffle_drop": -0.0003544846591515549,
+      "source": "track",
+      "zero_drop": 0.0003498476496723857
+    },
+    {
+      "advantage": 0.0,
+      "candidate_id": "c007",
+      "category": "addition",
+      "scene": "scene0611_00",
+      "shuffle_drop": 0.0,
+      "source": "track",
+      "zero_drop": 0.0
+    },
+    {
+      "advantage": 0.0,
+      "candidate_id": "c006",
+      "category": "addition",
+      "scene": "scene0029_02",
+      "shuffle_drop": -0.0006816632583503957,
+      "source": "track",
+      "zero_drop": 0.0
+    },
+    {
+      "advantage": -0.001075349323374053,
+      "candidate_id": "c004",
+      "category": "addition",
+      "scene": "scene0160_00",
+      "shuffle_drop": -0.002787468213847899,
+      "source": "track",
+      "zero_drop": 0.0022141684737386758
+    }
+  ],
+  "passed": false
+}
