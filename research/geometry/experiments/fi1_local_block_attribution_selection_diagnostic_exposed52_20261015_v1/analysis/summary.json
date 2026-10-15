@@ -1,0 +1,792 @@
+{
+  "categorical_collisions_do_not_prove_raw_information_inseparability": true,
+  "cells_with_target_neighbor_collision": 36,
+  "groups": {
+    "all": {
+      "blocks": 1308,
+      "has_common": 130,
+      "has_conflict": 85,
+      "has_unknown": 187,
+      "low_parent_coverage_le_half": 735,
+      "no_common": 1178,
+      "ownership": {
+        "mixed_known": 23,
+        "other_only": 391,
+        "other_unknown": 29,
+        "target_only": 341,
+        "target_unknown": 15,
+        "unknown_only": 45,
+        "unresolved_parent": 464
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.002587333900333438,
+        0.14354443639217573,
+        0.9675364051045249,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 0.5335989143282406,
+          "other": 31962,
+          "points": 70771,
+          "target": 36567,
+          "target_precision": 0.516694691328369,
+          "unknown": 2242
+        },
+        "W": {
+          "annotated_target_precision": 0.4167878821020397,
+          "other": 53326,
+          "points": 94280,
+          "target": 38109,
+          "target_precision": 0.40421086126431904,
+          "unknown": 2845
+        },
+        "discarded": {
+          "annotated_target_precision": 0.06731860647865189,
+          "other": 21364,
+          "points": 23509,
+          "target": 1542,
+          "target_precision": 0.06559190097409502,
+          "unknown": 603
+        },
+        "neighbor_rejection": 0.4006300866369126,
+        "target_retention": 0.9595371172164056,
+        "unknown_retention": 0.78804920913884
+      },
+      "scenes": 52,
+      "stable_blocks": 844,
+      "zero_anchor_overlap": 446,
+      "zero_parent_support": 249
+    },
+    "neighbor_only": {
+      "blocks": 391,
+      "has_common": 16,
+      "has_conflict": 32,
+      "has_unknown": 0,
+      "low_parent_coverage_le_half": 337,
+      "no_common": 375,
+      "ownership": {
+        "other_only": 391
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.0,
+        0.007782101167315175,
+        0.09516129032258064,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 0.0,
+          "other": 29015,
+          "points": 29015,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 0
+        },
+        "W": {
+          "annotated_target_precision": 0.0,
+          "other": 45188,
+          "points": 45188,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 0
+        },
+        "discarded": {
+          "annotated_target_precision": 0.0,
+          "other": 16173,
+          "points": 16173,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 0
+        },
+        "neighbor_rejection": 0.3579047534743737,
+        "target_retention": null,
+        "unknown_retention": null
+      },
+      "scenes": 49,
+      "stable_blocks": 391,
+      "zero_anchor_overlap": 220,
+      "zero_parent_support": 138
+    },
+    "pure_target": {
+      "blocks": 341,
+      "has_common": 38,
+      "has_conflict": 26,
+      "has_unknown": 0,
+      "low_parent_coverage_le_half": 24,
+      "no_common": 303,
+      "ownership": {
+        "target_only": 341
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.9412262156448203,
+        0.9938623410784744,
+        1.0,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 32318,
+          "target": 32318,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "W": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 32842,
+          "target": 32842,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "discarded": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 524,
+          "target": 524,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "neighbor_rejection": null,
+        "target_retention": 0.9840448206564765,
+        "unknown_retention": null
+      },
+      "scenes": 51,
+      "stable_blocks": 341,
+      "zero_anchor_overlap": 9,
+      "zero_parent_support": 5
+    },
+    "stable": {
+      "blocks": 844,
+      "has_common": 60,
+      "has_conflict": 62,
+      "has_unknown": 94,
+      "low_parent_coverage_le_half": 425,
+      "no_common": 784,
+      "ownership": {
+        "mixed_known": 23,
+        "other_only": 391,
+        "other_unknown": 29,
+        "target_only": 341,
+        "target_unknown": 15,
+        "unknown_only": 45
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.0027157101302073346,
+        0.38090128755364805,
+        0.9904186909508144,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 0.5335989143282406,
+          "other": 31962,
+          "points": 70771,
+          "target": 36567,
+          "target_precision": 0.516694691328369,
+          "unknown": 2242
+        },
+        "W": {
+          "annotated_target_precision": 0.4167878821020397,
+          "other": 53326,
+          "points": 94280,
+          "target": 38109,
+          "target_precision": 0.40421086126431904,
+          "unknown": 2845
+        },
+        "discarded": {
+          "annotated_target_precision": 0.06731860647865189,
+          "other": 21364,
+          "points": 23509,
+          "target": 1542,
+          "target_precision": 0.06559190097409502,
+          "unknown": 603
+        },
+        "neighbor_rejection": 0.4006300866369126,
+        "target_retention": 0.9595371172164056,
+        "unknown_retention": 0.78804920913884
+      },
+      "scenes": 52,
+      "stable_blocks": 844,
+      "zero_anchor_overlap": 270,
+      "zero_parent_support": 173
+    },
+    "target_neighbor_mixed": {
+      "blocks": 23,
+      "has_common": 2,
+      "has_conflict": 0,
+      "has_unknown": 5,
+      "low_parent_coverage_le_half": 14,
+      "no_common": 21,
+      "ownership": {
+        "mixed_known": 23
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.001061778585635638,
+        0.019327129563350035,
+        0.9519585270792891,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 0.5002891844997108,
+          "other": 864,
+          "points": 1947,
+          "target": 865,
+          "target_precision": 0.44427324088341036,
+          "unknown": 218
+        },
+        "W": {
+          "annotated_target_precision": 0.3636558219178082,
+          "other": 2973,
+          "points": 4941,
+          "target": 1699,
+          "target_precision": 0.3438575187209067,
+          "unknown": 269
+        },
+        "discarded": {
+          "annotated_target_precision": 0.28338430173292556,
+          "other": 2109,
+          "points": 2994,
+          "target": 834,
+          "target_precision": 0.2785571142284569,
+          "unknown": 51
+        },
+        "neighbor_rejection": 0.7093844601412714,
+        "target_retention": 0.5091230135373749,
+        "unknown_retention": 0.8104089219330854
+      },
+      "scenes": 18,
+      "stable_blocks": 23,
+      "zero_anchor_overlap": 6,
+      "zero_parent_support": 5
+    },
+    "unresolved_parent": {
+      "blocks": 464,
+      "has_common": 70,
+      "has_conflict": 23,
+      "has_unknown": 93,
+      "low_parent_coverage_le_half": 310,
+      "no_common": 394,
+      "ownership": {
+        "unresolved_parent": 464
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.0024950989128497596,
+        0.08198198198198198,
+        0.7809689894891689,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 0,
+          "target": 0,
+          "target_precision": null,
+          "unknown": 0
+        },
+        "W": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 0,
+          "target": 0,
+          "target_precision": null,
+          "unknown": 0
+        },
+        "discarded": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 0,
+          "target": 0,
+          "target_precision": null,
+          "unknown": 0
+        },
+        "neighbor_rejection": null,
+        "target_retention": null,
+        "unknown_retention": null
+      },
+      "scenes": 40,
+      "stable_blocks": 0,
+      "zero_anchor_overlap": 176,
+      "zero_parent_support": 76
+    },
+    "valuable_point_contributors": {
+      "blocks": 32,
+      "has_common": 3,
+      "has_conflict": 4,
+      "has_unknown": 4,
+      "low_parent_coverage_le_half": 11,
+      "no_common": 29,
+      "ownership": {
+        "mixed_known": 3,
+        "target_only": 27,
+        "target_unknown": 2
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.37178754997144486,
+        0.9020552344251767,
+        0.9861190592728306,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 0.9491850431447747,
+          "other": 159,
+          "points": 3218,
+          "target": 2970,
+          "target_precision": 0.9229334990677439,
+          "unknown": 89
+        },
+        "W": {
+          "annotated_target_precision": 0.9107665301345816,
+          "other": 305,
+          "points": 3592,
+          "target": 3113,
+          "target_precision": 0.8666481069042317,
+          "unknown": 174
+        },
+        "discarded": {
+          "annotated_target_precision": 0.49480968858131485,
+          "other": 146,
+          "points": 374,
+          "target": 143,
+          "target_precision": 0.38235294117647056,
+          "unknown": 85
+        },
+        "neighbor_rejection": 0.4786885245901639,
+        "target_retention": 0.9540636042402827,
+        "unknown_retention": 0.5114942528735632
+      },
+      "scenes": 7,
+      "stable_blocks": 32,
+      "zero_anchor_overlap": 2,
+      "zero_parent_support": 1
+    },
+    "valuable_pure_contributors": {
+      "blocks": 21,
+      "has_common": 3,
+      "has_conflict": 4,
+      "has_unknown": 0,
+      "low_parent_coverage_le_half": 9,
+      "no_common": 18,
+      "ownership": {
+        "target_only": 21
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.37178754997144486,
+        0.5234486025580294,
+        0.9020552344251767,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 1746,
+          "target": 1746,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "W": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 1760,
+          "target": 1760,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "discarded": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 14,
+          "target": 14,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "neighbor_rejection": null,
+        "target_retention": 0.9920454545454546,
+        "unknown_retention": null
+      },
+      "scenes": 5,
+      "stable_blocks": 21,
+      "zero_anchor_overlap": 1,
+      "zero_parent_support": 1
+    }
+  },
+  "no_AUC_threshold": true,
+  "no_GT_fitted_rule": true,
+  "point_selection_by_ownership": {
+    "mixed_known": {
+      "blocks": 23,
+      "has_common": 2,
+      "has_conflict": 0,
+      "has_unknown": 5,
+      "low_parent_coverage_le_half": 14,
+      "no_common": 21,
+      "ownership": {
+        "mixed_known": 23
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.001061778585635638,
+        0.019327129563350035,
+        0.9519585270792891,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 0.5002891844997108,
+          "other": 864,
+          "points": 1947,
+          "target": 865,
+          "target_precision": 0.44427324088341036,
+          "unknown": 218
+        },
+        "W": {
+          "annotated_target_precision": 0.3636558219178082,
+          "other": 2973,
+          "points": 4941,
+          "target": 1699,
+          "target_precision": 0.3438575187209067,
+          "unknown": 269
+        },
+        "discarded": {
+          "annotated_target_precision": 0.28338430173292556,
+          "other": 2109,
+          "points": 2994,
+          "target": 834,
+          "target_precision": 0.2785571142284569,
+          "unknown": 51
+        },
+        "neighbor_rejection": 0.7093844601412714,
+        "target_retention": 0.5091230135373749,
+        "unknown_retention": 0.8104089219330854
+      },
+      "scenes": 18,
+      "stable_blocks": 23,
+      "zero_anchor_overlap": 6,
+      "zero_parent_support": 5
+    },
+    "other_only": {
+      "blocks": 391,
+      "has_common": 16,
+      "has_conflict": 32,
+      "has_unknown": 0,
+      "low_parent_coverage_le_half": 337,
+      "no_common": 375,
+      "ownership": {
+        "other_only": 391
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.0,
+        0.007782101167315175,
+        0.09516129032258064,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 0.0,
+          "other": 29015,
+          "points": 29015,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 0
+        },
+        "W": {
+          "annotated_target_precision": 0.0,
+          "other": 45188,
+          "points": 45188,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 0
+        },
+        "discarded": {
+          "annotated_target_precision": 0.0,
+          "other": 16173,
+          "points": 16173,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 0
+        },
+        "neighbor_rejection": 0.3579047534743737,
+        "target_retention": null,
+        "unknown_retention": null
+      },
+      "scenes": 49,
+      "stable_blocks": 391,
+      "zero_anchor_overlap": 220,
+      "zero_parent_support": 138
+    },
+    "other_unknown": {
+      "blocks": 29,
+      "has_common": 1,
+      "has_conflict": 2,
+      "has_unknown": 29,
+      "low_parent_coverage_le_half": 25,
+      "no_common": 28,
+      "ownership": {
+        "other_unknown": 29
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.034283353985956215,
+        0.9709938183547313
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 0.0,
+          "other": 2083,
+          "points": 2467,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 384
+        },
+        "W": {
+          "annotated_target_precision": 0.0,
+          "other": 5165,
+          "points": 5818,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 653
+        },
+        "discarded": {
+          "annotated_target_precision": 0.0,
+          "other": 3082,
+          "points": 3351,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 269
+        },
+        "neighbor_rejection": 0.5967086156824782,
+        "target_retention": null,
+        "unknown_retention": 0.5880551301684533
+      },
+      "scenes": 20,
+      "stable_blocks": 29,
+      "zero_anchor_overlap": 18,
+      "zero_parent_support": 15
+    },
+    "target_only": {
+      "blocks": 341,
+      "has_common": 38,
+      "has_conflict": 26,
+      "has_unknown": 0,
+      "low_parent_coverage_le_half": 24,
+      "no_common": 303,
+      "ownership": {
+        "target_only": 341
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.9412262156448203,
+        0.9938623410784744,
+        1.0,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 32318,
+          "target": 32318,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "W": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 32842,
+          "target": 32842,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "discarded": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 524,
+          "target": 524,
+          "target_precision": 1.0,
+          "unknown": 0
+        },
+        "neighbor_rejection": null,
+        "target_retention": 0.9840448206564765,
+        "unknown_retention": null
+      },
+      "scenes": 51,
+      "stable_blocks": 341,
+      "zero_anchor_overlap": 9,
+      "zero_parent_support": 5
+    },
+    "target_unknown": {
+      "blocks": 15,
+      "has_common": 0,
+      "has_conflict": 1,
+      "has_unknown": 15,
+      "low_parent_coverage_le_half": 0,
+      "no_common": 15,
+      "ownership": {
+        "target_unknown": 15
+      },
+      "parent_hard_fraction_quantiles": [
+        0.6831168831168831,
+        0.9378397355553558,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 3801,
+          "target": 3384,
+          "target_precision": 0.8902920284135754,
+          "unknown": 417
+        },
+        "W": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 4122,
+          "target": 3568,
+          "target_precision": 0.8655992236778263,
+          "unknown": 554
+        },
+        "discarded": {
+          "annotated_target_precision": 1.0,
+          "other": 0,
+          "points": 321,
+          "target": 184,
+          "target_precision": 0.573208722741433,
+          "unknown": 137
+        },
+        "neighbor_rejection": null,
+        "target_retention": 0.9484304932735426,
+        "unknown_retention": 0.7527075812274369
+      },
+      "scenes": 11,
+      "stable_blocks": 15,
+      "zero_anchor_overlap": 0,
+      "zero_parent_support": 0
+    },
+    "unknown_only": {
+      "blocks": 45,
+      "has_common": 3,
+      "has_conflict": 1,
+      "has_unknown": 45,
+      "low_parent_coverage_le_half": 25,
+      "no_common": 42,
+      "ownership": {
+        "unknown_only": 45
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.0009153318077803204,
+        0.06178489702517163,
+        0.788235294117647,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 1223,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 1223
+        },
+        "W": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 1369,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 1369
+        },
+        "discarded": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 146,
+          "target": 0,
+          "target_precision": 0.0,
+          "unknown": 146
+        },
+        "neighbor_rejection": null,
+        "target_retention": null,
+        "unknown_retention": 0.8933528122717312
+      },
+      "scenes": 22,
+      "stable_blocks": 45,
+      "zero_anchor_overlap": 17,
+      "zero_parent_support": 10
+    },
+    "unresolved_parent": {
+      "blocks": 464,
+      "has_common": 70,
+      "has_conflict": 23,
+      "has_unknown": 93,
+      "low_parent_coverage_le_half": 310,
+      "no_common": 394,
+      "ownership": {
+        "unresolved_parent": 464
+      },
+      "parent_hard_fraction_quantiles": [
+        0.0,
+        0.0024950989128497596,
+        0.08198198198198198,
+        0.7809689894891689,
+        1.0
+      ],
+      "point_selection": {
+        "C": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 0,
+          "target": 0,
+          "target_precision": null,
+          "unknown": 0
+        },
+        "W": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 0,
+          "target": 0,
+          "target_precision": null,
+          "unknown": 0
+        },
+        "discarded": {
+          "annotated_target_precision": null,
+          "other": 0,
+          "points": 0,
+          "target": 0,
+          "target_precision": null,
+          "unknown": 0
+        },
+        "neighbor_rejection": null,
+        "target_retention": null,
+        "unknown_retention": null
+      },
+      "scenes": 40,
+      "stable_blocks": 0,
+      "zero_anchor_overlap": 176,
+      "zero_parent_support": 76
+    }
+  },
+  "scope": "207 sampled T parents/52 exposed physical scenes/original editable domain only",
+  "signature_cells": 122,
+  "valuable_blocks_with_cross_scene_neighbor_signature": 26,
+  "valuable_blocks_with_neighbor_signature": 26
+}

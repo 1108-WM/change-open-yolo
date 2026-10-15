@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-15",
+  "scope": "publication checks only; no training, inference, GT evaluation or AP rerun",
+  "tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 PYTHONPATH=. /home/jia/Wm/wm_open-yolo/OpenYOLO3D/.venvs/yoloe_gpu/bin/python -m pytest -q -p no:cacheprovider research/geometry/code/tests/test_fi1_t_add_union.py research/geometry/code/tests/test_fi1_t_add_downstream_trace.py research/geometry/code/tests/test_fi1_local_block_attribution_selection.py research/geometry/code/tests/test_fi1_nt_instance_ownership.py research/geometry/code/tests/test_fi1_rejectable_local_block.py",
+    "result": "14 passed in 1.33s",
+    "exit_code": 0
+  },
+  "python_ast": {
+    "files": 389,
+    "errors": 0
+  },
+  "original_record_integrity": {
+    "files": 1688,
+    "bytes": 45676226,
+    "mismatches": 0
+  },
+  "upload_scan": {
+    "private_key_and_common_credential_pattern_matches": 0,
+    "binary_text_files": 0,
+    "note": "Pattern scan is not a guarantee of absence of every secret."
+  },
+  "historical_core_index": {
+    "mismatches": 0,
+    "modified": false
+  },
+  "verification_commands": [
+    {
+      "command": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.venvs/yoloe_gpu/bin/python scripts/verify_source_snapshot.py",
+      "exit_code": 0,
+      "result": {
+        "source_snapshot_verified": true,
+        "published_entries": 7392,
+        "core_code_entries": 381,
+        "weights_and_data_required": false
+      }
+    },
+    {
+      "command": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/.venvs/yoloe_gpu/bin/python scripts/verify_geometry_session_20261015.py",
+      "exit_code": 0,
+      "result": {
+        "geometry_session_verified": true,
+        "verbatim_files": 1688,
+        "verbatim_bytes": 45676226,
+        "overview_local_links": 19,
+        "external_assets_required": false,
+        "experiments_rerun": false
+      }
+    }
+  ],
+  "diff_review": {
+    "authored_whitespace_exit_code": 0,
+    "merge_conflict_marker_check_exit_code": 0,
+    "original_whitespace_preserved": true,
+    "note": "Original code/log/CSV formatting, including CRLF and trailing whitespace, is intentionally retained to preserve recorded SHA256 identities."
+  }
+}

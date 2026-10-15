@@ -1,0 +1,290 @@
+{
+  "cohort": {
+    "exposed16": {
+      "C": {
+        "good_copy_loss_gt02": 3,
+        "good_parents": 3,
+        "parents": 64,
+        "safe_gain02_parents": 2,
+        "same_parent_gain02_parents": 2,
+        "stable": 43
+      },
+      "W": {
+        "good_copy_loss_gt02": 3,
+        "good_parents": 3,
+        "parents": 64,
+        "safe_gain02_parents": 2,
+        "same_parent_gain02_parents": 2,
+        "stable": 43
+      }
+    },
+    "fit12": {
+      "C": {
+        "good_copy_loss_gt02": 1,
+        "good_parents": 3,
+        "parents": 48,
+        "safe_gain02_parents": 1,
+        "same_parent_gain02_parents": 1,
+        "stable": 33
+      },
+      "W": {
+        "good_copy_loss_gt02": 2,
+        "good_parents": 3,
+        "parents": 48,
+        "safe_gain02_parents": 0,
+        "same_parent_gain02_parents": 1,
+        "stable": 33
+      }
+    },
+    "internal24": {
+      "C": {
+        "good_copy_loss_gt02": 5,
+        "good_parents": 6,
+        "parents": 95,
+        "safe_gain02_parents": 0,
+        "same_parent_gain02_parents": 0,
+        "stable": 67
+      },
+      "W": {
+        "good_copy_loss_gt02": 5,
+        "good_parents": 6,
+        "parents": 95,
+        "safe_gain02_parents": 0,
+        "same_parent_gain02_parents": 0,
+        "stable": 67
+      }
+    }
+  },
+  "metric_notes": {
+    "analysis.point_selection": "Point target/other precision fields aggregate ONLY stable parents. Empty aggregates for unresolved parents are not zero errors. All parent scopes annotation counts are provided here and all per-block census rows remain available.",
+    "collisions": "Predeclared coarse signature collisions and marginal continuous ranges do not prove raw evidence nonseparability. No thresholds/rules are fitted after labels.",
+    "evaluation_summary.unions.add_target_precision": "Legacy helper denominator includes all 207 parents; numerator only stable targets. Do NOT present this as stable-target precision. Use analysis.groups.stable.point_selection instead.",
+    "oracle": "All oracle constructions retain original parent; stable-target domain bounds only, not deployed/GT-free outputs or proof of all query combinations.",
+    "unknown_identity_vs_annotation": "For ambiguous/out-of-scope/unannotated parents, target and other are null, annotated and annotation_unknown remain measured. Known points there are not presumed wrong or correct."
+  },
+  "new_constructions": false,
+  "other_pure_target_blocks": {
+    "anchor_hard_iou_quantiles": [
+      0.0,
+      0.9633213859020311,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "blocks": 320,
+    "has_common": 35,
+    "has_conflict": 22,
+    "has_unknown": 0,
+    "low_parent_coverage_le_half": 15,
+    "no_common": 285,
+    "ownership": {
+      "target_only": 320
+    },
+    "parent_hard_fraction_quantiles": [
+      0.0,
+      0.9571290944123314,
+      0.9951595553961994,
+      1.0,
+      1.0
+    ],
+    "point_selection": {
+      "C": {
+        "annotated_target_precision": 1.0,
+        "other": 0,
+        "points": 30572,
+        "target": 30572,
+        "target_precision": 1.0,
+        "unknown": 0
+      },
+      "W": {
+        "annotated_target_precision": 1.0,
+        "other": 0,
+        "points": 31082,
+        "target": 31082,
+        "target_precision": 1.0,
+        "unknown": 0
+      },
+      "discarded": {
+        "annotated_target_precision": 1.0,
+        "other": 0,
+        "points": 510,
+        "target": 510,
+        "target_precision": 1.0,
+        "unknown": 0
+      },
+      "neighbor_rejection": null,
+      "target_retention": 0.9835917894601377,
+      "unknown_retention": null
+    },
+    "scenes": 51,
+    "stable_blocks": 320,
+    "zero_anchor_overlap": 8,
+    "zero_parent_support": 4
+  },
+  "point_counts_by_parent_scope": {
+    "ambiguous": {
+      "C": {
+        "annotated": 8889,
+        "annotation_unknown": 238,
+        "blocks": 104,
+        "other": null,
+        "points": 9127,
+        "target": null
+      },
+      "W": {
+        "annotated": 14024,
+        "annotation_unknown": 1039,
+        "blocks": 104,
+        "other": null,
+        "points": 15063,
+        "target": null
+      },
+      "discarded": {
+        "annotated": 5135,
+        "annotation_unknown": 801,
+        "blocks": 104,
+        "other": null,
+        "points": 5936,
+        "target": null
+      }
+    },
+    "out_of_scope": {
+      "C": {
+        "annotated": 16110,
+        "annotation_unknown": 740,
+        "blocks": 270,
+        "other": null,
+        "points": 16850,
+        "target": null
+      },
+      "W": {
+        "annotated": 27658,
+        "annotation_unknown": 1187,
+        "blocks": 270,
+        "other": null,
+        "points": 28845,
+        "target": null
+      },
+      "discarded": {
+        "annotated": 11548,
+        "annotation_unknown": 447,
+        "blocks": 270,
+        "other": null,
+        "points": 11995,
+        "target": null
+      }
+    },
+    "stable": {
+      "C": {
+        "annotated": 68529,
+        "annotation_unknown": 2242,
+        "blocks": 844,
+        "other": 31962,
+        "points": 70771,
+        "target": 36567
+      },
+      "W": {
+        "annotated": 91435,
+        "annotation_unknown": 2845,
+        "blocks": 844,
+        "other": 53326,
+        "points": 94280,
+        "target": 38109
+      },
+      "discarded": {
+        "annotated": 22906,
+        "annotation_unknown": 603,
+        "blocks": 844,
+        "other": 21364,
+        "points": 23509,
+        "target": 1542
+      }
+    },
+    "unannotated": {
+      "C": {
+        "annotated": 1738,
+        "annotation_unknown": 2897,
+        "blocks": 90,
+        "other": null,
+        "points": 4635,
+        "target": null
+      },
+      "W": {
+        "annotated": 3248,
+        "annotation_unknown": 3754,
+        "blocks": 90,
+        "other": null,
+        "points": 7002,
+        "target": null
+      },
+      "discarded": {
+        "annotated": 1510,
+        "annotation_unknown": 857,
+        "blocks": 90,
+        "other": null,
+        "points": 2367,
+        "target": null
+      }
+    }
+  },
+  "posthoc_reporting_only": true,
+  "valuable_pure_contributors": {
+    "anchor_hard_iou_quantiles": [
+      0.0,
+      0.16440460947503202,
+      0.1977859778597786,
+      0.8013392857142857,
+      1.0
+    ],
+    "blocks": 21,
+    "has_common": 3,
+    "has_conflict": 4,
+    "has_unknown": 0,
+    "low_parent_coverage_le_half": 9,
+    "no_common": 18,
+    "ownership": {
+      "target_only": 21
+    },
+    "parent_hard_fraction_quantiles": [
+      0.0,
+      0.37178754997144486,
+      0.5234486025580294,
+      0.9020552344251767,
+      1.0
+    ],
+    "point_selection": {
+      "C": {
+        "annotated_target_precision": 1.0,
+        "other": 0,
+        "points": 1746,
+        "target": 1746,
+        "target_precision": 1.0,
+        "unknown": 0
+      },
+      "W": {
+        "annotated_target_precision": 1.0,
+        "other": 0,
+        "points": 1760,
+        "target": 1760,
+        "target_precision": 1.0,
+        "unknown": 0
+      },
+      "discarded": {
+        "annotated_target_precision": 1.0,
+        "other": 0,
+        "points": 14,
+        "target": 14,
+        "target_precision": 1.0,
+        "unknown": 0
+      },
+      "neighbor_rejection": null,
+      "target_retention": 0.9920454545454546,
+      "unknown_retention": null
+    },
+    "scenes": 5,
+    "stable_blocks": 21,
+    "zero_anchor_overlap": 1,
+    "zero_parent_support": 1
+  },
+  "valuable_pure_with_same_signature_neighbors": 17
+}

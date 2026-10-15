@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/run_fi1_t_add_downstream.py", line 144, in <module>
+    else:globals()[a.mode](read(OUT/'contract.json'))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/run_fi1_t_add_downstream.py", line 120, in evaluate
+    sys.addaudithook(ref.Guard(c,True).hook);ctl.base.verify_files(read(OUT/'predictions_frozen.json')['outputs']);ctl.base.verify_files(c['GT_inputs'])
+                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/run_fi1_core_ablation_train90.py", line 56, in verify_files
+    if sha(p) != expected:
+       ^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/tools/fi1_frontend_protocol.py", line 39, in sha256_file
+    with Path(path).open("rb") as handle:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/anaconda3/envs/myenv/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/run_fi1_witnessed_completion_sl.py", line 30, in hook
+    if not self.labels or p not in self.c['GT_inputs'] or not (OUT/'predictions_frozen.json').exists():raise PermissionError('GT before predictions seal/outside200')
+                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: GT before predictions seal/outside200

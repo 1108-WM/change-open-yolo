@@ -12,3 +12,4 @@ jobs:
         with:
           python-version: '3.11'
       - run: python3 scripts/verify_source_snapshot.py
+      - run: python3 scripts/verify_geometry_session_20261015.py

@@ -1,0 +1,103 @@
+independent audit scene0002_00
+independent audit scene0006_00
+independent audit scene0008_00
+independent audit scene0018_00
+independent audit scene0029_02
+independent audit scene0045_00
+independent audit scene0051_00
+independent audit scene0057_00
+independent audit scene0072_02
+independent audit scene0075_00
+independent audit scene0076_00
+independent audit scene0078_00
+independent audit scene0085_00
+independent audit scene0087_00
+independent audit scene0102_00
+independent audit scene0108_00
+independent audit scene0112_01
+independent audit scene0113_01
+independent audit scene0122_00
+independent audit scene0126_02
+independent audit scene0128_00
+independent audit scene0137_00
+independent audit scene0138_00
+independent audit scene0140_01
+independent audit scene0160_00
+independent audit scene0161_00
+independent audit scene0173_01
+independent audit scene0175_00
+independent audit scene0199_00
+independent audit scene0216_00
+independent audit scene0224_00
+independent audit scene0226_01
+independent audit scene0234_00
+independent audit scene0293_00
+independent audit scene0301_02
+independent audit scene0303_01
+independent audit scene0313_02
+independent audit scene0340_00
+independent audit scene0344_01
+independent audit scene0369_00
+independent audit scene0390_00
+independent audit scene0419_02
+independent audit scene0440_00
+independent audit scene0452_02
+independent audit scene0536_02
+independent audit scene0547_02
+independent audit scene0561_00
+independent audit scene0611_00
+independent audit scene0627_01
+independent audit scene0634_00
+independent audit scene0688_00
+independent audit scene0691_01
+{'independent_NT_pairs': 179460, 'independent_groups': 3059, 'independent_point_censuses': 2616, 'unknown': 1026, 'independent_block_decisions': 1308, 'independent_unions': 414, 'reject': 95, 'accept': 187, 'independent_pool_target_modes': 2314}
+{
+  "complete": true,
+  "receipt_hash_checks": 34,
+  "counts": {
+    "unknown": 1026,
+    "accept": 187,
+    "accept_own_parent_is_only_eligible_T": 109,
+    "accept_distinct_N_T_both_cover_block": 36,
+    "accept_no_single_native_bridge": 4,
+    "reject": 95
+  },
+  "accepted_block_support_sources": {
+    "native": 147,
+    "native+track": 36,
+    "track": 4
+  },
+  "aggregates": {
+    "all_C": {
+      "actions": 205,
+      "stable_actions": 142,
+      "target": 36567,
+      "other": 31962,
+      "unknown": 2242,
+      "precision": 0.516694691328369,
+      "good_parents": 12,
+      "good_parents_with_action": 12,
+      "good_copy_damage": 9,
+      "stable_copy_damage": 48,
+      "bridge_N_redundant": 55,
+      "gain02": 3
+    },
+    "relation_C": {
+      "actions": 66,
+      "stable_actions": 55,
+      "target": 10019,
+      "other": 353,
+      "unknown": 73,
+      "precision": 0.9592149353757778,
+      "good_parents": 12,
+      "good_parents_with_action": 7,
+      "good_copy_damage": 0,
+      "stable_copy_damage": 2,
+      "bridge_N_redundant": 52,
+      "gain02": 0
+    }
+  },
+  "target_retention_vs_all_C": 0.27399020975196214,
+  "known_neighbor_removal_vs_all_C": 0.9889556348163444,
+  "scope": "Reran existing set-based independent verifier, plus new support-source and aggregate census. No new rules, outputs, training or AP."
+}

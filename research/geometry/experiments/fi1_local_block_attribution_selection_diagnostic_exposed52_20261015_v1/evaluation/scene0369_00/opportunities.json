@@ -1,0 +1,129 @@
+[
+  {
+    "candidate_id": "c006",
+    "cohort": "exposed16",
+    "contributing_blocks": [
+      "c006_r0004",
+      "c006_r0011",
+      "c006_r0012"
+    ],
+    "modes": {
+      "C": {
+        "added": 1483,
+        "gain_over_NT": -0.026575679438680888,
+        "iou": 0.8334772845050958,
+        "other": 820,
+        "safe_gain02": false,
+        "target": 603,
+        "unknown": 60
+      },
+      "W": {
+        "added": 2012,
+        "gain_over_NT": -0.09636192247495745,
+        "iou": 0.7636910414688193,
+        "other": 1349,
+        "safe_gain02": false,
+        "target": 603,
+        "unknown": 60
+      },
+      "oracle_pure_C": {
+        "added": 603,
+        "gain_over_NT": 0.12283560806681604,
+        "iou": 0.9828885720105928,
+        "other": 0,
+        "safe_gain02": true,
+        "target": 603,
+        "unknown": 0
+      },
+      "oracle_pure_W": {
+        "added": 603,
+        "gain_over_NT": 0.12283560806681604,
+        "iou": 0.9828885720105928,
+        "other": 0,
+        "safe_gain02": true,
+        "target": 603,
+        "unknown": 0
+      },
+      "oracle_target_points": {
+        "added": 603,
+        "gain_over_NT": 0.12283560806681604,
+        "iou": 0.9828885720105928,
+        "other": 0,
+        "safe_gain02": true,
+        "target": 603,
+        "unknown": 0
+      }
+    },
+    "original_NT_best": 0.8600529639437767,
+    "parent_iou": 0.8600529639437767,
+    "posthoc_diagnostic_only": true,
+    "previous_best_candidate_gain": 0.10958917517966515,
+    "previous_best_candidate_query": 92,
+    "scene": "scene0369_00",
+    "target": 5008
+  },
+  {
+    "candidate_id": "c007",
+    "cohort": "exposed16",
+    "contributing_blocks": [
+      "c007_r0000",
+      "c007_r0004",
+      "c007_r0005",
+      "c007_r0006"
+    ],
+    "modes": {
+      "C": {
+        "added": 1156,
+        "gain_over_NT": -0.22500409766924578,
+        "iou": 0.6493857493857493,
+        "other": 970,
+        "safe_gain02": false,
+        "target": 159,
+        "unknown": 27
+      },
+      "W": {
+        "added": 1862,
+        "gain_over_NT": -0.28505822751772003,
+        "iou": 0.5893316195372751,
+        "other": 1523,
+        "safe_gain02": false,
+        "target": 267,
+        "unknown": 72
+      },
+      "oracle_pure_C": {
+        "added": 135,
+        "gain_over_NT": -0.022128213472176972,
+        "iou": 0.8522616335828181,
+        "other": 0,
+        "safe_gain02": false,
+        "target": 135,
+        "unknown": 0
+      },
+      "oracle_pure_W": {
+        "added": 160,
+        "gain_over_NT": -0.013992840872111945,
+        "iou": 0.8603970061828832,
+        "other": 0,
+        "safe_gain02": false,
+        "target": 160,
+        "unknown": 0
+      },
+      "oracle_target_points": {
+        "added": 267,
+        "gain_over_NT": 0.020826553856166607,
+        "iou": 0.8952164009111617,
+        "other": 0,
+        "safe_gain02": true,
+        "target": 267,
+        "unknown": 0
+      }
+    },
+    "original_NT_best": 0.8743898470549951,
+    "parent_iou": 0.8083306215424666,
+    "posthoc_diagnostic_only": true,
+    "previous_best_candidate_gain": -0.041160810759625854,
+    "previous_best_candidate_query": 111,
+    "scene": "scene0369_00",
+    "target": 7015
+  }
+]

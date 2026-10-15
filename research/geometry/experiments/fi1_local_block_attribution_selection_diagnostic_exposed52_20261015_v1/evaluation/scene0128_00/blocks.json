@@ -1,0 +1,4006 @@
+[
+  {
+    "C_single": {
+      "added": 557,
+      "added_other": 557,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 720,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 557,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.35865424171421423,
+      "parent_iou": 0.8834355828220859,
+      "parent_points": 815,
+      "pool_delta": -0.4263415122606884,
+      "repaired_iou": 0.5247813411078717,
+      "result_points": 1372,
+      "scope": "stable",
+      "stable": true,
+      "target": 13007,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 624,
+      "added_other": 624,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 720,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 624,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.38308811930575515,
+      "parent_iou": 0.8834355828220859,
+      "parent_points": 815,
+      "pool_delta": -0.4507753898522293,
+      "repaired_iou": 0.5003474635163307,
+      "result_points": 1439,
+      "scope": "stable",
+      "stable": true,
+      "target": 13007,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 85,
+    "anchor_block_mean": 0.07477792352437973,
+    "anchor_halo_points": 777,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 1928,
+    "block_GT": {
+      "annotated": 624,
+      "distribution": {
+        "6002": 624
+      },
+      "known_instances": 1,
+      "other": 624,
+      "ownership": "other_only",
+      "points": 624,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c004_r0000",
+    "candidate_id": "c004",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.13141025641025642,
+        "mean": 0.13393718860738377,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0007963742233240269,
+        "query": 11
+      },
+      {
+        "hard_fraction": 0.7788461538461539,
+        "mean": 0.7678964351966547,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0007796770796682722,
+        "query": 38
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0016108614354306888,
+        "query": 67
+      },
+      {
+        "hard_fraction": 0.08012820512820513,
+        "mean": 0.07477792803696158,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.8926282051282052,
+        "mean": 0.8302517294549221,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 557,
+      "distribution": {
+        "6002": 557
+      },
+      "known_instances": 1,
+      "other": 557,
+      "ownership": "other_only",
+      "points": 557,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 557,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 67,
+      "distribution": {
+        "6002": 67
+      },
+      "known_instances": 1,
+      "other": 67,
+      "ownership": "other_only",
+      "points": 67,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "frame_states": {
+      "observed_no_support": 4,
+      "observed_weak": 2
+    },
+    "minimum_distance": 0.0051556145250387184,
+    "parent_identity_distribution": {
+      "0": 37,
+      "13007": 720,
+      "8006": 58
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 624,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0392638036809816,
+    "query_parent_mean": 0.044402096420526505,
+    "reference_alternatives": [
+      {
+        "distance": 0.0051556145250387184,
+        "points": 666,
+        "region": 1
+      },
+      {
+        "distance": 0.009187541262697529,
+        "points": 91,
+        "region": 2
+      },
+      {
+        "distance": 1.1817940725362246,
+        "points": 36,
+        "region": 4
+      },
+      {
+        "distance": 1.2322118333237946,
+        "points": 22,
+        "region": 7
+      }
+    ],
+    "reference_points": 666,
+    "reference_region": 1,
+    "region": 0,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 86,
+    "supporter_full_hard_volume": 18810,
+    "supporter_full_soft_volume": 18459.196234366536,
+    "supporter_halo_points": 1151,
+    "supporter_mean": 0.8302517294549221,
+    "target": 13007,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 624
+  },
+  {
+    "C_single": {
+      "added": 43,
+      "added_other": 43,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 720,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 43,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.04427474366124673,
+      "parent_iou": 0.8834355828220859,
+      "parent_points": 815,
+      "pool_delta": -0.1119620142077209,
+      "repaired_iou": 0.8391608391608392,
+      "result_points": 858,
+      "scope": "stable",
+      "stable": true,
+      "target": 13007,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 43,
+      "added_other": 43,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 720,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 43,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.04427474366124673,
+      "parent_iou": 0.8834355828220859,
+      "parent_points": 815,
+      "pool_delta": -0.1119620142077209,
+      "repaired_iou": 0.8391608391608392,
+      "result_points": 858,
+      "scope": "stable",
+      "stable": true,
+      "target": 13007,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 85,
+    "anchor_block_mean": 5.863830629624363e-19,
+    "anchor_halo_points": 777,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 1317,
+    "block_GT": {
+      "annotated": 43,
+      "distribution": {
+        "8006": 43
+      },
+      "known_instances": 1,
+      "other": 43,
+      "ownership": "other_only",
+      "points": 43,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c004_r0003",
+    "candidate_id": "c004",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.8977168351143562e-15,
+        "query": 1
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9971189193947371,
+        "query": 11
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.8484076609496015e-07,
+        "query": 27
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9984900507816049,
+        "query": 38
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9973567142043003,
+        "query": 67
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.863831651117795e-19,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.005565968463659289,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 43,
+      "distribution": {
+        "8006": 43
+      },
+      "known_instances": 1,
+      "other": 43,
+      "ownership": "other_only",
+      "points": 43,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 43,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+      true
+    ],
+    "frame_states": {
+      "common": 1,
+      "missing": 2,
+      "observed_no_support": 3
+    },
+    "minimum_distance": 0.007330337975010116,
+    "parent_identity_distribution": {
+      "0": 37,
+      "13007": 720,
+      "8006": 58
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 43,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.07116564417177915,
+    "query_parent_mean": 0.07093799114227295,
+    "reference_alternatives": [
+      {
+        "distance": 0.007330337975010116,
+        "points": 36,
+        "region": 4
+      },
+      {
+        "distance": 0.019203800842518735,
+        "points": 22,
+        "region": 7
+      },
+      {
+        "distance": 1.218972400247166,
+        "points": 666,
+        "region": 1
+      },
+      {
+        "distance": 1.2840063901105871,
+        "points": 91,
+        "region": 2
+      }
+    ],
+    "reference_points": 36,
+    "reference_region": 4,
+    "region": 3,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 38,
+    "supporter_full_hard_volume": 17962,
+    "supporter_full_soft_volume": 17846.53897684421,
+    "supporter_halo_points": 540,
+    "supporter_mean": 0.9984900507816049,
+    "target": 13007,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 43
+  },
+  {
+    "C_single": {
+      "added": 25,
+      "added_other": 25,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 720,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 25,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0262927256792288,
+      "parent_iou": 0.8834355828220859,
+      "parent_points": 815,
+      "pool_delta": -0.09397999622570297,
+      "repaired_iou": 0.8571428571428571,
+      "result_points": 840,
+      "scope": "stable",
+      "stable": true,
+      "target": 13007,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 25,
+      "added_other": 25,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 720,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 25,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0262927256792288,
+      "parent_iou": 0.8834355828220859,
+      "parent_points": 815,
+      "pool_delta": -0.09397999622570297,
+      "repaired_iou": 0.8571428571428571,
+      "result_points": 840,
+      "scope": "stable",
+      "stable": true,
+      "target": 13007,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 85,
+    "anchor_block_mean": 7.669810810191581e-16,
+    "anchor_halo_points": 777,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 1317,
+    "block_GT": {
+      "annotated": 25,
+      "distribution": {
+        "8006": 25
+      },
+      "known_instances": 1,
+      "other": 25,
+      "ownership": "other_only",
+      "points": 25,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c004_r0005",
+    "candidate_id": "c004",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.5592153815081652e-13,
+        "query": 1
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9979948234558106,
+        "query": 11
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.169659338903457e-07,
+        "query": 27
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9970480704307556,
+        "query": 38
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9940782046318054,
+        "query": 67
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.6698107123802765e-16,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.004266419379273429,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 25,
+      "distribution": {
+        "8006": 25
+      },
+      "known_instances": 1,
+      "other": 25,
+      "ownership": "other_only",
+      "points": 25,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 25,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true,
+      false,
+      true
+    ],
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 1,
+      "observed_weak": 1
+    },
+    "minimum_distance": 0.042312949636972595,
+    "parent_identity_distribution": {
+      "0": 37,
+      "13007": 720,
+      "8006": 58
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 25,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.07116564417177915,
+    "query_parent_mean": 0.07084804028272629,
+    "reference_alternatives": [
+      {
+        "distance": 0.042312949636972595,
+        "points": 22,
+        "region": 7
+      },
+      {
+        "distance": 0.164789201220701,
+        "points": 36,
+        "region": 4
+      },
+      {
+        "distance": 1.2831631058290844,
+        "points": 666,
+        "region": 1
+      },
+      {
+        "distance": 1.3616936704201223,
+        "points": 91,
+        "region": 2
+      }
+    ],
+    "reference_points": 22,
+    "reference_region": 7,
+    "region": 5,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 11,
+    "supporter_full_hard_volume": 18088,
+    "supporter_full_soft_volume": 18006.265321030576,
+    "supporter_halo_points": 540,
+    "supporter_mean": 0.9979948234558106,
+    "target": 13007,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 25
+  },
+  {
+    "C_single": {
+      "added": 11,
+      "added_other": 11,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 720,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 11,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.011764880642909148,
+      "parent_iou": 0.8834355828220859,
+      "parent_points": 815,
+      "pool_delta": -0.07945215118938331,
+      "repaired_iou": 0.8716707021791767,
+      "result_points": 826,
+      "scope": "stable",
+      "stable": true,
+      "target": 13007,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 11,
+      "added_other": 11,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 720,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 11,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.011764880642909148,
+      "parent_iou": 0.8834355828220859,
+      "parent_points": 815,
+      "pool_delta": -0.07945215118938331,
+      "repaired_iou": 0.8716707021791767,
+      "result_points": 826,
+      "scope": "stable",
+      "stable": true,
+      "target": 13007,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 85,
+    "anchor_block_mean": 8.120100539443561e-17,
+    "anchor_halo_points": 777,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 1317,
+    "block_GT": {
+      "annotated": 11,
+      "distribution": {
+        "8006": 11
+      },
+      "known_instances": 1,
+      "other": 11,
+      "ownership": "other_only",
+      "points": 11,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c004_r0006",
+    "candidate_id": "c004",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.8827539962577306e-14,
+        "query": 1
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.998858327215368,
+        "query": 11
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.777831244175765e-07,
+        "query": 27
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9983596151525324,
+        "query": 38
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9977960965850137,
+        "query": 67
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.120100588870481e-17,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.007907280116342008,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 11,
+      "distribution": {
+        "8006": 11
+      },
+      "known_instances": 1,
+      "other": 11,
+      "ownership": "other_only",
+      "points": 11,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 11,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true
+    ],
+    "frame_states": {
+      "common": 1,
+      "missing": 3,
+      "observed_no_support": 2
+    },
+    "minimum_distance": 0.10397392367418193,
+    "parent_identity_distribution": {
+      "0": 37,
+      "13007": 720,
+      "8006": 58
+    },
+    "parent_region_contact": false,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 11,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.07116564417177915,
+    "query_parent_mean": 0.07084804028272629,
+    "reference_alternatives": [
+      {
+        "distance": 0.10397392367418193,
+        "points": 36,
+        "region": 4
+      },
+      {
+        "distance": 0.1677196100299039,
+        "points": 22,
+        "region": 7
+      },
+      {
+        "distance": 1.2214029229076167,
+        "points": 666,
+        "region": 1
+      },
+      {
+        "distance": 1.3074551777946761,
+        "points": 91,
+        "region": 2
+      }
+    ],
+    "reference_points": 36,
+    "reference_region": 4,
+    "region": 6,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 11,
+    "supporter_full_hard_volume": 18088,
+    "supporter_full_soft_volume": 18006.265321030576,
+    "supporter_halo_points": 540,
+    "supporter_mean": 0.998858327215368,
+    "target": 13007,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 11
+  },
+  {
+    "C_single": {
+      "added": 482,
+      "added_other": 0,
+      "added_target": 482,
+      "changed": true,
+      "changed_parent_target": 164,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 482,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.12700922266139658,
+      "parent_iou": 0.04321475625823452,
+      "parent_points": 164,
+      "pool_delta": -0.8196038771054079,
+      "repaired_iou": 0.1702239789196311,
+      "result_points": 646,
+      "scope": "stable",
+      "stable": true,
+      "target": 8022,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 482,
+      "added_other": 0,
+      "added_target": 482,
+      "changed": true,
+      "changed_parent_target": 164,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 482,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.12700922266139658,
+      "parent_iou": 0.04321475625823452,
+      "parent_points": 164,
+      "pool_delta": -0.8196038771054079,
+      "repaired_iou": 0.1702239789196311,
+      "result_points": 646,
+      "scope": "stable",
+      "stable": true,
+      "target": 8022,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 68,
+    "anchor_block_mean": 0.7651607990264893,
+    "anchor_halo_points": 1052,
+    "anchor_supporter_hard_intersection": 1052,
+    "anchor_supporter_hard_union": 1251,
+    "block_GT": {
+      "annotated": 482,
+      "distribution": {
+        "8022": 482
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 482,
+      "target": 482,
+      "unknown": 0
+    },
+    "block_id": "c005_r0000",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.068624171279535e-05,
+        "query": 36
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9864782041781176,
+        "query": 39
+      },
+      {
+        "hard_fraction": 0.8153526970954357,
+        "mean": 0.7651607746420683,
+        "query": 68
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9976350212492884,
+        "query": 83
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.594765218828456e-10,
+        "query": 133
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 482,
+      "distribution": {
+        "8022": 482
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 482,
+      "target": 482,
+      "unknown": 0
+    },
+    "clipped_reference_points": 482,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "frame_states": {
+      "observed_no_support": 5,
+      "observed_weak": 1
+    },
+    "minimum_distance": 0.004281295619533232,
+    "parent_identity_distribution": {
+      "8022": 164
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.12700922266139658,
+    "points": 482,
+    "pure_oracle_contribution": 0.12700922266139658,
+    "query_parent_hard_fraction": 1.0,
+    "query_parent_mean": 0.9991750121116638,
+    "reference_alternatives": [
+      {
+        "distance": 0.004281295619533232,
+        "points": 164,
+        "region": 1
+      }
+    ],
+    "reference_points": 164,
+    "reference_region": 1,
+    "region": 0,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 83,
+    "supporter_full_hard_volume": 3966,
+    "supporter_full_soft_volume": 3943.794602101022,
+    "supporter_halo_points": 1251,
+    "supporter_mean": 0.9976350212492884,
+    "target": 8022,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 482
+  },
+  {
+    "C_single": {
+      "added": 2,
+      "added_other": 2,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 164,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 2,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -2.2762579014082296e-05,
+      "parent_iou": 0.04321475625823452,
+      "parent_points": 164,
+      "pool_delta": -0.9466358623458186,
+      "repaired_iou": 0.043191993679220435,
+      "result_points": 166,
+      "scope": "stable",
+      "stable": true,
+      "target": 8022,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 2,
+      "added_other": 2,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 164,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 2,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -2.2762579014082296e-05,
+      "parent_iou": 0.04321475625823452,
+      "parent_points": 164,
+      "pool_delta": -0.9466358623458186,
+      "repaired_iou": 0.043191993679220435,
+      "result_points": 166,
+      "scope": "stable",
+      "stable": true,
+      "target": 8022,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 68,
+    "anchor_block_mean": 7.671766155681325e-08,
+    "anchor_halo_points": 1052,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 1055,
+    "block_GT": {
+      "annotated": 2,
+      "distribution": {
+        "8021": 2
+      },
+      "known_instances": 1,
+      "other": 2,
+      "ownership": "other_only",
+      "points": 2,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0002",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.08342999964952469,
+        "query": 36
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.2576675999298459e-05,
+        "query": 39
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.671766155681325e-08,
+        "query": 68
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00020320654584793374,
+        "query": 83
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9926465153694153,
+        "query": 133
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "8021": 2
+      },
+      "known_instances": 1,
+      "other": 2,
+      "ownership": "other_only",
+      "points": 2,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 2,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 3,
+      "observed_no_support": 3
+    },
+    "minimum_distance": 0.14851852664800053,
+    "parent_identity_distribution": {
+      "8022": 164
+    },
+    "parent_region_contact": false,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 2,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0,
+    "query_parent_mean": 1.765641938211715e-10,
+    "reference_alternatives": [
+      {
+        "distance": 0.14851852664800053,
+        "points": 164,
+        "region": 1
+      }
+    ],
+    "reference_points": 164,
+    "reference_region": 1,
+    "region": 2,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 133,
+    "supporter_full_hard_volume": 5778,
+    "supporter_full_soft_volume": 5615.31646946075,
+    "supporter_halo_points": 3,
+    "supporter_mean": 0.9926465153694153,
+    "target": 8022,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 2
+  },
+  {
+    "C_single": {
+      "added": 2,
+      "added_other": 0,
+      "added_target": 2,
+      "changed": true,
+      "changed_parent_target": 164,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 2,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.0005270092226613982,
+      "parent_iou": 0.04321475625823452,
+      "parent_points": 164,
+      "pool_delta": -0.9460860905441432,
+      "repaired_iou": 0.043741765480895915,
+      "result_points": 166,
+      "scope": "stable",
+      "stable": true,
+      "target": 8022,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 2,
+      "added_other": 0,
+      "added_target": 2,
+      "changed": true,
+      "changed_parent_target": 164,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 2,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.0005270092226613982,
+      "parent_iou": 0.04321475625823452,
+      "parent_points": 164,
+      "pool_delta": -0.9460860905441432,
+      "repaired_iou": 0.043741765480895915,
+      "result_points": 166,
+      "scope": "stable",
+      "stable": true,
+      "target": 8022,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 68,
+    "anchor_block_mean": 0.9094579815864563,
+    "anchor_halo_points": 1052,
+    "anchor_supporter_hard_intersection": 1052,
+    "anchor_supporter_hard_union": 1251,
+    "block_GT": {
+      "annotated": 2,
+      "distribution": {
+        "8022": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "block_id": "c005_r0003",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.4727813726931345e-05,
+        "query": 36
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9976315200328827,
+        "query": 39
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9094579815864563,
+        "query": 68
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9973138868808746,
+        "query": 83
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.456126682927941e-10,
+        "query": 133
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "8022": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "clipped_reference_points": 2,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 2
+    },
+    "minimum_distance": 0.005371041440901641,
+    "parent_identity_distribution": {
+      "8022": 164
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.000527009222661412,
+    "points": 2,
+    "pure_oracle_contribution": 0.000527009222661412,
+    "query_parent_hard_fraction": 1.0,
+    "query_parent_mean": 0.9988932013511658,
+    "reference_alternatives": [
+      {
+        "distance": 0.005371041440901641,
+        "points": 164,
+        "region": 1
+      }
+    ],
+    "reference_points": 164,
+    "reference_region": 1,
+    "region": 3,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 39,
+    "supporter_full_hard_volume": 3536,
+    "supporter_full_soft_volume": 3525.2135889445617,
+    "supporter_halo_points": 1251,
+    "supporter_mean": 0.9976315200328827,
+    "target": 8022,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 2
+  },
+  {
+    "C_single": {
+      "added": 54,
+      "added_other": 0,
+      "added_target": 54,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 54,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.0029658922392486325,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8060977337667041,
+      "repaired_iou": 0.10397100016477179,
+      "result_points": 1893,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 61,
+      "added_other": 0,
+      "added_target": 61,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 61,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.003350359751743831,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8057132662542089,
+      "repaired_iou": 0.10435546767726699,
+      "result_points": 1900,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 86,
+    "anchor_block_mean": 0.7725208401679993,
+    "anchor_halo_points": 2324,
+    "anchor_supporter_hard_intersection": 2324,
+    "anchor_supporter_hard_union": 2324,
+    "block_GT": {
+      "annotated": 61,
+      "distribution": {
+        "6002": 61
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 61,
+      "target": 61,
+      "unknown": 0
+    },
+    "block_id": "c006_r0000",
+    "candidate_id": "c006",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.04918032786885246,
+        "mean": 0.04829273761809373,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.03278688524590164,
+        "mean": 0.03224547403394566,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.012554883985103515,
+        "query": 16
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.001202324961332741,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.020142977385208337,
+        "query": 23
+      },
+      {
+        "hard_fraction": 0.5409836065573771,
+        "mean": 0.5108702211091142,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0003522141382820307,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.06557377049180328,
+        "mean": 0.09269422374104654,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.013612334582130195,
+        "query": 49
+      },
+      {
+        "hard_fraction": 0.04918032786885246,
+        "mean": 0.0488319024051938,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.8852459016393442,
+        "mean": 0.7725208926732179,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 54,
+      "distribution": {
+        "6002": 54
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 54,
+      "target": 54,
+      "unknown": 0
+    },
+    "clipped_reference_points": 54,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 7,
+      "distribution": {
+        "6002": 7
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 7,
+      "target": 7,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    "frame_states": {
+      "conflict": 1,
+      "observed_no_support": 1,
+      "observed_weak": 4
+    },
+    "minimum_distance": 0.0045160897292682405,
+    "parent_identity_distribution": {
+      "6002": 1839
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.003350359751743845,
+    "points": 61,
+    "pure_oracle_contribution": 0.003350359751743845,
+    "query_parent_hard_fraction": 0.9429037520391517,
+    "query_parent_mean": 0.9328386187553406,
+    "reference_alternatives": [
+      {
+        "distance": 0.0045160897292682405,
+        "points": 1839,
+        "region": 1
+      }
+    ],
+    "reference_points": 1839,
+    "reference_region": 1,
+    "region": 0,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 86,
+    "supporter_full_hard_volume": 18810,
+    "supporter_full_soft_volume": 18459.196234366536,
+    "supporter_halo_points": 2324,
+    "supporter_mean": 0.7725208926732179,
+    "target": 6002,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 61
+  },
+  {
+    "C_single": {
+      "added": 116,
+      "added_other": 116,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 116,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0006394472804322898,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.809703073286385,
+      "repaired_iou": 0.10036566064509087,
+      "result_points": 1955,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 126,
+      "added_other": 126,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 126,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0006941931816187158,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8097578191875715,
+      "repaired_iou": 0.10031091474390444,
+      "result_points": 1965,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 86,
+    "anchor_block_mean": 0.12612079083919525,
+    "anchor_halo_points": 2324,
+    "anchor_supporter_hard_intersection": 36,
+    "anchor_supporter_hard_union": 2703,
+    "block_GT": {
+      "annotated": 126,
+      "distribution": {
+        "13008": 126
+      },
+      "known_instances": 1,
+      "other": 126,
+      "ownership": "other_only",
+      "points": 126,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c006_r0002",
+    "candidate_id": "c006",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.7546925862678752e-05,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.8650793650793651,
+        "mean": 0.8655456023358725,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0004204304927682079,
+        "query": 16
+      },
+      {
+        "hard_fraction": 0.031746031746031744,
+        "mean": 0.0348086879489666,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0002336782158481118,
+        "query": 23
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.003765579984799394,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.1587612626448347e-07,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.9206349206349206,
+        "mean": 0.9136412572272729,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00048240989315429504,
+        "query": 49
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.064889529637231e-05,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.1111111111111111,
+        "mean": 0.12612079464827455,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 116,
+      "distribution": {
+        "13008": 116
+      },
+      "known_instances": 1,
+      "other": 116,
+      "ownership": "other_only",
+      "points": 116,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 116,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 10,
+      "distribution": {
+        "13008": 10
+      },
+      "known_instances": 1,
+      "other": 10,
+      "ownership": "other_only",
+      "points": 10,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    "frame_states": {
+      "conflict": 3,
+      "observed_no_support": 1,
+      "observed_weak": 2
+    },
+    "minimum_distance": 0.005858744405205026,
+    "parent_identity_distribution": {
+      "6002": 1839
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 126,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.011419249592169658,
+    "query_parent_mean": 0.011833117343485355,
+    "reference_alternatives": [
+      {
+        "distance": 0.005858744405205026,
+        "points": 1839,
+        "region": 1
+      }
+    ],
+    "reference_points": 1839,
+    "reference_region": 1,
+    "region": 2,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 40,
+    "supporter_full_hard_volume": 1197,
+    "supporter_full_soft_volume": 1202.1785513931984,
+    "supporter_halo_points": 415,
+    "supporter_mean": 0.9136412572272729,
+    "target": 6002,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 126
+  },
+  {
+    "C_single": {
+      "added": 290,
+      "added_other": 290,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 290,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0015835801102017516,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8106472061161545,
+      "repaired_iou": 0.0994215278153214,
+      "result_points": 2129,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 342,
+      "added_other": 342,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 342,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0018622969923192123,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8109259229982719,
+      "repaired_iou": 0.09914281093320394,
+      "result_points": 2181,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 86,
+    "anchor_block_mean": 0.09475041180849075,
+    "anchor_halo_points": 2324,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 2829,
+    "block_GT": {
+      "annotated": 342,
+      "distribution": {
+        "3001": 342
+      },
+      "known_instances": 1,
+      "other": 342,
+      "ownership": "other_only",
+      "points": 342,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c006_r0003",
+    "candidate_id": "c006",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.9752769879626447e-05,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.351397992291096e-06,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.7690058479532164,
+        "mean": 0.7025910309731279,
+        "query": 16
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0018091671835259871,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.847953216374269,
+        "mean": 0.8299253171219347,
+        "query": 23
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.010626624382879668,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.929215937531385e-05,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00011671594482245658,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0020200511364704553,
+        "query": 49
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.15905323409096e-06,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.08771929824561403,
+        "mean": 0.09475040704819875,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 290,
+      "distribution": {
+        "3001": 290
+      },
+      "known_instances": 1,
+      "other": 290,
+      "ownership": "other_only",
+      "points": 290,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 290,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 52,
+      "distribution": {
+        "3001": 52
+      },
+      "known_instances": 1,
+      "other": 52,
+      "ownership": "other_only",
+      "points": 52,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "observed_no_support": 5
+    },
+    "minimum_distance": 0.004939103775378022,
+    "parent_identity_distribution": {
+      "6002": 1839
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 342,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0027188689505165853,
+    "query_parent_mean": 0.006224626209586859,
+    "reference_alternatives": [
+      {
+        "distance": 0.004939103775378022,
+        "points": 1839,
+        "region": 1
+      }
+    ],
+    "reference_points": 1839,
+    "reference_region": 1,
+    "region": 3,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 23,
+    "supporter_full_hard_volume": 19255,
+    "supporter_full_soft_volume": 18905.57043655046,
+    "supporter_halo_points": 505,
+    "supporter_mean": 0.8299253171219347,
+    "target": 6002,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 342
+  },
+  {
+    "C_single": {
+      "added": 75,
+      "added_other": 0,
+      "added_target": 75,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 75,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.004119294776734214,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8049443312292186,
+      "repaired_iou": 0.10512440270225737,
+      "result_points": 1914,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 82,
+      "added_other": 0,
+      "added_target": 82,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 82,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.004503762289229413,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8045598637167234,
+      "repaired_iou": 0.10550887021475257,
+      "result_points": 1921,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 86,
+    "anchor_block_mean": 0.8987881541252136,
+    "anchor_halo_points": 2324,
+    "anchor_supporter_hard_intersection": 2324,
+    "anchor_supporter_hard_union": 2324,
+    "block_GT": {
+      "annotated": 82,
+      "distribution": {
+        "6002": 82
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 82,
+      "target": 82,
+      "unknown": 0
+    },
+    "block_id": "c006_r0004",
+    "candidate_id": "c006",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.571363640706003e-07,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.490175382391972e-06,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.020089035815078937,
+        "query": 16
+      },
+      {
+        "hard_fraction": 0.7317073170731707,
+        "mean": 0.692352694890848,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.012195121951219513,
+        "mean": 0.020835450890914223,
+        "query": 23
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.004378648980954443,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.7325518991376395e-06,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0005572531128206237,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00038859529868890395,
+        "query": 49
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.6346335529541407e-07,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.9146341463414634,
+        "mean": 0.898788128956789,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 75,
+      "distribution": {
+        "6002": 75
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 75,
+      "target": 75,
+      "unknown": 0
+    },
+    "clipped_reference_points": 75,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 7,
+      "distribution": {
+        "6002": 7
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 7,
+      "target": 7,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "frame_states": {
+      "observed_no_support": 6
+    },
+    "minimum_distance": 0.007158977193699019,
+    "parent_identity_distribution": {
+      "6002": 1839
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0045037622892294266,
+    "points": 82,
+    "pure_oracle_contribution": 0.0045037622892294266,
+    "query_parent_hard_fraction": 0.9429037520391517,
+    "query_parent_mean": 0.9328386187553406,
+    "reference_alternatives": [
+      {
+        "distance": 0.007158977193699019,
+        "points": 1839,
+        "region": 1
+      }
+    ],
+    "reference_points": 1839,
+    "reference_region": 1,
+    "region": 4,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 86,
+    "supporter_full_hard_volume": 18810,
+    "supporter_full_soft_volume": 18459.196234366536,
+    "supporter_halo_points": 2324,
+    "supporter_mean": 0.898788128956789,
+    "target": 6002,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 82
+  },
+  {
+    "C_single": {
+      "added": 227,
+      "added_other": 191,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 227,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0012437973038458144,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8103074233097985,
+      "repaired_iou": 0.09976131062167734,
+      "result_points": 2066,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 36,
+      "unknown_edits": 36
+    },
+    "W_single": {
+      "added": 261,
+      "added_other": 224,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 261,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.001427460102261302,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8104910861082141,
+      "repaired_iou": 0.09957764782326185,
+      "result_points": 2100,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 37,
+      "unknown_edits": 37
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 86,
+    "anchor_block_mean": 0.1098056435585022,
+    "anchor_halo_points": 2324,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 2606,
+    "block_GT": {
+      "annotated": 224,
+      "distribution": {
+        "0": 37,
+        "13007": 224
+      },
+      "known_instances": 1,
+      "other": 224,
+      "ownership": "other_unknown",
+      "points": 261,
+      "target": 0,
+      "unknown": 37
+    },
+    "block_id": "c006_r0005",
+    "candidate_id": "c006",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.8544061302681992,
+        "mean": 0.8630279419870132,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0616808575874479e-05,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00044848516960118584,
+        "query": 16
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.31585701637869e-06,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0008908819337558355,
+        "query": 23
+      },
+      {
+        "hard_fraction": 0.1111111111111111,
+        "mean": 0.15276393224529822,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00019526118761376435,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00454872089720988,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.005854379602123684,
+        "query": 49
+      },
+      {
+        "hard_fraction": 0.8697318007662835,
+        "mean": 0.8716448125388865,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.1111111111111111,
+        "mean": 0.10980564095734387,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 191,
+      "distribution": {
+        "0": 36,
+        "13007": 191
+      },
+      "known_instances": 1,
+      "other": 191,
+      "ownership": "other_unknown",
+      "points": 227,
+      "target": 0,
+      "unknown": 36
+    },
+    "clipped_reference_points": 227,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 33,
+      "distribution": {
+        "0": 1,
+        "13007": 33
+      },
+      "known_instances": 1,
+      "other": 33,
+      "ownership": "other_unknown",
+      "points": 34,
+      "target": 0,
+      "unknown": 1
+    },
+    "evidence_signature": [
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    "frame_states": {
+      "conflict": 3,
+      "observed_no_support": 1,
+      "observed_weak": 2
+    },
+    "minimum_distance": 0.0051556145250387184,
+    "parent_identity_distribution": {
+      "6002": 1839
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 261,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0027188689505165853,
+    "query_parent_mean": 0.0032580781262367964,
+    "reference_alternatives": [
+      {
+        "distance": 0.0051556145250387184,
+        "points": 1839,
+        "region": 1
+      }
+    ],
+    "reference_points": 1839,
+    "reference_region": 1,
+    "region": 5,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 85,
+    "supporter_full_hard_volume": 777,
+    "supporter_full_soft_volume": 773.1827926824753,
+    "supporter_halo_points": 282,
+    "supporter_mean": 0.8716448125388865,
+    "target": 6002,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 261
+  },
+  {
+    "C_single": {
+      "added": 178,
+      "added_other": 0,
+      "added_target": 178,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 178,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.009776459603449222,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.7992871664025035,
+      "repaired_iou": 0.11078156752897238,
+      "result_points": 2017,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 193,
+      "added_other": 0,
+      "added_target": 193,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 193,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.010600318558796062,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.7984633074471567,
+      "repaired_iou": 0.11160542648431922,
+      "result_points": 2032,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 86,
+    "anchor_block_mean": 0.8925936222076416,
+    "anchor_halo_points": 2324,
+    "anchor_supporter_hard_intersection": 2324,
+    "anchor_supporter_hard_union": 2324,
+    "block_GT": {
+      "annotated": 193,
+      "distribution": {
+        "6002": 193
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 193,
+      "target": 193,
+      "unknown": 0
+    },
+    "block_id": "c006_r0007",
+    "candidate_id": "c006",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.11917098445595854,
+        "mean": 0.1242132971371723,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.340743542803169e-06,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.000405198505797077,
+        "query": 16
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.001362657968009795,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00033824687412478265,
+        "query": 23
+      },
+      {
+        "hard_fraction": 0.6787564766839378,
+        "mean": 0.6494308315564932,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0001747403198025697,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0013140534349465624,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.006056364332594741,
+        "query": 49
+      },
+      {
+        "hard_fraction": 0.06217616580310881,
+        "mean": 0.06754197946094337,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.9222797927461139,
+        "mean": 0.8925935461383718,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 178,
+      "distribution": {
+        "6002": 178
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 178,
+      "target": 178,
+      "unknown": 0
+    },
+    "clipped_reference_points": 178,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 15,
+      "distribution": {
+        "6002": 15
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 15,
+      "target": 15,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "frame_states": {
+      "observed_no_support": 2,
+      "observed_weak": 4
+    },
+    "minimum_distance": 0.006768420869152424,
+    "parent_identity_distribution": {
+      "6002": 1839
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.010600318558796076,
+    "points": 193,
+    "pure_oracle_contribution": 0.010600318558796076,
+    "query_parent_hard_fraction": 0.9429037520391517,
+    "query_parent_mean": 0.9328386187553406,
+    "reference_alternatives": [
+      {
+        "distance": 0.006768420869152424,
+        "points": 1839,
+        "region": 1
+      }
+    ],
+    "reference_points": 1839,
+    "reference_region": 1,
+    "region": 7,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 86,
+    "supporter_full_hard_volume": 18810,
+    "supporter_full_soft_volume": 18459.196234366536,
+    "supporter_halo_points": 2324,
+    "supporter_mean": 0.8925935461383718,
+    "target": 6002,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 193
+  },
+  {
+    "C_single": {
+      "added": 208,
+      "added_other": 192,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 208,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0011408668177305958,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8102044928236833,
+      "repaired_iou": 0.09986424110779256,
+      "result_points": 2047,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 16,
+      "unknown_edits": 16
+    },
+    "W_single": {
+      "added": 398,
+      "added_other": 376,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 1839,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 398,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0021607112579606763,
+      "parent_iou": 0.10100510792552315,
+      "parent_points": 1839,
+      "pool_delta": -0.8112243372639134,
+      "repaired_iou": 0.09884439666756248,
+      "result_points": 2237,
+      "scope": "stable",
+      "stable": true,
+      "target": 6002,
+      "unknown_annotation_edits": 22,
+      "unknown_edits": 22
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 86,
+    "anchor_block_mean": 0.035380031913518906,
+    "anchor_halo_points": 2324,
+    "anchor_supporter_hard_intersection": 47,
+    "anchor_supporter_hard_union": 2954,
+    "block_GT": {
+      "annotated": 376,
+      "distribution": {
+        "0": 22,
+        "24014": 191,
+        "3001": 185
+      },
+      "known_instances": 2,
+      "other": 376,
+      "ownership": "other_unknown",
+      "points": 398,
+      "target": 0,
+      "unknown": 22
+    },
+    "block_id": "c006_r0008",
+    "candidate_id": "c006",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.895921818281682e-07,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.341719280873128e-08,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.314070351758794,
+        "mean": 0.29179775935377833,
+        "query": 16
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.209157395928219e-05,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.3768844221105528,
+        "mean": 0.3850716136865541,
+        "query": 23
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.016989774741392297,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.507537688442211,
+        "mean": 0.5033316043525845,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.7523340460922513e-06,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.5226130653266332,
+        "mean": 0.5187037321683332,
+        "query": 49
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.3248663103680116e-08,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.017587939698492462,
+        "mean": 0.035380033805818514,
+        "query": 86
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 192,
+      "distribution": {
+        "0": 16,
+        "24014": 190,
+        "3001": 2
+      },
+      "known_instances": 2,
+      "other": 192,
+      "ownership": "other_unknown",
+      "points": 208,
+      "target": 0,
+      "unknown": 16
+    },
+    "clipped_reference_points": 208,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 184,
+      "distribution": {
+        "0": 6,
+        "24014": 1,
+        "3001": 183
+      },
+      "known_instances": 2,
+      "other": 184,
+      "ownership": "other_unknown",
+      "points": 190,
+      "target": 0,
+      "unknown": 6
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "observed_no_support": 3,
+      "observed_weak": 2
+    },
+    "minimum_distance": 0.006345298494639986,
+    "parent_identity_distribution": {
+      "6002": 1839
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 398,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.04948341489940185,
+    "query_parent_mean": 0.07181360572576523,
+    "reference_alternatives": [
+      {
+        "distance": 0.006345298494639986,
+        "points": 1839,
+        "region": 1
+      }
+    ],
+    "reference_points": 1839,
+    "reference_region": 1,
+    "region": 8,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 49,
+    "supporter_full_hard_volume": 1449,
+    "supporter_full_soft_volume": 1498.9235482557658,
+    "supporter_halo_points": 677,
+    "supporter_mean": 0.5187037321683332,
+    "target": 6002,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 398
+  },
+  {
+    "C_single": {
+      "added": 318,
+      "added_other": 318,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 318,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.1605562448304384,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.18372353275543563,
+      "repaired_iou": 0.5907258064516129,
+      "result_points": 1488,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 332,
+      "added_other": 332,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 332,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.16606234422479427,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.1892296321497915,
+      "repaired_iou": 0.585219707057257,
+      "result_points": 1502,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 40,
+    "anchor_block_mean": 0.06347194314002991,
+    "anchor_halo_points": 1197,
+    "anchor_supporter_hard_intersection": 54,
+    "anchor_supporter_hard_union": 1886,
+    "block_GT": {
+      "annotated": 332,
+      "distribution": {
+        "6002": 332
+      },
+      "known_instances": 1,
+      "other": 332,
+      "ownership": "other_only",
+      "points": 332,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c007_r0000",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.006024096385542169,
+        "mean": 0.0071189557652508026,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.024096385542168676,
+        "mean": 0.02509168091364688,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.3433734939759036,
+        "mean": 0.3294838077769503,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.25903614457831325,
+        "mean": 0.2321078435853836,
+        "query": 36
+      },
+      {
+        "hard_fraction": 0.060240963855421686,
+        "mean": 0.06347194729343256,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.015060240963855422,
+        "mean": 0.017953125013547375,
+        "query": 41
+      },
+      {
+        "hard_fraction": 0.009036144578313253,
+        "mean": 0.02562520756900676,
+        "query": 52
+      },
+      {
+        "hard_fraction": 0.009036144578313253,
+        "mean": 0.007509112386554324,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.9578313253012049,
+        "mean": 0.9273617168361075,
+        "query": 86
+      },
+      {
+        "hard_fraction": 0.015060240963855422,
+        "mean": 0.014590704831259831,
+        "query": 125
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 318,
+      "distribution": {
+        "6002": 318
+      },
+      "known_instances": 1,
+      "other": 318,
+      "ownership": "other_only",
+      "points": 318,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 318,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 14,
+      "distribution": {
+        "6002": 14
+      },
+      "known_instances": 1,
+      "other": 14,
+      "ownership": "other_only",
+      "points": 14,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "observed_no_support": 2,
+      "observed_weak": 3
+    },
+    "minimum_distance": 0.007537178708985429,
+    "parent_identity_distribution": {
+      "0": 213,
+      "13008": 879,
+      "6002": 78
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 332,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0641025641025641,
+    "query_parent_mean": 0.0956868976354599,
+    "reference_alternatives": [
+      {
+        "distance": 0.007537178708985429,
+        "points": 1093,
+        "region": 4
+      },
+      {
+        "distance": 0.01919638608208112,
+        "points": 77,
+        "region": 3
+      }
+    ],
+    "reference_points": 1093,
+    "reference_region": 4,
+    "region": 0,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 86,
+    "supporter_full_hard_volume": 18810,
+    "supporter_full_soft_volume": 18459.196234366536,
+    "supporter_halo_points": 743,
+    "supporter_mean": 0.9273617168361075,
+    "target": 13008,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 332
+  },
+  {
+    "C_single": {
+      "added": 153,
+      "added_other": 153,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 153,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0868829583115297,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.11005024623652693,
+      "repaired_iou": 0.6643990929705216,
+      "result_points": 1323,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 156,
+      "added_other": 156,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 156,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.08838612368024135,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.11155341160523857,
+      "repaired_iou": 0.6628959276018099,
+      "result_points": 1326,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 40,
+    "anchor_block_mean": 0.0661035105586052,
+    "anchor_halo_points": 1197,
+    "anchor_supporter_hard_intersection": 54,
+    "anchor_supporter_hard_union": 1886,
+    "block_GT": {
+      "annotated": 156,
+      "distribution": {
+        "6002": 156
+      },
+      "known_instances": 1,
+      "other": 156,
+      "ownership": "other_only",
+      "points": 156,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c007_r0001",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.00641025641025641,
+        "mean": 0.005884639884577507,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.005013097975038523,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.002911239314759684,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.007364047259673685,
+        "query": 36
+      },
+      {
+        "hard_fraction": 0.02564102564102564,
+        "mean": 0.06610351054218765,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0008571140290089355,
+        "query": 41
+      },
+      {
+        "hard_fraction": 0.40384615384615385,
+        "mean": 0.41694353258432015,
+        "query": 52
+      },
+      {
+        "hard_fraction": 0.00641025641025641,
+        "mean": 0.006215755773251953,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.9807692307692307,
+        "mean": 0.8613238878166064,
+        "query": 86
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.1614696430786417e-06,
+        "query": 125
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 153,
+      "distribution": {
+        "6002": 153
+      },
+      "known_instances": 1,
+      "other": 153,
+      "ownership": "other_only",
+      "points": 153,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 153,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 3,
+      "distribution": {
+        "6002": 3
+      },
+      "known_instances": 1,
+      "other": 3,
+      "ownership": "other_only",
+      "points": 3,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "conflict": 1,
+      "missing": 2,
+      "observed_no_support": 1,
+      "observed_weak": 1
+    },
+    "minimum_distance": 0.009321573475986616,
+    "parent_identity_distribution": {
+      "0": 213,
+      "13008": 879,
+      "6002": 78
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 156,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0641025641025641,
+    "query_parent_mean": 0.0956868976354599,
+    "reference_alternatives": [
+      {
+        "distance": 0.009321573475986616,
+        "points": 1093,
+        "region": 4
+      },
+      {
+        "distance": 0.26816005656042513,
+        "points": 77,
+        "region": 3
+      }
+    ],
+    "reference_points": 1093,
+    "reference_region": 4,
+    "region": 1,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 86,
+    "supporter_full_hard_volume": 18810,
+    "supporter_full_soft_volume": 18459.196234366536,
+    "supporter_halo_points": 743,
+    "supporter_mean": 0.8613238878166064,
+    "target": 13008,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 156
+  },
+  {
+    "C_single": {
+      "added": 170,
+      "added_other": 170,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 170,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.09531190202831996,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.11847918995331719,
+      "repaired_iou": 0.6559701492537313,
+      "result_points": 1340,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 177,
+      "added_other": 177,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 177,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.09872080406601569,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.12188809199101291,
+      "repaired_iou": 0.6525612472160356,
+      "result_points": 1347,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 40,
+    "anchor_block_mean": 0.05811275914311409,
+    "anchor_halo_points": 1197,
+    "anchor_supporter_hard_intersection": 20,
+    "anchor_supporter_hard_union": 1415,
+    "block_GT": {
+      "annotated": 177,
+      "distribution": {
+        "13009": 177
+      },
+      "known_instances": 1,
+      "other": 177,
+      "ownership": "other_only",
+      "points": 177,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c007_r0002",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.7639504038347996e-08,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.011299435028248588,
+        "mean": 0.02156508467396035,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.021437664312908174,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0068638865737215135,
+        "query": 36
+      },
+      {
+        "hard_fraction": 0.05649717514124294,
+        "mean": 0.05811275921065503,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.96045197740113,
+        "mean": 0.9378206825862496,
+        "query": 41
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3886092521806648e-05,
+        "query": 52
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.7958888645629586e-08,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.02824858757062147,
+        "mean": 0.04398952951640216,
+        "query": 86
+      },
+      {
+        "hard_fraction": 0.9209039548022598,
+        "mean": 0.9189732802326733,
+        "query": 125
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 170,
+      "distribution": {
+        "13009": 170
+      },
+      "known_instances": 1,
+      "other": 170,
+      "ownership": "other_only",
+      "points": 170,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 170,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 7,
+      "distribution": {
+        "13009": 7
+      },
+      "known_instances": 1,
+      "other": 7,
+      "ownership": "other_only",
+      "points": 7,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    "frame_states": {
+      "conflict": 1,
+      "observed_no_support": 3,
+      "observed_weak": 2
+    },
+    "minimum_distance": 0.005781777444717542,
+    "parent_identity_distribution": {
+      "0": 213,
+      "13008": 879,
+      "6002": 78
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 177,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.019658119658119658,
+    "query_parent_mean": 0.039553456008434296,
+    "reference_alternatives": [
+      {
+        "distance": 0.005781777444717542,
+        "points": 1093,
+        "region": 4
+      },
+      {
+        "distance": 0.048665501682119576,
+        "points": 77,
+        "region": 3
+      }
+    ],
+    "reference_points": 1093,
+    "reference_region": 4,
+    "region": 2,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 41,
+    "supporter_full_hard_volume": 2065,
+    "supporter_full_soft_volume": 2147.0402425706106,
+    "supporter_halo_points": 238,
+    "supporter_mean": 0.9378206825862496,
+    "target": 13008,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 177
+  },
+  {
+    "C_single": {
+      "added": 33,
+      "added_other": 33,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 33,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.02060873457382184,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.04377602249881907,
+      "repaired_iou": 0.7306733167082294,
+      "result_points": 1203,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 34,
+      "added_other": 34,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 34,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.021215606099327045,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.04438289402432427,
+      "repaired_iou": 0.7300664451827242,
+      "result_points": 1204,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 40,
+    "anchor_block_mean": 0.953686535358429,
+    "anchor_halo_points": 1197,
+    "anchor_supporter_hard_intersection": 1197,
+    "anchor_supporter_hard_union": 1197,
+    "block_GT": {
+      "annotated": 34,
+      "distribution": {
+        "6002": 34
+      },
+      "known_instances": 1,
+      "other": 34,
+      "ownership": "other_only",
+      "points": 34,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c007_r0005",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.5500980161377705e-05,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.8823529411764706,
+        "mean": 0.8675282352110919,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0013159874848959001,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.000443264635125709,
+        "query": 36
+      },
+      {
+        "hard_fraction": 0.9705882352941176,
+        "mean": 0.9536865300991956,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.015943154193604748,
+        "query": 41
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0030397369027622624,
+        "query": 52
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.340979569646375e-05,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.14705882352941177,
+        "mean": 0.1280100268246743,
+        "query": 86
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00014080469925749922,
+        "query": 125
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 33,
+      "distribution": {
+        "6002": 33
+      },
+      "known_instances": 1,
+      "other": 33,
+      "ownership": "other_only",
+      "points": 33,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 33,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "6002": 1
+      },
+      "known_instances": 1,
+      "other": 1,
+      "ownership": "other_only",
+      "points": 1,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 4,
+      "observed_weak": 1
+    },
+    "minimum_distance": 0.008626671217827281,
+    "parent_identity_distribution": {
+      "0": 213,
+      "13008": 879,
+      "6002": 78
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 34,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.9487179487179487,
+    "query_parent_mean": 0.9297094941139221,
+    "reference_alternatives": [
+      {
+        "distance": 0.008626671217827281,
+        "points": 1093,
+        "region": 4
+      },
+      {
+        "distance": 0.26716328790339533,
+        "points": 77,
+        "region": 3
+      }
+    ],
+    "reference_points": 1093,
+    "reference_region": 4,
+    "region": 5,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 40,
+    "supporter_full_hard_volume": 1197,
+    "supporter_full_soft_volume": 1202.1785513931984,
+    "supporter_halo_points": 1197,
+    "supporter_mean": 0.9536865300991956,
+    "target": 13008,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 34
+  },
+  {
+    "C_single": {
+      "added": 75,
+      "added_other": 75,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 75,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.04525795489650908,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.0684252428215063,
+      "repaired_iou": 0.7060240963855422,
+      "result_points": 1245,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 85,
+      "added_other": 85,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 85,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.050883644907549264,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.07405093283254649,
+      "repaired_iou": 0.700398406374502,
+      "result_points": 1255,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 40,
+    "anchor_block_mean": 0.04167047515511513,
+    "anchor_halo_points": 1197,
+    "anchor_supporter_hard_intersection": 54,
+    "anchor_supporter_hard_union": 1886,
+    "block_GT": {
+      "annotated": 85,
+      "distribution": {
+        "6002": 85
+      },
+      "known_instances": 1,
+      "other": 85,
+      "ownership": "other_only",
+      "points": 85,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c007_r0006",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.8246779811841275e-06,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.011764705882352941,
+        "mean": 0.014599665913659219,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.02296013521194896,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.011764705882352941,
+        "mean": 0.15826641509501155,
+        "query": 36
+      },
+      {
+        "hard_fraction": 0.023529411764705882,
+        "mean": 0.04167047425370289,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.028517647984742378,
+        "query": 41
+      },
+      {
+        "hard_fraction": 0.023529411764705882,
+        "mean": 0.028111667845014916,
+        "query": 52
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.943607307212219e-06,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.8823529411764706,
+        "mean": 0.850037770060932,
+        "query": 86
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.015364454859217216,
+        "query": 125
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 75,
+      "distribution": {
+        "6002": 75
+      },
+      "known_instances": 1,
+      "other": 75,
+      "ownership": "other_only",
+      "points": 75,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 75,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 10,
+      "distribution": {
+        "6002": 10
+      },
+      "known_instances": 1,
+      "other": 10,
+      "ownership": "other_only",
+      "points": 10,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 4,
+      "observed_no_support": 1
+    },
+    "minimum_distance": 0.006998373593211837,
+    "parent_identity_distribution": {
+      "0": 213,
+      "13008": 879,
+      "6002": 78
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 85,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0641025641025641,
+    "query_parent_mean": 0.0956868976354599,
+    "reference_alternatives": [
+      {
+        "distance": 0.006998373593211837,
+        "points": 1093,
+        "region": 4
+      },
+      {
+        "distance": 0.15349178622607065,
+        "points": 77,
+        "region": 3
+      }
+    ],
+    "reference_points": 1093,
+    "reference_region": 4,
+    "region": 6,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 86,
+    "supporter_full_hard_volume": 18810,
+    "supporter_full_soft_volume": 18459.196234366536,
+    "supporter_halo_points": 743,
+    "supporter_mean": 0.850037770060932,
+    "target": 13008,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 85
+  },
+  {
+    "C_single": {
+      "added": 32,
+      "added_other": 24,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 32,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.020000853278723474,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.0431681412037207,
+      "repaired_iou": 0.7312811980033278,
+      "result_points": 1202,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 8,
+      "unknown_edits": 8
+    },
+    "W_single": {
+      "added": 33,
+      "added_other": 24,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 879,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 33,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.02060873457382184,
+      "parent_iou": 0.7512820512820513,
+      "parent_points": 1170,
+      "pool_delta": -0.04377602249881907,
+      "repaired_iou": 0.7306733167082294,
+      "result_points": 1203,
+      "scope": "stable",
+      "stable": true,
+      "target": 13008,
+      "unknown_annotation_edits": 9,
+      "unknown_edits": 9
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 40,
+    "anchor_block_mean": 0.0013303833547979593,
+    "anchor_halo_points": 1197,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 1242,
+    "block_GT": {
+      "annotated": 24,
+      "distribution": {
+        "0": 9,
+        "13007": 24
+      },
+      "known_instances": 1,
+      "other": 24,
+      "ownership": "other_unknown",
+      "points": 33,
+      "target": 0,
+      "unknown": 9
+    },
+    "block_id": "c007_r0007",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.9696969696969697,
+        "mean": 0.953437400135127,
+        "query": 1
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1838264942393302e-05,
+        "query": 4
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.5044070913646735e-06,
+        "query": 18
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3274745055354392e-05,
+        "query": 36
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0013303833453085535,
+        "query": 40
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.397281340834243e-06,
+        "query": 41
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0002140212984750841,
+        "query": 52
+      },
+      {
+        "hard_fraction": 0.9696969696969697,
+        "mean": 0.9647818219029543,
+        "query": 85
+      },
+      {
+        "hard_fraction": 0.030303030303030304,
+        "mean": 0.03209261273875172,
+        "query": 86
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.5100345348423107e-09,
+        "query": 125
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 24,
+      "distribution": {
+        "0": 8,
+        "13007": 24
+      },
+      "known_instances": 1,
+      "other": 24,
+      "ownership": "other_unknown",
+      "points": 32,
+      "target": 0,
+      "unknown": 8
+    },
+    "clipped_reference_points": 32,
+    "cohort": "internal24",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {
+        "0": 1
+      },
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "unknown_only",
+      "points": 1,
+      "target": 0,
+      "unknown": 1
+    },
+    "evidence_signature": [
+      false,
+      true,
+      true,
+      false,
+      false,
+      true,
+      false,
+      true,
+      true
+    ],
+    "frame_states": {
+      "ambiguous_tie": 2,
+      "conflict": 2,
+      "observed_no_support": 1,
+      "observed_weak": 1
+    },
+    "minimum_distance": 0.11639975315309266,
+    "parent_identity_distribution": {
+      "0": 213,
+      "13008": 879,
+      "6002": 78
+    },
+    "parent_region_contact": false,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 33,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0,
+    "query_parent_mean": 0.00012002856965409592,
+    "reference_alternatives": [
+      {
+        "distance": 0.11639975315309266,
+        "points": 1093,
+        "region": 4
+      },
+      {
+        "distance": 0.3859996336685631,
+        "points": 77,
+        "region": 3
+      }
+    ],
+    "reference_points": 1093,
+    "reference_region": 4,
+    "region": 7,
+    "scene": "scene0128_00",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 85,
+    "supporter_full_hard_volume": 777,
+    "supporter_full_soft_volume": 773.1827926824753,
+    "supporter_halo_points": 45,
+    "supporter_mean": 0.9647818219029543,
+    "target": 13008,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 33
+  }
+]

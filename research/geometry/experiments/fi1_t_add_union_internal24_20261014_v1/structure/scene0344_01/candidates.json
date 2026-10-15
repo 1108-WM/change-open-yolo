@@ -1,0 +1,908 @@
+[
+  {
+    "candidate_id": "c004",
+    "edges": 11,
+    "halo_points": 2320,
+    "neighbors": [
+      {
+        "aliases": [
+          "scene0344_01:geometry:ae1587f7bc68122b91c4a4152275d632d50bf4345184874bdec4a81399adf9c2"
+        ],
+        "distance": 0.0,
+        "hit": 189,
+        "key": "scene0344_01:geometry:ae1587f7bc68122b91c4a4152275d632d50bf4345184874bdec4a81399adf9c2",
+        "overlap": 0.25997248968363135,
+        "sources": [
+          "track"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:d5983c85f0e323545e393fe617cbcd76394e508418eef725a07a1d1628fcf209"
+        ],
+        "distance": 0.025726504630435434,
+        "hit": 0,
+        "key": "scene0344_01:geometry:d5983c85f0e323545e393fe617cbcd76394e508418eef725a07a1d1628fcf209",
+        "overlap": 0.0,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "neighbors_before_truncation": 2,
+    "omitted": [],
+    "omitted_covered_halo_points": 0,
+    "pair_explanation": [
+      {
+        "intersection": 0,
+        "neighbor": "scene0344_01:geometry:d5983c85f0e323545e393fe617cbcd76394e508418eef725a07a1d1628fcf209",
+        "neighbor_only": 98,
+        "parent_only": 727
+      }
+    ],
+    "parent": "scene0344_01:geometry:887abd3352a849122a292c3d940667b302b987f15717e895e4be6e538b8e423b",
+    "parent_points": 727,
+    "region_member_vectors": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ]
+    ],
+    "regions": 10,
+    "source": "track",
+    "views": {
+      "gd10_selected6": {
+        "frames": [
+          50,
+          40,
+          810,
+          790,
+          60,
+          540
+        ],
+        "trace": [
+          {
+            "frame": 50,
+            "group": 3,
+            "priority": 0.6231086657496562,
+            "subject_fraction": 0.6231086657496562,
+            "weighted_mask_coverage": 0.006434400502197113,
+            "weighted_new_coverage": 0.37524659113675235
+          },
+          {
+            "frame": 40,
+            "group": 2,
+            "priority": 0.3401702994805222,
+            "subject_fraction": 0.546079779917469,
+            "weighted_mask_coverage": 0.0075637490415492725,
+            "weighted_new_coverage": 0.3382793622201349
+          },
+          {
+            "frame": 810,
+            "group": 100,
+            "priority": 0.12341375278786572,
+            "subject_fraction": 0.20907840440165062,
+            "weighted_mask_coverage": 0.03411682639446075,
+            "weighted_new_coverage": 0.11488454618925054
+          },
+          {
+            "frame": 790,
+            "group": 99,
+            "priority": 0.0845888655467204,
+            "subject_fraction": 0.19807427785419532,
+            "weighted_mask_coverage": 0.03286133361354424,
+            "weighted_new_coverage": 0.07637353214333434
+          },
+          {
+            "frame": 60,
+            "group": 4,
+            "priority": 0.07613842952941142,
+            "subject_fraction": 0.5818431911966988,
+            "weighted_mask_coverage": 0.002634154986033873,
+            "weighted_new_coverage": 0.07547989078290296
+          },
+          {
+            "frame": 540,
+            "group": 66,
+            "priority": 0.04468395910816648,
+            "subject_fraction": 0.08803301237964237,
+            "weighted_mask_coverage": 0.024131494041865608,
+            "weighted_new_coverage": 0.03865108559770008
+          }
+        ]
+      },
+      "old30_selected6": {
+        "frames": [
+          50,
+          20,
+          810,
+          590,
+          540,
+          80
+        ],
+        "trace": [
+          {
+            "frame": 50,
+            "group": 3,
+            "priority": 0.6231086657496562,
+            "subject_fraction": 0.6231086657496562,
+            "weighted_mask_coverage": 0.006434400502197113,
+            "weighted_new_coverage": 0.37524659113675235
+          },
+          {
+            "frame": 20,
+            "group": 0,
+            "priority": 0.28903062375591704,
+            "subject_fraction": 0.47042640990371387,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.28903062375591704
+          },
+          {
+            "frame": 810,
+            "group": 100,
+            "priority": 0.1326084710585372,
+            "subject_fraction": 0.20907840440165062,
+            "weighted_mask_coverage": 0.0369416851515229,
+            "weighted_new_coverage": 0.1233730497706565
+          },
+          {
+            "frame": 590,
+            "group": 74,
+            "priority": 0.07807198009665549,
+            "subject_fraction": 0.22283356258596973,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.07807198009665549
+          },
+          {
+            "frame": 540,
+            "group": 66,
+            "priority": 0.055810686719196353,
+            "subject_fraction": 0.08803301237964237,
+            "weighted_mask_coverage": 0.030596686900112927,
+            "weighted_new_coverage": 0.048161514994168125
+          },
+          {
+            "frame": 80,
+            "group": 7,
+            "priority": 0.03997443174439455,
+            "subject_fraction": 0.06327372764786796,
+            "weighted_mask_coverage": 0.028289348561177426,
+            "weighted_new_coverage": 0.03290209460410019
+          }
+        ]
+      }
+    }
+  },
+  {
+    "candidate_id": "c005",
+    "edges": 7,
+    "halo_points": 3944,
+    "neighbors": [
+      {
+        "aliases": [
+          "scene0344_01:geometry:0b7479d7c1b71c8200e5bcdd6c1bc686ad0b889b213400af8e38dba5a4063772"
+        ],
+        "distance": 0.0,
+        "hit": 2370,
+        "key": "scene0344_01:geometry:0b7479d7c1b71c8200e5bcdd6c1bc686ad0b889b213400af8e38dba5a4063772",
+        "overlap": 1.0,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:a4f88d41ed509446e74ce544d3704cb5d42f180fdf26217a7ad08a2897882b28"
+        ],
+        "distance": 0.007751773970738862,
+        "hit": 0,
+        "key": "scene0344_01:geometry:a4f88d41ed509446e74ce544d3704cb5d42f180fdf26217a7ad08a2897882b28",
+        "overlap": 0.0,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:f87ccb1dd34f0b76e6d6b1994ce225d905c01e71771c06f09f33da85e19df8c9"
+        ],
+        "distance": 0.09063074710974259,
+        "hit": 0,
+        "key": "scene0344_01:geometry:f87ccb1dd34f0b76e6d6b1994ce225d905c01e71771c06f09f33da85e19df8c9",
+        "overlap": 0.0,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:8fe697d32aa61391058f6055e61762eaef1048b2a7f1d9d3cf93da0865470f69"
+        ],
+        "distance": 0.09473648208611458,
+        "hit": 0,
+        "key": "scene0344_01:geometry:8fe697d32aa61391058f6055e61762eaef1048b2a7f1d9d3cf93da0865470f69",
+        "overlap": 0.0,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "neighbors_before_truncation": 6,
+    "omitted": [
+      {
+        "aliases": [
+          "scene0344_01:geometry:129f55c60d12db36e0dd3c2e28b6ec56f9bb21b61964ccfaf05acca8a1a563a0"
+        ],
+        "distance": 0.1248510329315347,
+        "hit": 0,
+        "key": "scene0344_01:geometry:129f55c60d12db36e0dd3c2e28b6ec56f9bb21b61964ccfaf05acca8a1a563a0",
+        "overlap": 0.0,
+        "sources": [
+          "track"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:68ff1f7c3389ccdd1c1969375b3123fe427c98339e559ef342b806b91c053e5d"
+        ],
+        "distance": 0.1248510329315347,
+        "hit": 0,
+        "key": "scene0344_01:geometry:68ff1f7c3389ccdd1c1969375b3123fe427c98339e559ef342b806b91c053e5d",
+        "overlap": 0.0,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "omitted_covered_halo_points": 91,
+    "pair_explanation": [
+      {
+        "intersection": 2370,
+        "neighbor": "scene0344_01:geometry:0b7479d7c1b71c8200e5bcdd6c1bc686ad0b889b213400af8e38dba5a4063772",
+        "neighbor_only": 1124,
+        "parent_only": 0
+      },
+      {
+        "intersection": 0,
+        "neighbor": "scene0344_01:geometry:a4f88d41ed509446e74ce544d3704cb5d42f180fdf26217a7ad08a2897882b28",
+        "neighbor_only": 245,
+        "parent_only": 2370
+      },
+      {
+        "intersection": 0,
+        "neighbor": "scene0344_01:geometry:f87ccb1dd34f0b76e6d6b1994ce225d905c01e71771c06f09f33da85e19df8c9",
+        "neighbor_only": 114,
+        "parent_only": 2370
+      }
+    ],
+    "parent": "scene0344_01:geometry:7ec9d5ff46d8969b9c283fd5afd3995cf02811e52cfe780ce78ceb2e4bac0716",
+    "parent_points": 2370,
+    "region_member_vectors": [
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "regions": 11,
+    "source": "track",
+    "views": {
+      "gd10_selected6": {
+        "frames": [
+          490,
+          480,
+          330,
+          430,
+          510,
+          320
+        ],
+        "trace": [
+          {
+            "frame": 490,
+            "group": 57,
+            "priority": 0.3978902953586498,
+            "subject_fraction": 0.3978902953586498,
+            "weighted_mask_coverage": 0.0001588310038119441,
+            "weighted_new_coverage": 0.3008330831960966
+          },
+          {
+            "frame": 480,
+            "group": 56,
+            "priority": 0.29321751390689693,
+            "subject_fraction": 0.3691983122362869,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.29321751390689693
+          },
+          {
+            "frame": 330,
+            "group": 31,
+            "priority": 0.12406012659383375,
+            "subject_fraction": 0.319831223628692,
+            "weighted_mask_coverage": 0.07965824662553103,
+            "weighted_new_coverage": 0.104145564937451
+          },
+          {
+            "frame": 430,
+            "group": 46,
+            "priority": 0.12014112397013285,
+            "subject_fraction": 0.3759493670886076,
+            "weighted_mask_coverage": 0.0011118170266836089,
+            "weighted_new_coverage": 0.11986316971346195
+          },
+          {
+            "frame": 510,
+            "group": 61,
+            "priority": 0.09220637865861125,
+            "subject_fraction": 0.389873417721519,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.09220637865861125
+          },
+          {
+            "frame": 320,
+            "group": 20,
+            "priority": 0.08971999968417431,
+            "subject_fraction": 0.3261603375527426,
+            "weighted_mask_coverage": 0.0001588310038119441,
+            "weighted_new_coverage": 0.08968029193322133
+          }
+        ]
+      },
+      "old30_selected6": {
+        "frames": [
+          510,
+          480,
+          430,
+          320,
+          180,
+          460
+        ],
+        "trace": [
+          {
+            "frame": 510,
+            "group": 61,
+            "priority": 0.389873417721519,
+            "subject_fraction": 0.389873417721519,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.2534365607668224
+          },
+          {
+            "frame": 480,
+            "group": 56,
+            "priority": 0.29321751390689693,
+            "subject_fraction": 0.3691983122362869,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.29321751390689693
+          },
+          {
+            "frame": 430,
+            "group": 46,
+            "priority": 0.1741218548276465,
+            "subject_fraction": 0.3759493670886076,
+            "weighted_mask_coverage": 0.001588310038119441,
+            "weighted_new_coverage": 0.17372477731811664
+          },
+          {
+            "frame": 320,
+            "group": 20,
+            "priority": 0.11586360784786089,
+            "subject_fraction": 0.3261603375527426,
+            "weighted_mask_coverage": 0.0003176620076238882,
+            "weighted_new_coverage": 0.11578419234595491
+          },
+          {
+            "frame": 180,
+            "group": 19,
+            "priority": 0.08274729347187765,
+            "subject_fraction": 0.21561181434599155,
+            "weighted_mask_coverage": 0.0005600126780372814,
+            "weighted_new_coverage": 0.08260729030236832
+          },
+          {
+            "frame": 460,
+            "group": 52,
+            "priority": 0.07627305502125592,
+            "subject_fraction": 0.3392405063291139,
+            "weighted_mask_coverage": 0.0019059720457433294,
+            "weighted_new_coverage": 0.07579656200982009
+          }
+        ]
+      }
+    }
+  },
+  {
+    "candidate_id": "c006",
+    "edges": 7,
+    "halo_points": 1919,
+    "neighbors": [
+      {
+        "aliases": [
+          "scene0344_01:geometry:375d994c21149643f5d66a49f330ce7417a1ed92819b3d7f3df0efd045273e8a"
+        ],
+        "distance": 0.0,
+        "hit": 417,
+        "key": "scene0344_01:geometry:375d994c21149643f5d66a49f330ce7417a1ed92819b3d7f3df0efd045273e8a",
+        "overlap": 1.0,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:91e1a0e0509b6d15dd7f7b3db152feeadb6d5ef5ba58dac24c936a38f75f59d3"
+        ],
+        "distance": 0.0071854009451662515,
+        "hit": 0,
+        "key": "scene0344_01:geometry:91e1a0e0509b6d15dd7f7b3db152feeadb6d5ef5ba58dac24c936a38f75f59d3",
+        "overlap": 0.0,
+        "sources": [
+          "track"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:129f55c60d12db36e0dd3c2e28b6ec56f9bb21b61964ccfaf05acca8a1a563a0"
+        ],
+        "distance": 0.08766651430758163,
+        "hit": 0,
+        "key": "scene0344_01:geometry:129f55c60d12db36e0dd3c2e28b6ec56f9bb21b61964ccfaf05acca8a1a563a0",
+        "overlap": 0.0,
+        "sources": [
+          "track"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:68ff1f7c3389ccdd1c1969375b3123fe427c98339e559ef342b806b91c053e5d"
+        ],
+        "distance": 0.08766651430758163,
+        "hit": 0,
+        "key": "scene0344_01:geometry:68ff1f7c3389ccdd1c1969375b3123fe427c98339e559ef342b806b91c053e5d",
+        "overlap": 0.0,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "neighbors_before_truncation": 4,
+    "omitted": [],
+    "omitted_covered_halo_points": 0,
+    "pair_explanation": [
+      {
+        "intersection": 417,
+        "neighbor": "scene0344_01:geometry:375d994c21149643f5d66a49f330ce7417a1ed92819b3d7f3df0efd045273e8a",
+        "neighbor_only": 1154,
+        "parent_only": 0
+      },
+      {
+        "intersection": 0,
+        "neighbor": "scene0344_01:geometry:68ff1f7c3389ccdd1c1969375b3123fe427c98339e559ef342b806b91c053e5d",
+        "neighbor_only": 96,
+        "parent_only": 417
+      }
+    ],
+    "parent": "scene0344_01:geometry:7c028722e20ca01d36973008764640100194db6ef164e7796c3dcda478f92ab5",
+    "parent_points": 417,
+    "region_member_vectors": [
+      [
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    ],
+    "regions": 7,
+    "source": "track",
+    "views": {
+      "gd10_selected6": {
+        "frames": [
+          360,
+          150,
+          350,
+          290,
+          320,
+          440
+        ],
+        "trace": [
+          {
+            "frame": 360,
+            "group": 36,
+            "priority": 0.7529976019184652,
+            "subject_fraction": 0.7529976019184652,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.4924027612655921
+          },
+          {
+            "frame": 150,
+            "group": 17,
+            "priority": 0.5665479985307921,
+            "subject_fraction": 0.7386091127098321,
+            "weighted_mask_coverage": 0.25814682784046666,
+            "weighted_new_coverage": 0.5020112915706754
+          },
+          {
+            "frame": 350,
+            "group": 34,
+            "priority": 0.2232193502894528,
+            "subject_fraction": 0.7362110311750599,
+            "weighted_mask_coverage": 0.0034112806264091555,
+            "weighted_new_coverage": 0.22236653013285052
+          },
+          {
+            "frame": 290,
+            "group": 25,
+            "priority": 0.10688497528068466,
+            "subject_fraction": 0.6378896882494005,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.10688497528068466
+          },
+          {
+            "frame": 320,
+            "group": 20,
+            "priority": 0.0601556922519825,
+            "subject_fraction": 0.6786570743405276,
+            "weighted_mask_coverage": 0.00042641007830114444,
+            "weighted_new_coverage": 0.06004908973240722
+          },
+          {
+            "frame": 440,
+            "group": 48,
+            "priority": 0.0463609829239397,
+            "subject_fraction": 0.4412470023980815,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.0463609829239397
+          }
+        ]
+      },
+      "old30_selected6": {
+        "frames": [
+          350,
+          160,
+          240,
+          370,
+          320,
+          430
+        ],
+        "trace": [
+          {
+            "frame": 350,
+            "group": 34,
+            "priority": 0.7362110311750599,
+            "subject_fraction": 0.7362110311750599,
+            "weighted_mask_coverage": 0.0034112806264091555,
+            "weighted_new_coverage": 0.54885318218735
+          },
+          {
+            "frame": 160,
+            "group": 18,
+            "priority": 0.5128379586956221,
+            "subject_fraction": 0.7362110311750599,
+            "weighted_mask_coverage": 0.0012792302349034332,
+            "weighted_new_coverage": 0.5125181511368962
+          },
+          {
+            "frame": 240,
+            "group": 25,
+            "priority": 0.16624648177619464,
+            "subject_fraction": 0.7026378896882494,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.16624648177619464
+          },
+          {
+            "frame": 370,
+            "group": 37,
+            "priority": 0.10809379828844098,
+            "subject_fraction": 0.6786570743405276,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.10809379828844098
+          },
+          {
+            "frame": 320,
+            "group": 20,
+            "priority": 0.053840009326035596,
+            "subject_fraction": 0.6786570743405276,
+            "weighted_mask_coverage": 0.00042641007830114444,
+            "weighted_new_coverage": 0.05373340680646031
+          },
+          {
+            "frame": 430,
+            "group": 46,
+            "priority": 0.03981347522074189,
+            "subject_fraction": 0.5611510791366906,
+            "weighted_mask_coverage": 0.0,
+            "weighted_new_coverage": 0.03981347522074189
+          }
+        ]
+      }
+    }
+  },
+  {
+    "candidate_id": "c007",
+    "edges": 3,
+    "halo_points": 773,
+    "neighbors": [
+      {
+        "aliases": [
+          "scene0344_01:geometry:9294b5d1cb55c207e3e29b0b0cbf13e1df532855d2ab2c760391eca6543727ba"
+        ],
+        "distance": 0.008339410354543228,
+        "hit": 0,
+        "key": "scene0344_01:geometry:9294b5d1cb55c207e3e29b0b0cbf13e1df532855d2ab2c760391eca6543727ba",
+        "overlap": 0.0,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "aliases": [
+          "scene0344_01:geometry:e4dabb7a675ed8ef810fdef95c54c6a3043fd63d7149ed5de4d6f35b8bd3eaa0"
+        ],
+        "distance": 0.14100372816517662,
+        "hit": 0,
+        "key": "scene0344_01:geometry:e4dabb7a675ed8ef810fdef95c54c6a3043fd63d7149ed5de4d6f35b8bd3eaa0",
+        "overlap": 0.0,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "neighbors_before_truncation": 2,
+    "omitted": [],
+    "omitted_covered_halo_points": 0,
+    "pair_explanation": [
+      {
+        "intersection": 0,
+        "neighbor": "scene0344_01:geometry:9294b5d1cb55c207e3e29b0b0cbf13e1df532855d2ab2c760391eca6543727ba",
+        "neighbor_only": 148,
+        "parent_only": 332
+      },
+      {
+        "intersection": 0,
+        "neighbor": "scene0344_01:geometry:e4dabb7a675ed8ef810fdef95c54c6a3043fd63d7149ed5de4d6f35b8bd3eaa0",
+        "neighbor_only": 5,
+        "parent_only": 332
+      }
+    ],
+    "parent": "scene0344_01:geometry:6b2865dd4655bb76a6673308240b65f82b3a416c5c20b7f50f8ad6e8d10cc069",
+    "parent_points": 332,
+    "region_member_vectors": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "regions": 5,
+    "source": "track",
+    "views": {
+      "gd10_selected6": {
+        "frames": [
+          660,
+          670,
+          680
+        ],
+        "trace": [
+          {
+            "frame": 660,
+            "group": 84,
+            "priority": 0.4608433734939759,
+            "subject_fraction": 0.4608433734939759,
+            "weighted_mask_coverage": 0.22916871567904268,
+            "weighted_new_coverage": 0.386517840067754
+          },
+          {
+            "frame": 670,
+            "group": 85,
+            "priority": 0.40612552249815587,
+            "subject_fraction": 0.4397590361445783,
+            "weighted_mask_coverage": 0.21388820588476357,
+            "weighted_new_coverage": 0.352653471026965
+          },
+          {
+            "frame": 680,
+            "group": 87,
+            "priority": 0.10547701008114085,
+            "subject_fraction": 0.29518072289156627,
+            "weighted_mask_coverage": 0.0005668934240362812,
+            "weighted_new_coverage": 0.10533528672513179
+          }
+        ]
+      },
+      "old30_selected6": {
+        "frames": [
+          670
+        ],
+        "trace": [
+          {
+            "frame": 670,
+            "group": 85,
+            "priority": 0.4397590361445783,
+            "subject_fraction": 0.4397590361445783,
+            "weighted_mask_coverage": 0.21388820588476357,
+            "weighted_new_coverage": 0.352653471026965
+          }
+        ]
+      }
+    }
+  }
+]

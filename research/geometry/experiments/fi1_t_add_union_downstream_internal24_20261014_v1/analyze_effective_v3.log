@@ -1,0 +1,35 @@
+diagnose/verify scene0002_00
+diagnose/verify scene0045_00
+diagnose/verify scene0072_02
+diagnose/verify scene0075_00
+diagnose/verify scene0078_00
+diagnose/verify scene0085_00
+diagnose/verify scene0087_00
+diagnose/verify scene0112_01
+diagnose/verify scene0128_00
+diagnose/verify scene0161_00
+diagnose/verify scene0173_01
+diagnose/verify scene0175_00
+diagnose/verify scene0199_00
+diagnose/verify scene0216_00
+diagnose/verify scene0226_01
+diagnose/verify scene0234_00
+diagnose/verify scene0293_00
+diagnose/verify scene0303_01
+diagnose/verify scene0344_01
+diagnose/verify scene0452_02
+diagnose/verify scene0547_02
+diagnose/verify scene0561_00
+diagnose/verify scene0688_00
+diagnose/verify scene0691_01
+Traceback (most recent call last):
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/analyze_fi1_t_add_downstream.py", line 148, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/analyze_fi1_t_add_downstream.py", line 119, in main
+    computed=np.stack([integrate(**independent[view][arm][t],labels=evaluator.CLASS_LABELS) for t in thresholds],axis=1)[None]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/analyze_fi1_t_add_downstream.py", line 119, in <listcomp>
+    computed=np.stack([integrate(**independent[view][arm][t],labels=evaluator.CLASS_LABELS) for t in thresholds],axis=1)[None]
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: integrate() got an unexpected keyword argument 'fn'

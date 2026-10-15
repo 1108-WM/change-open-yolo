@@ -1,0 +1,580 @@
+                                                             Clutt3R-Seg: Sparse-view 3D Instance Segmentation
+                                                            for Language-grounded Grasping in Cluttered Scenes
+
+                                                 Jeongho Noh1 , Tai Hyoung Rhee1 , Eunho Lee2 , Jeongyun Kim1 , Sunwoo Lee3 and Ayoung Kim1∗
+
+
+
+                                             Abstract— Reliable 3D instance segmentation is fundamental                     Multi-view noisy mask    Hierarchy-based Grouping         View-consistent mask
+                                                                                                                                              Over            Hierarchical                            Mask
+                                         to language-grounded robotic manipulation. Its critical appli-                                    segmented         instance tree
+                                                                                                                                                                                                    corrected
+
+                                         cation lies in cluttered environments, where occlusions, limited
+                                         viewpoints, and noisy masks degrade perception. To address
+arXiv:2602.11660v1 [cs.CV] 12 Feb 2026
+
+
+
+
+                                         these challenges, we present Clutt3R-Seg, a zero-shot pipeline
+                                         for robust 3D instance segmentation for language-grounded                                       Under                                                    Mask
+                                                                                                                                                                                                corrected
+                                         grasping in cluttered scenes. Our key idea is to introduce                                    segmented
+
+                                         a hierarchical instance tree of semantic cues. Unlike prior
+                                                                                                                                            Under
+                                         approaches that attempt to refine noisy masks, our method                                        segmented         Two-stage
+                                                                                                                                                                                                      Mask
+                                                                                                                                                                                                    corrected
+                                         leverages them as informative cues: through cross-view group-                                                       grouping
+                                                                                                                                                              Spatial
+                                         ing and conditional substitution, the tree suppresses over- and                                                        +
+                                         under-segmentation, yielding view-consistent masks and robust                                                       Semantic
+                                         3D instances. Each instance is enriched with open-vocabulary                                                           +
+                                         semantic embeddings, enabling accurate target selection from
+                                         natural language instructions. To handle scene changes during                                                            View-inconsistent           View-consistent
+
+                                         multi-stage tasks, we further introduce a consistency-aware up-                                 Task: “Bleach cleanser” and “Tennis ball”
+
+                                         date that preserves instance correspondences from only a single
+                                         post-interaction image, allowing efficient adaptation without
+                                         rescanning. Clutt3R-Seg is evaluated on both synthetic and real-                                                 Consistency-aware update
+                                         world datasets, and validated on a real robot. Across all settings,                3D Instance segmentation &         𝑹, 𝒕
+                                                                                                                                                                     ⋯
+                                                                                                                                                                               𝑹, 𝒕
+                                                                                                                            Language-grounded grasping                                     Multi-stage grasping
+                                         it consistently outperforms state-of-the-art baselines in cluttered
+                                         and sparse-view scenarios. Even on the most challenging heavy-
+                                         clutter sequences, Clutt3R-Seg achieves an AP@25 of 61.66,                     Fig. 1: Clutt3R-Seg resolves over- and under-segmentation and
+                                         over 2.2× higher than baselines, and with only four input views                cross-view inconsistencies from erroneous noisy masks in sparse-
+                                         it surpasses MaskClustering with eight views by more than 2×.                  view cluttered scenes through a hierarchy-based instance mask
+                                         The code is available at: https://github.com/jeonghonoh/clutt3r-               grouping algorithm, yielding view-consistent masks and robust
+                                         seg.                                                                           3D instance segmentation. These consistent 3D instances en-
+                                                                                                                        able language-grounded target identification and consistency-aware
+                                                                                                                        multi-stage grasping by detecting displaced objects and optimizing
+                                                                  I. I NTRODUCTION                                      their poses after interaction.
+                                            Robotic manipulation is widely adopted in automation and
+                                         industrial applications. Still, there exists a major challenge in                 Another major challenge with cluttered scenes is that
+                                         severely cluttered scenes where heavy occlusions degrade in-                   semantic features are often ambiguous, making language-
+                                         stance segmentation and reliable perception. Early works [1–                   grounded target identification difficult. Recent works [7, 8]
+                                         3] exploring a single RGB-D input were often vulnerable                        addressing this challenge embed per-view features into a 3D
+                                         under limited viewpoints or heavy occlusion. As a mitigation,                  scene representation to encourage cross-view consistency.
+                                         recent methods [4–6] adopt dense inputs, but fail to update                    However, because these pipelines still depend on per-frame
+                                         after scene changes such as object removal or displacement,                    masks, over- and under-segmentation are inherited by the
+                                         even with the increased computational cost. In this regard,                    3D representation and break cross-view consistency. Another
+                                         securing accurate and efficient 3D segmentation from sparse                    approach, LangSplat [9], employs hierarchical features to en-
+                                         views remains a significant challenge.                                         rich semantics. Nevertheless, maintaining per-object, per-part
+                                                                                                                        feature maps introduces high computational overhead, while
+                                           † This work was supported by Hyundai Motor Company and Kia, and
+                                                                                                                        semantics still remain unstable across views under heavy
+                                         by the Institute of Information & communications Technology Planning &
+                                         Evaluation (IITP) grant funded by the Korea government(MSIT) No.2022-0-
+                                                                                                                        clutter, leading to failures in language-grounded grasping.
+                                         00480, Development of Training and Inference Methods for Goal-Oriented            In this paper, we present Clutt3R-Seg, a pipeline for zero-
+                                         Artificial Intelligence Agents.
+                                           1 J. Noh, TH. Rhee, J. Kim and A. Kim are with the Dept. of                  shot 3D instance segmentation and consistency-aware multi-
+                                         Mechanical Engineering, SNU, Seoul, S. Korea [shwjdgh3842,                     stage grasping that enables language-grounded manipulation
+                                         williamrhee, jeongyunkim, ayoungk]@snu.ac.kr                                   in heavily cluttered, sparse-view settings. As shown in Fig. 1,
+                                           2 E. Lee is with the Interdisciplinary Program in Artificial Intelligence,
+                                                                                                                        our key idea is to organize noisy 2D mask candidates
+                                         SNU, Seoul, S. Korea {eunho1124}@snu.ac.kr
+                                           3 S. Lee is with the Robotics Lab, Hyundai Motor Company, S. Korea           into a hierarchical structure that reveals redundancy among
+                                         {twosun}@hyundai.com                                                           overlapping masks. Through cross-view grouping of high-
+        (a) Preprocessing                                              (b) Hierarchy-based 3D instance segmentation                                                   “Gelatin box”
+
+                               MVSA                                               {𝑆𝑠𝑝𝑎𝑡𝑖𝑎𝑙 , 𝑆𝑠𝑒𝑚𝑎𝑛𝑡𝑖𝑐 }
+
+
+                                            Depth       Super-voxel
+                                                                                                                   ⋮
+                               Grounded SAM                                                                    Embeddings
+                                 Prompt: “object”
+          Posed RGBs                                  Noisy mask         Grouping & Substitution                                  3D Instance Segmentation    Language-grounded Grasping
+
+        (c) Post-interaction segmentation consistency                                                            (d) Instance-wise update                               “Mustard bottle”
+
+                                                                                                                        𝑅∗ , 𝑡 ∗ = 𝑎𝑟𝑔𝑚𝑖𝑛𝑅,𝑡 ℒ𝑡𝑜𝑡𝑎𝑙
+
+                       Grounded SAM
+                                                                   {𝑆𝑠𝑒𝑚𝑎𝑛𝑡𝑖𝑐 }
+                        Prompt: “object”
+         Single RGB                            Noisy mask   Consistent Matching             Corrected mask         Optimization for Moved Object      Updated Scene    Multi-stage Grasping
+
+
+Fig. 2: Overview of Clutt3R-Seg pipeline. (a) From posed sparse-view RGB inputs, we estimate depth [10] and obtain noisy instance
+masks [11] with the prompt “object”. (b) A hierarchy-based grouping yields view-consistent instance mask groups robust to over-/under-
+segmentation, enabling reliable 3D instance segmentation in cluttered scenes. Enriched semantic embedding allows text-based target
+identification. (c) A single post-interaction image is associated with prior instances to preserve segmentation consistency. (d) The system
+detects the new target and displaced objects, optimizing their rigid transformation via a differentiable loss for reliable multi-stage grasping.
+similarity leaves and conditional substitution, our method                                                  segmentation [12–14]. More recently, MaskClustering [15]
+mitigates over- and under-segmentation and yields view-                                                     constructs a global mask graph whose edges are weighted
+consistent 2D masks. These masks in turn support robust 3D                                                  by a view-consensus rate and merges masks through it-
+instance segmentation under heavy clutter. Each instance is                                                 erative clustering. However, these approaches inherently
+further enriched with open-vocabulary semantic embeddings,                                                  assume high-quality per-view masks. In cluttered and oc-
+enabling accurate language-grounded target selection and                                                    cluded scenes, 2D segmentation is noisy, prone to over-
+grasping. Moreover, by preserving instance consistency from                                                 and under-segmentation, so the affinity matrix becomes
+a single post-interaction image, the system remains reliable                                                unreliable [4, 15]. GraphSeg [16] targets sparse inputs by
+under significant scene changes, supporting efficient multi-                                                constructing dual correspondence graphs from 2D feature
+grasp execution. Our main contributions are as follows:                                                     matches and inferred 3D structure, then merging fragmented
+   • A Novel Hierarchy-based 3D Instance Segmentation:                                                      masks via edge addition and graph contraction. While ef-
+     By leveraging a hierarchical instance tree, our method                                                 fective, its dependence on initial 2D mask quality leaves it
+     organizes noisy mask candidates into reliable cross-view                                               sensitive to under- and over-segmentation, which destabilize
+     instance groups, enabling robust 3D instance segmenta-                                                 the graph and degrade later stages. In contrast, we introduce
+     tion even under sparse multi-view inputs.                                                              a hierarchy-based mask grouping algorithm that constructs
+   • Language-grounded Target Identification: The se-                                                       per-view instance trees and performs bottom-up grouping,
+     mantically enriched features obtained from reliable                                                    stabilizing instance segmentation across views and yielding
+     sparse multi-view correspondences of our consistent 3D                                                 consistent 3D instances under sparse observations and heavy
+     instances enable direct grounding of high-level language                                               clutter.
+     commands, allowing the robot to identify and localize
+                                                                                                            B. Language-grounded Target Identification and Grasping
+     a specific target object from a text prompt for grasping.
+   • Efficient Update Method for Multi-stage Grasping:                                                         Recent advancements in robotic manipulation have in-
+     After each grasp, the proposed update method relies                                                    creasingly leveraged vision–language models for language-
+     solely on a single post-interaction image to re-identify                                               grounded interaction in complex environments. Concept-
+     the remaining instances and recognize displaced objects                                                Graphs [17] converts posed RGB-D images into an open-
+     to maintain consistency in the scene representation.                                                   vocabulary, object-centric 3D scene graph by segmenting
+   • Extensive Robotic Validation and Public Release: We                                                    images, fusing multi-view regions into object nodes, and
+     validate the entire system through extensive experiments                                               using vision-language models to name objects and infer
+     in both the synthetic and the real-world settings, demon-                                              relations. Alternatively, GaussianGrasper [18] embeds lan-
+     strating its robustness and generalization. To ensure                                                  guage features directly into 3D Gaussian primitives to en-
+     reproducibility, we will publicly release all our source                                               able language-guided grasping. Similarly, GraspSplats [19]
+     code, simulation environment, and synthetic datasets.                                                  constructs feature-enhanced 3D Gaussians with hierarchical
+                                                                                                            descriptors, facilitating efficient part-level grasp queries and
+                    II. R ELATED W ORK
+                                                                                                            multi-stage grasping via point tracking. However, because
+A. Multi-view 3D Instance Segmentation                                                                      these methods only depend on noisy 2D masks, their perfor-
+   Multi-view 3D instance segmentation often requires con-                                                  mance can degrade under heavy clutter. In addition, scene
+sistent object representations across viewpoints, which is                                                  update module requires densely consecutive frames, limiting
+generally challenging to obtain. To overcome this require-                                                  use with sparse or non-sequential captures. In contrast,
+ment, affinity-based methods [4] build similarity matrices                                                  Clutt3R-Seg resolves under- and over-segmentation by or-
+over 2D masks via region growing, while others incorpo-                                                     ganizing initial noisy masks with a hierarchical instance
+rate multi-view features or geometric cues for unified 3D                                                   tree, recovering accurate masks, and enriching semantics
+              Root node             Frame 3
+                                                                                                   Algorithm 1 Hierarchy-based Instance Mask Grouping
+                               Frame 2
+     Object-clusters        Frame 1                                                                Input: Per-frame Trees T = {Tf }, Duoduo CLIP {cv }
+   (Under-segmented)
+                                                                          Grounded SAM             Output: Grouped Leaf Graph G
+                                                                            w/ “object”              1: G ← C ONSTRUCT L EAF G RAPH(T )
+                                                                                                     2: G ← G ROUP B Y S IMILARITY(G, c)
+                                                      U       U
+                                                                                                     3: return G
+         Objects                                                                                        // Build leaf graph from frame-trees
+
+
+
+                             root-to-leaf path
+  (at most one per path)
+                                                                                                     4: procedureSC ONSTRUCT L EAF G RAPH(T )
+                                                                                                     5:     V ← f L EAVES(Tf ); G ← (V, ∅)
+                                                                                         O
+                                                                                                            for all (u, v) ∈ V2 with ϕ(u) ̸= ϕ(v) do
+                                                                                                                                 
+                                                                                                     6:
+       Sub-objects                                                                                   7:         Eu,v ← {Sspatial (u, v), Ssemantic (u, v)}
+    (Over-segmented)
+                                                  O       O           : Proper segment               8:     end for
+                                                                      : Leaf nodes
+                                                                                                     9:     return G
+                                                                  U                                 10: end procedure
+                                                                      : Under-segmented
+              Leaf node                                           O
+                                                                                                        // Two-stage similarity grouping
+                                                                      : Over-segmented
+                                                                                                    11: procedure G ROUP B Y S IMILARITY(G, c)
+    Root-to-leaf path                            Hierarchical Instance Tree                                 // Stage 1 (spatial similarity based grouping)
+                                                                                                    12:     while ∃(u, v) ∈ E(G) : sspat (u, v) ≥ τspat do
+Fig. 3: Hierarchical structure of masks. Grounded SAM outputs                                       13:         (u∗ , v ∗ ) ← arg max sspat (u, v)
+masks for all object-clusters, objects and sub-objects corresponding                                14:         G ROUPA ND R EWIRE(u∗ , v ∗ )
+to under-segmentation, proper segmentation and over-segmentation,                                   15:     end while
+respectively. Such noisy masks in cluttered scenes are organized into                                       // Stage 2 (semantic similarity based grouping)
+hierarchical trees, assigning a child node to a parent node if its mask                             16:     while ∃(u, v) ∈ E(G) : ssem (u, v) ≥ τsem do
+is contained within the pixel level. In this hierarchy, at most one                                 17:         (u∗ , v ∗ ) ← arg max ssem (u, v)
+                                                                                                    18:         G ROUPA ND R EWIRE(u∗ , v ∗ )
+proper segment exists per root-to-leaf path, enabling bottom-up                                     19:     end while
+grouping of leaf nodes across frames for instance consistency.                                      20:     return G
+                                                                                                    21: end procedure
+for robust target grasping in clutter. It also supports multi-                                          // Group and rewire
+stage grasping under sparse frames and significant scene                                            22: procedure G ROUPA ND R EWIRE(u, v)
+changes, by accurate instance correspondences via robust and                                        23:     w ←u∪v                                         ▷ Node Grouping
+                                                                                                    24:     A DD N ODE (G,w)
+consistent semantic features.                                                                       25:
+                                                                                                                                         
+                                                                                                            for all x ∈ N (u) ∪ N (v) \ {u, v} do                 ▷ Rewire
+                                                                                                    26:         sspat ← meana∈S ET(w) Sspatial (a, b)
+                           III. M ETHODOLOGY                                                                                 b∈S ET(x)
+                                                                                                   27:       ssem ← meana,b Ssemantic (a, b)
+  Clutt3R-Seg comprises three stages: preprocessing §III-                                          28:       Ew,x ← {sspat , ssem }
+                                                                                                   29:    end for
+A, hierarchy-based 3D instance segmentation §III-B, and                                            30:    R EMOVE N ODE(G, u); R EMOVE N ODE(G, v)
+consistency-aware scene update §III-C, leading to successful                                       31: end procedure
+multi-stage grasping as illustrated in Fig. 2.
+                                                                                                   regions that enable robust and efficient cross-view grouping
+A. Preprocessing
+                                                                                                   and 3D instance segmentation.
+   Given posed RGB images, we first generate initial 2D
+masks by prompting Grounded SAM [11] with the single                                               B. Hierarchy-based 3D Instance Segmentation
+token “object”. We adopt this generic prompt because the set                                          Our zero-shot hierarchy-based 3D instance segmentation
+of present categories is unknown, which removes per-scene                                          module aims to achieve robust, view-consistent instance
+prompt engineering while covering arbitrary, unseen objects.                                       segmentation in sparse-view, cluttered scenes with severe
+These masks contain all proper, under- and over-segmented                                          occlusions. The over- and under-segmentation errors from
+masks. In parallel, we reconstruct a 3D point cloud from                                           Grounded SAM are stochastically irregular and do not con-
+the same images using a depth estimation model (MVSAny-                                            sistently appear across multiple views. Motivated by this em-
+where [10] in our implementation). To control computation                                          pirical observation, we construct a hierarchical instance tree
+and memory, we apply voxel grid downsampling, retaining                                            as in Fig. 3, organizing the initial masks containing proper,
+per-voxel averaged appearance and geometry.                                                        over- and under-segmentation. Subsequently, hierarchy-based
+   After obtaining the downsampled point cloud and masks,                                          instance mask grouping (Algorithm. 1) groups masks that be-
+we cluster geometrically homogeneous regions into compact                                          long to the same instance. Residual-node parent substitution
+spatial primitives as in Fig. 2(a), termed super-voxels. Super-                                    then corrects the remaining residual nodes, as illustrated in
+voxels are formed via k-NN clustering based on a com-                                              Fig. 4, leading to accurate 3D instance segmentation.
+bination of Euclidean distance and surface normal cosine                                           Notations. A graph G consists of leaf nodes V , with each
+similarity between two adjacent points i and j, defined as:                                        edge Eu,v separately encoding spatial similarity Sspatial and
+                                                                                                   semantic similarity Ssemantic , each with a threshold τspat and
+                 dij = α ∥xi − xj ∥2 + β(1 − ⟨ni , nj ⟩)                                     (1)   τsem , respectively, between an unordered pair of leaf nodes
+                                                                                                   (u, v). The function ϕ( · ) maps nodes to the corresponding
+with xi , xj and ni , nj representing the 3D coordinate and                                        frame index to prevent the generation of edges sharing the
+normal vector of points i and j, respectively. This formu-                                         same root. Here, N (u) denotes the set of neighbors directly
+lation encourages grouping of neighboring points with con-                                         connected to node u, while S ET(u) represents the collection
+sistent surface orientation, leading to geometrically similar                                      of original nodes that compose the grouped node u.
+              Post-grouping                Post-substitution
+                                                                         tial overlap in 3D space. Let K be the set of all super-voxels
+       Group 1   Group 2   Group 3      Group 1    Group 2    Group 3
+                                                                         in the scene, oi (k) ∈ [0, 1] be the occupancy ratio of super-
+                                                                         voxel k ∈ K by mask i. Each super-voxel has a normalized
+                                                                         weight ŵk proportional to the number of points it contains.
+                                                                         The spatial similarity is:
+                                                                                                   P
+          ⋮         ⋮          ⋮           ⋮          ⋮          ⋮                                       ŵk min(oi (k), oj (k))
+                                                                                Sspatial (i, j) = P k∈K                            . (2)
+                                                                                                   k∈K ŵk max(oi (k), oj (k)) + ϵ
+              Residual nodes
+
+
+                                                                         The denominator and numerator denote weighted union and
+                                                                         intersection, with a small constant ϵ for numerical stability.
+                                                    Residual nodes
+                                                                            Ssemantic is defined as the cosine similarity between embed-
+                                                  Non-residual nodes
+                                                  Substituted parents
+                                                                         dings from Duoduo CLIP [20], offering a viewpoint-robust
+                                               Non-substituted parents   text–image space effective for cross-view mask grouping:
+        Pre-grouping           Post-grouping      Post-substitution
+                                                                                            Ssemantic (i, j) = ⟨ei , ej ⟩             (3)
+                                                                         where ek represents embeddings of input mask k.
+                                                                            Duoduo CLIP allows multi-view input, which supports
+                                                                         robust cross-view correspondences under various viewpoints
+                                                                         and appearance variations. It further enables a mask group
+                                                                         of the same instance to aggregate evidence across views to
+Fig. 4: Outline of mask grouping and substitution. Initially incon-      provide a more robust representation of the instance, facilitat-
+sistent instance masks are properly organized to their corresponding     ing language-grounded target identification and maintaining
+instance groups via hierarchy-based instance mask grouping (Al-          segmentation consistency under severe drift.
+gorithm. 1), and further refined by re-grouping via residual-node
+parent substitution, resulting in properly segmented instances. The
+                                                                            Similarities are evaluated for all candidate node pairs, and
+red box illustrates an over-segmentation before substitution, while      grouping is performed iteratively by selecting the pair with
+the green box shows the corrected segmentation after substituting        the highest similarity score, first under Sspatial until no edges
+the residual node with its parent.                                       exceed the spatial threshold τspat , and then under Ssemantic to
+                                                                         group the remaining nodes. As shown in Fig. 4, two or more
+1) Instance Tree Construction. To refine initial instance                leaf nodes that satisfy the similarity criterion are grouped.
+masks, we construct a hierarchical instance tree by defining             3) Residual-node Parent Substitution. Leaf nodes that
+parent–child relationships based on object-level mask hierar-            remain ungrouped are referred to as residual nodes S. They
+chy (object-cluster, object, sub-object), as shown in Fig. 3.            often arise from over-segmentation, where the residual node
+Key intuition is that along each root-to-leaf path, at most one          masks cover only a small part of an object, resulting in low
+mask corresponds to the proper segment. If a correct object-             Sspatial and Ssemantic due to limited geometric coverage and
+level mask exists, any larger mask that contains it reflects             contextual evidence, which leads to grouping failure. This
+under-segmentation, while any smaller mask nested inside                 over-segmentation issue, compounded by the aforementioned
+it reflects over-segmentation. By enforcing this one-proper-             under-segmentation, presents a key challenge of discerning
+per-path constraint, the tree provides a principled way to               whether a residual should be attributed to over- or under-
+distinguish correct instances from erroneous masks, yielding             segmentation. To address this, we introduce a conditional
+a robust structure for subsequent cross-view mask grouping.              leaf-to-parent substitution and re-grouping procedure. A
+   Since each root-to-leaf path contains at most one proper              residual node is substituted with its parent node only when
+segment, it can be regarded as the proper segment candidate.             all of the parent’s other descendants are residual nodes,
+Because each path is uniquely determined by its leaf node,               thereby enforcing the constraint illustrated in Fig. 3 that at
+the candidate set reduces to the leaf nodes. Therefore, we               most one proper segment exists along each root-to-leaf path.
+treat the leaf nodes as proper segment candidates and use                Empirically, the process converges within a single iteration,
+them as the basis for cross-view instance grouping.                      resulting in leftover residual nodes properly grouped into
+2) Cross-view Instance Grouping. With the instance trees                 their corresponding instances.
+constructed for each view, we aggregate leaf nodes across                4) Super-voxel Majority Vote. With mask grouping com-
+views and group them into object-level instances. To remain              plete, we project the 2D masks to 3D super-voxels to
+robust under clutter and sparse-view conditions, we adopt                perform 3D instance segmentation. Each converged node
+a two-stage grouping strategy, as detailed in Algorithm. 1.              group defines a view-consistent 3D instance, and we define
+In particular, we use spatial similarity both to resolve am-             its confidence with the group size, reflecting the reliability
+biguities among same category duplicates and to stabilize                of multiple constituent masks. We regard each group as a
+grouping under sparse multi-view inputs with appearance                  separate instance, which is then allocated to super-voxels
+shifts. Within Eu,v , we define Sspatial as a weighted Jaccard           through a voting scheme weighted by the point coverage
+index based on super-voxel occupancy, quantifying the spa-               of the grouped masks. This majority voting ensures that
+                          Initial Scene (𝒕 = 𝟎)                       plane and compute IoU with the new mask. Instances with
+                                                                      IoU < τIoU are flagged as displaced. We then estimate a
+                                                                      rigid-body transform (R, t) ∈ SE(3) that aligns the pre-
+                                                                      interaction point cloud with the new observation:
+        Sparse RGBs      View-consistent mask      “Cracker box”
+                      Multi-stage Grasping (𝒕 = 𝟏)
+                                                                                    R∗ , t∗ =     arg min Ltotal (R, t)               (4)
+                                                                                                R∈SO(3), t∈R3
+
+                                                                         The objective combines a chamfer, photometric, and task
+                                                                      prior regularization loss.
+
+         Single RGB      Consistency matched      “Potted meat can”
+                                                                         Ltotal = λchamfer Lchamfer + λphoto Lphoto + λreg,z Lreg,z   (5)
+                      Multi-stage Grasping (𝒕 = 𝟐)
+                                                                         Chamfer Loss is the bidirectional distance between the 2D
+                                                                      contour of reprojected original 3D instance and the contour
+                                                                      extracted from the post-update consistent masks. Let P be
+                                                                      the set of valid 2D projections onto the image plane and C
+         Single RGB      Consistency matched        “Chips can”       the set of boundary pixels from the binary instance mask.
+                                                                      The loss is
+Fig. 5: Result of multi-stage target identification and
+consistency-aware update. Robust 3D instances with enriched                         1 X                        1 X
+                                                                      Lchamfer =             min ∥p − c∥2 +           min ∥c − p∥2
+semantics preserve consistency under dynamic scene changes, en-                    |P |      c∈C              |C|     p∈P
+                                                                                        p∈P                       c∈C
+abling accurate target identification and scene updates in clutter.
+                                                                                                                                 (6)
+geometrically confident super-voxels have greater influence,          This provides stable gradients even under severe drift without
+yielding a more reliable 3D instance segmentation.                    intersection and enforces shape alignment.
+                                                                         The Photometric Loss is formulated as a weighted L1
+C. Language-grounded Multi-stage Grasping                             distance between each point’s color and the image intensity
+   With an instance-level scene representation enriched by se-        at its projected location, enforcing appearance consistency
+mantic information, the robot can follow language-grounded            once the silhouette is roughly aligned. The Regularization
+instructions to execute multi-stage grasping. Fig. 5 illustrates      Loss penalizes excessive vertical translation, constraining z-
+multi-stage target identification, showing how our framework          motion while allowing planar movement.
+supports the subsequent grasping actions.                                For robustness, we adopt a coarse-to-fine schedule. In the
+1) Language-grounded Target Identification and Grasp-                 coarse stage, we place a large weight on Lchamfer to drive
+ing. From the mask grouping stage, each group yields a set            stable shape alignment. If the resulting IoU exceeds a thresh-
+of per-view instance images. Each group is embedded with              old τIoU , we terminate early, thereby skipping refinement
+a multi-view image encoder of Duoduo CLIP, aggregating                and saving computation when alignment is already sufficient.
+cross-view evidence to obtain more robust instance embed-             Otherwise, we proceed to a fine stage that increases the
+dings, particularly advantageous in cluttered scenes. Input           weight for Lphoto to refine with higher appearance fidelity.
+images were preprocessed by replacing the background out-                Only displaced instances are selectively updated, while
+side each mask with white. Given a text query, we compute             static ones are left unchanged. This observation-driven selec-
+its similarity to all instance embeddings to identify the target      tive update keeps the scene representation synchronized with
+object. A 6-DoF grasp pose, enabling target-oriented grasp-           the latest observation across successive interactions, avoids
+ing, is estimated using a grasp pose detector [21]. Beyond            redundant optimization and re-association for unchanged
+target identification, these stored instance embeddings also          objects, and thereby enables fast multi-stage grasping.
+enable instant subsequent procedure after scene updates.
+                                                                                             IV. EXPERIMENT
+2) Post-interaction Segmentation Consistency. Follow-
+ing interaction, we capture a single RGB image to update              A. Experiment Setup
+the scene state for multi-stage grasping. Grounded SAM                Datasets. We evaluate our approach on the GraspClut-
+produces new noisy mask candidates, which are matched                 ter6D [22] dataset, containing real-world multi-view RGB-
+with existing instances via hierarchy-based instance grouping         D sequences of high resolution of 1920×1080, as well as
+(§III-B), leveraging stored instance-level embeddings to pre-         our custom synthetic dataset generated in NVIDIA Isaac
+serve segmentation consistency. This segmentation consis-             Sim [23], with low resolution of 640×480. Both datasets fea-
+tency enables the subsequent consistency-aware update and             ture substantial clutter, heavy occlusion, and frequent inter-
+maintains reliable correspondences for succeeding grasps.             object contact. Our synthetic dataset consists of objects from
+3) Change Detection and Instance-wise Update. Since                   the HouseCat6D [24], containing 10 household categories,
+instance correspondences are preserved between pre- and               with various objects, backgrounds, and lighting conditions.
+post-interaction, we detect displaced instances from a single            To systematically assess performance, we partition 99
+post-interaction RGB image. For each instance, we project             GraspClutter6D sequences by the dataset-provided average
+its pre-interaction point cloud onto the post-interaction image       visibility into three equally sized subsets easy, intermediate,
+TABLE I: Class-agnostic 3D instance segmentation on the GraspClutter6D and our synthetic dataset. We compare Clutt3R-Seg with
+GraphSeg and MaskClustering. † means that we tuned the hyperparameters of both MaskClustering and GraphSeg, enhancing performance
+compared to their original versions on the GraspClutter6D dataset. Best results are highlighted in bold. Time is reported in seconds.
+                                 Easy                     Intermediate                    Difficult                             Synthetic
+                                                                                                             Time↓                                  Time↓
+       Method           AP25 ↑   AP50 ↑   AP ↑   AP25 ↑       AP50 ↑     AP ↑    AP25 ↑    AP50 ↑     AP ↑            AP25 ↑     AP50 ↑     AP ↑
+   GraphSeg† [16]       36.83    10.72    1.87   34.60         5.64      0.97     20.18      2.42     0.39   71.9     61.32        9.89      3.28      51.9
+ MaskClustering† [15]   59.59     5.21    0.70   54.12         5.68      0.83     27.95      0.95     0.16   45.7     33.77        0.08      0.01      40.7
+    Clutt3R-Seg         83.32    28.25    4.58   78.04        21.99      3.71     61.66     12.15     1.97   57.2     94.40       64.78     16.06      21.5
+
+                                                                                TABLE II: Quantitative evaluation of language-grounded 3D
+hard with mean overlap ratios of 11.62%, 19.83%, and
+                                                                                semantic segmentation on the GraspClutter6D dataset. We report
+31.71%, respectively. For the sparse-view setting on the                        the 3D IoU scores (%). Best results are highlighted in bold. Time is
+GraspClutter6D, we use only 8 posed images per sequence,                        reported in seconds, and − indicates results obtained by replacing
+selecting frames at approximately uniform intervals. For                        Duoduo CLIP with CLIP for a fair comparison.
+the synthetic dataset, we also use 8 images per scene by
+                                                                                                              GraspClutter6D            Synthetic
+sampling camera poses reachable by a robot-mounted virtual                           Method                   IoU↑    Time↓          IoU↑    Time↓
+camera in Isaac Sim, ensuring diverse and similarly displaced
+viewpoints within feasible working distances. Additionally,                          GraspSplats [19]         17.38      81.1       20.70       67.5
+                                                                                     ConceptGraphs [17]       32.59     148.5       34.90       91.2
+we evaluate the full pipeline on real-world data collected with                      Clutt3R-Seg−             50.61      47.6       41.69       23.7
+a Franka Research 3 robot equipped with an Intel RealSense                           Clutt3R-Seg              52.54      47.2       55.10       24.8
+D435i, demonstrating successful on-hardware execution in
+real grasping scenarios. Qualitative results are provided in
+the supplementary video.                                                        backend by replacing GraphSeg’s original DUSt3R [25] with
+Evaluation metrics. We evaluate the average precision (AP)                      MVSAnywhere [10], the same estimator used in our pipeline,
+at IoU thresholds of 25% and 50% (AP@25, AP@50), as                             slightly improving its accuracy.
+well as the mean AP averaged over thresholds from 50% to
+95% in 5% increments. We consider two evaluation setups:                           As shown in Table. I, Clutt3R-Seg substantially out-
+class-agnostic instance segmentation, which measures the                        performs both baselines in all metrics and difficulties. It
+accuracy of predicted instance regions in 3D regardless of                      maintains strong performance as difficulty increases, unlike
+category, and semantic instance segmentation, which ad-                         the baselines whose scores drop sharply, showing up to
+ditionally evaluates consistency with semantic labels. For                      2.2 times higher AP@25 in difficult sequences compared
+the evaluation of language-grounded semantic segmentation,                      to MaskClustering. Qualitatively, our method shows robust
+IoU is computed over five visible object categories in 3D,                      instance segmentation under significant clutter and occlusion
+all over identical 10 mm voxel grids for fair comparison                        for both real and synthetic, illustrated in Fig. 6 and Fig. 7.
+across all methods. We use prompts corresponding to the                            In the case of SAI3D, we exclude it from all related
+five object categories defined in the GraspClutter6D dataset                    comparisons (Table. I, Fig. 6 and Fig. 7) because its
+and additionally report the total computation time aggregated                   cross-view affinity requires co-visibility and discards invalid
+over all queries. The computation time for all baselines                        views, leading to an unreliable affinity matrix under sparse-
+includes every module from preprocessing to completion.                         view, cluttered scenes. By contrast, the other two baselines
+Implementation details. Since the input point cloud is                          leverage graph-based multi-view fusion and are therefore
+reconstructed from predicted depth, we apply noise-robust                       more competitive under our evaluation protocol. Specifically,
+voxel aggregation at 5 mm with a minimum occupancy of                           MaskClustering weights edges by a view-consensus rate,
+m=3 per voxel. For super-voxel construction §III-A, we                          yet under sparse-view occluded scenes, the small observer
+use the 5 mm downsampled point cloud with parameters                            set makes containment-based support unreliable, biasing the
+α=0.5, β=1.0. Neighboring voxels with dij ≤ τmerge =0.01                        global mask graph and reducing AP. GraphSeg frequently
+are then contracted into compact super-voxels.                                  under-segments in occluded regions, since its 2D edge addi-
+   For all experiments, we set τspat =0.5, τsem =0.65, and                      tion depends on a fixed threshold, while 3D structural edges
+τIoU =0.75. During the update stage, we optimize a two-                         fail to add under partial observations. Conversely, on highly
+stage objective. In stage 1, we use λchamfer =50.0, λphoto =0.5,                textured objects (Fig. 6, 3rd row), GraphSeg over-segments
+and λreg,z =10.0, while in stage 2 we adjust the weights to                     because the upstream 2D segmentation yields small, noisy
+λchamfer =10.0, λphoto =2.0, and λreg,z =1.0. All baselines and                 fragments and the chamfer distance in 3D often fails to
+our method are evaluated on a single NVIDIA RTX 3090.                           reliably merge the over-segmented masks.
+B. Class-agnostic 3D Instance Segmentation                                         In contrast, our hierarchy-based framework is structurally
+   For class-agnostic 3D instance segmentation, we select                       robust to under-segmentation via bottom-up grouping, while
+three recent representative baselines: SAI3D [4], Graph-                        over-segmented fragments are corrected by parent-node sub-
+Seg [16] and MaskClustering [15]. GraphSeg aligns with                          stitution, enabling effective and robust cross-view corre-
+our sparse-view, training-free pipeline, while SAI3D and                        spondences. Additionally, weighting confidence by cluster
+MaskClustering serve as widely adopted state-of-the-art ref-                    size reduces the impact of random mask errors, making the
+erences. For fair comparison, we standardize the depth                          method more reliable in cluttered scenes with a few views.
+                       RGB                 GraphSeg            MaskClustering            Clutt3R-Seg                GT
+
+
+
+
+Fig. 6: Qualitative result of GraspClutter6D dataset. The red box in baselines indicates erroneous segmentation, while the blue box on
+Clutt3R-Seg shows correct segmentation. 1st row: easy sequence, 2nd row: intermediate sequence, 3rd row: difficult sequence. Clutt3R-Seg
+shows correct segmentation of different instances, whereas GraphSeg and MaskClustering both lead to severe under-segmentation.
+                        RGB                GraphSeg            MaskClustering            Clutt3R-Seg               GT
+
+
+
+
+Fig. 7: Qualitative result of our synthetic dataset. The red box in baselines indicates erroneous segmentation, while the blue box on Clutt3R-
+Seg shows correct segmentation. The under-segmentation issue in baselines is consistent, with Clutt3R-Seg showing robust performance.
+
+
+
+
+                     RGB            GraspSplats            RGB             GraspSplats                 RGB          GraspSplats
+
+
+
+
+                 ConceptGraphs      Clutt3R-Seg        ConceptGraphs       Clutt3R-Seg          ConceptGraphs       Clutt3R-Seg
+                         “Aluminum can”                          “Gelatin box”                           “Large marker”
+
+Fig. 8: Qualitative result of language-grounded semantic segmentation. Left: synthetic dataset. Middle, Right: GraspClutter6D dataset.
+Red color indicates high similarity, and target object is highlighted in the pink box.
+C. Language-grounded 3D Semantic Segmentation                            demonstrating its efficiency. The improvements are due to the
+   We compare Clutt3R-Seg with two representative base-                  enrichment of semantic instances via enforcing cross-view
+lines for language-grounded 3D semantic segmentation;                    consistency through hierarchy-based instance mask grouping,
+GraspSplats [19], employing Gaussian splatting with lan-                 allowing Duoduo CLIP’s viewpoint-robust embeddings to
+guage features, and ConceptGraphs [17], constructing open-               support reliable language grounding even under severe clutter
+vocabulary 3D scene graphs from multi-view segmentation.                 and occlusion as shown in Fig. 8.
+For fairness, we also include Clutt3R-Seg− , where Duoduo
+CLIP is replaced with the original CLIP [26], aligning with              D. Ablation Studies
+the backbone used in the baselines.                                         We analyze the role of the spatial similarity and residual
+   As shown in Table. II, Clutt3R-Seg achieves the best                  node substitution on the GraspClutter6D dataset, as shown in
+performance with a 3D IoU of 52.54%, demonstrating more                  Table. III. Removing the spatial similarity reduces accuracy,
+than 50% improvement over the baselines. Notably, even                   highlighting the effectiveness of our two-stage grouping and
+Clutt3R-Seg− gains about 20% over the baselines by simply                its ability to resolve ambiguities that cannot be addressed
+averaging CLIP embeddings from multiple views. Clutt3R-                  by semantic features alone. Without substitution, residual
+Seg further achieves the shortest runtime among all methods,             nodes from over-segmentation remain unresolved, leading to
+TABLE III: Ablation study on the effectiveness of our algorithm
+                                                                            [4] Y. Yin, Y. Liu, Y. Xiao, D. Cohen-Or, J. Huang, and B. Chen,
+on the GraspClutter6D dataset. Best results are highlighted in bold.
+                                                                                “Sai3d: Segment any instance in 3d scenes,” in IEEE/CVF
+        Method             AP25 ↑       AP50 ↑       AP ↑      Time ↓           Conf. on Comput. Vision and Pattern Recog. (CVPR), 2024,
+                                                                                pp. 3292–3302.
+        w/o Sspatial        66.77        16.33       2.61       55.2        [5] M. Ye, M. Danelljan, F. Yu, and L. Ke, “Gaussian grouping:
+        w/o substitution    74.10        20.60       3.19       57.0
+        Clutt3R-Seg         74.34        20.79       3.41       57.2            Segment and edit anything in 3d scenes,” in European Conf.
+                                                                                on Comput. Vision (ECCV), 2024, pp. 162–179.
+TABLE IV: Ablation study on the number of viewpoints on the                 [6] J. Zhao, J. Zhuo, J. Chen, and H. Ma, “Sam2object: Consol-
+GraspClutter6D dataset. Best results are highlighted in bold.                   idating view consistency via sam2 for zero-shot 3d instance
+                                                                                segmentation,” in IEEE/CVF Conf. on Comput. Vision and
+     Method                     AP25 ↑      AP50 ↑      AP ↑      Time ↓        Pattern Recog. (CVPR), 2025, pp. 19 325–19 334.
+     GraphSeg (8 Views)         30.54         6.20      1.08       71.9     [7] Y. Wu, J. Meng, H. Li, C. Wu, Y. Shi, X. Cheng, C. Zhao,
+     MaskClustering (8 Views)   47.22         3.95      0.56       45.7         H. Feng, E. Ding, J. Wang et al., “Opengaussian: To-
+     Clutt3R-Seg (4 Views)      69.00        16.54      2.67       23.4
+     Clutt3R-Seg (6 Views)      72.46        19.46      3.15       37.6
+                                                                                wards point-level 3d gaussian-based open vocabulary under-
+     Clutt3R-Seg (8 Views)      74.34        20.79      3.41       57.2         standing,” Advances in Neural Information Processing Sys.
+                                                                                (NeurIPS), vol. 37, pp. 19 114–19 138, 2024.
+sharper AP drops as the threshold increases from AP@25                      [8] J.-C. Shi, M. Wang, H.-B. Duan, and S.-H. Guan, “Language
+to AP@50 and AP. This effect is amplified under sparse-                         embedded 3d gaussians for open-vocabulary scene under-
+view inputs, where missing observations result in greater                       standing,” in IEEE/CVF Conf. on Comput. Vision and Pattern
+                                                                                Recog. (CVPR), 2024, pp. 5333–5343.
+geometric information loss, making substitution critical for
+                                                                            [9] M. Qin, W. Li, J. Zhou, H. Wang, and H. Pfister, “Langsplat:
+maintaining accuracy at stricter evaluation levels. Substitu-                   3d language gaussian splatting,” in IEEE/CVF Conf. on Com-
+tion adds less than 0.5 s of overhead, making it a lightweight                  put. Vision and Pattern Recog. (CVPR), 2024, pp. 20 051–
+solution. Time in both tables is reported in seconds.                           20 060.
+   We further analyze viewpoint sparsity in Table. IV. As the              [10] S. Izquierdo, M. Sayed, M. Firman, G. Garcia-Hernando,
+                                                                                D. Turmukhambetov, J. Civera, O. Mac Aodha, G. J. Brostow,
+number of input views decreases, the overall AP declines,
+                                                                                and J. Watson, “MVSAnywhere: Zero shot multi-view stereo,”
+yet our method consistently outperforms all baselines across                    in IEEE/CVF Conf. on Comput. Vision and Pattern Recog.
+every metric, even when restricted to only four views.                          (CVPR), 2025.
+Additionally, runtime decreases with fewer views, suggesting               [11] T. Ren, S. Liu, A. Zeng, J. Lin, K. Li, H. Cao, J. Chen,
+that the system can be configured in a more lightweight mode                    X. Huang, Y. Chen, F. Yan et al., “Grounded sam: Assembling
+                                                                                open-world models for diverse visual tasks,” arXiv preprint,
+at the expense of some performance.
+                                                                                2024.
+                           V. C ONCLUSION                                  [12] P. D. A. Nguyen, T. D. Ngo, E. Kalogerakis, C. Gan, A. Tran,
+                                                                                C. Pham, and K. Nguyen, “Open3dis: Open-vocabulary 3d
+   We introduce Clutt3R-Seg, a framework for sparse-                            instance segmentation with 2d mask guidance,” in IEEE/CVF
+view 3D instance segmentation for language-grounded                             Conf. on Comput. Vision and Pattern Recog. (CVPR), 2024.
+multi-stage grasping in cluttered scenes. Leveraging a                     [13] Y. Yang, X. Wu, T. He, H. Zhao, and X. Liu, “Sam3d: Segment
+                                                                                anything in 3d scenes,” arXiv preprint arXiv:2306.03908,
+hierarchy-based instance mask grouping with substitution,
+                                                                                2023.
+our method achieves robust view-consistent segmentation                    [14] M. Xu, X. Yin, L. Qiu, Y. Liu, X. Tong, and X. Han,
+and consistency-aware scene updates from a single post-                         “Sampro3d: Locating sam prompts in 3d for zero-shot instance
+interaction image. Experiments on both real and synthetic                       segmentation,” in Intl. Conf. on 3D Vision (3DV), 2025.
+datasets, along with real-robot validation, demonstrate sub-               [15] M. Yan, J. Zhang, Y. Zhu, and H. Wang, “Maskcluster-
+                                                                                ing: View consensus based mask graph clustering for open-
+stantial improvements under heavy clutter reaching 61.66
+                                                                                vocabulary 3d instance segmentation,” in IEEE/CVF Conf. on
+AP@25, over 2.2× higher than the baselines. Limitations                         Comput. Vision and Pattern Recog. (CVPR), 2024, pp. 28 274–
+remain due to predicted depth, which lowers reconstruction                      28 284.
+quality at stricter thresholds, and severe occlusion, which can            [16] H. Tang, T. Zhang, O. Kroemer, M. Johnson-Roberson, and
+prevent recovery of fully hidden objects or limit the com-                      W. Zhi, “Graphseg: Segmented 3d representations via graph
+                                                                                edge addition and contraction,” arXiv preprint, 2025.
+pleteness of single-view updates. Future work will explore
+                                                                           [17] Q. Gu, A. Kuwajerwala, S. Morin, K. M. Jatavallabhula,
+higher-fidelity depth estimation and multi-modal sensing to                     B. Sen, A. Agarwal, C. Rivera, W. Paul, K. Ellis, R. Chellappa
+improve reconstruction and extend the framework to handle                       et al., “Conceptgraphs: Open-vocabulary 3d scene graphs for
+newly emerging objects in dynamic scenes.                                       perception and planning,” in IEEE Intl. Conf. on Robotics and
+                                                                                Automation (ICRA), 2024, pp. 5021–5028.
+                            R EFERENCES                                    [18] Y. Zheng, X. Chen, Y. Zheng, S. Gu, R. Yang, B. Jin,
+ [1] E. P. Örnek, A. K. Krishnan, S. Gayaka, C.-H. Kuo, A. Sen,                P. Li, C. Zhong, Z. Wang, L. Liu et al., “Gaussiangrasper:
+     N. Navab, and F. Tombari, “Supergb-d: Zero-shot instance                   3d language gaussian splatting for open-vocabulary robotic
+     segmentation in cluttered indoor environments,” IEEE Robot.                grasping,” IEEE Robot. and Automat. Lett., 2024.
+     and Automat. Lett., vol. 8, no. 6, pp. 3709–3716, 2023.               [19] M. Ji, R.-Z. Qiu, X. Zou, and X. Wang, “Graspsplats: Efficient
+ [2] C. Xie, A. Mousavian, Y. Xiang, and D. Fox, “Rice: Refining                manipulation with 3d feature splatting,” arXiv preprint, 2024.
+     instance masks in cluttered environments with graph neural            [20] H.-H. Lee, Y. Zhang, and A. X. Chang, “Duoduo clip:
+     networks,” in Conf. on Robot Learning (CoRL), 2022, pp.                    Efficient 3d understanding with multi-view images,” in Intl.
+     1655–1665.                                                                 Conf. on Learning Representations (ICLR), 2025.
+ [3] C. Xie, Y. Xiang, A. Mousavian, and D. Fox, “Unseen object            [21] X.-M. Wu, J.-F. Cai, J.-J. Jiang, D. Zheng, Y.-L. Wei, and W.-
+     instance segmentation for robotic environments,” IEEE Trans.               S. Zheng, “An economic framework for 6-dof grasp detection,”
+     Robotics, vol. 37, no. 5, pp. 1343–1359, 2021.                             in European Conf. on Comput. Vision (ECCV), 2024, pp. 357–
+     375.
+[22] S. Back, J. Lee, K. Kim, H. Rho, G. Lee, R. Kang, S. Lee,
+     S. Noh, Y. Lee, T. Lee et al., “Graspclutter6d: A large-
+     scale real-world dataset for robust perception and grasping
+     in cluttered scenes,” IEEE Robot. and Automat. Lett., 2025.
+[23] NVIDIA Corporation, “Nvidia isaac sim documentation,”
+     2025, version 4.5.0.
+[24] H. Jung, S.-C. Wu, P. Ruhkamp, G. Zhai, H. Schieber,
+     G. Rizzoli, P. Wang, H. Zhao, L. Garattoni, S. Meier et al.,
+     “Housecat6d-a large-scale multi-modal category level 6d ob-
+     ject perception dataset with household objects in realistic
+     scenarios,” in IEEE/CVF Conf. on Comput. Vision and Pattern
+     Recog. (CVPR), 2024, pp. 22 498–22 508.
+[25] S. Wang, V. Leroy, Y. Cabon, B. Chidlovskii, and J. Revaud,
+     “Dust3r: Geometric 3d vision made easy,” in IEEE/CVF Conf.
+     on Comput. Vision and Pattern Recog. (CVPR), 2024, pp.
+     20 697–20 709.
+[26] A. Radford, J. W. Kim, C. Hallacy, A. Ramesh, G. Goh,
+     S. Agarwal, G. Sastry, A. Askell, P. Mishkin, J. Clark et al.,
+     “Learning transferable visual models from natural language
+     supervision,” in Intl. Conf. on Machine Learning (ICML),
+     2021, pp. 8748–8763.
+

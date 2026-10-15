@@ -1,0 +1,86 @@
+{
+  "actions": [
+    {
+      "action_scenes": 24,
+      "arm": "A",
+      "duplicate_original_candidates": 1,
+      "entirely_correct_stable_unions": 38,
+      "full_NT_neither_selected_blocks": 16,
+      "full_N_supported_selected_blocks": 189,
+      "good_action_parents": 4,
+      "known_precision_stable": 0.9723737666860127,
+      "max_added": 1425,
+      "max_other": 211,
+      "stable_action_scenes": 23,
+      "stable_added_other": 476,
+      "stable_added_target": 16754,
+      "stable_unannotated": 456,
+      "unknown_annotation_fraction_stable": 0.02578310528101323,
+      "unstable_action_parents": 18
+    },
+    {
+      "action_scenes": 13,
+      "arm": "B",
+      "duplicate_original_candidates": 0,
+      "entirely_correct_stable_unions": 10,
+      "full_NT_neither_selected_blocks": 11,
+      "full_N_supported_selected_blocks": 31,
+      "good_action_parents": 2,
+      "known_precision_stable": 0.9981126140295691,
+      "max_added": 976,
+      "max_other": 3,
+      "stable_action_scenes": 9,
+      "stable_added_other": 6,
+      "stable_added_target": 3173,
+      "stable_unannotated": 12,
+      "unknown_annotation_fraction_stable": 0.003760576621748668,
+      "unstable_action_parents": 5
+    }
+  ],
+  "all_rules_and_predictions_unchanged": true,
+  "code_sha256": "d69ac27c0c504fec57b6e94767be860403da8bc12f46d8f50abf63fa838be3e6",
+  "complete": true,
+  "independent_python_set_supply_parents": 67,
+  "pool_coverage_new_crossings": {
+    "A": {
+      "cross_0.5": 0,
+      "cross_0.75": 0,
+      "cross_0.9": 0,
+      "cross_0.95": 0
+    },
+    "A_single_diagnostic": {
+      "cross_0.5": 0,
+      "cross_0.75": 0,
+      "cross_0.9": 0,
+      "cross_0.95": 0
+    },
+    "B": {
+      "cross_0.5": 0,
+      "cross_0.75": 0,
+      "cross_0.9": 0,
+      "cross_0.95": 0
+    },
+    "B_single_diagnostic": {
+      "cross_0.5": 0,
+      "cross_0.75": 0,
+      "cross_0.9": 0,
+      "cross_0.95": 0
+    },
+    "NT": {
+      "cross_0.5": 0,
+      "cross_0.75": 0,
+      "cross_0.9": 0,
+      "cross_0.95": 0
+    }
+  },
+  "posthoc_only": true,
+  "runtime_addendum_code_hashes_verified": true,
+  "scope_counts": {
+    "ambiguous": 9,
+    "out_of_scope": 13,
+    "stable": 67,
+    "unannotated": 6
+  },
+  "time": 1791988292.3571556,
+  "valid_GT_targets": 474
+}

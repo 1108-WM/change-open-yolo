@@ -1,0 +1,5604 @@
+[
+  {
+    "anchor": 61,
+    "anchor_hard_iou": 0.8884120171673819,
+    "block_GT": {
+      "annotated": 572,
+      "distribution": {
+        "0": 67,
+        "98013": 572
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 639,
+      "target": 572,
+      "unknown": 67
+    },
+    "block_id": "c005_r0000",
+    "candidate_id": "c005",
+    "clipped_GT": {
+      "annotated": 555,
+      "distribution": {
+        "0": 38,
+        "98013": 555
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 593,
+      "target": 555,
+      "unknown": 38
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.5082754492759705,
+        "minimum": 0.011497101746499538,
+        "value": 0.8290308713912964
+      },
+      "minimum_distance": {
+        "inside_range": false,
+        "maximum": 0.0408670703758935,
+        "minimum": 0.005953871288670155,
+        "value": 0.00448611319423045
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 1.0,
+        "minimum": 0.00298804780876494,
+        "value": 1.0
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.997550904750824,
+        "minimum": 0.017958734184503555,
+        "value": 0.9993696808815002
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9934055706956885,
+        "minimum": 0.08434756267044057,
+        "value": 0.9175409881549932
+      }
+    },
+    "cross_scene_neighbors": 7,
+    "evidence": {
+      "anchor_block_mean": 0.8290308713912964,
+      "minimum_distance": 0.00448611319423045,
+      "query_parent_hard_fraction": 1.0,
+      "query_parent_mean": 0.9993696808815002,
+      "supporter_mean": 0.9175409881549932
+    },
+    "frame_states": {
+      "observed_no_support": 6
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.011497101746499538,
+        "block_GT": {
+          "annotated": 91,
+          "distribution": {
+            "2003": 91
+          },
+          "known_instances": 1,
+          "other": 91,
+          "ownership": "other_only",
+          "points": 91,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.005953871288670155,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.013513513513513514,
+        "query_parent_mean": 0.017958734184503555,
+        "region": 1,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.9934055706956885
+      },
+      {
+        "anchor_block_mean": 0.07732643932104111,
+        "block_GT": {
+          "annotated": 29,
+          "distribution": {
+            "11013": 29
+          },
+          "known_instances": 1,
+          "other": 29,
+          "ownership": "other_only",
+          "points": 29,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009910914324455086,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.09516129032258064,
+        "query_parent_mean": 0.12816467881202698,
+        "region": 5,
+        "scene": "scene0340_00",
+        "supporter_mean": 0.9531086971019876
+      },
+      {
+        "anchor_block_mean": 0.5082754492759705,
+        "block_GT": {
+          "annotated": 42,
+          "distribution": {
+            "26013": 42
+          },
+          "known_instances": 1,
+          "other": 42,
+          "ownership": "other_only",
+          "points": 42,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.01270847626126128,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5346534653465347,
+        "query_parent_mean": 0.5322037935256958,
+        "region": 2,
+        "scene": "scene0072_02",
+        "supporter_mean": 0.6411914773312353
+      },
+      {
+        "anchor_block_mean": 0.2559070587158203,
+        "block_GT": {
+          "annotated": 288,
+          "distribution": {
+            "1013": 288
+          },
+          "known_instances": 1,
+          "other": 288,
+          "ownership": "other_only",
+          "points": 288,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.0408670703758935,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.09087989723827875,
+        "query_parent_mean": 0.16079536080360413,
+        "region": 0,
+        "scene": "scene0078_00",
+        "supporter_mean": 0.47685550836771046
+      },
+      {
+        "anchor_block_mean": 0.037349823862314224,
+        "block_GT": {
+          "annotated": 185,
+          "distribution": {
+            "1014": 185
+          },
+          "known_instances": 1,
+          "other": 185,
+          "ownership": "other_only",
+          "points": 185,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.03970008067408573,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.051094890510948905,
+        "query_parent_mean": 0.08577093482017517,
+        "region": 3,
+        "scene": "scene0078_00",
+        "supporter_mean": 0.6458551442854711
+      }
+    ],
+    "point_oracle_contribution": 0.15973191845853113,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 1.0,
+    "region": 0,
+    "same_signature_neighbors": 7,
+    "scene": "scene0057_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "supporter": 85
+  },
+  {
+    "anchor": 61,
+    "anchor_hard_iou": 0.8884120171673819,
+    "block_GT": {
+      "annotated": 1,
+      "distribution": {
+        "98013": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "block_id": "c005_r0004",
+    "candidate_id": "c005",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "98013": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.9556791186332703,
+        "minimum": 4.442874956822607e-09,
+        "value": 0.9992589354515076
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.14956682383605205,
+        "minimum": 0.06114607956908734,
+        "value": 0.08282516882329297
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 1.0,
+        "minimum": 0.0004943153732081067,
+        "value": 1.0
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.997550904750824,
+        "minimum": 0.008875769563019276,
+        "value": 0.9993696808815002
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.999630481004715,
+        "minimum": 0.028943150067672667,
+        "value": 0.9999141693115234
+      }
+    },
+    "cross_scene_neighbors": 16,
+    "evidence": {
+      "anchor_block_mean": 0.9992589354515076,
+      "minimum_distance": 0.08282516882329297,
+      "query_parent_hard_fraction": 1.0,
+      "query_parent_mean": 0.9993696808815002,
+      "supporter_mean": 0.9999141693115234
+    },
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.0031021509785205126,
+        "block_GT": {
+          "annotated": 6,
+          "distribution": {
+            "1027": 6
+          },
+          "known_instances": 1,
+          "other": 6,
+          "ownership": "other_only",
+          "points": 6,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.09912937297783483,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.02111324376199616,
+        "query_parent_mean": 0.02215510793030262,
+        "region": 13,
+        "scene": "scene0076_00",
+        "supporter_mean": 0.43398295280834037
+      },
+      {
+        "anchor_block_mean": 0.6005156636238098,
+        "block_GT": {
+          "annotated": 3,
+          "distribution": {
+            "56013": 3
+          },
+          "known_instances": 1,
+          "other": 3,
+          "ownership": "other_only",
+          "points": 3,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.10825070324110156,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.8688776630792884,
+        "query_parent_mean": 0.8680254220962524,
+        "region": 6,
+        "scene": "scene0313_02",
+        "supporter_mean": 0.8783017992973328
+      },
+      {
+        "anchor_block_mean": 0.017424268648028374,
+        "block_GT": {
+          "annotated": 54,
+          "distribution": {
+            "3006": 54
+          },
+          "known_instances": 1,
+          "other": 54,
+          "ownership": "other_only",
+          "points": 54,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.1083082538897591,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9921316165951359,
+        "query_parent_mean": 0.9913844466209412,
+        "region": 3,
+        "scene": "scene0536_02",
+        "supporter_mean": 0.028943150067672667
+      },
+      {
+        "anchor_block_mean": 4.442874956822607e-09,
+        "block_GT": {
+          "annotated": 1,
+          "distribution": {
+            "6009": 1
+          },
+          "known_instances": 1,
+          "other": 1,
+          "ownership": "other_only",
+          "points": 1,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.149251411124546,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.38090128755364805,
+        "query_parent_mean": 0.37375813722610474,
+        "region": 9,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.9844515323638916
+      },
+      {
+        "anchor_block_mean": 2.1823471030302244e-08,
+        "block_GT": {
+          "annotated": 2,
+          "distribution": {
+            "11013": 2
+          },
+          "known_instances": 1,
+          "other": 2,
+          "ownership": "other_only",
+          "points": 2,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.08613032951848494,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.09516129032258064,
+        "query_parent_mean": 0.12816467881202698,
+        "region": 1,
+        "scene": "scene0340_00",
+        "supporter_mean": 0.9814341068267822
+      }
+    ],
+    "point_oracle_contribution": 0.00027925160569672314,
+    "pure_oracle_contribution": 0.0002792516056967301,
+    "query_parent_hard_fraction": 1.0,
+    "region": 4,
+    "same_signature_neighbors": 16,
+    "scene": "scene0057_00",
+    "signature": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "supporter": 85
+  },
+  {
+    "anchor": 61,
+    "anchor_hard_iou": 0.8884120171673819,
+    "block_GT": {
+      "annotated": 9,
+      "distribution": {
+        "98013": 9
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 9,
+      "target": 9,
+      "unknown": 0
+    },
+    "block_id": "c005_r0005",
+    "candidate_id": "c005",
+    "clipped_GT": {
+      "annotated": 9,
+      "distribution": {
+        "98013": 9
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 9,
+      "target": 9,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.9556791186332703,
+        "minimum": 4.442874956822607e-09,
+        "value": 0.9982404708862305
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.14956682383605205,
+        "minimum": 0.06114607956908734,
+        "value": 0.1270799521762409
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 1.0,
+        "minimum": 0.0004943153732081067,
+        "value": 1.0
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.997550904750824,
+        "minimum": 0.008875769563019276,
+        "value": 0.9993696808815002
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.999630481004715,
+        "minimum": 0.028943150067672667,
+        "value": 0.9998571475346884
+      }
+    },
+    "cross_scene_neighbors": 16,
+    "evidence": {
+      "anchor_block_mean": 0.9982404708862305,
+      "minimum_distance": 0.1270799521762409,
+      "query_parent_hard_fraction": 1.0,
+      "query_parent_mean": 0.9993696808815002,
+      "supporter_mean": 0.9998571475346884
+    },
+    "frame_states": {
+      "missing": 2,
+      "observed_no_support": 4
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.0031021509785205126,
+        "block_GT": {
+          "annotated": 6,
+          "distribution": {
+            "1027": 6
+          },
+          "known_instances": 1,
+          "other": 6,
+          "ownership": "other_only",
+          "points": 6,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.09912937297783483,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.02111324376199616,
+        "query_parent_mean": 0.02215510793030262,
+        "region": 13,
+        "scene": "scene0076_00",
+        "supporter_mean": 0.43398295280834037
+      },
+      {
+        "anchor_block_mean": 0.6005156636238098,
+        "block_GT": {
+          "annotated": 3,
+          "distribution": {
+            "56013": 3
+          },
+          "known_instances": 1,
+          "other": 3,
+          "ownership": "other_only",
+          "points": 3,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.10825070324110156,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.8688776630792884,
+        "query_parent_mean": 0.8680254220962524,
+        "region": 6,
+        "scene": "scene0313_02",
+        "supporter_mean": 0.8783017992973328
+      },
+      {
+        "anchor_block_mean": 0.017424268648028374,
+        "block_GT": {
+          "annotated": 54,
+          "distribution": {
+            "3006": 54
+          },
+          "known_instances": 1,
+          "other": 54,
+          "ownership": "other_only",
+          "points": 54,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.1083082538897591,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9921316165951359,
+        "query_parent_mean": 0.9913844466209412,
+        "region": 3,
+        "scene": "scene0536_02",
+        "supporter_mean": 0.028943150067672667
+      },
+      {
+        "anchor_block_mean": 4.442874956822607e-09,
+        "block_GT": {
+          "annotated": 1,
+          "distribution": {
+            "6009": 1
+          },
+          "known_instances": 1,
+          "other": 1,
+          "ownership": "other_only",
+          "points": 1,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.149251411124546,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.38090128755364805,
+        "query_parent_mean": 0.37375813722610474,
+        "region": 9,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.9844515323638916
+      },
+      {
+        "anchor_block_mean": 2.1823471030302244e-08,
+        "block_GT": {
+          "annotated": 2,
+          "distribution": {
+            "11013": 2
+          },
+          "known_instances": 1,
+          "other": 2,
+          "ownership": "other_only",
+          "points": 2,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.08613032951848494,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.09516129032258064,
+        "query_parent_mean": 0.12816467881202698,
+        "region": 1,
+        "scene": "scene0340_00",
+        "supporter_mean": 0.9814341068267822
+      }
+    ],
+    "point_oracle_contribution": 0.0025132644512705915,
+    "pure_oracle_contribution": 0.0025132644512705984,
+    "query_parent_hard_fraction": 1.0,
+    "region": 5,
+    "same_signature_neighbors": 16,
+    "scene": "scene0057_00",
+    "signature": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "supporter": 85
+  },
+  {
+    "anchor": 115,
+    "anchor_hard_iou": 1.0,
+    "block_GT": {
+      "annotated": 6,
+      "distribution": {
+        "44014": 6
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 6,
+      "target": 6,
+      "unknown": 0
+    },
+    "block_id": "c004_r0001",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 6,
+      "distribution": {
+        "44014": 6
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 6,
+      "target": 6,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {},
+    "cross_scene_neighbors": 0,
+    "evidence": {
+      "anchor_block_mean": 0.9992596507072449,
+      "minimum_distance": 0.14018238127046137,
+      "query_parent_hard_fraction": 1.0,
+      "query_parent_mean": 0.9986233115196228,
+      "supporter_mean": 0.9992596507072449
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 1,
+      "observed_no_support": 4
+    },
+    "negative_examples": [],
+    "point_oracle_contribution": 0.003059663437021909,
+    "pure_oracle_contribution": 0.0030596634370219228,
+    "query_parent_hard_fraction": 1.0,
+    "region": 1,
+    "same_signature_neighbors": 0,
+    "scene": "scene0301_02",
+    "signature": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "supporter": 115
+  },
+  {
+    "anchor": 115,
+    "anchor_hard_iou": 1.0,
+    "block_GT": {
+      "annotated": 384,
+      "distribution": {
+        "0": 15,
+        "44014": 384
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 399,
+      "target": 384,
+      "unknown": 15
+    },
+    "block_id": "c004_r0002",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 382,
+      "distribution": {
+        "0": 4,
+        "44014": 382
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 386,
+      "target": 382,
+      "unknown": 4
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.7321221232414246,
+        "minimum": 0.07023508101701736,
+        "value": 0.9678536653518677
+      },
+      "minimum_distance": {
+        "inside_range": false,
+        "maximum": 0.00856044728410878,
+        "minimum": 0.006233003776740756,
+        "value": 0.0048247268689618145
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": false,
+        "maximum": 0.9951595553961994,
+        "minimum": 0.6831168831168831,
+        "value": 1.0
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.9832733273506165,
+        "minimum": 0.6838564276695251,
+        "value": 0.9986233115196228
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.7321221841577467,
+        "minimum": 0.0702350731548119,
+        "value": 0.967853668415064
+      }
+    },
+    "cross_scene_neighbors": 4,
+    "evidence": {
+      "anchor_block_mean": 0.9678536653518677,
+      "minimum_distance": 0.0048247268689618145,
+      "query_parent_hard_fraction": 1.0,
+      "query_parent_mean": 0.9986233115196228,
+      "supporter_mean": 0.967853668415064
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "observed_no_support": 3,
+      "observed_weak": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.7321221232414246,
+        "block_GT": {
+          "annotated": 450,
+          "distribution": {
+            "1007": 37,
+            "6010": 413
+          },
+          "known_instances": 2,
+          "other": 37,
+          "ownership": "mixed_known",
+          "points": 450,
+          "target": 413,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.007274871488720822,
+        "ownership": "mixed_known",
+        "query_parent_hard_fraction": 0.9866234292663154,
+        "query_parent_mean": 0.9832733273506165,
+        "region": 6,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.7321221841577467
+      },
+      {
+        "anchor_block_mean": 0.09428621828556061,
+        "block_GT": {
+          "annotated": 462,
+          "distribution": {
+            "3009": 462
+          },
+          "known_instances": 1,
+          "other": 462,
+          "ownership": "other_only",
+          "points": 462,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.006233003776740756,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9826901537521637,
+        "query_parent_mean": 0.9612870216369629,
+        "region": 2,
+        "scene": "scene0006_00",
+        "supporter_mean": 0.09428622342202417
+      },
+      {
+        "anchor_block_mean": 0.15550009906291962,
+        "block_GT": {
+          "annotated": 393,
+          "distribution": {
+            "1015": 393
+          },
+          "known_instances": 1,
+          "other": 393,
+          "ownership": "other_only",
+          "points": 393,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.006432290303263218,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9951595553961994,
+        "query_parent_mean": 0.9809659719467163,
+        "region": 1,
+        "scene": "scene0112_01",
+        "supporter_mean": 0.15550009587439087
+      },
+      {
+        "anchor_block_mean": 0.07023508101701736,
+        "block_GT": {
+          "annotated": 86,
+          "distribution": {
+            "3012": 86
+          },
+          "known_instances": 1,
+          "other": 86,
+          "ownership": "other_only",
+          "points": 86,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.00856044728410878,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.6831168831168831,
+        "query_parent_mean": 0.6838564276695251,
+        "region": 1,
+        "scene": "scene0547_02",
+        "supporter_mean": 0.0702350731548119
+      }
+    ],
+    "point_oracle_contribution": 0.1958184599694034,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 1.0,
+    "region": 2,
+    "same_signature_neighbors": 4,
+    "scene": "scene0301_02",
+    "signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "supporter": 115
+  },
+  {
+    "anchor": 115,
+    "anchor_hard_iou": 1.0,
+    "block_GT": {
+      "annotated": 524,
+      "distribution": {
+        "44014": 524
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 524,
+      "target": 524,
+      "unknown": 0
+    },
+    "block_id": "c007_r0001",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 521,
+      "distribution": {
+        "44014": 521
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 521,
+      "target": 521,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.7321221232414246,
+        "minimum": 0.07023508101701736,
+        "value": 0.9947279095649719
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.00856044728410878,
+        "minimum": 0.006233003776740756,
+        "value": 0.007360829191375944
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": false,
+        "maximum": 0.9951595553961994,
+        "minimum": 0.6831168831168831,
+        "value": 1.0
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.9832733273506165,
+        "minimum": 0.6838564276695251,
+        "value": 0.997724175453186
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.7321221841577467,
+        "minimum": 0.0702350731548119,
+        "value": 0.9947279199268242
+      }
+    },
+    "cross_scene_neighbors": 4,
+    "evidence": {
+      "anchor_block_mean": 0.9947279095649719,
+      "minimum_distance": 0.007360829191375944,
+      "query_parent_hard_fraction": 1.0,
+      "query_parent_mean": 0.997724175453186,
+      "supporter_mean": 0.9947279199268242
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "observed_no_support": 4,
+      "observed_weak": 1
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.7321221232414246,
+        "block_GT": {
+          "annotated": 450,
+          "distribution": {
+            "1007": 37,
+            "6010": 413
+          },
+          "known_instances": 2,
+          "other": 37,
+          "ownership": "mixed_known",
+          "points": 450,
+          "target": 413,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.007274871488720822,
+        "ownership": "mixed_known",
+        "query_parent_hard_fraction": 0.9866234292663154,
+        "query_parent_mean": 0.9832733273506165,
+        "region": 6,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.7321221841577467
+      },
+      {
+        "anchor_block_mean": 0.09428621828556061,
+        "block_GT": {
+          "annotated": 462,
+          "distribution": {
+            "3009": 462
+          },
+          "known_instances": 1,
+          "other": 462,
+          "ownership": "other_only",
+          "points": 462,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.006233003776740756,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9826901537521637,
+        "query_parent_mean": 0.9612870216369629,
+        "region": 2,
+        "scene": "scene0006_00",
+        "supporter_mean": 0.09428622342202417
+      },
+      {
+        "anchor_block_mean": 0.15550009906291962,
+        "block_GT": {
+          "annotated": 393,
+          "distribution": {
+            "1015": 393
+          },
+          "known_instances": 1,
+          "other": 393,
+          "ownership": "other_only",
+          "points": 393,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.006432290303263218,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9951595553961994,
+        "query_parent_mean": 0.9809659719467163,
+        "region": 1,
+        "scene": "scene0112_01",
+        "supporter_mean": 0.15550009587439087
+      },
+      {
+        "anchor_block_mean": 0.07023508101701736,
+        "block_GT": {
+          "annotated": 86,
+          "distribution": {
+            "3012": 86
+          },
+          "known_instances": 1,
+          "other": 86,
+          "ownership": "other_only",
+          "points": 86,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.00856044728410878,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.6831168831168831,
+        "query_parent_mean": 0.6838564276695251,
+        "region": 1,
+        "scene": "scene0547_02",
+        "supporter_mean": 0.0702350731548119
+      }
+    ],
+    "point_oracle_contribution": 0.2672106068332483,
+    "pure_oracle_contribution": 0.2672106068332483,
+    "query_parent_hard_fraction": 1.0,
+    "region": 1,
+    "same_signature_neighbors": 4,
+    "scene": "scene0301_02",
+    "signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "supporter": 115
+  },
+  {
+    "anchor": 115,
+    "anchor_hard_iou": 1.0,
+    "block_GT": {
+      "annotated": 14,
+      "distribution": {
+        "44014": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "block_id": "c007_r0002",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 14,
+      "distribution": {
+        "44014": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {},
+    "cross_scene_neighbors": 0,
+    "evidence": {
+      "anchor_block_mean": 0.9995956420898438,
+      "minimum_distance": 0.1301905832160898,
+      "query_parent_hard_fraction": 1.0,
+      "query_parent_mean": 0.997724175453186,
+      "supporter_mean": 0.9995956335748944
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "observed_no_support": 5
+    },
+    "negative_examples": [],
+    "point_oracle_contribution": 0.00713921468638451,
+    "pure_oracle_contribution": 0.00713921468638451,
+    "query_parent_hard_fraction": 1.0,
+    "region": 2,
+    "same_signature_neighbors": 0,
+    "scene": "scene0301_02",
+    "signature": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "supporter": 115
+  },
+  {
+    "anchor": 92,
+    "anchor_hard_iou": 1.0,
+    "block_GT": {
+      "annotated": 599,
+      "distribution": {
+        "5008": 599
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 599,
+      "target": 599,
+      "unknown": 0
+    },
+    "block_id": "c006_r0004",
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 599,
+      "distribution": {
+        "5008": 599
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 599,
+      "target": 599,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.05614246428012848,
+        "minimum": 0.035338133573532104,
+        "value": 0.9862200021743774
+      },
+      "minimum_distance": {
+        "inside_range": false,
+        "maximum": 0.008750789530931415,
+        "minimum": 0.00555329358103514,
+        "value": 0.004940208595388838
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": false,
+        "maximum": 0.9938623410784744,
+        "minimum": 0.7146321746160065,
+        "value": 0.6669824727617243
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.9888266921043396,
+        "minimum": 0.705086886882782,
+        "value": 0.6625428795814514
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.056142465647162985,
+        "minimum": 0.03533813243000504,
+        "value": 0.9862200096373964
+      }
+    },
+    "cross_scene_neighbors": 3,
+    "evidence": {
+      "anchor_block_mean": 0.9862200021743774,
+      "minimum_distance": 0.004940208595388838,
+      "query_parent_hard_fraction": 0.6669824727617243,
+      "query_parent_mean": 0.6625428795814514,
+      "supporter_mean": 0.9862200096373964
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "conflict": 1,
+      "observed_no_support": 3,
+      "observed_weak": 1
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.04193102940917015,
+        "block_GT": {
+          "annotated": 334,
+          "distribution": {
+            "1006": 17,
+            "3005": 317
+          },
+          "known_instances": 2,
+          "other": 334,
+          "ownership": "other_only",
+          "points": 334,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.00555329358103514,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.8028049298767531,
+        "query_parent_mean": 0.803941011428833,
+        "region": 2,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.041931029907030994
+      },
+      {
+        "anchor_block_mean": 0.05614246428012848,
+        "block_GT": {
+          "annotated": 344,
+          "distribution": {
+            "3006": 344
+          },
+          "known_instances": 1,
+          "other": 344,
+          "ownership": "other_only",
+          "points": 344,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.008750789530931415,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9938623410784744,
+        "query_parent_mean": 0.9888266921043396,
+        "region": 1,
+        "scene": "scene0112_01",
+        "supporter_mean": 0.056142465647162985
+      },
+      {
+        "anchor_block_mean": 0.035338133573532104,
+        "block_GT": {
+          "annotated": 251,
+          "distribution": {
+            "3007": 251
+          },
+          "known_instances": 1,
+          "other": 251,
+          "ownership": "other_only",
+          "points": 251,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.0073484331893960055,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.7146321746160065,
+        "query_parent_mean": 0.705086886882782,
+        "region": 0,
+        "scene": "scene0175_00",
+        "supporter_mean": 0.03533813243000504
+      }
+    ],
+    "point_oracle_contribution": 0.12202077816255852,
+    "pure_oracle_contribution": 0.12202077816255852,
+    "query_parent_hard_fraction": 0.6669824727617243,
+    "region": 4,
+    "same_signature_neighbors": 3,
+    "scene": "scene0369_00",
+    "signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      true
+    ],
+    "supporter": 92
+  },
+  {
+    "anchor": 92,
+    "anchor_hard_iou": 0.1977859778597786,
+    "block_GT": {
+      "annotated": 2,
+      "distribution": {
+        "5008": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "block_id": "c006_r0011",
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "5008": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.5740245580673218,
+        "minimum": 1.3997950190969277e-05,
+        "value": 0.8023519515991211
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.06881046795925004,
+        "minimum": 0.004427923471670997,
+        "value": 0.012367159939116334
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9886501824077827,
+        "minimum": 0.0004943153732081067,
+        "value": 0.5234486025580294
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9782466292381287,
+        "minimum": 0.008875769563019276,
+        "value": 0.5380098819732666
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999885434104551,
+        "minimum": 0.09956672414671162,
+        "value": 0.994287759065628
+      }
+    },
+    "cross_scene_neighbors": 20,
+    "evidence": {
+      "anchor_block_mean": 0.8023519515991211,
+      "minimum_distance": 0.012367159939116334,
+      "query_parent_hard_fraction": 0.5234486025580294,
+      "query_parent_mean": 0.5380098819732666,
+      "supporter_mean": 0.994287759065628
+    },
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.012818749994039536,
+        "block_GT": {
+          "annotated": 26,
+          "distribution": {
+            "3012": 26
+          },
+          "known_instances": 1,
+          "other": 26,
+          "ownership": "other_only",
+          "points": 26,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.015661283148696324,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.04323175053153792,
+        "query_parent_mean": 0.05308964103460312,
+        "region": 1,
+        "scene": "scene0029_02",
+        "supporter_mean": 0.16339134371642453
+      },
+      {
+        "anchor_block_mean": 0.09240273386240005,
+        "block_GT": {
+          "annotated": 41,
+          "distribution": {
+            "3013": 41
+          },
+          "known_instances": 1,
+          "other": 41,
+          "ownership": "other_only",
+          "points": 41,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.009754575560091561,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9886501824077827,
+        "query_parent_mean": 0.9782466292381287,
+        "region": 0,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.09956672414671162
+      },
+      {
+        "anchor_block_mean": 0.0019366893684491515,
+        "block_GT": {
+          "annotated": 14,
+          "distribution": {
+            "9004": 14
+          },
+          "known_instances": 1,
+          "other": 14,
+          "ownership": "other_only",
+          "points": 14,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.010696428789564592,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5031982942430704,
+        "query_parent_mean": 0.48830530047416687,
+        "region": 3,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.939909258059093
+      },
+      {
+        "anchor_block_mean": 0.274564266204834,
+        "block_GT": {
+          "annotated": 24,
+          "distribution": {
+            "3005": 24
+          },
+          "known_instances": 1,
+          "other": 24,
+          "ownership": "other_only",
+          "points": 24,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.014221167875627471,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9766536964980544,
+        "query_parent_mean": 0.9716171622276306,
+        "region": 10,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.2920568335381783
+      },
+      {
+        "anchor_block_mean": 0.0071116783656179905,
+        "block_GT": {
+          "annotated": 1,
+          "distribution": {
+            "1006": 1
+          },
+          "known_instances": 1,
+          "other": 1,
+          "ownership": "other_only",
+          "points": 1,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009223934518178602,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.1638334041648959,
+        "query_parent_mean": 0.16578276455402374,
+        "region": 5,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.4920523464679718
+      }
+    ],
+    "point_oracle_contribution": 0.00040741495212870404,
+    "pure_oracle_contribution": 0.00040741495212870404,
+    "query_parent_hard_fraction": 0.5234486025580294,
+    "region": 11,
+    "same_signature_neighbors": 20,
+    "scene": "scene0369_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "supporter": 4
+  },
+  {
+    "anchor": 92,
+    "anchor_hard_iou": 0.1977859778597786,
+    "block_GT": {
+      "annotated": 2,
+      "distribution": {
+        "5008": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "block_id": "c006_r0012",
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "5008": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": true,
+        "maximum": 0.5740245580673218,
+        "minimum": 1.3997950190969277e-05,
+        "value": 0.22290466725826263
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.06881046795925004,
+        "minimum": 0.004427923471670997,
+        "value": 0.018747698253167258
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9886501824077827,
+        "minimum": 0.0004943153732081067,
+        "value": 0.5234486025580294
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9782466292381287,
+        "minimum": 0.008875769563019276,
+        "value": 0.5380098819732666
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999885434104551,
+        "minimum": 0.09956672414671162,
+        "value": 0.9330710172653198
+      }
+    },
+    "cross_scene_neighbors": 20,
+    "evidence": {
+      "anchor_block_mean": 0.22290466725826263,
+      "minimum_distance": 0.018747698253167258,
+      "query_parent_hard_fraction": 0.5234486025580294,
+      "query_parent_mean": 0.5380098819732666,
+      "supporter_mean": 0.9330710172653198
+    },
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.012818749994039536,
+        "block_GT": {
+          "annotated": 26,
+          "distribution": {
+            "3012": 26
+          },
+          "known_instances": 1,
+          "other": 26,
+          "ownership": "other_only",
+          "points": 26,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.015661283148696324,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.04323175053153792,
+        "query_parent_mean": 0.05308964103460312,
+        "region": 1,
+        "scene": "scene0029_02",
+        "supporter_mean": 0.16339134371642453
+      },
+      {
+        "anchor_block_mean": 0.09240273386240005,
+        "block_GT": {
+          "annotated": 41,
+          "distribution": {
+            "3013": 41
+          },
+          "known_instances": 1,
+          "other": 41,
+          "ownership": "other_only",
+          "points": 41,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.009754575560091561,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9886501824077827,
+        "query_parent_mean": 0.9782466292381287,
+        "region": 0,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.09956672414671162
+      },
+      {
+        "anchor_block_mean": 0.0019366893684491515,
+        "block_GT": {
+          "annotated": 14,
+          "distribution": {
+            "9004": 14
+          },
+          "known_instances": 1,
+          "other": 14,
+          "ownership": "other_only",
+          "points": 14,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.010696428789564592,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5031982942430704,
+        "query_parent_mean": 0.48830530047416687,
+        "region": 3,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.939909258059093
+      },
+      {
+        "anchor_block_mean": 0.274564266204834,
+        "block_GT": {
+          "annotated": 24,
+          "distribution": {
+            "3005": 24
+          },
+          "known_instances": 1,
+          "other": 24,
+          "ownership": "other_only",
+          "points": 24,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.014221167875627471,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9766536964980544,
+        "query_parent_mean": 0.9716171622276306,
+        "region": 10,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.2920568335381783
+      },
+      {
+        "anchor_block_mean": 0.0071116783656179905,
+        "block_GT": {
+          "annotated": 1,
+          "distribution": {
+            "1006": 1
+          },
+          "known_instances": 1,
+          "other": 1,
+          "ownership": "other_only",
+          "points": 1,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009223934518178602,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.1638334041648959,
+        "query_parent_mean": 0.16578276455402374,
+        "region": 5,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.4920523464679718
+      }
+    ],
+    "point_oracle_contribution": 0.00040741495212870404,
+    "pure_oracle_contribution": 0.00040741495212870404,
+    "query_parent_hard_fraction": 0.5234486025580294,
+    "region": 12,
+    "same_signature_neighbors": 20,
+    "scene": "scene0369_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "supporter": 4
+  },
+  {
+    "anchor": 111,
+    "anchor_hard_iou": 0.0,
+    "block_GT": {
+      "annotated": 410,
+      "distribution": {
+        "0": 45,
+        "22001": 148,
+        "22022": 42,
+        "459021": 113,
+        "7015": 107
+      },
+      "known_instances": 4,
+      "other": 303,
+      "ownership": "mixed_known",
+      "points": 455,
+      "target": 107,
+      "unknown": 45
+    },
+    "block_id": "c007_r0000",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 183,
+      "distribution": {
+        "22001": 147,
+        "459021": 12,
+        "7015": 24
+      },
+      "known_instances": 3,
+      "other": 159,
+      "ownership": "mixed_known",
+      "points": 183,
+      "target": 24,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.19141222536563873,
+        "minimum": 1.1051301953557413e-06,
+        "value": 0.2675623297691345
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.01153887828534971,
+        "minimum": 0.0055107117405721485,
+        "value": 0.008160756421871168
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": false,
+        "maximum": 0.13250517598343686,
+        "minimum": 0.0028011204481792717,
+        "value": 0.001610305958132045
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.13090576231479645,
+        "minimum": 0.0070937941782176495,
+        "value": 0.0023155612871050835
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.9803073424559373,
+        "minimum": 0.4155239694355088,
+        "value": 0.3988774103566913
+      }
+    },
+    "cross_scene_neighbors": 4,
+    "evidence": {
+      "anchor_block_mean": 0.2675623297691345,
+      "minimum_distance": 0.008160756421871168,
+      "query_parent_hard_fraction": 0.001610305958132045,
+      "query_parent_mean": 0.0023155612871050835,
+      "supporter_mean": 0.3988774103566913
+    },
+    "frame_states": {
+      "ambiguous_tie": 3,
+      "observed_no_support": 2,
+      "observed_weak": 1
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.19141222536563873,
+        "block_GT": {
+          "annotated": 51,
+          "distribution": {
+            "0": 108,
+            "1024": 51
+          },
+          "known_instances": 1,
+          "other": 51,
+          "ownership": "other_unknown",
+          "points": 159,
+          "target": 0,
+          "unknown": 108
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.005878016890405636,
+        "ownership": "other_unknown",
+        "query_parent_hard_fraction": 0.0028011204481792717,
+        "query_parent_mean": 0.0070937941782176495,
+        "region": 1,
+        "scene": "scene0102_00",
+        "supporter_mean": 0.4155239694355088
+      },
+      {
+        "anchor_block_mean": 0.027472902089357376,
+        "block_GT": {
+          "annotated": 56,
+          "distribution": {
+            "34027": 56
+          },
+          "known_instances": 1,
+          "other": 56,
+          "ownership": "other_only",
+          "points": 56,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.008211197817418973,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.023148148148148147,
+        "query_parent_mean": 0.027668651193380356,
+        "region": 2,
+        "scene": "scene0340_00",
+        "supporter_mean": 0.9495321592049939
+      },
+      {
+        "anchor_block_mean": 0.036751050502061844,
+        "block_GT": {
+          "annotated": 579,
+          "distribution": {
+            "3010": 579
+          },
+          "known_instances": 1,
+          "other": 579,
+          "ownership": "other_only",
+          "points": 579,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.0055107117405721485,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.007623888182973317,
+        "query_parent_mean": 0.007256057113409042,
+        "region": 0,
+        "scene": "scene0085_00",
+        "supporter_mean": 0.8649317171841022
+      },
+      {
+        "anchor_block_mean": 1.1051301953557413e-06,
+        "block_GT": {
+          "annotated": 65,
+          "distribution": {
+            "41016": 65
+          },
+          "known_instances": 1,
+          "other": 65,
+          "ownership": "other_only",
+          "points": 65,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.01153887828534971,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.13250517598343686,
+        "query_parent_mean": 0.13090576231479645,
+        "region": 1,
+        "scene": "scene0547_02",
+        "supporter_mean": 0.9803073424559373
+      }
+    ],
+    "point_oracle_contribution": 0.03481939472827855,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.001610305958132045,
+    "region": 0,
+    "same_signature_neighbors": 4,
+    "scene": "scene0369_00",
+    "signature": [
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "supporter": 74
+  },
+  {
+    "anchor": 111,
+    "anchor_hard_iou": 1.0,
+    "block_GT": {
+      "annotated": 43,
+      "distribution": {
+        "7015": 43
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 43,
+      "target": 43,
+      "unknown": 0
+    },
+    "block_id": "c007_r0004",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 42,
+      "distribution": {
+        "7015": 42
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 42,
+      "target": 42,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.7321221232414246,
+        "minimum": 0.07023508101701736,
+        "value": 0.9656274318695068
+      },
+      "minimum_distance": {
+        "inside_range": false,
+        "maximum": 0.00856044728410878,
+        "minimum": 0.006233003776740756,
+        "value": 0.01074901276027952
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9951595553961994,
+        "minimum": 0.6831168831168831,
+        "value": 0.9593397745571659
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9832733273506165,
+        "minimum": 0.6838564276695251,
+        "value": 0.9543668627738953
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.7321221841577467,
+        "minimum": 0.0702350731548119,
+        "value": 0.9656273875125619
+      }
+    },
+    "cross_scene_neighbors": 4,
+    "evidence": {
+      "anchor_block_mean": 0.9656274318695068,
+      "minimum_distance": 0.01074901276027952,
+      "query_parent_hard_fraction": 0.9593397745571659,
+      "query_parent_mean": 0.9543668627738953,
+      "supporter_mean": 0.9656273875125619
+    },
+    "frame_states": {
+      "ambiguous_tie": 3,
+      "observed_no_support": 1,
+      "observed_weak": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.7321221232414246,
+        "block_GT": {
+          "annotated": 450,
+          "distribution": {
+            "1007": 37,
+            "6010": 413
+          },
+          "known_instances": 2,
+          "other": 37,
+          "ownership": "mixed_known",
+          "points": 450,
+          "target": 413,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.007274871488720822,
+        "ownership": "mixed_known",
+        "query_parent_hard_fraction": 0.9866234292663154,
+        "query_parent_mean": 0.9832733273506165,
+        "region": 6,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.7321221841577467
+      },
+      {
+        "anchor_block_mean": 0.09428621828556061,
+        "block_GT": {
+          "annotated": 462,
+          "distribution": {
+            "3009": 462
+          },
+          "known_instances": 1,
+          "other": 462,
+          "ownership": "other_only",
+          "points": 462,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.006233003776740756,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9826901537521637,
+        "query_parent_mean": 0.9612870216369629,
+        "region": 2,
+        "scene": "scene0006_00",
+        "supporter_mean": 0.09428622342202417
+      },
+      {
+        "anchor_block_mean": 0.15550009906291962,
+        "block_GT": {
+          "annotated": 393,
+          "distribution": {
+            "1015": 393
+          },
+          "known_instances": 1,
+          "other": 393,
+          "ownership": "other_only",
+          "points": 393,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.006432290303263218,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9951595553961994,
+        "query_parent_mean": 0.9809659719467163,
+        "region": 1,
+        "scene": "scene0112_01",
+        "supporter_mean": 0.15550009587439087
+      },
+      {
+        "anchor_block_mean": 0.07023508101701736,
+        "block_GT": {
+          "annotated": 86,
+          "distribution": {
+            "3012": 86
+          },
+          "known_instances": 1,
+          "other": 86,
+          "ownership": "other_only",
+          "points": 86,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.00856044728410878,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.6831168831168831,
+        "query_parent_mean": 0.6838564276695251,
+        "region": 1,
+        "scene": "scene0547_02",
+        "supporter_mean": 0.0702350731548119
+      }
+    ],
+    "point_oracle_contribution": 0.013992840872111945,
+    "pure_oracle_contribution": 0.013992840872111945,
+    "query_parent_hard_fraction": 0.9593397745571659,
+    "region": 4,
+    "same_signature_neighbors": 4,
+    "scene": "scene0369_00",
+    "signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "supporter": 111
+  },
+  {
+    "anchor": 111,
+    "anchor_hard_iou": 1.0,
+    "block_GT": {
+      "annotated": 1,
+      "distribution": {
+        "7015": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "block_id": "c007_r0005",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "7015": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {},
+    "cross_scene_neighbors": 0,
+    "evidence": {
+      "anchor_block_mean": 0.9927026033401489,
+      "minimum_distance": 0.015062151871447495,
+      "query_parent_hard_fraction": 0.9593397745571659,
+      "query_parent_mean": 0.9543668627738953,
+      "supporter_mean": 0.9927026033401489
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 3,
+      "observed_no_support": 2
+    },
+    "negative_examples": [],
+    "point_oracle_contribution": 0.00032541490400261885,
+    "pure_oracle_contribution": 0.00032541490400261885,
+    "query_parent_hard_fraction": 0.9593397745571659,
+    "region": 5,
+    "same_signature_neighbors": 0,
+    "scene": "scene0369_00",
+    "signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "supporter": 111
+  },
+  {
+    "anchor": 111,
+    "anchor_hard_iou": 1.0,
+    "block_GT": {
+      "annotated": 116,
+      "distribution": {
+        "7015": 116
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 116,
+      "target": 116,
+      "unknown": 0
+    },
+    "block_id": "c007_r0006",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 92,
+      "distribution": {
+        "7015": 92
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 92,
+      "target": 92,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.7321221232414246,
+        "minimum": 0.07023508101701736,
+        "value": 0.8105319738388062
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.00856044728410878,
+        "minimum": 0.006233003776740756,
+        "value": 0.006476981540274337
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9951595553961994,
+        "minimum": 0.6831168831168831,
+        "value": 0.9593397745571659
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9832733273506165,
+        "minimum": 0.6838564276695251,
+        "value": 0.9543668627738953
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.7321221841577467,
+        "minimum": 0.0702350731548119,
+        "value": 0.8105319294885829
+      }
+    },
+    "cross_scene_neighbors": 4,
+    "evidence": {
+      "anchor_block_mean": 0.8105319738388062,
+      "minimum_distance": 0.006476981540274337,
+      "query_parent_hard_fraction": 0.9593397745571659,
+      "query_parent_mean": 0.9543668627738953,
+      "supporter_mean": 0.8105319294885829
+    },
+    "frame_states": {
+      "ambiguous_tie": 3,
+      "observed_no_support": 1,
+      "observed_weak": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.7321221232414246,
+        "block_GT": {
+          "annotated": 450,
+          "distribution": {
+            "1007": 37,
+            "6010": 413
+          },
+          "known_instances": 2,
+          "other": 37,
+          "ownership": "mixed_known",
+          "points": 450,
+          "target": 413,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.007274871488720822,
+        "ownership": "mixed_known",
+        "query_parent_hard_fraction": 0.9866234292663154,
+        "query_parent_mean": 0.9832733273506165,
+        "region": 6,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.7321221841577467
+      },
+      {
+        "anchor_block_mean": 0.09428621828556061,
+        "block_GT": {
+          "annotated": 462,
+          "distribution": {
+            "3009": 462
+          },
+          "known_instances": 1,
+          "other": 462,
+          "ownership": "other_only",
+          "points": 462,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.006233003776740756,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9826901537521637,
+        "query_parent_mean": 0.9612870216369629,
+        "region": 2,
+        "scene": "scene0006_00",
+        "supporter_mean": 0.09428622342202417
+      },
+      {
+        "anchor_block_mean": 0.15550009906291962,
+        "block_GT": {
+          "annotated": 393,
+          "distribution": {
+            "1015": 393
+          },
+          "known_instances": 1,
+          "other": 393,
+          "ownership": "other_only",
+          "points": 393,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.006432290303263218,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9951595553961994,
+        "query_parent_mean": 0.9809659719467163,
+        "region": 1,
+        "scene": "scene0112_01",
+        "supporter_mean": 0.15550009587439087
+      },
+      {
+        "anchor_block_mean": 0.07023508101701736,
+        "block_GT": {
+          "annotated": 86,
+          "distribution": {
+            "3012": 86
+          },
+          "known_instances": 1,
+          "other": 86,
+          "ownership": "other_only",
+          "points": 86,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.00856044728410878,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.6831168831168831,
+        "query_parent_mean": 0.6838564276695251,
+        "region": 1,
+        "scene": "scene0547_02",
+        "supporter_mean": 0.0702350731548119
+      }
+    ],
+    "point_oracle_contribution": 0.03774812886430201,
+    "pure_oracle_contribution": 0.03774812886430201,
+    "query_parent_hard_fraction": 0.9593397745571659,
+    "region": 6,
+    "same_signature_neighbors": 4,
+    "scene": "scene0369_00",
+    "signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "supporter": 111
+  },
+  {
+    "anchor": 25,
+    "anchor_hard_iou": 0.0,
+    "block_GT": {
+      "annotated": 25,
+      "distribution": {
+        "134017": 25
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 25,
+      "target": 25,
+      "unknown": 0
+    },
+    "block_id": "c006_r0001",
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 21,
+      "distribution": {
+        "134017": 21
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 21,
+      "target": 21,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.13505706191062927,
+        "minimum": 0.004641441628336906,
+        "value": 9.427339477952046e-07
+      },
+      "minimum_distance": {
+        "inside_range": false,
+        "maximum": 0.012322720325112387,
+        "minimum": 0.004860043436513251,
+        "value": 0.025343311126308436
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.0,
+        "minimum": 0.0,
+        "value": 0.0
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.04074820876121521,
+        "minimum": 0.00027168187079951167,
+        "value": 3.944685522583313e-05
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.8623661044872257,
+        "minimum": 0.07712439017727618,
+        "value": 0.8448664390271097
+      }
+    },
+    "cross_scene_neighbors": 8,
+    "evidence": {
+      "anchor_block_mean": 9.427339477952046e-07,
+      "minimum_distance": 0.025343311126308436,
+      "query_parent_hard_fraction": 0.0,
+      "query_parent_mean": 3.944685522583313e-05,
+      "supporter_mean": 0.8448664390271097
+    },
+    "frame_states": {
+      "ambiguous_tie": 2,
+      "observed_no_support": 4
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.0057077775709331036,
+        "block_GT": {
+          "annotated": 290,
+          "distribution": {
+            "1016": 290
+          },
+          "known_instances": 1,
+          "other": 290,
+          "ownership": "other_only",
+          "points": 290,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.012322720325112387,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.0,
+        "query_parent_mean": 0.0003030638908967376,
+        "region": 1,
+        "scene": "scene0008_00",
+        "supporter_mean": 0.07712439017727618
+      },
+      {
+        "anchor_block_mean": 0.05403434485197067,
+        "block_GT": {
+          "annotated": 180,
+          "distribution": {
+            "52019": 180
+          },
+          "known_instances": 1,
+          "other": 180,
+          "ownership": "other_only",
+          "points": 180,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.006542039807455084,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.0,
+        "query_parent_mean": 0.0019641972612589598,
+        "region": 4,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.7572623446454397
+      },
+      {
+        "anchor_block_mean": 0.010609498247504234,
+        "block_GT": {
+          "annotated": 169,
+          "distribution": {
+            "51010": 169
+          },
+          "known_instances": 1,
+          "other": 169,
+          "ownership": "other_only",
+          "points": 169,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.007593942259111797,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.0,
+        "query_parent_mean": 0.0003639797505456954,
+        "region": 1,
+        "scene": "scene0137_00",
+        "supporter_mean": 0.8623661044872257
+      },
+      {
+        "anchor_block_mean": 0.004641441628336906,
+        "block_GT": {
+          "annotated": 212,
+          "distribution": {
+            "0": 4,
+            "1008": 212
+          },
+          "known_instances": 1,
+          "other": 212,
+          "ownership": "other_unknown",
+          "points": 216,
+          "target": 0,
+          "unknown": 4
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.011685201245592233,
+        "ownership": "other_unknown",
+        "query_parent_hard_fraction": 0.0,
+        "query_parent_mean": 0.04074820876121521,
+        "region": 1,
+        "scene": "scene0340_00",
+        "supporter_mean": 0.1116218320643788
+      },
+      {
+        "anchor_block_mean": 0.10297349840402603,
+        "block_GT": {
+          "annotated": 307,
+          "distribution": {
+            "0": 6,
+            "1022": 287,
+            "1024": 20
+          },
+          "known_instances": 2,
+          "other": 307,
+          "ownership": "other_unknown",
+          "points": 313,
+          "target": 0,
+          "unknown": 6
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.006354418769500976,
+        "ownership": "other_unknown",
+        "query_parent_hard_fraction": 0.0,
+        "query_parent_mean": 0.00027168187079951167,
+        "region": 1,
+        "scene": "scene0390_00",
+        "supporter_mean": 0.13270830442143106
+      }
+    ],
+    "point_oracle_contribution": 0.05060728744939269,
+    "pure_oracle_contribution": 0.05060728744939269,
+    "query_parent_hard_fraction": 0.0,
+    "region": 1,
+    "same_signature_neighbors": 8,
+    "scene": "scene0002_00",
+    "signature": [
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "supporter": 80
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.16440460947503202,
+    "block_GT": {
+      "annotated": 28,
+      "distribution": {
+        "276006": 28
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 28,
+      "target": 28,
+      "unknown": 0
+    },
+    "block_id": "c004_r0003",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 24,
+      "distribution": {
+        "276006": 24
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 24,
+      "target": 24,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": true,
+        "maximum": 0.7900309562683105,
+        "minimum": 2.390997678958229e-06,
+        "value": 0.3052249550819397
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.029892038333578112,
+        "minimum": 0.0055982603603020155,
+        "value": 0.011180813578772295
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9978791092258749,
+        "minimum": 0.005111821086261981,
+        "value": 0.09087989723827875
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9955974817276001,
+        "minimum": 0.005367456004023552,
+        "value": 0.16079536080360413
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9903506371710036,
+        "minimum": 0.04589859688614345,
+        "value": 0.8281562873827559
+      }
+    },
+    "cross_scene_neighbors": 15,
+    "evidence": {
+      "anchor_block_mean": 0.3052249550819397,
+      "minimum_distance": 0.011180813578772295,
+      "query_parent_hard_fraction": 0.09087989723827875,
+      "query_parent_mean": 0.16079536080360413,
+      "supporter_mean": 0.8281562873827559
+    },
+    "frame_states": {
+      "observed_no_support": 5,
+      "observed_weak": 1
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.7900309562683105,
+        "block_GT": {
+          "annotated": 121,
+          "distribution": {
+            "1001": 57,
+            "2012": 64
+          },
+          "known_instances": 2,
+          "other": 57,
+          "ownership": "mixed_known",
+          "points": 121,
+          "target": 64,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.0055982603603020155,
+        "ownership": "mixed_known",
+        "query_parent_hard_fraction": 0.9978791092258749,
+        "query_parent_mean": 0.9952353835105896,
+        "region": 5,
+        "scene": "scene0076_00",
+        "supporter_mean": 0.9390914509734831
+      },
+      {
+        "anchor_block_mean": 0.0713563859462738,
+        "block_GT": {
+          "annotated": 551,
+          "distribution": {
+            "6001": 551
+          },
+          "known_instances": 1,
+          "other": 551,
+          "ownership": "other_only",
+          "points": 551,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.007257302532509209,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.253028263795424,
+        "query_parent_mean": 0.2477414906024933,
+        "region": 0,
+        "scene": "scene0008_00",
+        "supporter_mean": 0.9609754360509114
+      },
+      {
+        "anchor_block_mean": 0.040120210498571396,
+        "block_GT": {
+          "annotated": 191,
+          "distribution": {
+            "0": 25,
+            "9019": 191
+          },
+          "known_instances": 1,
+          "other": 191,
+          "ownership": "other_unknown",
+          "points": 216,
+          "target": 0,
+          "unknown": 25
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.0067408527923570015,
+        "ownership": "other_unknown",
+        "query_parent_hard_fraction": 0.005111821086261981,
+        "query_parent_mean": 0.005367456004023552,
+        "region": 1,
+        "scene": "scene0138_00",
+        "supporter_mean": 0.8189405847375316
+      },
+      {
+        "anchor_block_mean": 0.05519187077879906,
+        "block_GT": {
+          "annotated": 122,
+          "distribution": {
+            "32027": 122
+          },
+          "known_instances": 1,
+          "other": 122,
+          "ownership": "other_only",
+          "points": 122,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.009115933833347342,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.023255813953488372,
+        "query_parent_mean": 0.018631208688020706,
+        "region": 2,
+        "scene": "scene0301_02",
+        "supporter_mean": 0.9760182207969369
+      },
+      {
+        "anchor_block_mean": 0.05388179421424866,
+        "block_GT": {
+          "annotated": 117,
+          "distribution": {
+            "13006": 117
+          },
+          "known_instances": 1,
+          "other": 117,
+          "ownership": "other_only",
+          "points": 117,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.010689081663816213,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.04844961240310078,
+        "query_parent_mean": 0.052947741001844406,
+        "region": 3,
+        "scene": "scene0301_02",
+        "supporter_mean": 0.9849920998781155
+      }
+    ],
+    "point_oracle_contribution": 0.007547169811320753,
+    "pure_oracle_contribution": 0.007547169811320753,
+    "query_parent_hard_fraction": 0.09087989723827875,
+    "region": 3,
+    "same_signature_neighbors": 15,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "supporter": 86
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.8013392857142857,
+    "block_GT": {
+      "annotated": 96,
+      "distribution": {
+        "276006": 96
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 96,
+      "target": 96,
+      "unknown": 0
+    },
+    "block_id": "c004_r0004",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 94,
+      "distribution": {
+        "276006": 94
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 94,
+      "target": 94,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.4778430461883545,
+        "minimum": 0.016602633520960808,
+        "value": 0.8917040824890137
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.016904036948499093,
+        "minimum": 0.005196897573832294,
+        "value": 0.010653970703813917
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9823484267075978,
+        "minimum": 0.0014814814814814814,
+        "value": 0.9020552344251767
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9669961333274841,
+        "minimum": 0.004947049077600241,
+        "value": 0.7994661331176758
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999318677325582,
+        "minimum": 0.058158483332625605,
+        "value": 0.9533801808332404
+      }
+    },
+    "cross_scene_neighbors": 15,
+    "evidence": {
+      "anchor_block_mean": 0.8917040824890137,
+      "minimum_distance": 0.010653970703813917,
+      "query_parent_hard_fraction": 0.9020552344251767,
+      "query_parent_mean": 0.7994661331176758,
+      "supporter_mean": 0.9533801808332404
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "observed_no_support": 4,
+      "observed_weak": 1
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.04211893677711487,
+        "block_GT": {
+          "annotated": 86,
+          "distribution": {
+            "1163008": 86
+          },
+          "known_instances": 1,
+          "other": 86,
+          "ownership": "other_only",
+          "points": 86,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.016904036948499093,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.030456852791878174,
+        "query_parent_mean": 0.029157057404518127,
+        "region": 2,
+        "scene": "scene0536_02",
+        "supporter_mean": 0.9999318677325582
+      },
+      {
+        "anchor_block_mean": 0.07959292829036713,
+        "block_GT": {
+          "annotated": 378,
+          "distribution": {
+            "13021": 378
+          },
+          "known_instances": 1,
+          "other": 378,
+          "ownership": "other_only",
+          "points": 378,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.007631342173618714,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.008445297504798464,
+        "query_parent_mean": 0.00876534078270197,
+        "region": 5,
+        "scene": "scene0536_02",
+        "supporter_mean": 0.9812224130909989
+      },
+      {
+        "anchor_block_mean": 0.04031603783369064,
+        "block_GT": {
+          "annotated": 660,
+          "distribution": {
+            "21032": 660
+          },
+          "known_instances": 1,
+          "other": 660,
+          "ownership": "other_only",
+          "points": 660,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.005992168728410181,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.018633540372670808,
+        "query_parent_mean": 0.02774919383227825,
+        "region": 1,
+        "scene": "scene0006_00",
+        "supporter_mean": 0.9571887430650267
+      },
+      {
+        "anchor_block_mean": 0.026618095114827156,
+        "block_GT": {
+          "annotated": 292,
+          "distribution": {
+            "0": 14,
+            "9004": 292
+          },
+          "known_instances": 1,
+          "other": 292,
+          "ownership": "other_unknown",
+          "points": 306,
+          "target": 0,
+          "unknown": 14
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.0057869106432723765,
+        "ownership": "other_unknown",
+        "query_parent_hard_fraction": 0.5031982942430704,
+        "query_parent_mean": 0.48830530047416687,
+        "region": 0,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.9382794564650729
+      },
+      {
+        "anchor_block_mean": 0.09362821280956268,
+        "block_GT": {
+          "annotated": 65,
+          "distribution": {
+            "13015": 65
+          },
+          "known_instances": 1,
+          "other": 65,
+          "ownership": "other_only",
+          "points": 65,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.008816641861758267,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.014360313315926894,
+        "query_parent_mean": 0.014684445224702358,
+        "region": 9,
+        "scene": "scene0137_00",
+        "supporter_mean": 0.8524179565988911
+      }
+    ],
+    "point_oracle_contribution": 0.02587601078167112,
+    "pure_oracle_contribution": 0.02587601078167112,
+    "query_parent_hard_fraction": 0.9020552344251767,
+    "region": 4,
+    "same_signature_neighbors": 15,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "supporter": 5
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.16440460947503202,
+    "block_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "block_id": "c004_r0005",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.5082754492759705,
+        "minimum": 0.011497101746499538,
+        "value": 0.6618415713310242
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.0408670703758935,
+        "minimum": 0.005953871288670155,
+        "value": 0.00895313640538086
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 1.0,
+        "minimum": 0.00298804780876494,
+        "value": 0.09087989723827875
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.997550904750824,
+        "minimum": 0.017958734184503555,
+        "value": 0.16079536080360413
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.9934055706956885,
+        "minimum": 0.08434756267044057,
+        "value": 0.998354971408844
+      }
+    },
+    "cross_scene_neighbors": 5,
+    "evidence": {
+      "anchor_block_mean": 0.6618415713310242,
+      "minimum_distance": 0.00895313640538086,
+      "query_parent_hard_fraction": 0.09087989723827875,
+      "query_parent_mean": 0.16079536080360413,
+      "supporter_mean": 0.998354971408844
+    },
+    "frame_states": {
+      "observed_no_support": 6
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.011497101746499538,
+        "block_GT": {
+          "annotated": 91,
+          "distribution": {
+            "2003": 91
+          },
+          "known_instances": 1,
+          "other": 91,
+          "ownership": "other_only",
+          "points": 91,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.005953871288670155,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.013513513513513514,
+        "query_parent_mean": 0.017958734184503555,
+        "region": 1,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.9934055706956885
+      },
+      {
+        "anchor_block_mean": 0.07732643932104111,
+        "block_GT": {
+          "annotated": 29,
+          "distribution": {
+            "11013": 29
+          },
+          "known_instances": 1,
+          "other": 29,
+          "ownership": "other_only",
+          "points": 29,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009910914324455086,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.09516129032258064,
+        "query_parent_mean": 0.12816467881202698,
+        "region": 5,
+        "scene": "scene0340_00",
+        "supporter_mean": 0.9531086971019876
+      },
+      {
+        "anchor_block_mean": 0.5082754492759705,
+        "block_GT": {
+          "annotated": 42,
+          "distribution": {
+            "26013": 42
+          },
+          "known_instances": 1,
+          "other": 42,
+          "ownership": "other_only",
+          "points": 42,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.01270847626126128,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5346534653465347,
+        "query_parent_mean": 0.5322037935256958,
+        "region": 2,
+        "scene": "scene0072_02",
+        "supporter_mean": 0.6411914773312353
+      },
+      {
+        "anchor_block_mean": 0.2559070587158203,
+        "block_GT": {
+          "annotated": 288,
+          "distribution": {
+            "1013": 288
+          },
+          "known_instances": 1,
+          "other": 288,
+          "ownership": "other_only",
+          "points": 288,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.0408670703758935,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.09087989723827875,
+        "query_parent_mean": 0.16079536080360413,
+        "region": 0,
+        "scene": "scene0078_00",
+        "supporter_mean": 0.47685550836771046
+      },
+      {
+        "anchor_block_mean": 0.037349823862314224,
+        "block_GT": {
+          "annotated": 185,
+          "distribution": {
+            "1014": 185
+          },
+          "known_instances": 1,
+          "other": 185,
+          "ownership": "other_only",
+          "points": 185,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.03970008067408573,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.051094890510948905,
+        "query_parent_mean": 0.08577093482017517,
+        "region": 3,
+        "scene": "scene0078_00",
+        "supporter_mean": 0.6458551442854711
+      }
+    ],
+    "point_oracle_contribution": 0.00026954177897575704,
+    "pure_oracle_contribution": 0.00026954177897575704,
+    "query_parent_hard_fraction": 0.09087989723827875,
+    "region": 5,
+    "same_signature_neighbors": 7,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "supporter": 86
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.16440460947503202,
+    "block_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "block_id": "c004_r0006",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.5082754492759705,
+        "minimum": 0.011497101746499538,
+        "value": 0.57900470495224
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.0408670703758935,
+        "minimum": 0.005953871288670155,
+        "value": 0.013526636533527345
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 1.0,
+        "minimum": 0.00298804780876494,
+        "value": 0.09087989723827875
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.997550904750824,
+        "minimum": 0.017958734184503555,
+        "value": 0.16079536080360413
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.9934055706956885,
+        "minimum": 0.08434756267044057,
+        "value": 0.9981675148010254
+      }
+    },
+    "cross_scene_neighbors": 5,
+    "evidence": {
+      "anchor_block_mean": 0.57900470495224,
+      "minimum_distance": 0.013526636533527345,
+      "query_parent_hard_fraction": 0.09087989723827875,
+      "query_parent_mean": 0.16079536080360413,
+      "supporter_mean": 0.9981675148010254
+    },
+    "frame_states": {
+      "observed_no_support": 6
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.011497101746499538,
+        "block_GT": {
+          "annotated": 91,
+          "distribution": {
+            "2003": 91
+          },
+          "known_instances": 1,
+          "other": 91,
+          "ownership": "other_only",
+          "points": 91,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.005953871288670155,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.013513513513513514,
+        "query_parent_mean": 0.017958734184503555,
+        "region": 1,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.9934055706956885
+      },
+      {
+        "anchor_block_mean": 0.07732643932104111,
+        "block_GT": {
+          "annotated": 29,
+          "distribution": {
+            "11013": 29
+          },
+          "known_instances": 1,
+          "other": 29,
+          "ownership": "other_only",
+          "points": 29,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009910914324455086,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.09516129032258064,
+        "query_parent_mean": 0.12816467881202698,
+        "region": 5,
+        "scene": "scene0340_00",
+        "supporter_mean": 0.9531086971019876
+      },
+      {
+        "anchor_block_mean": 0.5082754492759705,
+        "block_GT": {
+          "annotated": 42,
+          "distribution": {
+            "26013": 42
+          },
+          "known_instances": 1,
+          "other": 42,
+          "ownership": "other_only",
+          "points": 42,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.01270847626126128,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5346534653465347,
+        "query_parent_mean": 0.5322037935256958,
+        "region": 2,
+        "scene": "scene0072_02",
+        "supporter_mean": 0.6411914773312353
+      },
+      {
+        "anchor_block_mean": 0.2559070587158203,
+        "block_GT": {
+          "annotated": 288,
+          "distribution": {
+            "1013": 288
+          },
+          "known_instances": 1,
+          "other": 288,
+          "ownership": "other_only",
+          "points": 288,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.0408670703758935,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.09087989723827875,
+        "query_parent_mean": 0.16079536080360413,
+        "region": 0,
+        "scene": "scene0078_00",
+        "supporter_mean": 0.47685550836771046
+      },
+      {
+        "anchor_block_mean": 0.037349823862314224,
+        "block_GT": {
+          "annotated": 185,
+          "distribution": {
+            "1014": 185
+          },
+          "known_instances": 1,
+          "other": 185,
+          "ownership": "other_only",
+          "points": 185,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.03970008067408573,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.051094890510948905,
+        "query_parent_mean": 0.08577093482017517,
+        "region": 3,
+        "scene": "scene0078_00",
+        "supporter_mean": 0.6458551442854711
+      }
+    ],
+    "point_oracle_contribution": 0.00026954177897575704,
+    "pure_oracle_contribution": 0.00026954177897575704,
+    "query_parent_hard_fraction": 0.09087989723827875,
+    "region": 6,
+    "same_signature_neighbors": 7,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "supporter": 86
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.8013392857142857,
+    "block_GT": {
+      "annotated": 31,
+      "distribution": {
+        "276006": 31
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 31,
+      "target": 31,
+      "unknown": 0
+    },
+    "block_id": "c004_r0007",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 31,
+      "distribution": {
+        "276006": 31
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 31,
+      "target": 31,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.7900309562683105,
+        "minimum": 2.390997678958229e-06,
+        "value": 0.8335121273994446
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.029892038333578112,
+        "minimum": 0.0055982603603020155,
+        "value": 0.011747240311307578
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9978791092258749,
+        "minimum": 0.005111821086261981,
+        "value": 0.9020552344251767
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9955974817276001,
+        "minimum": 0.005367456004023552,
+        "value": 0.7994661331176758
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9903506371710036,
+        "minimum": 0.04589859688614345,
+        "value": 0.9837556077587989
+      }
+    },
+    "cross_scene_neighbors": 15,
+    "evidence": {
+      "anchor_block_mean": 0.8335121273994446,
+      "minimum_distance": 0.011747240311307578,
+      "query_parent_hard_fraction": 0.9020552344251767,
+      "query_parent_mean": 0.7994661331176758,
+      "supporter_mean": 0.9837556077587989
+    },
+    "frame_states": {
+      "observed_no_support": 4,
+      "observed_weak": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.7900309562683105,
+        "block_GT": {
+          "annotated": 121,
+          "distribution": {
+            "1001": 57,
+            "2012": 64
+          },
+          "known_instances": 2,
+          "other": 57,
+          "ownership": "mixed_known",
+          "points": 121,
+          "target": 64,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.0055982603603020155,
+        "ownership": "mixed_known",
+        "query_parent_hard_fraction": 0.9978791092258749,
+        "query_parent_mean": 0.9952353835105896,
+        "region": 5,
+        "scene": "scene0076_00",
+        "supporter_mean": 0.9390914509734831
+      },
+      {
+        "anchor_block_mean": 0.0713563859462738,
+        "block_GT": {
+          "annotated": 551,
+          "distribution": {
+            "6001": 551
+          },
+          "known_instances": 1,
+          "other": 551,
+          "ownership": "other_only",
+          "points": 551,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.007257302532509209,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.253028263795424,
+        "query_parent_mean": 0.2477414906024933,
+        "region": 0,
+        "scene": "scene0008_00",
+        "supporter_mean": 0.9609754360509114
+      },
+      {
+        "anchor_block_mean": 0.040120210498571396,
+        "block_GT": {
+          "annotated": 191,
+          "distribution": {
+            "0": 25,
+            "9019": 191
+          },
+          "known_instances": 1,
+          "other": 191,
+          "ownership": "other_unknown",
+          "points": 216,
+          "target": 0,
+          "unknown": 25
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.0067408527923570015,
+        "ownership": "other_unknown",
+        "query_parent_hard_fraction": 0.005111821086261981,
+        "query_parent_mean": 0.005367456004023552,
+        "region": 1,
+        "scene": "scene0138_00",
+        "supporter_mean": 0.8189405847375316
+      },
+      {
+        "anchor_block_mean": 0.05519187077879906,
+        "block_GT": {
+          "annotated": 122,
+          "distribution": {
+            "32027": 122
+          },
+          "known_instances": 1,
+          "other": 122,
+          "ownership": "other_only",
+          "points": 122,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.009115933833347342,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.023255813953488372,
+        "query_parent_mean": 0.018631208688020706,
+        "region": 2,
+        "scene": "scene0301_02",
+        "supporter_mean": 0.9760182207969369
+      },
+      {
+        "anchor_block_mean": 0.05388179421424866,
+        "block_GT": {
+          "annotated": 117,
+          "distribution": {
+            "13006": 117
+          },
+          "known_instances": 1,
+          "other": 117,
+          "ownership": "other_only",
+          "points": 117,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.010689081663816213,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.04844961240310078,
+        "query_parent_mean": 0.052947741001844406,
+        "region": 3,
+        "scene": "scene0301_02",
+        "supporter_mean": 0.9849920998781155
+      }
+    ],
+    "point_oracle_contribution": 0.008355795148248024,
+    "pure_oracle_contribution": 0.008355795148248024,
+    "query_parent_hard_fraction": 0.9020552344251767,
+    "region": 7,
+    "same_signature_neighbors": 15,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "supporter": 5
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.9117725219239968,
+    "block_GT": {
+      "annotated": 25,
+      "distribution": {
+        "276006": 25
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 25,
+      "target": 25,
+      "unknown": 0
+    },
+    "block_id": "c004_r0008",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 25,
+      "distribution": {
+        "276006": 25
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 25,
+      "target": 25,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.8910830616950989,
+        "minimum": 3.0595732614102644e-09,
+        "value": 0.9587252140045166
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.08212505999084105,
+        "minimum": 0.005167267002706153,
+        "value": 0.0096413168524203
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9766536964980544,
+        "minimum": 0.00023329600597237775,
+        "value": 0.9605009633911368
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9716171622276306,
+        "minimum": 0.00034154552849940956,
+        "value": 0.9143849015235901
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999741514523824,
+        "minimum": 0.06715873122705576,
+        "value": 0.9934968090057373
+      }
+    },
+    "cross_scene_neighbors": 31,
+    "evidence": {
+      "anchor_block_mean": 0.9587252140045166,
+      "minimum_distance": 0.0096413168524203,
+      "query_parent_hard_fraction": 0.9605009633911368,
+      "query_parent_mean": 0.9143849015235901,
+      "supporter_mean": 0.9934968090057373
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 3,
+      "observed_no_support": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.16842295229434967,
+        "block_GT": {
+          "annotated": 332,
+          "distribution": {
+            "3012": 217,
+            "55017": 115
+          },
+          "known_instances": 2,
+          "other": 332,
+          "ownership": "other_only",
+          "points": 332,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.008775239220887212,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.6846208362863218,
+        "query_parent_mean": 0.6764885783195496,
+        "region": 4,
+        "scene": "scene0029_02",
+        "supporter_mean": 0.3190426548295021
+      },
+      {
+        "anchor_block_mean": 0.07509836554527283,
+        "block_GT": {
+          "annotated": 18,
+          "distribution": {
+            "4016": 18
+          },
+          "known_instances": 1,
+          "other": 18,
+          "ownership": "other_only",
+          "points": 18,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.007388731408247893,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.1506276150627615,
+        "query_parent_mean": 0.17232172191143036,
+        "region": 5,
+        "scene": "scene0627_01",
+        "supporter_mean": 0.8234123670392566
+      },
+      {
+        "anchor_block_mean": 0.348060667514801,
+        "block_GT": {
+          "annotated": 10,
+          "distribution": {
+            "2024": 10
+          },
+          "known_instances": 1,
+          "other": 10,
+          "ownership": "other_only",
+          "points": 10,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.008945043529190939,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.020903322135125045,
+        "query_parent_mean": 0.020202795043587685,
+        "region": 12,
+        "scene": "scene0627_01",
+        "supporter_mean": 0.9735932588577271
+      },
+      {
+        "anchor_block_mean": 0.00892912782728672,
+        "block_GT": {
+          "annotated": 28,
+          "distribution": {
+            "2011": 28
+          },
+          "known_instances": 1,
+          "other": 28,
+          "ownership": "other_only",
+          "points": 28,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.03657967301278276,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.004759238521836506,
+        "query_parent_mean": 0.005209486931562424,
+        "region": 16,
+        "scene": "scene0627_01",
+        "supporter_mean": 0.9855393639632634
+      },
+      {
+        "anchor_block_mean": 0.11294432729482651,
+        "block_GT": {
+          "annotated": 41,
+          "distribution": {
+            "2014": 41
+          },
+          "known_instances": 1,
+          "other": 41,
+          "ownership": "other_only",
+          "points": 41,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.005167267002706153,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.005319148936170213,
+        "query_parent_mean": 0.0065511493012309074,
+        "region": 24,
+        "scene": "scene0627_01",
+        "supporter_mean": 0.9141948712853397
+      }
+    ],
+    "point_oracle_contribution": 0.006738544474393482,
+    "pure_oracle_contribution": 0.006738544474393482,
+    "query_parent_hard_fraction": 0.9605009633911368,
+    "region": 8,
+    "same_signature_neighbors": 31,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "supporter": 120
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.16440460947503202,
+    "block_GT": {
+      "annotated": 99,
+      "distribution": {
+        "276006": 99
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 99,
+      "target": 99,
+      "unknown": 0
+    },
+    "block_id": "c004_r0010",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 99,
+      "distribution": {
+        "276006": 99
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 99,
+      "target": 99,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.07962127029895782,
+        "minimum": 0.0009078233852051198,
+        "value": 0.2769123911857605
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.009405432472632454,
+        "minimum": 0.007282013377812605,
+        "value": 0.00926109911580062
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.5346534653465347,
+        "minimum": 0.045068928950159064,
+        "value": 0.09087989723827875
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.5380098819732666,
+        "minimum": 0.23471170663833618,
+        "value": 0.16079536080360413
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.8733089210022942,
+        "minimum": 0.020647740276556723,
+        "value": 0.9857313608882403
+      }
+    },
+    "cross_scene_neighbors": 3,
+    "evidence": {
+      "anchor_block_mean": 0.2769123911857605,
+      "minimum_distance": 0.00926109911580062,
+      "query_parent_hard_fraction": 0.09087989723827875,
+      "query_parent_mean": 0.16079536080360413,
+      "supporter_mean": 0.9857313608882403
+    },
+    "frame_states": {
+      "missing": 2,
+      "observed_no_support": 3,
+      "observed_weak": 1
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.004112001042813063,
+        "block_GT": {
+          "annotated": 276,
+          "distribution": {
+            "1001": 276
+          },
+          "known_instances": 1,
+          "other": 276,
+          "ownership": "other_only",
+          "points": 276,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009405432472632454,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.045068928950159064,
+        "query_parent_mean": 0.23471170663833618,
+        "region": 6,
+        "scene": "scene0076_00",
+        "supporter_mean": 0.41813200496245123
+      },
+      {
+        "anchor_block_mean": 0.07962127029895782,
+        "block_GT": {
+          "annotated": 404,
+          "distribution": {
+            "1006": 404
+          },
+          "known_instances": 1,
+          "other": 404,
+          "ownership": "other_only",
+          "points": 404,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.007282013377812605,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5234486025580294,
+        "query_parent_mean": 0.5380098819732666,
+        "region": 3,
+        "scene": "scene0369_00",
+        "supporter_mean": 0.8733089210022942
+      },
+      {
+        "anchor_block_mean": 0.0009078233852051198,
+        "block_GT": {
+          "annotated": 111,
+          "distribution": {
+            "1032": 111
+          },
+          "known_instances": 1,
+          "other": 111,
+          "ownership": "other_only",
+          "points": 111,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.008577135606801078,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5346534653465347,
+        "query_parent_mean": 0.5322037935256958,
+        "region": 3,
+        "scene": "scene0072_02",
+        "supporter_mean": 0.020647740276556723
+      }
+    ],
+    "point_oracle_contribution": 0.026684636118598393,
+    "pure_oracle_contribution": 0.026684636118598393,
+    "query_parent_hard_fraction": 0.09087989723827875,
+    "region": 10,
+    "same_signature_neighbors": 3,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      true
+    ],
+    "supporter": 86
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.8013392857142857,
+    "block_GT": {
+      "annotated": 177,
+      "distribution": {
+        "276006": 177
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 177,
+      "target": 177,
+      "unknown": 0
+    },
+    "block_id": "c004_r0011",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 177,
+      "distribution": {
+        "276006": 177
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 177,
+      "target": 177,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.07962127029895782,
+        "minimum": 0.0009078233852051198,
+        "value": 0.3124956786632538
+      },
+      "minimum_distance": {
+        "inside_range": false,
+        "maximum": 0.009405432472632454,
+        "minimum": 0.007282013377812605,
+        "value": 0.0071873726673061045
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": false,
+        "maximum": 0.5346534653465347,
+        "minimum": 0.045068928950159064,
+        "value": 0.9020552344251767
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.5380098819732666,
+        "minimum": 0.23471170663833618,
+        "value": 0.7994661331176758
+      },
+      "supporter_mean": {
+        "inside_range": false,
+        "maximum": 0.8733089210022942,
+        "minimum": 0.020647740276556723,
+        "value": 0.9691925291287697
+      }
+    },
+    "cross_scene_neighbors": 3,
+    "evidence": {
+      "anchor_block_mean": 0.3124956786632538,
+      "minimum_distance": 0.0071873726673061045,
+      "query_parent_hard_fraction": 0.9020552344251767,
+      "query_parent_mean": 0.7994661331176758,
+      "supporter_mean": 0.9691925291287697
+    },
+    "frame_states": {
+      "missing": 2,
+      "observed_no_support": 3,
+      "observed_weak": 1
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.004112001042813063,
+        "block_GT": {
+          "annotated": 276,
+          "distribution": {
+            "1001": 276
+          },
+          "known_instances": 1,
+          "other": 276,
+          "ownership": "other_only",
+          "points": 276,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009405432472632454,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.045068928950159064,
+        "query_parent_mean": 0.23471170663833618,
+        "region": 6,
+        "scene": "scene0076_00",
+        "supporter_mean": 0.41813200496245123
+      },
+      {
+        "anchor_block_mean": 0.07962127029895782,
+        "block_GT": {
+          "annotated": 404,
+          "distribution": {
+            "1006": 404
+          },
+          "known_instances": 1,
+          "other": 404,
+          "ownership": "other_only",
+          "points": 404,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.007282013377812605,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5234486025580294,
+        "query_parent_mean": 0.5380098819732666,
+        "region": 3,
+        "scene": "scene0369_00",
+        "supporter_mean": 0.8733089210022942
+      },
+      {
+        "anchor_block_mean": 0.0009078233852051198,
+        "block_GT": {
+          "annotated": 111,
+          "distribution": {
+            "1032": 111
+          },
+          "known_instances": 1,
+          "other": 111,
+          "ownership": "other_only",
+          "points": 111,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.008577135606801078,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5346534653465347,
+        "query_parent_mean": 0.5322037935256958,
+        "region": 3,
+        "scene": "scene0072_02",
+        "supporter_mean": 0.020647740276556723
+      }
+    ],
+    "point_oracle_contribution": 0.04770889487870622,
+    "pure_oracle_contribution": 0.04770889487870622,
+    "query_parent_hard_fraction": 0.9020552344251767,
+    "region": 11,
+    "same_signature_neighbors": 3,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      true
+    ],
+    "supporter": 5
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.7560521415270018,
+    "block_GT": {
+      "annotated": 14,
+      "distribution": {
+        "276006": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "block_id": "c004_r0012",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 14,
+      "distribution": {
+        "276006": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.5740245580673218,
+        "minimum": 1.3997950190969277e-05,
+        "value": 0.9308246970176697
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.06881046795925004,
+        "minimum": 0.004427923471670997,
+        "value": 0.014277759816059374
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9886501824077827,
+        "minimum": 0.0004943153732081067,
+        "value": 0.7736030828516378
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9782466292381287,
+        "minimum": 0.008875769563019276,
+        "value": 0.7250948548316956
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999885434104551,
+        "minimum": 0.09956672414671162,
+        "value": 0.9893970702375684
+      }
+    },
+    "cross_scene_neighbors": 19,
+    "evidence": {
+      "anchor_block_mean": 0.9308246970176697,
+      "minimum_distance": 0.014277759816059374,
+      "query_parent_hard_fraction": 0.7736030828516378,
+      "query_parent_mean": 0.7250948548316956,
+      "supporter_mean": 0.9893970702375684
+    },
+    "frame_states": {
+      "missing": 3,
+      "observed_no_support": 3
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.012818749994039536,
+        "block_GT": {
+          "annotated": 26,
+          "distribution": {
+            "3012": 26
+          },
+          "known_instances": 1,
+          "other": 26,
+          "ownership": "other_only",
+          "points": 26,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.015661283148696324,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.04323175053153792,
+        "query_parent_mean": 0.05308964103460312,
+        "region": 1,
+        "scene": "scene0029_02",
+        "supporter_mean": 0.16339134371642453
+      },
+      {
+        "anchor_block_mean": 0.09240273386240005,
+        "block_GT": {
+          "annotated": 41,
+          "distribution": {
+            "3013": 41
+          },
+          "known_instances": 1,
+          "other": 41,
+          "ownership": "other_only",
+          "points": 41,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.009754575560091561,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9886501824077827,
+        "query_parent_mean": 0.9782466292381287,
+        "region": 0,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.09956672414671162
+      },
+      {
+        "anchor_block_mean": 0.0019366893684491515,
+        "block_GT": {
+          "annotated": 14,
+          "distribution": {
+            "9004": 14
+          },
+          "known_instances": 1,
+          "other": 14,
+          "ownership": "other_only",
+          "points": 14,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.010696428789564592,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5031982942430704,
+        "query_parent_mean": 0.48830530047416687,
+        "region": 3,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.939909258059093
+      },
+      {
+        "anchor_block_mean": 0.274564266204834,
+        "block_GT": {
+          "annotated": 24,
+          "distribution": {
+            "3005": 24
+          },
+          "known_instances": 1,
+          "other": 24,
+          "ownership": "other_only",
+          "points": 24,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.014221167875627471,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9766536964980544,
+        "query_parent_mean": 0.9716171622276306,
+        "region": 10,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.2920568335381783
+      },
+      {
+        "anchor_block_mean": 0.0071116783656179905,
+        "block_GT": {
+          "annotated": 1,
+          "distribution": {
+            "1006": 1
+          },
+          "known_instances": 1,
+          "other": 1,
+          "ownership": "other_only",
+          "points": 1,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009223934518178602,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.1638334041648959,
+        "query_parent_mean": 0.16578276455402374,
+        "region": 5,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.4920523464679718
+      }
+    ],
+    "point_oracle_contribution": 0.0037735849056603765,
+    "pure_oracle_contribution": 0.0037735849056603765,
+    "query_parent_hard_fraction": 0.7736030828516378,
+    "region": 12,
+    "same_signature_neighbors": 20,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "supporter": 101
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.9686306601200219,
+    "block_GT": {
+      "annotated": 53,
+      "distribution": {
+        "276006": 53
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 53,
+      "target": 53,
+      "unknown": 0
+    },
+    "block_id": "c004_r0013",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 53,
+      "distribution": {
+        "276006": 53
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 53,
+      "target": 53,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.5740245580673218,
+        "minimum": 1.3997950190969277e-05,
+        "value": 0.9989804625511169
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.06881046795925004,
+        "minimum": 0.004427923471670997,
+        "value": 0.0070172918719781235
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": false,
+        "maximum": 0.9886501824077827,
+        "minimum": 0.0004943153732081067,
+        "value": 0.9974309569685292
+      },
+      "query_parent_mean": {
+        "inside_range": false,
+        "maximum": 0.9782466292381287,
+        "minimum": 0.008875769563019276,
+        "value": 0.9966630935668945
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999885434104551,
+        "minimum": 0.09956672414671162,
+        "value": 0.999676026263327
+      }
+    },
+    "cross_scene_neighbors": 19,
+    "evidence": {
+      "anchor_block_mean": 0.9989804625511169,
+      "minimum_distance": 0.0070172918719781235,
+      "query_parent_hard_fraction": 0.9974309569685292,
+      "query_parent_mean": 0.9966630935668945,
+      "supporter_mean": 0.999676026263327
+    },
+    "frame_states": {
+      "missing": 3,
+      "observed_no_support": 3
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.012818749994039536,
+        "block_GT": {
+          "annotated": 26,
+          "distribution": {
+            "3012": 26
+          },
+          "known_instances": 1,
+          "other": 26,
+          "ownership": "other_only",
+          "points": 26,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.015661283148696324,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.04323175053153792,
+        "query_parent_mean": 0.05308964103460312,
+        "region": 1,
+        "scene": "scene0029_02",
+        "supporter_mean": 0.16339134371642453
+      },
+      {
+        "anchor_block_mean": 0.09240273386240005,
+        "block_GT": {
+          "annotated": 41,
+          "distribution": {
+            "3013": 41
+          },
+          "known_instances": 1,
+          "other": 41,
+          "ownership": "other_only",
+          "points": 41,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.009754575560091561,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9886501824077827,
+        "query_parent_mean": 0.9782466292381287,
+        "region": 0,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.09956672414671162
+      },
+      {
+        "anchor_block_mean": 0.0019366893684491515,
+        "block_GT": {
+          "annotated": 14,
+          "distribution": {
+            "9004": 14
+          },
+          "known_instances": 1,
+          "other": 14,
+          "ownership": "other_only",
+          "points": 14,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.010696428789564592,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5031982942430704,
+        "query_parent_mean": 0.48830530047416687,
+        "region": 3,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.939909258059093
+      },
+      {
+        "anchor_block_mean": 0.274564266204834,
+        "block_GT": {
+          "annotated": 24,
+          "distribution": {
+            "3005": 24
+          },
+          "known_instances": 1,
+          "other": 24,
+          "ownership": "other_only",
+          "points": 24,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.014221167875627471,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9766536964980544,
+        "query_parent_mean": 0.9716171622276306,
+        "region": 10,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.2920568335381783
+      },
+      {
+        "anchor_block_mean": 0.0071116783656179905,
+        "block_GT": {
+          "annotated": 1,
+          "distribution": {
+            "1006": 1
+          },
+          "known_instances": 1,
+          "other": 1,
+          "ownership": "other_only",
+          "points": 1,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009223934518178602,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.1638334041648959,
+        "query_parent_mean": 0.16578276455402374,
+        "region": 5,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.4920523464679718
+      }
+    ],
+    "point_oracle_contribution": 0.014285714285714235,
+    "pure_oracle_contribution": 0.014285714285714235,
+    "query_parent_hard_fraction": 0.9974309569685292,
+    "region": 13,
+    "same_signature_neighbors": 20,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "supporter": 131
+  },
+  {
+    "anchor": 9,
+    "anchor_hard_iou": 0.8013392857142857,
+    "block_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "block_id": "c004_r0014",
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.5740245580673218,
+        "minimum": 1.3997950190969277e-05,
+        "value": 0.7368202209472656
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.06881046795925004,
+        "minimum": 0.004427923471670997,
+        "value": 0.018016737437493942
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9886501824077827,
+        "minimum": 0.0004943153732081067,
+        "value": 0.9020552344251767
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9782466292381287,
+        "minimum": 0.008875769563019276,
+        "value": 0.7994661331176758
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999885434104551,
+        "minimum": 0.09956672414671162,
+        "value": 0.9901854991912842
+      }
+    },
+    "cross_scene_neighbors": 19,
+    "evidence": {
+      "anchor_block_mean": 0.7368202209472656,
+      "minimum_distance": 0.018016737437493942,
+      "query_parent_hard_fraction": 0.9020552344251767,
+      "query_parent_mean": 0.7994661331176758,
+      "supporter_mean": 0.9901854991912842
+    },
+    "frame_states": {
+      "missing": 2,
+      "observed_no_support": 4
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.012818749994039536,
+        "block_GT": {
+          "annotated": 26,
+          "distribution": {
+            "3012": 26
+          },
+          "known_instances": 1,
+          "other": 26,
+          "ownership": "other_only",
+          "points": 26,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.015661283148696324,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.04323175053153792,
+        "query_parent_mean": 0.05308964103460312,
+        "region": 1,
+        "scene": "scene0029_02",
+        "supporter_mean": 0.16339134371642453
+      },
+      {
+        "anchor_block_mean": 0.09240273386240005,
+        "block_GT": {
+          "annotated": 41,
+          "distribution": {
+            "3013": 41
+          },
+          "known_instances": 1,
+          "other": 41,
+          "ownership": "other_only",
+          "points": 41,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.009754575560091561,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9886501824077827,
+        "query_parent_mean": 0.9782466292381287,
+        "region": 0,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.09956672414671162
+      },
+      {
+        "anchor_block_mean": 0.0019366893684491515,
+        "block_GT": {
+          "annotated": 14,
+          "distribution": {
+            "9004": 14
+          },
+          "known_instances": 1,
+          "other": 14,
+          "ownership": "other_only",
+          "points": 14,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.010696428789564592,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5031982942430704,
+        "query_parent_mean": 0.48830530047416687,
+        "region": 3,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.939909258059093
+      },
+      {
+        "anchor_block_mean": 0.274564266204834,
+        "block_GT": {
+          "annotated": 24,
+          "distribution": {
+            "3005": 24
+          },
+          "known_instances": 1,
+          "other": 24,
+          "ownership": "other_only",
+          "points": 24,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.014221167875627471,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9766536964980544,
+        "query_parent_mean": 0.9716171622276306,
+        "region": 10,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.2920568335381783
+      },
+      {
+        "anchor_block_mean": 0.0071116783656179905,
+        "block_GT": {
+          "annotated": 1,
+          "distribution": {
+            "1006": 1
+          },
+          "known_instances": 1,
+          "other": 1,
+          "ownership": "other_only",
+          "points": 1,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009223934518178602,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.1638334041648959,
+        "query_parent_mean": 0.16578276455402374,
+        "region": 5,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.4920523464679718
+      }
+    ],
+    "point_oracle_contribution": 0.00026954177897575704,
+    "pure_oracle_contribution": 0.00026954177897575704,
+    "query_parent_hard_fraction": 0.9020552344251767,
+    "region": 14,
+    "same_signature_neighbors": 20,
+    "scene": "scene0078_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "supporter": 5
+  },
+  {
+    "anchor": 53,
+    "anchor_hard_iou": 0.03571428571428571,
+    "block_GT": {
+      "annotated": 30,
+      "distribution": {
+        "13030": 30
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 30,
+      "target": 30,
+      "unknown": 0
+    },
+    "block_id": "c007_r0004",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 30,
+      "distribution": {
+        "13030": 30
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 30,
+      "target": 30,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {},
+    "cross_scene_neighbors": 0,
+    "evidence": {
+      "anchor_block_mean": 0.014970580115914345,
+      "minimum_distance": 0.008717259396282862,
+      "query_parent_hard_fraction": 0.37178754997144486,
+      "query_parent_mean": 0.37290453910827637,
+      "supporter_mean": 0.998627366622289
+    },
+    "frame_states": {
+      "ambiguous_tie": 2,
+      "common": 1,
+      "conflict": 1,
+      "missing": 1,
+      "observed_weak": 1
+    },
+    "negative_examples": [],
+    "point_oracle_contribution": 0.01285347043701801,
+    "pure_oracle_contribution": 0.01285347043701801,
+    "query_parent_hard_fraction": 0.37178754997144486,
+    "region": 4,
+    "same_signature_neighbors": 0,
+    "scene": "scene0085_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "supporter": 34
+  },
+  {
+    "anchor": 53,
+    "anchor_hard_iou": 0.03571428571428571,
+    "block_GT": {
+      "annotated": 28,
+      "distribution": {
+        "13030": 28
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 28,
+      "target": 28,
+      "unknown": 0
+    },
+    "block_id": "c007_r0011",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 28,
+      "distribution": {
+        "13030": 28
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 28,
+      "target": 28,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {},
+    "cross_scene_neighbors": 0,
+    "evidence": {
+      "anchor_block_mean": 0.00729127274826169,
+      "minimum_distance": 0.01168243861788399,
+      "query_parent_hard_fraction": 0.37178754997144486,
+      "query_parent_mean": 0.37290453910827637,
+      "supporter_mean": 0.9993504796709333
+    },
+    "frame_states": {
+      "common": 2,
+      "conflict": 3,
+      "missing": 1
+    },
+    "negative_examples": [],
+    "point_oracle_contribution": 0.011996572407883432,
+    "pure_oracle_contribution": 0.011996572407883432,
+    "query_parent_hard_fraction": 0.37178754997144486,
+    "region": 11,
+    "same_signature_neighbors": 0,
+    "scene": "scene0085_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    "supporter": 34
+  },
+  {
+    "anchor": 53,
+    "anchor_hard_iou": 0.03571428571428571,
+    "block_GT": {
+      "annotated": 4,
+      "distribution": {
+        "13030": 4
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 4,
+      "target": 4,
+      "unknown": 0
+    },
+    "block_id": "c007_r0012",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 4,
+      "distribution": {
+        "13030": 4
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 4,
+      "target": 4,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": true,
+        "maximum": 0.5740245580673218,
+        "minimum": 1.3997950190969277e-05,
+        "value": 0.007516687735915184
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.06881046795925004,
+        "minimum": 0.004427923471670997,
+        "value": 0.03668815238956039
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.9886501824077827,
+        "minimum": 0.0004943153732081067,
+        "value": 0.37178754997144486
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9782466292381287,
+        "minimum": 0.008875769563019276,
+        "value": 0.37290453910827637
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999885434104551,
+        "minimum": 0.09956672414671162,
+        "value": 0.9201452285051346
+      }
+    },
+    "cross_scene_neighbors": 20,
+    "evidence": {
+      "anchor_block_mean": 0.007516687735915184,
+      "minimum_distance": 0.03668815238956039,
+      "query_parent_hard_fraction": 0.37178754997144486,
+      "query_parent_mean": 0.37290453910827637,
+      "supporter_mean": 0.9201452285051346
+    },
+    "frame_states": {
+      "missing": 3,
+      "observed_no_support": 3
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.012818749994039536,
+        "block_GT": {
+          "annotated": 26,
+          "distribution": {
+            "3012": 26
+          },
+          "known_instances": 1,
+          "other": 26,
+          "ownership": "other_only",
+          "points": 26,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.015661283148696324,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.04323175053153792,
+        "query_parent_mean": 0.05308964103460312,
+        "region": 1,
+        "scene": "scene0029_02",
+        "supporter_mean": 0.16339134371642453
+      },
+      {
+        "anchor_block_mean": 0.09240273386240005,
+        "block_GT": {
+          "annotated": 41,
+          "distribution": {
+            "3013": 41
+          },
+          "known_instances": 1,
+          "other": 41,
+          "ownership": "other_only",
+          "points": 41,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c004",
+        "minimum_distance": 0.009754575560091561,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9886501824077827,
+        "query_parent_mean": 0.9782466292381287,
+        "region": 0,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.09956672414671162
+      },
+      {
+        "anchor_block_mean": 0.0019366893684491515,
+        "block_GT": {
+          "annotated": 14,
+          "distribution": {
+            "9004": 14
+          },
+          "known_instances": 1,
+          "other": 14,
+          "ownership": "other_only",
+          "points": 14,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.010696428789564592,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.5031982942430704,
+        "query_parent_mean": 0.48830530047416687,
+        "region": 3,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.939909258059093
+      },
+      {
+        "anchor_block_mean": 0.274564266204834,
+        "block_GT": {
+          "annotated": 24,
+          "distribution": {
+            "3005": 24
+          },
+          "known_instances": 1,
+          "other": 24,
+          "ownership": "other_only",
+          "points": 24,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.014221167875627471,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.9766536964980544,
+        "query_parent_mean": 0.9716171622276306,
+        "region": 10,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.2920568335381783
+      },
+      {
+        "anchor_block_mean": 0.0071116783656179905,
+        "block_GT": {
+          "annotated": 1,
+          "distribution": {
+            "1006": 1
+          },
+          "known_instances": 1,
+          "other": 1,
+          "ownership": "other_only",
+          "points": 1,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.009223934518178602,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.1638334041648959,
+        "query_parent_mean": 0.16578276455402374,
+        "region": 5,
+        "scene": "scene0122_00",
+        "supporter_mean": 0.4920523464679718
+      }
+    ],
+    "point_oracle_contribution": 0.001713796058269046,
+    "pure_oracle_contribution": 0.001713796058269046,
+    "query_parent_hard_fraction": 0.37178754997144486,
+    "region": 12,
+    "same_signature_neighbors": 20,
+    "scene": "scene0085_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "supporter": 34
+  },
+  {
+    "anchor": 53,
+    "anchor_hard_iou": 0.03571428571428571,
+    "block_GT": {
+      "annotated": 15,
+      "distribution": {
+        "11012": 1,
+        "13030": 14
+      },
+      "known_instances": 2,
+      "other": 1,
+      "ownership": "mixed_known",
+      "points": 15,
+      "target": 14,
+      "unknown": 0
+    },
+    "block_id": "c007_r0015",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 12,
+      "distribution": {
+        "13030": 12
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 12,
+      "target": 12,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": true,
+        "maximum": 0.4670369327068329,
+        "minimum": 1.6406043869210407e-05,
+        "value": 0.003968341276049614
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.027263856825547394,
+        "minimum": 0.006294320224835434,
+        "value": 0.017074389593901184
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": true,
+        "maximum": 0.60568669527897,
+        "minimum": 0.0006527415143603133,
+        "value": 0.37178754997144486
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.6042925119400024,
+        "minimum": 0.000701265234965831,
+        "value": 0.37290453910827637
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999478277564049,
+        "minimum": 0.06918105431674845,
+        "value": 0.7952953182014671
+      }
+    },
+    "cross_scene_neighbors": 10,
+    "evidence": {
+      "anchor_block_mean": 0.003968341276049614,
+      "minimum_distance": 0.017074389593901184,
+      "query_parent_hard_fraction": 0.37178754997144486,
+      "query_parent_mean": 0.37290453910827637,
+      "supporter_mean": 0.7952953182014671
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 1,
+      "observed_no_support": 2,
+      "observed_weak": 2
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 1.6406043869210407e-05,
+        "block_GT": {
+          "annotated": 200,
+          "distribution": {
+            "31008": 200
+          },
+          "known_instances": 1,
+          "other": 200,
+          "ownership": "other_only",
+          "points": 200,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.027263856825547394,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.05115089514066496,
+        "query_parent_mean": 0.051401108503341675,
+        "region": 6,
+        "scene": "scene0029_02",
+        "supporter_mean": 0.9999478277564049
+      },
+      {
+        "anchor_block_mean": 0.00483977235853672,
+        "block_GT": {
+          "annotated": 133,
+          "distribution": {
+            "6009": 133
+          },
+          "known_instances": 1,
+          "other": 133,
+          "ownership": "other_only",
+          "points": 133,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.007435013358273115,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.38090128755364805,
+        "query_parent_mean": 0.37375813722610474,
+        "region": 4,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.9922347344402084
+      },
+      {
+        "anchor_block_mean": 0.07203004509210587,
+        "block_GT": {
+          "annotated": 186,
+          "distribution": {
+            "3013": 186
+          },
+          "known_instances": 1,
+          "other": 186,
+          "ownership": "other_only",
+          "points": 186,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.008634372582762036,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.60568669527897,
+        "query_parent_mean": 0.6042925119400024,
+        "region": 6,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.10138513846051665
+      },
+      {
+        "anchor_block_mean": 0.06531733274459839,
+        "block_GT": {
+          "annotated": 103,
+          "distribution": {
+            "1006": 103
+          },
+          "known_instances": 1,
+          "other": 103,
+          "ownership": "other_only",
+          "points": 103,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.009530480413506912,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.38090128755364805,
+        "query_parent_mean": 0.37375813722610474,
+        "region": 12,
+        "scene": "scene0160_00",
+        "supporter_mean": 0.06918105431674845
+      },
+      {
+        "anchor_block_mean": 0.07752019166946411,
+        "block_GT": {
+          "annotated": 203,
+          "distribution": {
+            "1016": 203
+          },
+          "known_instances": 1,
+          "other": 203,
+          "ownership": "other_only",
+          "points": 203,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.009352224987263062,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.0032637075718015664,
+        "query_parent_mean": 0.025638913735747337,
+        "region": 2,
+        "scene": "scene0137_00",
+        "supporter_mean": 0.38603194497911064
+      }
+    ],
+    "point_oracle_contribution": 0.005998286203941716,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.37178754997144486,
+    "region": 15,
+    "same_signature_neighbors": 10,
+    "scene": "scene0085_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true
+    ],
+    "supporter": 34
+  },
+  {
+    "anchor": 53,
+    "anchor_hard_iou": 0.03571428571428571,
+    "block_GT": {
+      "annotated": 6,
+      "distribution": {
+        "13030": 6
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 6,
+      "target": 6,
+      "unknown": 0
+    },
+    "block_id": "c007_r0016",
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 5,
+      "distribution": {
+        "13030": 5
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 5,
+      "target": 5,
+      "unknown": 0
+    },
+    "continuous_negative_ranges": {},
+    "cross_scene_neighbors": 0,
+    "evidence": {
+      "anchor_block_mean": 0.13865381479263306,
+      "minimum_distance": 0.01208243700205066,
+      "query_parent_hard_fraction": 0.37178754997144486,
+      "query_parent_mean": 0.37290453910827637,
+      "supporter_mean": 0.8211837127649536
+    },
+    "frame_states": {
+      "common": 2,
+      "conflict": 2,
+      "missing": 1,
+      "observed_weak": 1
+    },
+    "negative_examples": [],
+    "point_oracle_contribution": 0.0025706940874036244,
+    "pure_oracle_contribution": 0.0025706940874036244,
+    "query_parent_hard_fraction": 0.37178754997144486,
+    "region": 16,
+    "same_signature_neighbors": 0,
+    "scene": "scene0085_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    "supporter": 34
+  },
+  {
+    "anchor": 87,
+    "anchor_hard_iou": 0.772567409144197,
+    "block_GT": {
+      "annotated": 101,
+      "distribution": {
+        "0": 47,
+        "1011": 1,
+        "261015": 100
+      },
+      "known_instances": 2,
+      "other": 1,
+      "ownership": "mixed_known",
+      "points": 148,
+      "target": 100,
+      "unknown": 47
+    },
+    "block_id": "c006_r0001",
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 100,
+      "distribution": {
+        "0": 47,
+        "261015": 100
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 147,
+      "target": 100,
+      "unknown": 47
+    },
+    "continuous_negative_ranges": {
+      "anchor_block_mean": {
+        "inside_range": false,
+        "maximum": 0.30395156145095825,
+        "minimum": 0.016602633520960808,
+        "value": 0.4778430461883545
+      },
+      "minimum_distance": {
+        "inside_range": true,
+        "maximum": 0.016904036948499093,
+        "minimum": 0.005196897573832294,
+        "value": 0.008241270964048152
+      },
+      "query_parent_hard_fraction": {
+        "inside_range": false,
+        "maximum": 0.9709938183547313,
+        "minimum": 0.0014814814814814814,
+        "value": 0.9823484267075978
+      },
+      "query_parent_mean": {
+        "inside_range": true,
+        "maximum": 0.9669961333274841,
+        "minimum": 0.004947049077600241,
+        "value": 0.9577005505561829
+      },
+      "supporter_mean": {
+        "inside_range": true,
+        "maximum": 0.9999318677325582,
+        "minimum": 0.058158483332625605,
+        "value": 0.9599896387293041
+      }
+    },
+    "cross_scene_neighbors": 14,
+    "evidence": {
+      "anchor_block_mean": 0.4778430461883545,
+      "minimum_distance": 0.008241270964048152,
+      "query_parent_hard_fraction": 0.9823484267075978,
+      "query_parent_mean": 0.9577005505561829,
+      "supporter_mean": 0.9599896387293041
+    },
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "observed_no_support": 2,
+      "observed_weak": 3
+    },
+    "negative_examples": [
+      {
+        "anchor_block_mean": 0.04211893677711487,
+        "block_GT": {
+          "annotated": 86,
+          "distribution": {
+            "1163008": 86
+          },
+          "known_instances": 1,
+          "other": 86,
+          "ownership": "other_only",
+          "points": 86,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.016904036948499093,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.030456852791878174,
+        "query_parent_mean": 0.029157057404518127,
+        "region": 2,
+        "scene": "scene0536_02",
+        "supporter_mean": 0.9999318677325582
+      },
+      {
+        "anchor_block_mean": 0.07959292829036713,
+        "block_GT": {
+          "annotated": 378,
+          "distribution": {
+            "13021": 378
+          },
+          "known_instances": 1,
+          "other": 378,
+          "ownership": "other_only",
+          "points": 378,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c007",
+        "minimum_distance": 0.007631342173618714,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.008445297504798464,
+        "query_parent_mean": 0.00876534078270197,
+        "region": 5,
+        "scene": "scene0536_02",
+        "supporter_mean": 0.9812224130909989
+      },
+      {
+        "anchor_block_mean": 0.04031603783369064,
+        "block_GT": {
+          "annotated": 660,
+          "distribution": {
+            "21032": 660
+          },
+          "known_instances": 1,
+          "other": 660,
+          "ownership": "other_only",
+          "points": 660,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.005992168728410181,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.018633540372670808,
+        "query_parent_mean": 0.02774919383227825,
+        "region": 1,
+        "scene": "scene0006_00",
+        "supporter_mean": 0.9571887430650267
+      },
+      {
+        "anchor_block_mean": 0.026618095114827156,
+        "block_GT": {
+          "annotated": 292,
+          "distribution": {
+            "0": 14,
+            "9004": 292
+          },
+          "known_instances": 1,
+          "other": 292,
+          "ownership": "other_unknown",
+          "points": 306,
+          "target": 0,
+          "unknown": 14
+        },
+        "candidate_id": "c005",
+        "minimum_distance": 0.0057869106432723765,
+        "ownership": "other_unknown",
+        "query_parent_hard_fraction": 0.5031982942430704,
+        "query_parent_mean": 0.48830530047416687,
+        "region": 0,
+        "scene": "scene0108_00",
+        "supporter_mean": 0.9382794564650729
+      },
+      {
+        "anchor_block_mean": 0.09362821280956268,
+        "block_GT": {
+          "annotated": 65,
+          "distribution": {
+            "13015": 65
+          },
+          "known_instances": 1,
+          "other": 65,
+          "ownership": "other_only",
+          "points": 65,
+          "target": 0,
+          "unknown": 0
+        },
+        "candidate_id": "c006",
+        "minimum_distance": 0.008816641861758267,
+        "ownership": "other_only",
+        "query_parent_hard_fraction": 0.014360313315926894,
+        "query_parent_mean": 0.014684445224702358,
+        "region": 9,
+        "scene": "scene0137_00",
+        "supporter_mean": 0.8524179565988911
+      }
+    ],
+    "point_oracle_contribution": 0.0677506775067751,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.9823484267075978,
+    "region": 1,
+    "same_signature_neighbors": 14,
+    "scene": "scene0688_00",
+    "signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    ],
+    "supporter": 55
+  }
+]

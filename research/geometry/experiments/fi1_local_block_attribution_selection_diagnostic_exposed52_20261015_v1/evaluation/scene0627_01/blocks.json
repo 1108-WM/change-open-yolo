@@ -1,0 +1,6686 @@
+[
+  {
+    "C_single": {
+      "added": 15,
+      "added_other": 0,
+      "added_target": 15,
+      "changed": true,
+      "changed_parent_target": 595,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 15,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.01443695861405192,
+      "parent_iou": 0.5726660250240616,
+      "parent_points": 717,
+      "pool_delta": -0.32352263701729855,
+      "repaired_iou": 0.5871029836381135,
+      "result_points": 732,
+      "scope": "stable",
+      "stable": true,
+      "target": 2023,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 15,
+      "added_other": 0,
+      "added_target": 15,
+      "changed": true,
+      "changed_parent_target": 595,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 15,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.01443695861405192,
+      "parent_iou": 0.5726660250240616,
+      "parent_points": 717,
+      "pool_delta": -0.32352263701729855,
+      "repaired_iou": 0.5871029836381135,
+      "result_points": 732,
+      "scope": "stable",
+      "stable": true,
+      "target": 2023,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 103,
+    "anchor_block_mean": 0.9987326860427856,
+    "anchor_halo_points": 850,
+    "anchor_supporter_hard_intersection": 850,
+    "anchor_supporter_hard_union": 850,
+    "block_GT": {
+      "annotated": 15,
+      "distribution": {
+        "2023": 15
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 15,
+      "target": 15,
+      "unknown": 0
+    },
+    "block_id": "c004_r0002",
+    "candidate_id": "c004",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9976094325383504,
+        "query": 7
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.008831357676535844,
+        "query": 29
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9394680658976237,
+        "query": 34
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.07901804397503535,
+        "query": 44
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9987326502799988,
+        "query": 103
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 15,
+      "distribution": {
+        "2023": 15
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 15,
+      "target": 15,
+      "unknown": 0
+    },
+    "clipped_reference_points": 15,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 3,
+      "observed_no_support": 3
+    },
+    "minimum_distance": 0.018013121416842547,
+    "parent_identity_distribution": {
+      "2023": 595,
+      "4016": 122
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.014436958614052031,
+    "points": 15,
+    "pure_oracle_contribution": 0.01443695861405192,
+    "query_parent_hard_fraction": 0.8870292887029289,
+    "query_parent_mean": 0.8791314959526062,
+    "reference_alternatives": [
+      {
+        "distance": 0.018013121416842547,
+        "points": 590,
+        "region": 1
+      },
+      {
+        "distance": 0.40825666356407836,
+        "points": 5,
+        "region": 6
+      },
+      {
+        "distance": 0.4318903157690104,
+        "points": 122,
+        "region": 4
+      }
+    ],
+    "reference_points": 590,
+    "reference_region": 1,
+    "region": 2,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 103,
+    "supporter_full_hard_volume": 1047,
+    "supporter_full_soft_volume": 1040.3593179157735,
+    "supporter_halo_points": 850,
+    "supporter_mean": 0.9987326502799988,
+    "target": 2023,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 15
+  },
+  {
+    "C_single": {
+      "added": 227,
+      "added_other": 227,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 595,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 227,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.10268182281237126,
+      "parent_iou": 0.5726660250240616,
+      "parent_points": 717,
+      "pool_delta": -0.44064141844372173,
+      "repaired_iou": 0.46998420221169035,
+      "result_points": 944,
+      "scope": "stable",
+      "stable": true,
+      "target": 2023,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 228,
+      "added_other": 228,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 595,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 228,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.1030527653555533,
+      "parent_iou": 0.5726660250240616,
+      "parent_points": 717,
+      "pool_delta": -0.4410123609869038,
+      "repaired_iou": 0.4696132596685083,
+      "result_points": 945,
+      "scope": "stable",
+      "stable": true,
+      "target": 2023,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 103,
+    "anchor_block_mean": 0.012856015004217625,
+    "anchor_halo_points": 850,
+    "anchor_supporter_hard_intersection": 30,
+    "anchor_supporter_hard_union": 1281,
+    "block_GT": {
+      "annotated": 228,
+      "distribution": {
+        "4016": 228
+      },
+      "known_instances": 1,
+      "other": 228,
+      "ownership": "other_only",
+      "points": 228,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c004_r0003",
+    "candidate_id": "c004",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.008771929824561403,
+        "mean": 0.012949275849879085,
+        "query": 7
+      },
+      {
+        "hard_fraction": 0.9956140350877193,
+        "mean": 0.9786887507428202,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.004024148706003439,
+        "query": 34
+      },
+      {
+        "hard_fraction": 0.16666666666666666,
+        "mean": 0.4019283044168301,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.017543859649122806,
+        "mean": 0.012856014384921705,
+        "query": 103
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 227,
+      "distribution": {
+        "4016": 227
+      },
+      "known_instances": 1,
+      "other": 227,
+      "ownership": "other_only",
+      "points": 227,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 227,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "4016": 1
+      },
+      "known_instances": 1,
+      "other": 1,
+      "ownership": "other_only",
+      "points": 1,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 3,
+      "observed_no_support": 3
+    },
+    "minimum_distance": 0.0064291095156858375,
+    "parent_identity_distribution": {
+      "2023": 595,
+      "4016": 122
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 228,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.1506276150627615,
+    "query_parent_mean": 0.17232172191143036,
+    "reference_alternatives": [
+      {
+        "distance": 0.0064291095156858375,
+        "points": 590,
+        "region": 1
+      },
+      {
+        "distance": 0.006600032021576018,
+        "points": 5,
+        "region": 6
+      },
+      {
+        "distance": 0.009504404597409909,
+        "points": 122,
+        "region": 4
+      }
+    ],
+    "reference_points": 590,
+    "reference_region": 1,
+    "region": 3,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 29,
+    "supporter_full_hard_volume": 26472,
+    "supporter_full_soft_volume": 26104.54204724744,
+    "supporter_halo_points": 461,
+    "supporter_mean": 0.9786887507428202,
+    "target": 2023,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 228
+  },
+  {
+    "C_single": {
+      "added": 17,
+      "added_other": 17,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 595,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 17,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.009219055327091885,
+      "parent_iou": 0.5726660250240616,
+      "parent_points": 717,
+      "pool_delta": -0.34717865095844236,
+      "repaired_iou": 0.5634469696969697,
+      "result_points": 734,
+      "scope": "stable",
+      "stable": true,
+      "target": 2023,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 18,
+      "added_other": 18,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 595,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 18,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.009752117739293409,
+      "parent_iou": 0.5726660250240616,
+      "parent_points": 717,
+      "pool_delta": -0.3477117133706439,
+      "repaired_iou": 0.5629139072847682,
+      "result_points": 735,
+      "scope": "stable",
+      "stable": true,
+      "target": 2023,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 103,
+    "anchor_block_mean": 0.07509836554527283,
+    "anchor_halo_points": 850,
+    "anchor_supporter_hard_intersection": 30,
+    "anchor_supporter_hard_union": 1281,
+    "block_GT": {
+      "annotated": 18,
+      "distribution": {
+        "4016": 18
+      },
+      "known_instances": 1,
+      "other": 18,
+      "ownership": "other_only",
+      "points": 18,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c004_r0005",
+    "candidate_id": "c004",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.05555555555555555,
+        "mean": 0.08066613719953845,
+        "query": 7
+      },
+      {
+        "hard_fraction": 0.9444444444444444,
+        "mean": 0.8234123670392566,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.003042642365673803,
+        "query": 34
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.23968130805426174,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.05555555555555555,
+        "mean": 0.07509837040561251,
+        "query": 103
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 17,
+      "distribution": {
+        "4016": 17
+      },
+      "known_instances": 1,
+      "other": 17,
+      "ownership": "other_only",
+      "points": 17,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 17,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "4016": 1
+      },
+      "known_instances": 1,
+      "other": 1,
+      "ownership": "other_only",
+      "points": 1,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 2,
+      "observed_no_support": 3
+    },
+    "minimum_distance": 0.007388731408247893,
+    "parent_identity_distribution": {
+      "2023": 595,
+      "4016": 122
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 18,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.1506276150627615,
+    "query_parent_mean": 0.17232172191143036,
+    "reference_alternatives": [
+      {
+        "distance": 0.007388731408247893,
+        "points": 590,
+        "region": 1
+      },
+      {
+        "distance": 0.020264766100390637,
+        "points": 5,
+        "region": 6
+      },
+      {
+        "distance": 0.026387318960488494,
+        "points": 122,
+        "region": 4
+      }
+    ],
+    "reference_points": 590,
+    "reference_region": 1,
+    "region": 5,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 29,
+    "supporter_full_hard_volume": 26472,
+    "supporter_full_soft_volume": 26104.54204724744,
+    "supporter_halo_points": 461,
+    "supporter_mean": 0.8234123670392566,
+    "target": 2023,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 18
+  },
+  {
+    "C_single": {
+      "added": 46,
+      "added_other": 0,
+      "added_target": 38,
+      "changed": true,
+      "changed_parent_target": 595,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 46,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.031918502196568777,
+      "parent_iou": 0.5726660250240616,
+      "parent_points": 717,
+      "pool_delta": -0.3060410934347817,
+      "repaired_iou": 0.6045845272206304,
+      "result_points": 763,
+      "scope": "stable",
+      "stable": true,
+      "target": 2023,
+      "unknown_annotation_edits": 8,
+      "unknown_edits": 8
+    },
+    "W_single": {
+      "added": 46,
+      "added_other": 0,
+      "added_target": 38,
+      "changed": true,
+      "changed_parent_target": 595,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 46,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.031918502196568777,
+      "parent_iou": 0.5726660250240616,
+      "parent_points": 717,
+      "pool_delta": -0.3060410934347817,
+      "repaired_iou": 0.6045845272206304,
+      "result_points": 763,
+      "scope": "stable",
+      "stable": true,
+      "target": 2023,
+      "unknown_annotation_edits": 8,
+      "unknown_edits": 8
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 103,
+    "anchor_block_mean": 0.999190628528595,
+    "anchor_halo_points": 850,
+    "anchor_supporter_hard_intersection": 850,
+    "anchor_supporter_hard_union": 850,
+    "block_GT": {
+      "annotated": 38,
+      "distribution": {
+        "0": 8,
+        "2023": 38
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 46,
+      "target": 38,
+      "unknown": 8
+    },
+    "block_id": "c004_r0007",
+    "candidate_id": "c004",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9982514834922293,
+        "query": 7
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0052367868104382705,
+        "query": 29
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9671429939891981,
+        "query": 34
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.06971188748012418,
+        "query": 44
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9991907723571943,
+        "query": 103
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 38,
+      "distribution": {
+        "0": 8,
+        "2023": 38
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 46,
+      "target": 38,
+      "unknown": 8
+    },
+    "clipped_reference_points": 46,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 2,
+      "observed_no_support": 4
+    },
+    "minimum_distance": 0.011463308192289249,
+    "parent_identity_distribution": {
+      "2023": 595,
+      "4016": 122
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.03657362848893175,
+    "points": 46,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.8870292887029289,
+    "query_parent_mean": 0.8791314959526062,
+    "reference_alternatives": [
+      {
+        "distance": 0.011463308192289249,
+        "points": 590,
+        "region": 1
+      },
+      {
+        "distance": 0.34875047860555186,
+        "points": 122,
+        "region": 4
+      },
+      {
+        "distance": 0.49462675437147785,
+        "points": 5,
+        "region": 6
+      }
+    ],
+    "reference_points": 590,
+    "reference_region": 1,
+    "region": 7,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 103,
+    "supporter_full_hard_volume": 1047,
+    "supporter_full_soft_volume": 1040.3593179157735,
+    "supporter_halo_points": 850,
+    "supporter_mean": 0.9991907723571943,
+    "target": 2023,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 46
+  },
+  {
+    "C_single": {
+      "added": 20,
+      "added_other": 20,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 20,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.000581004706299515,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16972047842448879,
+      "repaired_iou": 0.7818289830319682,
+      "result_points": 21452,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 20,
+      "added_other": 20,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 20,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.000581004706299515,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16972047842448879,
+      "repaired_iou": 0.7818289830319682,
+      "result_points": 21452,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.000452119333203882,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 24502,
+    "block_GT": {
+      "annotated": 20,
+      "distribution": {
+        "2006": 20
+      },
+      "known_instances": 1,
+      "other": 20,
+      "ownership": "other_only",
+      "points": 20,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0000",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.769437498859354e-19,
+        "query": 0
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9979093819856644,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.040277458936756e-13,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.61428458001734e-07,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.217923622608472e-22,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00045211938549982733,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.2,
+        "mean": 0.4529945611953735,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0032237853668448226,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.7741242502301273e-33,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.40187055252912e-20,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.9478381388984996e-09,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0395010226708846e-19,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3280934374870768e-05,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.380984845707566e-27,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0002756174822764024,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.927452207918244e-36,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00020779952788245736,
+        "query": 114
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9954851418733597,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.199153429915892e-30,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.777404998210905e-19,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.27129698544740677,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.6,
+        "mean": 0.531536802649498,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 20,
+      "distribution": {
+        "2006": 20
+      },
+      "known_instances": 1,
+      "other": 20,
+      "ownership": "other_only",
+      "points": 20,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 20,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 5,
+      "observed_no_support": 1
+    },
+    "minimum_distance": 0.03931019846008464,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 20,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0057390817469204925,
+    "query_parent_mean": 0.005952593870460987,
+    "reference_alternatives": [
+      {
+        "distance": 0.03931019846008464,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 0.10982984192400846,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.6254864935061525,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 0.644776759884891,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 0.814949712426978,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 0.9564158832423705,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.027327524689657,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 1.1017827779453215,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 1.6584478332347585,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.8492244836362193,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.752758286225436,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 3.2438128034416156,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 3.981017825952278,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 4.014309982411892,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 4.663008512906136,
+        "points": 37,
+        "region": 53
+      }
+    ],
+    "reference_points": 123,
+    "reference_region": 4,
+    "region": 0,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 3,
+    "supporter_full_hard_volume": 1872,
+    "supporter_full_soft_volume": 1886.086022967456,
+    "supporter_halo_points": 590,
+    "supporter_mean": 0.9979093819856644,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 20
+  },
+  {
+    "C_single": {
+      "added": 14,
+      "added_other": 0,
+      "added_target": 14,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 14,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.0005201947014453756,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.1686192790167439,
+      "repaired_iou": 0.7829301824397131,
+      "result_points": 21446,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 14,
+      "added_other": 0,
+      "added_target": 14,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 14,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.0005201947014453756,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.1686192790167439,
+      "repaired_iou": 0.7829301824397131,
+      "result_points": 21446,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 29,
+    "anchor_block_mean": 0.9784821271896362,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 23912,
+    "anchor_supporter_hard_union": 23912,
+    "block_GT": {
+      "annotated": 14,
+      "distribution": {
+        "4016": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "block_id": "c005_r0003",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.2109434955262598e-07,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0001836083202013989,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.156848948725001e-06,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0002862387950049846,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.0989467770730872e-09,
+        "query": 28
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9784822165966034,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1092685427424251e-21,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.36956519952842165,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0015880850419957174,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.7446287025283e-15,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.685128792349707e-08,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.619065750886218e-06,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.9887165080031347e-10,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0906164328210772e-05,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.97140858806403e-11,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0003524614203342935,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.25184922063342e-18,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00011631597555451987,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0002848672564498754,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.7563677668865155e-12,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.5960519125245576e-08,
+        "query": 134
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.8144914507865906,
+        "query": 143
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.8271539424146924,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 14,
+      "distribution": {
+        "4016": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "clipped_reference_points": 14,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 2
+    },
+    "minimum_distance": 0.006709820815111678,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0005201947014453756,
+    "points": 14,
+    "pure_oracle_contribution": 0.0005201947014453756,
+    "query_parent_hard_fraction": 0.9694382232176185,
+    "query_parent_mean": 0.9510190486907959,
+    "reference_alternatives": [
+      {
+        "distance": 0.006709820815111678,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.09868561157753676,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 0.5986184340926226,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 0.6225024186934586,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 0.7466703243153919,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 0.9303027031299052,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 0.9620262887098653,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 1.004795340325888,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 1.6497314529915477,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.8376310025481568,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.7208366952552563,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 3.23009567157069,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 3.977944213787663,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 4.011263426550634,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 4.638772434397054,
+        "points": 37,
+        "region": 53
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 3,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 29,
+    "supporter_full_hard_volume": 26472,
+    "supporter_full_soft_volume": 26104.54204724744,
+    "supporter_halo_points": 23912,
+    "supporter_mean": 0.9784822165966034,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 14
+  },
+  {
+    "C_single": {
+      "added": 70,
+      "added_other": 0,
+      "added_target": 70,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 70,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.002600973507226989,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16653850021096228,
+      "repaired_iou": 0.7850109612454947,
+      "result_points": 21502,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 70,
+      "added_other": 0,
+      "added_target": 70,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 70,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.002600973507226989,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16653850021096228,
+      "repaired_iou": 0.7850109612454947,
+      "result_points": 21502,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 29,
+    "anchor_block_mean": 0.9831056594848633,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 23912,
+    "anchor_supporter_hard_union": 23912,
+    "block_GT": {
+      "annotated": 70,
+      "distribution": {
+        "4016": 70
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 70,
+      "target": 70,
+      "unknown": 0
+    },
+    "block_id": "c005_r0005",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.333947492216785e-06,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.1334416964562544e-07,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.447183811959709e-09,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.8700731462310123e-07,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4749620406719022e-08,
+        "query": 28
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9831055411270686,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.693755187448312e-17,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.08571428571428572,
+        "mean": 0.4042169174977711,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4053442273701134e-07,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.063665831138113e-11,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.089127142809327e-13,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.7801465028256175e-12,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.1407520225375676e-08,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.000338781287084495,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3160826358627772e-15,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.009339886090310756,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.106242060724482e-14,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.488168477209324e-09,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.656197246943274e-06,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0721482359830745e-10,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.2777761699953179e-11,
+        "query": 134
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.7685692012310028,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.6,
+        "mean": 0.5123486291084971,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 70,
+      "distribution": {
+        "4016": 70
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 70,
+      "target": 70,
+      "unknown": 0
+    },
+    "clipped_reference_points": 70,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 2
+    },
+    "minimum_distance": 0.004298089283660632,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.002600973507226989,
+    "points": 70,
+    "pure_oracle_contribution": 0.002600973507226989,
+    "query_parent_hard_fraction": 0.9694382232176185,
+    "query_parent_mean": 0.9510190486907959,
+    "reference_alternatives": [
+      {
+        "distance": 0.004298089283660632,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.7282373062477513,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 0.8569154305372717,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 0.9315198741536375,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 1.2549846989420486,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.2980898738778275,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 1.5036273868034433,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 1.5777772039370066,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.5850371741101765,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 1.7356995776507314,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 3.0169641289711406,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 3.368587189172542,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 3.799810474634639,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 3.833419878674319,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 4.856053924759295,
+        "points": 37,
+        "region": 53
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 5,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 29,
+    "supporter_full_hard_volume": 26472,
+    "supporter_full_soft_volume": 26104.54204724744,
+    "supporter_halo_points": 23912,
+    "supporter_mean": 0.9831055411270686,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 70
+  },
+  {
+    "C_single": {
+      "added": 37,
+      "added_other": 37,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 37,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0010741806881749971,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.17021365440636427,
+      "repaired_iou": 0.7813358070500928,
+      "result_points": 21469,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 37,
+      "added_other": 37,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 37,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0010741806881749971,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.17021365440636427,
+      "repaired_iou": 0.7813358070500928,
+      "result_points": 21469,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.0071916645392775536,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 24269,
+    "block_GT": {
+      "annotated": 37,
+      "distribution": {
+        "2010": 37
+      },
+      "known_instances": 1,
+      "other": 37,
+      "ownership": "other_only",
+      "points": 37,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0006",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.5560339396917667e-11,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.054826136064645e-05,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.657919801853034e-13,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.431491962729332e-09,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0942607772815441e-13,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.007191664463764912,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0374465621364522e-21,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.38704646116978414,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.415016139141463e-13,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.180018472618747e-15,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.48006423801031e-19,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.694304060945549e-14,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.537449063663035e-09,
+        "query": 90
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9951287040839324,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.5376416406888687e-26,
+        "query": 103
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9937062070176408,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.9758819870399832e-17,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.1260535586388237e-15,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00026593886016635716,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.2291776126999117e-18,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.721521364113367e-19,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.16638097167015076,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.03215633916693765,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 37,
+      "distribution": {
+        "2010": 37
+      },
+      "known_instances": 1,
+      "other": 37,
+      "ownership": "other_only",
+      "points": 37,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 37,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 2
+    },
+    "minimum_distance": 0.102245056799185,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": false,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 37,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0,
+    "query_parent_mean": 1.858534005805268e-06,
+    "reference_alternatives": [
+      {
+        "distance": 0.102245056799185,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.728102106855513,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 0.8235656656276498,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 0.9011719048292751,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 1.216605257357659,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.2748406543985422,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 1.4771479320693048,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 1.5194527178094206,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.5462737580992343,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 1.7262434958451751,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 2.9622356499942937,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 3.3071505097466174,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 3.770423548659987,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 3.804166898348916,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 4.794605779489634,
+        "points": 37,
+        "region": 53
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 6,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 98,
+    "supporter_full_hard_volume": 3403,
+    "supporter_full_soft_volume": 3407.0348284355155,
+    "supporter_halo_points": 357,
+    "supporter_mean": 0.9951287040839324,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 37
+  },
+  {
+    "C_single": {
+      "added": 4,
+      "added_other": 4,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 4,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.00011627001340985821,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16925574373159913,
+      "repaired_iou": 0.7822937177248579,
+      "result_points": 21436,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 4,
+      "added_other": 4,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 4,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.00011627001340985821,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16925574373159913,
+      "repaired_iou": 0.7822937177248579,
+      "result_points": 21436,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.00046620945795439184,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 24272,
+    "block_GT": {
+      "annotated": 4,
+      "distribution": {
+        "2010": 4
+      },
+      "known_instances": 1,
+      "other": 4,
+      "ownership": "other_only",
+      "points": 4,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0007",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.46554213343517e-22,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.648172658806583e-11,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.798135941779715e-25,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.568921642700225e-17,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.872432002831814e-27,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0004662094434024766,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.514189956604367e-38,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.25,
+        "mean": 0.4473549872636795,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.809900192618673e-25,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.045962881183284e-27,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.302644244869112e-29,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.3174510453242275e-15,
+        "query": 90
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9994868785142899,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0,
+        "query": 103
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9998308718204498,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.6783060496716524e-29,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3907475417979993e-30,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1876187783199654e-08,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.171811537001994e-34,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.851732172744009e-37,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.04996337741613388,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0023532406776212156,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 4,
+      "distribution": {
+        "2010": 4
+      },
+      "known_instances": 1,
+      "other": 4,
+      "ownership": "other_only",
+      "points": 4,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 4,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 4,
+      "observed_no_support": 1
+    },
+    "minimum_distance": 0.1437718116410176,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": false,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 4,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0,
+    "query_parent_mean": 3.141297202091664e-05,
+    "reference_alternatives": [
+      {
+        "distance": 0.1437718116410176,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.2748361684950948,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 0.786323164052485,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 0.8150384852169124,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 1.073965915883545,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 1.1604457264459234,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.2922695644358648,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 1.3992042827928437,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 1.742842624709429,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.8610754072455535,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.980297086754651,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 3.4257557636214133,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 4.058234768946235,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 4.091874709340218,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 4.875011780967007,
+        "points": 37,
+        "region": 53
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 7,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 104,
+    "supporter_full_hard_volume": 3424,
+    "supporter_full_soft_volume": 3538.1585013268977,
+    "supporter_halo_points": 360,
+    "supporter_mean": 0.9998308718204498,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 4
+  },
+  {
+    "C_single": {
+      "added": 10,
+      "added_other": 10,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 10,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0002906102543320799,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16943008397252135,
+      "repaired_iou": 0.7821193774839357,
+      "result_points": 21442,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 10,
+      "added_other": 10,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 10,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0002906102543320799,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16943008397252135,
+      "repaired_iou": 0.7821193774839357,
+      "result_points": 21442,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.348060667514801,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 243,
+    "anchor_supporter_hard_union": 24571,
+    "block_GT": {
+      "annotated": 10,
+      "distribution": {
+        "2024": 10
+      },
+      "known_instances": 1,
+      "other": 10,
+      "ownership": "other_only",
+      "points": 10,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0012",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.6977922782155874e-16,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.005392449784267228,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.301999669964555e-09,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1044530246806517e-05,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1195938450721167e-18,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.3,
+        "mean": 0.34806068129837514,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.857063611979824e-33,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.17063059136271477,
+        "query": 44
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9735932588577271,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4517501702918688e-27,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0398546913599957e-13,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1826944877821321e-07,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.1467896971305975e-17,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.787266638821158e-10,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.6993415740576602e-15,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.662967685590877e-07,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.119435873996325e-27,
+        "query": 106
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9569525778293609,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.004362476175992924,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.131497655046497e-18,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.654398377703455e-11,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.3,
+        "mean": 0.27828992437571287,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.7,
+        "mean": 0.589956083893776,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 10,
+      "distribution": {
+        "2024": 10
+      },
+      "known_instances": 1,
+      "other": 10,
+      "ownership": "other_only",
+      "points": 10,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 10,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 4,
+      "observed_no_support": 1
+    },
+    "minimum_distance": 0.008945043529190939,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 10,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.020903322135125045,
+    "query_parent_mean": 0.020202795043587685,
+    "reference_alternatives": [
+      {
+        "distance": 0.008945043529190939,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.0674585436601744,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 0.15475143193308727,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 0.3024973374778385,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 0.6112542793326387,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 0.7468465271064373,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 0.7998967544105886,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 0.8706421514819414,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 1.3701867248706894,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.7773389200817178,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 1.860624755145767,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.3654978844840104,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 3.51313772120088,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 3.5434514575255496,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 3.692692590236657,
+        "points": 37,
+        "region": 53
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 12,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 51,
+    "supporter_full_hard_volume": 1161,
+    "supporter_full_soft_volume": 1129.5211944919522,
+    "supporter_halo_points": 902,
+    "supporter_mean": 0.9735932588577271,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 10
+  },
+  {
+    "C_single": {
+      "added": 2,
+      "added_other": 0,
+      "added_target": 2,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 2,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 7.431352877795838e-05,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.1690651601894113,
+      "repaired_iou": 0.7824843012670457,
+      "result_points": 21434,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 2,
+      "added_other": 0,
+      "added_target": 2,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 2,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 7.431352877795838e-05,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.1690651601894113,
+      "repaired_iou": 0.7824843012670457,
+      "result_points": 21434,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 29,
+    "anchor_block_mean": 0.9871736764907837,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 23912,
+    "anchor_supporter_hard_union": 23912,
+    "block_GT": {
+      "annotated": 2,
+      "distribution": {
+        "4016": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "block_id": "c005_r0013",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.8225967224339001e-07,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.9003357998315096e-07,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.27753210614901e-05,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0008782565564615652,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.284445438371918e-09,
+        "query": 28
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9871737062931061,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.77381738942699e-20,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.38224759697914124,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00018755373457679525,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.221603672316942e-14,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.456988745322633e-07,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.9404938598199806e-06,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.005062893495335e-09,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.046556172949579e-09,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.1049330307992875e-09,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.6088630161448236e-06,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.976992886252728e-16,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1066912975365994e-05,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.664453332585254e-07,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.66768099330028e-09,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.78510423154421e-06,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.37847602367401123,
+        "query": 143
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.6663085222244263,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "4016": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "clipped_reference_points": 2,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 4,
+      "observed_no_support": 2
+    },
+    "minimum_distance": 0.006243799777532048,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 7.431352877795838e-05,
+    "points": 2,
+    "pure_oracle_contribution": 7.431352877795838e-05,
+    "query_parent_hard_fraction": 0.9694382232176185,
+    "query_parent_mean": 0.9510190486907959,
+    "reference_alternatives": [
+      {
+        "distance": 0.006243799777532048,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.4191113838933972,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 0.5509505023827266,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 0.5685684742588782,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 0.6471901790962145,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 0.936330335620882,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 0.9969044214762941,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 1.1314334345007928,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.2484551907164438,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 1.502624204063614,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 1.6989089370381185,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 1.8366389528772522,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 3.066980547974663,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 3.095907876504779,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 3.166095174727401,
+        "points": 37,
+        "region": 53
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 13,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 29,
+    "supporter_full_hard_volume": 26472,
+    "supporter_full_soft_volume": 26104.54204724744,
+    "supporter_halo_points": 23912,
+    "supporter_mean": 0.9871737062931061,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 2
+  },
+  {
+    "C_single": {
+      "added": 28,
+      "added_other": 28,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 28,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0008131650516562949,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16995263876984557,
+      "repaired_iou": 0.7815968226866115,
+      "result_points": 21460,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 28,
+      "added_other": 28,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 28,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0008131650516562949,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16995263876984557,
+      "repaired_iou": 0.7815968226866115,
+      "result_points": 21460,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.00892912782728672,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 12,
+    "anchor_supporter_hard_union": 25954,
+    "block_GT": {
+      "annotated": 28,
+      "distribution": {
+        "2011": 28
+      },
+      "known_instances": 1,
+      "other": 28,
+      "ownership": "other_only",
+      "points": 28,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0016",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.8682920482396494e-11,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.2202018596717386e-07,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.11457762481378657,
+        "query": 10
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9855393639632634,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.829684813218829e-13,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.008929128319453281,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.247407246759583e-25,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.2654767153518541,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00033710347376463945,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.932339600818274e-18,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.010411472282742449,
+        "query": 64
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9685036540031433,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.031007876923315e-11,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.1444365397353087e-12,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.661276984037589e-08,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.8455084487677802e-09,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.2230587218274495e-21,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.0457306034695758e-05,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.513055020080083e-07,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.479691732680693e-14,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.2301508610203187e-05,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0025536439636653085,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.04664923483505845,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 28,
+      "distribution": {
+        "2011": 28
+      },
+      "known_instances": 1,
+      "other": 28,
+      "ownership": "other_only",
+      "points": 28,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 28,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 2,
+      "missing": 2,
+      "observed_no_support": 2
+    },
+    "minimum_distance": 0.03657967301278276,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 28,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.004759238521836506,
+    "query_parent_mean": 0.005209486931562424,
+    "reference_alternatives": [
+      {
+        "distance": 0.03657967301278276,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.3389790735398658,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 0.5419574560064241,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 0.545122637209703,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 0.6922885729592622,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 0.9606396427640829,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 1.0380548052378298,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 1.0579370367634793,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 1.2090674208841254,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.4589872517068878,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 1.6424857699697055,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 1.7717223392975239,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.9510062450162624,
+        "points": 37,
+        "region": 53
+      },
+      {
+        "distance": 3.002006789470195,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 3.0294444560328255,
+        "points": 1,
+        "region": 48
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 16,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 27,
+    "supporter_full_hard_volume": 4666,
+    "supporter_full_soft_volume": 4503.848535912781,
+    "supporter_halo_points": 2054,
+    "supporter_mean": 0.9855393639632634,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 28
+  },
+  {
+    "C_single": {
+      "added": 37,
+      "added_other": 0,
+      "added_target": 37,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 37,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.001374800282391453,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16776467343579782,
+      "repaired_iou": 0.7837847880206592,
+      "result_points": 21469,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 37,
+      "added_other": 0,
+      "added_target": 37,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 37,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.001374800282391453,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16776467343579782,
+      "repaired_iou": 0.7837847880206592,
+      "result_points": 21469,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 29,
+    "anchor_block_mean": 0.9990205764770508,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 23912,
+    "anchor_supporter_hard_union": 23912,
+    "block_GT": {
+      "annotated": 37,
+      "distribution": {
+        "4016": 37
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 37,
+      "target": 37,
+      "unknown": 0
+    },
+    "block_id": "c005_r0022",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.973831392995197e-09,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.178883917877518e-27,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.842271945626365e-14,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.8207358421102562e-15,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.364320842374053e-12,
+        "query": 28
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.999020595808287,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.768416257230495e-11,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.972972972972973,
+        "mean": 0.6068030813255826,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.8609545120304445e-22,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.800158168090986e-09,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.2261322796974325e-23,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0144025947733155e-28,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.6024309605359736e-06,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.481063742371325e-16,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.2726333356722723e-22,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.1788027575678055e-10,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.208204454182853e-08,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.507081142187233e-26,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.9111273221213363e-22,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4342178769029381e-08,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.741735345432751e-17,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.002225742530631455,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.002251444840284593,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 37,
+      "distribution": {
+        "4016": 37
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 37,
+      "target": 37,
+      "unknown": 0
+    },
+    "clipped_reference_points": 37,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 1,
+      "observed_no_support": 4
+    },
+    "minimum_distance": 0.005549130939110699,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.001374800282391453,
+    "points": 37,
+    "pure_oracle_contribution": 0.001374800282391453,
+    "query_parent_hard_fraction": 0.9694382232176185,
+    "query_parent_mean": 0.9510190486907959,
+    "reference_alternatives": [
+      {
+        "distance": 0.005549130939110699,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.014277836771542443,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 0.3026497157262097,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 0.974276805733215,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.0152396016414835,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 1.142941992432234,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 1.4096254931002177,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 1.5055296680951549,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 1.7169292899271607,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 1.761598016191745,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 1.8082777284084102,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 1.8445449528823312,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 1.91114035563637,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 1.94486939014439,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 3.2052789609702583,
+        "points": 37,
+        "region": 53
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 22,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 29,
+    "supporter_full_hard_volume": 26472,
+    "supporter_full_soft_volume": 26104.54204724744,
+    "supporter_halo_points": 23912,
+    "supporter_mean": 0.999020595808287,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 37
+  },
+  {
+    "C_single": {
+      "added": 38,
+      "added_other": 38,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 38,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0011031716646526801,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.17024264538284195,
+      "repaired_iou": 0.7813068160736151,
+      "result_points": 21470,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 41,
+      "added_other": 41,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 41,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0011901316872178214,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.1703296054054071,
+      "repaired_iou": 0.7812198560510499,
+      "result_points": 21473,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.11294432729482651,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 18,
+    "anchor_supporter_hard_union": 25075,
+    "block_GT": {
+      "annotated": 41,
+      "distribution": {
+        "2014": 41
+      },
+      "known_instances": 1,
+      "other": 41,
+      "ownership": "other_only",
+      "points": 41,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0024",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.4279961505922596e-09,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.327914494725676e-13,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.926829268292683,
+        "mean": 0.9141948712853397,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.8536585365853658,
+        "mean": 0.7100012954097332,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.724993711045468e-11,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.0975609756097561,
+        "mean": 0.11294432110280911,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4622876144603455e-21,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.13536571238825962,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.984716585385188e-08,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.921641774999167e-15,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.9024390243902439,
+        "mean": 0.9099367049170612,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.002367554020976258,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.2229518241942044e-09,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0091344021409803e-16,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0001387006949707162,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.2264639317675956e-12,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.4013014891344145e-18,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.6344313810995011e-09,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.689645259777534e-12,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.823790680560836e-12,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.02487967388506371,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0004303369684386274,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.013810667546505744,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 38,
+      "distribution": {
+        "2014": 38
+      },
+      "known_instances": 1,
+      "other": 38,
+      "ownership": "other_only",
+      "points": 38,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 38,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 3,
+      "distribution": {
+        "2014": 3
+      },
+      "known_instances": 1,
+      "other": 3,
+      "ownership": "other_only",
+      "points": 3,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 2,
+      "observed_no_support": 3
+    },
+    "minimum_distance": 0.005167267002706153,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 41,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.005319148936170213,
+    "query_parent_mean": 0.0065511493012309074,
+    "reference_alternatives": [
+      {
+        "distance": 0.005167267002706153,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.1952884202664369,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 0.7203372477778548,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 1.2420464592246647,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.2743377038146708,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 1.3219345993457163,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.378450615464656,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 1.3801537750564015,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 1.637117831732174,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 1.651656268783921,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 1.7974035045466679,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.0224259209994235,
+        "points": 37,
+        "region": 53
+      },
+      {
+        "distance": 2.354065189009892,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 2.3608559256072907,
+        "points": 123,
+        "region": 4
+      },
+      {
+        "distance": 2.376194004319103,
+        "points": 1,
+        "region": 48
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 24,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 10,
+    "supporter_full_hard_volume": 2369,
+    "supporter_full_soft_volume": 2811.7930723157956,
+    "supporter_halo_points": 1181,
+    "supporter_mean": 0.9141948712853397,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 41
+  },
+  {
+    "C_single": {
+      "added": 16,
+      "added_other": 16,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 16,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0004648728064099439,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16960434652459921,
+      "repaired_iou": 0.7819451149318578,
+      "result_points": 21448,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 18,
+      "added_other": 18,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 18,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0005229430685562697,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16966241678674554,
+      "repaired_iou": 0.7818870446697115,
+      "result_points": 21450,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.18907283246517181,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 34,
+    "anchor_supporter_hard_union": 24292,
+    "block_GT": {
+      "annotated": 18,
+      "distribution": {
+        "2023": 18
+      },
+      "known_instances": 1,
+      "other": 18,
+      "ownership": "other_only",
+      "points": 18,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0028",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.4629536671876155e-07,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4190409388120165e-16,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.017960801655944023,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.4305197748554343e-05,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.138431279875671e-08,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.16666666666666666,
+        "mean": 0.18907283128808355,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.5369847774072177e-18,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.08163958725829919,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.474946962877235e-09,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.4849113970395313e-13,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0007159612566485723,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0374249548115868e-10,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.238887739004635e-09,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.524430782648436e-18,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.8888888888888888,
+        "mean": 0.8727167944113413,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.861211857462755e-13,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.228245695908367e-16,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.292742366559236e-10,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3194522654070215e-14,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.9160642778009847e-10,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.8888888888888888,
+        "mean": 0.8736144055922827,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.610413731548734e-05,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.002469549927885358,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 16,
+      "distribution": {
+        "2023": 16
+      },
+      "known_instances": 1,
+      "other": 16,
+      "ownership": "other_only",
+      "points": 16,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 16,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "2023": 2
+      },
+      "known_instances": 1,
+      "other": 2,
+      "ownership": "other_only",
+      "points": 2,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 3,
+      "missing": 2,
+      "observed_no_support": 1
+    },
+    "minimum_distance": 0.007402500879951712,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 18,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0006998880179171332,
+    "query_parent_mean": 0.0011685237986966968,
+    "reference_alternatives": [
+      {
+        "distance": 0.007402500879951712,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.07623900651596809,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 0.08802088170607622,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 1.3918797421477351,
+        "points": 37,
+        "region": 53
+      },
+      {
+        "distance": 1.5510990339534925,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.798478144214768,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.8273143767359792,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 1.9171701429796957,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 1.9204887743807946,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 2.0171171779665764,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.025833269549898,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 2.0426995585651833,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 2.11852790286779,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 2.156377719411521,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 2.905810288429672,
+        "points": 123,
+        "region": 4
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 28,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 134,
+    "supporter_full_hard_volume": 1060,
+    "supporter_full_soft_volume": 1103.6145482943164,
+    "supporter_halo_points": 414,
+    "supporter_mean": 0.8736144055922827,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 18
+  },
+  {
+    "C_single": {
+      "added": 82,
+      "added_other": 0,
+      "added_target": 82,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 82,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.0030468546798945173,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16609261903829475,
+      "repaired_iou": 0.7854568424181623,
+      "result_points": 21514,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 99,
+      "added_other": 0,
+      "added_target": 99,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 99,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.0036785196745067195,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16546095404368255,
+      "repaired_iou": 0.7860885074127745,
+      "result_points": 21531,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 29,
+    "anchor_block_mean": 0.8080941438674927,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 23912,
+    "anchor_supporter_hard_union": 23912,
+    "block_GT": {
+      "annotated": 99,
+      "distribution": {
+        "4016": 99
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 99,
+      "target": 99,
+      "unknown": 0
+    },
+    "block_id": "c005_r0029",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.12387997740704e-07,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4220974831586578e-17,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0049410126624052555,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3856557822928782e-06,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.305248755100952e-09,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.8282828282828283,
+        "mean": 0.8080942569055942,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.564286840105387e-19,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.21266332622429338,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.703377342655665e-10,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.494367901378312e-14,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0002185105888944226,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.719848698132884e-14,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.6336671665801515e-10,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.7263636278530454e-17,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.36363636363636365,
+        "mean": 0.3477084531381516,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.5353152410409486e-12,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.99248952056358e-16,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.883103121695916e-11,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.6269123971158262e-15,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.6963087824000445e-10,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.35353535353535354,
+        "mean": 0.3266015472125935,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0002889654279088499,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.007197380993712806,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 82,
+      "distribution": {
+        "4016": 82
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 82,
+      "target": 82,
+      "unknown": 0
+    },
+    "clipped_reference_points": 82,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 17,
+      "distribution": {
+        "4016": 17
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 17,
+      "target": 17,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 4,
+      "missing": 2
+    },
+    "minimum_distance": 0.009504404597409909,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0036785196745067195,
+    "points": 99,
+    "pure_oracle_contribution": 0.0036785196745067195,
+    "query_parent_hard_fraction": 0.9694382232176185,
+    "query_parent_mean": 0.9510190486907959,
+    "reference_alternatives": [
+      {
+        "distance": 0.009504404597409909,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.026387318960488494,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 0.06799698914512181,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 1.3969601006084953,
+        "points": 37,
+        "region": 53
+      },
+      {
+        "distance": 1.5452397510894988,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.8185650835317186,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.8703440796473403,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 1.9365408884692463,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 1.9528958585984912,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 1.9539635257328647,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 1.958302212824679,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 1.995881974781884,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.1385261780080285,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 2.181770565935946,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 2.9437354124992847,
+        "points": 123,
+        "region": 4
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 29,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 29,
+    "supporter_full_hard_volume": 26472,
+    "supporter_full_soft_volume": 26104.54204724744,
+    "supporter_halo_points": 23912,
+    "supporter_mean": 0.8080942569055942,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 99
+  },
+  {
+    "C_single": {
+      "added": 121,
+      "added_other": 121,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 121,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.003501946013032886,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.17264141973122216,
+      "repaired_iou": 0.7789080417252349,
+      "result_points": 21553,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 122,
+      "added_other": 122,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 122,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.0035307571113026848,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.17267023082949196,
+      "repaired_iou": 0.7788792306269651,
+      "result_points": 21554,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.09227091819047928,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 87,
+    "anchor_supporter_hard_union": 24750,
+    "block_GT": {
+      "annotated": 122,
+      "distribution": {
+        "2019": 122
+      },
+      "known_instances": 1,
+      "other": 122,
+      "ownership": "other_only",
+      "points": 122,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0033",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.9918032786885246,
+        "mean": 0.9909322691745446,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.5608454744330716e-16,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.220866006399282e-07,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.828763555474472e-09,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.9918032786885246,
+        "mean": 0.9849313104555744,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.03278688524590164,
+        "mean": 0.09227093197901534,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.43708008704923e-16,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.2255973188114948,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.585161480127662e-12,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.125694960775627e-06,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1023035653895546e-09,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.0575650684180796e-17,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.533820391719958e-05,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.4571189229202496e-13,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.841635651445237e-08,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.268232353221095e-10,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.214582735567238e-14,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3192500964741172e-13,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.912409550485083e-14,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0228734460746053e-11,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.7758280210238196e-06,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0003243109290593793,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.001429686214056555,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 121,
+      "distribution": {
+        "2019": 121
+      },
+      "known_instances": 1,
+      "other": 121,
+      "ownership": "other_only",
+      "points": 121,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 121,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "2019": 1
+      },
+      "known_instances": 1,
+      "other": 1,
+      "ownership": "other_only",
+      "points": 1,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 3,
+      "missing": 2,
+      "observed_no_support": 1
+    },
+    "minimum_distance": 0.006698951538792634,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 122,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.002706233669279582,
+    "query_parent_mean": 0.0028105969540774822,
+    "reference_alternatives": [
+      {
+        "distance": 0.006698951538792634,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.8021736786584546,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 0.9446102111370269,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 0.9781724529262383,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 1.0313010368579967,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.3226057543061502,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 1.7241200745276886,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 1.7435622631970098,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 1.9103346572842357,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 2.0327328496486183,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 2.1771406838783025,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 2.24083766458029,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 2.4604368658465234,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 2.6066977634710318,
+        "points": 37,
+        "region": 53
+      },
+      {
+        "distance": 2.8077336134299906,
+        "points": 123,
+        "region": 4
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 33,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 0,
+    "supporter_full_hard_volume": 1227,
+    "supporter_full_soft_volume": 1241.483983530544,
+    "supporter_halo_points": 925,
+    "supporter_mean": 0.9909322691745446,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 122
+  },
+  {
+    "C_single": {
+      "added": 64,
+      "added_other": 0,
+      "added_target": 64,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 64,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.002378032920893225,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16676144079729605,
+      "repaired_iou": 0.784788020659161,
+      "result_points": 21496,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 64,
+      "added_other": 0,
+      "added_target": 64,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 64,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.002378032920893225,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16676144079729605,
+      "repaired_iou": 0.784788020659161,
+      "result_points": 21496,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": false,
+    "anchor": 29,
+    "anchor_block_mean": 0.8684462904930115,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 23912,
+    "anchor_supporter_hard_union": 23912,
+    "block_GT": {
+      "annotated": 64,
+      "distribution": {
+        "4016": 64
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 64,
+      "target": 64,
+      "unknown": 0
+    },
+    "block_id": "c005_r0037",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.8758833783401607e-11,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.350621053643362e-21,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.300098684988665e-08,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.312512727230257e-09,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.559465496531072e-13,
+        "query": 28
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.8684462606906891,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4892933502513747e-08,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.16382676013745368,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.924918775160247e-15,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.337337677028346e-11,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.8011975833501775e-13,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.235064262737865e-17,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.21800370151419e-07,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.497344951692118e-17,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4189883204197629e-12,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.683167307090999e-12,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.3696023233122245e-07,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.032771377789788e-17,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3449896181964152e-17,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.859375,
+        "mean": 0.8670348962744399,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.165203040218041e-10,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00016387545794432912,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0013699126948081286,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 64,
+      "distribution": {
+        "4016": 64
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 64,
+      "target": 64,
+      "unknown": 0
+    },
+    "clipped_reference_points": 64,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 3,
+      "missing": 3
+    },
+    "minimum_distance": 0.006018773313610177,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.002378032920893225,
+    "points": 64,
+    "pure_oracle_contribution": 0.002378032920893225,
+    "query_parent_hard_fraction": 0.9694382232176185,
+    "query_parent_mean": 0.9510190486907959,
+    "reference_alternatives": [
+      {
+        "distance": 0.006018773313610177,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.34510187156210453,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 0.7769367342386995,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 0.7925528092815687,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 1.0107358271492948,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 1.3516025768628006,
+        "points": 37,
+        "region": 53
+      },
+      {
+        "distance": 1.760239974525979,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 1.884081749304493,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.3394577385141413,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 2.6173491690589588,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 2.657696078028954,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 2.6888779901291913,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 2.71929807124728,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 2.749020957028102,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 3.5644204144308214,
+        "points": 123,
+        "region": 4
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 37,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 29,
+    "supporter_full_hard_volume": 26472,
+    "supporter_full_soft_volume": 26104.54204724744,
+    "supporter_halo_points": 23912,
+    "supporter_mean": 0.8684462606906891,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 64
+  },
+  {
+    "C_single": {
+      "added": 3,
+      "added_other": 3,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 3,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -8.720574985932039e-05,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.1692266794680486,
+      "repaired_iou": 0.7823227819884084,
+      "result_points": 21435,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 3,
+      "added_other": 3,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 3,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -8.720574985932039e-05,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.1692266794680486,
+      "repaired_iou": 0.7823227819884084,
+      "result_points": 21435,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.003335918067023158,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 2,
+    "anchor_supporter_hard_union": 24769,
+    "block_GT": {
+      "annotated": 3,
+      "distribution": {
+        "2021": 3
+      },
+      "known_instances": 1,
+      "other": 3,
+      "ownership": "other_only",
+      "points": 3,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c005_r0039",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.16691524828146e-06,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.148725631133917e-36,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.252036561535249e-14,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.8702989148956186e-17,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0110774246776163e-08,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.003335918033068689,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00037356777405269287,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.3333333333333333,
+        "mean": 0.49435125788052875,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.652036393344117e-36,
+        "query": 51
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9925586183865865,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.517427570089308e-24,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.527077830797448e-36,
+        "query": 70
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9811097780863444,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.7257861969269173e-20,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.2300732267126642e-26,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.495017438694604e-13,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0009377094126345279,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.730438829774667e-30,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.2460278346235647e-15,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.306518887535384e-19,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.24392026230917e-08,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.472291846018683e-07,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 3,
+      "distribution": {
+        "2021": 3
+      },
+      "known_instances": 1,
+      "other": 3,
+      "ownership": "other_only",
+      "points": 3,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 3,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 2,
+      "missing": 4
+    },
+    "minimum_distance": 0.05808647643446015,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 3,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.00023329600597237775,
+    "query_parent_mean": 0.00034154552849940956,
+    "reference_alternatives": [
+      {
+        "distance": 0.05808647643446015,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.06502584149335777,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 0.08429933044237442,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 1.5107431830516724,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 2.1407685178592635,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 2.182914373949398,
+        "points": 37,
+        "region": 53
+      },
+      {
+        "distance": 2.212057679311634,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.3405127549546414,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 3.0160431936817638,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 3.2372102569109633,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 3.3543253255258634,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 3.4097531744347873,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 3.4532812851470833,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 3.592076060453492,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 4.167313805514414,
+        "points": 123,
+        "region": 4
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 39,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 58,
+    "supporter_full_hard_volume": 2308,
+    "supporter_full_soft_volume": 2282.60695233719,
+    "supporter_halo_points": 859,
+    "supporter_mean": 0.9925586183865865,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 3
+  },
+  {
+    "C_single": {
+      "added": 66,
+      "added_other": 38,
+      "added_target": 28,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 66,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -6.424917569125554e-05,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16920372289388053,
+      "repaired_iou": 0.7823457385625765,
+      "result_points": 21498,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 68,
+      "added_other": 38,
+      "added_target": 30,
+      "changed": true,
+      "changed_parent_target": 21057,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 68,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 9.959573520346154e-06,
+      "parent_iou": 0.7824099877382678,
+      "parent_points": 21432,
+      "pool_delta": -0.16912951414466892,
+      "repaired_iou": 0.7824199473117881,
+      "result_points": 21500,
+      "scope": "stable",
+      "stable": true,
+      "target": 4016,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 29,
+    "anchor_block_mean": 0.0400477796792984,
+    "anchor_halo_points": 23912,
+    "anchor_supporter_hard_intersection": 10,
+    "anchor_supporter_hard_union": 24941,
+    "block_GT": {
+      "annotated": 68,
+      "distribution": {
+        "2022": 38,
+        "4016": 30
+      },
+      "known_instances": 2,
+      "other": 38,
+      "ownership": "mixed_known",
+      "points": 68,
+      "target": 30,
+      "unknown": 0
+    },
+    "block_id": "c005_r0043",
+    "candidate_id": "c005",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.2724844883042683e-11,
+        "query": 0
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.991989977508778e-23,
+        "query": 3
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 7.064920405949909e-10,
+        "query": 10
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.2228907139834301e-11,
+        "query": 27
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.7184111438036305e-13,
+        "query": 28
+      },
+      {
+        "hard_fraction": 0.029411764705882353,
+        "mean": 0.04004777543463313,
+        "query": 29
+      },
+      {
+        "hard_fraction": 0.9705882352941176,
+        "mean": 0.9603013820371202,
+        "query": 32
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.28728480439852266,
+        "query": 44
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.577310504289018e-19,
+        "query": 51
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.851092016174477e-06,
+        "query": 58
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.3776356151100726e-15,
+        "query": 64
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.1706615144767531e-20,
+        "query": 70
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.00136497350445766,
+        "query": 90
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 6.728951887168302e-17,
+        "query": 98
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.876937975341858e-14,
+        "query": 103
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.614523954218331e-12,
+        "query": 104
+      },
+      {
+        "hard_fraction": 0.9705882352941176,
+        "mean": 0.9631799887103947,
+        "query": 106
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.0322569770794629e-21,
+        "query": 114
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 4.928830495540198e-19,
+        "query": 121
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.5782827373158968e-06,
+        "query": 131
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.766270969167679e-11,
+        "query": 134
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.499984741454426e-06,
+        "query": 143
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 3.3726622049163985e-05,
+        "query": 144
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 66,
+      "distribution": {
+        "2022": 38,
+        "4016": 28
+      },
+      "known_instances": 2,
+      "other": 38,
+      "ownership": "mixed_known",
+      "points": 66,
+      "target": 28,
+      "unknown": 0
+    },
+    "clipped_reference_points": 66,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "4016": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    "frame_states": {
+      "ambiguous_tie": 2,
+      "missing": 4
+    },
+    "minimum_distance": 0.00841880272423399,
+    "parent_identity_distribution": {
+      "0": 123,
+      "2008": 37,
+      "2009": 67,
+      "2024": 148,
+      "4016": 21057
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0011147029316687096,
+    "points": 68,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.000513251213139231,
+    "query_parent_mean": 0.0006759660318493843,
+    "reference_alternatives": [
+      {
+        "distance": 0.00841880272423399,
+        "points": 20252,
+        "region": 1
+      },
+      {
+        "distance": 0.35728359312684815,
+        "points": 1,
+        "region": 48
+      },
+      {
+        "distance": 0.38072426049108443,
+        "points": 3,
+        "region": 47
+      },
+      {
+        "distance": 1.6766962303196886,
+        "points": 272,
+        "region": 30
+      },
+      {
+        "distance": 2.0466116175837383,
+        "points": 37,
+        "region": 53
+      },
+      {
+        "distance": 2.330758420383246,
+        "points": 38,
+        "region": 31
+      },
+      {
+        "distance": 2.518219420645313,
+        "points": 13,
+        "region": 27
+      },
+      {
+        "distance": 2.639133247452528,
+        "points": 34,
+        "region": 26
+      },
+      {
+        "distance": 3.3099483112043897,
+        "points": 60,
+        "region": 15
+      },
+      {
+        "distance": 3.5365509078610775,
+        "points": 94,
+        "region": 19
+      },
+      {
+        "distance": 3.6528996983665256,
+        "points": 97,
+        "region": 20
+      },
+      {
+        "distance": 3.696158365766738,
+        "points": 258,
+        "region": 10
+      },
+      {
+        "distance": 3.738078809811439,
+        "points": 2,
+        "region": 17
+      },
+      {
+        "distance": 3.8639387897718547,
+        "points": 148,
+        "region": 14
+      },
+      {
+        "distance": 4.467820170362172,
+        "points": 123,
+        "region": 4
+      }
+    ],
+    "reference_points": 20252,
+    "reference_region": 1,
+    "region": 43,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 106,
+    "supporter_full_hard_volume": 2511,
+    "supporter_full_soft_volume": 2623.6875664004624,
+    "supporter_halo_points": 1039,
+    "supporter_mean": 0.9631799887103947,
+    "target": 4016,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 68
+  },
+  {
+    "C_single": {
+      "added": 31,
+      "added_other": 31,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 812,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 31,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.02597729618163047,
+      "parent_iou": 0.8379772961816305,
+      "parent_points": 812,
+      "pool_delta": -0.11679256965944262,
+      "repaired_iou": 0.812,
+      "result_points": 843,
+      "scope": "stable",
+      "stable": true,
+      "target": 2026,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 31,
+      "added_other": 31,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 812,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 31,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.02597729618163047,
+      "parent_iou": 0.8379772961816305,
+      "parent_points": 812,
+      "pool_delta": -0.11679256965944262,
+      "repaired_iou": 0.812,
+      "result_points": 843,
+      "scope": "stable",
+      "stable": true,
+      "target": 2026,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 77,
+    "anchor_block_mean": 1.1129590304914672e-11,
+    "anchor_halo_points": 907,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 1022,
+    "block_GT": {
+      "annotated": 31,
+      "distribution": {
+        "2027": 31
+      },
+      "known_instances": 1,
+      "other": 31,
+      "ownership": "other_only",
+      "points": 31,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c007_r0001",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9963640993641268,
+        "query": 5
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9849471372942771,
+        "query": 9
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 5.615028083707843e-11,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.112959099168527e-11,
+        "query": 77
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9975051264609059,
+        "query": 88
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 8.51694521460488e-12,
+        "query": 110
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 1.4268741972633281e-09,
+        "query": 132
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 31,
+      "distribution": {
+        "2027": 31
+      },
+      "known_instances": 1,
+      "other": 31,
+      "ownership": "other_only",
+      "points": 31,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 31,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 1,
+      "observed_no_support": 5
+    },
+    "minimum_distance": 0.10231784316899481,
+    "parent_identity_distribution": {
+      "2026": 812
+    },
+    "parent_region_contact": false,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 31,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0,
+    "query_parent_mean": 1.137598015787944e-08,
+    "reference_alternatives": [
+      {
+        "distance": 0.10231784316899481,
+        "points": 812,
+        "region": 0
+      }
+    ],
+    "reference_points": 812,
+    "reference_region": 0,
+    "region": 1,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 88,
+    "supporter_full_hard_volume": 2158,
+    "supporter_full_soft_volume": 2157.220739296898,
+    "supporter_halo_points": 115,
+    "supporter_mean": 0.9975051264609059,
+    "target": 2026,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 31
+  },
+  {
+    "C_single": {
+      "added": 36,
+      "added_other": 0,
+      "added_target": 36,
+      "changed": true,
+      "changed_parent_target": 812,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 36,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.037151702786377694,
+      "parent_iou": 0.8379772961816305,
+      "parent_points": 812,
+      "pool_delta": -0.05366357069143446,
+      "repaired_iou": 0.8751289989680082,
+      "result_points": 848,
+      "scope": "stable",
+      "stable": true,
+      "target": 2026,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 36,
+      "added_other": 0,
+      "added_target": 36,
+      "changed": true,
+      "changed_parent_target": 812,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 36,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": 0.037151702786377694,
+      "parent_iou": 0.8379772961816305,
+      "parent_points": 812,
+      "pool_delta": -0.05366357069143446,
+      "repaired_iou": 0.8751289989680082,
+      "result_points": 848,
+      "scope": "stable",
+      "stable": true,
+      "target": 2026,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 77,
+    "anchor_block_mean": 0.9933645725250244,
+    "anchor_halo_points": 907,
+    "anchor_supporter_hard_intersection": 907,
+    "anchor_supporter_hard_union": 913,
+    "block_GT": {
+      "annotated": 36,
+      "distribution": {
+        "2026": 36
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 36,
+      "target": 36,
+      "unknown": 0
+    },
+    "block_id": "c007_r0002",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.0,
+        "mean": 2.080253730818946e-05,
+        "query": 5
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 0.0001709119597509042,
+        "query": 9
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9990525427791808,
+        "query": 35
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9933645443783866,
+        "query": 77
+      },
+      {
+        "hard_fraction": 0.0,
+        "mean": 9.457283741027784e-06,
+        "query": 88
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.9958856056133906,
+        "query": 110
+      },
+      {
+        "hard_fraction": 1.0,
+        "mean": 0.998833136426078,
+        "query": 132
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 36,
+      "distribution": {
+        "2026": 36
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 36,
+      "target": 36,
+      "unknown": 0
+    },
+    "clipped_reference_points": 36,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 0,
+      "distribution": {},
+      "known_instances": 0,
+      "other": 0,
+      "ownership": "empty",
+      "points": 0,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true
+    ],
+    "frame_states": {
+      "ambiguous_tie": 1,
+      "missing": 1,
+      "observed_no_support": 3,
+      "observed_weak": 1
+    },
+    "minimum_distance": 0.0055817079776162995,
+    "parent_identity_distribution": {
+      "2026": 812
+    },
+    "parent_region_contact": true,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.037151702786377694,
+    "points": 36,
+    "pure_oracle_contribution": 0.037151702786377694,
+    "query_parent_hard_fraction": 1.0,
+    "query_parent_mean": 0.9999577403068542,
+    "reference_alternatives": [
+      {
+        "distance": 0.0055817079776162995,
+        "points": 812,
+        "region": 0
+      }
+    ],
+    "reference_points": 812,
+    "reference_region": 0,
+    "region": 2,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 35,
+    "supporter_full_hard_volume": 913,
+    "supporter_full_soft_volume": 915.3585789615267,
+    "supporter_halo_points": 913,
+    "supporter_mean": 0.9990525427791808,
+    "target": 2026,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 36
+  },
+  {
+    "C_single": {
+      "added": 23,
+      "added_other": 23,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 812,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 23,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.019428909084856283,
+      "parent_iou": 0.8379772961816305,
+      "parent_points": 812,
+      "pool_delta": -0.11024418256266844,
+      "repaired_iou": 0.8185483870967742,
+      "result_points": 835,
+      "scope": "stable",
+      "stable": true,
+      "target": 2026,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "W_single": {
+      "added": 24,
+      "added_other": 24,
+      "added_target": 0,
+      "changed": true,
+      "changed_parent_target": 812,
+      "deleted": 0,
+      "deleted_other": 0,
+      "deleted_target": 0,
+      "drift": false,
+      "edits": 24,
+      "good_loss": 0,
+      "good_parent": false,
+      "parent_delta": -0.020253227702275,
+      "parent_iou": 0.8379772961816305,
+      "parent_points": 812,
+      "pool_delta": -0.11106850118008715,
+      "repaired_iou": 0.8177240684793555,
+      "result_points": 836,
+      "scope": "stable",
+      "stable": true,
+      "target": 2026,
+      "unknown_annotation_edits": 0,
+      "unknown_edits": 0
+    },
+    "accepted": false,
+    "alternate_supporter": true,
+    "anchor": 77,
+    "anchor_block_mean": 0.06009332463145256,
+    "anchor_halo_points": 907,
+    "anchor_supporter_hard_intersection": 0,
+    "anchor_supporter_hard_union": 1029,
+    "block_GT": {
+      "annotated": 24,
+      "distribution": {
+        "2027": 24
+      },
+      "known_instances": 1,
+      "other": 24,
+      "ownership": "other_only",
+      "points": 24,
+      "target": 0,
+      "unknown": 0
+    },
+    "block_id": "c007_r0003",
+    "candidate_id": "c007",
+    "candidate_query_means": [
+      {
+        "hard_fraction": 0.7916666666666666,
+        "mean": 0.824704637149504,
+        "query": 5
+      },
+      {
+        "hard_fraction": 0.9583333333333334,
+        "mean": 0.8692882010558,
+        "query": 9
+      },
+      {
+        "hard_fraction": 0.041666666666666664,
+        "mean": 0.11581666590608468,
+        "query": 35
+      },
+      {
+        "hard_fraction": 0.041666666666666664,
+        "mean": 0.06009332161026928,
+        "query": 77
+      },
+      {
+        "hard_fraction": 0.7916666666666666,
+        "mean": 0.8224442712041006,
+        "query": 88
+      },
+      {
+        "hard_fraction": 0.041666666666666664,
+        "mean": 0.06558062906956201,
+        "query": 110
+      },
+      {
+        "hard_fraction": 0.20833333333333334,
+        "mean": 0.1399223360560452,
+        "query": 132
+      }
+    ],
+    "clipped_GT": {
+      "annotated": 23,
+      "distribution": {
+        "2027": 23
+      },
+      "known_instances": 1,
+      "other": 23,
+      "ownership": "other_only",
+      "points": 23,
+      "target": 0,
+      "unknown": 0
+    },
+    "clipped_reference_points": 23,
+    "cohort": "fit12",
+    "dropped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "2027": 1
+      },
+      "known_instances": 1,
+      "other": 1,
+      "ownership": "other_only",
+      "points": 1,
+      "target": 0,
+      "unknown": 0
+    },
+    "evidence_signature": [
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "frame_states": {
+      "missing": 1,
+      "observed_no_support": 5
+    },
+    "minimum_distance": 0.0949816946057394,
+    "parent_identity_distribution": {
+      "2026": 812
+    },
+    "parent_region_contact": false,
+    "parent_scope": "stable",
+    "point_oracle_contribution": 0.0,
+    "points": 24,
+    "pure_oracle_contribution": 0.0,
+    "query_parent_hard_fraction": 0.0,
+    "query_parent_mean": 1.2181690181023441e-06,
+    "reference_alternatives": [
+      {
+        "distance": 0.0949816946057394,
+        "points": 812,
+        "region": 0
+      }
+    ],
+    "reference_points": 812,
+    "reference_region": 0,
+    "region": 3,
+    "scene": "scene0627_01",
+    "stable": true,
+    "state": "pending_no_validated_attribution",
+    "supporter": 9,
+    "supporter_full_hard_volume": 2096,
+    "supporter_full_soft_volume": 2081.919597981666,
+    "supporter_halo_points": 122,
+    "supporter_mean": 0.8692882010558,
+    "target": 2026,
+    "valuable_point_contributor": false,
+    "valuable_pure_contributor": false,
+    "whole_reference_points": 24
+  }
+]

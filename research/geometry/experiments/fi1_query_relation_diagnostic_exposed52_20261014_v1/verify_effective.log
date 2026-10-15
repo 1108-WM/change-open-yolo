@@ -1,0 +1,9 @@
+independent verify scene0002_00
+Traceback (most recent call last):
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/verify_fi1_query_relation_diagnostic.py", line 73, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/verify_fi1_query_relation_diagnostic.py", line 69, in main
+    dom=z[f"{cid}_r{r['region']:04d}_block"];g=GTregions[cid,r['region'],r['query']];checkcounts(g['block_GT'],independent_counts(dom,gt,target));assert r['query_mean']==float(prob[np.isin(halo,dom),r['query']].astype(float).sum()/len(dom));totals['query_region_census']+=1
+                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

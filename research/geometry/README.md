@@ -1,5 +1,8 @@
 # 当前几何研究独立保存
 
+**2026-10-15最新：[实验执行总览](../../docs/SESSION_EXPERIMENTS_20261015.md)。** [N/T三态归属最终报告](experiments/fi1_nt_instance_ownership_prototype_exposed52_20261015_v1/report_final.md)及[审计](experiments/fi1_nt_instance_ownership_audit_20261015_v1/report.md)：已实现归属选择、query仅裁剪，新增精度95.92%、好副本损害0/12，但完整NT≥.02价值0，停止本固定原型。前序[冻结下游AP](experiments/fi1_t_add_union_downstream_internal24_20261014_v1/report.md)、[query关系](experiments/fi1_query_relation_diagnostic_exposed52_20261014_v1/report.md)、[块/点诊断有效v2](experiments/fi1_local_block_attribution_selection_diagnostic_exposed52_20261015_v1/report_v2.md)已发布。后两轮归属未AP；52场景只作开发。历史报告及勘误保留，以下为此前状态。
+
+
 最新[局部编辑证据诊断](experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/report.md)已完成，无训练。28场景224父、15,434提案，先无GT封存后GT；T整区补点存在区分及少量池价值，N补竞争/删除/多帧AND未形成统一安全方案。已暴露16场景不用于独立验收。6测试及全部点集/池记录核验通过，旧seal/模型不改，正式N/T不改。
 
 源码：`code/tools/fi1_local_edit_evidence_core.py`、`run_fi1_local_edit_evidence.py`；最终全量独立回放`verify_fi1_local_edit_evidence_counts.py`，后置补充`supplement_fi1_local_edit_evidence.py`（supplement_v2有效）。原集合verifier部分日志保留；不声称其完成。下一步只建议冻结窄T补规则后另场景验证，尚未执行。

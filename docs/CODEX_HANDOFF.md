@@ -1,5 +1,8 @@
 # Codex交接入口
 
+**2026-10-15交接：[最新实验与研究边界](SESSION_EXPERIMENTS_20261015.md)。** 先读[N/T归属最终报告](../research/geometry/experiments/fi1_nt_instance_ownership_prototype_exposed52_20261015_v1/report_final.md)和[代码审计](../research/geometry/experiments/fi1_nt_instance_ownership_audit_20261015_v1/report.md)。真实三态原型减污染但零完整NT新增价值，停止该固定规则，不训练/调门槛/AP；52已暴露场景不能独立验收。此前24场景A/B冻结AP已经执行且下降。下一建议为T来源链审计，未自动启动。历史“未GitHub”均是当时状态；本次按用户明确指令发布。
+
+
 最新[局部编辑证据诊断](../research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/report.md)已完成：无GT补删提案/证据先封存，后GT；T整区补点有有限证据支持，统一安全N/T补删尚未成立。fit关键池块含未知，exposed16仅作分析，不能作为新规则独立验收。6测试/15,434提案/41,238池记录通过，无训练/生产修改。下次先按最新新对话入口阅读本报告与supplement_v2，不继续A/B或自动实施拆分；窄T补规则及另一隔离场景验收尚未执行。
 
 更新：2026-10-14。本文件仅作入口，不复制状态。

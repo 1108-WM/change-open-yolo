@@ -1,0 +1,147 @@
+{
+  "class_agnostic": {
+    "A_append": {
+      "AP": {
+        "ap": 0.6761015003756804,
+        "ap25": 0.8777652879656961,
+        "ap50": 0.8368314700102092
+      },
+      "new_TP_slots": 3,
+      "new_duplicate_FP_slots": 21,
+      "new_selected": 73,
+      "new_status_counts": {
+        "TP": 3,
+        "duplicate_FP": 21,
+        "ignored_or_noncounted": 15,
+        "unmatched_FP": 34
+      },
+      "original_exits": 1
+    },
+    "A_context": {
+      "AP": {
+        "ap": 0.6882837982890292,
+        "ap25": 0.8937792083225398,
+        "ap50": 0.8516045053918266
+      },
+      "new_TP_slots": 0,
+      "new_duplicate_FP_slots": 0,
+      "new_selected": 0,
+      "new_status_counts": {},
+      "original_exits": 1
+    },
+    "B_append": {
+      "AP": {
+        "ap": 0.6850960517636666,
+        "ap25": 0.8891484377427603,
+        "ap50": 0.8474106925753877
+      },
+      "new_TP_slots": 0,
+      "new_duplicate_FP_slots": 7,
+      "new_selected": 19,
+      "new_status_counts": {
+        "duplicate_FP": 7,
+        "ignored_or_noncounted": 4,
+        "unmatched_FP": 8
+      },
+      "original_exits": 1
+    },
+    "B_context": {
+      "AP": {
+        "ap": 0.6883174617960597,
+        "ap25": 0.893747570254916,
+        "ap50": 0.8516628793517619
+      },
+      "new_TP_slots": 0,
+      "new_duplicate_FP_slots": 0,
+      "new_selected": 0,
+      "new_status_counts": {},
+      "original_exits": 1
+    },
+    "NT": {
+      "AP": {
+        "ap": 0.6882544569108607,
+        "ap25": 0.8937968235642298,
+        "ap50": 0.8516227771254048
+      },
+      "new_TP_slots": 0,
+      "new_duplicate_FP_slots": 0,
+      "new_selected": 0,
+      "new_status_counts": {},
+      "original_exits": 0
+    }
+  },
+  "semantic": {
+    "A_append": {
+      "AP": {
+        "ap": 0.459363415808239,
+        "ap25": 0.60123453179239,
+        "ap50": 0.5613189836227297
+      },
+      "new_TP_slots": 5,
+      "new_duplicate_FP_slots": 15,
+      "new_selected": 685,
+      "new_status_counts": {
+        "TP": 5,
+        "duplicate_FP": 15,
+        "geometry_insufficient_FP": 297,
+        "ignored_or_noncounted": 195,
+        "wrong_class_FP": 173
+      },
+      "original_exits": 957
+    },
+    "A_context": {
+      "AP": {
+        "ap": 0.4629779746509528,
+        "ap25": 0.6030388925651574,
+        "ap50": 0.5652659357122383
+      },
+      "new_TP_slots": 0,
+      "new_duplicate_FP_slots": 0,
+      "new_selected": 0,
+      "new_status_counts": {},
+      "original_exits": 433
+    },
+    "B_append": {
+      "AP": {
+        "ap": 0.46868625539770975,
+        "ap25": 0.6012361878242566,
+        "ap50": 0.570797530166019
+      },
+      "new_TP_slots": 2,
+      "new_duplicate_FP_slots": 4,
+      "new_selected": 158,
+      "new_status_counts": {
+        "TP": 2,
+        "duplicate_FP": 4,
+        "geometry_insufficient_FP": 68,
+        "ignored_or_noncounted": 46,
+        "wrong_class_FP": 38
+      },
+      "original_exits": 158
+    },
+    "B_context": {
+      "AP": {
+        "ap": 0.46980093054823097,
+        "ap25": 0.6026010315848725,
+        "ap50": 0.5721032772599183
+      },
+      "new_TP_slots": 0,
+      "new_duplicate_FP_slots": 0,
+      "new_selected": 0,
+      "new_status_counts": {},
+      "original_exits": 40
+    },
+    "NT": {
+      "AP": {
+        "ap": 0.4698202458475398,
+        "ap25": 0.602667153243544,
+        "ap50": 0.5721490830040777
+      },
+      "new_TP_slots": 0,
+      "new_duplicate_FP_slots": 0,
+      "new_selected": 0,
+      "new_status_counts": {},
+      "original_exits": 0
+    }
+  }
+}

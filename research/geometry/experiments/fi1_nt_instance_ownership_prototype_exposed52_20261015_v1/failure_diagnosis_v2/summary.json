@@ -1,0 +1,49 @@
+{
+  "new_rule": false,
+  "original_summary_path": "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/experiments/fi1_nt_instance_ownership_prototype_exposed52_20261015_v1/failure_diagnosis/summary.json",
+  "point_opportunity_contributors": {
+    "accepted_target": 476,
+    "blocks": 32,
+    "nonaccepted_target": 2494,
+    "reasons": {
+      "no_reference": 21,
+      "unique_shared_instance_reference": 11
+    },
+    "scenes": 7,
+    "states": {
+      "accept": 11,
+      "unknown": 21
+    }
+  },
+  "pure_blocks_inside_point_opportunity_parents": {
+    "accepted_target": 476,
+    "blocks": 27,
+    "nonaccepted_target": 1421,
+    "reasons": {
+      "no_reference": 16,
+      "unique_shared_instance_reference": 11
+    },
+    "scenes": 6,
+    "states": {
+      "accept": 11,
+      "unknown": 16
+    }
+  },
+  "reason": "Initial posthoc failure summary used pure_oracle_contribution>0 inside the 32 point-opportunity blocks, yielding27 pure blocks, while its prose called these the21 contributors from valuable pure-whole-block unions. Distinguish the populations. Prediction, evaluation, rule and decisions are unchanged.",
+  "valuable_pure_union_contributors": {
+    "accepted_target": 342,
+    "blocks": 21,
+    "nonaccepted_target": 1404,
+    "reasons": {
+      "no_reference": 12,
+      "unique_shared_instance_reference": 9
+    },
+    "scenes": 5,
+    "states": {
+      "accept": 9,
+      "unknown": 12
+    }
+  },
+  "wrong_evaluation_counts": false,
+  "wrong_output_pointsets": false
+}

@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/verify_fi1_query_relation_diagnostic.py", line 73, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/verify_fi1_query_relation_diagnostic.py", line 28, in main
+    c=read(OUT/'contract.json');run.diag.verify(c['code']);run.diag.verify(read(OUT/'relations_frozen.json')['outputs']);run.diag.verify(read(OUT/'evaluation_frozen.json')['outputs']);run.diag.verify(read(OUT/'analysis_frozen.json')['outputs']);totals=Counter();dist_error=0.
+                                                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/run_fi1_nt_region_identity.py", line 22, in read
+    def read(p): return json.loads(Path(p).read_text())
+                                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/anaconda3/envs/myenv/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/anaconda3/envs/myenv/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/experiments/fi1_query_relation_diagnostic_exposed52_20261014_v1/analysis_frozen.json'

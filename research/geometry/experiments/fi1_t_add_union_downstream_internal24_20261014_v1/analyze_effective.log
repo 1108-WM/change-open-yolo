@@ -1,0 +1,18 @@
+diagnose/verify scene0002_00
+Traceback (most recent call last):
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/analyze_fi1_t_add_downstream.py", line 147, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/analyze_fi1_t_add_downstream.py", line 79, in main
+    slots,fn,pres,cov=trace(match,evaluator,t);alltrace[arm,t]=(slots,cov)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/analyze_fi1_t_add_downstream.py", line 22, in trace
+    gs=[g for g in match['gt'][label] if valid(g,ev)];ps=match['pred'][label];presence[label]=(bool(gs),bool(ps));hardfn[label]=0
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/analyze_fi1_t_add_downstream.py", line 22, in <listcomp>
+    gs=[g for g in match['gt'][label] if valid(g,ev)];ps=match['pred'][label];presence[label]=(bool(gs),bool(ps));hardfn[label]=0
+                                         ^^^^^^^^^^^
+  File "/home/jia/Wm/wm_open-yolo/OpenYOLO3D/research/geometry/code/tools/analyze_fi1_t_add_downstream.py", line 18, in valid
+    def valid(g,ev):return g['instance_id']>=1000 and g['vert_count']>=ev.opt['min_region_sizes'][0] and g['med_dist']<=ev.opt['distance_threshes'][0] and g['dist_conf']>=ev.opt['dist_confs'][0]
+                                                                                                                                                                           ~~~~~~^^^^^^^^^^^^^^
+KeyError: 'dist_confs'

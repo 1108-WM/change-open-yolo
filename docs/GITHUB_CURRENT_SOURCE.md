@@ -29,3 +29,8 @@ Full/SL/几何目录README中的“模型已集中”“资产已迁入”等描
 ## 最新追加：局部编辑证据诊断
 
 本轮源码、逐提案证据、后置GT、分层及全池结果、失败日志和核验已发布，详见[会话总览](SESSION_EXPERIMENTS_20261014.md)。新增[二进制身份](publication/local_edit_evidence_20261014/excluded_binary_assets.json)与[本机复制清单](publication/local_edit_evidence_20261014/local_source_manifest.json)单列。原实验seal不追改，当前发布manifest仅维护GitHub实际文件。
+
+
+## 2026-10-15实验更新
+
+新增执行与审计见[最新汇总](SESSION_EXPERIMENTS_20261015.md)，包括T补点24、冻结五组AP、query关系、可拒绝块/点诊断和N/T归属原型。更新源码、测试、报告和紧凑结果，原seal逐字保留；大资产/明细及哈希见publication/geometry_session_20261015。原快照和实验回执不为发布改写，“未GitHub”表示历史执行时点。本次发布核验与历史实验核验明确分开。当前源码AST核验使用Python 3.11或更新版本（与GitHub Actions一致），无需模型或数据；另运行 `python3 scripts/verify_geometry_session_20261015.py` 核对本次原件与阅读链接。

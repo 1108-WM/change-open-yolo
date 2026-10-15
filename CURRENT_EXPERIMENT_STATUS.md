@@ -1,5 +1,8 @@
 # 当前实验状态
 
+**2026-10-15最新：[几轮实验总览](docs/SESSION_EXPERIMENTS_20261015.md)。** [N/T三态归属原型](research/geometry/experiments/fi1_nt_instance_ownership_prototype_exposed52_20261015_v1/report_final.md)已完成：52场景/207父/1308块，稳定新增精度95.92%，好T副本损害0/12，完整NT新增价值0；停止固定原型，未独立验证/AP。前序[24场景冻结下游AP](research/geometry/experiments/fi1_t_add_union_downstream_internal24_20261014_v1/report.md)真实完成且A/B均下降；[query关系诊断](research/geometry/experiments/fi1_query_relation_diagnostic_exposed52_20261014_v1/report.md)与[块/点选择v2](research/geometry/experiments/fi1_local_block_attribution_selection_diagnostic_exposed52_20261015_v1/report_v2.md)仅开发诊断。最新[审计](research/geometry/experiments/fi1_nt_instance_ownership_audit_20261015_v1/report.md)建议T原始观测/关联/合并/细化来源审计，尚未启动。以下记录对应各历史完成时点。
+
+
 ## 2026-10-14 最新完成：局部编辑证据诊断
 
 [报告](research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/report.md)／[判定](research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/decision.json)／[全量核验](research/geometry/experiments/fi1_local_edit_evidence_diagnostic_20261014_v1/verification_counts.json)。已按用户要求无GT生成补删提案与证据，封存后GT诊断：fit12/exposed16共28场景、224原父，15,434提案（整区1,991/细分13,443）。6项测试及15,434提案/41,238池记录独立复算通过；原N/T与SL未改，无训练。

@@ -1,0 +1,365 @@
+{
+  "AP_run": false,
+  "blocks": 1308,
+  "complete": true,
+  "development_gates": {
+    "annotation_unknown": true,
+    "good_copy_protection": true,
+    "multiscene_safe_gain": false,
+    "no_unresolved_actions": false,
+    "stable_add_precision": true
+  },
+  "development_pass": false,
+  "independent_validation_run": false,
+  "modes": {
+    "all_C": {
+      "annotation_unknown": 6117,
+      "bridge_native_redundant_actions": 55,
+      "by_cohort": {
+        "exposed16": {
+          "actions": 63,
+          "good_copy_loss_gt02": 3,
+          "parents": 64,
+          "safe_gain02_scenes": 1,
+          "same_parent_gain02_parents": 2
+        },
+        "fit12": {
+          "actions": 47,
+          "good_copy_loss_gt02": 1,
+          "parents": 48,
+          "safe_gain02_scenes": 1,
+          "same_parent_gain02_parents": 1
+        },
+        "internal24": {
+          "actions": 95,
+          "good_copy_loss_gt02": 5,
+          "parents": 95,
+          "safe_gain02_scenes": 0,
+          "same_parent_gain02_parents": 0
+        }
+      },
+      "by_scope": {
+        "ambiguous": {
+          "actions": 14,
+          "added": 9127,
+          "annotated": 8889,
+          "annotation_unknown": 238,
+          "parents": 14
+        },
+        "out_of_scope": {
+          "actions": 32,
+          "added": 16850,
+          "annotated": 16110,
+          "annotation_unknown": 740,
+          "parents": 33
+        },
+        "stable": {
+          "actions": 142,
+          "added": 70771,
+          "annotated": 68529,
+          "annotation_unknown": 2242,
+          "parents": 143
+        },
+        "unannotated": {
+          "actions": 17,
+          "added": 4635,
+          "annotated": 1738,
+          "annotation_unknown": 2897,
+          "parents": 17
+        }
+      },
+      "native_redundant_actions": 128,
+      "safe_gain02_parents": 3,
+      "safe_gain02_scenes": 2,
+      "same_parent_gain02_parents": 3,
+      "same_parent_pool": {
+        "baseline_coverage_0.5": 1079,
+        "baseline_coverage_0.75": 960,
+        "baseline_coverage_0.9": 685,
+        "baseline_coverage_0.95": 499,
+        "expanded_coverage_0.5": 1079,
+        "expanded_coverage_0.75": 961,
+        "expanded_coverage_0.9": 685,
+        "expanded_coverage_0.95": 499,
+        "new_cross_0.5": 0,
+        "new_cross_0.75": 1,
+        "new_cross_0.9": 0,
+        "new_cross_0.95": 0,
+        "pool_delta_sum": 0.4408878047113532,
+        "pool_gain02": 2,
+        "pool_value_scenes": 3,
+        "pool_value_targets": 3,
+        "targets": 1157
+      },
+      "stable_add_precision": 0.516694691328369,
+      "stable_added": 70771,
+      "stable_added_target": 36567,
+      "unions": {
+        "action_scenes": 52,
+        "actions": 205,
+        "add_target_precision": 0.3606817711056094,
+        "added": 101383,
+        "added_other": 31962,
+        "added_target": 36567,
+        "changed_parent_target": 227847,
+        "delete_pollution_precision": null,
+        "deleted": 0,
+        "deleted_other": 0,
+        "deleted_target": 0,
+        "drift": 1,
+        "duplicate_generated": 0,
+        "duplicate_original": 2,
+        "edits": 101383,
+        "good_loss_gt_02": 9,
+        "good_loss_gt_10": 5,
+        "good_loss_quantiles": {
+          "max": 0.5390728476821192,
+          "median": 0.05699512666006662,
+          "min": 0.0,
+          "p90": 0.4797706282287781,
+          "p95": 0.5084968783732532
+        },
+        "good_parents": 12,
+        "parent_degraded_02": 48,
+        "parent_delta": -2.34934802385415,
+        "parent_improved_02": 65,
+        "parents": 207,
+        "stable_parents": 143,
+        "target_loss": 0.0,
+        "unknown_annotation_edits": 2242,
+        "unknown_edits": 32854,
+        "unknown_fraction": 0.3240582740696172,
+        "unknown_identity_edits": 30612,
+        "worst_good_loss": 0.5390728476821192
+      },
+      "unresolved_actions": 63
+    },
+    "relation_C": {
+      "annotation_unknown": 698,
+      "bridge_native_redundant_actions": 52,
+      "by_cohort": {
+        "exposed16": {
+          "actions": 13,
+          "good_copy_loss_gt02": 0,
+          "parents": 64,
+          "safe_gain02_scenes": 0,
+          "same_parent_gain02_parents": 0
+        },
+        "fit12": {
+          "actions": 21,
+          "good_copy_loss_gt02": 0,
+          "parents": 48,
+          "safe_gain02_scenes": 0,
+          "same_parent_gain02_parents": 0
+        },
+        "internal24": {
+          "actions": 32,
+          "good_copy_loss_gt02": 0,
+          "parents": 95,
+          "safe_gain02_scenes": 0,
+          "same_parent_gain02_parents": 0
+        }
+      },
+      "by_scope": {
+        "ambiguous": {
+          "actions": 1,
+          "added": 105,
+          "annotated": 105,
+          "annotation_unknown": 0,
+          "parents": 14
+        },
+        "out_of_scope": {
+          "actions": 5,
+          "added": 1768,
+          "annotated": 1768,
+          "annotation_unknown": 0,
+          "parents": 33
+        },
+        "stable": {
+          "actions": 55,
+          "added": 10445,
+          "annotated": 10372,
+          "annotation_unknown": 73,
+          "parents": 143
+        },
+        "unannotated": {
+          "actions": 5,
+          "added": 1387,
+          "annotated": 762,
+          "annotation_unknown": 625,
+          "parents": 17
+        }
+      },
+      "native_redundant_actions": 52,
+      "safe_gain02_parents": 0,
+      "safe_gain02_scenes": 0,
+      "same_parent_gain02_parents": 0,
+      "same_parent_pool": {
+        "baseline_coverage_0.5": 1079,
+        "baseline_coverage_0.75": 960,
+        "baseline_coverage_0.9": 685,
+        "baseline_coverage_0.95": 499,
+        "expanded_coverage_0.5": 1079,
+        "expanded_coverage_0.75": 960,
+        "expanded_coverage_0.9": 685,
+        "expanded_coverage_0.95": 499,
+        "new_cross_0.5": 0,
+        "new_cross_0.75": 0,
+        "new_cross_0.9": 0,
+        "new_cross_0.95": 0,
+        "pool_delta_sum": 0.0009350163627863672,
+        "pool_gain02": 0,
+        "pool_value_scenes": 0,
+        "pool_value_targets": 0,
+        "targets": 1157
+      },
+      "stable_add_precision": 0.9592149353757778,
+      "stable_added": 10445,
+      "stable_added_target": 10019,
+      "unions": {
+        "action_scenes": 41,
+        "actions": 66,
+        "add_target_precision": 0.7310470631156513,
+        "added": 13705,
+        "added_other": 353,
+        "added_target": 10019,
+        "changed_parent_target": 129092,
+        "delete_pollution_precision": null,
+        "deleted": 0,
+        "deleted_other": 0,
+        "deleted_target": 0,
+        "drift": 0,
+        "duplicate_generated": 0,
+        "duplicate_original": 141,
+        "edits": 13705,
+        "good_loss_gt_02": 0,
+        "good_loss_gt_10": 0,
+        "good_loss_quantiles": {
+          "max": 0.0071733089790571025,
+          "median": 0.0,
+          "min": 0.0,
+          "p90": 0.0025787965616045805,
+          "p95": 0.004803920272667381
+        },
+        "good_parents": 12,
+        "parent_degraded_02": 2,
+        "parent_delta": 2.74354398655725,
+        "parent_improved_02": 35,
+        "parents": 207,
+        "stable_parents": 143,
+        "target_loss": 0.0,
+        "unknown_annotation_edits": 73,
+        "unknown_edits": 3333,
+        "unknown_fraction": 0.24319591390003648,
+        "unknown_identity_edits": 3260,
+        "worst_good_loss": 0.0071733089790571025
+      },
+      "unresolved_actions": 11
+    }
+  },
+  "native_bridge_audit": {
+    "multiple_known_instances": 17,
+    "rows": 55,
+    "substantial_other": 1
+  },
+  "original_points_deleted": 0,
+  "ownership": {
+    "accept": {
+      "blocks": 187,
+      "ownership": {
+        "mixed_known": 2,
+        "other_only": 6,
+        "target_only": 137,
+        "target_unknown": 3,
+        "unknown_only": 2,
+        "unresolved_parent": 37
+      },
+      "parent_scopes": {
+        "ambiguous": 5,
+        "out_of_scope": 21,
+        "stable": 150,
+        "unannotated": 11
+      },
+      "stable_C": {
+        "other": 353,
+        "points": 10445,
+        "target": 10019,
+        "unknown": 73
+      },
+      "stable_W": {
+        "other": 362,
+        "points": 10837,
+        "target": 10381,
+        "unknown": 94
+      }
+    },
+    "reject": {
+      "blocks": 95,
+      "ownership": {
+        "mixed_known": 1,
+        "other_only": 78,
+        "other_unknown": 2,
+        "target_only": 1,
+        "unknown_only": 4,
+        "unresolved_parent": 9
+      },
+      "parent_scopes": {
+        "ambiguous": 2,
+        "out_of_scope": 4,
+        "stable": 86,
+        "unannotated": 3
+      },
+      "stable_C": {
+        "other": 5388,
+        "points": 5743,
+        "target": 15,
+        "unknown": 340
+      },
+      "stable_W": {
+        "other": 5864,
+        "points": 6263,
+        "target": 15,
+        "unknown": 384
+      }
+    },
+    "unknown": {
+      "blocks": 1026,
+      "ownership": {
+        "mixed_known": 20,
+        "other_only": 307,
+        "other_unknown": 27,
+        "target_only": 203,
+        "target_unknown": 12,
+        "unknown_only": 39,
+        "unresolved_parent": 418
+      },
+      "parent_scopes": {
+        "ambiguous": 97,
+        "out_of_scope": 245,
+        "stable": 608,
+        "unannotated": 76
+      },
+      "stable_C": {
+        "other": 26221,
+        "points": 54583,
+        "target": 26533,
+        "unknown": 1829
+      },
+      "stable_W": {
+        "other": 47100,
+        "points": 77180,
+        "target": 27713,
+        "unknown": 2367
+      }
+    }
+  },
+  "parents": 207,
+  "scenes": 52,
+  "scopes": {
+    "ambiguous": 14,
+    "out_of_scope": 33,
+    "stable": 143,
+    "unannotated": 17
+  },
+  "training": false
+}

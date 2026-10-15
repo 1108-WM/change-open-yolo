@@ -1,0 +1,3049 @@
+[
+  {
+    "GT": {
+      "annotated": 25,
+      "distribution": {
+        "134017": 25
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 25,
+      "target": 25,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.0,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          61
+        ],
+        "key": "scene0002_00:geometry:5b986e4f6a0be2d13e9aab39d1ff4d76ffd6726103c323280c627b5f95608f2b",
+        "node": 66,
+        "parent_coverage": 0.0,
+        "points": 82,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 21,
+      "distribution": {
+        "134017": 21
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 21,
+      "target": 21,
+      "unknown": 0
+    },
+    "explanation": "block_reference_missing",
+    "parent_groups": [
+      83
+    ],
+    "parent_query_hard_fraction": 0.0,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          83
+        ],
+        "groups": [
+          83
+        ],
+        "key": "scene0002_00:geometry:91e11ee33912ef28a793722ba073699c1f563b68ac87cf157337f276789d7ae0",
+        "node": 92,
+        "parent_coverage": 0.8883495145631068,
+        "points": 366,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          83
+        ],
+        "groups": [
+          83
+        ],
+        "key": "scene0002_00:geometry:fdaea319c20019431c5959b8c28c0c6989b04079fe8bba92dbde11d0482adebd",
+        "node": 161,
+        "parent_coverage": 1.0,
+        "points": 412,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.05060728744939269,
+    "pure_oracle_contribution": 0.05060728744939269,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 2,
+    "reason": "no_reference",
+    "region": 1,
+    "scene": "scene0002_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 572,
+      "distribution": {
+        "0": 67,
+        "98013": 572
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 639,
+      "target": 572,
+      "unknown": 67
+    },
+    "anchor_query_hard_iou": 0.8884120171673819,
+    "block_groups": [],
+    "block_support_examples": [],
+    "bridge_examples": [],
+    "candidate_id": "c005",
+    "clipped_GT": {
+      "annotated": 555,
+      "distribution": {
+        "0": 38,
+        "98013": 555
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 593,
+      "target": 555,
+      "unknown": 38
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 1.0,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          35
+        ],
+        "key": "scene0057_00:geometry:64b732a5ecbd1ee05174b84f315c1349896ba070add82fe7d49229407790aaeb",
+        "node": 35,
+        "parent_coverage": 1.0,
+        "points": 166,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.15973191845853113,
+    "pure_oracle_contribution": 0.0,
+    "raw_block_support_nodes": 0,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 0,
+    "scene": "scene0057_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 1,
+      "distribution": {
+        "98013": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.8884120171673819,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          17
+        ],
+        "key": "scene0057_00:geometry:3194b439e2bc18aa66d19554678aacce8646df1c7d15acb1e651def723d5a1d2",
+        "node": 17,
+        "parent_coverage": 0.0,
+        "points": 96,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c005",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "98013": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 1.0,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          35
+        ],
+        "key": "scene0057_00:geometry:64b732a5ecbd1ee05174b84f315c1349896ba070add82fe7d49229407790aaeb",
+        "node": 35,
+        "parent_coverage": 1.0,
+        "points": 166,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.00027925160569672314,
+    "pure_oracle_contribution": 0.0002792516056967301,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 4,
+    "scene": "scene0057_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 9,
+      "distribution": {
+        "98013": 9
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 9,
+      "target": 9,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.8884120171673819,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          17
+        ],
+        "key": "scene0057_00:geometry:3194b439e2bc18aa66d19554678aacce8646df1c7d15acb1e651def723d5a1d2",
+        "node": 17,
+        "parent_coverage": 0.0,
+        "points": 96,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c005",
+    "clipped_GT": {
+      "annotated": 9,
+      "distribution": {
+        "98013": 9
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 9,
+      "target": 9,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 1.0,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          35
+        ],
+        "key": "scene0057_00:geometry:64b732a5ecbd1ee05174b84f315c1349896ba070add82fe7d49229407790aaeb",
+        "node": 35,
+        "parent_coverage": 1.0,
+        "points": 166,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.0025132644512705915,
+    "pure_oracle_contribution": 0.0025132644512705984,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 5,
+    "scene": "scene0057_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 28,
+      "distribution": {
+        "276006": 28
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 28,
+      "target": 28,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.16440460947503202,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          22
+        ],
+        "key": "scene0078_00:geometry:f7cdd32bad8710f8458b6c4062836013ef35f02e784a148461592752003e44e6",
+        "node": 27,
+        "parent_coverage": 0.0,
+        "points": 407,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 24,
+      "distribution": {
+        "276006": 24
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 24,
+      "target": 24,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.09087989723827875,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.007547169811320753,
+    "pure_oracle_contribution": 0.007547169811320753,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 3,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 96,
+      "distribution": {
+        "276006": 96
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 96,
+      "target": 96,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.8013392857142857,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 94,
+      "distribution": {
+        "276006": 94
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 94,
+      "target": 94,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.9020552344251767,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.02587601078167112,
+    "pure_oracle_contribution": 0.02587601078167112,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 4,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.16440460947503202,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          22
+        ],
+        "key": "scene0078_00:geometry:f7cdd32bad8710f8458b6c4062836013ef35f02e784a148461592752003e44e6",
+        "node": 27,
+        "parent_coverage": 0.0,
+        "points": 407,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.09087989723827875,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.00026954177897575704,
+    "pure_oracle_contribution": 0.00026954177897575704,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 5,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.16440460947503202,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          22
+        ],
+        "key": "scene0078_00:geometry:f7cdd32bad8710f8458b6c4062836013ef35f02e784a148461592752003e44e6",
+        "node": 27,
+        "parent_coverage": 0.0,
+        "points": 407,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.09087989723827875,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.00026954177897575704,
+    "pure_oracle_contribution": 0.00026954177897575704,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 6,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 31,
+      "distribution": {
+        "276006": 31
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 31,
+      "target": 31,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.8013392857142857,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          22
+        ],
+        "key": "scene0078_00:geometry:f7cdd32bad8710f8458b6c4062836013ef35f02e784a148461592752003e44e6",
+        "node": 27,
+        "parent_coverage": 0.0,
+        "points": 407,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 31,
+      "distribution": {
+        "276006": 31
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 31,
+      "target": 31,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.9020552344251767,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.008355795148248024,
+    "pure_oracle_contribution": 0.008355795148248024,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 7,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 25,
+      "distribution": {
+        "276006": 25
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 25,
+      "target": 25,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.9117725219239968,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 25,
+      "distribution": {
+        "276006": 25
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 25,
+      "target": 25,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.9605009633911368,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.006738544474393482,
+    "pure_oracle_contribution": 0.006738544474393482,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 8,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 99,
+      "distribution": {
+        "276006": 99
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 99,
+      "target": 99,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.16440460947503202,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          20
+        ],
+        "key": "scene0078_00:geometry:edbb97d1a2e87b767667d211c083e6ed4183bcea0dd4c7bddcd7e0a10cc52454",
+        "node": 24,
+        "parent_coverage": 0.0,
+        "points": 2819,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          22
+        ],
+        "key": "scene0078_00:geometry:f7cdd32bad8710f8458b6c4062836013ef35f02e784a148461592752003e44e6",
+        "node": 27,
+        "parent_coverage": 0.0,
+        "points": 407,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 99,
+      "distribution": {
+        "276006": 99
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 99,
+      "target": 99,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.09087989723827875,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.026684636118598393,
+    "pure_oracle_contribution": 0.026684636118598393,
+    "raw_block_support_nodes": 3,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 10,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 177,
+      "distribution": {
+        "276006": 177
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 177,
+      "target": 177,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.8013392857142857,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          20
+        ],
+        "key": "scene0078_00:geometry:edbb97d1a2e87b767667d211c083e6ed4183bcea0dd4c7bddcd7e0a10cc52454",
+        "node": 24,
+        "parent_coverage": 0.0,
+        "points": 2819,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          22
+        ],
+        "key": "scene0078_00:geometry:f7cdd32bad8710f8458b6c4062836013ef35f02e784a148461592752003e44e6",
+        "node": 27,
+        "parent_coverage": 0.0,
+        "points": 407,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 177,
+      "distribution": {
+        "276006": 177
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 177,
+      "target": 177,
+      "unknown": 0
+    },
+    "explanation": "block_reference_missing",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.9020552344251767,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.04770889487870622,
+    "pure_oracle_contribution": 0.04770889487870622,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 2,
+    "reason": "no_reference",
+    "region": 11,
+    "scene": "scene0078_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 14,
+      "distribution": {
+        "276006": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.7560521415270018,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          22
+        ],
+        "key": "scene0078_00:geometry:f7cdd32bad8710f8458b6c4062836013ef35f02e784a148461592752003e44e6",
+        "node": 27,
+        "parent_coverage": 0.0,
+        "points": 407,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 14,
+      "distribution": {
+        "276006": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.7736030828516378,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.0037735849056603765,
+    "pure_oracle_contribution": 0.0037735849056603765,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 12,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 53,
+      "distribution": {
+        "276006": 53
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 53,
+      "target": 53,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.9686306601200219,
+    "block_groups": [
+      9
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 53,
+      "distribution": {
+        "276006": 53
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 53,
+      "target": 53,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.9974309569685292,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.014285714285714235,
+    "pure_oracle_contribution": 0.014285714285714235,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 13,
+    "scene": "scene0078_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.8013392857142857,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          20
+        ],
+        "key": "scene0078_00:geometry:edbb97d1a2e87b767667d211c083e6ed4183bcea0dd4c7bddcd7e0a10cc52454",
+        "node": 24,
+        "parent_coverage": 0.0,
+        "points": 2819,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          22
+        ],
+        "key": "scene0078_00:geometry:f7cdd32bad8710f8458b6c4062836013ef35f02e784a148461592752003e44e6",
+        "node": 27,
+        "parent_coverage": 0.0,
+        "points": 407,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "276006": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "explanation": "block_reference_missing",
+    "parent_groups": [
+      9
+    ],
+    "parent_query_hard_fraction": 0.9020552344251767,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:75e5c553af7a5e63c9d6744ad5e24bb61ded21e97055f568be90e351fc7f3b49",
+        "node": 9,
+        "parent_coverage": 1.0,
+        "points": 3531,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          9
+        ],
+        "groups": [
+          9
+        ],
+        "key": "scene0078_00:geometry:bd93cfe61a2e6cbaecf9567aad29c744fe12367bc5e98f8ee6416531f09484d5",
+        "node": 18,
+        "parent_coverage": 1.0,
+        "points": 3114,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.00026954177897575704,
+    "pure_oracle_contribution": 0.00026954177897575704,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 2,
+    "reason": "no_reference",
+    "region": 14,
+    "scene": "scene0078_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 30,
+      "distribution": {
+        "13030": 30
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 30,
+      "target": 30,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.03571428571428571,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          47
+        ],
+        "key": "scene0085_00:geometry:af41a05ef454ab58cb6084530ba6ed9a52907370e02c301fbf3edf283e37c8aa",
+        "node": 53,
+        "parent_coverage": 0.1096516276413478,
+        "points": 452,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          59
+        ],
+        "key": "scene0085_00:geometry:d69b1911eb488283bedf64b7a83b307f7fe5d7f4e68f98a6adab2755d88f0d4c",
+        "node": 70,
+        "parent_coverage": 0.0,
+        "points": 300,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 30,
+      "distribution": {
+        "13030": 30
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 30,
+      "target": 30,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.37178754997144486,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          60
+        ],
+        "key": "scene0085_00:geometry:dd68c669c64bfc42aff9b3bd5ee5c6bf1d6c0ed3a316badca208fba786eb398f",
+        "node": 71,
+        "parent_coverage": 1.0,
+        "points": 1751,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.01285347043701801,
+    "pure_oracle_contribution": 0.01285347043701801,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 4,
+    "scene": "scene0085_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 28,
+      "distribution": {
+        "13030": 28
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 28,
+      "target": 28,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.03571428571428571,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          47
+        ],
+        "key": "scene0085_00:geometry:af41a05ef454ab58cb6084530ba6ed9a52907370e02c301fbf3edf283e37c8aa",
+        "node": 53,
+        "parent_coverage": 0.1096516276413478,
+        "points": 452,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          59
+        ],
+        "key": "scene0085_00:geometry:d69b1911eb488283bedf64b7a83b307f7fe5d7f4e68f98a6adab2755d88f0d4c",
+        "node": 70,
+        "parent_coverage": 0.0,
+        "points": 300,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 28,
+      "distribution": {
+        "13030": 28
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 28,
+      "target": 28,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.37178754997144486,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          60
+        ],
+        "key": "scene0085_00:geometry:dd68c669c64bfc42aff9b3bd5ee5c6bf1d6c0ed3a316badca208fba786eb398f",
+        "node": 71,
+        "parent_coverage": 1.0,
+        "points": 1751,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.011996572407883432,
+    "pure_oracle_contribution": 0.011996572407883432,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 11,
+    "scene": "scene0085_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 4,
+      "distribution": {
+        "13030": 4
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 4,
+      "target": 4,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.03571428571428571,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          47
+        ],
+        "key": "scene0085_00:geometry:af41a05ef454ab58cb6084530ba6ed9a52907370e02c301fbf3edf283e37c8aa",
+        "node": 53,
+        "parent_coverage": 0.1096516276413478,
+        "points": 452,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          53
+        ],
+        "key": "scene0085_00:geometry:c795bf5c3cae13087a9bf21a9e79479ea68606cbf8a9eb94888eb175f66844fd",
+        "node": 63,
+        "parent_coverage": 0.0,
+        "points": 6838,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 4,
+      "distribution": {
+        "13030": 4
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 4,
+      "target": 4,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.37178754997144486,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          60
+        ],
+        "key": "scene0085_00:geometry:dd68c669c64bfc42aff9b3bd5ee5c6bf1d6c0ed3a316badca208fba786eb398f",
+        "node": 71,
+        "parent_coverage": 1.0,
+        "points": 1751,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.001713796058269046,
+    "pure_oracle_contribution": 0.001713796058269046,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 12,
+    "scene": "scene0085_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 15,
+      "distribution": {
+        "11012": 1,
+        "13030": 14
+      },
+      "known_instances": 2,
+      "other": 1,
+      "ownership": "mixed_known",
+      "points": 15,
+      "target": 14,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.03571428571428571,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          53
+        ],
+        "key": "scene0085_00:geometry:c795bf5c3cae13087a9bf21a9e79479ea68606cbf8a9eb94888eb175f66844fd",
+        "node": 63,
+        "parent_coverage": 0.0,
+        "points": 6838,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 12,
+      "distribution": {
+        "13030": 12
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 12,
+      "target": 12,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.37178754997144486,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          60
+        ],
+        "key": "scene0085_00:geometry:dd68c669c64bfc42aff9b3bd5ee5c6bf1d6c0ed3a316badca208fba786eb398f",
+        "node": 71,
+        "parent_coverage": 1.0,
+        "points": 1751,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.005998286203941716,
+    "pure_oracle_contribution": 0.0,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 15,
+    "scene": "scene0085_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 6,
+      "distribution": {
+        "13030": 6
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 6,
+      "target": 6,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.03571428571428571,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          59
+        ],
+        "key": "scene0085_00:geometry:d69b1911eb488283bedf64b7a83b307f7fe5d7f4e68f98a6adab2755d88f0d4c",
+        "node": 70,
+        "parent_coverage": 0.0,
+        "points": 300,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 5,
+      "distribution": {
+        "13030": 5
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 5,
+      "target": 5,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.37178754997144486,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          60
+        ],
+        "key": "scene0085_00:geometry:dd68c669c64bfc42aff9b3bd5ee5c6bf1d6c0ed3a316badca208fba786eb398f",
+        "node": 71,
+        "parent_coverage": 1.0,
+        "points": 1751,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.0025706940874036244,
+    "pure_oracle_contribution": 0.0025706940874036244,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 16,
+    "scene": "scene0085_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 6,
+      "distribution": {
+        "44014": 6
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 6,
+      "target": 6,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 1.0,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          7
+        ],
+        "key": "scene0301_02:geometry:113dbee09a78706cececc2a9edcf6ea1bc840ebb2a75cbcdbde604fc2087f3cd",
+        "node": 7,
+        "parent_coverage": 0.0,
+        "points": 195,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 6,
+      "distribution": {
+        "44014": 6
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 6,
+      "target": 6,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 1.0,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          4
+        ],
+        "key": "scene0301_02:geometry:0ca9d89468fd37a7e222dd30f86ffec485c32af65c488db2796623183fc5378d",
+        "node": 4,
+        "parent_coverage": 1.0,
+        "points": 196,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.003059663437021909,
+    "pure_oracle_contribution": 0.0030596634370219228,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 1,
+    "scene": "scene0301_02",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 384,
+      "distribution": {
+        "0": 15,
+        "44014": 384
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 399,
+      "target": 384,
+      "unknown": 15
+    },
+    "anchor_query_hard_iou": 1.0,
+    "block_groups": [],
+    "block_support_examples": [],
+    "bridge_examples": [],
+    "candidate_id": "c004",
+    "clipped_GT": {
+      "annotated": 382,
+      "distribution": {
+        "0": 4,
+        "44014": 382
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 386,
+      "target": 382,
+      "unknown": 4
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 1.0,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          4
+        ],
+        "key": "scene0301_02:geometry:0ca9d89468fd37a7e222dd30f86ffec485c32af65c488db2796623183fc5378d",
+        "node": 4,
+        "parent_coverage": 1.0,
+        "points": 196,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.1958184599694034,
+    "pure_oracle_contribution": 0.0,
+    "raw_block_support_nodes": 0,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 2,
+    "scene": "scene0301_02",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 524,
+      "distribution": {
+        "44014": 524
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 524,
+      "target": 524,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 1.0,
+    "block_groups": [],
+    "block_support_examples": [],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 521,
+      "distribution": {
+        "44014": 521
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 521,
+      "target": 521,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 1.0,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          7
+        ],
+        "key": "scene0301_02:geometry:113dbee09a78706cececc2a9edcf6ea1bc840ebb2a75cbcdbde604fc2087f3cd",
+        "node": 7,
+        "parent_coverage": 1.0,
+        "points": 195,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.2672106068332483,
+    "pure_oracle_contribution": 0.2672106068332483,
+    "raw_block_support_nodes": 0,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 1,
+    "scene": "scene0301_02",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 14,
+      "distribution": {
+        "44014": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 1.0,
+    "block_groups": [],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          4
+        ],
+        "key": "scene0301_02:geometry:0ca9d89468fd37a7e222dd30f86ffec485c32af65c488db2796623183fc5378d",
+        "node": 4,
+        "parent_coverage": 0.0,
+        "points": 196,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 14,
+      "distribution": {
+        "44014": 14
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 14,
+      "target": 14,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 1.0,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          7
+        ],
+        "key": "scene0301_02:geometry:113dbee09a78706cececc2a9edcf6ea1bc840ebb2a75cbcdbde604fc2087f3cd",
+        "node": 7,
+        "parent_coverage": 1.0,
+        "points": 195,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.00713921468638451,
+    "pure_oracle_contribution": 0.00713921468638451,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 2,
+    "scene": "scene0301_02",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 599,
+      "distribution": {
+        "5008": 599
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 599,
+      "target": 599,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 1.0,
+    "block_groups": [
+      38
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          38
+        ],
+        "groups": [
+          38
+        ],
+        "key": "scene0369_00:geometry:95e3d8a79caca5af7d151c158c341f91d8b89615c04205b4acecd5676ea901b0",
+        "node": 45,
+        "parent_coverage": 0.0,
+        "points": 662,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          38
+        ],
+        "groups": [
+          38
+        ],
+        "key": "scene0369_00:geometry:f37baa725caf312542de3202abf0886dd84ce8d7701bda5418d4514d009f1f78",
+        "node": 70,
+        "parent_coverage": 0.0,
+        "points": 600,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [],
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 599,
+      "distribution": {
+        "5008": 599
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 599,
+      "target": 599,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.6669824727617243,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          49
+        ],
+        "key": "scene0369_00:geometry:c546aaa796fc8a346a72c1bc4b235c4377df0b2db825431a5f8c6931c2439ad2",
+        "node": 60,
+        "parent_coverage": 1.0,
+        "points": 4222,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.12202077816255852,
+    "pure_oracle_contribution": 0.12202077816255852,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 4,
+    "scene": "scene0369_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 2,
+      "distribution": {
+        "5008": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.1977859778597786,
+    "block_groups": [],
+    "block_support_examples": [],
+    "bridge_examples": [],
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "5008": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.5234486025580294,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          49
+        ],
+        "key": "scene0369_00:geometry:c546aaa796fc8a346a72c1bc4b235c4377df0b2db825431a5f8c6931c2439ad2",
+        "node": 60,
+        "parent_coverage": 1.0,
+        "points": 4222,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.00040741495212870404,
+    "pure_oracle_contribution": 0.00040741495212870404,
+    "raw_block_support_nodes": 0,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 11,
+    "scene": "scene0369_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 2,
+      "distribution": {
+        "5008": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 0.1977859778597786,
+    "block_groups": [],
+    "block_support_examples": [],
+    "bridge_examples": [],
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 2,
+      "distribution": {
+        "5008": 2
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 2,
+      "target": 2,
+      "unknown": 0
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.5234486025580294,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          49
+        ],
+        "key": "scene0369_00:geometry:c546aaa796fc8a346a72c1bc4b235c4377df0b2db825431a5f8c6931c2439ad2",
+        "node": 60,
+        "parent_coverage": 1.0,
+        "points": 4222,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.00040741495212870404,
+    "pure_oracle_contribution": 0.00040741495212870404,
+    "raw_block_support_nodes": 0,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 12,
+    "scene": "scene0369_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 410,
+      "distribution": {
+        "0": 45,
+        "22001": 148,
+        "22022": 42,
+        "459021": 113,
+        "7015": 107
+      },
+      "known_instances": 4,
+      "other": 303,
+      "ownership": "mixed_known",
+      "points": 455,
+      "target": 107,
+      "unknown": 45
+    },
+    "anchor_query_hard_iou": 0.0,
+    "block_groups": [],
+    "block_support_examples": [],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 183,
+      "distribution": {
+        "22001": 147,
+        "459021": 12,
+        "7015": 24
+      },
+      "known_instances": 3,
+      "other": 159,
+      "ownership": "mixed_known",
+      "points": 183,
+      "target": 24,
+      "unknown": 0
+    },
+    "explanation": "block_reference_missing",
+    "parent_groups": [
+      26
+    ],
+    "parent_query_hard_fraction": 0.001610305958132045,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:64dd97e5916e3c9cbb04c83a99bc5676f7660f48cf549b72e90c787a7e7d4ddf",
+        "node": 28,
+        "parent_coverage": 1.0,
+        "points": 2687,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:defbbc1cddd29bbbd42209559580eb7a580e2e95ee15e7f67fc108f00d2becac",
+        "node": 64,
+        "parent_coverage": 1.0,
+        "points": 2484,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.03481939472827855,
+    "pure_oracle_contribution": 0.0,
+    "raw_block_support_nodes": 0,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 2,
+    "reason": "no_reference",
+    "region": 0,
+    "scene": "scene0369_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 43,
+      "distribution": {
+        "7015": 43
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 43,
+      "target": 43,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 1.0,
+    "block_groups": [
+      26
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:64dd97e5916e3c9cbb04c83a99bc5676f7660f48cf549b72e90c787a7e7d4ddf",
+        "node": 28,
+        "parent_coverage": 1.0,
+        "points": 2687,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [],
+        "groups": [
+          36
+        ],
+        "key": "scene0369_00:geometry:8538d6980717e7680103100ed676a03cf56e29ba5bfb76bbaa50b5ce2bb93556",
+        "node": 42,
+        "parent_coverage": 0.0,
+        "points": 43,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:64dd97e5916e3c9cbb04c83a99bc5676f7660f48cf549b72e90c787a7e7d4ddf",
+        "node": 28,
+        "parent_coverage": 1.0,
+        "points": 2687,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 42,
+      "distribution": {
+        "7015": 42
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 42,
+      "target": 42,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      26
+    ],
+    "parent_query_hard_fraction": 0.9593397745571659,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:64dd97e5916e3c9cbb04c83a99bc5676f7660f48cf549b72e90c787a7e7d4ddf",
+        "node": 28,
+        "parent_coverage": 1.0,
+        "points": 2687,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:defbbc1cddd29bbbd42209559580eb7a580e2e95ee15e7f67fc108f00d2becac",
+        "node": 64,
+        "parent_coverage": 1.0,
+        "points": 2484,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.013992840872111945,
+    "pure_oracle_contribution": 0.013992840872111945,
+    "raw_block_support_nodes": 2,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 4,
+    "scene": "scene0369_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 1,
+      "distribution": {
+        "7015": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 1.0,
+    "block_groups": [],
+    "block_support_examples": [],
+    "bridge_examples": [],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 1,
+      "distribution": {
+        "7015": 1
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 1,
+      "target": 1,
+      "unknown": 0
+    },
+    "explanation": "block_reference_missing",
+    "parent_groups": [
+      26
+    ],
+    "parent_query_hard_fraction": 0.9593397745571659,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:64dd97e5916e3c9cbb04c83a99bc5676f7660f48cf549b72e90c787a7e7d4ddf",
+        "node": 28,
+        "parent_coverage": 1.0,
+        "points": 2687,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:defbbc1cddd29bbbd42209559580eb7a580e2e95ee15e7f67fc108f00d2becac",
+        "node": 64,
+        "parent_coverage": 1.0,
+        "points": 2484,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.00032541490400261885,
+    "pure_oracle_contribution": 0.00032541490400261885,
+    "raw_block_support_nodes": 0,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 2,
+    "reason": "no_reference",
+    "region": 5,
+    "scene": "scene0369_00",
+    "state": "unknown"
+  },
+  {
+    "GT": {
+      "annotated": 116,
+      "distribution": {
+        "7015": 116
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 116,
+      "target": 116,
+      "unknown": 0
+    },
+    "anchor_query_hard_iou": 1.0,
+    "block_groups": [
+      26
+    ],
+    "block_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:64dd97e5916e3c9cbb04c83a99bc5676f7660f48cf549b72e90c787a7e7d4ddf",
+        "node": 28,
+        "parent_coverage": 1.0,
+        "points": 2687,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "bridge_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:64dd97e5916e3c9cbb04c83a99bc5676f7660f48cf549b72e90c787a7e7d4ddf",
+        "node": 28,
+        "parent_coverage": 1.0,
+        "points": 2687,
+        "sources": [
+          "native"
+        ]
+      }
+    ],
+    "candidate_id": "c007",
+    "clipped_GT": {
+      "annotated": 92,
+      "distribution": {
+        "7015": 92
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_only",
+      "points": 92,
+      "target": 92,
+      "unknown": 0
+    },
+    "explanation": "accepted",
+    "parent_groups": [
+      26
+    ],
+    "parent_query_hard_fraction": 0.9593397745571659,
+    "parent_support_examples": [
+      {
+        "block_coverage": 1.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:64dd97e5916e3c9cbb04c83a99bc5676f7660f48cf549b72e90c787a7e7d4ddf",
+        "node": 28,
+        "parent_coverage": 1.0,
+        "points": 2687,
+        "sources": [
+          "native"
+        ]
+      },
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [
+          26
+        ],
+        "groups": [
+          26
+        ],
+        "key": "scene0369_00:geometry:defbbc1cddd29bbbd42209559580eb7a580e2e95ee15e7f67fc108f00d2becac",
+        "node": 64,
+        "parent_coverage": 1.0,
+        "points": 2484,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.03774812886430201,
+    "pure_oracle_contribution": 0.03774812886430201,
+    "raw_block_support_nodes": 1,
+    "raw_bridge_nodes": 1,
+    "raw_native_bridges": 1,
+    "raw_parent_support_nodes": 2,
+    "reason": "unique_shared_instance_reference",
+    "region": 6,
+    "scene": "scene0369_00",
+    "state": "accept"
+  },
+  {
+    "GT": {
+      "annotated": 101,
+      "distribution": {
+        "0": 47,
+        "1011": 1,
+        "261015": 100
+      },
+      "known_instances": 2,
+      "other": 1,
+      "ownership": "mixed_known",
+      "points": 148,
+      "target": 100,
+      "unknown": 47
+    },
+    "anchor_query_hard_iou": 0.772567409144197,
+    "block_groups": [],
+    "block_support_examples": [],
+    "bridge_examples": [],
+    "candidate_id": "c006",
+    "clipped_GT": {
+      "annotated": 100,
+      "distribution": {
+        "0": 47,
+        "261015": 100
+      },
+      "known_instances": 1,
+      "other": 0,
+      "ownership": "target_unknown",
+      "points": 147,
+      "target": 100,
+      "unknown": 47
+    },
+    "explanation": "parent_reference_missing",
+    "parent_groups": [],
+    "parent_query_hard_fraction": 0.9823484267075978,
+    "parent_support_examples": [
+      {
+        "block_coverage": 0.0,
+        "credible_groups": [],
+        "groups": [
+          39
+        ],
+        "key": "scene0688_00:geometry:97c8f354a39246f026e948c154a38a818839f5cb7c7a3c799341cfe00c0a2d5a",
+        "node": 44,
+        "parent_coverage": 1.0,
+        "points": 1303,
+        "sources": [
+          "track"
+        ]
+      }
+    ],
+    "point_oracle_contribution": 0.0677506775067751,
+    "pure_oracle_contribution": 0.0,
+    "raw_block_support_nodes": 0,
+    "raw_bridge_nodes": 0,
+    "raw_native_bridges": 0,
+    "raw_parent_support_nodes": 1,
+    "reason": "no_reference",
+    "region": 1,
+    "scene": "scene0688_00",
+    "state": "unknown"
+  }
+]

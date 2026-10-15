@@ -1,0 +1,21 @@
+{
+  "complete": true,
+  "A_passed": false,
+  "B_passed": false,
+  "decision": "stop_microtuning_both_fixed_T_add_union_rules",
+  "reason": "Both fixed union pools have zero continuous complete-NT gain and zero >=.02 targets/scenes; T parent gains are redundant",
+  "B_reduces_absolute_wrong_and_unknown_counts": true,
+  "B_reduces_unknown_fraction": false,
+  "B_new_pool_value": false,
+  "A_improved_parents": 42,
+  "B_improved_parents": 8,
+  "A_B_improved_parents_all_covered_by_original_N": true,
+  "posthoc_pure_region_supply_gain02_scenes": 3,
+  "posthoc_point_supply_gain02_scenes": 4,
+  "next": "Diagnose parent-query identity/coverage and relationships to other queries, plus mixed-region supply; do not tune thresholds, resample scenes, train or deploy",
+  "GT_constructs_executed": false,
+  "training": false,
+  "AP_run": false,
+  "production_modified": false,
+  "github_published": false
+}

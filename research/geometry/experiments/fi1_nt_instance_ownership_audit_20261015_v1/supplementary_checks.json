@@ -1,0 +1,50 @@
+{
+  "complete": true,
+  "receipt_hash_checks": 34,
+  "counts": {
+    "unknown": 1026,
+    "accept": 187,
+    "accept_own_parent_is_only_eligible_T": 109,
+    "accept_distinct_N_T_both_cover_block": 36,
+    "accept_no_single_native_bridge": 4,
+    "reject": 95
+  },
+  "accepted_block_support_sources": {
+    "native": 147,
+    "native+track": 36,
+    "track": 4
+  },
+  "aggregates": {
+    "all_C": {
+      "actions": 205,
+      "stable_actions": 142,
+      "target": 36567,
+      "other": 31962,
+      "unknown": 2242,
+      "precision": 0.516694691328369,
+      "good_parents": 12,
+      "good_parents_with_action": 12,
+      "good_copy_damage": 9,
+      "stable_copy_damage": 48,
+      "bridge_N_redundant": 55,
+      "gain02": 3
+    },
+    "relation_C": {
+      "actions": 66,
+      "stable_actions": 55,
+      "target": 10019,
+      "other": 353,
+      "unknown": 73,
+      "precision": 0.9592149353757778,
+      "good_parents": 12,
+      "good_parents_with_action": 7,
+      "good_copy_damage": 0,
+      "stable_copy_damage": 2,
+      "bridge_N_redundant": 52,
+      "gain02": 0
+    }
+  },
+  "target_retention_vs_all_C": 0.27399020975196214,
+  "known_neighbor_removal_vs_all_C": 0.9889556348163444,
+  "scope": "Reran existing set-based independent verifier, plus new support-source and aggregate census. No new rules, outputs, training or AP."
+}

@@ -1,0 +1,108 @@
+{
+  "complete": true,
+  "reused_verifier_replay": {
+    "complete": true,
+    "blocks": 612,
+    "unions": 190,
+    "pool_rows": 2370,
+    "independent_rule_selection_and_union_and_GT_IoU": true,
+    "original_NT_preserved": true,
+    "N_edits": 0,
+    "T_deletions": 0,
+    "GT_after_predictions": true,
+    "code_inputs_SL_unchanged": true,
+    "physical_isolation_verified": true,
+    "training": false,
+    "production_modified": false,
+    "time": 1791988906.5756102
+  },
+  "supply_stable_parents": 67,
+  "point_mapping": 3016265,
+  "query_identity_rows": 36,
+  "point_gain_targets": [
+    [
+      "scene0002_00",
+      134017
+    ],
+    [
+      "scene0078_00",
+      276006
+    ],
+    [
+      "scene0085_00",
+      13030
+    ],
+    [
+      "scene0688_00",
+      261015
+    ]
+  ],
+  "pure_region_gain_targets": [
+    [
+      "scene0002_00",
+      134017
+    ],
+    [
+      "scene0078_00",
+      276006
+    ],
+    [
+      "scene0085_00",
+      13030
+    ]
+  ],
+  "point_continuous_gain": 0.18356600663741973,
+  "pure_region_continuous_gain": 0.10912187434832266,
+  "improved_covered_by_N": {
+    "A": 42,
+    "B": 8
+  },
+  "opportunity_details": [
+    {
+      "scene": "scene0002_00",
+      "parent": "c006",
+      "target": 134017,
+      "baseline": 0.8340080971659919,
+      "pure": 0.8846153846153846,
+      "point": 0.8846153846153846,
+      "query_rejected_target_points": 25
+    },
+    {
+      "scene": "scene0078_00",
+      "parent": "c004",
+      "target": 276006,
+      "baseline": 0.9517520215633423,
+      "pure": 0.9811320754716981,
+      "point": 0.9811320754716981,
+      "query_rejected_target_points": 304
+    },
+    {
+      "scene": "scene0085_00",
+      "parent": "c007",
+      "target": 13030,
+      "baseline": 0.6550985432733505,
+      "pure": 0.6842330762639246,
+      "point": 0.6902313624678663,
+      "query_rejected_target_points": 82
+    },
+    {
+      "scene": "scene0688_00",
+      "parent": "c006",
+      "target": 261015,
+      "baseline": 0.75,
+      "pure": 0.75,
+      "point": 0.8177506775067751,
+      "query_rejected_target_points": 100
+    }
+  ],
+  "duplicates": {
+    "A": 1,
+    "B": 0
+  },
+  "limitations": [
+    "Existing reviewed verifier rerun with final seal intercepted; original artifacts unchanged.",
+    "Supply/IoU, N/T redundancy and query mask composition independently recomputed; input loader reused.",
+    "No GPU re-export or full depth/mask pipeline rerun.",
+    "Query identity check verifies local mask composition, not globally identical instances."
+  ]
+}
