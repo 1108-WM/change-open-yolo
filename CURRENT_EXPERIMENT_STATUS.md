@@ -1,6 +1,14 @@
 # 当前实验状态
 
-**2026-10-15最新：[几轮实验总览](docs/SESSION_EXPERIMENTS_20261015.md)。** [N/T三态归属原型](research/geometry/experiments/fi1_nt_instance_ownership_prototype_exposed52_20261015_v1/report_final.md)已完成：52场景/207父/1308块，稳定新增精度95.92%，好T副本损害0/12，完整NT新增价值0；停止固定原型，未独立验证/AP。前序[24场景冻结下游AP](research/geometry/experiments/fi1_t_add_union_downstream_internal24_20261014_v1/report.md)真实完成且A/B均下降；[query关系诊断](research/geometry/experiments/fi1_query_relation_diagnostic_exposed52_20261014_v1/report.md)与[块/点选择v2](research/geometry/experiments/fi1_local_block_attribution_selection_diagnostic_exposed52_20261015_v1/report_v2.md)仅开发诊断。最新[审计](research/geometry/experiments/fi1_nt_instance_ownership_audit_20261015_v1/report.md)建议T原始观测/关联/合并/细化来源审计，尚未启动。以下记录对应各历史完成时点。
+**2026-10-15最新：既有训练200／开发55二分类对照与独立审计已完成。** [最小审查包](research/geometry/reviews/20261015_relations/README.md)集中提供上次发布后九项执行的变量、指标、源码版本与失败定位；[机器证据](research/geometry/reviews/20261015_relations/evidence.json)和[标量复算入口](research/geometry/reviews/20261015_relations/verify.py)支持代码审阅及汇总检查。原始点集、模型、特征与帧缓存留本机，不再逐轮上传完整结果目录和重复源码快照。
+
+最新在同一开发55（29物理地点）、4,014对候选上比较预先指定的82模型与完整200模型，仅新增一次二分类拟合。固定154维特征、场景等权、.9／.1门槛及单伙伴竞争；原NT保留，先封存预测再读开发GT。全部200／55名单保留，无扫描或物理地点交集，零候选训练场景不删除。开发55是现有开发集，不是全项目未暴露最终测试集。
+
+困难关系均衡loss .431620→.430601，明确邻物误高分仍14/491，正确互补片段高分62.66%→49.96%；混合接受51→87，好端点副本损害10→19，完整NT新增≥.02目标均0，几何收益与安全不通过。连续池IoU增量之和均.002869，副本损害不是删除原池或已测AP损失。后置有10对／9目标／7地点供给，其中严格明确同实例7对／6目标／5地点；均eligible但未达.9，不能归因于没有机会或伙伴竞争。同一82训练子集拟合也下降，原因未逐项确定。
+
+此前已完成T来源链、D1子区域、跨轨迹双假设、RGB-D关系学习、容量／权重、物理关系均衡、加入42场景的规模对照及混合风险监督，详见审查包。后续路线未定，空间布局建议尚未执行。本次没有新训练或AP，未修改生产Full／有效SL。冻结生产仍为GD10＋official100 D-v3七模型＋匹配597 B26＋N/T/U/U′＋K800；研究NT与有效SL不是生产全池。
+
+后续普通更新只提交源码与必要测试；实验再附固定配置、核心指标、简洁报告和必要标量证据；重要结论／阶段切换才更新本页。以下均为历史完成时点，旧“下一步”不覆盖当前决策；历史文件不删除、不重写。
 
 
 ## 2026-10-14 最新完成：局部编辑证据诊断
